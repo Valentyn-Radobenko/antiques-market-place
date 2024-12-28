@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "./static/css/main.ccab4698.css",
+    "main.js": "./static/js/main.84657961.js",
+    "static/media/Currency.svg": "./static/media/Currency.2b1f88dce74e2650ed92.svg",
+    "static/media/account.svg": "./static/media/account.5ee038f2da0a4840ee49.svg",
+    "static/media/Questions.svg": "./static/media/Questions.85e52995aecfed07dde2.svg",
+    "static/media/UA.svg": "./static/media/UA.e3892eaee7b9f774e08a.svg",
+    "index.html": "./index.html",
+    "main.ccab4698.css.map": "./static/css/main.ccab4698.css.map",
+    "main.84657961.js.map": "./static/js/main.84657961.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ccab4698.css",
+    "static/js/main.84657961.js"
+  ]
+}
