@@ -1,3 +1,5 @@
+import { Exhibitions } from './components/Exhibitions';
+
 export const App: React.FC = () => {
   return (
     <>
@@ -54,37 +56,19 @@ export const App: React.FC = () => {
           <nav className="hero__nav">
             <ul className="hero__nav-list">
               <li className="hero__nav-item">
-                <a className="hero__nav-button">Маркет</a>
+                <a className="hero__nav-link">Маркет</a>
+              </li>
+              <li className="hero__nav-item hero__nav-item--is-active">
+                <a className="hero__nav-link">Клуб колекціонерів</a>
               </li>
               <li className="hero__nav-item">
-                <a className="hero__nav-button">Клуб колекціонерів</a>
-              </li>
-              <li className="hero__nav-item">
-                <a className="hero__nav-button">Експертиза</a>
+                <a className="hero__nav-link">Експертиза</a>
               </li>
             </ul>
           </nav>
         </section>
 
-        <section className="exhibitions">
-          <div className="section-header">
-            <h2 className="section-header__title">Виставки</h2>
-            <a href="#" className="section-header__link">
-              дізнатися більше
-            </a>
-          </div>
-          <div className="exhibitions__carousel">
-            <div className="exhibition-card">
-              <div className="exhibition-card__image"></div>
-              <div className="exhibition-card__details">
-                <h3 className="exhibition-card__title">
-                  Виставка народного Художника України Володимира Козюка
-                </h3>
-                <span className="exhibition-card__status">Відбулася</span>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Exhibitions />
 
         <section className="articles">
           <div className="section-header">
