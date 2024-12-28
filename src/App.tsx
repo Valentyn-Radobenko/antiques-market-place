@@ -4,17 +4,17 @@ export const App: React.FC = () => {
       <header className="header">
         <div className="header__container">
           <div className="header__logo">Logo</div>
-          <div className="header__search">
-            <label className="header__search-label" htmlFor="search-input">
+          <label className="header__search" htmlFor="search-input">
+            <div className="header__search-bar">
               {''}
-            </label>
-            <input
-              id="search-input"
-              type="text"
-              className="header__search-label-input"
-            />
-            <button className="header__search-button">Пошук</button>
-          </div>
+              <input
+                id="search-input"
+                type="text"
+                className="header__search-input"
+              />
+              <button className="header__search-button">Пошук</button>
+            </div>
+          </label>
           <ul className="header__actions">
             <li>
               <button
