@@ -1,0 +1,253 @@
+@import './reset';
+@import './mixins';
+@import './variables';
+@import './fonts';
+
+/* Загальні стилі */
+body {
+  font-family: Inter, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: $bg-color;
+  color: $dark-text-color;
+}
+
+/* Хедер */
+.header {
+  @include standard-inline-paddings;
+  padding-block: 24px;
+  opacity: 0px;
+}
+.header__container {
+  @include standard-inline-paddings;
+  padding-block: 24px;
+  background-color: $header-bg-color;
+  border-radius: 24px;
+  height: 131px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__logo {
+  font-family: Inter;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 48.41px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.header__search {
+  background-color: $sections-bg-minor-color;
+  display: flex;
+  align-items: center;
+  width: 548px;
+  padding: 16px 0px 0px 0px;
+  gap: 412px;
+  border-radius: 12px;
+}
+.header__search-input {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.header__search-button {
+  margin-left: 10px;
+  padding: 5px 15px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.header__actions span {
+  margin-left: 15px;
+  font-size: 18px;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 20px;
+}
+.hero__title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.hero__nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.hero__nav-button {
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Секція Виставок */
+.exhibitions {
+  padding: 20px;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.section-header__title {
+  font-size: 22px;
+  font-weight: bold;
+}
+.section-header__link {
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+}
+.exhibitions__carousel {
+  display: flex;
+  gap: 20px;
+}
+.exhibition-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  width: 300px;
+}
+.exhibition-card__image {
+  height: 150px;
+  background-color: #ccc;
+  border-radius: 4px;
+}
+.exhibition-card__details {
+  margin-top: 10px;
+}
+.exhibition-card__title {
+  font-size: 18px;
+  font-weight: bold;
+}
+.exhibition-card__status {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Секція Статей */
+.articles {
+  padding: 20px;
+}
+.articles__list {
+  display: flex;
+  gap: 20px;
+}
+.article-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  width: 300px;
+}
+.article-card__image {
+  height: 150px;
+  background-color: #ccc;
+  border-radius: 4px;
+}
+.article-card__details {
+  margin-top: 10px;
+}
+.article-card__title {
+  font-size: 18px;
+  font-weight: bold;
+}
+.article-card__tags {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+.article-card__tag {
+  font-size: 14px;
+  color: #007bff;
+}
+.article-card__button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Секція Обговорень */
+.discussions {
+  padding: 20px;
+}
+.discussions__list {
+  display: flex;
+  gap: 20px;
+}
+.discussion-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  width: 300px;
+}
+.discussion-card__header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #666;
+}
+.discussion-card__title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+.discussion-card__footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Футер */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+.footer__columns {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.footer__column {
+  width: 30%;
+}
+.footer__title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.footer__list {
+  list-style: none;
+  padding: 0;
+}
+.footer__link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+.footer__link:hover {
+  text-decoration: underline;
+}
+.footer__copyright {
+  font-size: 12px;
+  text-align: center;
+}
