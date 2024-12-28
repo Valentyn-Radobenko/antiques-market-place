@@ -4,24 +4,45 @@ export const App: React.FC = () => {
       <header className="header">
         <div className="header__container">
           <div className="header__logo">Logo</div>
-          <label htmlFor="header__search-input" className="header__search">
+          <div className="header__search">
+            <label className="header__search-label" htmlFor="search-input">
+              {''}
+            </label>
             <input
-              id="header__search-input"
+              id="search-input"
               type="text"
-              className="header__search-input"
-              placeholder="Пошук"
+              className="header__search-label-input"
             />
-            <input
-              type="search"
-              className="header__search-button"
-              placeholder="Пошук"
-            />
-          </label>
-          <div className="header__actions">
-            <span className="header__currency">₴</span>
-            <span className="header__language">UA</span>
-            <span className="header__profile">🔒</span>
+            <button className="header__search-button">Пошук</button>
           </div>
+          <ul className="header__actions">
+            <li>
+              <button
+                className="header__actions-item 
+                  header__actions-item--currency"
+                aria-label="Перемикач валюти"
+              ></button>
+            </li>
+            <li>
+              <button
+                className="header__actions-item 
+                  header__actions-item--language"
+                aria-label="Перемикач мови"
+              ></button>
+            </li>
+            <li>
+              <button
+                className="header__actions-item header__actions-item--questions"
+                aria-label="Профіль користувача"
+              ></button>
+            </li>
+            <li>
+              <button
+                className="header__actions-item header__actions-item--user"
+                aria-label="Профіль користувача"
+              ></button>
+            </li>
+          </ul>
         </div>
       </header>
 
@@ -31,9 +52,17 @@ export const App: React.FC = () => {
             Колекційна спадщина - якість перевірена часом.
           </h1>
           <nav className="hero__nav">
-            <button className="hero__nav-button">Маркет</button>
-            <button className="hero__nav-button">Клуб колекціонерів</button>
-            <button className="hero__nav-button">Експертиза</button>
+            <ul className="hero__nav-list">
+              <li className="hero__nav-item">
+                <a className="hero__nav-button">Маркет</a>
+              </li>
+              <li className="hero__nav-item">
+                <a className="hero__nav-button">Клуб колекціонерів</a>
+              </li>
+              <li className="hero__nav-item">
+                <a className="hero__nav-button">Експертиза</a>
+              </li>
+            </ul>
           </nav>
         </section>
 
