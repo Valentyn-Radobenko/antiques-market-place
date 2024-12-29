@@ -1,4 +1,3 @@
-import './Exhibitions.scss';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import exhibition1 from './../../images/exhibitions/exhibition-1.jpg';
 import exhibition2 from './../../images/exhibitions/exhibition-2.jpg';

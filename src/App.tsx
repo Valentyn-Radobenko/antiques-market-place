@@ -172,8 +172,13 @@ export const App: React.FC = () => {
         </div>
         <div className="footer__copyright">
           © 2004 - 2025 Ducat Dubovyk&Ko. ТОВ «Ducat Dubovyk&Ko» / ЄОП Дубовик
-          Вячеслав Вікторович. Всі права захищені. Для офіційних звернень:
-          administration@ducat.ua
+          Вячеслав Вікторович. Всі права захищені. Для офіційних звернень:&nbsp;
+          <a
+            href="mailto:administration@ducat.ua"
+            className="footer__copyright-link"
+          >
+            administration@ducat.ua
+          </a>
         </div>
       </footer>
     </>

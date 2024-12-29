@@ -3,13 +3,23 @@
 @import './variables';
 @import './fonts';
 
+@import './../components/Exhibitions/Exhibitions';
+
+html {
+  box-sizing: border-box;
+}
+
+html * {
+  box-sizing: inherit;
+}
+
 body {
   font-family: Inter, sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   background-color: $bg-color;
   color: $dark-text-color;
+  scroll-behavior: smooth;
 }
 
 main {
@@ -48,7 +58,6 @@ main {
     width: 40%;
 
     &-bar {
-      box-sizing: border-box;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -315,34 +324,50 @@ main {
 }
 
 .footer {
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
+  display: flex;
+  height: 340px;
+  padding: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-shrink: 0;
+  border-radius: 24px 24px 0px 0px;
+  background: #d9d9d9;
 
   &__columns {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-
-    .footer__column {
-      width: 30%;
-    }
+    justify-content: center;
+    align-items: flex-start;
+    gap: 107px;
+    align-self: stretch;
   }
 
   &__title {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 24px;
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
   }
 
   &__list {
-    list-style: none;
-    padding: 0;
+    display: flex;
+    width: 185px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
 
     .footer__link {
-      color: #fff;
-      text-decoration: none;
-      font-size: 14px;
+      align-self: stretch;
+      color: #000;
+      font-family: Inter;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
 
       &:hover {
         text-decoration: underline;
@@ -351,7 +376,27 @@ main {
   }
 
   &__copyright {
-    font-size: 12px;
-    text-align: center;
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 800px;
+
+    &-link {
+      color: #000;
+      font-family: Inter;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-decoration-line: underline;
+      text-decoration-style: solid;
+      text-decoration-skip-ink: auto;
+      text-decoration-thickness: auto;
+      text-underline-offset: auto;
+      text-underline-position: from-font;
+    }
   }
 }
