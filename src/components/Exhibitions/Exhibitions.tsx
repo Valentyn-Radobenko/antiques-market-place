@@ -23,11 +23,19 @@ export const Exhibitions: React.FC = () => {
     },
   ];
 
+  // Зберігаємо індекс поточного слайда
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const autoSlideInterval = useRef<NodeJS.Timeout | null>(null);
+
+  // Прапорець для вказівки, чи активна анімація
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  // Референс для списку слайдів
   const slideListRef = useRef<HTMLUListElement>(null);
 
+  // Референс для автоматичного перемикання
+  const autoSlideInterval = useRef<NodeJS.Timeout | null>(null);
+
+  // Зупиняємо автоматичне перемикання
   const stopAutoSlide = useCallback(() => {
     if (autoSlideInterval.current) {
       clearInterval(autoSlideInterval.current);
@@ -35,69 +43,83 @@ export const Exhibitions: React.FC = () => {
     }
   }, []);
 
+  // Запускаємо автоматичне перемикання
   const startAutoSlide = useCallback(() => {
     stopAutoSlide();
-
     autoSlideInterval.current = setInterval(() => {
-      setCurrentIndex(prevIndex => (prevIndex + 1) % (slides.length + 1));
-    }, 300000);
-  }, [slides.length, stopAutoSlide]);
+      setIsAnimating(true);
+      setCurrentIndex(prevIndex => prevIndex + 1);
+    }, 3000);
+  }, [stopAutoSlide]);
 
+  // Обробник кінця анімації (важливо для циклічного слайдера)
   const handleTransitionEnd = () => {
     if (currentIndex === slides.length) {
-      setIsTransitioning(false);
+      // Коли доходимо до останнього слайда, повертаємося на перший
+      setIsAnimating(false);
+      setCurrentIndex(0);
 
       if (slideListRef.current) {
-        slideListRef.current.style.transition = 'none';
-        slideListRef.current.style.transform = 'translateX(0%)';
+        slideListRef.current.style.transition = 'none'; // Вимикаємо анімацію
+        slideListRef.current.style.transform = `translateX(0%)`; // Повертаємося до першого
       }
-
-      setCurrentIndex(0);
     } else {
-      setIsTransitioning(false);
+      setIsAnimating(false);
     }
   };
 
+  // Перехід до конкретного слайда
   const goToSlide = (index: number) => {
-    if (isTransitioning) {
+    if (isAnimating) {
       return;
     }
 
-    setIsTransitioning(true);
+    stopAutoSlide(); // Зупиняємо автоперемикання, якщо користувач натискає кнопку
+    setIsAnimating(true);
     setCurrentIndex(index);
+    startAutoSlide(); // Запускаємо автоперемикання знову
   };
 
-  useEffect(() => {
-    startAutoSlide();
-
-    return () => {
-      stopAutoSlide();
-    };
-  }, [startAutoSlide, stopAutoSlide]);
-
+  // Обробка зміни currentIndex
   useEffect(() => {
     if (slideListRef.current) {
-      slideListRef.current.style.transition = isTransitioning
+      const totalSlides = slides.length + 1; // Додаємо 1, бо дублюємо перший слайд в кінці
+      const translateIndex = currentIndex % totalSlides; // Циклічний індекс
+
+      slideListRef.current.style.transition = isAnimating
         ? 'transform 0.3s ease-in-out'
         : 'none';
-      slideListRef.current.style.transform = `translateX(-${(currentIndex % (slides.length + 1)) * 100}%)`;
+
+      slideListRef.current.style.transform = `translateX(-${translateIndex * 100}%)`;
     }
-  }, [currentIndex, isTransitioning, slides.length]);
+  }, [currentIndex, isAnimating, slides.length]);
+
+  // Запуск автоперемикання при монтуванні компонента
+  useEffect(() => {
+    // Скидаємо стан до початкового при кожному монтуванні
+    setCurrentIndex(0);
+    setIsAnimating(false);
+
+    if (slideListRef.current) {
+      slideListRef.current.style.transition = 'none';
+      slideListRef.current.style.transform = `translateX(0%)`;
+    }
+
+    startAutoSlide(); // Запускаємо автоматичне перемикання
+
+    return () => stopAutoSlide(); // Очищуємо таймер при розмонтуванні
+  }, [startAutoSlide, stopAutoSlide]);
 
   return (
     <section className="exhibitions">
       <header className="exhibitions__header">
         <h2 className="exhibitions__header-title">Виставки</h2>
         <a href="#" className="exhibitions__header-link">
-          дізнатися більше
+          Дізнатися більше
         </a>
       </header>
 
-      <div
-        className="exhibitions__wrapper"
-        onMouseEnter={stopAutoSlide}
-        onMouseLeave={startAutoSlide}
-      >
+      <div className="exhibitions__wrapper">
         <ul
           className="exhibitions__list"
           ref={slideListRef}
@@ -110,6 +132,8 @@ export const Exhibitions: React.FC = () => {
                   src={slide.imageUrl}
                   alt={slide.title}
                   className="exhibitions__image"
+                  onMouseEnter={stopAutoSlide}
+                  onMouseLeave={startAutoSlide}
                 />
                 <figcaption className="exhibitions__caption">
                   <div className="exhibitions__caption-info">
@@ -140,7 +164,7 @@ export const Exhibitions: React.FC = () => {
                 : ''
             }`}
             onClick={() => goToSlide(index)}
-          ></button>
+          />
         ))}
       </div>
     </section>
