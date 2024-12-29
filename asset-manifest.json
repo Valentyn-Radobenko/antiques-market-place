@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/antiques-market-place/static/css/main.100b5032.css",
-    "main.js": "/antiques-market-place/static/js/main.326e7109.js",
+    "main.js": "/antiques-market-place/static/js/main.a6d6f484.js",
     "static/media/exhibition-1.jpg": "/antiques-market-place/static/media/exhibition-1.7c9f42eacee0d97ef5e7.jpg",
     "static/media/exhibition-2.jpg": "/antiques-market-place/static/media/exhibition-2.ba6cf66cd403e797ccfb.jpg",
     "static/media/exhibition-3.jpg": "/antiques-market-place/static/media/exhibition-3.227a01b5f2cafa927f4b.jpg",
@@ -11,10 +11,10 @@
     "static/media/UA.svg": "/antiques-market-place/static/media/UA.e3892eaee7b9f774e08a.svg",
     "index.html": "/antiques-market-place/index.html",
     "main.100b5032.css.map": "/antiques-market-place/static/css/main.100b5032.css.map",
-    "main.326e7109.js.map": "/antiques-market-place/static/js/main.326e7109.js.map"
+    "main.a6d6f484.js.map": "/antiques-market-place/static/js/main.a6d6f484.js.map"
   },
   "entrypoints": [
     "static/css/main.100b5032.css",
-    "static/js/main.326e7109.js"
+    "static/js/main.a6d6f484.js"
   ]
 }
