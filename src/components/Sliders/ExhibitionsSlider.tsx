@@ -1,27 +1,30 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import exhibition1 from './../../images/exhibitions/exhibition-1.jpg';
-import exhibition2 from './../../images/exhibitions/exhibition-2.jpg';
-import exhibition3 from './../../images/exhibitions/exhibition-3.jpg';
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  CSSProperties,
+} from 'react';
 
-export const Exhibitions: React.FC = () => {
-  const slides = [
-    {
-      title: 'Виставка народного Художника України Володимира Козюка',
-      status: 'Відбулася',
-      imageUrl: exhibition1,
-    },
-    {
-      title: 'Інша виставка',
-      status: 'Триває',
-      imageUrl: exhibition2,
-    },
-    {
-      title: 'Ще одна виставка',
-      status: 'Скоро',
-      imageUrl: exhibition3,
-    },
-  ];
+interface CustomCSSProperties extends CSSProperties {
+  '--items-per-slide'?: number;
+}
 
+interface Slide {
+  title: string;
+  status: string;
+  imageUrl: string;
+}
+
+interface SliderProps {
+  slides: Slide[];
+  slidesPerView?: number; // Кількість видимих слайдів
+}
+
+export const ExhibitionsSlider: React.FC<SliderProps> = ({
+  slides,
+  slidesPerView = 1,
+}) => {
   // Зберігаємо індекс поточного слайда
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -82,16 +85,16 @@ export const Exhibitions: React.FC = () => {
   // Обробка зміни currentIndex
   useEffect(() => {
     if (slideListRef.current) {
-      const totalSlides = slides.length + 1; // Додаємо 1, бо дублюємо перший слайд в кінці
+      const totalSlides = slides.length + slidesPerView; // Додаємо 1, бо дублюємо перший слайд в кінці
       const translateIndex = currentIndex % totalSlides; // Циклічний індекс
 
       slideListRef.current.style.transition = isAnimating
         ? 'transform 0.3s ease-in-out'
         : 'none';
 
-      slideListRef.current.style.transform = `translateX(-${translateIndex * 100}%)`;
+      slideListRef.current.style.transform = `translateX(-${translateIndex * (100 / slidesPerView)}%)`;
     }
-  }, [currentIndex, isAnimating, slides.length]);
+  }, [currentIndex, isAnimating, slides.length, slidesPerView]);
 
   // Запуск автоперемикання при монтуванні компонента
   useEffect(() => {
@@ -110,56 +113,60 @@ export const Exhibitions: React.FC = () => {
   }, [startAutoSlide, stopAutoSlide]);
 
   return (
-    <section className="exhibitions">
-      <header className="exhibitions__header">
-        <h2 className="exhibitions__header-title">Виставки</h2>
-        <a href="#" className="exhibitions__header-link">
+    <section className="slider">
+      <header className="slider__header">
+        <h2 className="slider__header-title">Виставки</h2>
+        <a href="#" className="slider__header-link">
           Дізнатися більше
         </a>
       </header>
 
-      <div className="exhibitions__wrapper">
+      <div
+        className="slider__wrapper"
+        style={{ '--items-per-slide': slidesPerView } as CustomCSSProperties}
+      >
         <ul
-          className="exhibitions__list"
+          className="slider__list"
           ref={slideListRef}
           onTransitionEnd={handleTransitionEnd}
+          style={{
+            gridTemplateColumns: `repeat(${slides.length + slidesPerView}, calc(100% / ${slidesPerView}))`,
+          }}
         >
-          {[...slides, slides[0]].map((slide, index) => (
-            <li className="exhibitions__item" key={index}>
-              <figure className="exhibitions__figure">
-                <img
-                  src={slide.imageUrl}
-                  alt={slide.title}
-                  className="exhibitions__image"
-                  onMouseEnter={stopAutoSlide}
-                  onMouseLeave={startAutoSlide}
-                />
-                <figcaption className="exhibitions__caption">
-                  <div className="exhibitions__caption-info">
-                    <h3 className="exhibitions__caption-title">
-                      {slide.title}
-                    </h3>
-                    <p className="exhibitions__caption-status">
-                      {slide.status}
-                    </p>
-                  </div>
-                  <a href="#" className="exhibitions__caption-link">
-                    Переглянути
-                  </a>
-                </figcaption>
-              </figure>
-            </li>
-          ))}
+          {[...slides, ...slides.slice(0, slidesPerView)].map(
+            (slide, index) => (
+              <li className="slider__item" key={index}>
+                <figure className="slider__figure">
+                  <img
+                    src={slide.imageUrl}
+                    alt={slide.title}
+                    className="slider__image"
+                    onMouseEnter={stopAutoSlide}
+                    onMouseLeave={startAutoSlide}
+                  />
+                  <figcaption className="slider__caption">
+                    <div className="slider__caption-info">
+                      <h3 className="slider__caption-title">{slide.title}</h3>
+                      <p className="slider__caption-status">{slide.status}</p>
+                    </div>
+                    <a href="#" className="slider__caption-link">
+                      Переглянути
+                    </a>
+                  </figcaption>
+                </figure>
+              </li>
+            ),
+          )}
         </ul>
       </div>
 
-      <div className="exhibitions__pagination">
+      <div className="slider__pagination">
         {slides.map((_, index) => (
           <button
             key={index}
-            className={`exhibitions__pagination-dot ${
+            className={`slider__pagination-dot ${
               index === currentIndex % slides.length
-                ? 'exhibitions__pagination-dot--active'
+                ? 'slider__pagination-dot--active'
                 : ''
             }`}
             onClick={() => goToSlide(index)}

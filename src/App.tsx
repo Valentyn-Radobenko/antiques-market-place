@@ -1,4 +1,7 @@
-import { Exhibitions } from './components/Exhibitions';
+import { ExhibitionsSlider } from './components/Sliders/ExhibitionsSlider';
+import { ArticlesSlider } from './components/Sliders/ArticlesSlider';
+import { exhibitionsSlides } from './data/exhibitionsSlides';
+import { articlesSlides } from './data/articlesSlides';
 
 export const App: React.FC = () => {
   return (
@@ -68,31 +71,9 @@ export const App: React.FC = () => {
           </nav>
         </section>
 
-        <Exhibitions />
+        <ExhibitionsSlider slides={exhibitionsSlides} slidesPerView={1} />
 
-        <section className="articles">
-          <div className="section-header">
-            <h2 className="section-header__title">Статті</h2>
-            <a href="#" className="section-header__link">
-              дізнатися більше
-            </a>
-          </div>
-          <div className="articles__list">
-            <div className="article-card">
-              <div className="article-card__image"></div>
-              <div className="article-card__details">
-                <h3 className="article-card__title">
-                  Виставка народного Художника України Володимира Козюка
-                </h3>
-                <div className="article-card__tags">
-                  <span className="article-card__tag">Нова</span>
-                  <span className="article-card__tag">Живопис</span>
-                </div>
-                <button className="article-card__button">Читати</button>
-              </div>
-            </div>
-          </div>
-        </section>
+        <ArticlesSlider slides={articlesSlides} slidesPerView={2} />
 
         <section className="discussions">
           <div className="section-header">
