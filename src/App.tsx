@@ -1,7 +1,9 @@
 import { ExhibitionsSlider } from './components/Sliders/ExhibitionsSlider';
 import { ArticlesSlider } from './components/Sliders/ArticlesSlider';
+import { DiscussionsSlider } from './components/Sliders/DiscussionsSlider';
 import { exhibitionsSlides } from './data/exhibitionsSlides';
 import { articlesSlides } from './data/articlesSlides';
+import { discussionsSlides } from './data/discussionsSlides';
 
 export const App: React.FC = () => {
   return (
@@ -75,27 +77,7 @@ export const App: React.FC = () => {
 
         <ArticlesSlider slides={articlesSlides} slidesPerView={2} />
 
-        <section className="discussions">
-          <div className="section-header">
-            <h2 className="section-header__title">Обговорення</h2>
-            <button className="section-header__button">Додати тему</button>
-          </div>
-          <div className="discussions__list">
-            <div className="discussion-card">
-              <div className="discussion-card__header">
-                <span className="discussion-card__id">037645</span>
-                <span className="discussion-card__time">08:09 14.07</span>
-              </div>
-              <h3 className="discussion-card__title">
-                Архістратіг іпрчлвкопд в вкп щупту к чертветк...
-              </h3>
-              <div className="discussion-card__footer">
-                <span className="discussion-card__category">Живопис</span>
-                <span className="discussion-card__comments">58 коментарів</span>
-              </div>
-            </div>
-          </div>
-        </section>
+        <DiscussionsSlider slides={discussionsSlides} slidesPerView={2} />
       </main>
 
       <footer className="footer">

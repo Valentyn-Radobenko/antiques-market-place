@@ -11,10 +11,11 @@ interface CustomCSSProperties extends CSSProperties {
 }
 
 interface Slide {
-  title: string;
-  status: string;
+  id: string;
+  createdAt: string;
   category: string;
-  imageUrl: string;
+  text: string;
+  commentsLength: number;
 }
 
 interface SliderProps {
@@ -22,7 +23,7 @@ interface SliderProps {
   slidesPerView?: number; // Кількість видимих слайдів
 }
 
-export const ArticlesSlider: React.FC<SliderProps> = ({
+export const DiscussionsSlider: React.FC<SliderProps> = ({
   slides,
   slidesPerView = 1,
 }) => {
@@ -52,7 +53,7 @@ export const ArticlesSlider: React.FC<SliderProps> = ({
     autoSlideInterval.current = setInterval(() => {
       setIsAnimating(true);
       setCurrentIndex(prevIndex => prevIndex + 1);
-    }, 3000);
+    }, 300000);
   }, [stopAutoSlide]);
 
   // Обробник кінця анімації (важливо для циклічного слайдера)
@@ -116,16 +117,17 @@ export const ArticlesSlider: React.FC<SliderProps> = ({
   return (
     <section className="slider">
       <header className="slider__header">
-        <h2 className="slider__header-title">Статті</h2>
+        <h2 className="slider__header-title">Обговорення</h2>
         <a href="#" className="slider__header-link">
           Дізнатися більше
         </a>
       </header>
 
       <div
-        className="slider__wrapper"
+        className="slider__wrapper slider__wrapper--discussions"
         style={{ '--items-per-slide': slidesPerView } as CustomCSSProperties}
       >
+        <h2 className="slider__discussions-title">Найпопулярніші</h2>
         <ul
           className="slider__list"
           ref={slideListRef}
@@ -137,29 +139,15 @@ export const ArticlesSlider: React.FC<SliderProps> = ({
           {[...slides, ...slides.slice(0, slidesPerView)].map(
             (slide, index) => (
               <li className="slider__item" key={index}>
-                <figure className="slider__figure">
-                  <img
-                    src={slide.imageUrl}
-                    alt={slide.title}
-                    className="slider__image"
-                    onMouseEnter={stopAutoSlide}
-                    onMouseLeave={startAutoSlide}
-                  />
-                  <figcaption className="slider__caption">
-                    <div className="slider__caption-info">
-                      <h3 className="slider__caption-title">{slide.title}</h3>
-                      <div className="slider__caption-tags">
-                        <p className="slider__caption-status">{slide.status}</p>
-                        <p className="slider__caption-category">
-                          {slide.category}
-                        </p>
-                      </div>
-                    </div>
-                    <a href="#" className="slider__caption-link">
-                      Переглянути
-                    </a>
-                  </figcaption>
-                </figure>
+                <div className="discussion">
+                  <div className="discussion__data">
+                    <p className="discussion__id">{slide.id}</p>
+                    <p className="discussion__date">{slide.createdAt}</p>
+                  </div>
+                  <p className="discussion__text">{slide.text}</p>
+                  <p className="discussion__category">{slide.category}</p>
+                  <p className="discussion__comments">{slide.commentsLength}</p>
+                </div>
               </li>
             ),
           )}

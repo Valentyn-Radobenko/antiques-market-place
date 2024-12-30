@@ -54,6 +54,15 @@
     border-radius: 12px;
     background: #fff;
     aspect-ratio: 16 / 9;
+
+    &--discussions {
+      display: flex;
+      padding: 24px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      flex: 1 0 0;
+    }
   }
 
   &__list {
@@ -141,7 +150,8 @@
       gap: 8px;
     }
 
-    &-status, &-category {
+    &-status,
+    &-category {
       color: #000;
       font-family: Inter, sans-serif;
       font-size: 24px;
@@ -181,5 +191,71 @@
         background-color: #007bff;
       }
     }
+  }
+}
+
+.discussion {
+  display: flex;
+  width: 607px;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  border-radius: 12px;
+  border: 2px solid #8a8a8a;
+
+  &__data {
+    display: flex;
+    align-self: stretch;
+  }
+
+  &__id,
+  &__date {
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  &__id {
+    flex: 1 0 0;
+  }
+
+  &__date {
+    flex: 0 0 1;
+  }
+
+
+
+  &__text {
+    overflow: hidden;
+    color: #000;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  &__category {
+    color: #000;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  &__comments {
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
 }
