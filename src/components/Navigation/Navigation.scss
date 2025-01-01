@@ -1,0 +1,35 @@
+.nav {
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+
+  &__item {
+    width: 100%;
+  }
+
+  &__link {
+    display: block;
+    padding: 10px 20px;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.36px;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    background-color: $sections-bg-minor-color;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: $effectDuration;
+
+    &:hover {
+      background-color: #ddd;
+    }
+
+    &--is-active {
+      background-color: $header-bg-color;
+    }
+  }
+}

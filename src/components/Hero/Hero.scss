@@ -1,0 +1,15 @@
+.hero {
+  text-align: center;
+  margin-bottom: 53px;
+
+  &__title {
+    font-family: Inter, sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 58.09px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    margin-bottom: 32px;
+  }
+}

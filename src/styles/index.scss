@@ -4,6 +4,10 @@
 @import './fonts';
 
 @import './../components/Sliders/Sliders';
+@import './../components/Navigation/Navigation';
+@import './../components/Header/Header';
+@import './../components/Footer/Footer';
+@import './../components/Hero/Hero';
 
 html {
   box-sizing: border-box;
@@ -13,224 +17,22 @@ html * {
   box-sizing: inherit;
 }
 
-body {
+.page {
   font-family: Inter, sans-serif;
   margin: 0;
   padding: 0;
   background-color: $bg-color;
   color: $dark-text-color;
   scroll-behavior: smooth;
-}
 
-main {
-  @include standard-inline-paddings;
-}
-
-.header {
-  @include standard-inline-paddings;
-  padding-top: 24px;
-  height: 131px;
-  margin-bottom: 32px;
-
-  &__container {
+  &__header {
     @include standard-inline-paddings;
-    padding-block: 24px;
-    background-color: $header-bg-color;
-    border-radius: 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &__logo {
-    font-family: Inter;
-    font-size: 40px;
-    font-weight: 400;
-    line-height: 48.41px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-  }
-
-  &__search {
-    display: flex;
-    align-items: center;
-    width: 40%;
-
-    &-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: #f4f4f4;
-      border: 1px solid #d3d3d3;
-      box-shadow: 0 1px 8px 0 #3d4e611a;
-      border-radius: 8px;
-      padding: 5px 10px 5px 25px;
-      height: 83px;
-      flex-grow: 1;
-      transition: 0.3s;
-
-      &:hover {
-        box-shadow: 0 4px 4px 0 #00000040;
-      }
-
-      &:focus-within {
-        box-shadow: 0 4px 4px 0 #00000040;
-      }
-    }
-
-    &-input {
-      flex-grow: 1;
-      border: none;
-      outline: none;
-      width: 100%;
-      height: 100%;
-      background: none;
-      font-family: Inter, sans-serif;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 19.36px;
-      text-align: left;
-      text-decoration-skip-ink: none;
-
-      &:focus {
-        text-shadow: 0 4px 4px 0 #00000040;
-        font-weight: 700;
-      }
-    }
-
-    &-button {
-      background-color: #555;
-      border: none;
-      border-radius: 12px;
-      padding: 16px 42.5px;
-      color: #fff;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-family: Inter, sans-serif;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 19.36px;
-      text-align: left;
-      text-underline-position: from-font;
-      text-decoration-skip-ink: none;
-
-      &:hover {
-        background-color: #444;
-      }
-
-      &:active {
-        background-color: #333;
-      }
-    }
-  }
-
-  &__actions {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    &-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 24px;
-      padding: 24px;
-      background-color: inherit;
-      border-radius: 50%;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-
-      &:hover {
-        background-color: #e0e0e0;
-      }
-
-      &:active {
-        background-color: #ccc;
-      }
-
-      &--currency {
-        /* Стилі для кнопки перемикача валюти */
-        background-image: url('./../images/Currency.svg');
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-
-      &--language {
-        /* Стилі для кнопки перемикача мови */
-        background-image: url('./../images/UA.svg');
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-
-      &--user {
-        /* Стилі для кнопки профілю користувача */
-        background-image: url('./../images/account.svg');
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-
-      &--questions {
-        /* Стилі для кнопки запитань користувача */
-        background-image: url('./../images/Questions.svg');
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-    }
-  }
-}
-
-.hero {
-  text-align: center;
-  @include standard-inline-paddings;
-  margin-bottom: 53px;
-
-  &__title {
-    font-family: Inter, sans-serif;
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 58.09px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
     margin-bottom: 32px;
   }
+}
 
-  &__nav {
-    @include standard-inline-paddings;
-
-    &-list {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    &-item {
-      width: 100%;
-      background-color: $sections-bg-minor-color;
-      border-radius: 12px;
-      cursor: pointer;
-
-      &--is-active {
-        background-color: $header-bg-color;
-      }
-    }
-
-    &-link {
-      display: block;
-      padding: 10px 20px;
-      text-align: center;
-      font-family: Inter, sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 19.36px;
-      text-underline-position: from-font;
-      text-decoration-skip-ink: none;
-    }
-  }
+.main {
+  @include standard-inline-paddings;
 }
 
 .articles {
@@ -319,84 +121,6 @@ main {
       justify-content: space-between;
       font-size: 14px;
       color: #666;
-    }
-  }
-}
-
-.footer {
-  display: flex;
-  height: 340px;
-  padding: 40px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  flex-shrink: 0;
-  border-radius: 24px 24px 0px 0px;
-  background: #d9d9d9;
-
-  &__columns {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 107px;
-    align-self: stretch;
-  }
-
-  &__title {
-    margin-bottom: 24px;
-    color: #000;
-    font-family: Inter;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-
-  &__list {
-    display: flex;
-    width: 185px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-
-    .footer__link {
-      align-self: stretch;
-      color: #000;
-      font-family: Inter;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  &__copyright {
-    color: #000;
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    width: 800px;
-
-    &-link {
-      color: #000;
-      font-family: Inter;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      text-decoration-line: underline;
-      text-decoration-style: solid;
-      text-decoration-skip-ink: auto;
-      text-decoration-thickness: auto;
-      text-underline-offset: auto;
-      text-underline-position: from-font;
     }
   }
 }
