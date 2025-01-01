@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/antiques-market-place/static/css/main.60305f2c.css",
-    "main.js": "/antiques-market-place/static/js/main.093befa3.js",
-    "static/media/exhibition-1.jpg": "/antiques-market-place/static/media/exhibition-1.7c9f42eacee0d97ef5e7.jpg",
-    "static/media/exhibition-2.jpg": "/antiques-market-place/static/media/exhibition-2.ba6cf66cd403e797ccfb.jpg",
-    "static/media/exhibition-3.jpg": "/antiques-market-place/static/media/exhibition-3.227a01b5f2cafa927f4b.jpg",
-    "static/media/Currency.svg": "/antiques-market-place/static/media/Currency.2b1f88dce74e2650ed92.svg",
-    "static/media/account.svg": "/antiques-market-place/static/media/account.5ee038f2da0a4840ee49.svg",
-    "static/media/Questions.svg": "/antiques-market-place/static/media/Questions.85e52995aecfed07dde2.svg",
-    "static/media/UA.svg": "/antiques-market-place/static/media/UA.e3892eaee7b9f774e08a.svg",
-    "index.html": "/antiques-market-place/index.html",
-    "main.60305f2c.css.map": "/antiques-market-place/static/css/main.60305f2c.css.map",
-    "main.093befa3.js.map": "/antiques-market-place/static/js/main.093befa3.js.map"
+    "main.css": "./static/css/main.457b642e.css",
+    "main.js": "./static/js/main.12ce1aae.js",
+    "static/media/exhibition-1.jpg": "./static/media/exhibition-1.7c9f42eacee0d97ef5e7.jpg",
+    "static/media/exhibition-2.jpg": "./static/media/exhibition-2.ba6cf66cd403e797ccfb.jpg",
+    "static/media/exhibition-3.jpg": "./static/media/exhibition-3.227a01b5f2cafa927f4b.jpg",
+    "static/media/Currency.svg": "./static/media/Currency.2b1f88dce74e2650ed92.svg",
+    "static/media/account.svg": "./static/media/account.5ee038f2da0a4840ee49.svg",
+    "static/media/Questions.svg": "./static/media/Questions.85e52995aecfed07dde2.svg",
+    "static/media/UA.svg": "./static/media/UA.e3892eaee7b9f774e08a.svg",
+    "index.html": "./index.html",
+    "main.457b642e.css.map": "./static/css/main.457b642e.css.map",
+    "main.12ce1aae.js.map": "./static/js/main.12ce1aae.js.map"
   },
   "entrypoints": [
-    "static/css/main.60305f2c.css",
-    "static/js/main.093befa3.js"
+    "static/css/main.457b642e.css",
+    "static/js/main.12ce1aae.js"
   ]
 }
