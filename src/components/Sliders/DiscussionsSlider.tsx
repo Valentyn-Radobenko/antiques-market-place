@@ -53,7 +53,7 @@ export const DiscussionsSlider: React.FC<SliderProps> = ({
     autoSlideInterval.current = setInterval(() => {
       setIsAnimating(true);
       setCurrentIndex(prevIndex => prevIndex + 1);
-    }, 300000);
+    }, 3000);
   }, [stopAutoSlide]);
 
   // Обробник кінця анімації (важливо для циклічного слайдера)
@@ -115,12 +115,10 @@ export const DiscussionsSlider: React.FC<SliderProps> = ({
   }, [startAutoSlide, stopAutoSlide]);
 
   return (
-    <section className="slider">
+    <section className="slider slider--discussions">
       <header className="slider__header">
         <h2 className="slider__header-title">Обговорення</h2>
-        <a href="#" className="slider__header-link">
-          Дізнатися більше
-        </a>
+        <button className="slider__header-button">Додати тему</button>
       </header>
 
       <div
@@ -146,7 +144,7 @@ export const DiscussionsSlider: React.FC<SliderProps> = ({
                   </div>
                   <p className="discussion__text">{slide.text}</p>
                   <p className="discussion__category">{slide.category}</p>
-                  <p className="discussion__comments">{slide.commentsLength}</p>
+                  <p className="discussion__comments">{`${slide.commentsLength} коментарів`}</p>
                 </div>
               </li>
             ),

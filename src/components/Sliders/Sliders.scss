@@ -12,6 +12,10 @@
   background: #d9d9d9;
   margin-bottom: 40px;
 
+  &--discussions {
+    height: 507px;
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -35,6 +39,33 @@
       font-weight: 400;
       line-height: normal;
     }
+
+    &-button {
+      width: 137px;
+      background-color: #555;
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: Inter, sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 19.36px;
+      text-align: left;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+
+      &:hover {
+        background-color: #444;
+      }
+
+      &:active {
+        background-color: #333;
+      }
+    }
   }
 
   &__wrapper {
@@ -56,6 +87,7 @@
     aspect-ratio: 16 / 9;
 
     &--discussions {
+      height: 320px;
       display: flex;
       padding: 24px;
       flex-direction: column;
@@ -80,6 +112,7 @@
 
   &__item {
     display: flex;
+    height: 100%;
     box-sizing: border-box;
     flex: 0 0 100%;
     list-style: none;
@@ -196,6 +229,7 @@
 
 .discussion {
   display: flex;
+  height: 217px;
   width: 607px;
   padding: 16px;
   flex-direction: column;
@@ -226,8 +260,6 @@
   &__date {
     flex: 0 0 1;
   }
-
-
 
   &__text {
     overflow: hidden;
