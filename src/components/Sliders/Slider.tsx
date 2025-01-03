@@ -13,10 +13,12 @@ interface CustomCSSProperties extends CSSProperties {
 interface SliderProps<T> {
   sliderTitle: string;
   renderSliderLink: () => React.ReactNode;
+  renderSecondSliderTitle?: () => React.ReactNode;
   slides: T[];
   slidesPerView?: number;
   customSectionClassName?: string;
   customWrapperClassName?: string;
+
   renderSlide: (
     slide: T,
     index: number,
@@ -27,6 +29,7 @@ interface SliderProps<T> {
 export const Slider = <T,>({
   sliderTitle,
   renderSliderLink,
+  renderSecondSliderTitle,
   slides,
   slidesPerView = 2,
   customSectionClassName = '',
@@ -59,7 +62,7 @@ export const Slider = <T,>({
     autoSlideInterval.current = setInterval(() => {
       setIsAnimating(true);
       setCurrentIndex(prevIndex => prevIndex + 1);
-    }, 300000);
+    }, 3000);
   }, [stopAutoSlide]);
 
   // Обробник кінця анімації (важливо для циклічного слайдера)
@@ -131,6 +134,7 @@ export const Slider = <T,>({
         className={`slider__wrapper ${customWrapperClassName}`}
         style={{ '--items-per-slide': slidesPerView } as CustomCSSProperties}
       >
+        {renderSecondSliderTitle && renderSecondSliderTitle()}
         <ul
           className="slider__list"
           ref={slideListRef}

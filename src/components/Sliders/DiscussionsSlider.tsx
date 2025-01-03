@@ -16,19 +16,22 @@ export const DiscussionsSlider: React.FC = () => {
       renderSliderLink={() => (
         <button className="slider__header-button">Додати тему</button>
       )}
+      renderSecondSliderTitle={() => (
+        <h2 className="slider__discussions-title">Найпопулярніші</h2>
+      )}
       slides={discussionsSlides}
       slidesPerView={2}
       customSectionClassName="slider--discussions"
       customWrapperClassName="slider__wrapper--discussions"
       renderSlide={slide => (
-        <div className="discussion">
-          <div className="discussion__data">
-            <p className="discussion__id">{slide.id}</p>
-            <p className="discussion__date">{slide.createdAt}</p>
+        <div className="slider__discussion">
+          <div className="slider__discussion-data">
+            <p className="slider__discussion-id">{slide.id}</p>
+            <p className="slider__discussion-date">{slide.createdAt}</p>
           </div>
-          <p className="discussion__text">{slide.text}</p>
-          <p className="discussion__category">{slide.category}</p>
-          <p className="discussion__comments">{`${slide.commentsLength} коментарів`}</p>
+          <p className="slider__discussion-text">{slide.text}</p>
+          <p className="slider__discussion-category">{slide.category}</p>
+          <p className="slider__discussion-comments">{`${slide.commentsLength} коментарів`}</p>
         </div>
       )}
     />
