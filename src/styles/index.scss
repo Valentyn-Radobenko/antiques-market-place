@@ -8,6 +8,7 @@
 @import './../components/Header/Header';
 @import './../components/Footer/Footer';
 @import './../components/Hero/Hero';
+@import './../pages/ExpertisePage/ExpertisePage';
 
 html {
   box-sizing: border-box;
@@ -33,94 +34,4 @@ html * {
 
 .main {
   @include standard-inline-paddings;
-}
-
-.articles {
-  padding: 20px;
-
-  &__list {
-    display: flex;
-    gap: 20px;
-  }
-
-  .article-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    width: 300px;
-
-    &__image {
-      height: 150px;
-      background-color: #ccc;
-      border-radius: 4px;
-    }
-
-    &__details {
-      margin-top: 10px;
-
-      &__title {
-        font-size: 18px;
-        font-weight: bold;
-      }
-
-      &__tags {
-        display: flex;
-        gap: 10px;
-        margin-top: 5px;
-
-        &__tag {
-          font-size: 14px;
-          color: #007bff;
-        }
-      }
-
-      &__button {
-        margin-top: 10px;
-        padding: 5px 10px;
-        background-color: #333;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-    }
-  }
-}
-
-.discussions {
-  padding: 20px;
-
-  &__list {
-    display: flex;
-    gap: 20px;
-  }
-
-  .discussion-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    width: 300px;
-
-    &__header {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      color: #666;
-    }
-
-    &__title {
-      font-size: 16px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-
-    &__footer {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      color: #666;
-    }
-  }
 }
