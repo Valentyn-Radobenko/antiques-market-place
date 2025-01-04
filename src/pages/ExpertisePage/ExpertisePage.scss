@@ -30,12 +30,18 @@
 
   &__tooltip {
     display: inline-flex;
-    // width: 668px;
     padding: 16px;
     align-items: flex-start;
     gap: 8px;
     position: relative;
     border-radius: 12px;
+
+    &:hover {
+      .expertise__tooltip-content {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
 
     &-content {
       position: absolute;
@@ -45,6 +51,9 @@
       top: 0;
       border-radius: 12px;
       background: #f5f5f5;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
     }
 
     &-title {
@@ -113,22 +122,22 @@
       width: 20%;
 
       &-img-wrapper {
-        background-color: #c5c5c5;
-        border-radius: 12px;
+        @include hover(transform, scale(1.05));
+
+        overflow: hidden;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        height: 194px;
         width: 100%;
-        max-width: 120px;
-        height: auto;
+        align-items: flex-end;
+        gap: 16px;
+        border-radius: 12px;
+        background: #c5c5c5;
       }
 
       &-img {
-        box-sizing: border-box;
-        object-fit: contain;
+        object-fit: cover;
+        object-position: center;
         width: 100%;
-        max-width: 120px;
-        height: auto;
       }
 
       &-content {
@@ -259,6 +268,7 @@
         justify-content: center;
         align-items: center;
         gap: 8px;
+        border: none;
         align-self: stretch;
         border-radius: 12px;
         background: #5f5f5f;
@@ -268,6 +278,17 @@
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration-skip-ink: none;
+
+        &:hover {
+          background-color: #444;
+        }
+
+        &:active {
+          background-color: #333;
+        }
       }
     }
   }

@@ -3,24 +3,31 @@ import React, { useState } from 'react';
 interface TooltipProps {
   renderButton: () => React.ReactNode;
   renderContent: () => React.ReactNode;
-  customClassName?: string;
+  customTooltipClassName?: string;
+  customContentClassName?: string;
 }
 
 export const Tooltip: React.FC<TooltipProps> = ({
   renderButton,
   renderContent,
-  customClassName,
+  customTooltipClassName,
+  customContentClassName,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
     <div
-      className={customClassName}
+      className={customTooltipClassName}
       onMouseEnter={() => setIsVisible(true)}
       onMouseLeave={() => setIsVisible(false)}
     >
       {renderButton()}
-      {isVisible && renderContent()}
+
+      <div
+        className={`${customContentClassName} ${isVisible ? `${customContentClassName}-visible` : ''}`}
+      >
+        {renderContent()}
+      </div>
     </div>
   );
 };

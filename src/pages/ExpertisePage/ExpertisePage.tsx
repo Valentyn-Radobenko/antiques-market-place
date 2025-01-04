@@ -10,7 +10,8 @@ export const ExpertisePage = () => {
           Оцінювання та експертиза лотів
         </h2>
         <Tooltip
-          customClassName="expertise__tooltip"
+          customTooltipClassName="expertise__tooltip"
+          customContentClassName="expertise__tooltip-content"
           renderButton={() => (
             <img
               className="expertise__heading-icon"
@@ -19,7 +20,7 @@ export const ExpertisePage = () => {
             />
           )}
           renderContent={() => (
-            <div className="expertise__tooltip-content">
+            <>
               <h4 className="expertise__tooltip-title">
                 Рекомендації для вибору послуги:
               </h4>
@@ -41,7 +42,7 @@ export const ExpertisePage = () => {
                 Це не тільки забезпечить вас потрібною інформацією, але й
                 дозволить максимально ефективно використати ваш бюджет.
               </p>
-            </div>
+            </>
           )}
         />
       </div>
@@ -55,9 +56,9 @@ export const ExpertisePage = () => {
         </h4>
         <div className="expertise__steps-list">
           <div className="expertise__steps-item">
-            <div className="expertise__steps-img-wrapper">
+            <div className="expertise__steps-item-img-wrapper">
               <img
-                className="expertise__steps-img"
+                className="expertise__steps-item-img"
                 alt="Step icon"
                 src={examplePhoto}
               />
@@ -74,9 +75,9 @@ export const ExpertisePage = () => {
             </div>
           </div>
           <div className="expertise__steps-item">
-            <div className="expertise__steps-img-wrapper">
+            <div className="expertise__steps-item-img-wrapper">
               <img
-                className="expertise__steps-img"
+                className="expertise__steps-item-img"
                 alt="Step icon"
                 src={examplePhoto}
               />
@@ -93,9 +94,9 @@ export const ExpertisePage = () => {
             </div>
           </div>
           <div className="expertise__steps-item">
-            <div className="expertise__steps-img-wrapper">
+            <div className="expertise__steps-item-img-wrapper">
               <img
-                className="expertise__steps-img"
+                className="expertise__steps-item-img"
                 alt="Step icon"
                 src={examplePhoto}
               />
@@ -111,9 +112,9 @@ export const ExpertisePage = () => {
             </div>
           </div>
           <div className="expertise__steps-item">
-            <div className="expertise__steps-img-wrapper">
+            <div className="expertise__steps-item-img-wrapper">
               <img
-                className="expertise__steps-img"
+                className="expertise__steps-item-img"
                 alt="Step icon"
                 src={examplePhoto}
               />
@@ -130,9 +131,9 @@ export const ExpertisePage = () => {
             </div>
           </div>
           <div className="expertise__steps-item">
-            <div className="expertise__steps-img-wrapper">
+            <div className="expertise__steps-item-img-wrapper">
               <img
-                className="expertise__steps-img"
+                className="expertise__steps-item-img"
                 alt="Step icon"
                 src={examplePhoto}
               />
@@ -183,7 +184,9 @@ export const ExpertisePage = () => {
                 </p>
               </div>
             </div>
-            <div className="expertise__options-item-button">Подати заявку</div>
+            <button className="expertise__options-item-button">
+              Подати заявку
+            </button>
           </div>
           <div className="expertise__options-item">
             <b className="expertise__options-item-header">
@@ -256,7 +259,9 @@ export const ExpertisePage = () => {
                 </ul>
               </div>
             </div>
-            <div className="expertise__options-item-button">Подати заявку</div>
+            <button className="expertise__options-item-button">
+              Подати заявку
+            </button>
           </div>
         </div>
       </article>
