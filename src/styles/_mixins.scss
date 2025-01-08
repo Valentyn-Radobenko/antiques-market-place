@@ -66,3 +66,21 @@
     column-gap: 30px;
   }
 }
+
+@mixin dropdown-content-animation {
+  position: relative;
+
+  &-content {
+    position: absolute;
+    right: 0;
+    top: 36px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+
+    &-visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

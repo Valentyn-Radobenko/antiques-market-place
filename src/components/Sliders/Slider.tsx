@@ -99,11 +99,19 @@ export const Slider = <T,>({
       const totalSlides = slides.length + slidesPerView; // Додаємо 1, бо дублюємо перший слайд в кінці
       const translateIndex = currentIndex % totalSlides; // Циклічний індекс
 
+      const computedStyle = getComputedStyle(slideListRef.current);
+      const gapValue = parseFloat(computedStyle.gap || '0');
+
+      const slideWidthPercentage = 100 / slidesPerView;
+      const gapAdjustment = (gapValue / slideListRef.current.offsetWidth) * 100;
+
       slideListRef.current.style.transition = isAnimating
         ? 'transform 0.3s ease-in-out'
         : 'none';
 
-      slideListRef.current.style.transform = `translateX(-${translateIndex * (100 / slidesPerView)}%)`;
+      slideListRef.current.style.transform = `translateX(-${
+        translateIndex * (slideWidthPercentage + gapAdjustment)
+      }%)`;
     }
   }, [currentIndex, isAnimating, slides.length, slidesPerView]);
 

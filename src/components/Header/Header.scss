@@ -6,7 +6,8 @@
   &__container {
     @include standard-inline-paddings;
     padding-block: 24px;
-    background-color: $header-bg-color;
+    border-radius: 24px;
+    background: #dfdfdf;
     border-radius: 24px;
     display: flex;
     justify-content: space-between;
@@ -21,12 +22,14 @@
     text-align: left;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
+
+    @include hover (transform, scale(1.05))
   }
 
   &__search {
     display: flex;
     align-items: center;
-    width: 40%;
+    width: 347px;
 
     &-bar {
       display: flex;
@@ -99,56 +102,192 @@
 
   &__actions {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
+    gap: 24px;
 
     &-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 24px;
-      padding: 24px;
-      background-color: inherit;
-      border-radius: 50%;
-      border: none;
       cursor: pointer;
       transition: background-color 0.3s ease;
 
-      &:hover {
-        background-color: #e0e0e0;
+      &-languages {
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
+
+      &-language {
+        color: #828282;
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+
+        &--active {
+          color: #000;
+          font-family: Inter;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+      }
+
+      &-currency {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        &-text {
+          color: #000;
+          font-family: Inter;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+
+        &-button {
+          width: 24px;
+          height: 24px;
+          background-image: url('./../../images/header/currency-button-arrow-down.svg');
+        }
+      }
+
+      &-questions {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+
+        background-repeat: no-repeat;
+        background-position: center;
+
+        &--inactive {
+          background-image: url('./../../images/header/question-inactive.svg');
+        }
+
+        &--active {
+          background-image: url('./../../images/header/question-active.svg');
+        }
+      }
+
+      &-user {
+        width: 24px;
+        height: 24px;
+        background-image: url('./../../images/header/account.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+  }
+
+  &__dropdown {
+    &-questions {
+      @include dropdown-content-animation;
+
+      display: flex;
+      height: 24px;
+      width: 24px;
+
+      &-content {
+        display: inline-flex;
+        height: 211px;
+        width: max-content;
+        padding: 8px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        border-radius: 12px;
+        background: #e7e7e7;
+      }
+    }
+
+    &-question {
+      display: flex;
+      padding: 8px;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      align-self: stretch;
+      color: #000;
+      font-family: Inter;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      background: #e7e7e7;
+      border-radius: 9px;
+      cursor: pointer;
+
+      @include hover(background-color, #ccc);
 
       &:active {
-        background-color: #ccc;
+        background-color: #ddd;
+      }
+    }
+
+    &-currency {
+      @include dropdown-content-animation;
+
+      &-content {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        padding: 8px;
+        align-items: flex-start;
+        gap: 5px;
+        border-radius: 12px;
+        border: 1px solid #d8d8d8;
+        background: #f9f7f7;
       }
 
-      &--currency {
-        /* Стилі для кнопки перемикача валюти */
-        background-image: url('./../../images/Currency.svg');
-        background-repeat: no-repeat;
-        background-position: center;
+      &-button {
+        display: flex;
+        padding: 8px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        align-self: stretch;
+        cursor: pointer;
+        background: #f9f7f7;
+
+        @include hover(background-color, #ddd);
+      }
+    }
+
+    &-user {
+      @include dropdown-content-animation;
+
+      &-content {
+        display: flex;
+        width: max-content;
+        padding: 8px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        border-radius: 12px;
+        border: 1px solid #d8d8d8;
+        background: #f9f7f7;
       }
 
-      &--language {
-        /* Стилі для кнопки перемикача мови */
-        background-image: url('./../../images/UA.svg');
-        background-repeat: no-repeat;
-        background-position: center;
-      }
+      &-button {
+        display: flex;
+        padding: 8px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        align-self: stretch;
+        background: #f9f7f7;
+        border-radius: 9px;
+        cursor: pointer;
+        color: #000;
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
 
-      &--user {
-        /* Стилі для кнопки профілю користувача */
-        background-image: url('./../../images/account.svg');
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-
-      &--questions {
-        /* Стилі для кнопки запитань користувача */
-        background-image: url('./../../images/Questions.svg');
-        background-repeat: no-repeat;
-        background-position: center;
+        @include hover(background-color, #ddd);
       }
     }
   }

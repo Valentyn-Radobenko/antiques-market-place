@@ -104,6 +104,7 @@
   &__list {
     box-sizing: border-box;
     display: flex;
+    gap: 20px;
     height: 100%;
     width: 100%;
     transition: transform 0.3s ease-in-out;
@@ -257,7 +258,8 @@
   &__discussion {
     display: flex;
     height: 100%;
-    width: 607px;
+    width: 100%;
+    max-width: 607px;
     padding: 16px;
     flex-direction: column;
     align-items: flex-start;
