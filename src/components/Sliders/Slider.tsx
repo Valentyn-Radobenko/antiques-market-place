@@ -1,18 +1,6 @@
 import { useRef } from 'react';
 import SlickSlider from 'react-slick';
 
-function CustomPrevArrow(props: any) {
-  const { style, onClick } = props;
-
-  return (
-    <div
-      className="custom-prev-arrow"
-      style={{ ...style, display: 'block' }}
-      onClick={onClick}
-    ></div>
-  );
-}
-
 interface SliderProps<T> {
   sliderTitle: string;
   renderSliderLink: () => React.ReactNode;
@@ -57,7 +45,6 @@ export default function Slider<T>({
     autoplay: false,
     slidesToShow: slidesPerView,
     slidesToScroll: 1,
-    prevArrow: <CustomPrevArrow />,
     appendDots: (dots: any) => (
       <div className="slider__dots">
         <div onClick={previous} className="slider__prev-arr"></div>
@@ -74,12 +61,13 @@ export default function Slider<T>({
         <h2 className="slider__header-title">{sliderTitle}</h2>
         {renderSliderLink()}
       </header>
-
-      <div className={`slider__container ${customWrapperClassName}`}>
-        {renderSecondSliderTitle && renderSecondSliderTitle()}
-        <SlickSlider ref={sliderRef} {...settings}>
-          {slides.map(slide => renderSlide(slide))}
-        </SlickSlider>
+      <div className={`slider__big-container ${customWrapperClassName}-big`}>
+        <div className={`slider__container ${customWrapperClassName}`}>
+          {renderSecondSliderTitle && renderSecondSliderTitle()}
+          <SlickSlider ref={sliderRef} {...settings}>
+            {slides.map(slide => renderSlide(slide))}
+          </SlickSlider>
+        </div>
       </div>
     </section>
   );

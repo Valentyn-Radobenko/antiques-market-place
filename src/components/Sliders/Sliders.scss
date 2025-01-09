@@ -33,6 +33,8 @@
       font-style: normal;
       font-weight: 400;
       line-height: normal;
+
+      @include hover(text-decoration, underline);
     }
 
     &-button {
@@ -53,9 +55,7 @@
       text-underline-position: from-font;
       text-decoration-skip-ink: none;
 
-      &:hover {
-        background-color: #444;
-      }
+      @include hover(background-color, #444);
 
       &:active {
         background-color: #333;
@@ -89,6 +89,7 @@
       object-position: center;
       object-fit: cover;
       z-index: -1;
+      border-radius: 12px;
     }
 
     &-content {
@@ -188,15 +189,9 @@
     cursor: pointer;
   }
 
-  &__wrapper--discussions {
-    background-color: white;
-    border-radius: 12px;
-    padding-bottom: 0;
-    padding-inline: 24px;
-  }
-
   &__discussions {
     &-title {
+      margin-bottom: 16px;
       color: #000;
       border-radius: 12px;
       padding-top: 24px;
@@ -206,20 +201,62 @@
       font-weight: 700;
       line-height: normal;
     }
+
+    &-wrapper {
+      position: relative;
+      overflow: hidden;
+      // background-color: white;
+      border-radius: 12px;
+      padding-inline: 24px;
+      z-index: 1;
+
+      & > .slick-slider > .slick-dots {
+        position: relative;
+        padding-block: 24px;
+        bottom: 0;
+        top: 24px;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 48px; // Залежить від розміру slick-dots
+        border-radius: 0 0 12px 12px;
+        background-color: #d9d9d9; // Колір фону
+        z-index: 1;
+      }
+
+      &-big {
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0; // Зміщення для покриття верхнього краю
+          left: 0;
+          right: 0;
+          bottom: 48px; // Зміщення для заокруглення
+          background-color: white;
+          z-index: 0;
+          border-radius: 12px;
+        }
+      }
+    }
   }
 
   &__discussion {
     display: flex;
     height: 100%;
     width: 100%;
-    max-width: 607px;
     padding: 16px;
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
     border-radius: 12px;
     border: 2px solid #8a8a8a;
-    margin-bottom: 24px;
 
     &-data {
       display: flex;
@@ -286,7 +323,7 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 24px;
-  z-index: 23;
+  z-index: 2;
   background-color: #d9d9d9;
 
   ul {
@@ -319,4 +356,8 @@
       }
     }
   }
+}
+
+.slick-slide > div {
+  margin: 0 8px;
 }
