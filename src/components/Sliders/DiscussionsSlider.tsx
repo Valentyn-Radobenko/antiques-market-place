@@ -1,5 +1,5 @@
 import { discussionsSlides } from '../../data/discussionsSlides';
-import { Slider } from './Slider';
+import Slider from './Slider';
 
 interface DiscussionSlide {
   id: string;

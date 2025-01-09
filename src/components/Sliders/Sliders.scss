@@ -34,6 +34,33 @@
       font-weight: 400;
       line-height: normal;
     }
+
+    &-button {
+      width: 137px;
+      background-color: #555;
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: Inter, sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 19.36px;
+      text-align: left;
+      text-underline-position: from-font;
+      text-decoration-skip-ink: none;
+
+      &:hover {
+        background-color: #444;
+      }
+
+      &:active {
+        background-color: #333;
+      }
+    }
   }
 
   &__container {
@@ -96,6 +123,14 @@
       justify-content: space-between;
       align-items: center;
       align-self: stretch;
+
+      &-block {
+        display: flex;
+        padding: 8px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+      }
     }
 
     &-status {
@@ -152,24 +187,96 @@
     background-image: url('./../../images/header/arrow-forward.svg');
     cursor: pointer;
   }
-}
 
-.custom-prev-arrow,
-.custom-next-arrow {
-  font-size: 24px;
-  color: #000;
-  cursor: pointer;
-  position: absolute;
-  z-index: 10;
-}
-.custom-prev-arrow {
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  background-image: url('./../../images/header/arrow-back.svg');
-  left: 10px;
-  top: 106%;
-  transform: translateY(-50%);
+  &__wrapper--discussions {
+    background-color: white;
+    border-radius: 12px;
+    padding-bottom: 0;
+    padding-inline: 24px;
+  }
+
+  &__discussions {
+    &-title {
+      color: #000;
+      border-radius: 12px;
+      padding-top: 24px;
+      font-family: Inter;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+  }
+
+  &__discussion {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    max-width: 607px;
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    border-radius: 12px;
+    border: 2px solid #8a8a8a;
+    margin-bottom: 24px;
+
+    &-data {
+      display: flex;
+      align-self: stretch;
+      margin-bottom: 13px;
+    }
+
+    &-id,
+    &-date {
+      color: #000;
+      font-family: Inter;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    &-id {
+      flex: 1 0 0;
+    }
+
+    &-date {
+      flex: 0 0 1;
+    }
+
+    &-text {
+      overflow: hidden;
+      height: 58px;
+      color: #000;
+      text-overflow: ellipsis;
+      font-family: Inter;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    &-category {
+      display: block;
+      padding: 8px;
+      color: #000;
+      font-family: Inter;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    &-comments {
+      color: #000;
+      font-family: Inter;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
 }
 
 .slick-dots {
@@ -179,6 +286,8 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 24px;
+  z-index: 23;
+  background-color: #d9d9d9;
 
   ul {
     display: flex;
@@ -190,6 +299,10 @@
     margin: 0;
     width: 8px;
     height: 8px;
+
+    &.slick-active div {
+      background-color: #000;
+    }
 
     div {
       width: 8px;
@@ -206,8 +319,4 @@
       }
     }
   }
-}
-
-li.slick-active div {
-  background-color: #000;
 }
