@@ -9,6 +9,7 @@ interface SliderProps<T> {
   slidesPerView?: number;
   customSectionClassName?: string;
   customWrapperClassName?: string;
+  fade?: boolean;
 
   renderSlide: (slide: T) => React.ReactNode;
 }
@@ -22,6 +23,7 @@ export default function Slider<T>({
   customSectionClassName = '',
   customWrapperClassName = '',
   renderSlide,
+  fade = false,
 }: SliderProps<T>) {
   const sliderRef = useRef<SlickSlider>(null);
 
@@ -38,11 +40,13 @@ export default function Slider<T>({
   };
 
   const settings = {
+    fade: fade,
     arrows: false,
     dots: true,
     infinite: true,
-    speed: 1000,
-    autoplay: false,
+    speed: 1100,
+    autoplay: true,
+    autoplaySpeed: 4000,
     slidesToShow: slidesPerView,
     slidesToScroll: 1,
     appendDots: (dots: any) => (
