@@ -152,7 +152,7 @@
         &-button {
           width: 24px;
           height: 24px;
-          background-image: url('/../../images/header/currency-button-arrow-down.svg');
+          background-image: url('/images/header/currency-button-arrow-down.svg');
         }
       }
 
@@ -165,18 +165,18 @@
         background-position: center;
 
         &--inactive {
-          background-image: url('./../../images/header/question-inactive.svg');
+          background-image: url('/images/header/question-inactive.svg');
         }
 
         &--active {
-          background-image: url('./../../images/header/question-active.svg');
+          background-image: url('/images/header/question-active.svg');
         }
       }
 
       &-user {
         width: 24px;
         height: 24px;
-        background-image: url('./../../images/header/account.svg');
+        background-image: url('/images/header/account.svg');
         background-repeat: no-repeat;
         background-position: center;
       }

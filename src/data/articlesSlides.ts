@@ -1,6 +1,6 @@
-import exhibition1 from './../images/exhibitions/exhibition-1.jpg';
-import exhibition2 from './../images/exhibitions/exhibition-2.jpg';
-import exhibition3 from './../images/exhibitions/exhibition-3.jpg';
+import exhibition1 from '/images/exhibitions/exhibition-1.jpg';
+import exhibition2 from '/images/exhibitions/exhibition-2.jpg';
+import exhibition3 from '/images/exhibitions/exhibition-3.jpg';
 
 export const articlesSlides = [
   {

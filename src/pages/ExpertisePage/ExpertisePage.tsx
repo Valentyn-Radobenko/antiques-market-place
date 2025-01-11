@@ -1,5 +1,5 @@
-import infoOutline from './../../images/expertise/info-outline.svg';
-import examplePhoto from './../../images/expertise/Photo.png';
+import infoOutline from '/images/expertise/info-outline.svg';
+import examplePhoto from '/images/expertise/Photo.png';
 import { Tooltip } from '../../components/Tooltip/Tooltip';
 
 export const ExpertisePage = () => {
