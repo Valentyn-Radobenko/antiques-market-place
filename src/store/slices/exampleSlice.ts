@@ -12,10 +12,10 @@ const exampleSlice = createSlice({
   name: 'example',
   initialState,
   reducers: {
-    increment: state => {
+    increment: (state) => {
       state.value += 1;
     },
-    decrement: state => {
+    decrement: (state) => {
       state.value -= 1;
     },
     setValue: (state, action: PayloadAction<number>) => {

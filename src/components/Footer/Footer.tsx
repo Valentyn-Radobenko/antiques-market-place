@@ -6,17 +6,26 @@ export const Footer = () => {
           <h4 className="footer__title">Допомога</h4>
           <ul className="footer__list">
             <li>
-              <a href="#" className="footer__link">
+              <a
+                href="#"
+                className="footer__link"
+              >
                 Торгуйте разом з Ducat
               </a>
             </li>
             <li>
-              <a href="#" className="footer__link">
+              <a
+                href="#"
+                className="footer__link"
+              >
                 Задати питання
               </a>
             </li>
             <li>
-              <a href="#" className="footer__link">
+              <a
+                href="#"
+                className="footer__link"
+              >
                 Аукціони
               </a>
             </li>
@@ -26,12 +35,18 @@ export const Footer = () => {
           <h4 className="footer__title">Політики та правила</h4>
           <ul className="footer__list">
             <li>
-              <a href="#" className="footer__link">
+              <a
+                href="#"
+                className="footer__link"
+              >
                 Політика конфіденційності
               </a>
             </li>
             <li>
-              <a href="#" className="footer__link">
+              <a
+                href="#"
+                className="footer__link"
+              >
                 Умови використання
               </a>
             </li>
@@ -41,12 +56,18 @@ export const Footer = () => {
           <h4 className="footer__title">Познайомтесь з нами</h4>
           <ul className="footer__list">
             <li>
-              <a href="#" className="footer__link">
+              <a
+                href="#"
+                className="footer__link"
+              >
                 Про Ducat
               </a>
             </li>
             <li>
-              <a href="#" className="footer__link">
+              <a
+                href="#"
+                className="footer__link"
+              >
                 Вакансії
               </a>
             </li>

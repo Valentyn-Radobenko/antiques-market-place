@@ -1,4 +1,4 @@
-@import './variables';
+@import 'variables';
 
 @mixin on-tablet {
   @media (min-width: $tablet-min-width) {

@@ -9,17 +9,33 @@ import { MarketPage } from './pages/MarketPage/MarketPage';
 import { ExpertisePage } from './pages/ExpertisePage/ExpertisePage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
 import { StrictMode } from 'react';
+import './i18n/i18n';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <StrictMode>
     <Provider store={store}>
       <Router>
         <Routes>
-          <Route path="/" element={<App />}>
-            <Route index element={<HomePage />} />
-            <Route path="/market" element={<MarketPage />} />
-            <Route path="/expertise" element={<ExpertisePage />} />
-            <Route path="*" element={<NotFoundPage />} />
+          <Route
+            path="/"
+            element={<App />}
+          >
+            <Route
+              index
+              element={<HomePage />}
+            />
+            <Route
+              path="/market"
+              element={<MarketPage />}
+            />
+            <Route
+              path="/expertise"
+              element={<ExpertisePage />}
+            />
+            <Route
+              path="*"
+              element={<NotFoundPage />}
+            />
           </Route>
         </Routes>
       </Router>

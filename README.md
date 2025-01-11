@@ -1,40 +1,50 @@
-# Antiques Marketplace
+# React + TypeScript + Vite
 
-A dynamic React application designed as an online platform for buying, selling, and exploring antiques. This project incorporates advanced functionality and a modern tech stack to deliver a seamless user experience.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Features
-- **User Authentication**: Secure login and registration for three account types:
-  - **Administrators**: Manage platform operations, user accounts, and content.
-  - **Buyers**: Browse and purchase antiques with potential auction participation.
-  - **Copywriters**: Create and manage articles about antiques, exhibitions, and trends.
-- **Admin Panel**: A comprehensive dashboard for managing users, content, and marketplace activities.
-- **Marketplace**: A catalog of antiques with detailed listings and a user-friendly interface.
-- **Planned Features**:
-  - **Auctions**: Participate in real-time bidding for unique antiques.
-  - **Articles**: Discover informative articles about antiques and related topics.
-  - **Exhibitions**: Explore upcoming and past exhibitions featuring exclusive antiques.
+Currently, two official plugins are available:
 
-## Tech Stack
-- **Frontend**: HTML5, CSS3/SCSS, JavaScript (ES6+), React.js.
-- **State Management**: Redux Toolkit, RTK Query for efficient API interactions.
-- **Localization**: Multilingual support using `react-i18next`.
-- **Routing**: Intuitive navigation with React Router.
-- **Build Tool**: Vite for fast and optimized development.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## How to Run Locally
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/yourusername/antiques-marketplace.git
+## Expanding the ESLint configuration
 
-2. Navigate to the project directory:
-    ```bash
-    cd antiques-marketplace
-3. Install dependencies:
-    ```bash
-    npm install
-4. Start the development server:
-    ```bash
-    npm run dev
-5. Open http://localhost:5173 in your browser to explore the application.
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-This project is a work in progress and aims to create a versatile and engaging platform for antique enthusiasts. Stay tuned for updates!
+- Configure the top-level `parserOptions` property like this:
+
+```js
+export default tseslint.config({
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+});
+```
+
+- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
+- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+
+```js
+// eslint.config.js
+import react from 'eslint-plugin-react';
+
+export default tseslint.config({
+  // Set the react version
+  settings: { react: { version: '18.3' } },
+  plugins: {
+    // Add the react plugin
+    react,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended rules
+    ...react.configs.recommended.rules,
+    ...react.configs['jsx-runtime'].rules,
+  },
+});
+```

@@ -1,56 +1,58 @@
 {
-  "homepage": "https://valentyn-radobenko.github.io/antiques-market-place/",
-  "name": "react-typescript-starter-pack",
-  "version": "0.1.0",
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.5.1",
-    "bulma": "^0.9.4",
-    "classnames": "^2.3.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^7.1.1",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.6.3",
-    "typescript-eslint-parser": "^22.0.0",
-    "web-vitals": "^1.1.1"
-  },
+  "name": "antiques-market-place",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "format": "prettier --write './src/**/*.{ts,tsx}'",
-    "lint": "npm run format && eslint ./src --fix",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "start": "vite",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "deploy": "vite build && gh-pages -d dist",
+    "format": "prettier . --ignore-path .gitignore --write",
+    "lint": "eslint . --fix",
+    "fix-style": "npm run format & npm run lint",
+    "preview": "vite preview",
+    "prepare": "husky && husky install",
+    "test": "vitest"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.5.0",
+    "pass": "^0.2.0",
+    "path": "^0.12.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-i18next": "^15.4.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.1.1",
+    "react-slick": "^0.30.3",
+    "sass": "^1.83.1",
+    "sass-migrator": "^2.3.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
-    "@mate-academy/eslint-config-react-typescript": "latest",
-    "@mate-academy/students-ts-config": "latest",
-    "@types/node": "^16.18.80",
-    "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19",
-    "eslint": "^7.32.0",
-    "gh-pages": "^6.1.1",
-    "prettier": "^3.2.5",
-    "sass": "^1.72.0"
+    "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.5",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@types/react-slick": "^0.23.13",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.37.3",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "gh-pages": "^6.3.0",
+    "globals": "^15.14.0",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "prettier": "^3.4.2",
+    "sass-embedded": "^1.83.1",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "^8.18.2",
+    "vite": "^6.0.5",
+    "vitest": "^2.1.8"
+  },
+  "lint-staged": {
+    "*": "npm run fix-style"
   }
 }

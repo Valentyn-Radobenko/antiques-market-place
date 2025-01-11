@@ -23,8 +23,11 @@ export const DiscussionsSlider: React.FC = () => {
       slidesPerView={2}
       customSectionClassName="slider__discussions"
       customWrapperClassName="slider__discussions-wrapper"
-      renderSlide={slide => (
-        <div key={slide.id} className="slider__discussion">
+      renderSlide={(slide) => (
+        <div
+          key={slide.id}
+          className="slider__discussion"
+        >
           <div className="slider__duscussion-content">
             <div className="slider__discussion-data">
               <p className="slider__discussion-id">{slide.id}</p>

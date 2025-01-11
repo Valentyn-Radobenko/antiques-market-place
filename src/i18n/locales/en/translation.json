@@ -1,0 +1,26 @@
+{
+  "header": {
+    "search": {
+      "button": "Search"
+    },
+    "languageSwitcher": {
+      "ariaLabel": "Language switcher"
+    },
+    "dropdownQuestions": {
+      "certificate": "Is there a certificate of expertise?",
+      "sell": "Can I sell through the platform?",
+      "buy": "How to buy?",
+      "rules": "Site rules",
+      "leaveQuestion": "Leave a question"
+    },
+    "user": {
+      "login": "Log in",
+      "register": "Register"
+    }
+  },
+  "navigation": {
+    "market": "Market",
+    "collectors_club": "Collectors' Club",
+    "expertise": "Expertise"
+  }
+}

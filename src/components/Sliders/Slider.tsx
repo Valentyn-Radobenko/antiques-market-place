@@ -49,11 +49,18 @@ export default function Slider<T>({
     autoplaySpeed: 4000,
     slidesToShow: slidesPerView,
     slidesToScroll: 1,
-    appendDots: (dots: any) => (
+    lazyLoad: 'progressive',
+    appendDots: (dots: React.ReactNode) => (
       <div className="slider__dots">
-        <div onClick={previous} className="slider__prev-arr"></div>
+        <div
+          onClick={previous}
+          className="slider__prev-arr"
+        ></div>
         <ul>{dots}</ul>
-        <div onClick={next} className="slider__next-arr"></div>
+        <div
+          onClick={next}
+          className="slider__next-arr"
+        ></div>
       </div>
     ),
     customPaging: () => <div></div>,
@@ -68,8 +75,11 @@ export default function Slider<T>({
       <div className={`slider__big-container ${customWrapperClassName}-big`}>
         <div className={`slider__container ${customWrapperClassName}`}>
           {renderSecondSliderTitle && renderSecondSliderTitle()}
-          <SlickSlider ref={sliderRef} {...settings}>
-            {slides.map(slide => renderSlide(slide))}
+          <SlickSlider
+            ref={sliderRef}
+            {...settings}
+          >
+            {slides.map((slide) => renderSlide(slide))}
           </SlickSlider>
         </div>
       </div>

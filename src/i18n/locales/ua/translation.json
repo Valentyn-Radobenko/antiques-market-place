@@ -1,0 +1,26 @@
+{
+  "header": {
+    "search": {
+      "button": "Пошук"
+    },
+    "languageSwitcher": {
+      "ariaLabel": "Перемикач мови"
+    },
+    "dropdownQuestions": {
+      "certificate": "Чи є сертифікат експертизи?",
+      "sell": "Чи можна продати через платформу?",
+      "buy": "Як купити?",
+      "rules": "Правила сайту",
+      "leaveQuestion": "Залишити питання"
+    },
+    "user": {
+      "login": "Увійти в аккаунт",
+      "register": "Зареєструватись"
+    }
+  },
+  "navigation": {
+    "market": "Маркет",
+    "collectors_club": "Клуб колекціонерів",
+    "expertise": "Експертиза"
+  }
+}

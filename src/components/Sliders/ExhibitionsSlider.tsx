@@ -13,14 +13,20 @@ export const ExhibitionsSlider: React.FC = () => {
     <Slider<ExhibitionSlide>
       sliderTitle="Виставки"
       renderSliderLink={() => (
-        <a href="#" className="slider__header-link">
+        <a
+          href="#"
+          className="slider__header-link"
+        >
           Дізнатися більше
         </a>
       )}
       slides={exhibitionsSlides}
       slidesPerView={1}
-      renderSlide={slide => (
-        <div key={slide.id} className="slider__slide">
+      renderSlide={(slide) => (
+        <div
+          key={slide.id}
+          className="slider__slide"
+        >
           <img
             className="slider__slide-img"
             src={slide.imageUrl}
@@ -30,7 +36,10 @@ export const ExhibitionsSlider: React.FC = () => {
             <h3 className="slider__slide-title">{slide.title}</h3>
             <div className="slider__slide-info">
               <p className="slider__slide-status">{slide.status}</p>
-              <a href="#" className="slider__slide-link">
+              <a
+                href="#"
+                className="slider__slide-link"
+              >
                 Переглянути
               </a>
             </div>

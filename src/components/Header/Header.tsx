@@ -2,16 +2,36 @@ import { Dropdown } from '../Dropdown/Dropdown';
 import { availableCurrencies } from '../../data/availableCurrencies';
 import { Navigation } from '../Navigation/Navigation';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
+import i18n from '../../i18n/i18n';
+import { useTranslation } from 'react-i18next';
+import { setLanguage } from '../../store/slices/languageSlice';
 
 export const Header = () => {
+  const language = useSelector((state: RootState) => state.language.language);
+  const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
+
+  const handleLanguageChange = (lang: 'ua' | 'en') => {
+    i18n.changeLanguage(lang);
+    dispatch(setLanguage(lang));
+  };
+
   return (
     <header className="header page__header">
       <div className="header__container">
-        <Link to={'./'} className="header__logo">
+        <Link
+          to={'./'}
+          className="header__logo"
+        >
           D&KO
         </Link>
         <Navigation />
-        <label className="header__search" htmlFor="search-input">
+        <label
+          className="header__search"
+          htmlFor="search-input"
+        >
           <div className="header__search-bar">
             {''}
             <input
@@ -19,7 +39,9 @@ export const Header = () => {
               type="text"
               className="header__search-input"
             />
-            <button className="header__search-button">Пошук</button>
+            <button className="header__search-button">
+              {t('header.search.button')}
+            </button>
           </div>
         </label>
         <ul className="header__actions">
@@ -27,26 +49,30 @@ export const Header = () => {
             <div
               className="header__actions-item 
             header__actions-item-languages"
-              aria-label="Перемикач мови"
+              aria-label={t('header.languageSwitcher.ariaLabel')}
             >
-              <p
-                className="header__actions-item 
-            header__actions-item-language--active"
+              <button
+                onClick={() => handleLanguageChange('ua')}
+                disabled={language === 'ua'}
+                className={`header__actions-item 
+            ${language === 'ua' ? 'header__actions-item-language-active' : 'header__actions-item-language'}`}
               >
                 UA
-              </p>
+              </button>
               <p
                 className="header__actions-item 
-            header__actions-item-language--active"
+            header__actions-item-language-active"
               >
                 |
               </p>
-              <p
-                className="header__actions-item 
-            header__actions-item-language"
+              <button
+                onClick={() => handleLanguageChange('en')}
+                disabled={language === 'en'}
+                className={`header__actions-item 
+                ${language === 'en' ? 'header__actions-item-language-active' : 'header__actions-item-language'}`}
               >
                 EN
-              </p>
+              </button>
             </div>
           </li>
           <li>
@@ -54,19 +80,19 @@ export const Header = () => {
               renderContent={() => (
                 <>
                   <button className="header__dropdown-question">
-                    Чи є сертифікат експертизи?
+                    {t('header.dropdownQuestions.certificate')}
                   </button>
                   <button className="header__dropdown-question">
-                    Чи можна продати через платформу?
+                    {t('header.dropdownQuestions.sell')}
                   </button>
                   <button className="header__dropdown-question">
-                    Як купити?
+                    {t('header.dropdownQuestions.buy')}
                   </button>
                   <button className="header__dropdown-question">
-                    Правила сайту
+                    {t('header.dropdownQuestions.rules')}
                   </button>
                   <button className="header__dropdown-question">
-                    Залишити питання
+                    {t('header.dropdownQuestions.leaveQuestion')}
                   </button>
                 </>
               )}
@@ -89,7 +115,7 @@ export const Header = () => {
               }
               renderContent={() => (
                 <>
-                  {availableCurrencies.map(currency => (
+                  {availableCurrencies.map((currency) => (
                     <button
                       key={currency}
                       className="header__dropdown-currency-button"
@@ -110,10 +136,10 @@ export const Header = () => {
               renderContent={() => (
                 <>
                   <button className="header__dropdown-user-button">
-                    Увійти в аккаунт
+                    {t('header.user.login')}
                   </button>
                   <button className="header__dropdown-user-button">
-                    Зареєструватись
+                    {t('header.user.register')}
                   </button>
                 </>
               )}
