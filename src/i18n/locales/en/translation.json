@@ -22,5 +22,13 @@
     "market": "Market",
     "collectors_club": "Collectors' Club",
     "expertise": "Expertise"
+  },
+  "hero": {
+    "title": "A collectible heritage - quality that has stood the test of time."
+  },
+  "exhibitionsSlider": {
+    "title": "Exhibitions",
+    "headerLink": "Learn More",
+    "slideLink": "View"
   }
 }

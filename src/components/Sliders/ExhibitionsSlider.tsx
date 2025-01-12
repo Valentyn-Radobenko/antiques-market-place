@@ -1,23 +1,34 @@
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 import { exhibitionsSlides } from '../../data/exhibitionsSlides';
 import Slider from './Slider';
+import { useTranslation } from 'react-i18next';
 
 interface ExhibitionSlide {
   id: number;
-  title: string;
-  status: string;
+  title: {
+    ua: string;
+    en: string;
+  };
+  status: {
+    ua: string;
+    en: string;
+  };
   imageUrl: string;
 }
 
 export const ExhibitionsSlider: React.FC = () => {
+  const { t } = useTranslation();
+  const language = useSelector((state: RootState) => state.language.language);
   return (
     <Slider<ExhibitionSlide>
-      sliderTitle="Виставки"
+      sliderTitle={t('exhibitionsSlider.title')}
       renderSliderLink={() => (
         <a
           href="#"
           className="slider__header-link"
         >
-          Дізнатися більше
+          {t('exhibitionsSlider.headerLink')}
         </a>
       )}
       slides={exhibitionsSlides}
@@ -30,17 +41,17 @@ export const ExhibitionsSlider: React.FC = () => {
           <img
             className="slider__slide-img"
             src={slide.imageUrl}
-            alt={slide.title}
+            alt={slide.title[language]}
           />
           <div className="slider__slide-content">
-            <h3 className="slider__slide-title">{slide.title}</h3>
+            <h3 className="slider__slide-title">{slide.title[language]}</h3>
             <div className="slider__slide-info">
-              <p className="slider__slide-status">{slide.status}</p>
+              <p className="slider__slide-status">{slide.status[language]}</p>
               <a
                 href="#"
                 className="slider__slide-link"
               >
-                Переглянути
+                {t('exhibitionsSlider.slideLink')}
               </a>
             </div>
           </div>

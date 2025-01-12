@@ -54,22 +54,27 @@ export const Header = () => {
               <button
                 onClick={() => handleLanguageChange('ua')}
                 disabled={language === 'ua'}
-                className={`header__actions-item 
-            ${language === 'ua' ? 'header__actions-item-language-active' : 'header__actions-item-language'}`}
+                className={`header__actions-item header__actions-item-language--ua header__actions-item-language
+            ${language === 'ua' ? 'header__actions-item-language--active' : ''}`}
               >
                 UA
               </button>
-              <p
-                className="header__actions-item 
-            header__actions-item-language-active"
+              <button
+                onClick={
+                  language === 'en' ?
+                    () => handleLanguageChange('ua')
+                  : () => handleLanguageChange('en')
+                }
+                className="header__actions-item header__actions-item-language
+            header__actions-item-language--active"
               >
                 |
-              </p>
+              </button>
               <button
                 onClick={() => handleLanguageChange('en')}
                 disabled={language === 'en'}
-                className={`header__actions-item 
-                ${language === 'en' ? 'header__actions-item-language-active' : 'header__actions-item-language'}`}
+                className={`header__actions-item header__actions-item-language header__actions-item-language--en
+                ${language === 'en' ? 'header__actions-item-language--active' : ''}`}
               >
                 EN
               </button>

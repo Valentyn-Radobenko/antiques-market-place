@@ -113,7 +113,6 @@
       &-languages {
         display: flex;
         align-items: center;
-        gap: 8px;
       }
 
       &-language {
@@ -125,7 +124,17 @@
         line-height: normal;
         background-color: inherit;
 
-        &-active {
+        @include hover(color, #444);
+
+        &--ua {
+          padding-right: 8px;
+        }
+
+        &--en {
+          padding-left: 8px;
+        }
+
+        &--active {
           color: #000;
           font-family: Inter;
           font-size: 16px;

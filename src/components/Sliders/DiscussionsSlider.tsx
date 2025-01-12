@@ -1,15 +1,25 @@
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 import { discussionsSlides } from '../../data/discussionsSlides';
 import Slider from './Slider';
 
 interface DiscussionSlide {
   id: string;
   createdAt: string;
-  category: string;
-  text: string;
+  category: {
+    ua: string;
+    en: string;
+  };
+  text: {
+    ua: string;
+    en: string;
+  };
   commentsLength: number;
 }
 
 export const DiscussionsSlider: React.FC = () => {
+  const language = useSelector((state: RootState) => state.language.language);
+
   return (
     <Slider<DiscussionSlide>
       sliderTitle="Обговорення"
@@ -33,8 +43,10 @@ export const DiscussionsSlider: React.FC = () => {
               <p className="slider__discussion-id">{slide.id}</p>
               <p className="slider__discussion-date">{slide.createdAt}</p>
             </div>
-            <p className="slider__discussion-text">{slide.text}</p>
-            <p className="slider__discussion-category">{slide.category}</p>
+            <p className="slider__discussion-text">{slide.text[language]}</p>
+            <p className="slider__discussion-category">
+              {slide.category[language]}
+            </p>
             <p className="slider__discussion-comments">{`${slide.commentsLength} коментарів`}</p>
           </div>
         </div>

@@ -5,20 +5,38 @@ import exhibition3 from '/images/exhibitions/exhibition-3.jpg';
 export const exhibitionsSlides = [
   {
     id: 1,
-    title: 'Виставка народного Художника України Володимира Козюка',
-    status: 'Відбулася',
+    title: {
+      ua: 'Виставка народного Художника України Володимира Козюка',
+      en: "Exhibition of People's Artist of Ukraine Volodymyr Kozyuk",
+    },
+    status: {
+      ua: 'Відбулася',
+      en: 'Completed',
+    },
     imageUrl: exhibition1,
   },
   {
     id: 2,
-    title: 'Інша виставка',
-    status: 'Триває',
+    title: {
+      ua: 'Інша виставка',
+      en: 'Another Exhibition',
+    },
+    status: {
+      ua: 'Триває',
+      en: 'Ongoing',
+    },
     imageUrl: exhibition2,
   },
   {
     id: 3,
-    title: 'Ще одна виставка',
-    status: 'Скоро',
+    title: {
+      ua: 'Ще одна виставка',
+      en: 'Yet Another Exhibition',
+    },
+    status: {
+      ua: 'Скоро',
+      en: 'Coming Soon',
+    },
     imageUrl: exhibition3,
   },
 ];

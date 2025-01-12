@@ -4,21 +4,48 @@ import exhibition3 from '/images/exhibitions/exhibition-3.jpg';
 
 export const articlesSlides = [
   {
-    title: 'Стаття Володимира Козюка',
-    status: 'Нова',
-    category: 'Живопис',
+    title: {
+      ua: 'Стаття Володимира Козюка',
+      en: "Volodymyr Kozyuk's Article",
+    },
+    status: {
+      ua: 'Нова',
+      en: 'New',
+    },
+    category: {
+      ua: 'Живопис',
+      en: 'Painting',
+    },
     imageUrl: exhibition1,
   },
   {
-    title: 'Інша стаття',
-    status: 'Нова',
-    category: 'Нумізматика',
+    title: {
+      ua: 'Інша стаття',
+      en: 'Another Article',
+    },
+    status: {
+      ua: 'Нова',
+      en: 'New',
+    },
+    category: {
+      ua: 'Нумізматика',
+      en: 'Numismatics',
+    },
     imageUrl: exhibition2,
   },
   {
-    title: 'Ще одна стаття',
-    status: 'Нова',
-    category: 'Живопис',
+    title: {
+      ua: 'Ще одна стаття',
+      en: 'Yet Another Article',
+    },
+    status: {
+      ua: 'Нова',
+      en: 'New',
+    },
+    category: {
+      ua: 'Живопис',
+      en: 'Painting',
+    },
     imageUrl: exhibition3,
   },
 ];
