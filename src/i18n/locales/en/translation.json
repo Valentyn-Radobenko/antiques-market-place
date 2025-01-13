@@ -30,5 +30,119 @@
     "title": "Exhibitions",
     "headerLink": "Learn More",
     "slideLink": "View"
+  },
+  "articlesSlider": {
+    "title": "Articles",
+    "headerLink": "Learn More",
+    "slideLink": "View"
+  },
+  "discussionsSlider": {
+    "title": "Discussions",
+    "minorTitle": "Most popular",
+    "headerLink": "Add a topic"
+  },
+  "footer": {
+    "help": "Help",
+    "tradeWithDucat": "Trade with Ducat",
+    "askQuestion": "Ask a Question",
+    "auctions": "Auctions",
+    "policiesAndRules": "Policies and Rules",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use",
+    "getToKnowUs": "Get to Know Us",
+    "aboutDucat": "About Ducat",
+    "careers": "Careers",
+    "copyright": "© 2004 - 2025 Ducat Dubovyk&Ko. LLC «Ducat Dubovyk&Ko» / IE Dubovyk Vyacheslav Viktorovych. All rights reserved.",
+    "officialInquiries": "For official inquiries:"
+  },
+  "expertise": {
+    "heading": {
+      "title": "Lot Evaluation and Expertise",
+      "tooltip": {
+        "title": "Recommendations for choosing a service:",
+        "list": [
+          "If you are <b>only interested in the price</b> — basic evaluation is sufficient.",
+          "For <b>selling, insurance, or authenticity verification</b> — a detailed evaluation and authenticity certification are suitable."
+        ],
+        "info": "This will not only provide you with the necessary information but also allow you to use your budget most effectively."
+      }
+    },
+    "steps": {
+      "title": "Get a professional evaluation of your item.",
+      "minorTitle": "Follow five simple steps:",
+      "list": [
+        {
+          "title": "1. Familiarize yourself with the types of evaluation.",
+          "text": "Choose the service that best suits your needs: basic evaluation or preparation of an authenticity certificate."
+        },
+        {
+          "title": "2. Fill out a short form",
+          "text": "Add known information about your lot and upload high-quality photos that clearly show the item from different angles."
+        },
+        {
+          "title": "3. Submit your application.",
+          "text": "After submission, our experts will start processing your request."
+        },
+        {
+          "title": "4. Wait for a response",
+          "text": "You will receive preliminary information about the item's value and the cost of the chosen service."
+        },
+        {
+          "title": "5. Confirm the request.",
+          "text": "Pay for the service and receive a comprehensive evaluation."
+        }
+      ]
+    },
+    "options": {
+      "title": "Choose the necessary evaluation option for your item:",
+      "list": [
+        {
+          "header": "1. Basic item evaluation",
+          "details": {
+            "what": {
+              "label": "What it is:",
+              "description": [
+                "A brief consultation or basic evaluation providing a general understanding of the item. You will learn its approximate value and context: history, approximate age, style, or significance.",
+                "IMPORTANT! The evaluation is based on visual characteristics; be sure to provide high-quality photos."
+              ]
+            },
+            "price": {
+              "label": "Average cost:",
+              "description": "400 UAH + 2% of the item's value"
+            }
+          },
+          "button": "Submit application"
+        },
+        {
+          "header": "2. Expertise. Get an authenticity certificate",
+          "details": {
+            "what": {
+              "label": "What it is:",
+              "description": [
+                "A professional conclusion confirming the item's originality. Signed by an expert and can be used for sales, museum placement, auctions, and other platforms.",
+                "IMPORTANT! Expertise always involves physical contact with the item, so the item must be provided for evaluation to achieve objective results.",
+                "The item can be sent for expertise using postal services or in person. Expertise takes from 10 days to 1 month."
+              ]
+            },
+            "price": {
+              "label": "Average cost:",
+              "description": [
+                "Basic expertise: 2000 UAH + 2% of the estimated value.",
+                "Extended: 10,000 UAH (depending on the complexity of the research)."
+              ]
+            },
+            "owner": {
+              "label": "What the lot owner receives:",
+              "description": [
+                "Official authenticity certificate.",
+                "Description of the item's characteristics.",
+                "Confirmation recognized by the professional community."
+              ]
+            }
+          },
+          "button": "Submit application"
+        }
+      ]
+    }
   }
 }

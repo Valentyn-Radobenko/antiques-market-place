@@ -14,8 +14,8 @@ export const Header = () => {
   const { t } = useTranslation();
 
   const handleLanguageChange = (lang: 'ua' | 'en') => {
-    i18n.changeLanguage(lang);
     dispatch(setLanguage(lang));
+    i18n.changeLanguage(lang);
   };
 
   return (

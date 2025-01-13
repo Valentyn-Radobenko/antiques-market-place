@@ -1,16 +1,19 @@
+import { useTranslation } from 'react-i18next';
+
 export const Footer = () => {
+  const { t } = useTranslation();
   return (
     <footer className="footer">
       <div className="footer__columns">
         <div className="footer__column">
-          <h4 className="footer__title">Допомога</h4>
+          <h4 className="footer__title">{t('footer.help')}</h4>
           <ul className="footer__list">
             <li>
               <a
                 href="#"
                 className="footer__link"
               >
-                Торгуйте разом з Ducat
+                {t('footer.tradeWithDucat')}
               </a>
             </li>
             <li>
@@ -18,7 +21,7 @@ export const Footer = () => {
                 href="#"
                 className="footer__link"
               >
-                Задати питання
+                {t('footer.askQuestion')}
               </a>
             </li>
             <li>
@@ -26,20 +29,20 @@ export const Footer = () => {
                 href="#"
                 className="footer__link"
               >
-                Аукціони
+                {t('footer.auctions')}
               </a>
             </li>
           </ul>
         </div>
         <div className="footer__column">
-          <h4 className="footer__title">Політики та правила</h4>
+          <h4 className="footer__title">{t('footer.policiesAndRules')}</h4>
           <ul className="footer__list">
             <li>
               <a
                 href="#"
                 className="footer__link"
               >
-                Політика конфіденційності
+                {t('footer.privacyPolicy')}
               </a>
             </li>
             <li>
@@ -47,20 +50,20 @@ export const Footer = () => {
                 href="#"
                 className="footer__link"
               >
-                Умови використання
+                {t('footer.termsOfUse')}
               </a>
             </li>
           </ul>
         </div>
         <div className="footer__column">
-          <h4 className="footer__title">Познайомтесь з нами</h4>
+          <h4 className="footer__title">{t('footer.getToKnowUs')}</h4>
           <ul className="footer__list">
             <li>
               <a
                 href="#"
                 className="footer__link"
               >
-                Про Ducat
+                {t('footer.aboutDucat')}
               </a>
             </li>
             <li>
@@ -68,15 +71,15 @@ export const Footer = () => {
                 href="#"
                 className="footer__link"
               >
-                Вакансії
+                {t('footer.careers')}
               </a>
             </li>
           </ul>
         </div>
       </div>
       <div className="footer__copyright">
-        © 2004 - 2025 Ducat Dubovyk&Ko. ТОВ «Ducat Dubovyk&Ko» / ЄОП Дубовик
-        Вячеслав Вікторович. Всі права захищені. Для офіційних звернень:&nbsp;
+        {t('footer.copyright')}&nbsp;
+        {t('footer.officialInquiries')}&nbsp;
         <a
           href="mailto:administration@ducat.ua"
           className="footer__copyright-link"

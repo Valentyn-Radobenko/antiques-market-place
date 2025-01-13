@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { articlesSlides } from '../../data/articlesSlides';
+import { useTranslation } from 'react-i18next';
 import Slider from './Slider';
 
 interface ArticleSlide {
@@ -20,23 +21,24 @@ interface ArticleSlide {
 }
 
 export const ArticlesSlider: React.FC = () => {
+  const { t } = useTranslation();
   const language = useSelector((state: RootState) => state.language.language);
   return (
     <Slider<ArticleSlide>
-      sliderTitle="Статті"
+      sliderTitle={t('articlesSlider.title')}
       renderSliderLink={() => (
         <a
           href="#"
           className="slider__header-link"
         >
-          Дізнатися більше
+          {t('articlesSlider.headerLink')}
         </a>
       )}
       slides={articlesSlides}
       slidesPerView={2}
       renderSlide={(slide) => (
         <div
-          key={slide.title}
+          key={slide.imageUrl}
           className="slider__slide"
         >
           <img
@@ -57,7 +59,7 @@ export const ArticlesSlider: React.FC = () => {
                 href="#"
                 className="slider__slide-link"
               >
-                Переглянути
+                {t('articlesSlider.slideLink')}
               </a>
             </div>
           </div>

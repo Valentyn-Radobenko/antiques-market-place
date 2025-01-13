@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { useTranslation } from 'react-i18next';
 import { discussionsSlides } from '../../data/discussionsSlides';
 import Slider from './Slider';
 
@@ -18,16 +19,21 @@ interface DiscussionSlide {
 }
 
 export const DiscussionsSlider: React.FC = () => {
+  const { t } = useTranslation();
   const language = useSelector((state: RootState) => state.language.language);
 
   return (
     <Slider<DiscussionSlide>
-      sliderTitle="Обговорення"
+      sliderTitle={t('discussionsSlider.title')}
       renderSliderLink={() => (
-        <button className="slider__header-button">Додати тему</button>
+        <button className="slider__header-button">
+          {t('discussionsSlider.headerLink')}
+        </button>
       )}
       renderSecondSliderTitle={() => (
-        <h2 className="slider__discussions-title">Найпопулярніші</h2>
+        <h2 className="slider__discussions-title">
+          {t('discussionsSlider.minorTitle')}
+        </h2>
       )}
       slides={discussionsSlides}
       slidesPerView={2}
