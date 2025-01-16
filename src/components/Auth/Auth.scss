@@ -1,0 +1,213 @@
+.auth {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+
+  display: flex;
+  width: 458px;
+  padding: 24px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  border-radius: 12px;
+  background: #f5f5f5;
+
+  &-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+  }
+
+  &__icon-close {
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  &__exit {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+
+  &__tabs {
+    display: flex;
+    align-items: flex-start;
+    align-self: stretch;
+  }
+
+  &__tab {
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex: 1 0 0;
+    border-bottom: 1px solid #bbb6b6;
+    color: #bbb6b6;
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    cursor: pointer;
+
+    @include hover(color, #666);
+    @include hover(border-bottom, 1px solid #666);
+
+    &--active {
+      border-bottom: 1px solid #000;
+      color: #000;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    align-self: stretch;
+  }
+
+  &__google {
+    width: 410px;
+    padding: 16px;
+    gap: 8px;
+    border-radius: 12px;
+    border: 1px solid #494949;
+    background: #f7f7f7;
+    color: #2c2c2c;
+    cursor: pointer;
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    @include hover(background-color, #e0e0e0);
+    @include hover(color, #000);
+
+    &:active {
+      background: #d6d6d6;
+      color: #1a1a1a;
+      transform: scale(0.98);
+    }
+  }
+
+  &__divider {
+    align-self: stretch;
+    position: relative;
+    background-color: #b0b0b0;
+    height: 1px;
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+
+    &-text {
+      display: flex;
+      height: 40px;
+      padding: 8px;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      color: #4b4949;
+      font-family: Inter;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+  }
+
+  &__input {
+    display: flex;
+    height: 56px;
+    width: 410px;
+    padding: 16px;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: 12px;
+    background: #fff;
+    border: none;
+
+    &-with-icon {
+      display: flex;
+      position: relative;
+    }
+
+    &-icon {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+    }
+  }
+
+  &__forgot-password {
+    align-self: stretch;
+    position: relative;
+    text-decoration: underline;
+    color: #000;
+  }
+
+  &__remember {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0px 16px;
+    color: #000;
+
+    &-text {
+      position: relative;
+    }
+
+    &-checkbox {
+      width: 24px;
+      height: 24px;
+      position: relative;
+      border-radius: 4px;
+      background-color: #c1c1c1;
+    }
+  }
+
+  &__button {
+    align-self: stretch;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    color: #fff;
+
+    &--primary {
+      background-color: #979797;
+    }
+
+    &-text {
+      position: relative;
+    }
+  }
+}

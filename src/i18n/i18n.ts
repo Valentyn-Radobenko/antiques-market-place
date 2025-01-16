@@ -16,14 +16,11 @@ const resources = {
   },
 };
 
-const savedLanguage = localStorage.getItem('i18nextLng') || 'ua';
-
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .use(LanguageDetector)
   .init({
     resources,
-    lng: savedLanguage,
     fallbackLng: 'ua',
     debug: true,
     detection: {
