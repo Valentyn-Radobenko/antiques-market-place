@@ -10,14 +10,13 @@ import { availableCurrencies } from '../../data/availableCurrencies';
 import { Dropdown } from '../Dropdown/Dropdown';
 import { Navigation } from '../Navigation/Navigation';
 import { Auth } from '../Auth/Auth';
+import { authModeType } from '../Auth/Auth';
 
 export const Header = () => {
   const language = useSelector((state: RootState) => state.language.language);
   const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
-  const [authMode, setAuthMode] = useState<null | 'registration' | 'login'>(
-    null,
-  );
+  const [authMode, setAuthMode] = useState<authModeType>(null);
 
   const handleLanguageChange = (lang: 'ua' | 'en') => {
     dispatch(setLanguage(lang));
@@ -53,6 +52,7 @@ export const Header = () => {
                 id="search-input"
                 type="text"
                 className="header__search-input"
+                placeholder="Пошук товару"
               />
               <button className="header__search-button">
                 {t('header.search.button')}

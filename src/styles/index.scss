@@ -15,26 +15,31 @@
 
 html {
   box-sizing: border-box;
+  font-family: Mulish, sans-serif;
 }
 
 html * {
   box-sizing: inherit;
+  font-family: inherit;
 }
 
 .page {
-  font-family: Inter, sans-serif;
+  font-family: Mulish, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: $bg-color;
-  color: $dark-text-color;
+  background-color: #fff;
+  color: #000;
   scroll-behavior: smooth;
 
   &__header {
-    @include standard-inline-paddings;
     margin-bottom: 24px;
   }
 }
 
 .main {
   @include standard-inline-paddings;
+}
+
+button {
+  cursor: pointer;
 }

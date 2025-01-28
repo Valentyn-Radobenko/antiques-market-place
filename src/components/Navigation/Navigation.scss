@@ -2,35 +2,37 @@
   &__list {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
   }
 
   &__item {
     width: fit-content;
   }
 
-  &__link {
-    display: block;
+  &__club {
     display: flex;
+  }
+
+  &__link {
+    display: flex;
+    width: 138.667px;
     height: 40px;
     padding: 16px;
     justify-content: center;
     align-items: center;
-    gap: 16px;
     cursor: pointer;
     border-radius: 12px;
-    background: #f2f2f2;
-    color: #101010;
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+    flex: 1 0 0;
 
-    @include hover(background-color, #ccc);
+    @include button-semibold;
+
+    color: $gray-white;
+    text-align: center;
+
+    @include hover(color, $additional-mint);
 
     &--is-active {
-      background-color: $header-bg-color;
+      color: $additional-fresh-herb-icon;
     }
   }
 }

@@ -1,5 +1,7 @@
 @import 'variables';
 
+// #region media
+
 @mixin on-tablet {
   @media (min-width: $tablet-min-width) {
     @content;
@@ -17,6 +19,8 @@
     @content;
   }
 }
+
+// #endregion
 
 @mixin hover($_property, $_toValue) {
   transition: $effectDuration;
@@ -84,3 +88,61 @@
     }
   }
 }
+
+// #region fonts
+
+@mixin h1-bold {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 120%;
+}
+
+@mixin h2-bold {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 120%;
+}
+
+@mixin h3-bold {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 120%;
+}
+
+@mixin h4-bold {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 120%;
+}
+
+@mixin main-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 160%;
+}
+
+@mixin button-semibold {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 160%;
+}
+
+@mixin tab-regular {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 160%;
+}
+
+@mixin label-bold {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 160%;
+}
+
+@mixin h2-mobile-bold {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 120%;
+}
+
+// #endregion

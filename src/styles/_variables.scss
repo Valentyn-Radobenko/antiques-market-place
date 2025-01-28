@@ -2,8 +2,56 @@ $tablet-min-width: 640px;
 $small-desktop-min-width: 1024px;
 $desktop-min-width: 1600px;
 $effectDuration: 0.3s;
-$bg-color: #fff;
-$header-bg-color: #c3c3c3;
-$sections-bg-main-color: #d9d9d9;
-$sections-bg-minor-color: #f2f2f2;
-$dark-text-color: #000;
+
+// #region colors
+
+$primary: linear-gradient(94deg, #0d392c 0%, #249f7b 100%);
+
+$background-menu: rgba(8, 28, 21, 0.9);
+$background-dis: rgba(113, 121, 119, 0.5);
+$background-page: rgba(247, 255, 253, 0.9);
+$background-strouke-plate: linear-gradient(
+  100deg,
+  rgba(255, 255, 255, 0.19) 2.83%,
+  rgba(134, 191, 174, 0.09) 96.35%
+);
+$background-plate-2-plus: linear-gradient(
+  286deg,
+  rgba(198, 223, 211, 0.24) 15.68%,
+  rgba(232, 245, 240, 0.8) 82.46%
+);
+$background-plate: linear-gradient(
+  286deg,
+  rgba(123, 151, 137, 0.15) 15.68%,
+  rgba(227, 231, 229, 0.5) 82.46%
+);
+$background-2-minus: linear-gradient(
+  286deg,
+  rgba(185, 202, 193, 0.5) 15.68%,
+  rgba(211, 241, 226, 0.25) 82.46%
+);
+
+$additional-black-green: #081c15;
+$additional-greenas: #1b4332;
+$additional-fresh-herb-icon: #40916c;
+$additional-open-green: #00a85b;
+$additional-mint: #95d5b2;
+$additional-white-green: #dcfee1;
+$additional-plate: #ddece0;
+
+$gray-black: #061814;
+$gray-dark: #34403d;
+$gray-darks: #646464;
+$gray-dis: #717977;
+$gray-lite: #869693;
+$gray: #adbdba;
+$gray-stroke: #cbdbd9;
+$gray-white-darks: #dee6e5;
+$gray-white: #f7fffd;
+
+$system-error: #f40000;
+$system-info: #034bf5;
+$system-warning: #dfbe19;
+$system-confirmation: #079d5c;
+
+// #endregion

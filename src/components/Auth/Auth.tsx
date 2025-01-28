@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import apiClient from './../../utils/apiClient';
 import classNames from 'classnames';
@@ -13,9 +15,11 @@ interface FormData {
   phoneNumber: string;
 }
 
+export type authModeType = 'registration' | 'login' | 'forgotPassword' | null;
+
 type Props = {
-  authMode: 'registration' | 'login' | null;
-  setAuthMode: (authMode: 'registration' | 'login' | null) => void;
+  authMode: authModeType;
+  setAuthMode: (authMode: authModeType) => void;
 };
 
 export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
@@ -31,7 +35,10 @@ export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
   });
 
   const [step, setStep] = useState<number>(1);
-  const [mode, setMode] = useState<'registration' | 'login' | null>(authMode);
+  const [mode, setMode] = useState<authModeType>(authMode);
+  const [isPassShowed, setIsPassShowed] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+  const steps = [1, 2, 3, 4];
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
@@ -46,8 +53,10 @@ export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
       // Реєстрація: код з вашого початкового прикладу
       if (step === 1) {
         try {
-          await apiClient.post('/verification/send-code-registration', {
-            email: formData.email,
+          await apiClient.post('/verification/send-code-registration', null, {
+            params: {
+              to_email: formData.email,
+            },
           });
           setStep(2);
         } catch (error) {
@@ -88,39 +97,64 @@ export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
         }
         setStep(5);
       } else if (step === 5) {
-        const { email, phoneNumber, firstName, lastName, password } = formData;
+        const {
+          email,
+          phoneNumber,
+          firstName,
+          lastName,
+          country,
+          password,
+          repeatPassword,
+        } = formData;
         try {
+          console.log(formData);
           const response = await apiClient.post('/auth/registration', {
             email,
             phoneNumber,
             firstName,
             lastName,
+            country,
             password,
+            repeatPassword,
           });
           if (response.status === 201) {
             alert('Реєстрацію завершено успішно!');
           }
-        } catch (error) {
-          alert('Помилка реєстрації. Спробуйте ще раз.');
-
-          console.error(error);
+        } catch (error: any) {
+          console.log('Відправлені дані:', {
+            email,
+            phoneNumber,
+            firstName,
+            lastName,
+            country,
+            password,
+            repeatPassword,
+          });
+          console.error('Помилка відповіді сервера:', error.response?.data);
+          if (error.response?.status === 400) {
+            alert(
+              'Помилка: ' +
+                (error.response?.data?.message || 'Некоректні дані.'),
+            );
+          } else {
+            alert('Щось пішло не так. Спробуйте ще раз.');
+          }
         }
       }
     } else {
       // Авторизація
-      try {
-        const response = await apiClient.post('/auth/login', {
-          email: formData.email,
-          password: formData.password,
-        });
-        if (response.status === 200) {
-          alert('Вхід виконано успішно!');
-        }
-      } catch (error) {
-        alert('Помилка авторизації. Перевірте email або пароль.');
-
-        console.error(error);
-      }
+      // try {
+      //   const response = await apiClient.post('/auth/login', {
+      //     email: formData.email,
+      //     password: formData.password,
+      //   });
+      //   if (response.status === 200) {
+      //     alert('Вхід виконано успішно!');
+      //   }
+      // } catch (error) {
+      //   alert('Помилка авторизації. Перевірте email або пароль.');
+      //   console.error(error);
+      // }
     }
   };
 
@@ -207,7 +241,7 @@ export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
         );
       case 4:
         return (
-          <form onSubmit={handleSubmit}>
+          <>
             <h2>Особисті дані</h2>
             <input
               type="text"
@@ -232,11 +266,11 @@ export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
               Назад
             </button>
             <button type="submit">Далі</button>
-          </form>
+          </>
         );
       case 5:
         return (
-          <form onSubmit={handleSubmit}>
+          <>
             <h2>Контактна інформація</h2>
             <select
               name="country"
@@ -245,9 +279,9 @@ export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
               required
             >
               <option value="">Оберіть країну</option>
-              <option value="Україна">Україна</option>
-              <option value="США">США</option>
-              <option value="Польща">Польща</option>
+              <option value="Ukraine">Україна</option>
+              <option value="USA">США</option>
+              <option value="Poland">Польща</option>
             </select>
             <input
               type="tel"
@@ -264,7 +298,7 @@ export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
               Назад
             </button>
             <button type="submit">Завершити</button>
-          </form>
+          </>
         );
       default:
         return null;
@@ -295,7 +329,7 @@ export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
             <p className="auth__label-text">Пароль</p>
             <div className="auth__input-with-icon">
               <input
-                type="password"
+                type={isPassShowed ? 'text' : 'password'}
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
@@ -304,25 +338,47 @@ export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
                 className="auth__input"
               />
               <img
+                onClick={() => setIsPassShowed(!isPassShowed)}
                 className="auth__input-icon"
-                src="./images/auth/eye.svg"
+                src={
+                  isPassShowed ?
+                    './images/auth/eye-closed.svg'
+                  : './images/auth/eye.svg'
+                }
                 alt="eye icon"
               />
             </div>
           </label>
 
-          <div className="auth__forgot-password">Забули пароль?</div>
-          <div className="auth__remember">
-            <div className="auth__remember-text">
+          <button className="auth__forgot-password">Забули пароль?</button>
+
+          <label className="auth__remember-me">
+            <span className="auth__remember-me-text">
               Запам’ятати дані для швидкого входу
-            </div>{' '}
-            <input type="checkbox" />
-            <div className="auth__checkbox"></div>
-          </div>
+            </span>
+
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={() => setRememberMe(!rememberMe)}
+              style={{
+                display: 'none',
+              }}
+            />
+            <div
+              className={classNames('auth__remember-me-checkbox', {
+                'auth__remember-me-checkbox--active': rememberMe,
+              })}
+            >
+              {rememberMe && (
+                <div className="auth__remember-me-checkmark"></div>
+              )}
+            </div>
+          </label>
         </div>
-        <div className="auth__button auth__button--primary">
-          <div className="auth__button-text">Продовжити</div>
-        </div>
+        <button className="auth__button auth__button--primary">
+          Продовжити
+        </button>
       </>
     );
   };
@@ -336,6 +392,28 @@ export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
         onSubmit={handleSubmit}
       >
         <div className="auth__exit">
+          <div
+            className={classNames('auth__registration-steps', {
+              'auth__registration-steps--inactive': mode !== 'registration',
+            })}
+          >
+            {steps.map((item, index) => (
+              <React.Fragment key={index}>
+                <div
+                  className={classNames('auth__registration-step', {
+                    'auth__registration-step--active': step === item + 1,
+                  })}
+                >
+                  {item}
+                </div>
+                {index < steps.length - 1 && (
+                  <div
+                    className={classNames('auth__registration-rectangle')}
+                  ></div>
+                )}
+              </React.Fragment>
+            ))}
+          </div>
           <img
             onClick={() => setAuthMode(null)}
             className="auth__icon-close"

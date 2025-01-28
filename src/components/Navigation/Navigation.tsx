@@ -20,12 +20,15 @@ export const Navigation: React.FC = () => {
           </NavLink>
         </li>
         <li className="nav__item">
-          <NavLink
-            to={'./'}
-            className={getLinkClass}
-          >
-            {t('navigation.collectors_club')}
-          </NavLink>
+          <div className="nav__club">
+            <NavLink
+              to={'./'}
+              className={getLinkClass}
+            >
+              {t('navigation.collectors_club')}
+            </NavLink>
+            <button></button>
+          </div>
         </li>
         <li className="nav__item">
           <NavLink
