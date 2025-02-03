@@ -3,6 +3,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import apiClient from './../../utils/apiClient';
 import classNames from 'classnames';
+import { authModeType } from '../../types/authModeType';
 
 interface FormData {
   email: string;
@@ -14,8 +15,6 @@ interface FormData {
   country: string;
   phoneNumber: string;
 }
-
-export type authModeType = 'registration' | 'login' | 'forgotPassword' | null;
 
 type Props = {
   authMode: authModeType;
@@ -121,15 +120,6 @@ export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
             alert('Реєстрацію завершено успішно!');
           }
         } catch (error: any) {
-          console.log('Відправлені дані:', {
-            email,
-            phoneNumber,
-            firstName,
-            lastName,
-            country,
-            password,
-            repeatPassword,
-          });
           console.error('Помилка відповіді сервера:', error.response?.data);
           if (error.response?.status === 400) {
             alert(

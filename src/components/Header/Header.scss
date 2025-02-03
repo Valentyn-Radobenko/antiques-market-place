@@ -1,9 +1,13 @@
 .header {
-  height: 100%;
+  height: $header-height;
   position: fixed;
   left: 0;
   right: 0;
   z-index: 5;
+
+  border-radius: 0 0 12px 12px;
+  background: $additional-black-green;
+  backdrop-filter: blur(15px);
 
   &__container {
     @include standard-inline-paddings;
@@ -14,9 +18,18 @@
     align-self: stretch;
     gap: 24px;
     padding-block: 16px;
-    border-radius: 0 0 12px 12px;
-    background: $additional-black-green;
-    backdrop-filter: blur(15px);
+
+    // &::after {
+    //   content: '';
+    //   position: absolute;
+    //   width: 100%;
+    //   height: 140px;
+    //   background: $background-menu;
+    //   backdrop-filter: blur(5px);
+    //   border-radius: 0 0 12px 12px;
+    //   top: $header-height;
+    //   left: 0;
+    // }
   }
 
   &__logo {
@@ -124,7 +137,7 @@
       }
 
       &-language {
-        color: #828282;
+        color: $gray-white;
 
         font-size: 16px;
         font-style: normal;
@@ -132,7 +145,7 @@
         line-height: normal;
         background-color: inherit;
 
-        @include hover(color, #444);
+        @include hover(color, $additional-mint);
 
         &--ua {
           padding-right: 8px;
@@ -143,7 +156,7 @@
         }
 
         &--active {
-          color: #000;
+          color: $additional-fresh-herb-icon;
 
           font-size: 16px;
           font-style: normal;
@@ -158,7 +171,7 @@
         gap: 4px;
 
         &-text {
-          color: #000;
+          color: $gray-white;
 
           font-size: 16px;
           font-style: normal;

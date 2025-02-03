@@ -5,18 +5,26 @@ import { AppDispatch, RootState } from '../../store/store';
 import { setLanguage } from '../../store/slices/languageSlice';
 import i18n from '../../i18n/i18n';
 import { useTranslation } from 'react-i18next';
+import classNames from 'classnames';
 
 import { availableCurrencies } from '../../data/availableCurrencies';
 import { Dropdown } from '../Dropdown/Dropdown';
 import { Navigation } from '../Navigation/Navigation';
 import { Auth } from '../Auth/Auth';
-import { authModeType } from '../Auth/Auth';
+import { authModeType } from '../../types/authModeType';
+import { expandedModeType } from '../../types/expandedModeType';
+import { ExpClub } from './Expanded/ExpClub';
+import { ExpQuestions } from './Expanded/ExpQuestions';
+import { ExpLanguage } from './Expanded/ExpLanguage';
+import { ExpCurrency } from './Expanded/ExpCurrency';
+import { ExpAccount } from './Expanded/ExpAccount';
 
 export const Header = () => {
   const language = useSelector((state: RootState) => state.language.language);
   const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
   const [authMode, setAuthMode] = useState<authModeType>(null);
+  const [expandedMode, setExpandedMode] = useState<expandedModeType>(null);
 
   const handleLanguageChange = (lang: 'ua' | 'en') => {
     dispatch(setLanguage(lang));
@@ -33,7 +41,11 @@ export const Header = () => {
           />
         </>
       )}
-      <header className="header page__header">
+      <header
+        className={classNames('header page__header', {
+          'header--expanded': expandedMode,
+        })}
+      >
         <div className="header__container">
           <Link
             to={'./'}
@@ -41,7 +53,10 @@ export const Header = () => {
           >
             D&KO
           </Link>
-          <Navigation />
+          <Navigation
+            expandedMode={expandedMode}
+            setExpandedMode={setExpandedMode}
+          />
           <label
             className="header__search"
             htmlFor="search-input"
@@ -60,6 +75,35 @@ export const Header = () => {
             </div>
           </label>
           <ul className="header__actions">
+            <li>
+              <Dropdown
+                renderContent={() => (
+                  <>
+                    <button className="header__dropdown-question">
+                      {t('header.dropdownQuestions.certificate')}
+                    </button>
+                    <button className="header__dropdown-question">
+                      {t('header.dropdownQuestions.sell')}
+                    </button>
+                    <button className="header__dropdown-question">
+                      {t('header.dropdownQuestions.buy')}
+                    </button>
+                    <button className="header__dropdown-question">
+                      {t('header.dropdownQuestions.rules')}
+                    </button>
+                    <button className="header__dropdown-question">
+                      {t('header.dropdownQuestions.leaveQuestion')}
+                    </button>
+                  </>
+                )}
+                customDropdownClassName="header__dropdown-questions"
+                customContentClassName="header__dropdown-questions-content"
+                customButtonClassName="header__actions-item
+              header__actions-item-questions
+              header__actions-item-questions--inactive"
+              />
+            </li>
+
             <li>
               <div
                 className="header__actions-item 
@@ -95,34 +139,7 @@ export const Header = () => {
                 </button>
               </div>
             </li>
-            <li>
-              <Dropdown
-                renderContent={() => (
-                  <>
-                    <button className="header__dropdown-question">
-                      {t('header.dropdownQuestions.certificate')}
-                    </button>
-                    <button className="header__dropdown-question">
-                      {t('header.dropdownQuestions.sell')}
-                    </button>
-                    <button className="header__dropdown-question">
-                      {t('header.dropdownQuestions.buy')}
-                    </button>
-                    <button className="header__dropdown-question">
-                      {t('header.dropdownQuestions.rules')}
-                    </button>
-                    <button className="header__dropdown-question">
-                      {t('header.dropdownQuestions.leaveQuestion')}
-                    </button>
-                  </>
-                )}
-                customDropdownClassName="header__dropdown-questions"
-                customContentClassName="header__dropdown-questions-content"
-                customButtonClassName="header__actions-item
-              header__actions-item-questions
-              header__actions-item-questions--inactive"
-              />
-            </li>
+
             <li>
               <Dropdown
                 customButtonClassName="header__actions-item 
@@ -176,6 +193,11 @@ export const Header = () => {
           </ul>
         </div>
       </header>
+      {expandedMode === 'club' && <ExpClub />}
+      {expandedMode === 'questions' && <ExpQuestions />}
+      {expandedMode === 'language' && <ExpLanguage />}
+      {expandedMode === 'currency' && <ExpCurrency />}
+      {expandedMode === 'account' && <ExpAccount />}
     </>
   );
 };

@@ -38,6 +38,8 @@ html * {
 
 .main {
   @include standard-inline-paddings;
+
+  padding-top: $header-height;
 }
 
 button {
