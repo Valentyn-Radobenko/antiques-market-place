@@ -3,7 +3,9 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import apiClient from './../../utils/apiClient';
 import classNames from 'classnames';
-import { authModeType } from '../../types/authModeType';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
+import { setAuthMode } from '../../store/slices/authModeSlice';
 
 interface FormData {
   email: string;
@@ -16,12 +18,10 @@ interface FormData {
   phoneNumber: string;
 }
 
-type Props = {
-  authMode: authModeType;
-  setAuthMode: (authMode: authModeType) => void;
-};
+export const Auth: React.FC = () => {
+  const authMode = useSelector((state: RootState) => state.authMode.authMode);
+  const dispatch = useDispatch<AppDispatch>();
 
-export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
   const [formData, setFormData] = useState<FormData>({
     email: '',
     code: '',
@@ -34,7 +34,6 @@ export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
   });
 
   const [step, setStep] = useState<number>(1);
-  const [mode, setMode] = useState<authModeType>(authMode);
   const [isPassShowed, setIsPassShowed] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const steps = [1, 2, 3, 4];
@@ -48,7 +47,7 @@ export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (mode === 'registration') {
+    if (authMode === 'registration') {
       // Реєстрація: код з вашого початкового прикладу
       if (step === 1) {
         try {
@@ -384,7 +383,7 @@ export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
         <div className="auth__exit">
           <div
             className={classNames('auth__registration-steps', {
-              'auth__registration-steps--inactive': mode !== 'registration',
+              'auth__registration-steps--inactive': authMode !== 'registration',
             })}
           >
             {steps.map((item, index) => (
@@ -405,7 +404,7 @@ export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
             ))}
           </div>
           <img
-            onClick={() => setAuthMode(null)}
+            onClick={() => dispatch(setAuthMode(null))}
             className="auth__icon-close"
             alt=""
             src="./images/auth/close.svg"
@@ -414,28 +413,28 @@ export const Auth: React.FC<Props> = ({ authMode, setAuthMode }) => {
         <div className="auth__tabs">
           <button
             onClick={() => {
-              setMode('login');
+              setAuthMode('login');
               setStep(1);
             }}
             className={classNames('auth__tab', {
-              'auth__tab--active': mode === 'login',
+              'auth__tab--active': authMode === 'login',
             })}
           >
             Вхід
           </button>
           <button
             onClick={() => {
-              setMode('registration');
+              setAuthMode('registration');
               setStep(1);
             }}
             className={classNames('auth__tab', {
-              'auth__tab--active': mode === 'registration',
+              'auth__tab--active': authMode === 'registration',
             })}
           >
             Реєстрація
           </button>
         </div>
-        {mode === 'registration' ? renderRegistrationStep() : renderLogin()}
+        {authMode === 'registration' ? renderRegistrationStep() : renderLogin()}
       </form>
     </>
   );

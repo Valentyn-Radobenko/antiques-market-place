@@ -2,7 +2,10 @@
   &__list {
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    width: 450px;
+    gap: 36px;
+    height: $header-height;
   }
 
   &__item {
@@ -12,10 +15,8 @@
   &__club {
     &-big-button {
       display: flex;
-      height: 40px;
-      padding: 16px;
+      height: $header-height;
       align-items: center;
-      gap: 4px;
     }
 
     &-button {
@@ -23,42 +24,12 @@
       width: 24px;
       height: 24px;
     }
-
-    &-tooltip {
-      @include dropdown-content-animation;
-      z-index: 6;
-
-      &-content {
-        display: flex;
-        width: 172px;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-
-        &-but {
-          display: flex;
-          height: 40px;
-          padding: 16px;
-          justify-content: space-between;
-          align-items: center;
-          align-self: stretch;
-
-          border-radius: 12px;
-          background: $background-plate;
-
-          /* Button */
-          box-shadow: 0px 0px 8px 0px rgba(236, 255, 252, 0);
-          backdrop-filter: blur(25px);
-        }
-      }
-    }
   }
 
   &__link {
     display: flex;
-    width: 138.667px;
     height: 40px;
-    padding: 16px;
+    // padding: 16px;
     justify-content: center;
     align-items: center;
     cursor: pointer;

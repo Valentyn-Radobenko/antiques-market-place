@@ -1,49 +1,29 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store/store';
-import { setLanguage } from '../../store/slices/languageSlice';
-import i18n from '../../i18n/i18n';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-
-import { availableCurrencies } from '../../data/availableCurrencies';
-import { Dropdown } from '../Dropdown/Dropdown';
 import { Navigation } from '../Navigation/Navigation';
 import { Auth } from '../Auth/Auth';
-import { authModeType } from '../../types/authModeType';
-import { expandedModeType } from '../../types/expandedModeType';
-import { ExpClub } from './Expanded/ExpClub';
-import { ExpQuestions } from './Expanded/ExpQuestions';
-import { ExpLanguage } from './Expanded/ExpLanguage';
-import { ExpCurrency } from './Expanded/ExpCurrency';
-import { ExpAccount } from './Expanded/ExpAccount';
+import { HeaderTooltip } from '../Tooltip/HeaderTooltip';
+import { ExpQuestions } from './Expanded/ExpQuestions/ExpQuestions';
+import { ExpLanguage } from './Expanded/ExpLanguage/ExpLanguage';
+import { ExpCurrency } from './Expanded/ExpCurrency/ExpCurrency';
+import { ExpAccount } from './Expanded/ExpAccount/ExpAccount';
 
 export const Header = () => {
-  const language = useSelector((state: RootState) => state.language.language);
-  const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
-  const [authMode, setAuthMode] = useState<authModeType>(null);
-  const [expandedMode, setExpandedMode] = useState<expandedModeType>(null);
-
-  const handleLanguageChange = (lang: 'ua' | 'en') => {
-    dispatch(setLanguage(lang));
-    i18n.changeLanguage(lang);
-  };
+  const authMode = useSelector((state: RootState) => state.authMode.authMode);
+  const expHeader = useSelector(
+    (state: RootState) => state.expHeader.expHeader,
+  );
 
   return (
     <>
-      {authMode && (
-        <>
-          <Auth
-            authMode={authMode}
-            setAuthMode={setAuthMode}
-          />
-        </>
-      )}
+      {authMode && <Auth />}
       <header
         className={classNames('header page__header', {
-          'header--expanded': expandedMode,
+          'header--expanded': expHeader,
         })}
       >
         <div className="header__container">
@@ -53,10 +33,7 @@ export const Header = () => {
           >
             D&KO
           </Link>
-          <Navigation
-            expandedMode={expandedMode}
-            setExpandedMode={setExpandedMode}
-          />
+          <Navigation />
           <label
             className="header__search"
             htmlFor="search-input"
@@ -74,130 +51,110 @@ export const Header = () => {
               </button>
             </div>
           </label>
+
           <ul className="header__actions">
             <li>
-              <Dropdown
-                renderContent={() => (
-                  <>
-                    <button className="header__dropdown-question">
-                      {t('header.dropdownQuestions.certificate')}
-                    </button>
-                    <button className="header__dropdown-question">
-                      {t('header.dropdownQuestions.sell')}
-                    </button>
-                    <button className="header__dropdown-question">
-                      {t('header.dropdownQuestions.buy')}
-                    </button>
-                    <button className="header__dropdown-question">
-                      {t('header.dropdownQuestions.rules')}
-                    </button>
-                    <button className="header__dropdown-question">
-                      {t('header.dropdownQuestions.leaveQuestion')}
-                    </button>
-                  </>
+              <HeaderTooltip
+                renderButton={() => (
+                  <div className="header__actions-item-wrapper">
+                    <button
+                      className={classNames(
+                        'header__actions-item header__actions-item-questions',
+                        {
+                          'header__actions-item-questions--inactive':
+                            expHeader !== 'questions',
+                          'header__actions-item-questions--active':
+                            expHeader === 'questions',
+                        },
+                      )}
+                    ></button>
+                  </div>
                 )}
-                customDropdownClassName="header__dropdown-questions"
-                customContentClassName="header__dropdown-questions-content"
-                customButtonClassName="header__actions-item
-              header__actions-item-questions
-              header__actions-item-questions--inactive"
+                renderContent={() => <ExpQuestions />}
+                mode={'questions'}
+                customContentClassName="exp-questions"
+                customTooltipClassName="exp-questions__tooltip"
               />
             </li>
 
             <li>
-              <div
-                className="header__actions-item 
-            header__actions-item-languages"
-                aria-label={t('header.languageSwitcher.ariaLabel')}
-              >
-                <button
-                  onClick={() => handleLanguageChange('ua')}
-                  disabled={language === 'ua'}
-                  className={`header__actions-item header__actions-item-language--ua header__actions-item-language
-            ${language === 'ua' ? 'header__actions-item-language--active' : ''}`}
-                >
-                  UA
-                </button>
-                <button
-                  onClick={
-                    language === 'en' ?
-                      () => handleLanguageChange('ua')
-                    : () => handleLanguageChange('en')
-                  }
-                  className="header__actions-item header__actions-item-language
-            header__actions-item-language--active"
-                >
-                  |
-                </button>
-                <button
-                  onClick={() => handleLanguageChange('en')}
-                  disabled={language === 'en'}
-                  className={`header__actions-item header__actions-item-language header__actions-item-language--en
-                ${language === 'en' ? 'header__actions-item-language--active' : ''}`}
-                >
-                  EN
-                </button>
-              </div>
+              <HeaderTooltip
+                renderButton={() => (
+                  <div className="header__actions-item-wrapper">
+                    <button
+                      className={classNames(
+                        'header__actions-item header__actions-item-language',
+                        {
+                          'header__actions-item-language--inactive':
+                            expHeader !== 'language',
+                          'header__actions-item-language--active':
+                            expHeader === 'language',
+                        },
+                      )}
+                    ></button>
+                  </div>
+                )}
+                renderContent={() => <ExpLanguage />}
+                mode={'language'}
+                customContentClassName="exp-language"
+                customTooltipClassName="exp-language__tooltip"
+              />
             </li>
 
             <li>
-              <Dropdown
-                customButtonClassName="header__actions-item 
-              header__actions-item-currency"
-                button={
-                  <>
-                    <p className="header__actions-item-currency-text">USD</p>
-                    <div className="header__actions-item-currency-button"></div>
-                  </>
-                }
-                renderContent={() => (
-                  <>
-                    {availableCurrencies.map((currency) => (
-                      <button
-                        key={currency}
-                        className="header__dropdown-currency-button"
-                      >
-                        {currency}
-                      </button>
-                    ))}
-                  </>
+              <HeaderTooltip
+                renderButton={() => (
+                  <div className="header__actions-item-wrapper">
+                    <button
+                      className={classNames(
+                        'header__actions-item header__actions-item-currency',
+                        {
+                          'header__actions-item-currency--inactive':
+                            expHeader !== 'currency',
+                          'header__actions-item-currency--active':
+                            expHeader === 'currency',
+                        },
+                      )}
+                    ></button>
+                  </div>
                 )}
-                customDropdownClassName="header__dropdown-currency"
-                customContentClassName="header__dropdown-currency-content"
+                renderContent={() => <ExpCurrency />}
+                mode={'currency'}
+                customContentClassName="exp-currency"
+                customTooltipClassName="exp-currency__tooltip"
               />
             </li>
             <li>
-              <Dropdown
-                customButtonClassName="header__actions-item 
-              header__actions-item-user"
-                renderContent={() => (
-                  <>
+              <HeaderTooltip
+                renderButton={() => (
+                  <div className="header__actions-item-wrapper">
                     <button
-                      onClick={() => setAuthMode('login')}
-                      className="header__dropdown-user-button"
-                    >
-                      {t('header.user.login')}
-                    </button>
-                    <button
-                      onClick={() => setAuthMode('registration')}
-                      className="header__dropdown-user-button"
-                    >
-                      {t('header.user.register')}
-                    </button>
-                  </>
+                      className={classNames(
+                        'header__actions-item header__actions-item-account',
+                        {
+                          'header__actions-item-account--inactive':
+                            expHeader !== 'account',
+                          'header__actions-item-account--active':
+                            expHeader === 'account',
+                        },
+                      )}
+                    ></button>
+                  </div>
                 )}
-                customDropdownClassName="header__dropdown-user"
-                customContentClassName="header__dropdown-user-content"
+                renderContent={() => <ExpAccount />}
+                mode={'account'}
+                customContentClassName="exp-account"
+                customTooltipClassName="exp-account__tooltip"
               />
             </li>
           </ul>
         </div>
       </header>
-      {expandedMode === 'club' && <ExpClub />}
+      {/* {expandedMode === 'club' && <ExpClub />}
       {expandedMode === 'questions' && <ExpQuestions />}
       {expandedMode === 'language' && <ExpLanguage />}
       {expandedMode === 'currency' && <ExpCurrency />}
-      {expandedMode === 'account' && <ExpAccount />}
+      {expandedMode === 'account' && <ExpAccount />} */}
     </>
   );
 };

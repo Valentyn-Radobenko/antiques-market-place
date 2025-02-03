@@ -1,28 +1,19 @@
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
-import { Tooltip } from '../Tooltip/Tooltip';
-import { expandedModeType } from '../../types/expandedModeType';
-
-type Props = {
-  expandedMode: expandedModeType;
-  setExpandedMode: (mode: expandedModeType) => void;
-};
+import { HeaderTooltip } from '../Tooltip/HeaderTooltip';
+import { ExpClub } from '../Header/Expanded/ExpClub/ExpClub';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) =>
   classNames('nav__link', { 'nav__link--is-active': isActive });
 
-export const Navigation: React.FC<Props> = ({
-  expandedMode,
-  setExpandedMode,
-}) => {
+export const Navigation: React.FC = () => {
   const { t } = useTranslation();
 
   return (
     <nav className="nav">
       <ul className="nav__list">
         <li className="nav__item">
-          {expandedMode && <></>}
           <NavLink
             to={'./market'}
             className={getLinkClass}
@@ -31,20 +22,9 @@ export const Navigation: React.FC<Props> = ({
           </NavLink>
         </li>
         <li className="nav__item">
-          <Tooltip
+          <HeaderTooltip
             renderButton={() => (
-              <div
-                onClick={() => {
-                  if (expandedMode === null) {
-                    return setExpandedMode('club');
-                  }
-
-                  if (expandedMode === 'club') {
-                    return setExpandedMode(null);
-                  }
-                }}
-                className="nav__club-big-button"
-              >
+              <div className="nav__club-big-button">
                 <NavLink
                   to={'./'}
                   className={getLinkClass}
@@ -54,21 +34,10 @@ export const Navigation: React.FC<Props> = ({
                 <button className="nav__club-button"></button>
               </div>
             )}
-            renderContent={() => (
-              <>
-                <button className="nav__club-tooltip-content-but">
-                  Виставки
-                </button>
-                <button className="nav__club-tooltip-content-but">
-                  Статті
-                </button>
-                <button className="nav__club-tooltip-content-but">
-                  Обговорення
-                </button>
-              </>
-            )}
-            customTooltipClassName="nav__club-tooltip"
-            customContentClassName="nav__club-tooltip-content"
+            renderContent={() => <ExpClub />}
+            mode="club"
+            customContentClassName="exp-club"
+            customTooltipClassName="exp-club__tooltip"
           />
         </li>
         <li className="nav__item">

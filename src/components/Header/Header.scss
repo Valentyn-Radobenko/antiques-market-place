@@ -1,13 +1,25 @@
+@import './Expanded/ExpClub/ExpClub';
+@import './Expanded/ExpQuestions/ExpQuestions';
+@import './Expanded/ExpLanguage/ExpLanguage';
+@import './Expanded/ExpCurrency/ExpCurrency';
+@import './Expanded/ExpAccount/ExpAccount';
+
 .header {
   height: $header-height;
   position: fixed;
   left: 0;
   right: 0;
   z-index: 5;
+  transition: $effect-duration;
 
   border-radius: 0 0 12px 12px;
-  background: $additional-black-green;
-  backdrop-filter: blur(15px);
+  background-color: $additional-black-green;
+
+  &--expanded {
+    background-color: $background-menu;
+    backdrop-filter: blur(15px);
+    border-radius: 0;
+  }
 
   &__container {
     @include standard-inline-paddings;
@@ -17,19 +29,6 @@
     justify-content: space-between;
     align-self: stretch;
     gap: 24px;
-    padding-block: 16px;
-
-    // &::after {
-    //   content: '';
-    //   position: absolute;
-    //   width: 100%;
-    //   height: 140px;
-    //   background: $background-menu;
-    //   backdrop-filter: blur(5px);
-    //   border-radius: 0 0 12px 12px;
-    //   top: $header-height;
-    //   left: 0;
-    // }
   }
 
   &__logo {
@@ -62,6 +61,7 @@
     flex-grow: 1;
 
     &-bar {
+      position: relative;
       display: flex;
       height: 40px;
       align-items: center;
@@ -70,6 +70,15 @@
       border-radius: 12px;
       background-color: $gray-white;
       transition: 0.3s;
+
+      &::before {
+        position: absolute;
+        content: '';
+        background-image: url('/images/header/search-rounded.svg');
+        height: 24px;
+        width: 24px;
+        left: 16px;
+      }
 
       &:hover {
         box-shadow: 0 4px 4px 0 #00000040;
@@ -125,75 +134,40 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 24px;
 
     &-item {
+      width: 24px;
+      height: 24px;
       cursor: pointer;
       transition: background-color 0.3s ease;
 
-      &-languages {
+      &-wrapper {
         display: flex;
+        height: $header-height;
         align-items: center;
+        justify-content: center;
+        width: 40px;
       }
 
       &-language {
-        color: $gray-white;
-
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        background-color: inherit;
-
-        @include hover(color, $additional-mint);
-
-        &--ua {
-          padding-right: 8px;
+        &--inactive {
+          background-image: url('/images/header/language.svg');
         }
-
-        &--en {
-          padding-left: 8px;
-        }
-
         &--active {
-          color: $additional-fresh-herb-icon;
-
-          font-size: 16px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: normal;
+          background-image: url('/images/header/language-active.svg');
         }
       }
 
       &-currency {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-
-        &-text {
-          color: $gray-white;
-
-          font-size: 16px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: normal;
+        &--inactive {
+          background-image: url('/images/header/Currency.svg');
         }
-
-        &-button {
-          width: 24px;
-          height: 24px;
-          background-image: url('/images/header/currency-button-arrow-down.svg');
+        &--active {
+          background-image: url('/images/header/Currency-active.svg');
         }
       }
 
       &-questions {
-        width: 24px;
-        height: 24px;
-        position: absolute;
-
-        background-repeat: no-repeat;
-        background-position: center;
-
         &--inactive {
           background-image: url('/images/header/question-inactive.svg');
         }
@@ -203,12 +177,13 @@
         }
       }
 
-      &-user {
-        width: 24px;
-        height: 24px;
-        background-image: url('/images/header/account.svg');
-        background-repeat: no-repeat;
-        background-position: center;
+      &-account {
+        &--inactive {
+          background-image: url('/images/header/account.svg');
+        }
+        &--active {
+          background-image: url('/images/header/account-active.svg');
+        }
       }
     }
   }
