@@ -90,15 +90,15 @@
     height: 24px;
 
     &--tg {
-      background-image: url('./../../../public/images/footer/sharp-telegram.svg');
+      background-image: url('/images/footer/sharp-telegram.svg');
     }
 
     &--fb {
-      background-image: url('./../../../public/images/footer/twotone-facebook.svg');
+      background-image: url('/images/footer/twotone-facebook.svg');
     }
 
     &--email {
-      background-image: url('./../../../public/images/footer/outline-email.svg');
+      background-image: url('/images/footer/outline-email.svg');
     }
   }
 }

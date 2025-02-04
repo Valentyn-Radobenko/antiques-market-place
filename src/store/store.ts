@@ -2,9 +2,10 @@ import { configureStore } from '@reduxjs/toolkit';
 import languageReducer, { LanguageState } from './slices/languageSlice';
 import expHeaderReducer, { ExpHeaderState } from './slices/expHeaderSlice';
 import currencyReducer, { CurrencyState } from './slices/currencySlice';
+import authModeReducer, { AuthModeState } from './slices/authModeSlice';
+import authReducer, { AuthState } from './slices/authSlice';
 import { saveState, loadState } from './../utils/localStorageUtils';
 import { availableCurrencies } from '../data/availableCurrencies';
-import authModeReducer, { AuthModeState } from './slices/authModeSlice';
 
 // Завантажуємо стан з localStorage
 const persistedState = loadState();
@@ -15,6 +16,7 @@ export interface RootState {
   expHeader: ExpHeaderState;
   currency: CurrencyState;
   authMode: AuthModeState;
+  auth: AuthState;
 }
 
 // Приведення стану до правильного типу
@@ -63,12 +65,26 @@ const validatedState: RootState =
             persistedState.authMode.authMode
           : null,
       },
+      auth: {
+        token:
+          (
+            typeof persistedState.auth.token === 'string' ||
+            persistedState === null
+          ) ?
+            persistedState.auth.token
+          : null,
+        isAuthenticated:
+          typeof persistedState.auth.isAuthenticated === 'boolean' ?
+            persistedState.auth.isAuthenticated
+          : false,
+      },
     }
   : {
       language: { language: 'ua' },
       expHeader: { expHeader: null },
       currency: { currency: 'UAH' },
       authMode: { authMode: null },
+      auth: { token: 'fake_token', isAuthenticated: false },
     };
 
 // Створюємо store
@@ -78,6 +94,7 @@ const store = configureStore({
     expHeader: expHeaderReducer,
     currency: currencyReducer,
     authMode: authModeReducer,
+    auth: authReducer,
     // Додаємо редюсер для мови
   },
   preloadedState: validatedState, // Використовуємо validatedState замість persistedState
