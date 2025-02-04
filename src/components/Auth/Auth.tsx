@@ -132,18 +132,18 @@ export const Auth: React.FC = () => {
       }
     } else {
       // Авторизація
-      // try {
-      //   const response = await apiClient.post('/auth/login', {
-      //     email: formData.email,
-      //     password: formData.password,
-      //   });
-      //   if (response.status === 200) {
-      //     alert('Вхід виконано успішно!');
-      //   }
-      // } catch (error) {
-      //   alert('Помилка авторизації. Перевірте email або пароль.');
-      //   console.error(error);
-      // }
+      try {
+        const response = await apiClient.post('/auth/login', {
+          email: formData.email,
+          password: formData.password,
+        });
+        if (response.status === 200) {
+          alert('Вхід виконано успішно!');
+        }
+      } catch (error) {
+        alert('Помилка авторизації. Перевірте email або пароль.');
+        console.error(error);
+      }
     }
   };
 
@@ -413,7 +413,7 @@ export const Auth: React.FC = () => {
         <div className="auth__tabs">
           <button
             onClick={() => {
-              setAuthMode('login');
+              dispatch(setAuthMode('login'));
               setStep(1);
             }}
             className={classNames('auth__tab', {
@@ -424,7 +424,7 @@ export const Auth: React.FC = () => {
           </button>
           <button
             onClick={() => {
-              setAuthMode('registration');
+              dispatch(setAuthMode('registration'));
               setStep(1);
             }}
             className={classNames('auth__tab', {

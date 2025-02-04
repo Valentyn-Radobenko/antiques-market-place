@@ -30,15 +30,9 @@ export const DiscussionsSlider: React.FC = () => {
           {t('discussionsSlider.headerLink')}
         </button>
       )}
-      renderSecondSliderTitle={() => (
-        <h2 className="slider__discussions-title">
-          {t('discussionsSlider.minorTitle')}
-        </h2>
-      )}
       slides={discussionsSlides}
-      slidesPerView={2}
+      slidesPerView={3}
       customSectionClassName="slider__discussions"
-      customWrapperClassName="slider__discussions-wrapper"
       renderSlide={(slide) => (
         <div
           key={slide.id}

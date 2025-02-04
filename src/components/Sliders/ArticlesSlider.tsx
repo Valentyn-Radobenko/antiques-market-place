@@ -35,7 +35,7 @@ export const ArticlesSlider: React.FC = () => {
         </a>
       )}
       slides={articlesSlides}
-      slidesPerView={2}
+      slidesPerView={3}
       renderSlide={(slide) => (
         <div
           key={slide.imageUrl}

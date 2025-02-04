@@ -34,6 +34,9 @@ html * {
   @include standard-inline-paddings;
 
   padding-top: $header-height;
+
+  background-image: url('/images/Gradient\ top.png');
+  background-position: center;
 }
 
 button {

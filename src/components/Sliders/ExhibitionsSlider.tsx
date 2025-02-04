@@ -32,7 +32,7 @@ export const ExhibitionsSlider: React.FC = () => {
         </a>
       )}
       slides={exhibitionsSlides}
-      slidesPerView={1}
+      slidesPerView={2}
       renderSlide={(slide) => (
         <div
           key={slide.id}
