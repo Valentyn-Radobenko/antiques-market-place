@@ -68,13 +68,17 @@ const validatedState: RootState =
       auth: {
         token:
           (
-            typeof persistedState.auth.token === 'string' ||
+            (persistedState.auth &&
+              typeof persistedState.auth.token === 'string') ||
             persistedState === null
           ) ?
             persistedState.auth.token
           : null,
         isAuthenticated:
-          typeof persistedState.auth.isAuthenticated === 'boolean' ?
+          (
+            persistedState.auth &&
+            typeof persistedState.auth.isAuthenticated === 'boolean'
+          ) ?
             persistedState.auth.isAuthenticated
           : false,
       },
