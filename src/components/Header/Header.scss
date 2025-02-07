@@ -136,6 +136,7 @@
     align-items: center;
 
     &-item {
+      display: block;
       width: 24px;
       height: 24px;
       cursor: pointer;
@@ -161,6 +162,10 @@
       &-currency {
         &--inactive {
           background-image: url('/images/header/Currency.svg');
+
+          &:hover {
+            background-image: url('/images/header/Currency-active.svg');
+          }
         }
         &--active {
           background-image: url('/images/header/Currency-active.svg');
