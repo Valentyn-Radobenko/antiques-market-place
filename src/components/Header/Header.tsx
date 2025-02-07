@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { SavingState } from '../../store/store';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { Navigation } from '../Navigation/Navigation';
@@ -13,9 +13,9 @@ import { ExpAccount } from './Expanded/ExpAccount/ExpAccount';
 
 export const Header = () => {
   const { t } = useTranslation();
-  const authMode = useSelector((state: RootState) => state.authMode.authMode);
+  const authMode = useSelector((state: SavingState) => state.authMode.authMode);
   const expHeader = useSelector(
-    (state: RootState) => state.expHeader.expHeader,
+    (state: SavingState) => state.expHeader.expHeader,
   );
 
   return (

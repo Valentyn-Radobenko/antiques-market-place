@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../../../store/store';
+import { AppDispatch, SavingState } from '../../../../store/store';
 import { setLanguage } from '../../../../store/slices/languageSlice';
 import i18n from '../../../../i18n/i18n';
 import classNames from 'classnames';
 
 export const ExpLanguage = () => {
-  const language = useSelector((state: RootState) => state.language.language);
+  const language = useSelector((state: SavingState) => state.language.language);
   const dispatch = useDispatch<AppDispatch>();
   const handleLanguageChange = (lang: 'ua' | 'en') => {
     dispatch(setLanguage(lang));

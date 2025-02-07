@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { SavingState } from '../../store/store';
 import { useTranslation } from 'react-i18next';
 import { discussionsSlides } from '../../data/discussionsSlides';
 import Slider from './Slider';
@@ -20,7 +20,7 @@ interface DiscussionSlide {
 
 export const DiscussionsSlider: React.FC = () => {
   const { t } = useTranslation();
-  const language = useSelector((state: RootState) => state.language.language);
+  const language = useSelector((state: SavingState) => state.language.language);
 
   return (
     <Slider<DiscussionSlide>

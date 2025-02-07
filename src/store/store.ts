@@ -4,6 +4,7 @@ import expHeaderReducer, { ExpHeaderState } from './slices/expHeaderSlice';
 import currencyReducer, { CurrencyState } from './slices/currencySlice';
 import authModeReducer, { AuthModeState } from './slices/authModeSlice';
 import authReducer, { AuthState } from './slices/authSlice';
+import userReducer, { UserState } from './slices/userSlice';
 import { saveState, loadState } from './../utils/localStorageUtils';
 import { availableCurrencies } from '../data/availableCurrencies';
 
@@ -17,10 +18,19 @@ export interface RootState {
   currency: CurrencyState;
   authMode: AuthModeState;
   auth: AuthState;
+  user: UserState;
+}
+
+export interface SavingState {
+  language: LanguageState;
+  expHeader: ExpHeaderState;
+  currency: CurrencyState;
+  authMode: AuthModeState;
+  auth: AuthState;
 }
 
 // Приведення стану до правильного типу
-const validatedState: RootState =
+const validatedState: SavingState =
   persistedState && persistedState.language && persistedState.expHeader ?
     {
       language: {
@@ -30,7 +40,7 @@ const validatedState: RootState =
             persistedState.language.language === 'en'
           ) ?
             persistedState.language.language
-          : 'ua', // Якщо значення не відповідає типу, використовуємо 'ua' за замовчуванням
+          : 'ua',
       },
       expHeader: {
         expHeader:
@@ -68,9 +78,8 @@ const validatedState: RootState =
       auth: {
         token:
           (
-            (persistedState.auth &&
-              typeof persistedState.auth.token === 'string') ||
-            persistedState === null
+            typeof persistedState.auth.token === 'string' ||
+            persistedState.auth.token === null
           ) ?
             persistedState.auth.token
           : null,
@@ -88,7 +97,7 @@ const validatedState: RootState =
       expHeader: { expHeader: null },
       currency: { currency: 'UAH' },
       authMode: { authMode: null },
-      auth: { token: 'fake_token', isAuthenticated: false },
+      auth: { token: null, isAuthenticated: false },
     };
 
 // Створюємо store
@@ -99,7 +108,8 @@ const store = configureStore({
     currency: currencyReducer,
     authMode: authModeReducer,
     auth: authReducer,
-    // Додаємо редюсер для мови
+    user: userReducer,
+    // Додаємо редюсери тут
   },
   preloadedState: validatedState, // Використовуємо validatedState замість persistedState
 });
