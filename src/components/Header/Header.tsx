@@ -17,6 +17,7 @@ export const Header = () => {
   const expHeader = useSelector(
     (state: SavingState) => state.expHeader.expHeader,
   );
+  const token = useSelector((state: SavingState) => state.auth.token);
 
   return (
     <>
@@ -125,27 +126,47 @@ export const Header = () => {
               />
             </li>
             <li>
-              <HeaderTooltip
-                renderButton={() => (
-                  <div className="header__actions-item-wrapper">
-                    <button
-                      className={classNames(
-                        'header__actions-item header__actions-item-account',
-                        {
-                          'header__actions-item-account--inactive':
-                            expHeader !== 'account',
-                          'header__actions-item-account--active':
-                            expHeader === 'account',
-                        },
-                      )}
-                    ></button>
-                  </div>
-                )}
-                renderContent={() => <ExpAccount />}
-                mode={'account'}
-                customContentClassName="exp-account"
-                customTooltipClassName="exp-account__tooltip"
-              />
+              {token ?
+                <div className="header__actions-item-wrapper">
+                  <Link
+                    to={'./me'}
+                    className={classNames(
+                      'header__actions-item header__actions-item-account header__actions-item-account--inactive',
+                    )}
+                    onMouseEnter={(e) =>
+                      e.currentTarget.classList.add(
+                        'header__actions-item-account--active',
+                      )
+                    }
+                    onMouseLeave={(e) =>
+                      e.currentTarget.classList.remove(
+                        'header__actions-item-account--active',
+                      )
+                    }
+                  ></Link>
+                </div>
+              : <HeaderTooltip
+                  renderButton={() => (
+                    <div className="header__actions-item-wrapper">
+                      <button
+                        className={classNames(
+                          'header__actions-item header__actions-item-account',
+                          {
+                            'header__actions-item-account--inactive':
+                              expHeader !== 'account',
+                            'header__actions-item-account--active':
+                              expHeader === 'account',
+                          },
+                        )}
+                      ></button>
+                    </div>
+                  )}
+                  renderContent={() => <ExpAccount />}
+                  mode={'account'}
+                  customContentClassName="exp-account"
+                  customTooltipClassName="exp-account__tooltip"
+                />
+              }
             </li>
           </ul>
         </div>

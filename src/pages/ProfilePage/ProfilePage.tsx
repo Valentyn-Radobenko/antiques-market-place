@@ -1,9 +1,11 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
+import { logout } from '../../store/slices/authSlice';
 
 export const ProfilePage = () => {
   const { firstName, lastName, phoneNumber, email, auctionNumber, verified } =
     useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <>
@@ -20,6 +22,13 @@ export const ProfilePage = () => {
       <p>
         Статус верифікації: {verified ? 'Верифікований' : 'Не верифікований'}
       </p>
+
+      <button
+        onClick={() => dispatch(logout())}
+        className="logout-button"
+      >
+        Вийти
+      </button>
     </>
   );
 };
