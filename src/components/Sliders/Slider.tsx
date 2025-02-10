@@ -46,7 +46,7 @@ export default function Slider<T>({
     autoplaySpeed: 4000,
     slidesToShow: slidesPerView,
     slidesToScroll: 1,
-    lazyLoad: 'progressive',
+    lazyLoad: 'ondemand' as const,
     appendDots: (dots: React.ReactNode) => (
       <div className="slider__dots">
         <div
