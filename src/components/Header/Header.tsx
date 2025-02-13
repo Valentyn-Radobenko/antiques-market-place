@@ -45,7 +45,7 @@ export const Header = () => {
               <p className="header__logo-title-main">DIKO</p>
               <img
                 className="header__logo-rectangle"
-                src="/images/header/Rectangle 91.png"
+                src="images/header/Rectangle-91.png"
                 alt="rectangle"
               />
               <p className="header__logo-title-minor">антикварна платформа </p>
