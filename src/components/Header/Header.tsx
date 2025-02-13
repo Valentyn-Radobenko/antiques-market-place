@@ -1,23 +1,35 @@
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { SavingState } from '../../store/store';
-import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, SavingState } from '../../store/store';
+// import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { Navigation } from '../Navigation/Navigation';
 import { Auth } from '../Auth/Auth';
 import { HeaderTooltip } from '../Tooltip/HeaderTooltip';
 import { ExpQuestions } from './Expanded/ExpQuestions/ExpQuestions';
-import { ExpLanguage } from './Expanded/ExpLanguage/ExpLanguage';
 import { ExpCurrency } from './Expanded/ExpCurrency/ExpCurrency';
 import { ExpAccount } from './Expanded/ExpAccount/ExpAccount';
+import { setLanguage } from '../../store/slices/languageSlice';
+import i18n from '../../i18n/i18n';
 
 export const Header = () => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
+  const language = useSelector((state: SavingState) => state.language.language);
+  const dispatch = useDispatch<AppDispatch>();
+  const handleLanguageChange = (lang: 'ua' | 'en') => {
+    dispatch(setLanguage(lang));
+    i18n.changeLanguage(lang);
+  };
   const authMode = useSelector((state: SavingState) => state.authMode.authMode);
   const expHeader = useSelector(
     (state: SavingState) => state.expHeader.expHeader,
   );
-  const token = useSelector((state: SavingState) => state.auth.token);
+  const isAuthenticated = useSelector(
+    (state: SavingState) => state.auth.isAuthenticated,
+  );
+  const expSearch = useSelector(
+    (state: SavingState) => state.expSearch.expSearch,
+  );
 
   return (
     <>
@@ -28,32 +40,55 @@ export const Header = () => {
         })}
       >
         <div className="header__container">
-          <Link
-            to={'./'}
-            className="header__logo"
-          >
-            D&KO
-          </Link>
-          <Navigation />
-          <label
-            className="header__search"
-            htmlFor="search-input"
-          >
-            <div className="header__search-bar">
-              {''}
-              <input
-                id="search-input"
-                type="text"
-                className="header__search-input"
-                placeholder="Пошук товару"
+          <Link to={'./'}>
+            <div className="header__logo">
+              <p className="header__logo-title-main">DIKO</p>
+              <img
+                className="header__logo-rectangle"
+                src="/images/header/Rectangle 91.png"
+                alt="rectangle"
               />
-              <button className="header__search-button">
-                {t('header.search.button')}
-              </button>
+              <p className="header__logo-title-minor">антикварна платформа </p>
             </div>
-          </label>
+          </Link>
 
+          <Navigation />
           <ul className="header__actions">
+            <li>
+              <div className="header__actions-languages">
+                <button
+                  onClick={() => handleLanguageChange('ua')}
+                  disabled={language === 'ua'}
+                  className={classNames('header__actions-language', {
+                    'header__actions-language--active': language === 'ua',
+                    'header__actions-language--inactive': language === 'en',
+                  })}
+                >
+                  UA
+                </button>
+                <button
+                  onClick={() => handleLanguageChange('en')}
+                  disabled={language === 'en'}
+                  className={classNames('header__actions-language', {
+                    'header__actions-language--active': language === 'en',
+                    'header__actions-language--inactive': language === 'ua',
+                  })}
+                >
+                  EN
+                </button>
+              </div>
+            </li>
+            <li>
+              <button
+                className={classNames(
+                  'header__actions-item header__actions-item-search',
+                  {
+                    'header__actions-item-search--active': expSearch,
+                    'header__actions-item-search--inactive': !expSearch,
+                  },
+                )}
+              ></button>
+            </li>
             <li>
               <HeaderTooltip
                 renderButton={() => (
@@ -84,30 +119,6 @@ export const Header = () => {
                   <div className="header__actions-item-wrapper">
                     <button
                       className={classNames(
-                        'header__actions-item header__actions-item-language',
-                        {
-                          'header__actions-item-language--inactive':
-                            expHeader !== 'language',
-                          'header__actions-item-language--active':
-                            expHeader === 'language',
-                        },
-                      )}
-                    ></button>
-                  </div>
-                )}
-                renderContent={() => <ExpLanguage />}
-                mode={'language'}
-                customContentClassName="exp-language"
-                customTooltipClassName="exp-language__tooltip"
-              />
-            </li>
-
-            <li>
-              <HeaderTooltip
-                renderButton={() => (
-                  <div className="header__actions-item-wrapper">
-                    <button
-                      className={classNames(
                         'header__actions-item header__actions-item-currency',
                         {
                           'header__actions-item-currency--inactive':
@@ -126,7 +137,7 @@ export const Header = () => {
               />
             </li>
             <li>
-              {token ?
+              {isAuthenticated ?
                 <div className="header__actions-item-wrapper">
                   <Link
                     to={'./me'}
@@ -171,11 +182,6 @@ export const Header = () => {
           </ul>
         </div>
       </header>
-      {/* {expandedMode === 'club' && <ExpClub />}
-      {expandedMode === 'questions' && <ExpQuestions />}
-      {expandedMode === 'language' && <ExpLanguage />}
-      {expandedMode === 'currency' && <ExpCurrency />}
-      {expandedMode === 'account' && <ExpAccount />} */}
     </>
   );
 };
