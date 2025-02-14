@@ -4,23 +4,37 @@ import expHeaderReducer, { ExpHeaderState } from './slices/expHeaderSlice';
 import currencyReducer, { CurrencyState } from './slices/currencySlice';
 import authModeReducer, { AuthModeState } from './slices/authModeSlice';
 import authReducer, { AuthState } from './slices/authSlice';
+import userReducer, { UserState } from './slices/userSlice';
+import expSearchReducer, { ExpSearchState } from './slices/expSearchSlice';
 import { saveState, loadState } from './../utils/localStorageUtils';
 import { availableCurrencies } from '../data/availableCurrencies';
 
 // Завантажуємо стан з localStorage
 const persistedState = loadState();
 
-// Тип для кореневого стану
+// Тип для кореневого стану (дані юзера не зберігаються локально)
 export interface RootState {
   language: LanguageState;
   expHeader: ExpHeaderState;
   currency: CurrencyState;
   authMode: AuthModeState;
   auth: AuthState;
+  expSearch: ExpSearchState;
+  user: UserState;
+}
+
+// Тип для стану який зберігається в локальній пам'яті
+export interface SavingState {
+  language: LanguageState;
+  expHeader: ExpHeaderState;
+  currency: CurrencyState;
+  authMode: AuthModeState;
+  auth: AuthState;
+  expSearch: ExpSearchState;
 }
 
 // Приведення стану до правильного типу
-const validatedState: RootState =
+const validatedState: SavingState =
   persistedState && persistedState.language && persistedState.expHeader ?
     {
       language: {
@@ -30,7 +44,7 @@ const validatedState: RootState =
             persistedState.language.language === 'en'
           ) ?
             persistedState.language.language
-          : 'ua', // Якщо значення не відповідає типу, використовуємо 'ua' за замовчуванням
+          : 'ua',
       },
       expHeader: {
         expHeader:
@@ -39,11 +53,17 @@ const validatedState: RootState =
             persistedState.expHeader.expHeader === 'club' ||
             persistedState.expHeader.expHeader === 'questions' ||
             persistedState.expHeader.expHeader === 'currency' ||
-            persistedState.expHeader.expHeader === 'account' ||
-            persistedState.expHeader.expHeader === 'language'
+            persistedState.expHeader.expHeader === 'account'
           ) ?
             persistedState.expHeader.expHeader
           : null,
+        expAuth:
+          (
+            persistedState.expHeader &&
+            typeof persistedState.expHeader.expAuth === 'boolean'
+          ) ?
+            persistedState.expHeader.expAuth
+          : false,
       },
       currency: {
         currency:
@@ -68,9 +88,8 @@ const validatedState: RootState =
       auth: {
         token:
           (
-            (persistedState.auth &&
-              typeof persistedState.auth.token === 'string') ||
-            persistedState === null
+            typeof persistedState.auth.token === 'string' ||
+            persistedState.auth.token === null
           ) ?
             persistedState.auth.token
           : null,
@@ -82,13 +101,23 @@ const validatedState: RootState =
             persistedState.auth.isAuthenticated
           : false,
       },
+      expSearch: {
+        expSearch:
+          (
+            persistedState.expSearch &&
+            typeof persistedState.expSearch.expSearch === 'boolean'
+          ) ?
+            persistedState.expSearch.expSearch
+          : false,
+      },
     }
   : {
       language: { language: 'ua' },
-      expHeader: { expHeader: null },
+      expHeader: { expHeader: null, expAuth: false },
       currency: { currency: 'UAH' },
       authMode: { authMode: null },
-      auth: { token: 'fake_token', isAuthenticated: false },
+      auth: { token: null, isAuthenticated: false },
+      expSearch: { expSearch: false },
     };
 
 // Створюємо store
@@ -99,7 +128,9 @@ const store = configureStore({
     currency: currencyReducer,
     authMode: authModeReducer,
     auth: authReducer,
-    // Додаємо редюсер для мови
+    user: userReducer,
+    expSearch: expSearchReducer,
+    // Додаємо редюсери тут
   },
   preloadedState: validatedState, // Використовуємо validatedState замість persistedState
 });

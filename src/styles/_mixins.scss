@@ -3,19 +3,13 @@
 // #region media
 
 @mixin on-tablet {
-  @media (min-width: $tablet-min-width) {
+  @media (max-width: $tablet-max-width) {
     @content;
   }
 }
 
-@mixin on-small-desktop {
-  @media (min-width: $small-desktop-min-width) {
-    @content;
-  }
-}
-
-@mixin on-desktop {
-  @media (min-width: $desktop-min-width) {
+@mixin on-phone {
+  @media (max-width: $phone-max-width) {
     @content;
   }
 }

@@ -4,8 +4,11 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import apiClient from './../../utils/apiClient';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store/store';
+import { AppDispatch, SavingState } from '../../store/store';
 import { setAuthMode } from '../../store/slices/authModeSlice';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../store/slices/authSlice';
+import { fetchUserData } from '../../store/slices/userSlice';
 
 interface FormData {
   email: string;
@@ -19,8 +22,9 @@ interface FormData {
 }
 
 export const Auth: React.FC = () => {
-  const authMode = useSelector((state: RootState) => state.authMode.authMode);
+  const authMode = useSelector((state: SavingState) => state.authMode.authMode);
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState<FormData>({
     email: '',
@@ -106,7 +110,7 @@ export const Auth: React.FC = () => {
         } = formData;
         try {
           console.log(formData);
-          const response = await apiClient.post('/auth/registration', {
+          const response = await apiClient.post('/auth/user/registration', {
             email,
             phoneNumber,
             firstName,
@@ -138,7 +142,10 @@ export const Auth: React.FC = () => {
           password: formData.password,
         });
         if (response.status === 200) {
-          alert('Вхід виконано успішно!');
+          dispatch(login(response.data.token));
+          await dispatch(fetchUserData());
+          navigate('/me');
+          dispatch(setAuthMode(null));
         }
       } catch (error) {
         alert('Помилка авторизації. Перевірте email або пароль.');

@@ -3,15 +3,24 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { HeaderTooltip } from '../Tooltip/HeaderTooltip';
 import { ExpClub } from '../Header/Expanded/ExpClub/ExpClub';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../store/store';
+
+type Props = {
+  customClassName?: string;
+};
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) =>
   classNames('nav__link', { 'nav__link--is-active': isActive });
 
-export const Navigation: React.FC = () => {
+export const Navigation: React.FC<Props> = ({ customClassName }) => {
   const { t } = useTranslation();
+  const expHeader = useSelector(
+    (state: SavingState) => state.expHeader.expHeader,
+  );
 
   return (
-    <nav className="nav">
+    <nav className={`nav ${customClassName}`}>
       <ul className="nav__list">
         <li className="nav__item">
           <NavLink
@@ -25,13 +34,19 @@ export const Navigation: React.FC = () => {
           <HeaderTooltip
             renderButton={() => (
               <div className="nav__club-big-button">
-                <NavLink
-                  to={'./'}
-                  className={getLinkClass}
+                <div
+                  className={classNames('nav__club-wrapper', {
+                    'nav__club-wrapper--active': expHeader === 'club',
+                  })}
                 >
-                  {t('navigation.collectors_club')}
-                </NavLink>
-                <button className="nav__club-button"></button>
+                  <NavLink
+                    to={'./'}
+                    className={getLinkClass}
+                  >
+                    {t('navigation.collectors_club')}
+                  </NavLink>
+                  <button className="nav__club-button"></button>
+                </div>
               </div>
             )}
             renderContent={() => <ExpClub />}

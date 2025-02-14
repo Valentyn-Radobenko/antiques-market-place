@@ -3,7 +3,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 450px;
     gap: 36px;
     height: $header-height;
   }
@@ -15,8 +14,32 @@
   &__club {
     &-big-button {
       display: flex;
-      height: $header-height;
       align-items: center;
+      height: $header-height;
+    }
+
+    &-wrapper {
+      position: relative;
+      display: flex;
+      height: 40px;
+      padding: 16px;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      border-radius: 12px;
+
+      &--active {
+        border-bottom: 1px solid $additional-white-green;
+
+        &::after {
+          content: '';
+          position: absolute;
+          background-color: $additional-white-green;
+          height: 17px;
+          width: 1px;
+          top: 40px;
+        }
+      }
     }
 
     &-button {
@@ -29,7 +52,6 @@
   &__link {
     display: flex;
     height: 40px;
-    // padding: 16px;
     justify-content: center;
     align-items: center;
     cursor: pointer;
