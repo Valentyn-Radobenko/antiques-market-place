@@ -12,7 +12,15 @@
 @import 'slick-carousel/slick/slick.css';
 @import 'slick-carousel/slick/slick-theme.css';
 @import '../components/Auth/Auth';
-
+@import '../components/Settings/Settings';
+@import '../components//Catalog/Catalog.scss';
+@import '../components/Settings/Filters/Filters.scss';
+@import '../components/Settings/Filters/Filter/Filter.scss';
+@import '../components/Settings/Filters/Filter/FilterItem/FilterItem.scss';
+@import '../pages/MarketPage/MarketPage.scss';
+@import '../components/MarketForm/MarketForm.scss';
+@import '../components/Settings/Sorting/Sorting.scss';
+@import '../components/Categories/Categories.scss';
 html * {
   box-sizing: border-box;
   font-family: Mulish, sans-serif;

@@ -1,0 +1,26 @@
+.market {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  &__top-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__h2 {
+    @include h2-bold
+  }
+
+  &__settings-catalog {
+    display: flex;
+    gap: 20px;
+  }
+}

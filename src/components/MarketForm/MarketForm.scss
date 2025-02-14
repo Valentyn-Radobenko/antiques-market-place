@@ -1,0 +1,43 @@
+.market-search {
+  align-self: center;
+  display: flex;
+  border: 1px solid $gray-stroke;
+  border-radius: 12px;
+  height: 56px;
+  width: 727px;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  padding-left: 16px;
+  box-sizing: border-box;
+
+  &.isActive {
+    border: solid 2px $additional-fresh-herb-icon;
+  }
+
+  &__search-icon {
+    color: $gray-lite;
+  }
+
+  &__input {
+    height: 100%;
+    flex-grow: 1;
+    border: none;
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+
+    &::placeholder {
+      color: $gray-lite;
+    }
+  }
+
+  &__button {
+    height: 100%;
+    background: $primary;
+    width: 155px;
+    color: $gray-white;
+  }
+}
