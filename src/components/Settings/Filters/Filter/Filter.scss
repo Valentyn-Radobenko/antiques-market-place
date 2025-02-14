@@ -1,0 +1,54 @@
+.filter {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px $gray-stroke solid;
+  box-sizing: border-box;
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    margin: 16px;
+  }
+
+  &__link {
+    color: $gray-dark;
+    @include main-text;
+  }
+
+  &__arrow {
+    color: $gray-dark;
+    transition: all ease 0.3s;
+
+    &:hover {
+      color: black;
+    }
+
+    &.isActive-arrow {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__container {
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  &__sub-options {
+    z-index: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    transition: all ease 0.3s;
+    width: 100%;
+
+    &.isActive {
+      opacity: 1;
+    }
+  }
+}

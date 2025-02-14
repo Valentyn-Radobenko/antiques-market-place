@@ -1,0 +1,46 @@
+.setting {
+  display: flex;
+  flex-direction: column;
+  background: $background-plate-2;
+  width: 209px;
+  border-radius: 12px;
+
+  &__top-bar {
+    display: flex;
+    justify-content: space-between;
+    margin: 16px;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__icon{
+    columns: $gray-black;
+  }
+
+  &__h {
+    @include h4-bold;
+    color: $gray-black;
+  }
+
+  &__clear-button {
+    display: flex;
+    align-items: center;
+  }
+
+  &__clear-icon {
+    color: gray;
+
+    &:hover {
+      color: black;
+    }
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+  }
+}
