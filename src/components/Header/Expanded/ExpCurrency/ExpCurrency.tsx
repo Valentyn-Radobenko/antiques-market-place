@@ -1,12 +1,12 @@
 import classNames from 'classnames';
 import { availableCurrencies } from '../../../../data/availableCurrencies';
-import { AppDispatch, RootState } from '../../../../store/store';
+import { AppDispatch, SavingState } from '../../../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrency } from '../../../../store/slices/currencySlice';
 import { currencyType } from '../../../../types/currencyType';
 
 export const ExpCurrency = () => {
-  const currency = useSelector((state: RootState) => state.currency.currency);
+  const currency = useSelector((state: SavingState) => state.currency.currency);
   const dispatch = useDispatch<AppDispatch>();
   return (
     <>

@@ -1,37 +1,35 @@
 $header-height: 72px;
 
-$tablet-min-width: 640px;
-$small-desktop-min-width: 1024px;
-$desktop-min-width: 1600px;
+$tablet-max-width: 1439px;
+$phone-max-width: 639px;
 $effect-duration: 0.3s;
 
 // #region colors
 
 $primary: linear-gradient(94deg, #0d392c 0%, #249f7b 100%);
 
-$background-menu: rgba(8, 28, 21, 0.9);
 $background-dis: rgba(113, 121, 119, 0.5);
-$background-page: rgba(247, 255, 253, 0.9);
 $background-strouke-plate: linear-gradient(
   100deg,
   rgba(255, 255, 255, 0.19) 2.83%,
   rgba(134, 191, 174, 0.09) 96.35%
-);
-$background-plate-2: linear-gradient(
-  286deg,
-  rgba(198, 223, 211, 0.24) 15.68%,
-  rgba(232, 245, 240, 0.8) 82.46%
-);
-$background-plate: linear-gradient(
-  286deg,
-  rgba(123, 151, 137, 0.15) 15.68%,
-  rgba(227, 231, 229, 0.5) 82.46%
 );
 $background-plate-account-menu: linear-gradient(
   286deg,
   rgba(185, 202, 193, 0.5) 15.68%,
   rgba(211, 241, 226, 0.25) 82.46%
 );
+$background-plate: linear-gradient(
+  286deg,
+  rgba(123, 151, 137, 0.15) 15.68%,
+  rgba(227, 231, 229, 0.5) 82.46%
+);
+$background-plate-2: linear-gradient(
+  286deg,
+  rgba(198, 223, 211, 0.24) 15.68%,
+  rgba(232, 245, 240, 0.8) 82.46%
+);
+$background-page: rgba(247, 255, 253, 0.9);
 
 $additional-black-green: #081c15;
 $additional-greenas: #1b4332;
@@ -39,7 +37,21 @@ $additional-fresh-herb-icon: #40916c;
 $additional-open-green: #00a85b;
 $additional-mint: #95d5b2;
 $additional-white-green: #dcfee1;
-$additional-plate: #ddece0;
+$additional-gold: linear-gradient(
+  225deg,
+  #e5a000 0%,
+  #fa0 9.83%,
+  #ffcf00 47.83%,
+  #ffd300 62.33%,
+  #fff6c5 100%
+);
+$additional-gradient: radial-gradient(
+  33.74% 44.2% at 51.77% 49.95%,
+  rgba(19, 86, 66, 0.72) 6.67%,
+  rgba(64, 145, 108, 0.64) 26%,
+  rgba(149, 213, 178, 0.32) 66%,
+  rgba(255, 255, 255, 0.08) 98.67%
+);
 
 $gray-black: #061814;
 $gray-dark: #34403d;

@@ -3,10 +3,12 @@ import { expandedModeType } from '../../types/expandedModeType';
 
 export interface ExpHeaderState {
   expHeader: expandedModeType;
+  expAuth: boolean;
 }
 
 export const initialState: ExpHeaderState = {
   expHeader: null,
+  expAuth: false,
 };
 
 const expHeaderSlice = createSlice({
@@ -15,6 +17,9 @@ const expHeaderSlice = createSlice({
   reducers: {
     setExpHeader: (state, action: PayloadAction<expandedModeType>) => {
       state.expHeader = action.payload;
+    },
+    setExpAuth: (state, action: PayloadAction<boolean>) => {
+      state.expAuth = action.payload;
     },
   },
 });

@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { SavingState } from '../../store/store';
 import { exhibitionsSlides } from '../../data/exhibitionsSlides';
 import Slider from './Slider';
 import { useTranslation } from 'react-i18next';
@@ -19,7 +19,7 @@ interface ExhibitionSlide {
 
 export const ExhibitionsSlider: React.FC = () => {
   const { t } = useTranslation();
-  const language = useSelector((state: RootState) => state.language.language);
+  const language = useSelector((state: SavingState) => state.language.language);
   return (
     <Slider<ExhibitionSlide>
       sliderTitle={t('exhibitionsSlider.title')}
