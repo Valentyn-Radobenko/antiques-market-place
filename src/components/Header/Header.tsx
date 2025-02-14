@@ -52,7 +52,7 @@ export const Header = () => {
             </div>
           </Link>
 
-          <Navigation />
+          <Navigation customClassName="header__nav" />
           <ul className="header__actions">
             <li>
               <div className="header__actions-languages">
@@ -178,6 +178,13 @@ export const Header = () => {
                   customTooltipClassName="exp-account__tooltip"
                 />
               }
+            </li>
+            <li>
+              <button
+                className={classNames(
+                  'header__actions-item header__actions-item-menu',
+                )}
+              ></button>
             </li>
           </ul>
         </div>

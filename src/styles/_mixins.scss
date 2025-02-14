@@ -26,17 +26,13 @@
 @mixin standard-inline-paddings() {
   padding-inline: 40px;
 
-  // @include on-tablet {
-  //   padding-inline: 41px;
-  // }
+  @include on-tablet {
+    padding-inline: 24px;
+  }
 
-  // @include on-small-desktop {
-  //   padding-inline: 54px;
-  // }
-
-  // @include on-desktop {
-  //   padding-inline: 227px;
-  // }
+  @include on-phone {
+    padding-inline: 16px;
+  }
 }
 
 @mixin page-grid {

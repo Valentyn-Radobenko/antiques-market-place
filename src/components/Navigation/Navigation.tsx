@@ -6,17 +6,21 @@ import { ExpClub } from '../Header/Expanded/ExpClub/ExpClub';
 import { useSelector } from 'react-redux';
 import { SavingState } from '../../store/store';
 
+type Props = {
+  customClassName?: string;
+};
+
 const getLinkClass = ({ isActive }: { isActive: boolean }) =>
   classNames('nav__link', { 'nav__link--is-active': isActive });
 
-export const Navigation: React.FC = () => {
+export const Navigation: React.FC<Props> = ({ customClassName }) => {
   const { t } = useTranslation();
   const expHeader = useSelector(
     (state: SavingState) => state.expHeader.expHeader,
   );
 
   return (
-    <nav className="nav">
+    <nav className={`nav ${customClassName}`}>
       <ul className="nav__list">
         <li className="nav__item">
           <NavLink

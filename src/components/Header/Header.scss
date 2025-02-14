@@ -18,14 +18,26 @@
     border-radius: 0;
   }
 
+  @include on-tablet {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+  }
+
   &__container {
-    @include standard-inline-paddings;
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 32px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
     align-self: stretch;
     gap: 24px;
+
+    @include on-tablet {
+      @include standard-inline-paddings;
+    }
   }
 
   &__logo {
@@ -58,10 +70,20 @@
     }
   }
 
+  &__nav {
+    @include on-tablet {
+      display: none;
+    }
+  }
+
   &__actions {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @include on-tablet {
+      justify-self: flex-end;
+    }
 
     &-languages {
       display: flex;
@@ -73,6 +95,10 @@
       align-items: center;
       border-radius: 12px;
       background: $background-strouke-plate;
+
+      @include on-tablet {
+        display: none;
+      }
     }
 
     &-language {
@@ -108,6 +134,10 @@
         align-items: center;
         justify-content: center;
         width: 40px;
+
+        @include on-tablet {
+          display: none;
+        }
       }
 
       &-search {
@@ -117,6 +147,10 @@
         }
         &--active {
           background-image: url('/images/header/search-rounded.svg');
+        }
+
+        @include on-tablet {
+          margin-right: 16px;
         }
       }
 
@@ -168,7 +202,27 @@
           background-image: url('/images/header/account.svg');
         }
         &--active {
+          position: relative;
           background-image: url('/images/header/account-active.svg');
+
+          &::after {
+            position: absolute;
+            content: '';
+            position: absolute;
+            background-color: $additional-white-green;
+            height: 24px;
+            width: 1px;
+            top: 24px;
+          }
+        }
+      }
+
+      &-menu {
+        display: none;
+
+        @include on-tablet {
+          display: block;
+          background-image: url('images/header/menu-rounded.svg');
         }
       }
     }
