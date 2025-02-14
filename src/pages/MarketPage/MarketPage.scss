@@ -1,4 +1,10 @@
 .market {
+  margin-block: 32px;
+
+  @include on-tablet {
+    margin-block: 24px;
+  }
+
   display: flex;
   flex-direction: column;
   gap: 16px;

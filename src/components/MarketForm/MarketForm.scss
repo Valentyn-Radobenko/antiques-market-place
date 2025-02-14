@@ -11,6 +11,10 @@
   padding-left: 16px;
   box-sizing: border-box;
 
+  @include on-tablet {
+    width: 100%;
+  }
+
   &.isActive {
     border: solid 2px $additional-fresh-herb-icon;
   }
@@ -39,5 +43,9 @@
     background: $primary;
     width: 155px;
     color: $gray-white;
+
+    @include on-phone {
+      width: 91px;
+    }
   }
 }
