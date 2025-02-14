@@ -1,58 +1,69 @@
-import classNames from "classnames";
-import { Sorting } from "../../../../types/sorting";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
-import { SearchLink } from "../../../../utils/SearchLink";
+import classNames from 'classnames';
+import { Sorting } from '../../../../types/sorting';
+import { useEffect, useRef, useState } from 'react';
+import { SearchLink } from '../../../../utils/SearchLink';
 
 type Props = {
-  sorter: Sorting,
-  setActiveSortType: Dispatch<SetStateAction<number | null>>,
-  activeSortType: number | null,
-}
+  sorter: Sorting;
+};
 
-export const SortType: React.FC<Props> = ({sorter, activeSortType, setActiveSortType}) => {
+export const SortType: React.FC<Props> = ({ sorter }) => {
   const [activeSorterType, setActiveSorterType] = useState<number | null>(null);
-  const [height, setHeight] = useState<number>(0)
+  const [height, setHeight] = useState<number>(0);
   const toggleMenu = function () {
     if (activeSorterType === sorter.id) {
-      setActiveSorterType(null)
+      setActiveSorterType(null);
     } else {
-      setActiveSorterType(sorter.id)
+      setActiveSorterType(sorter.id);
     }
-  }
+  };
 
-  const heightItemRef = useRef<HTMLDivElement | null>(null)
+  const heightItemRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (heightItemRef.current) {
-      setHeight(heightItemRef.current.clientHeight)
+      setHeight(heightItemRef.current.clientHeight);
     }
-  }, [activeSorterType])
+  }, [activeSorterType]);
 
   return (
-    <div className='filter'>
+    <div className="filter">
       <div className="filter__title">
         <SearchLink
           className="filter__link"
-          params={{
-            
-          }}
+          params={{}}
         >
           {sorter.nameUa}
         </SearchLink>
-        <button onClick={() => {
-          toggleMenu()
-        }}>
-          <svg className={classNames('filter__arrow', {
-            'isActive-arrow': activeSorterType === sorter.id,
-          })} width="24" fill="currentColor" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <button
+          onClick={() => {
+            toggleMenu();
+          }}
+        >
+          <svg
+            className={classNames('filter__arrow', {
+              'isActive-arrow': activeSorterType === sorter.id,
+            })}
+            width="24"
+            fill="currentColor"
+            height="24"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path d="M11.9991 14.3787C11.8918 14.3787 11.7925 14.3611 11.7011 14.3257C11.6098 14.2904 11.5208 14.2291 11.4341 14.1417L7.04512 9.75374C6.95179 9.66041 6.90179 9.54574 6.89512 9.40974C6.88845 9.27374 6.93845 9.15241 7.04512 9.04574C7.15179 8.93908 7.26979 8.88574 7.39912 8.88574C7.52845 8.88574 7.64645 8.93908 7.75312 9.04574L11.9991 13.2917L16.2451 9.04574C16.3385 8.95241 16.4535 8.90241 16.5901 8.89574C16.7255 8.88908 16.8465 8.93908 16.9531 9.04574C17.0598 9.15241 17.1131 9.27041 17.1131 9.39974C17.1131 9.52908 17.0598 9.64708 16.9531 9.75374L12.5641 14.1417C12.4775 14.2291 12.3885 14.2904 12.2971 14.3257C12.2065 14.3611 12.1071 14.3787 11.9991 14.3787Z" />
           </svg>
         </button>
       </div>
-      <div className="filter__container" style={{ height: activeSorterType === sorter.id ? height : 0 }}>
-        <div ref={heightItemRef} className={classNames("filter__sub-options", {
-          'isActive': activeSorterType === sorter.id,
-        })}>
+      <div
+        className="filter__container"
+        style={{ height: activeSorterType === sorter.id ? height : 0 }}
+      >
+        <div
+          ref={heightItemRef}
+          className={classNames('filter__sub-options', {
+            isActive: activeSorterType === sorter.id,
+          })}
+        >
           {/* {sorter.filterType.map(filterItem => (
             <FilterItem key={filterItem.id}
               activeSorterType={activeSorterType}
@@ -63,5 +74,5 @@ export const SortType: React.FC<Props> = ({sorter, activeSortType, setActiveSort
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
