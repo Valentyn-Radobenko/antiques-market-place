@@ -1,17 +1,11 @@
-import classNames from "classnames";
-import { FilterType, } from "../../../../../types/filters"
-import { SearchLink } from "../../../../../utils/SearchLink"
-import { Dispatch, SetStateAction } from "react";
-
+import { FilterType } from '../../../../../types/filters';
+import { SearchLink } from '../../../../../utils/SearchLink';
 
 type Props = {
-  filterItem: FilterType,
-  activeFilter: number | null,
-  setActiveFilterType: Dispatch<SetStateAction<number | null>>,
-}
+  filterItem: FilterType;
+};
 
-export const FilterItem: React.FC<Props> = ({ activeFilter, setActiveFilterType, filterItem }) => {
-
+export const FilterItem: React.FC<Props> = ({ filterItem }) => {
   // const toggleMenu = function () {
   //   if (activeFilter === filterItem.id) {
 
@@ -20,16 +14,14 @@ export const FilterItem: React.FC<Props> = ({ activeFilter, setActiveFilterType,
 
   //     setActiveFilterType(filterItem.id)
   //   }
-  // }  
+  // }
 
   return (
     <div className="filteritem">
       <div className="filteritem__title">
         <SearchLink
           className="filteritem__link"
-          params={{
-            
-          }}
+          params={{}}
         >
           {filterItem.nameUa}
         </SearchLink>
@@ -49,6 +41,5 @@ export const FilterItem: React.FC<Props> = ({ activeFilter, setActiveFilterType,
         </button> */}
       </div>
     </div>
-  )
-
-}
+  );
+};
