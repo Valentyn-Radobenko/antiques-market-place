@@ -8,7 +8,7 @@
   position: fixed;
   left: 0;
   right: 0;
-  z-index: 5;
+  z-index: 1;
   transition: $effect-duration;
 
   border-radius: 0 0 12px 12px;
@@ -50,10 +50,9 @@
     @include hover(transform, scale(1.05));
 
     &-title {
-      font-family: Michroma, sans-serif;
-      font-weight: 400;
-
       &-main {
+        font-family: Michroma, sans-serif;
+        font-weight: 400;
         font-size: 24px;
         line-height: 120%;
         background: $additional-gold;
@@ -63,16 +62,12 @@
       }
 
       &-minor {
+        font-family: Michroma, sans-serif;
+        font-weight: 400;
         font-size: 12px;
         line-height: 100%;
         color: $system-warning;
       }
-    }
-  }
-
-  &__nav {
-    @include on-tablet {
-      display: none;
     }
   }
 

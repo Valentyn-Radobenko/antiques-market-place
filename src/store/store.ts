@@ -6,6 +6,7 @@ import authModeReducer, { AuthModeState } from './slices/authModeSlice';
 import authReducer, { AuthState } from './slices/authSlice';
 import userReducer, { UserState } from './slices/userSlice';
 import expSearchReducer, { ExpSearchState } from './slices/expSearchSlice';
+import menuReducer, { MenuState } from './slices/menuSlice';
 import { saveState, loadState } from './../utils/localStorageUtils';
 import { availableCurrencies } from '../data/availableCurrencies';
 
@@ -21,6 +22,7 @@ export interface RootState {
   auth: AuthState;
   expSearch: ExpSearchState;
   user: UserState;
+  menu: MenuState;
 }
 
 // Тип для стану який зберігається в локальній пам'яті
@@ -31,6 +33,7 @@ export interface SavingState {
   authMode: AuthModeState;
   auth: AuthState;
   expSearch: ExpSearchState;
+  menu: MenuState;
 }
 
 // Приведення стану до правильного типу
@@ -110,6 +113,15 @@ const validatedState: SavingState =
             persistedState.expSearch.expSearch
           : false,
       },
+      menu: {
+        isMenuOn:
+          (
+            persistedState.menu &&
+            typeof persistedState.menu.isMenuOn === 'boolean'
+          ) ?
+            persistedState.menu.isMenuOn
+          : false,
+      },
     }
   : {
       language: { language: 'ua' },
@@ -118,6 +130,7 @@ const validatedState: SavingState =
       authMode: { authMode: null },
       auth: { token: null, isAuthenticated: false },
       expSearch: { expSearch: false },
+      menu: {isMenuOn: false},
     };
 
 // Створюємо store
@@ -130,6 +143,7 @@ const store = configureStore({
     auth: authReducer,
     user: userReducer,
     expSearch: expSearchReducer,
+    menu: menuReducer,
     // Додаємо редюсери тут
   },
   preloadedState: validatedState, // Використовуємо validatedState замість persistedState

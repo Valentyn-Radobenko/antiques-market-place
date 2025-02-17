@@ -11,6 +11,8 @@ import { ExpCurrency } from './Expanded/ExpCurrency/ExpCurrency';
 import { ExpAccount } from './Expanded/ExpAccount/ExpAccount';
 import { setLanguage } from '../../store/slices/languageSlice';
 import i18n from '../../i18n/i18n';
+import { Menu } from '../Menu/Menu';
+import { setIsMenuOn } from '../../store/slices/menuSlice';
 
 export const Header = () => {
   // const { t } = useTranslation();
@@ -30,10 +32,12 @@ export const Header = () => {
   const expSearch = useSelector(
     (state: SavingState) => state.expSearch.expSearch,
   );
+  const isMenuOn = useSelector((state: SavingState) => state.menu.isMenuOn);
 
   return (
     <>
       {authMode && <Auth />}
+      {isMenuOn && <Menu />}
       <header
         className={classNames('header page__header', {
           'header--expanded': expHeader,
@@ -52,7 +56,10 @@ export const Header = () => {
             </div>
           </Link>
 
-          <Navigation customClassName="header__nav" />
+          <Navigation
+            customClassName="nav--header"
+            mode="header"
+          />
           <ul className="header__actions">
             <li>
               <div className="header__actions-languages">
@@ -181,6 +188,7 @@ export const Header = () => {
             </li>
             <li>
               <button
+                onClick={() => dispatch(setIsMenuOn(!isMenuOn))}
                 className={classNames(
                   'header__actions-item header__actions-item-menu',
                 )}

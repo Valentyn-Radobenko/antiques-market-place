@@ -3,60 +3,100 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { HeaderTooltip } from '../Tooltip/HeaderTooltip';
 import { ExpClub } from '../Header/Expanded/ExpClub/ExpClub';
-import { useSelector } from 'react-redux';
-import { SavingState } from '../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, SavingState } from '../../store/store';
+import { setIsMenuOn } from '../../store/slices/menuSlice';
 
 type Props = {
   customClassName?: string;
+  mode: 'header' | 'menu';
 };
 
-const getLinkClass = ({ isActive }: { isActive: boolean }) =>
-  classNames('nav__link', { 'nav__link--is-active': isActive });
-
-export const Navigation: React.FC<Props> = ({ customClassName }) => {
+export const Navigation: React.FC<Props> = ({ customClassName, mode }) => {
   const { t } = useTranslation();
   const expHeader = useSelector(
     (state: SavingState) => state.expHeader.expHeader,
   );
+  const dispatch = useDispatch<AppDispatch>();
+
+  const getLinkClass = ({ isActive }: { isActive: boolean }) =>
+    classNames('nav__link', {
+      'nav__link--is-active': isActive && mode === 'header',
+    });
+
+  const ClubButton = () => {
+    return (
+      <div
+        className={classNames('nav__club-big-button', {
+          [`${customClassName}__club-big-button`]: customClassName,
+        })}
+      >
+        <div
+          className={classNames('nav__club-wrapper', {
+            'nav__club-wrapper--active':
+              expHeader === 'club' && mode === 'header',
+            [`${customClassName}__club-wrapper`]: customClassName,
+          })}
+        >
+          <NavLink
+            to={'./'}
+            onClick={() => dispatch(setIsMenuOn(false))}
+            className={getLinkClass}
+          >
+            {t('navigation.collectors_club')}
+          </NavLink>
+          <button
+            className={classNames('nav__club-button', {
+              [`${customClassName}__club-button`]: customClassName,
+            })}
+          ></button>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <nav className={`nav ${customClassName}`}>
-      <ul className="nav__list">
-        <li className="nav__item">
+      <ul
+        className={classNames('nav__list', {
+          [`${customClassName}__list`]: customClassName,
+        })}
+      >
+        <li
+          className={classNames('nav__item', {
+            [`${customClassName}__item`]: customClassName,
+          })}
+        >
           <NavLink
+            onClick={() => dispatch(setIsMenuOn(false))}
             to={'./market'}
             className={getLinkClass}
           >
             {t('navigation.market')}
           </NavLink>
         </li>
-        <li className="nav__item">
-          <HeaderTooltip
-            renderButton={() => (
-              <div className="nav__club-big-button">
-                <div
-                  className={classNames('nav__club-wrapper', {
-                    'nav__club-wrapper--active': expHeader === 'club',
-                  })}
-                >
-                  <NavLink
-                    to={'./'}
-                    className={getLinkClass}
-                  >
-                    {t('navigation.collectors_club')}
-                  </NavLink>
-                  <button className="nav__club-button"></button>
-                </div>
-              </div>
-            )}
-            renderContent={() => <ExpClub />}
-            mode="club"
-            customContentClassName="exp-club"
-            customTooltipClassName="exp-club__tooltip"
-          />
+        <li
+          className={classNames('nav__item', {
+            [`${customClassName}__item`]: customClassName,
+          })}
+        >
+          {mode === 'header' ?
+            <HeaderTooltip
+              renderButton={() => <ClubButton />}
+              renderContent={() => <ExpClub />}
+              mode="club"
+              customContentClassName="exp-club"
+              customTooltipClassName="exp-club__tooltip"
+            />
+          : <ClubButton />}
         </li>
-        <li className="nav__item">
+        <li
+          className={classNames('nav__item', {
+            [`${customClassName}__item`]: customClassName,
+          })}
+        >
           <NavLink
+            onClick={() => dispatch(setIsMenuOn(false))}
             to={'./expertise'}
             className={getLinkClass}
           >

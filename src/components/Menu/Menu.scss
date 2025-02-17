@@ -1,0 +1,224 @@
+@import '../Header/Expanded/ExpClub/ExpClub';
+@import '../Header/Expanded/ExpQuestions/ExpQuestions';
+@import '../Header/Expanded/ExpCurrency/ExpCurrency';
+@import '../Header/Expanded/ExpAccount/ExpAccount';
+
+.menu {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  transition: $effect-duration;
+
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: left;
+  justify-content: left;
+
+  @include standard-inline-paddings;
+  padding-bottom: 16px;
+
+  background-color: $additional-black-green;
+
+  &--expanded {
+    border-radius: 0;
+  }
+
+  @include on-tablet {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+  }
+
+  &__top-bar {
+    width: 100%;
+    height: $header-height;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-self: stretch;
+    gap: 24px;
+  }
+
+  &__logo {
+    display: flex;
+    width: 179px;
+    height: 39px;
+    align-items: center;
+    gap: 8px;
+
+    @include hover(transform, scale(1.05));
+
+    &-title {
+      &-main {
+        font-family: Michroma, sans-serif;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 120%;
+        background: $additional-gold;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      &-minor {
+        font-family: Michroma, sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 100%;
+        color: $system-warning;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+  }
+
+  &__rectangle {
+    height: 1px;
+    align-self: stretch;
+    background-color: $gray-dark;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    padding-inline: 16px;
+
+    @include on-tablet {
+      justify-self: flex-end;
+    }
+
+    &-languages {
+      display: flex;
+      margin-block: 8px;
+
+      width: 82px;
+      height: 26px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      background: $background-strouke-plate;
+    }
+
+    &-language {
+      display: flex;
+      padding: 0px 8px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      text-align: center;
+
+      @include button-semibold;
+
+      &--active {
+        color: $additional-white-green;
+      }
+
+      &--inactive {
+        color: $gray-lite;
+      }
+    }
+  }
+
+  &__dropdown {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    gap: 8px;
+
+    &-text {
+      color: $gray-white;
+
+      @include main-text;
+    }
+  }
+
+  &__icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &-wrapper {
+      display: flex;
+      height: $header-height;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+
+      @include on-tablet {
+        display: none;
+      }
+    }
+
+    &--currency {
+      &--inactive {
+        background-image: url('/images/header/Currency.svg');
+
+        &:hover {
+          background-image: url('/images/header/Currency-active.svg');
+        }
+      }
+      &--active {
+        position: relative;
+        background-image: url('/images/header/Currency-active.svg');
+
+        &::after {
+          content: '';
+          position: absolute;
+          background-color: $additional-white-green;
+          height: 24px;
+          width: 1px;
+          top: 24px;
+        }
+      }
+    }
+
+    &--questions {
+      background-image: url('/images/header/question-inactive.svg');
+    }
+
+    &--account {
+      &--inactive {
+        background-image: url('/images/header/account.svg');
+      }
+      &--active {
+        position: relative;
+        background-image: url('/images/header/account-active.svg');
+
+        &::after {
+          position: absolute;
+          content: '';
+          position: absolute;
+          background-color: $additional-white-green;
+          height: 24px;
+          width: 1px;
+          top: 24px;
+        }
+      }
+    }
+
+    &--close {
+      display: none;
+
+      @include on-tablet {
+        display: block;
+        background-image: url('/images/menu/close.svg');
+      }
+    }
+  }
+}

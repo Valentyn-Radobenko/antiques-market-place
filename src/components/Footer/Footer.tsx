@@ -6,11 +6,16 @@ export const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__content">
-        <Link
-          to={'./'}
-          className="footer__logo"
-        >
-          D&KO
+        <Link to={'./'}>
+          <div className="header__logo">
+            <p className="header__logo-title-main">DIKO</p>
+            <img
+              className="header__logo-rectangle"
+              src="images/header/Rectangle-91.png"
+              alt="rectangle"
+            />
+            <p className="header__logo-title-minor">антикварна платформа </p>
+          </div>
         </Link>
         <div className="footer__columns">
           <div className="footer__column">
