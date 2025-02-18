@@ -40,6 +40,7 @@ export const Auth: React.FC = () => {
   const [step, setStep] = useState<number>(1);
   const [isPassShowed, setIsPassShowed] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [isResendOn, setIsResendOn] = useState(false);
   const steps = [1, 2, 3, 4];
 
   const handleChange = (
@@ -47,6 +48,20 @@ export const Auth: React.FC = () => {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleResendCode = async () => {
+    try {
+      await apiClient.post('/verification/send-code-rest-pass', null, {
+        params: {
+          to_email: formData.email,
+        },
+      });
+    } catch (error) {
+      alert('Помилка надсилання коду. Спробуйте ще раз.');
+
+      console.error(error);
+    }
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -68,21 +83,40 @@ export const Auth: React.FC = () => {
         }
       } else if (step === 2) {
         try {
-          const response = await apiClient.post(
-            '/verification/verify-code/reg',
-            null,
-            {
-              params: {
-                email: formData.email,
-                verification_code: formData.code,
+          if (!isResendOn) {
+            const response = await apiClient.post(
+              '/verification/verify-code/reg',
+              null,
+              {
+                params: {
+                  email: formData.email,
+                  verification_code: formData.code,
+                },
               },
-            },
-          );
-          if (response.status === 200) {
-            setStep(3);
+            );
+            if (response.status === 200) {
+              setStep(3);
+            }
+          }
+
+          if (isResendOn) {
+            const response = await apiClient.post(
+              '/verification/verify-code/reset',
+              null,
+              {
+                params: {
+                  email: formData.email,
+                  verification_code: formData.code,
+                },
+              },
+            );
+            if (response.status === 200) {
+              setStep(3);
+            }
           }
         } catch (error) {
           alert('Невірний код підтвердження.');
+          setIsResendOn(true);
 
           console.error(error);
         }
@@ -192,6 +226,13 @@ export const Auth: React.FC = () => {
               placeholder="Код із пошти"
               required
             />
+            <button
+              onClick={async () => {
+                await handleResendCode();
+              }}
+            >
+              Повторити надсилання
+            </button>
             <button
               type="button"
               onClick={() => setStep(1)}

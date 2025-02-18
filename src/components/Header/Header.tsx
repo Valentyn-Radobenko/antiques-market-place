@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../store/store';
 // import { useTranslation } from 'react-i18next';
@@ -8,11 +8,11 @@ import { Auth } from '../Auth/Auth';
 import { HeaderTooltip } from '../Tooltip/HeaderTooltip';
 import { ExpQuestions } from './Expanded/ExpQuestions/ExpQuestions';
 import { ExpCurrency } from './Expanded/ExpCurrency/ExpCurrency';
-import { ExpAccount } from './Expanded/ExpAccount/ExpAccount';
 import { setLanguage } from '../../store/slices/languageSlice';
 import i18n from '../../i18n/i18n';
 import { Menu } from '../Menu/Menu';
 import { setIsMenuOn } from '../../store/slices/menuSlice';
+import { setAuthMode } from '../../store/slices/authModeSlice';
 
 export const Header = () => {
   // const { t } = useTranslation();
@@ -33,6 +33,14 @@ export const Header = () => {
     (state: SavingState) => state.expSearch.expSearch,
   );
   const isMenuOn = useSelector((state: SavingState) => state.menu.isMenuOn);
+
+  const getAccountLinkClass = ({ isActive }: { isActive: boolean }) =>
+    classNames(
+      'header__actions-item header__actions-item-account header__actions-item-account--inactive',
+      {
+        'header__actions-item-account--active': isActive,
+      },
+    );
 
   return (
     <>
@@ -115,7 +123,12 @@ export const Header = () => {
                 )}
                 renderContent={() => <ExpQuestions />}
                 mode={'questions'}
-                customContentClassName="exp-questions"
+                customContentClassName={classNames(
+                  {
+                    'exp-questions--not-auth': !isAuthenticated,
+                  },
+                  'exp-questions',
+                )}
                 customTooltipClassName="exp-questions__tooltip"
               />
             </li>
@@ -139,53 +152,43 @@ export const Header = () => {
                 )}
                 renderContent={() => <ExpCurrency />}
                 mode={'currency'}
-                customContentClassName="exp-currency"
+                customContentClassName={classNames(
+                  {
+                    'exp-currency--not-auth': !isAuthenticated,
+                  },
+                  'exp-currency',
+                )}
                 customTooltipClassName="exp-currency__tooltip"
               />
             </li>
-            <li>
-              {isAuthenticated ?
+            {isAuthenticated && (
+              <li>
                 <div className="header__actions-item-wrapper">
-                  <Link
+                  <NavLink
                     to={'./me'}
-                    className={classNames(
-                      'header__actions-item header__actions-item-account header__actions-item-account--inactive',
-                    )}
-                    onMouseEnter={(e) =>
-                      e.currentTarget.classList.add(
-                        'header__actions-item-account--active',
-                      )
-                    }
-                    onMouseLeave={(e) =>
-                      e.currentTarget.classList.remove(
-                        'header__actions-item-account--active',
-                      )
-                    }
-                  ></Link>
+                    className={getAccountLinkClass}
+                  ></NavLink>
                 </div>
-              : <HeaderTooltip
-                  renderButton={() => (
-                    <div className="header__actions-item-wrapper">
-                      <button
-                        className={classNames(
-                          'header__actions-item header__actions-item-account',
-                          {
-                            'header__actions-item-account--inactive':
-                              expHeader !== 'account',
-                            'header__actions-item-account--active':
-                              expHeader === 'account',
-                          },
-                        )}
-                      ></button>
-                    </div>
-                  )}
-                  renderContent={() => <ExpAccount />}
-                  mode={'account'}
-                  customContentClassName="exp-account"
-                  customTooltipClassName="exp-account__tooltip"
-                />
-              }
-            </li>
+              </li>
+            )}
+            {!isAuthenticated && (
+              <li>
+                <div className="header__auth-buttons">
+                  <button
+                    onClick={() => dispatch(setAuthMode('login'))}
+                    className="header__auth-button header__auth-button--login"
+                  >
+                    Увійти
+                  </button>
+                  <button
+                    onClick={() => dispatch(setAuthMode('registration'))}
+                    className="header__auth-button header__auth-button--reg"
+                  >
+                    Зареєструватись
+                  </button>
+                </div>
+              </li>
+            )}
             <li>
               <button
                 onClick={() => dispatch(setIsMenuOn(!isMenuOn))}
@@ -195,6 +198,23 @@ export const Header = () => {
               ></button>
             </li>
           </ul>
+
+          {/* {!isAuthenticated && (
+            <div className="header__auth-buttons">
+              <button
+                onClick={() => dispatch(setAuthMode('login'))}
+                className="header__auth-button header__auth-button--login"
+              >
+                Увійти
+              </button>
+              <button
+                onClick={() => dispatch(setAuthMode('registration'))}
+                className="header__auth-button header__auth-button--reg"
+              >
+                Зареєструватись
+              </button>
+            </div>
+          )} */}
         </div>
       </header>
     </>

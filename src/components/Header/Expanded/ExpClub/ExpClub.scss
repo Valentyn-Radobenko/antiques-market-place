@@ -46,6 +46,22 @@
     @media (min-width: 3400px) {
       right: 49vw;
     }
+
+    &--not-auth {
+      right: 56vw;
+
+      @media (min-width: 1800px) {
+        right: 55vw;
+      }
+
+      @media (min-width: 2400px) {
+        right: 54vw;
+      }
+
+      @media (min-width: 3000px) {
+        right: 53vw;
+      }
+    }
   }
 
   &__button {
