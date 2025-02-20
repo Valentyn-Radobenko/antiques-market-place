@@ -130,7 +130,7 @@ const validatedState: SavingState =
       authMode: { authMode: null },
       auth: { token: null, isAuthenticated: false },
       expSearch: { expSearch: false },
-      menu: {isMenuOn: false},
+      menu: { isMenuOn: false },
     };
 
 // Створюємо store

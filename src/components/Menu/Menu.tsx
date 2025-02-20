@@ -8,6 +8,7 @@ import { Auth } from '../Auth/Auth';
 import { setLanguage } from '../../store/slices/languageSlice';
 import i18n from '../../i18n/i18n';
 import { setIsMenuOn } from '../../store/slices/menuSlice';
+import { setAuthMode } from '../../store/slices/authModeSlice';
 
 export const Menu = () => {
   // const { t } = useTranslation();
@@ -82,7 +83,7 @@ export const Menu = () => {
             </li>
             <li>
               <div className="menu__dropdown">
-                <div className="menu__icon menu__icon--questions"></div>
+                <div className="menu__icon menu__icon--questions--default"></div>
                 <p className="menu__dropdown-text">Питання</p>
                 <button className={classNames('nav__club-button')}></button>
               </div>
@@ -90,34 +91,35 @@ export const Menu = () => {
 
             <li>
               <div className="menu__dropdown">
-                <div className="menu__icon menu__icon--currency--inactive"></div>
+                <div className="menu__icon menu__icon--currency--default"></div>
                 <p className="menu__dropdown-text">{`Валюта (${currency})`}</p>
                 <button className={classNames('nav__club-button')}></button>
               </div>
             </li>
             <li>
               {isAuthenticated ?
-                <div className="menu__icon-wrapper">
-                  <Link
-                    to={'./me'}
-                    className={classNames(
-                      'menu__icon menu__icon--account menu__icon--account--inactive',
-                    )}
-                    onMouseEnter={(e) =>
-                      e.currentTarget.classList.add(
-                        'menu__icon--account--active',
-                      )
-                    }
-                    onMouseLeave={(e) =>
-                      e.currentTarget.classList.remove(
-                        'menu__icon--account--active',
-                      )
-                    }
-                  ></Link>
-                </div>
-              : <div className="menu__dropdown">
-                  <div className="menu__icon menu__icon--account--inactive"></div>
-                  <p className="menu__dropdown-text">Акаунт</p>
+                <Link
+                  onClick={() => dispatch(setIsMenuOn(!isMenuOn))}
+                  to={'./me'}
+                >
+                  <div className="menu__dropdown">
+                    <div className="menu__icon menu__icon--account--default"></div>
+                    <p className="menu__dropdown-text">Акаунт</p>
+                  </div>
+                </Link>
+              : <div className="menu__auth-buttons">
+                  <button
+                    onClick={() => dispatch(setAuthMode('login'))}
+                    className="menu__auth-button menu__auth-button--login"
+                  >
+                    Увійти
+                  </button>
+                  <button
+                    onClick={() => dispatch(setAuthMode('registration'))}
+                    className="menu__auth-button menu__auth-button--reg"
+                  >
+                    Зареєструватись
+                  </button>
                 </div>
               }
             </li>

@@ -9,7 +9,6 @@ export type Sorting = {
   id: number;
   nameUa: string;
   nameEng: string;
-  slug: string,
+  slug: string;
   sortType: SortType[];
 };
-

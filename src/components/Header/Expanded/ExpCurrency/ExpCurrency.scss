@@ -28,6 +28,7 @@
   &__buttons {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    height: 248px;
     gap: 8px;
     padding: 8px;
 
@@ -55,6 +56,14 @@
 
     &--dis {
       background-color: $additional-fresh-herb-icon;
+    }
+
+    @include hover(background-color, $additional-white-green);
+    @include hover(color, $additional-black-green);
+
+    &:active {
+      background-color: $additional-fresh-herb-icon;
+      color: $gray-white;
     }
   }
 }

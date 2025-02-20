@@ -14,7 +14,7 @@ export function getSearchWith(
     } else if (Array.isArray(value)) {
       newParams.delete(key);
 
-      value.forEach(part => {
+      value.forEach((part) => {
         newParams.append(key, part);
       });
     } else {

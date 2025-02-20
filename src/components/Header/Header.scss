@@ -138,12 +138,14 @@
       }
 
       &-search {
-        // margin-right: 8px;
+        &--default {
+          background-image: url('/images/header/search-default.svg');
+        }
         &--inactive {
           background-image: url('/images/header/search-inactive.svg');
         }
         &--active {
-          background-image: url('/images/header/search-rounded.svg');
+          background-image: url('/images/header/search-active.svg');
         }
 
         @include on-tablet {
@@ -152,16 +154,15 @@
       }
 
       &-currency {
+        &--default {
+          background-image: url('/images/header/currency-default.svg');
+        }
         &--inactive {
-          background-image: url('/images/header/Currency.svg');
-
-          &:hover {
-            background-image: url('/images/header/Currency.svg');
-          }
+          background-image: url('/images/header/currency-inactive.svg');
         }
         &--active {
           position: relative;
-          background-image: url('/images/header/Currency.svg');
+          background-image: url('/images/header/currency-active.svg');
 
           &::after {
             content: '';
@@ -175,13 +176,17 @@
       }
 
       &-questions {
+        &--default {
+          background-image: url('/images/header/questions-default.svg');
+        }
+
         &--inactive {
-          background-image: url('/images/header/question-inactive.svg');
+          background-image: url('/images/header/questions-inactive.svg');
         }
 
         &--active {
           position: relative;
-          background-image: url('/images/header/question-active.svg');
+          background-image: url('/images/header/questions-active.svg');
 
           &::after {
             content: '';
@@ -195,13 +200,19 @@
       }
 
       &-account {
-        &--inactive {
-          background-image: url('/images/header/account.svg');
-
-          &:hover {
-            background-image: url('/images/header/account-active.svg');
-          }
+        &--default {
+          background-image: url('/images/header/account-default.svg');
         }
+
+        &--inactive {
+          background-image: url('/images/header/account-inactive.svg');
+
+          @include hover(
+            background-image,
+            url('/images/header/account-active.svg')
+          );
+        }
+
         &--active {
           background-image: url('/images/header/account-active.svg');
         }
@@ -250,6 +261,12 @@
       &--login {
         border: 1px solid $primary;
         background: $gray-white;
+
+        @include hover(font-weight, 700);
+
+        &:active {
+          color: $additional-fresh-herb-icon;
+        }
       }
 
       &--reg {
@@ -260,6 +277,15 @@
           #95d5b2 95.39%
         );
         color: $gray-white;
+
+        @include hover(background, $additional-mint);
+        @include hover(color, $gray-black);
+        @include hover(font-weight, 700);
+
+        &:active {
+          background-color: $additional-greenas;
+          color: $gray-white;
+        }
       }
     }
   }

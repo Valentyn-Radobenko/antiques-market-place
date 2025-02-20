@@ -54,5 +54,13 @@
     text-align: center;
 
     @include main-text;
+
+    @include hover(background-color, $additional-white-green);
+    @include hover(color, $additional-black-green);
+
+    &:active {
+      background-color: $additional-fresh-herb-icon;
+      color: $gray-white;
+    }
   }
 }

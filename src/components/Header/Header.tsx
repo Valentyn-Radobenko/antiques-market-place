@@ -13,6 +13,7 @@ import i18n from '../../i18n/i18n';
 import { Menu } from '../Menu/Menu';
 import { setIsMenuOn } from '../../store/slices/menuSlice';
 import { setAuthMode } from '../../store/slices/authModeSlice';
+import { setExpHeader } from '../../store/slices/expHeaderSlice';
 
 export const Header = () => {
   // const { t } = useTranslation();
@@ -35,12 +36,13 @@ export const Header = () => {
   const isMenuOn = useSelector((state: SavingState) => state.menu.isMenuOn);
 
   const getAccountLinkClass = ({ isActive }: { isActive: boolean }) =>
-    classNames(
-      'header__actions-item header__actions-item-account header__actions-item-account--inactive',
-      {
-        'header__actions-item-account--active': isActive,
-      },
-    );
+    classNames('header__actions-item header__actions-item-account', {
+      'header__actions-item-account--default':
+        !expHeader || expHeader === 'club' || expHeader === 'account',
+      'header__actions-item-account--inactive':
+        expHeader !== 'account' && expHeader && expHeader !== 'club',
+      'header__actions-item-account--active': isActive,
+    });
 
   return (
     <>
@@ -95,11 +97,26 @@ export const Header = () => {
             </li>
             <li>
               <button
+                onMouseEnter={() => {
+                  dispatch(setExpHeader('search'));
+                }}
+                onMouseLeave={() => {
+                  dispatch(setExpHeader(null));
+                }}
                 className={classNames(
                   'header__actions-item header__actions-item-search',
                   {
                     'header__actions-item-search--active': expSearch,
-                    'header__actions-item-search--inactive': !expSearch,
+                    'header__actions-item-search--inactive':
+                      !expSearch &&
+                      expHeader &&
+                      expHeader !== 'club' &&
+                      expHeader !== 'search',
+                    'header__actions-item-search--default':
+                      !expSearch &&
+                      (!expHeader ||
+                        expHeader === 'club' ||
+                        expHeader === 'search'),
                   },
                 )}
               ></button>
@@ -112,8 +129,12 @@ export const Header = () => {
                       className={classNames(
                         'header__actions-item header__actions-item-questions',
                         {
+                          'header__actions-item-questions--default':
+                            !expHeader || expHeader === 'club',
                           'header__actions-item-questions--inactive':
-                            expHeader !== 'questions',
+                            expHeader &&
+                            expHeader !== 'questions' &&
+                            expHeader !== 'club',
                           'header__actions-item-questions--active':
                             expHeader === 'questions',
                         },
@@ -141,8 +162,12 @@ export const Header = () => {
                       className={classNames(
                         'header__actions-item header__actions-item-currency',
                         {
+                          'header__actions-item-currency--default':
+                            !expHeader || expHeader === 'club',
                           'header__actions-item-currency--inactive':
-                            expHeader !== 'currency',
+                            expHeader !== 'currency' &&
+                            expHeader &&
+                            expHeader !== 'club',
                           'header__actions-item-currency--active':
                             expHeader === 'currency',
                         },
@@ -165,6 +190,12 @@ export const Header = () => {
               <li>
                 <div className="header__actions-item-wrapper">
                   <NavLink
+                    onMouseEnter={() => {
+                      dispatch(setExpHeader('account'));
+                    }}
+                    onMouseLeave={() => {
+                      dispatch(setExpHeader(null));
+                    }}
                     to={'./me'}
                     className={getAccountLinkClass}
                   ></NavLink>
@@ -198,23 +229,6 @@ export const Header = () => {
               ></button>
             </li>
           </ul>
-
-          {/* {!isAuthenticated && (
-            <div className="header__auth-buttons">
-              <button
-                onClick={() => dispatch(setAuthMode('login'))}
-                className="header__auth-button header__auth-button--login"
-              >
-                Увійти
-              </button>
-              <button
-                onClick={() => dispatch(setAuthMode('registration'))}
-                className="header__auth-button header__auth-button--reg"
-              >
-                Зареєструватись
-              </button>
-            </div>
-          )} */}
         </div>
       </header>
     </>

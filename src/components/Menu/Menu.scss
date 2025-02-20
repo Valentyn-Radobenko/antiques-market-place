@@ -1,7 +1,3 @@
-@import '../Header/Expanded/ExpClub/ExpClub';
-@import '../Header/Expanded/ExpQuestions/ExpQuestions';
-@import '../Header/Expanded/ExpCurrency/ExpCurrency';
-
 .menu {
   position: fixed;
   left: 0;
@@ -92,6 +88,7 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+    width: 100%;
 
     padding-inline: 16px;
 
@@ -158,65 +155,104 @@
       align-items: center;
       justify-content: center;
       width: 40px;
-
-      @include on-tablet {
-        display: none;
-      }
     }
 
     &--currency {
+      &--default {
+        background-image: url('/images/header/currency-default.svg');
+      }
       &--inactive {
-        background-image: url('/images/header/Currency.svg');
-
-        &:hover {
-          background-image: url('/images/header/Currency-active.svg');
-        }
+        background-image: url('/images/header/currency-inactive.svg');
       }
       &--active {
-        position: relative;
-        background-image: url('/images/header/Currency-active.svg');
-
-        &::after {
-          content: '';
-          position: absolute;
-          background-color: $additional-white-green;
-          height: 24px;
-          width: 1px;
-          top: 24px;
-        }
+        background-image: url('/images/header/currency-active.svg');
       }
     }
 
     &--questions {
-      background-image: url('/images/header/question-inactive.svg');
+      &--default {
+        background-image: url('/images/header/questions-default.svg');
+      }
+      &--inactive {
+        background-image: url('/images/header/questions-inactive.svg');
+      }
+      &--active {
+        background-image: url('/images/header/questions-active.svg');
+      }
     }
 
     &--account {
+      &--default {
+        background-image: url('/images/header/account-default.svg');
+      }
       &--inactive {
-        background-image: url('/images/header/account.svg');
+        background-image: url('/images/header/account-inactive.svg');
       }
       &--active {
-        position: relative;
         background-image: url('/images/header/account-active.svg');
-
-        &::after {
-          position: absolute;
-          content: '';
-          position: absolute;
-          background-color: $additional-white-green;
-          height: 24px;
-          width: 1px;
-          top: 24px;
-        }
       }
     }
 
     &--close {
-      display: none;
+      display: block;
+      background-image: url('/images/menu/close.svg');
+    }
+  }
 
-      @include on-tablet {
-        display: block;
-        background-image: url('/images/menu/close.svg');
+  &__auth {
+    &-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    &-button {
+      display: flex;
+      height: 40px;
+      width: 100%;
+      padding: 16px;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      border-radius: 12px;
+
+      box-shadow: 0px 0px 8px 0px rgba(236, 255, 252, 0);
+      backdrop-filter: blur(25px);
+
+      @include main-text;
+      text-align: center;
+      text-shadow: 0px 0px 15px rgba(208, 255, 226, 0.5);
+
+      &--login {
+        border: 1px solid $primary;
+        background: $gray-white;
+
+        @include hover(font-weight, 700);
+
+        &:active {
+          color: $additional-fresh-herb-icon;
+        }
+      }
+
+      &--reg {
+        background: linear-gradient(
+          95deg,
+          #0d392c 26.29%,
+          #40916c 72.35%,
+          #95d5b2 95.39%
+        );
+        color: $gray-white;
+
+        @include hover(background, $additional-mint);
+        @include hover(color, $gray-black);
+        @include hover(font-weight, 700);
+
+        &:active {
+          background-color: $additional-greenas;
+          color: $gray-white;
+        }
       }
     }
   }

@@ -1,11 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 import { logout } from '../../store/slices/authSlice';
+import { useEffect } from 'react';
 
 export const ProfilePage = () => {
   const { firstName, lastName, phoneNumber, email, auctionNumber, verified } =
     useSelector((state: RootState) => state.user);
   const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    if (!verified) {
+      dispatch(logout());
+    }
+  }, [verified]);
 
   return (
     <>

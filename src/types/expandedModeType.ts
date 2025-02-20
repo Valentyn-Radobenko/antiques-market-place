@@ -3,4 +3,5 @@ export type expandedModeType =
   | 'club'
   | 'questions'
   | 'currency'
+  | 'search'
   | 'account';
