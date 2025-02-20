@@ -33,6 +33,8 @@ export const Filter: React.FC<Props> = ({
     }
   }, [activeFilter]);
 
+  console.log(height);
+
   return (
     <div className="filter">
       <div className="filter__title">

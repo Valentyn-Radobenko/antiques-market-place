@@ -1,71 +1,377 @@
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Item } from "./item";
+// import { useEffect, useState } from "react";
+// import { useSearchParams } from "react-router-dom";
+import { Item } from './item';
+import { MarketItem } from '../MarketItem/MatketItem';
 
 const items: Item[] = [
-  { id: 1, name: "Золота монета", category: "Нумізматика", subcategory: "coins", price: 1200, year: 1890 },
-  { id: 2, name: "Стара банкнота 100 грн", category: "Нумізматика", subcategory: "banknotes", price: 500, year: 1945 },
-  { id: 3, name: "Ювілейна медаль", category: "Нумізматика", subcategory: "medals", price: 3000, year: 1812 },
-  { id: 4, name: "Картина 'Захід сонця'", category: "Інтер'єр", subcategory: "paintings", price: 15000, year: 1978 },
-  { id: 5, name: "Грецька скульптура", category: "Інтер'єр", subcategory: "sculptures", price: 8000, year: 1923 },
-  { id: 6, name: "Старовинний комод", category: "Інтер'єр", subcategory: "furniture", price: 20000, year: 1950 },
-  { id: 7, name: "Марка 'Олімпійські ігри'", category: "Паперові колекції", subcategory: "stamps", price: 450, year: 1932 },
-  { id: 8, name: "Ретро-листівка 'Київ 1905'", category: "Паперові колекції", subcategory: "postcards", price: 150, year: 1905 },
-  { id: 9, name: "Газета 'Радянська Україна'", category: "Паперові колекції", subcategory: "newspapers-magazines", price: 700, year: 1980 },
-  { id: 10, name: "Старинні годинники", category: "Інше", subcategory: "antiques-magazines", price: 50000, year: 1800 },
-  { id: 11, name: "Плівковий фотоапарат", category: "Інше", subcategory: "Ретро-техніка", price: 12000, year: 1965 },
-  { id: 12, name: "Рукописна книга 1850", category: "Інше", subcategory: "rare-books", price: 7500, year: 1850 },
-  { id: 13, name: "Срібна монета 'Гетьмани'", category: "Нумізматика", subcategory: "coins", price: 1800, year: 1910 },
-  { id: 14, name: "Рідкісна банкнота 50 карбованців", category: "Нумізматика", subcategory: "banknotes", price: 650, year: 1955 },
-  { id: 15, name: "Полотно 'Нічна тиша'", category: "Інтер'єр", subcategory: "paintings", price: 22000, year: 2000 },
-  { id: 16, name: "Бронзова статуетка", category: "Інтер'єр", subcategory: "sculptures", price: 10500, year: 1895 },
-  { id: 17, name: "Поштова марка 'Шевченко'", category: "Паперові колекції", subcategory: "stamps", price: 550, year: 1941 },
-  { id: 18, name: "Журнал 'Наука і життя'", category: "Паперові колекції", subcategory: "newspapers-magazines", price: 850, year: 1999 },
-  { id: 19, name: "Срібна чайна ложка", category: "Інше", subcategory: "antiques-magazines", price: 62000, year: 1780 },
-  { id: 20, name: "Перше видання 'Кобзаря'", category: "Інше", subcategory: "rare-books", price: 8900, year: 1825 }
+  {
+    id: 1,
+    name: 'Монета 1',
+    category: 'numismatics',
+    subcategory: 'coins-ukraine',
+    img: 'public/images/testImg.png',
+    price: 500,
+    year: 1991,
+    country: 'Україна',
+    material: 'Срібло',
+  },
+  {
+    id: 2,
+    name: 'Монета 2',
+    category: 'numismatics',
+    subcategory: 'coins-ancient-states',
+    img: 'public/images/testImg.png',
+    price: 1200,
+    year: -300,
+    country: 'Греція',
+    material: 'Бронза',
+  },
+  {
+    id: 3,
+    name: 'Монета 3',
+    category: 'numismatics',
+    subcategory: 'coins-ancient-rome',
+    img: 'public/images/testImg.png',
+    price: 800,
+    year: 100,
+    country: 'Рим',
+    material: 'Срібло',
+  },
+  {
+    id: 4,
+    name: 'Монета 4',
+    category: 'numismatics',
+    subcategory: 'medieval-coins',
+    img: 'public/images/testImg.png',
+    price: 1500,
+    year: 1400,
+    country: 'Франція',
+    material: 'Золото',
+  },
+  {
+    id: 5,
+    name: 'Монета 5',
+    category: 'numismatics',
+    subcategory: 'coins-europe',
+    img: 'public/images/testImg.png',
+    price: 950,
+    year: 1800,
+    country: 'Німеччина',
+    material: 'Мідь',
+  },
+  {
+    id: 6,
+    name: 'Живопис 1',
+    category: 'interior-heritage',
+    subcategory: 'painting',
+    img: 'public/images/testImg.png',
+    price: 5000,
+    year: 1950,
+    country: 'Україна',
+    material: 'Полотно, олія',
+  },
+  {
+    id: 7,
+    name: 'Живопис 2',
+    category: 'interior-heritage',
+    subcategory: 'painting',
+    img: 'public/images/testImg.png',
+    price: 7000,
+    year: 1870,
+    country: 'Франція',
+    material: 'Полотно, олія',
+  },
+  {
+    id: 8,
+    name: 'Тканина 1',
+    category: 'interior-heritage',
+    subcategory: 'fabrics',
+    img: 'public/images/testImg.png',
+    price: 3000,
+    year: 1920,
+    country: 'Індія',
+    material: 'Шовк',
+  },
+  {
+    id: 9,
+    name: 'Металевий предмет 1',
+    category: 'interior-heritage',
+    subcategory: 'metal-objects',
+    img: 'public/images/testImg.png',
+    price: 2500,
+    year: 1850,
+    country: 'Англія',
+    material: 'Срібло',
+  },
+  {
+    id: 10,
+    name: 'Ікона 1',
+    category: 'interior-heritage',
+    subcategory: 'icons',
+    img: 'public/images/testImg.png',
+    price: 8000,
+    year: 1700,
+    country: 'Росія',
+    material: 'Дерево, темпера',
+  },
+  {
+    id: 11,
+    name: 'Марка 1',
+    category: 'paper-collections',
+    subcategory: 'philately',
+    img: 'public/images/testImg.png',
+    price: 300,
+    year: 1960,
+    country: 'США',
+    material: 'Папір',
+  },
+  {
+    id: 12,
+    name: 'Листівка 1',
+    category: 'paper-collections',
+    subcategory: 'deltiology',
+    img: 'public/images/testImg.png',
+    price: 200,
+    year: 1910,
+    country: 'Франція',
+    material: 'Картон',
+  },
+  {
+    id: 13,
+    name: 'Банкнота 1',
+    category: 'paper-collections',
+    subcategory: 'notaphily',
+    img: 'public/images/testImg.png',
+    price: 1500,
+    year: 1945,
+    country: 'Німеччина',
+    material: 'Папір',
+  },
+  {
+    id: 14,
+    name: 'Книга 1',
+    category: 'paper-collections',
+    subcategory: 'books',
+    img: 'public/images/testImg.png',
+    price: 5000,
+    year: 1850,
+    country: 'Англія',
+    material: 'Папір, шкіра',
+  },
+  {
+    id: 15,
+    name: 'Плакат 1',
+    category: 'paper-collections',
+    subcategory: 'posters',
+    img: 'public/images/testImg.png',
+    price: 1000,
+    year: 1920,
+    country: 'СРСР',
+    material: 'Папір',
+  },
+  {
+    id: 16,
+    name: 'Нагорода 1',
+    category: 'other-items',
+    subcategory: 'phaleristics',
+    img: 'public/images/testImg.png',
+    price: 5000,
+    year: 1939,
+    country: 'СРСР',
+    material: 'Бронза',
+  },
+  {
+    id: 17,
+    name: 'Монета 6',
+    category: 'numismatics',
+    subcategory: 'coins-ussr',
+    img: 'public/images/testImg.png',
+    price: 700,
+    year: 1980,
+    country: 'СРСР',
+    material: 'Нікель',
+  },
+  {
+    id: 18,
+    name: 'Монета 7',
+    category: 'numismatics',
+    subcategory: 'coins-russia',
+    img: 'public/images/testImg.png',
+    price: 1000,
+    year: 1900,
+    country: 'Росія',
+    material: 'Срібло',
+  },
+  {
+    id: 19,
+    name: 'Монета 8',
+    category: 'numismatics',
+    subcategory: 'coins-poland',
+    img: 'public/images/testImg.png',
+    price: 800,
+    year: 1750,
+    country: 'Польща',
+    material: 'Мідь',
+  },
+  {
+    id: 20,
+    name: 'Монета 9',
+    category: 'numismatics',
+    subcategory: 'other-coins',
+    img: 'public/images/testImg.png',
+    price: 600,
+    year: 2000,
+    country: 'Канада',
+    material: 'Нікель',
+  },
+  {
+    id: 21,
+    name: 'Порцелянова статуетка',
+    category: 'interior-heritage',
+    subcategory: 'porcelain',
+    img: 'public/images/testImg.png',
+    price: 4500,
+    year: 1890,
+    country: 'Австрія',
+    material: 'Порцеляна',
+  },
+  {
+    id: 22,
+    name: "Інтер'єрний предмет 1",
+    category: 'interior-heritage',
+    subcategory: 'interior-items',
+    img: 'public/images/testImg.png',
+    price: 3500,
+    year: 1820,
+    country: 'Англія',
+    material: 'Дерево',
+  },
+  {
+    id: 23,
+    name: 'Тканина 2',
+    category: 'interior-heritage',
+    subcategory: 'fabrics',
+    img: 'public/images/testImg.png',
+    price: 2800,
+    year: 1910,
+    country: 'Франція',
+    material: 'Бавовна',
+  },
+  {
+    id: 24,
+    name: 'Металевий предмет 2',
+    category: 'interior-heritage',
+    subcategory: 'metal-objects',
+    img: 'public/images/testImg.png',
+    price: 2700,
+    year: 1750,
+    country: 'Італія',
+    material: 'Бронза',
+  },
+  {
+    id: 25,
+    name: 'Ікона 2',
+    category: 'interior-heritage',
+    subcategory: 'icons',
+    img: 'public/images/testImg.png',
+    price: 9000,
+    year: 1600,
+    country: 'Україна',
+    material: 'Дерево, темпера',
+  },
+  {
+    id: 26,
+    name: 'Монета 10',
+    category: 'numismatics',
+    subcategory: 'coins-europe',
+    img: 'public/images/testImg.png',
+    price: 1100,
+    year: 1550,
+    country: 'Іспанія',
+    material: 'Срібло',
+  },
+  {
+    id: 27,
+    name: 'Книга 2',
+    category: 'paper-collections',
+    subcategory: 'books',
+    img: 'public/images/testImg.png',
+    price: 5500,
+    year: 1700,
+    country: 'Італія',
+    material: 'Папір, шкіра',
+  },
+  {
+    id: 28,
+    name: 'Фалеристика 2',
+    category: 'other-items',
+    subcategory: 'phaleristics',
+    img: 'public/images/testImg.png',
+    price: 7000,
+    year: 1945,
+    country: 'Франція',
+    material: 'Бронза',
+  },
+  {
+    id: 29,
+    name: 'Інше 1',
+    category: 'other-items',
+    subcategory: 'other',
+    img: 'public/images/testImg.png',
+    price: 1500,
+    year: 2005,
+    country: 'Японія',
+    material: 'Метал',
+  },
+  {
+    id: 30,
+    name: 'Інше 2',
+    category: 'other-items',
+    subcategory: 'other',
+    img: 'public/images/testImg.png',
+    price: 1800,
+    year: 2010,
+    country: 'США',
+    material: 'Пластик',
+  },
 ];
+
 export const Catalog = () => {
+  // const [searchParams] = useSearchParams();
+  // const [itemsToShow, setItemsToShow] = useState<Item[]>([])
+  // const category = searchParams.get('category')
+  // const subCategory = searchParams.get('subcategory')
+  // useEffect(() => {
+  //   setItemsToShow(items)
+  // }, [])
 
+  // const itemsToRender = function () {
+  //   const newArrayOfItems = [...itemsToShow]
 
-  const [searchParams] = useSearchParams();
-  const [itemsToShow, setItemsToShow] = useState<Item[]>([])
-  const category = searchParams.get('category')
-  const subCategory = searchParams.get('subcategory')
-  useEffect(() => {
-    setItemsToShow(items)
-  }, [])
+  //   if (subCategory) {
+  //     return newArrayOfItems.filter((item) => {
+  //     return  item.subcategory === subCategory
+  //     })
+  //   }
 
-  const itemsToRender = function () {
-    const newArrayOfItems = [...itemsToShow]
+  //   if (category) {
+  //     return newArrayOfItems.filter(item => item.category === category)
+  //   }
 
-    if (subCategory) {
-      return newArrayOfItems.filter((item) => {
-      return  item.subcategory === subCategory
-      })
-    }
-
-    if (category) {
-      return newArrayOfItems.filter(item => item.category === category)
-    }
-
-    return newArrayOfItems;
-  }
-
-  // console.log(itemsToRender())
+  //   return newArrayOfItems;
+  // }
 
   return (
     <>
-      <h1>Catalog</h1>
+      {/* <h1>Catalog</h1> */}
       <div className="items">
-        {itemsToRender().map(item => (
-          <div key={item.id}>
-            <h2>{item.name}</h2>
-            <p>{item.category}</p>
-            <p>{item.subcategory}</p>
-            <p>{item.price}</p>
-          </div>
+        {items.map((item) => (
+          <MarketItem
+            item={item}
+            key={item.id}
+          />
         ))}
       </div>
     </>
-  )
-}
+  );
+};

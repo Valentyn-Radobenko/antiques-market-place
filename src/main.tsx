@@ -26,10 +26,20 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
               index
               element={<HomePage />}
             />
-            <Route
+            <Route path="/market">
+              <Route
+                index
+                element={<MarketPage />}
+              />
+              <Route
+                path=":slug?"
+                element={<MarketPage />}
+              />
+            </Route>
+            {/* <Route
               path="/market"
               element={<MarketPage />}
-            />
+            /> */}
             <Route
               path="/expertise"
               element={<ExpertisePage />}
