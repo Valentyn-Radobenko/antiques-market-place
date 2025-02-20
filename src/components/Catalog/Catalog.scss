@@ -1,5 +1,18 @@
 .items {
-  display: flex;
-  gap: 20px;
-  flex-direction: column;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: space-between;
+
+  @include on-tablet {
+    @include on-tablet {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    justify-content: stretch;
+    gap: 16px;
+  }
+
+  @include on-phone {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

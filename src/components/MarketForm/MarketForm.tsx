@@ -15,7 +15,9 @@ export const MarketForm = () => {
       onSubmit={() => setSearchPrams({ query })}
     >
       <svg
-        className="market-search__search-icon"
+        className={classNames('market-search__search-icon', {
+          isActive: focus,
+        })}
         width="24"
         height="24"
         viewBox="0 0 24 24"

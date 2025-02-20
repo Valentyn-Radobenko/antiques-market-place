@@ -13,6 +13,10 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+
+    // @include on-tablet {
+    //   flex-direction: row;
+    // }
   }
 
   &__top-bar {
@@ -28,5 +32,9 @@
   &__settings-catalog {
     display: flex;
     gap: 20px;
+
+    @include on-tablet {
+      flex-direction: column;
+    }
   }
 }
