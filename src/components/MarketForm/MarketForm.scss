@@ -21,6 +21,10 @@
 
   &__search-icon {
     color: $gray-lite;
+
+    &.isActive {
+      color: $additional-black-green;
+    }
   }
 
   &__input {

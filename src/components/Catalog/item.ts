@@ -3,6 +3,9 @@ export type Item = {
   name: string;
   category: string;
   subcategory: string;
+  img: string;
   price: number;
   year: number;
+  country: string;
+  material: string;
 };

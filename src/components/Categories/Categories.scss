@@ -1,28 +1,242 @@
 .categories {
-  display: flex;
-  align-items: center;
-  border: solid red 1px;
+  @include on-tablet {
+    display: none;
+  }
+
   border-radius: 12px;
-  height: 58px;
+  position: relative;
+  background-color: white;
+
+  &.isActive {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 
   &__container {
-    height: 100%;
-    width: 100%;
     display: flex;
+    align-items: center;
+    height: 58px;
+    width: 100%;
     justify-content: center;
   }
 
   &__title {
-    align-items: center;
+    color: $gray-darks;
+
+    position: relative;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 8px;
+    height: 100%;
+    border-bottom: 1px solid $gray-stroke;
+
+    &:not(:first-child) {
+      border-left: 1px solid $gray-stroke;
+    }
+
+    &.isActive {
+      color: $additional-fresh-herb-icon;
+      &::after {
+        border-bottom: none;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        content: '';
+        width: 100%;
+        height: 1px;
+        background: $primary;
+      }
+    }
+  }
+
+  &__link {
+    @include main-text;
+  }
+
+  // &__arrow {
+  // }
+
+  &__subcategories {
+    position: absolute;
+    background-color: inherit;
+    z-index: 999;
+    padding-top: 24px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.subcategory {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: (100% / 4);
+  height: 58px;
+  gap: 8px;
+
+  &__link {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.categories-mobile {
+  border-radius: 12px;
+  display: none;
+  @include on-tablet {
+    display: flex;
+  }
+
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  border: solid black 1px;
+  padding-inline: 16px;
+  &__title {
+    display: flex;
+    align-items: center;
     gap: 8px;
   }
 
-  &__text {
+  &__container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 100%;
+    z-index: 10000000;
+    display: flex;
 
+    @include on-phone {
+      flex-direction: column;
+    }
   }
 
-  &__arrow{
+  &__list-container {
+    @include on-phone {
+      border-top-right-radius: 12px;
+      border-top-left-radius: 12px;
+    }
+    padding-top: 56px;
+    width: 60%;
+    background-color: $background-page;
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 
+    @include on-phone {
+      order: 1;
+      width: 100%;
+      height: 80%;
+    }
+  }
+
+  &__close {
+    margin-right: 16px;
+    align-self: flex-end;
+    cursor: pointer;
+  }
+
+  &__list {
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    background-color: $gray-white;
+
+    &-title {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      height: 56px;
+      padding-inline: 16px;
+    }
+    &-h {
+      @include h4-bold;
+    }
+
+    &-items {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__list-item-container {
+    display: flex;
+    flex-direction: column;
+
+    &.notActive {
+      display: none;
+    }
+  }
+
+  &__item {
+    border-top: $gray-stroke solid 1px;
+    height: 56px;
+    @include main-text;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding-inline: 16px;
+
+    &.isActive {
+      color: $additional-fresh-herb-icon;
+      &::after {
+        border-bottom: none;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        content: '';
+        width: 100%;
+        height: 1px;
+        background: $primary;
+      }
+    }
+
+    // &-name {
+    // }
+
+    &-arrow.isActive {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__item-items-container {
+    overflow: hidden;
+    position: relative;
+    transition: all $effect-duration ease;
+  }
+
+  &__item-items {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding-inline: 16px;
+    opacity: 0;
+
+    &.isActive {
+      opacity: 1;
+    }
+  }
+
+  &__item-item {
+    display: flex;
+    align-items: center;
+    height: 58px;
+  }
+
+  &__backdrop {
+    background-color: gray;
+    opacity: 50%;
+    flex-grow: 1;
   }
 }
