@@ -77,6 +77,7 @@
   }
 
   &--menu {
+    width: 100%;
     &__list {
       flex-direction: column;
       height: auto;
@@ -84,6 +85,14 @@
       align-items: flex-start;
 
       padding-inline: 16px;
+    }
+
+    &__item {
+      width: 100%;
+    }
+
+    &__link {
+      justify-content: left;
     }
 
     &__club {

@@ -9,6 +9,10 @@ import { setLanguage } from '../../store/slices/languageSlice';
 import i18n from '../../i18n/i18n';
 import { setIsMenuOn } from '../../store/slices/menuSlice';
 import { setAuthMode } from '../../store/slices/authModeSlice';
+import { Dropdown } from '../Dropdown/Dropdown';
+import { availableCurrencies } from '../../data/availableCurrencies';
+import { setCurrency } from '../../store/slices/currencySlice';
+import { currencyType } from '../../types/currencyType';
 
 export const Menu = () => {
   // const { t } = useTranslation();
@@ -82,19 +86,66 @@ export const Menu = () => {
               </div>
             </li>
             <li>
-              <div className="menu__dropdown">
-                <div className="menu__icon menu__icon--questions--default"></div>
-                <p className="menu__dropdown-text">Питання</p>
-                <button className={classNames('nav__club-button')}></button>
-              </div>
+              <Dropdown
+                buttonArea="all"
+                buttonIcon={() => (
+                  <div className="menu__icon menu__icon--questions--default"></div>
+                )}
+                buttonTitle={() => (
+                  <p className="menu__dropdown-text">Питання</p>
+                )}
+                customClassName="menu__dropdown"
+                renderContent={() => (
+                  <div className="menu__options menu__options--questions">
+                    <button className="menu__option menu__option--question">
+                      Чи є сертифікат експертизи?
+                    </button>
+                    <button className="menu__option menu__option--question">
+                      Чи можна продати через платформу?
+                    </button>
+                    <button className="menu__option menu__option--question">
+                      Як купити?
+                    </button>
+                    <button className="menu__option menu__option--question">
+                      Правила сайту
+                    </button>
+                    <button className="menu__option menu__option--question">
+                      Залишити питання
+                    </button>
+                  </div>
+                )}
+              />
             </li>
 
             <li>
-              <div className="menu__dropdown">
-                <div className="menu__icon menu__icon--currency--default"></div>
-                <p className="menu__dropdown-text">{`Валюта (${currency})`}</p>
-                <button className={classNames('nav__club-button')}></button>
-              </div>
+              <Dropdown
+                buttonArea="all"
+                buttonIcon={() => (
+                  <div className="menu__icon menu__icon--currency--default"></div>
+                )}
+                buttonTitle={() => (
+                  <p className="menu__dropdown-text">{`Валюта (${currency})`}</p>
+                )}
+                customClassName="menu__dropdown"
+                renderContent={() => (
+                  <div className="menu__options menu__options--currencies">
+                    {availableCurrencies.map((cur, ind) => (
+                      <button
+                        key={ind}
+                        onClick={() =>
+                          dispatch(setCurrency(cur as currencyType))
+                        }
+                        className={classNames('exp-currency__button', {
+                          'exp-currency__button--dis': currency === cur,
+                        })}
+                        disabled={currency === cur}
+                      >
+                        {cur}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              />
             </li>
             <li>
               {isAuthenticated ?

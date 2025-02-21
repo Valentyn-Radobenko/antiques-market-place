@@ -1,0 +1,32 @@
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__content {
+    &--hidden {
+      opacity: 0;
+      visibility: hidden;
+      height: 0;
+      transition: $dropdown-effect-duration;
+    }
+
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+      height: auto;
+      transition: $dropdown-effect-duration;
+    }
+  }
+
+  &__arrow {
+    background-image: url('/images/header/keyboard-arrow-down-rounded.svg');
+    width: 24px;
+    height: 24px;
+    transition: $effect-duration;
+
+    &--active {
+      transform: rotate(180deg);
+    }
+  }
+}

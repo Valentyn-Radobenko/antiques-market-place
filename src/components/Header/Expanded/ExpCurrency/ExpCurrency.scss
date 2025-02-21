@@ -37,33 +37,12 @@
   }
 
   &__button {
-    display: flex;
-    height: 40px;
-    padding: 16px;
-    justify-content: center;
-    align-items: center;
-    align-self: stretch;
-
-    border-radius: 12px;
-    background: $background-strouke-plate;
-    box-shadow: 0px 0px 8px 0px rgba(236, 255, 252, 0);
-    backdrop-filter: blur(25px);
-
-    color: $gray-white;
-    text-align: center;
+    @include header-option-button;
 
     @include button-semibold;
 
     &--dis {
       background-color: $additional-fresh-herb-icon;
-    }
-
-    @include hover(background-color, $additional-white-green);
-    @include hover(color, $additional-black-green);
-
-    &:active {
-      background-color: $additional-fresh-herb-icon;
-      color: $gray-white;
     }
   }
 }

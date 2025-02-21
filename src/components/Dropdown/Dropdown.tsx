@@ -1,60 +1,78 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
+import classNames from 'classnames';
 
-interface DropdownProps {
-  button?: React.ReactNode;
+interface Props {
+  buttonArea: 'all' | 'arrow';
+  buttonIcon?: () => React.ReactNode;
+  buttonTitle: () => React.ReactNode;
   renderContent: () => React.ReactNode;
-  customDropdownClassName?: string;
-  customContentClassName?: string;
-  customButtonClassName?: string;
-  customActiveButtonClassName?: string;
+  customClassName?: string;
 }
 
-export const Dropdown: React.FC<DropdownProps> = ({
-  button,
+export const Dropdown: React.FC<Props> = ({
+  buttonArea,
+  buttonIcon,
+  buttonTitle,
   renderContent,
-  customDropdownClassName,
-  customContentClassName,
-  customButtonClassName,
-  customActiveButtonClassName = customButtonClassName,
+  customClassName = '',
 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      dropdownRef.current &&
-      !dropdownRef.current.contains(event.target as Node)
-    ) {
-      setIsVisible(false);
-    }
-  };
-
-  useEffect(() => {
-    if (isVisible) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isVisible]);
 
   return (
-    <div
-      ref={dropdownRef}
-      className={customDropdownClassName}
-      onClick={() => setIsVisible(!isVisible)}
-    >
-      <div
-        className={`${customButtonClassName} ${isVisible ? customActiveButtonClassName : customButtonClassName}`}
-      >
-        {button}
-      </div>
+    <div className={`${customClassName} dropdown`}>
+      {buttonArea === 'all' && (
+        <button
+          onClick={() => setIsVisible(!isVisible)}
+          className={classNames(`${customClassName}-button dropdown__button`, {
+            [`${customClassName}-button--active dropdown__button--active`]:
+              isVisible,
+            [`${customClassName}-button--inactive dropdown__button--inactive`]:
+              !isVisible,
+          })}
+        >
+          {buttonIcon && buttonIcon()}
+          {buttonTitle()}
+          <button
+            className={classNames(`${customClassName}-arrow dropdown__arrow`, {
+              [`${customClassName}-arrow--active dropdown__arrow--active`]:
+                isVisible,
+              [`${customClassName}-arrow--inactive dropdown__arrow--inactive`]:
+                !isVisible,
+            })}
+          ></button>
+        </button>
+      )}
+
+      {buttonArea === 'arrow' && (
+        <button
+          className={classNames(`${customClassName}-button dropdown__button`, {
+            [`${customClassName}-button--active dropdown__button--active`]:
+              isVisible,
+            [`${customClassName}-button--inactive dropdown__button--inactive`]:
+              !isVisible,
+          })}
+        >
+          {buttonIcon && buttonIcon()}
+          {buttonTitle()}
+          <button
+            onClick={() => setIsVisible(!isVisible)}
+            className={classNames(`${customClassName}-arrow dropdown__arrow`, {
+              [`${customClassName}-arrow--active dropdown__arrow--active`]:
+                isVisible,
+              [`${customClassName}-arrow--inactive dropdown__arrow--inactive`]:
+                !isVisible,
+            })}
+          ></button>
+        </button>
+      )}
 
       <div
-        className={`${customContentClassName} ${isVisible ? `${customContentClassName}-visible` : `${customContentClassName}`}`}
+        className={classNames(`${customClassName}-content dropdown__content`, {
+          [`${customClassName}-content--visible dropdown__content--visible`]:
+            isVisible,
+          [`${customClassName}-content--hidden dropdown__content--hidden`]:
+            !isVisible,
+        })}
       >
         {renderContent()}
       </div>
