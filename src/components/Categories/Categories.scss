@@ -21,7 +21,7 @@
   }
 
   &__title {
-    color: $gray-darks;
+    color: $gray-black;
 
     position: relative;
     display: flex;
@@ -48,6 +48,10 @@
         height: 1px;
         background: $primary;
       }
+    }
+
+    &.notActive {
+      color: $gray-darks;
     }
   }
 
@@ -106,7 +110,6 @@
     gap: 8px;
   }
 
-  &__text {
   &__container {
     position: fixed;
     top: 0;
@@ -121,10 +124,6 @@
       flex-direction: column;
     }
   }
-
-  &__arrow {
-  }
-}
 
   &__list-container {
     @include on-phone {

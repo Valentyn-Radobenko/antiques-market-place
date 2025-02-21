@@ -1,15 +1,11 @@
 .items {
-  width: 100%;
+  // width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  justify-content: space-between;
+  gap: 16px;
 
   @include on-tablet {
-    @include on-tablet {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    justify-content: stretch;
-    gap: 16px;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   @include on-phone {
