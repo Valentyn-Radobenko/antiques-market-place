@@ -102,7 +102,7 @@
   justify-content: space-between;
   align-items: center;
   height: 56px;
-  border: solid black 1px;
+  border-bottom: 1px solid $gray-stroke;
   padding-inline: 16px;
   &__title {
     display: flex;
