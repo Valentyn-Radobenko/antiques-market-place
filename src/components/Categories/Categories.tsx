@@ -173,6 +173,7 @@ export const Categories = () => {
               key={category.id}
               className={classNames('categories__title', {
                 isActive: activeCategory?.id === category.id,
+                notActive: activeCategory && activeCategory?.id !== category.id,
               })}
             >
               <NavLink
