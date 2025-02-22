@@ -1,5 +1,6 @@
 .menu {
   position: fixed;
+  overflow-y: auto;
   left: 0;
   right: 0;
   top: 0;
@@ -17,10 +18,6 @@
   padding-bottom: 16px;
 
   background-color: $additional-black-green;
-
-  &--expanded {
-    border-radius: 0;
-  }
 
   @include on-tablet {
     display: flex;
@@ -130,16 +127,46 @@
   }
 
   &__dropdown {
-    display: flex;
-    height: 40px;
-    align-items: center;
-    gap: 8px;
+    &-button {
+      display: flex;
+      height: 40px;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+    }
 
     &-text {
       color: $gray-white;
 
       @include main-text;
     }
+  }
+
+  &__options {
+    &--questions,
+    &--club {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      align-self: stretch;
+    }
+
+    &--currencies {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+
+      @include on-phone {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  }
+
+  &__option {
+    @include header-option-button;
+
+    @include main-text;
   }
 
   &__icon {

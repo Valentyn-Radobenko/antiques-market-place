@@ -9,4 +9,3 @@ export type Item = {
   country: string;
   material: string;
 };
-

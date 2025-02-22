@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-interface TooltipProps {
+interface Props {
   renderButton: () => React.ReactNode;
   renderContent: () => React.ReactNode;
   customTooltipClassName?: string;
   customContentClassName?: string;
 }
 
-export const Tooltip: React.FC<TooltipProps> = ({
+export const Tooltip: React.FC<Props> = ({
   renderButton,
   renderContent,
   customTooltipClassName,

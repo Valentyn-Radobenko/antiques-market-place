@@ -6,6 +6,7 @@ import { ExpClub } from '../Header/Expanded/ExpClub/ExpClub';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../store/store';
 import { setIsMenuOn } from '../../store/slices/menuSlice';
+import { Dropdown } from '../Dropdown/Dropdown';
 
 type Props = {
   customClassName?: string;
@@ -22,38 +23,8 @@ export const Navigation: React.FC<Props> = ({ customClassName, mode }) => {
   const getLinkClass = ({ isActive }: { isActive: boolean }) =>
     classNames('nav__link', {
       'nav__link--is-active': isActive && mode === 'header',
+      'nav--menu__link': mode === 'menu',
     });
-
-  const ClubButton = () => {
-    return (
-      <div
-        className={classNames('nav__club-big-button', {
-          [`${customClassName}__club-big-button`]: customClassName,
-        })}
-      >
-        <div
-          className={classNames('nav__club-wrapper', {
-            'nav__club-wrapper--active':
-              expHeader === 'club' && mode === 'header',
-            [`${customClassName}__club-wrapper`]: customClassName,
-          })}
-        >
-          <NavLink
-            to={'./'}
-            onClick={() => dispatch(setIsMenuOn(false))}
-            className={getLinkClass}
-          >
-            {t('navigation.collectors_club')}
-          </NavLink>
-          <button
-            className={classNames('nav__club-button', {
-              [`${customClassName}__club-button`]: customClassName,
-            })}
-          ></button>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <nav className={`nav ${customClassName}`}>
@@ -82,13 +53,62 @@ export const Navigation: React.FC<Props> = ({ customClassName, mode }) => {
         >
           {mode === 'header' ?
             <HeaderTooltip
-              renderButton={() => <ClubButton />}
+              renderButton={() => (
+                <div
+                  className={classNames('nav__club-big-button', {
+                    [`${customClassName}__club-big-button`]: customClassName,
+                  })}
+                >
+                  <div
+                    className={classNames('nav__club-wrapper', {
+                      'nav__club-wrapper--active':
+                        expHeader === 'club' && mode === 'header',
+                      [`${customClassName}__club-wrapper`]: customClassName,
+                    })}
+                  >
+                    <NavLink
+                      to={'./'}
+                      onClick={() => dispatch(setIsMenuOn(false))}
+                      className={getLinkClass}
+                    >
+                      {t('navigation.collectors_club')}
+                    </NavLink>
+                    <button
+                      className={classNames('nav__club-button', {
+                        [`${customClassName}__club-button`]: customClassName,
+                      })}
+                    ></button>
+                  </div>
+                </div>
+              )}
               renderContent={() => <ExpClub />}
               mode="club"
               customContentClassName="exp-club"
               customTooltipClassName="exp-club__tooltip"
             />
-          : <ClubButton />}
+          : <Dropdown
+              buttonArea="arrow"
+              buttonTitle={() => (
+                <NavLink
+                  to={'./'}
+                  onClick={() => dispatch(setIsMenuOn(false))}
+                  className={getLinkClass}
+                >
+                  {t('navigation.collectors_club')}
+                </NavLink>
+              )}
+              renderContent={() => (
+                <div
+                  className={classNames('menu__options menu__options--club')}
+                >
+                  <button className="menu__option">Виставки</button>
+                  <button className="menu__option">Статті</button>
+                  <button className="menu__option">Обговорення</button>
+                </div>
+              )}
+              customClassName="menu__dropdown"
+            />
+          }
         </li>
         <li
           className={classNames('nav__item', {
