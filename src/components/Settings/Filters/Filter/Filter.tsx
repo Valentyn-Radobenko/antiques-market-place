@@ -4,6 +4,9 @@ import classNames from 'classnames';
 import { Filters } from '../../../../types/filters';
 import { FilterItem } from './FilterItem/FilterItem';
 
+import SimpleBar from 'simplebar-react';
+import 'simplebar-react/dist/simplebar.min.css';
+
 type Props = {
   filter: Filters;
   setActiveFilter: Dispatch<SetStateAction<number | null>>;
@@ -73,12 +76,14 @@ export const Filter: React.FC<Props> = ({
             isActive: activeFilter === filter.id,
           })}
         >
-          {filter.filterType.map((filterItem) => (
-            <FilterItem
-              key={filterItem.id}
-              filterItem={filterItem}
-            />
-          ))}
+          <SimpleBar style={{ maxHeight: 100 }}>
+            {filter.filterType.map((filterItem) => (
+              <FilterItem
+                key={filterItem.id}
+                filterItem={filterItem}
+              />
+            ))}
+          </SimpleBar>
         </div>
       </div>
     </div>
