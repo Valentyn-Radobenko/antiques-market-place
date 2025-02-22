@@ -52,8 +52,17 @@ html * {
 
   padding-top: $header-height;
 
-  background-image: url('/images/Gradient\ top.png');
+  background-image: url('/images/background-laptop.png');
   background-position: center;
+  background-size: cover;
+
+  @include on-tablet {
+    background-image: url('/images/background-tablet.png');
+  }
+
+  @include on-phone {
+    background-image: url('/images/background-phone.png');
+  }
 }
 
 button {
