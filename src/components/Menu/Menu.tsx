@@ -153,7 +153,7 @@ export const Menu = () => {
                   onClick={() => dispatch(setIsMenuOn(!isMenuOn))}
                   to={'./me'}
                 >
-                  <div className="menu__dropdown">
+                  <div className="menu__dropdown-button">
                     <div className="menu__icon menu__icon--account--default"></div>
                     <p className="menu__dropdown-text">Акаунт</p>
                   </div>
