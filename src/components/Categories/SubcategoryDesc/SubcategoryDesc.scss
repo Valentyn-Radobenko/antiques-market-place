@@ -1,0 +1,15 @@
+.subcategory {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: (100% / 4);
+  height: 58px;
+  gap: 8px;
+
+  &__link {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
