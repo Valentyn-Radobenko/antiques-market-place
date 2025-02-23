@@ -50,7 +50,7 @@ html * {
 .main {
   @include standard-inline-paddings;
 
-  padding-top: $header-height;
+  padding-top: $header-height + 32px;
 
   background-image: url('/images/background-laptop.png');
   background-position: center;
