@@ -1,4 +1,4 @@
-.categories {
+.categories-descktop {
   @include on-tablet {
     display: none;
   }
@@ -72,22 +72,22 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    z-index: 123;
   }
-}
-
-.subcategory {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: (100% / 4);
-  height: 58px;
-  gap: 8px;
-
-  &__link {
-    height: 100%;
+  &__subcategory {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: (100% / 4);
+    height: 58px;
+    gap: 8px;
+
+    &-link {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 
@@ -126,10 +126,6 @@
   }
 
   &__list-container {
-    @include on-phone {
-      border-top-right-radius: 12px;
-      border-top-left-radius: 12px;
-    }
     padding-top: 56px;
     width: 60%;
     background-color: $background-page;
@@ -139,9 +135,13 @@
     gap: 16px;
 
     @include on-phone {
+      border-top-right-radius: 12px;
+      border-top-left-radius: 12px;
       order: 1;
       width: 100%;
-      height: 80%;
+      height: auto;
+      padding-bottom: 40px;
+      padding-top: 16px;
     }
   }
 
@@ -217,15 +217,19 @@
   &__item-items-container {
     overflow: hidden;
     position: relative;
-    transition: all $effect-duration ease;
   }
 
   &__item-items {
+    @include on-phone {
+      max-height: 300px;
+    }
+
     position: absolute;
     display: flex;
     flex-direction: column;
     padding-inline: 16px;
     opacity: 0;
+    transition: all $effect-duration ease;
 
     &.isActive {
       opacity: 1;

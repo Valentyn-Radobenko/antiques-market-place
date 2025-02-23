@@ -1,0 +1,32 @@
+.simplebar-track {
+  width: 40px !important;
+  opacity: 1;
+  background-color: #cbdbd9;
+}
+
+/* Ширина самого ползунка */
+.simplebar-scrollbar {
+  width: 8px !important;
+  left: 16px !important; /* Чтобы ползунок был по центру трека */
+
+  // transform: translateX(-50%) !important;
+}
+
+/* Ползунок (скроллбар) */
+.simplebar-scrollbar::before {
+  min-height: 50px;
+  // position: absolute;
+  width: 8px !important;
+  background: #adbdba !important; /* Цвет ползунка */
+  border-radius: 4px !important;
+}
+
+.simplebar-mask {
+  border-radius: inherit !important;
+}
+
+/* Трек (фон скроллбара) */
+.simplebar-track {
+  border-radius: inherit !important;
+  overflow: hidden !important; /* Чтобы края скролла тоже обрезались */
+}
