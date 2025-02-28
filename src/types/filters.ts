@@ -5,7 +5,7 @@ export type FilterType = {
   slug: string;
 };
 
-export type Filters = {
+export type FiltersType = {
   id: number;
   nameUa: string;
   nameEng: string;

@@ -5,25 +5,28 @@
   box-sizing: border-box;
 
   &__title {
+    color: $gray-dark;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1;
     margin: 16px;
+
+    &.isActive {
+      color: $additional-fresh-herb-icon;
+    }
   }
 
   &__link {
-    color: $gray-dark;
     @include main-text;
+
+    &.isActive {
+      @include button-semibold;
+    }
   }
 
   &__arrow {
-    color: $gray-dark;
-    transition: all ease 0.3s;
-
-    &:hover {
-      color: black;
-    }
+    transition: all ease $effect-duration;
 
     &.isActive-arrow {
       transform: rotate(180deg);
@@ -32,32 +35,8 @@
 
   &__container {
     overflow: hidden;
-    transition: all 3s ease;
+    transition: all $effect-duration ease;
     position: relative;
-    // height: 200px;
-    // overflow-y: auto;
-
-    // /* width */
-    // &::-webkit-scrollbar {
-    //   width: 24px;
-    //   // height: 40px;
-    // }
-
-    // /* Track */
-    // &::-webkit-scrollbar-track {
-    //   background: #f1f1f1;
-    //   width: 10px;
-    // }
-
-    // /* Handle */
-    // &::-webkit-scrollbar-thumb {
-    //   background: red;
-    // }
-
-    // /* Handle on hover */
-    // &::-webkit-scrollbar-thumb:hover {
-    //   background: #555;
-    // }
   }
 
   &__sub-options {
@@ -68,7 +47,7 @@
     left: 0;
     display: flex;
     flex-direction: column;
-    transition: all ease 3s;
+    transition: all ease $effect-duration;
     width: 100%;
 
     &.isActive {

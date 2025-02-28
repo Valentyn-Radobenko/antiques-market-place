@@ -2,38 +2,38 @@ import classNames from 'classnames';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import '../../../styles/scrollbar.scss';
-import { Category } from '../../../types/categories';
+import { SortType, SortingType } from '../../../types/sorting';
 
 type Props = {
-  category: Category;
-  activeCategory: Category | null;
-  toggleSub: (category: Category) => void;
+  sorting: SortingType;
+  activeSortType: number | null;
+  toggleSub: (category: SortType) => void;
 };
 
-export const CategoryMob: React.FC<Props> = ({
-  category,
-  activeCategory,
+export const SortingMob: React.FC<Props> = ({
+  sorting,
+  activeSortType,
   toggleSub,
 }) => {
   return (
     <div
-      className={classNames('category-mob', {
-        notActive: activeCategory && category.id !== activeCategory.id,
+      className={classNames('sorting-mob', {
+        notActive: activeSortType && sorting.id !== activeSortType,
       })}
     >
       <div
-        className={classNames('category-mob__title', {
-          isActive: activeCategory?.id === category.id,
+        className={classNames('sorting-mob__title', {
+          isActive: activeSortType === sorting.id,
         })}
       >
-        <p className="category-mob__link">{category.nameUa}</p>
+        <p className="sorting-mob__link">{sorting.nameUa}</p>
         <svg
-          className={classNames('category-mob__arrow', {
-            isActive: activeCategory?.id === category.id,
+          className={classNames('sorting-mob__arrow', {
+            isActive: activeSortType === sorting.id,
           })}
           width="24"
           onClick={() => {
-            toggleSub(category);
+            toggleSub(sorting);
           }}
           height="24"
           viewBox="0 0 24 24"
@@ -44,16 +44,16 @@ export const CategoryMob: React.FC<Props> = ({
         </svg>
       </div>
       <SimpleBar
-        className={classNames('category-mob__subcategories', {
-          isActive: category.id === activeCategory?.id,
+        className={classNames('sorting-mob__subcategories', {
+          isActive: sorting.id === activeSortType,
         })}
       >
-        {category.subcategories.map((subcategory) => (
+        {sorting.sortType.map((sortingItem) => (
           <p
-            className="category-mob__subcategory"
-            key={subcategory.id}
+            className="sorting-mob__subcategory"
+            key={sortingItem.id}
           >
-            {subcategory.nameUa}
+            {sortingItem.nameUa}
           </p>
         ))}
       </SimpleBar>

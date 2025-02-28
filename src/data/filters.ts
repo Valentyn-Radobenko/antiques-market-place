@@ -1,6 +1,6 @@
-import { Filters } from '../types/filters';
+import { FiltersType } from '../types/filters';
 
-export const filters: Filters[] = [
+export const filters: FiltersType[] = [
   {
     id: 1,
     nameUa: 'Країна',
@@ -24,6 +24,48 @@ export const filters: Filters[] = [
         nameUa: 'Італія',
         nameEng: 'Italy',
         slug: 'italy',
+      },
+      {
+        id: 4,
+        nameUa: 'Франція',
+        nameEng: 'France',
+        slug: 'france',
+      },
+      {
+        id: 5,
+        nameUa: 'Іспанія',
+        nameEng: 'Spain',
+        slug: 'spain',
+      },
+      {
+        id: 6,
+        nameUa: 'Великобританія',
+        nameEng: 'United Kingdom',
+        slug: 'united-kingdom',
+      },
+      {
+        id: 7,
+        nameUa: 'Польща',
+        nameEng: 'Poland',
+        slug: 'poland',
+      },
+      {
+        id: 8,
+        nameUa: 'Чехія',
+        nameEng: 'Czech Republic',
+        slug: 'czech-republic',
+      },
+      {
+        id: 9,
+        nameUa: 'Австрія',
+        nameEng: 'Austria',
+        slug: 'austria',
+      },
+      {
+        id: 10,
+        nameUa: 'Швеція',
+        nameEng: 'Sweden',
+        slug: 'sweden',
       },
     ],
   },

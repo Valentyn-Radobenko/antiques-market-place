@@ -1,14 +1,14 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
-import { SearchLink } from '../../../../utils/SearchLink';
+import { SearchLink } from '../../../utils/SearchLink';
 import classNames from 'classnames';
-import { Filters } from '../../../../types/filters';
-import { FilterItem } from './FilterItem/FilterItem';
+import { FiltersType } from '../../../types/filters';
+import { FilterItem } from '../FilterItem/FilterItem';
 
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 
 type Props = {
-  filter: Filters;
+  filter: FiltersType;
   setActiveFilter: Dispatch<SetStateAction<number | null>>;
   activeFilter: number | null;
 };
@@ -74,7 +74,7 @@ export const Filter: React.FC<Props> = ({
             isActive: activeFilter === filter.id,
           })}
         >
-          <SimpleBar style={{ maxHeight: 100 }}>
+          <SimpleBar style={{ maxHeight: 266 }}>
             {filter.filterType.map((filterItem) => (
               <FilterItem
                 key={filterItem.id}

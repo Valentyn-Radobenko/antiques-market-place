@@ -2,38 +2,39 @@ import classNames from 'classnames';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import '../../../styles/scrollbar.scss';
-import { Category } from '../../../types/categories';
+import { FiltersType } from '../../../types/filters';
 
 type Props = {
-  category: Category;
-  activeCategory: Category | null;
-  toggleSub: (category: Category) => void;
+  filter: FiltersType;
+  activeFilter: number | null;
+  toggleSub: (category: FiltersType) => void;
 };
 
-export const CategoryMob: React.FC<Props> = ({
-  category,
-  activeCategory,
+export const FilterMob: React.FC<Props> = ({
+  filter,
+  activeFilter,
   toggleSub,
 }) => {
   return (
     <div
-      className={classNames('category-mob', {
-        notActive: activeCategory && category.id !== activeCategory.id,
+      // key={filter.id}
+      className={classNames('filter-mob', {
+        notActive: activeFilter && filter.id !== activeFilter,
       })}
     >
       <div
-        className={classNames('category-mob__title', {
-          isActive: activeCategory?.id === category.id,
+        className={classNames('filter-mob__title', {
+          isActive: activeFilter === filter.id,
         })}
       >
-        <p className="category-mob__link">{category.nameUa}</p>
+        <p className="filter-mob__link">{filter.nameUa}</p>
         <svg
-          className={classNames('category-mob__arrow', {
-            isActive: activeCategory?.id === category.id,
+          className={classNames('filter-mob__arrow', {
+            isActive: activeFilter === filter.id,
           })}
           width="24"
           onClick={() => {
-            toggleSub(category);
+            toggleSub(filter);
           }}
           height="24"
           viewBox="0 0 24 24"
@@ -44,16 +45,16 @@ export const CategoryMob: React.FC<Props> = ({
         </svg>
       </div>
       <SimpleBar
-        className={classNames('category-mob__subcategories', {
-          isActive: category.id === activeCategory?.id,
+        className={classNames('filter-mob__subcategories', {
+          isActive: filter.id === activeFilter,
         })}
       >
-        {category.subcategories.map((subcategory) => (
+        {filter.filterType.map((filterItem) => (
           <p
-            className="category-mob__subcategory"
-            key={subcategory.id}
+            className="filter-mob__subcategory"
+            key={filterItem.id}
           >
-            {subcategory.nameUa}
+            {filterItem.nameUa}
           </p>
         ))}
       </SimpleBar>

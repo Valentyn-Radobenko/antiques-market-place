@@ -227,6 +227,7 @@ export const Categories = () => {
           />
         </svg>
       </div>
+
       {openCategories && (
         <div className="categories-mobile__container">
           <div className="categories-mobile__list-container">
