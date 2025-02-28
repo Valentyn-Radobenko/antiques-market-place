@@ -1,82 +1,55 @@
-.categories-descktop {
+.sortings {
+  display: flex;
+  flex-direction: column;
+  background: $background-plate-2;
+  width: 209px;
+  border-radius: 12px;
+
   @include on-tablet {
     display: none;
   }
 
-  border-radius: 12px;
-  position: relative;
-  background-color: white;
-
-  &.isActive {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  &__container {
+  &__top-bar {
     display: flex;
-    align-items: center;
-    height: 58px;
-    width: 100%;
-    justify-content: center;
+    justify-content: space-between;
+    margin: 16px;
   }
 
   &__title {
-    color: $gray-black;
-
-    position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
     gap: 8px;
-    height: 100%;
-    border-bottom: 1px solid $gray-stroke;
-
-    &:not(:first-child) {
-      border-left: 1px solid $gray-stroke;
-    }
-
-    &.isActive {
-      color: $additional-fresh-herb-icon;
-      &::after {
-        border-bottom: none;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        content: '';
-        width: 100%;
-        height: 1px;
-        background: $primary;
-      }
-    }
-
-    &.notActive {
-      color: $gray-darks;
-    }
   }
 
-  &__link {
-    @include main-text;
+  &__icon {
+    columns: $gray-black;
   }
 
-  // &__arrow {
-  // }
+  &__h {
+    @include h4-bold;
+    color: $gray-black;
+  }
 
-  &__subcategories {
-    position: absolute;
-    background-color: inherit;
-    z-index: 999;
-    padding-top: 24px;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-    width: 100%;
+  &__clear-button {
     display: flex;
-    flex-wrap: wrap;
-    z-index: 123;
+    align-items: center;
+  }
+
+  &__clear-icon {
+    color: $gray-lite;
+
+    &:hover {
+      color: $gray-black;
+    }
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
   }
 }
 
-.categories-mobile {
+.sortings-mobile {
   border-radius: 12px;
   display: none;
   @include on-tablet {

@@ -5,7 +5,7 @@ export type SortType = {
   slug: string;
 };
 
-export type Sorting = {
+export type SortingType = {
   id: number;
   nameUa: string;
   nameEng: string;

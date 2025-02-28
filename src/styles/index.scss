@@ -14,19 +14,24 @@
 @import '../components/Auth/Auth';
 @import '../components/Menu/Menu';
 @import '../components/Dropdown/Dropdown';
-
 @import '../pages/ExhibitionsPage/ExhibitionsPage';
 
+@import '../components/MarketItem/MarketItem.scss';
 @import '../components/Settings/Settings';
 @import '../components/Catalog/Catalog.scss';
-@import '../components/Settings/Filters/Filters.scss';
-@import '../components/Settings/Filters/Filter/Filter.scss';
-@import '../components/Settings/Filters/Filter/FilterItem/FilterItem.scss';
+@import '../components/Filters/Filters.scss';
+@import '../components/Filters/Filter/Filter.scss';
+@import '../components/Filters/FilterItem/FilterItem.scss';
+@import '../components/Filters/FilterMob/FilterMob.scss';
 @import '../pages/MarketPage/MarketPage.scss';
 @import '../components/MarketForm/MarketForm.scss';
-@import '../components/Settings/Sorting/Sorting.scss';
+@import '../components/Sortings/Sortings.scss';
+@import '../components/Sortings/SortingItem/SotingItme.scss';
+@import '../components/Sortings/SortingMob/SortingMob.scss';
+@import '../components/Sortings/Sorting/Sorting.scss';
 @import '../components/Categories/Categories.scss';
-@import '../components/MarketItem/MarketItem.scss';
+@import '../components/Categories/SubcategoryDesc/SubcategoryDesc.scss';
+@import '../components/Categories/CategoryMob/CategoryMob.scss';
 
 @import '../pages/ProfilePage/ProfilePage';
 

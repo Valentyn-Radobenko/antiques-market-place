@@ -1,5 +1,5 @@
-import { FilterType } from '../../../../../types/filters';
-import { SearchLink } from '../../../../../utils/SearchLink';
+import { FilterType } from '../../../types/filters';
+import { SearchLink } from '../../../utils/SearchLink';
 
 type Props = {
   filterItem: FilterType;

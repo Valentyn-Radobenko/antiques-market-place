@@ -1,14 +1,14 @@
-export type FilterType = {
+export type Subcategory = {
   id: number;
   nameUa: string;
   nameEng: string;
   slug: string;
 };
 
-export type FiltersType = {
+export type Category = {
   id: number;
   nameUa: string;
   nameEng: string;
   slug: string;
-  filterType: FilterType[];
+  subcategories: Subcategory[];
 };
