@@ -1,20 +1,29 @@
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { SearchLink } from '../../../utils/SearchLink';
 import classNames from 'classnames';
-import { Sorting } from '../../../../types/sorting';
-import { useEffect, useRef, useState } from 'react';
-import { SearchLink } from '../../../../utils/SearchLink';
+import SimpleBar from 'simplebar-react';
+import 'simplebar-react/dist/simplebar.min.css';
+import { SortingType } from '../../../types/sorting';
+import { SortingItem } from '../SortingItem/SortingItem';
 
 type Props = {
-  sorter: Sorting;
+  sorting: SortingType;
+  setActiveSortType: Dispatch<SetStateAction<number | null>>;
+  activeSortType: number | null;
 };
 
-export const SortType: React.FC<Props> = ({ sorter }) => {
-  const [activeSorterType, setActiveSorterType] = useState<number | null>(null);
+export const Sorting: React.FC<Props> = ({
+  sorting,
+  setActiveSortType,
+  activeSortType,
+}) => {
+  // const [activeSortTypeType, setActiveSortTypeType] = useState<number | null>(null);
   const [height, setHeight] = useState<number>(0);
   const toggleMenu = function () {
-    if (activeSorterType === sorter.id) {
-      setActiveSorterType(null);
+    if (activeSortType === sorting.id) {
+      setActiveSortType(null);
     } else {
-      setActiveSorterType(sorter.id);
+      setActiveSortType(sorting.id);
     }
   };
 
@@ -24,16 +33,16 @@ export const SortType: React.FC<Props> = ({ sorter }) => {
     if (heightItemRef.current) {
       setHeight(heightItemRef.current.clientHeight);
     }
-  }, [activeSorterType]);
+  }, [activeSortType]);
 
   return (
-    <div className="filter">
-      <div className="filter__title">
+    <div className="sorting">
+      <div className="sorting__title">
         <SearchLink
-          className="filter__link"
+          className="sorting__link"
           params={{}}
         >
-          {sorter.nameUa}
+          {sorting.nameUa}
         </SearchLink>
         <button
           onClick={() => {
@@ -41,8 +50,8 @@ export const SortType: React.FC<Props> = ({ sorter }) => {
           }}
         >
           <svg
-            className={classNames('filter__arrow', {
-              'isActive-arrow': activeSorterType === sorter.id,
+            className={classNames('sorting__arrow', {
+              'isActive-arrow': activeSortType === sorting.id,
             })}
             width="24"
             fill="currentColor"
@@ -55,22 +64,23 @@ export const SortType: React.FC<Props> = ({ sorter }) => {
         </button>
       </div>
       <div
-        className="filter__container"
-        style={{ height: activeSorterType === sorter.id ? height : 0 }}
+        className="sorting__container"
+        style={{ height: activeSortType === sorting.id ? height : 0 }}
       >
         <div
           ref={heightItemRef}
-          className={classNames('filter__sub-options', {
-            isActive: activeSorterType === sorter.id,
+          className={classNames('sorting__sub-options', {
+            isActive: activeSortType === sorting.id,
           })}
         >
-          {/* {sorter.filterType.map(filterItem => (
-            <FilterItem key={filterItem.id}
-              activeSorterType={activeSorterType}
-              setActiveSorterType={setActiveSorterType}
-              filterItem={filterItem}
-            />
-          ))} */}
+          <SimpleBar style={{ maxHeight: 266 }}>
+            {sorting.sortType.map((sortType) => (
+              <SortingItem
+                key={sortType.id}
+                sortType={sortType}
+              />
+            ))}
+          </SimpleBar>
         </div>
       </div>
     </div>

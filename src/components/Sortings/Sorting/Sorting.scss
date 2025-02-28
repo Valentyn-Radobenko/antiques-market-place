@@ -1,26 +1,32 @@
-.filteritem {
+.sorting {
   display: flex;
   flex-direction: column;
-  border-top: 1px gray solid;
-  background-color: lightgray;
+  border-top: 1px $gray-stroke solid;
+  box-sizing: border-box;
 
   &__title {
+    color: $gray-dark;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 1;
     margin: 16px;
+
+    &.isActive {
+      color: $additional-fresh-herb-icon;
+    }
   }
 
   &__link {
+    @include main-text;
+
+    &.isActive {
+      @include button-semibold;
+    }
   }
 
   &__arrow {
-    color: gray;
-    transition: all ease 0.3s;
-
-    &:hover {
-      color: black;
-    }
+    transition: all ease $effect-duration;
 
     &.isActive-arrow {
       transform: rotate(180deg);
@@ -29,27 +35,23 @@
 
   &__container {
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all $effect-duration ease;
     position: relative;
   }
 
-  &__items {
+  &__sub-options {
+    z-index: 0;
+    opacity: 0;
     position: absolute;
     top: 0;
     left: 0;
-    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    opacity: 0;
+    transition: all ease $effect-duration;
+    width: 100%;
 
     &.isActive {
       opacity: 1;
     }
-  }
-
-  &__item {
-    background-color: wheat;
-    padding: 16px;
-    border-top: 1px gray solid;
   }
 }

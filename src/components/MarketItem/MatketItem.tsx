@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Item } from '../Catalog/item';
+import { Item } from '../../types/item';
 
 type Props = {
   item: Item;
@@ -11,7 +11,7 @@ export const MarketItem: React.FC<Props> = ({ item }) => {
       <img
         className="market-item__img"
         src={item.img}
-        alt=""
+        alt="#"
       />
       <div className="market-item__text-info">
         <p className="market-item__text">{item.name}</p>

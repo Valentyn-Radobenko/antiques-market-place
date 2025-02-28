@@ -1,9 +1,9 @@
 import classNames from 'classnames';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import SimpleBar from 'simplebar-react';
-import 'simplebar-react/dist/simplebar.min.css';
-import '../../styles/scrollbar.scss';
+import { SubcategoryDesc } from './SubcategoryDesc/SubcategoryDesc';
+import { Category } from '../../types/categories';
+import { CategoryMob } from './CategoryMob/CategoryMob';
 
 const categories = [
   {
@@ -127,41 +127,17 @@ const categories = [
   },
 ];
 
-type Subcategory = {
-  id: number;
-  nameUa: string;
-  nameEng: string;
-  slug: string;
-};
-
-type Category = {
-  id: number;
-  nameUa: string;
-  nameEng: string;
-  slug: string;
-  subcategories: Subcategory[];
-};
-
 export const Categories = () => {
   const [activeCategory, setActiveCategory] = useState<Category | null>(null);
   const [openCategories, setOpenCategories] = useState<boolean>(false);
-  const [height, setHeight] = useState<number>(0);
-  const refHeight = useRef<HTMLDivElement | null>(null);
 
   const toggleSub = (current: Category) => {
-    setHeight(0);
     if (activeCategory?.id === current.id) {
       setActiveCategory(null);
     } else {
       setActiveCategory(current);
     }
   };
-
-  useEffect(() => {
-    if (refHeight.current) {
-      setHeight(refHeight.current.clientHeight);
-    }
-  }, [activeCategory]);
 
   useEffect(() => {
     if (openCategories) {
@@ -209,18 +185,11 @@ export const Categories = () => {
         </div>
         {activeCategory && (
           <div className="categories-descktop__subcategories">
-            {activeCategory?.subcategories.map((subcategory) => (
-              <div
+            {activeCategory.subcategories.map((subcategory) => (
+              <SubcategoryDesc
                 key={subcategory.id}
-                className="categories-descktop__subcategory"
-              >
-                <NavLink
-                  className="categories-descktop__subcategory-link"
-                  to={`/market/${subcategory.slug}`}
-                >
-                  {subcategory.nameUa}
-                </NavLink>
-              </div>
+                subcategory={subcategory}
+              />
             ))}
           </div>
         )}
@@ -258,6 +227,7 @@ export const Categories = () => {
           />
         </svg>
       </div>
+
       {openCategories && (
         <div className="categories-mobile__container">
           <div className="categories-mobile__list-container">
@@ -294,65 +264,12 @@ export const Categories = () => {
               </div>
               <div className="categories-mobile__list-items">
                 {categories.map((category) => (
-                  <div
+                  <CategoryMob
                     key={category.id}
-                    className={classNames(
-                      'categories-mobile__list-item-container',
-                      {
-                        notActive:
-                          activeCategory && category.id !== activeCategory.id,
-                      },
-                    )}
-                  >
-                    <div
-                      className={classNames('categories-mobile__item', {
-                        isActive: activeCategory?.id === category.id,
-                      })}
-                    >
-                      <p className="categories-mobile__item-name">
-                        {category.nameUa}
-                      </p>
-                      <svg
-                        className={classNames('categories-mobile__item-arrow', {
-                          isActive: activeCategory?.id === category.id,
-                        })}
-                        width="24"
-                        onClick={() => {
-                          toggleSub(category);
-                        }}
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M11.9991 14.3787C11.8918 14.3787 11.7925 14.3611 11.7011 14.3257C11.6098 14.2904 11.5208 14.2291 11.4341 14.1417L7.04512 9.75374C6.95179 9.66041 6.90179 9.54574 6.89512 9.40974C6.88845 9.27374 6.93845 9.15241 7.04512 9.04574C7.15179 8.93908 7.26979 8.88574 7.39912 8.88574C7.52845 8.88574 7.64645 8.93908 7.75312 9.04574L11.9991 13.2917L16.2451 9.04574C16.3385 8.95241 16.4535 8.90241 16.5901 8.89574C16.7255 8.88908 16.8465 8.93908 16.9531 9.04574C17.0598 9.15241 17.1131 9.27041 17.1131 9.39974C17.1131 9.52908 17.0598 9.64708 16.9531 9.75374L12.5641 14.1417C12.4775 14.2291 12.3885 14.2904 12.2971 14.3257C12.2065 14.3611 12.1071 14.3787 11.9991 14.3787Z" />
-                      </svg>
-                    </div>
-                    {/* {activeCategory && activeCategory.id === category.id && ( */}
-
-                    <div
-                      className="categories-mobile__item-items-container"
-                      style={{
-                        height: activeCategory?.id === category.id ? height : 0,
-                      }}
-                    >
-                      <SimpleBar
-                        className={classNames('categories-mobile__item-items', {
-                          isActive: category.id === activeCategory?.id,
-                        })}
-                      >
-                        {category.subcategories.map((subcategory) => (
-                          <p
-                            className="categories-mobile__item-item"
-                            key={subcategory.id}
-                          >
-                            {subcategory.nameUa}
-                          </p>
-                        ))}
-                      </SimpleBar>
-                    </div>
-                    {/* )} */}
-                  </div>
+                    category={category}
+                    activeCategory={activeCategory}
+                    toggleSub={toggleSub}
+                  />
                 ))}
               </div>
             </div>

@@ -1,6 +1,6 @@
-import { Sorting } from '../types/sorting';
+import { SortingType } from '../types/sorting';
 
-export const sorting: Sorting[] = [
+export const sortings: SortingType[] = [
   {
     id: 1,
     nameUa: 'За ціною',
@@ -10,13 +10,6 @@ export const sorting: Sorting[] = [
       { id: 1, nameUa: 'За зростанням', nameEng: 'Ascending', slug: 'asc' },
       { id: 2, nameUa: 'За спаданням', nameEng: 'Descending', slug: 'desc' },
     ],
-  },
-  {
-    id: 2,
-    nameUa: 'За новизною',
-    nameEng: 'By novelty',
-    slug: 'by-novelty',
-    sortType: [],
   },
   {
     id: 3,
