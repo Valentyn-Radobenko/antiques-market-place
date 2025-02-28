@@ -83,8 +83,6 @@
       height: auto;
       gap: 24px;
       align-items: flex-start;
-
-      padding-inline: 16px;
     }
 
     &__item {
@@ -93,6 +91,8 @@
 
     &__link {
       justify-content: left;
+
+      padding-left: 16px;
     }
 
     &__club {

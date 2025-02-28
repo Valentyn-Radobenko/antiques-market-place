@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { SavingState } from '../../../../store/store';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
 export const ExpClub: React.FC = () => {
   const isAuthenticated = useSelector(
@@ -14,7 +15,12 @@ export const ExpClub: React.FC = () => {
           'exp-club__buttons--not-auth': !isAuthenticated,
         })}
       >
-        <button className="exp-club__button">Виставки</button>
+        <Link
+          to={'club/exhibitions'}
+          className="exp-club__button"
+        >
+          Виставки
+        </Link>
         <button className="exp-club__button">Статті</button>
         <button className="exp-club__button">Обговорення</button>
       </div>

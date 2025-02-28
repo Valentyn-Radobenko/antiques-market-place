@@ -6,7 +6,7 @@ export const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__content">
-        <Link to={'./'}>
+        <Link to={'market'}>
           <div className="header__logo">
             <p className="header__logo-title-main">DIKO</p>
             <img

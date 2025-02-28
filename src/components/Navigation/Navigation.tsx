@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { HeaderTooltip } from '../Tooltip/HeaderTooltip';
@@ -22,7 +22,7 @@ export const Navigation: React.FC<Props> = ({ customClassName, mode }) => {
 
   const getLinkClass = ({ isActive }: { isActive: boolean }) =>
     classNames('nav__link', {
-      'nav__link--is-active': isActive && mode === 'header',
+      'nav__link--is-active': isActive,
       'nav--menu__link': mode === 'menu',
     });
 
@@ -40,7 +40,7 @@ export const Navigation: React.FC<Props> = ({ customClassName, mode }) => {
         >
           <NavLink
             onClick={() => dispatch(setIsMenuOn(false))}
-            to={'./market'}
+            to={'market'}
             className={getLinkClass}
           >
             {t('navigation.market')}
@@ -67,7 +67,7 @@ export const Navigation: React.FC<Props> = ({ customClassName, mode }) => {
                     })}
                   >
                     <NavLink
-                      to={'./'}
+                      to={'club'}
                       onClick={() => dispatch(setIsMenuOn(false))}
                       className={getLinkClass}
                     >
@@ -90,7 +90,7 @@ export const Navigation: React.FC<Props> = ({ customClassName, mode }) => {
               buttonArea="arrow"
               buttonTitle={() => (
                 <NavLink
-                  to={'./'}
+                  to={'club'}
                   onClick={() => dispatch(setIsMenuOn(false))}
                   className={getLinkClass}
                 >
@@ -101,7 +101,12 @@ export const Navigation: React.FC<Props> = ({ customClassName, mode }) => {
                 <div
                   className={classNames('menu__options menu__options--club')}
                 >
-                  <button className="menu__option">Виставки</button>
+                  <Link
+                    to={'club/exhibitions'}
+                    className="menu__option"
+                  >
+                    Виставки
+                  </Link>
                   <button className="menu__option">Статті</button>
                   <button className="menu__option">Обговорення</button>
                 </div>
@@ -117,7 +122,7 @@ export const Navigation: React.FC<Props> = ({ customClassName, mode }) => {
         >
           <NavLink
             onClick={() => dispatch(setIsMenuOn(false))}
-            to={'./expertise'}
+            to={'expertise'}
             className={getLinkClass}
           >
             {t('navigation.expertise')}

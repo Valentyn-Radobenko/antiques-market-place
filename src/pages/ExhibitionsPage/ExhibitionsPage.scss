@@ -1,0 +1,44 @@
+.exhibitions {
+  &__nav-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+  }
+
+  &__crumbs {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    padding: 8px 4px;
+
+    &-link {
+      @include main-text;
+
+      &--inactive {
+        color: $gray-dis;
+      }
+
+      &--active {
+        color: $additional-black-green;
+      }
+    }
+
+    &-chevron {
+      width: 24px;
+      height: 24px;
+      background-image: url('/images/bread-crumbs/chevron-right.svg');
+      margin-left: 4px;
+      margin-right: 8px;
+    }
+  }
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+  }
+}
