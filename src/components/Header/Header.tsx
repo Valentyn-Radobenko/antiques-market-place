@@ -54,7 +54,7 @@ export const Header = () => {
         })}
       >
         <div className="header__container">
-          <Link to={'./'}>
+          <Link to={'market'}>
             <div className="header__logo">
               <p className="header__logo-title-main">DIKO</p>
               <img
@@ -196,7 +196,7 @@ export const Header = () => {
                     onMouseLeave={() => {
                       dispatch(setExpHeader(null));
                     }}
-                    to={'./me'}
+                    to={'me'}
                     className={getAccountLinkClass}
                   ></NavLink>
                 </div>

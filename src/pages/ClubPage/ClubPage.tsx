@@ -3,7 +3,7 @@ import { ArticlesSlider } from '../../components/Sliders/ArticlesSlider';
 import { DiscussionsSlider } from '../../components/Sliders/DiscussionsSlider';
 import { ClubHero } from '../../components/ClubHero/ClubHero';
 
-export const HomePage = () => {
+export const ClubPage = () => {
   return (
     <>
       <ClubHero />

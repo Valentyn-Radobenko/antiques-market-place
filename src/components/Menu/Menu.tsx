@@ -36,7 +36,7 @@ export const Menu = () => {
         <div className="menu__top-bar">
           <Link
             onClick={() => dispatch(setIsMenuOn(!isMenuOn))}
-            to={'./'}
+            to={'market'}
           >
             <div className="menu__logo">
               <p className="menu__logo-title-main">DIKO</p>
@@ -151,7 +151,7 @@ export const Menu = () => {
               {isAuthenticated ?
                 <Link
                   onClick={() => dispatch(setIsMenuOn(!isMenuOn))}
-                  to={'./me'}
+                  to={'me'}
                 >
                   <div className="menu__dropdown-button">
                     <div className="menu__icon menu__icon--account--default"></div>

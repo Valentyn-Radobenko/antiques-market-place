@@ -178,7 +178,7 @@ export const Auth: React.FC = () => {
         if (response.status === 200) {
           dispatch(login(response.data.token));
           await dispatch(fetchUserData());
-          navigate('/me');
+          navigate('me');
           dispatch(setAuthMode(null));
         }
       } catch (error) {

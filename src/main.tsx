@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import './styles/index.scss';
 import { App } from './App';
-import { HomePage } from './pages/ClubPage/ClubPage';
+import { ClubPage } from './pages/ClubPage/ClubPage';
 import { MarketPage } from './pages/MarketPage/MarketPage';
 import { ExpertisePage } from './pages/ExpertisePage/ExpertisePage';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage';
@@ -12,6 +12,7 @@ import { StrictMode } from 'react';
 import './i18n/i18n';
 import { ProfilePage } from './pages/ProfilePage/ProfilePage';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import { ExhibitionsPage } from './pages/ExhibitionsPage/ExhibitionsPage';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <StrictMode>
@@ -24,29 +25,35 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
           >
             <Route
               index
-              element={<HomePage />}
+              element={<MarketPage />}
             />
-            <Route path="/market">
-              <Route
-                index
-                element={<MarketPage />}
-              />
+
+            <Route path="market">
+              <Route element={<MarketPage />} />
               <Route
                 path=":slug?"
                 element={<MarketPage />}
               />
             </Route>
-            {/* <Route
-              path="/market"
-              element={<MarketPage />}
-            /> */}
+
             <Route
-              path="/expertise"
+              path="club"
+              element={<ClubPage />}
+            />
+
+            <Route
+              path="club/exhibitions"
+              element={<ExhibitionsPage />}
+            />
+
+            <Route
+              path="expertise"
               element={<ExpertisePage />}
             />
+
             <Route element={<PrivateRoute />}>
               <Route
-                path="/me"
+                path="me"
                 element={<ProfilePage />}
               />
             </Route>
