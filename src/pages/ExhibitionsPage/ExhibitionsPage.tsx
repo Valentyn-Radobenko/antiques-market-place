@@ -26,7 +26,7 @@ export const ExhibitionsPage = () => {
             <ul className="exhibitions__sections-list">
               <li className="exhibitions__sections-item">
                 <NavLink
-                  to={'all'}
+                  to={'/club/exhibitions/all'}
                   className="exhibitions__sections-link"
                 >
                   Всі виставки
