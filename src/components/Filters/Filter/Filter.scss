@@ -11,16 +11,11 @@
     align-items: center;
     z-index: 1;
     margin: 16px;
+    @include main-text;
+    cursor: pointer;
 
     &.isActive {
       color: $additional-fresh-herb-icon;
-    }
-  }
-
-  &__link {
-    @include main-text;
-
-    &.isActive {
       @include button-semibold;
     }
   }
@@ -28,7 +23,8 @@
   &__arrow {
     transition: all ease $effect-duration;
 
-    &.isActive-arrow {
+    &.isActive {
+      color: $additional-fresh-herb-icon;
       transform: rotate(180deg);
     }
   }
@@ -53,5 +49,10 @@
     &.isActive {
       opacity: 1;
     }
+  }
+
+  &__simplebar-box {
+    padding-right: 24px;
+    background-color: $gray-white;
   }
 }

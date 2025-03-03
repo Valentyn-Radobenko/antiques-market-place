@@ -3,6 +3,7 @@ import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import '../../../styles/scrollbar.scss';
 import { FiltersType } from '../../../types/filters';
+import { FilterItem } from '../FilterItem/FilterItem';
 
 type Props = {
   filter: FiltersType;
@@ -17,25 +18,24 @@ export const FilterMob: React.FC<Props> = ({
 }) => {
   return (
     <div
-      // key={filter.id}
-      className={classNames('filter-mob', {
+      className={classNames('setting-mob', {
         notActive: activeFilter && filter.id !== activeFilter,
       })}
     >
       <div
-        className={classNames('filter-mob__title', {
+        className={classNames('setting-mob__title', {
           isActive: activeFilter === filter.id,
         })}
+        onClick={() => {
+          toggleSub(filter);
+        }}
       >
-        <p className="filter-mob__link">{filter.nameUa}</p>
+        <p className="setting-mob__link">{filter.nameUa}</p>
         <svg
-          className={classNames('filter-mob__arrow', {
+          className={classNames('setting-mob__arrow', {
             isActive: activeFilter === filter.id,
           })}
           width="24"
-          onClick={() => {
-            toggleSub(filter);
-          }}
           height="24"
           viewBox="0 0 24 24"
           fill="currentColor"
@@ -45,18 +45,19 @@ export const FilterMob: React.FC<Props> = ({
         </svg>
       </div>
       <SimpleBar
-        className={classNames('filter-mob__subcategories', {
+        className={classNames('setting-mob__subcategories', {
           isActive: filter.id === activeFilter,
         })}
       >
-        {filter.filterType.map((filterItem) => (
-          <p
-            className="filter-mob__subcategory"
-            key={filterItem.id}
-          >
-            {filterItem.nameUa}
-          </p>
-        ))}
+        <div className="setting-mob__simplebar-box">
+          {filter.filterType.map((filterItem) => (
+            <FilterItem
+              key={filterItem.id}
+              filterItem={filterItem}
+              filterParam={filter.slug}
+            />
+          ))}
+        </div>
       </SimpleBar>
     </div>
   );

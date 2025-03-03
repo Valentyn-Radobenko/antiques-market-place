@@ -5,7 +5,7 @@
 
   border-radius: 12px;
   position: relative;
-  background-color: white;
+  background-color: $background-page;
 
   &.isActive {
     border-bottom-right-radius: 0;
@@ -30,7 +30,6 @@
     width: 100%;
     gap: 8px;
     height: 100%;
-    border-bottom: 1px solid $gray-stroke;
 
     &:not(:first-child) {
       border-left: 1px solid $gray-stroke;
@@ -38,6 +37,8 @@
 
     &.isActive {
       color: $additional-fresh-herb-icon;
+      @include button-semibold;
+
       &::after {
         border-bottom: none;
         position: absolute;
@@ -52,6 +53,7 @@
 
     &.notActive {
       color: $gray-darks;
+      border-bottom: 1px solid $gray-stroke;
     }
   }
 
@@ -76,91 +78,113 @@
   }
 }
 
-.categories-mobile {
-  border-radius: 12px;
-  display: none;
-  @include on-tablet {
-    display: flex;
-  }
+// .categories-mobile {
+//   border-radius: 12px;
+//   display: none;
+//   flex-grow: 1;
+//   justify-content: space-between;
+//   align-items: center;
+//   // height: 56px;
+//   padding: 16px;
+//   border-bottom: 1px solid $gray-stroke;
+//   // padding-inline: 16px;
 
-  flex-grow: 1;
-  justify-content: space-between;
-  align-items: center;
-  height: 56px;
-  border-bottom: 1px solid $gray-stroke;
-  padding-inline: 16px;
-  &__title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+//   @include on-tablet {
+//     display: flex;
+//   }
 
-  &__container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    opacity: 100%;
-    z-index: 10000000;
-    display: flex;
+//   @include on-phone {
+//     display: block;
+//     padding: 8px;
+//   }
 
-    @include on-phone {
-      flex-direction: column;
-    }
-  }
+//   &__icon {
+//     @include on-phone {
+//       display: none;
+//     }
+//   }
 
-  &__list-container {
-    padding-top: 56px;
-    width: 60%;
-    background-color: $background-page;
-    backdrop-filter: blur(5px);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+//   &__title {
+//     display: flex;
+//     align-items: center;
+//     gap: 8px;
 
-    @include on-phone {
-      border-top-right-radius: 12px;
-      border-top-left-radius: 12px;
-      order: 1;
-      width: 100%;
-      height: auto;
-      padding-bottom: 40px;
-      padding-top: 16px;
-    }
-  }
+//     @include on-phone {
+//       flex-direction: column;
+//       gap: 4px;
+//     }
+//   }
 
-  &__close {
-    margin-right: 16px;
-    align-self: flex-end;
-    cursor: pointer;
-  }
+//   &__h4 {
+//     @include h4-bold;
+//   }
 
-  &__list {
-    border-top-right-radius: 12px;
-    border-top-left-radius: 12px;
-    background-color: $gray-white;
+//   &__container {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     width: 100vw;
+//     height: 100vh;
+//     opacity: 100%;
+//     z-index: 10000000;
+//     display: flex;
 
-    &-title {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      height: 56px;
-      padding-inline: 16px;
-    }
-    &-h {
-      @include h4-bold;
-    }
+//     @include on-phone {
+//       flex-direction: column;
+//     }
+//   }
 
-    &-items {
-      display: flex;
-      flex-direction: column;
-    }
-  }
+//   &__list-container {
+//     padding-top: 56px;
+//     width: 60%;
+//     background-color: $background-page;
+//     backdrop-filter: blur(5px);
+//     display: flex;
+//     flex-direction: column;
+//     gap: 16px;
 
-  &__backdrop {
-    background-color: gray;
-    opacity: 50%;
-    flex-grow: 1;
-  }
-}
+//     @include on-phone {
+//       border-top-right-radius: 12px;
+//       border-top-left-radius: 12px;
+//       order: 1;
+//       width: 100%;
+//       height: auto;
+//       padding-bottom: 40px;
+//       padding-top: 16px;
+//     }
+//   }
+
+//   &__close {
+//     margin-right: 16px;
+//     align-self: flex-end;
+//     cursor: pointer;
+//   }
+
+//   &__list {
+//     border-top-right-radius: 12px;
+//     border-top-left-radius: 12px;
+//     background-color: $gray-white;
+
+//     &-title {
+//       display: flex;
+//       gap: 8px;
+//       align-items: center;
+//       height: 56px;
+//       padding-inline: 16px;
+//     }
+//     &-h {
+//       @include h4-bold;
+//     }
+
+//     &-items {
+//       display: flex;
+//       flex-direction: column;
+//     }
+//   }
+
+//   &__backdrop {
+//     background-color: $background-sklo-bag;
+//     opacity: 50%;
+//     flex-grow: 1;
+//   }
+// }

@@ -3,6 +3,7 @@ import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import '../../../styles/scrollbar.scss';
 import { Category } from '../../../types/categories';
+import { CatygoryItem } from '../CatygoryItem/CatygoryItem';
 
 type Props = {
   category: Category;
@@ -17,18 +18,18 @@ export const CategoryMob: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className={classNames('category-mob', {
+      className={classNames('setting-mob', {
         notActive: activeCategory && category.id !== activeCategory.id,
       })}
     >
       <div
-        className={classNames('category-mob__title', {
+        className={classNames('setting-mob__title', {
           isActive: activeCategory?.id === category.id,
         })}
       >
-        <p className="category-mob__link">{category.nameUa}</p>
+        <p className="setting-mob__link">{category.nameUa}</p>
         <svg
-          className={classNames('category-mob__arrow', {
+          className={classNames('setting-mob__arrow', {
             isActive: activeCategory?.id === category.id,
           })}
           width="24"
@@ -44,18 +45,18 @@ export const CategoryMob: React.FC<Props> = ({
         </svg>
       </div>
       <SimpleBar
-        className={classNames('category-mob__subcategories', {
+        className={classNames('setting-mob__subcategories', {
           isActive: category.id === activeCategory?.id,
         })}
       >
-        {category.subcategories.map((subcategory) => (
-          <p
-            className="category-mob__subcategory"
-            key={subcategory.id}
-          >
-            {subcategory.nameUa}
-          </p>
-        ))}
+        <div className="setting-mob__simplebar-box">
+          {category.subcategories.map((subcategory) => (
+            <CatygoryItem
+              key={subcategory.id}
+              subcategory={subcategory}
+            />
+          ))}
+        </div>
       </SimpleBar>
     </div>
   );
