@@ -1,6 +1,11 @@
 .simplebar-track {
   width: 24px !important;
   opacity: 1;
+
+  @media (max-width: 1439px) {
+    width: 40px !important;
+  }
+
   background-image: linear-gradient(
     286deg,
     rgba(198, 223, 211, 0.24) 15.68%,
@@ -12,14 +17,17 @@
 /* Ширина самого ползунка */
 .simplebar-scrollbar {
   width: 8px !important;
-  left: 5px !important; /* Чтобы ползунок был по центру трека */
+  left: 5px !important;
+  @media (max-width: 1439px) {
+    left: 14px !important;
+  }
 }
 
-/* Ползунок (скроллбар) */
+/* Ползунок (скролбар) */
 .simplebar-scrollbar::before {
   min-height: 50px;
   width: 8px !important;
-  background: #b9ccc9 !important; /* Цвет ползунка */
+  background: #b9ccc9 !important;
   border-radius: 4px !important;
 }
 
@@ -30,5 +38,5 @@
 /* Трек (фон скроллбара) */
 .simplebar-track {
   border-radius: inherit !important;
-  overflow: hidden !important; /* Чтобы края скролла тоже обрезались */
+  overflow: hidden !important;
 }

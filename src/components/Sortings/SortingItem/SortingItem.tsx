@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { SortType } from '../../../types/sorting';
 import { SearchLink } from '../../../utils/SearchLink';
 
@@ -7,15 +8,13 @@ type Props = {
 
 export const SortingItem: React.FC<Props> = ({ sortType }) => {
   return (
-    <div className="sortingitem">
-      <div className="sortingitem__title">
-        <SearchLink
-          className="sortingitem__link"
-          params={{}}
-        >
-          {sortType.nameUa}
-        </SearchLink>
-      </div>
-    </div>
+    <SearchLink
+      params={{ sort: sortType.slug }}
+      className={classNames('setting-item sorting-item', {
+        isActive: false,
+      })}
+    >
+      {sortType.nameUa}
+    </SearchLink>
   );
 };

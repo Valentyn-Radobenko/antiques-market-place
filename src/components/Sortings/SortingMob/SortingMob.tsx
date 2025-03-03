@@ -3,6 +3,7 @@ import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import '../../../styles/scrollbar.scss';
 import { SortType, SortingType } from '../../../types/sorting';
+import { SortingItem } from '../SortingItem/SortingItem';
 
 type Props = {
   sorting: SortingType;
@@ -17,18 +18,18 @@ export const SortingMob: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className={classNames('sorting-mob', {
+      className={classNames('setting-mob', {
         notActive: activeSortType && sorting.id !== activeSortType,
       })}
     >
       <div
-        className={classNames('sorting-mob__title', {
+        className={classNames('setting-mob__title', {
           isActive: activeSortType === sorting.id,
         })}
       >
-        <p className="sorting-mob__link">{sorting.nameUa}</p>
+        <p className="setting-mob__link">{sorting.nameUa}</p>
         <svg
-          className={classNames('sorting-mob__arrow', {
+          className={classNames('setting-mob__arrow', {
             isActive: activeSortType === sorting.id,
           })}
           width="24"
@@ -44,18 +45,18 @@ export const SortingMob: React.FC<Props> = ({
         </svg>
       </div>
       <SimpleBar
-        className={classNames('sorting-mob__subcategories', {
+        className={classNames('setting-mob__subcategories', {
           isActive: sorting.id === activeSortType,
         })}
       >
-        {sorting.sortType.map((sortingItem) => (
-          <p
-            className="sorting-mob__subcategory"
-            key={sortingItem.id}
-          >
-            {sortingItem.nameUa}
-          </p>
-        ))}
+        <div className="setting-mob__simplebar-box">
+          {sorting.sortType.map((sortingItem) => (
+            <SortingItem
+              key={sortingItem.id}
+              sortType={sortingItem}
+            />
+          ))}
+        </div>
       </SimpleBar>
     </div>
   );
