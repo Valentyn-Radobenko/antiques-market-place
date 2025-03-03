@@ -1,55 +1,17 @@
-.filteritem {
-  display: flex;
-  flex-direction: column;
-  // border-top: 1px gray solid;
-  background-color: $gray-white;
-
-  &__title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 16px;
+.filter-item {
+  &::after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background-position: center;
+    background-image: url('public/images/icons/checkBoxSq.svg');
   }
 
-  &__link {
+  &:hover::after {
+    background-image: url('public/images/icons/checkBoxSqHover.svg');
   }
 
-  &__arrow {
-    color: gray;
-    transition: all ease 0.3s;
-
-    &:hover {
-      color: black;
-    }
-
-    &.isActive-arrow {
-      transform: rotate(180deg);
-    }
-  }
-
-  &__container {
-    overflow: hidden;
-    transition: all 0.3s ease;
-    position: relative;
-  }
-
-  &__items {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
-
-    &.isActive {
-      opacity: 1;
-    }
-  }
-
-  &__item {
-    background-color: wheat;
-    padding: 16px;
-    border-top: 1px gray solid;
+  &.isActive::after {
+    background-image: url('public/images/icons/checkBoxSqApply.svg');
   }
 }

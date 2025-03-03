@@ -38,21 +38,19 @@ export const Filter: React.FC<Props> = ({
 
   return (
     <div className="filter">
-      <div className="filter__title">
-        <SearchLink
-          className="filter__link"
-          params={{}}
-        >
-          {filter.nameUa}
-        </SearchLink>
-        <button
-          onClick={() => {
-            toggleMenu();
-          }}
-        >
+      <div
+        className={classNames('filter__title', {
+          isActive: activeFilter === filter.id,
+        })}
+        onClick={() => {
+          toggleMenu();
+        }}
+      >
+        <SearchLink params={{}}>{filter.nameUa}</SearchLink>
+        <button>
           <svg
             className={classNames('filter__arrow', {
-              'isActive-arrow': activeFilter === filter.id,
+              isActive: activeFilter === filter.id,
             })}
             width="24"
             fill="currentColor"
@@ -75,12 +73,15 @@ export const Filter: React.FC<Props> = ({
           })}
         >
           <SimpleBar style={{ maxHeight: 266 }}>
-            {filter.filterType.map((filterItem) => (
-              <FilterItem
-                key={filterItem.id}
-                filterItem={filterItem}
-              />
-            ))}
+            <div className="filter__simplebar-box">
+              {filter.filterType.map((filterItem) => (
+                <FilterItem
+                  key={filterItem.id}
+                  filterItem={filterItem}
+                  filterParam={filter.slug}
+                />
+              ))}
+            </div>
           </SimpleBar>
         </div>
       </div>

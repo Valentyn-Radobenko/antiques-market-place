@@ -1,21 +1,24 @@
+import classNames from 'classnames';
 import { SortType } from '../../../types/sorting';
 import { SearchLink } from '../../../utils/SearchLink';
+import { useSearchParams } from 'react-router-dom';
 
 type Props = {
   sortType: SortType;
 };
 
 export const SortingItem: React.FC<Props> = ({ sortType }) => {
+  const [searchParams] = useSearchParams();
+  const sort = searchParams.get('sort') || '';
+
   return (
-    <div className="sortingitem">
-      <div className="sortingitem__title">
-        <SearchLink
-          className="sortingitem__link"
-          params={{}}
-        >
-          {sortType.nameUa}
-        </SearchLink>
-      </div>
-    </div>
+    <SearchLink
+      params={{ sort: sortType.slug }}
+      className={classNames('setting-item sorting-item', {
+        isActive: sort === sortType.slug,
+      })}
+    >
+      {sortType.nameUa}
+    </SearchLink>
   );
 };
