@@ -112,7 +112,7 @@ export const Sortings = () => {
                 fill="black"
               />
             </svg>
-            <div className="settings-mobile__list">
+            <div className="settings-mobile__list gray">
               <div className="settings-mobile__list-title-container">
                 <div className="settings-mobile__list-title">
                   <svg
