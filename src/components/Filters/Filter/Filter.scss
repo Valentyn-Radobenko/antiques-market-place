@@ -52,7 +52,10 @@
   }
 
   &__simplebar-box {
-    padding-right: 24px;
     background-color: $gray-white;
+
+    &.simplebarPadding {
+      padding-right: 24px;
+    }
   }
 }

@@ -4,6 +4,7 @@ import 'simplebar-react/dist/simplebar.min.css';
 import '../../../styles/scrollbar.scss';
 import { Category } from '../../../types/categories';
 import { CatygoryItem } from '../CatygoryItem/CatygoryItem';
+import { useEffect, useRef, useState } from 'react';
 
 type Props = {
   category: Category;
@@ -11,11 +12,21 @@ type Props = {
   toggleSub: (category: Category) => void;
 };
 
+const MAXHEIGHT = 416;
+
 export const CategoryMob: React.FC<Props> = ({
   category,
   activeCategory,
   toggleSub,
 }) => {
+  const [height, setHeight] = useState<number>(0);
+  const refSimplebarHeight = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (refSimplebarHeight.current) {
+      setHeight(refSimplebarHeight.current?.clientHeight);
+    }
+  }, [activeCategory]);
   return (
     <div
       className={classNames('setting-mob', {
@@ -49,7 +60,12 @@ export const CategoryMob: React.FC<Props> = ({
           isActive: category.id === activeCategory?.id,
         })}
       >
-        <div className="setting-mob__simplebar-box">
+        <div
+          ref={refSimplebarHeight}
+          className={classNames('setting-mob__simplebar-box', {
+            simplebarPadding: MAXHEIGHT < height,
+          })}
+        >
           {category.subcategories.map((subcategory) => (
             <CatygoryItem
               key={subcategory.id}

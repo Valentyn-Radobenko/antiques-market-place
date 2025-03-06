@@ -14,7 +14,8 @@
     align-items: center;
 
     &:hover {
-      background-color: $additional-white-green;
+      @include button-semibold;
+      color: $additional-fresh-herb-icon;
     }
   }
 }

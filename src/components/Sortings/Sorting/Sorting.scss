@@ -53,5 +53,10 @@
     &.isActive {
       opacity: 1;
     }
+
+    &__simplebar-box {
+      padding-right: 24px;
+      background-color: $gray-white;
+    }
   }
 }

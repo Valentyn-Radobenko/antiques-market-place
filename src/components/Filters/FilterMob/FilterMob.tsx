@@ -4,6 +4,7 @@ import 'simplebar-react/dist/simplebar.min.css';
 import '../../../styles/scrollbar.scss';
 import { FiltersType } from '../../../types/filters';
 import { FilterItem } from '../FilterItem/FilterItem';
+import { useEffect, useRef, useState } from 'react';
 
 type Props = {
   filter: FiltersType;
@@ -11,11 +12,21 @@ type Props = {
   toggleSub: (category: FiltersType) => void;
 };
 
+const MAXHEIGHT = 416;
+
 export const FilterMob: React.FC<Props> = ({
   filter,
   activeFilter,
   toggleSub,
 }) => {
+  const [height, setHeight] = useState<number>(0);
+  const refSimplebarHeight = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (refSimplebarHeight.current) {
+      setHeight(refSimplebarHeight.current?.clientHeight);
+    }
+  }, [activeFilter]);
   return (
     <div
       className={classNames('setting-mob', {
@@ -45,11 +56,17 @@ export const FilterMob: React.FC<Props> = ({
         </svg>
       </div>
       <SimpleBar
+        style={{ maxHeight: MAXHEIGHT }}
         className={classNames('setting-mob__subcategories', {
           isActive: filter.id === activeFilter,
         })}
       >
-        <div className="setting-mob__simplebar-box">
+        <div
+          ref={refSimplebarHeight}
+          className={classNames('setting-mob__simplebar-box', {
+            simplebarPadding: MAXHEIGHT < height,
+          })}
+        >
           {filter.filterType.map((filterItem) => (
             <FilterItem
               key={filterItem.id}

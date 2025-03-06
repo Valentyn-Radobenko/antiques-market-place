@@ -13,6 +13,8 @@ type Props = {
   activeFilter: number | null;
 };
 
+const MAXHEIGHT = 266;
+
 export const Filter: React.FC<Props> = ({
   filter,
   setActiveFilter,
@@ -20,6 +22,8 @@ export const Filter: React.FC<Props> = ({
 }) => {
   // const [activeFilterType, setActiveFilterType] = useState<number | null>(null);
   const [height, setHeight] = useState<number>(0);
+  const [scrollHeight, seScrollHeight] = useState<number>(0);
+
   const toggleMenu = function () {
     if (activeFilter === filter.id) {
       setActiveFilter(null);
@@ -29,10 +33,14 @@ export const Filter: React.FC<Props> = ({
   };
 
   const heightItemRef = useRef<HTMLDivElement | null>(null);
+  const refScrollWidth = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (heightItemRef.current) {
       setHeight(heightItemRef.current.clientHeight);
+    }
+    if (refScrollWidth.current) {
+      seScrollHeight(refScrollWidth.current.clientHeight);
     }
   }, [activeFilter]);
 
@@ -73,7 +81,12 @@ export const Filter: React.FC<Props> = ({
           })}
         >
           <SimpleBar style={{ maxHeight: 266 }}>
-            <div className="filter__simplebar-box">
+            <div
+              ref={refScrollWidth}
+              className={classNames('filter__simplebar-box', {
+                simplebarPadding: scrollHeight > MAXHEIGHT,
+              })}
+            >
               {filter.filterType.map((filterItem) => (
                 <FilterItem
                   key={filterItem.id}
