@@ -1,30 +1,39 @@
-import infoOutline from '/images/expertise/info-outline.svg';
-import examplePhoto from '/images/expertise/Photo.png';
-import { Tooltip } from '../../components/Tooltip/Tooltip';
-import { useTranslation } from 'react-i18next';
+// import infoOutline from '/images/expertise/info-outline.svg';
+// import examplePhoto from '/images/expertise/Photo.png';
+// import { Tooltip } from '../../components/Tooltip/Tooltip';
+// import { useTranslation } from 'react-i18next';
+import { HowToExpertise } from './HowToExpertise/HowToExpertise';
 
 export const ExpertisePage = () => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
-  const tooltipList = t('expertise.heading.tooltip.list', {
-    returnObjects: true,
-  }) as string[];
-  const stepsList = t('expertise.steps.list', { returnObjects: true }) as {
-    title: string;
-    text: string;
-  }[];
-  const optionsList = t('expertise.options.list', { returnObjects: true }) as {
-    header: string;
-    details: {
-      what: { label: string; description: string[] };
-      price: { label: string; description: string | string[] };
-      owner?: { label: string; description: string[] };
-    };
-    button: string;
-  }[];
+  // const tooltipList = t('expertise.heading.tooltip.list', {
+  //   returnObjects: true,
+  // }) as string[];
+  // const stepsList = t('expertise.steps.list', { returnObjects: true }) as {
+  //   title: string;
+  //   text: string;
+  // }[];
+  // const optionsList = t('expertise.options.list', { returnObjects: true }) as {
+  //   header: string;
+  //   details: {
+  //     what: { label: string; description: string[] };
+  //     price: { label: string; description: string | string[] };
+  //     owner?: { label: string; description: string[] };
+  //   };
+  //   button: string;
+  // }[];
 
   return (
-    <section className="expertise">
+    <div className="experise">
+      <h1 className="expertise__header">Оцінювання та експертиза лотів</h1>
+      <HowToExpertise />
+    </div>
+  );
+};
+
+{
+  /* <section className="expertise">
       <div className="expertise__heading">
         <h2 className="expertise__heading-text">
           {t('expertise.heading.title')}
@@ -160,6 +169,5 @@ export const ExpertisePage = () => {
           ))}
         </div>
       </article>
-    </section>
-  );
-};
+    </section> */
+}

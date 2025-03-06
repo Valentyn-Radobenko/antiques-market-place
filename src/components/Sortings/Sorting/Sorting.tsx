@@ -12,6 +12,8 @@ type Props = {
   activeSortType: number | null;
 };
 
+const MAXHEIGHT = 266;
+
 export const Sorting: React.FC<Props> = ({
   sorting,
   setActiveSortType,
@@ -19,6 +21,7 @@ export const Sorting: React.FC<Props> = ({
 }) => {
   // const [activeSortTypeType, setActiveSortTypeType] = useState<number | null>(null);
   const [height, setHeight] = useState<number>(0);
+  const [scrollHeight, seScrollHeight] = useState<number>(0);
   const toggleMenu = function () {
     if (activeSortType === sorting.id) {
       setActiveSortType(null);
@@ -28,10 +31,15 @@ export const Sorting: React.FC<Props> = ({
   };
 
   const heightItemRef = useRef<HTMLDivElement | null>(null);
+  const refScrollWidth = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (heightItemRef.current) {
       setHeight(heightItemRef.current.clientHeight);
+    }
+
+    if (refScrollWidth.current) {
+      seScrollHeight(refScrollWidth.current.clientHeight);
     }
   }, [activeSortType]);
 
@@ -73,13 +81,20 @@ export const Sorting: React.FC<Props> = ({
             isActive: activeSortType === sorting.id,
           })}
         >
-          <SimpleBar style={{ maxHeight: 266 }}>
-            {sorting.sortType.map((sortType) => (
-              <SortingItem
-                key={sortType.id}
-                sortType={sortType}
-              />
-            ))}
+          <SimpleBar style={{ maxHeight: MAXHEIGHT }}>
+            <div
+              ref={refScrollWidth}
+              className={classNames('sorting__simplebar-box', {
+                simplebarPadding: scrollHeight > MAXHEIGHT,
+              })}
+            >
+              {sorting.sortType.map((sortType) => (
+                <SortingItem
+                  key={sortType.id}
+                  sortType={sortType}
+                />
+              ))}
+            </div>
           </SimpleBar>
         </div>
       </div>

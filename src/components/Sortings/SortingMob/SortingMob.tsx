@@ -4,6 +4,7 @@ import 'simplebar-react/dist/simplebar.min.css';
 import '../../../styles/scrollbar.scss';
 import { SortType, SortingType } from '../../../types/sorting';
 import { SortingItem } from '../SortingItem/SortingItem';
+import { useEffect, useRef, useState } from 'react';
 
 type Props = {
   sorting: SortingType;
@@ -11,11 +12,21 @@ type Props = {
   toggleSub: (category: SortType) => void;
 };
 
+const MAXHEIGHT = 416;
+
 export const SortingMob: React.FC<Props> = ({
   sorting,
   activeSortType,
   toggleSub,
 }) => {
+  const [height, setHeight] = useState<number>(0);
+  const refSimplebarHeight = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (refSimplebarHeight.current) {
+      setHeight(refSimplebarHeight.current?.clientHeight);
+    }
+  }, [activeSortType]);
   return (
     <div
       className={classNames('setting-mob', {
@@ -49,7 +60,12 @@ export const SortingMob: React.FC<Props> = ({
           isActive: sorting.id === activeSortType,
         })}
       >
-        <div className="setting-mob__simplebar-box">
+        <div
+          ref={refSimplebarHeight}
+          className={classNames('setting-mob__simplebar-box', {
+            simplebarPadding: MAXHEIGHT < height,
+          })}
+        >
           {sorting.sortType.map((sortingItem) => (
             <SortingItem
               key={sortingItem.id}

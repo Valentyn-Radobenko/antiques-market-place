@@ -4,14 +4,14 @@
     width: 24px;
     height: 24px;
     background-position: center;
-    background-image: url('public/images/icons/CheckboxRound.svg');
+    background-image: url('images/icons/CheckboxRound.svg');
   }
 
   &:hover::after {
-    background-image: url('public/images/icons/CheckboxRoundHover.svg');
+    background-image: url('images/icons/CheckboxRoundHover.svg');
   }
 
   &.isActive::after {
-    background-image: url('public/images/icons/CheckboxRoundApply.svg');
+    background-image: url('images/icons/CheckboxRoundApply.svg');
   }
 }
