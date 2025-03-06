@@ -1,6 +1,12 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
+import classNames from 'classnames';
 
 export const ExhibitionsPage = () => {
+  const getLinkClass = ({ isActive }: { isActive: boolean }) =>
+    classNames('exhibitions__sections-link', {
+      'exhibitions__sections-link--active': isActive,
+    });
+
   return (
     <div className="exhibitions">
       <div className="exhibitions__nav-bar">
@@ -23,43 +29,34 @@ export const ExhibitionsPage = () => {
         <div className="exhibitions__heading">
           <h1 className="exhibitions__title">Виставки</h1>
           <nav className="exhibitions__sections">
-            <ul className="exhibitions__sections-list">
-              <li className="exhibitions__sections-item">
-                <NavLink
-                  to={'/club/exhibitions/all'}
-                  className="exhibitions__sections-link"
-                >
-                  Всі виставки
-                </NavLink>
-              </li>
-              <li className="exhibitions__sections-item">
-                <NavLink
-                  to={'pending'}
-                  className="exhibitions__sections-link"
-                >
-                  Досі тривають
-                </NavLink>
-              </li>
-              <li className="exhibitions__sections-item">
-                <NavLink
-                  to={'completed'}
-                  className="exhibitions__sections-link"
-                >
-                  Завершені
-                </NavLink>
-              </li>
-              <li className="exhibitions__sections-item">
-                <NavLink
-                  to={'planned'}
-                  className="exhibitions__sections-link"
-                >
-                  Заплановані
-                </NavLink>
-              </li>
-            </ul>
+            <NavLink
+              to={'all'}
+              className={getLinkClass}
+            >
+              Всі виставки
+            </NavLink>
+            <NavLink
+              to={'ongoing'}
+              className={getLinkClass}
+            >
+              Досі тривають
+            </NavLink>
+            <NavLink
+              to={'completed'}
+              className={getLinkClass}
+            >
+              Завершені
+            </NavLink>
+            <NavLink
+              to={'planned'}
+              className={getLinkClass}
+            >
+              Заплановані
+            </NavLink>
           </nav>
         </div>
       </div>
+      <Outlet />
     </div>
   );
 };

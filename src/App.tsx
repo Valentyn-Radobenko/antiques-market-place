@@ -17,6 +17,10 @@ export const App: React.FC = () => {
     if (pathname === '/') {
       navigate('market');
     }
+
+    if (pathname === '/club/exhibitions') {
+      navigate('/club/exhibitions/all');
+    }
   }, [pathname, navigate]);
 
   useEffect(() => {

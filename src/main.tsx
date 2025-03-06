@@ -13,6 +13,10 @@ import './i18n/i18n';
 import { ProfilePage } from './pages/ProfilePage/ProfilePage';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import { ExhibitionsPage } from './pages/ExhibitionsPage/ExhibitionsPage';
+import { AllExhibitions } from './pages/ExhibitionsPage/Exhibitions/AllExhibitions';
+import { OngoingExhibitions } from './pages/ExhibitionsPage/Exhibitions/OngoingExhibitions';
+import { CompletedExhibitions } from './pages/ExhibitionsPage/Exhibitions/CompletedExhibitions';
+import { PlannedExhibitions } from './pages/ExhibitionsPage/Exhibitions/PlannedExhibitions';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <StrictMode>
@@ -44,7 +48,28 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
             <Route
               path="club/exhibitions"
               element={<ExhibitionsPage />}
-            />
+            >
+              <Route
+                index
+                element={<AllExhibitions />}
+              />
+              <Route
+                path="all"
+                element={<AllExhibitions />}
+              />
+              <Route
+                path="ongoing"
+                element={<OngoingExhibitions />}
+              />
+              <Route
+                path="completed"
+                element={<CompletedExhibitions />}
+              />
+              <Route
+                path="planned"
+                element={<PlannedExhibitions />}
+              />
+            </Route>
 
             <Route
               path="expertise"

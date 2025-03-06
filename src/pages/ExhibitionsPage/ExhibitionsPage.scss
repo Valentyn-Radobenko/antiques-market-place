@@ -44,25 +44,50 @@
 
   &__sections {
     width: 100%;
-    &-list {
-      display: flex;
-      width: 100%;
-      height: 58px;
-      justify-content: center;
-      align-items: center;
-    }
+    display: flex;
+    width: 100%;
+    height: 58px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow:
+      0px 8px 20px 2px rgba(170, 182, 178, 0.2),
+      0px -4px 12px 0px rgba(255, 255, 255, 0) inset;
+    backdrop-filter: blur(12px);
 
-    &-item {
+    &-link {
       display: flex;
-      padding: 16px;
       border-left: 1px solid $gray-stroke;
       justify-content: center;
       align-items: center;
       gap: 8px;
       flex: 1 0 0;
       align-self: stretch;
-      border-radius: 12px 0px 0px 12px;
       background: $background-page;
+
+      &:first-child {
+        border-radius: 12px 0px 0px 12px;
+      }
+
+      &:last-child {
+        border-radius: 0 12px 12px 0;
+      }
+      padding: 16px;
+      color: $gray-darks;
+
+      @include main-text;
+
+      @include hover(background-color, $additional-white-green);
+
+      &:active {
+        background: $background-page;
+        color: $additional-fresh-herb-icon;
+      }
+
+      &--active {
+        border-bottom: 1px solid #0d392c;
+        color: $additional-fresh-herb-icon;
+      }
     }
   }
 }
