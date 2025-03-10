@@ -103,6 +103,7 @@
       align-items: center;
     }
     &-h {
+      color: $additional-greenas;
       @include h4-bold;
     }
 
@@ -113,7 +114,12 @@
   }
 
   &__clear-icon {
+    color: $gray-lite;
     cursor: pointer;
+
+    &.isActive {
+      color: $gray-black;
+    }
   }
 
   &__backdrop {

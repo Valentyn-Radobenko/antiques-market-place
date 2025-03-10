@@ -1,0 +1,201 @@
+.howtoexperise {
+  background-image: $background-plate;
+  padding: 24px;
+
+  overflow: hidden;
+
+  &__inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__h2 {
+    @include h2-bold;
+  }
+
+  &__subtext {
+    @include h4-bold;
+    color: $gray-darks;
+  }
+
+  &__assesments {
+    padding-block: 81px;
+    display: flex;
+    gap: 20px;
+    align-self: center;
+    transition: all $effect-duration ease;
+
+    @include on-tablet {
+      align-self: flex-start;
+      padding-left: 16px;
+    }
+  }
+
+  &__assesment {
+    position: relative;
+    height: 299px;
+    width: 214px;
+
+    &-img {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      border-radius: 50px;
+
+      &.img-pos-2 {
+        top: -56px;
+      }
+
+      &.img-pos-4 {
+        top: 56px;
+      }
+    }
+
+    &-title {
+      border: 1px solid $gray-stroke;
+      padding-inline: 16px;
+      padding-block: 8px;
+      border-radius: 12px;
+      background-color: $gray-white;
+      position: absolute;
+      display: flex;
+      gap: 4px;
+
+      &.title-pos-1 {
+        top: 31px;
+        left: -43px;
+      }
+
+      &.title-pos-2 {
+        top: 171.5px;
+        left: -56px;
+      }
+
+      &.title-pos-3 {
+        top: 21px;
+        left: -39px;
+      }
+
+      &.title-pos-4 {
+        top: 211px;
+        left: -69px;
+      }
+
+      &.title-pos-5 {
+        top: 25px;
+        left: -59px;
+      }
+
+      &.title-pos-6 {
+        top: 191.5px;
+        left: 207px;
+      }
+    }
+
+    &-h4 {
+      @include h4-bold;
+      color: $freshherb-elect;
+    }
+
+    &-text {
+      @include tab-regular;
+    }
+  }
+
+  &__round-arrow {
+    position: absolute;
+    z-index: 100;
+
+    &.arrow-1 {
+      top: 283.88px;
+      left: 192.5px;
+      rotate: -32.52deg;
+    }
+    &.arrow-2 {
+      top: -86.21px;
+      left: 192.5px;
+      rotate: 212.66deg;
+      transform: scaleX(-1);
+    }
+    &.arrow-3 {
+      top: 340.5px;
+      left: 140.5px;
+      rotate: 36.3deg;
+    }
+    &.arrow-4 {
+      top: -20.5px;
+      left: 149.18px;
+      rotate: 150.96deg;
+      transform: scaleX(-1);
+    }
+  }
+
+  &__low-screen-nav {
+    display: none;
+    justify-content: space-between;
+
+    @include on-tablet {
+      display: flex;
+    }
+  }
+
+  &__arrow-down {
+    align-self: flex-end;
+
+    @include on-tablet {
+      display: none;
+    }
+  }
+
+  &__dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__dot {
+    height: 8px;
+    width: 8px;
+    background-color: $gray-lite;
+    border-radius: 1000px;
+    transition: all $effect-duration ease;
+
+    &.isActive {
+      width: 12px;
+      height: 12px;
+      background-color: $additional-greenas;
+    }
+  }
+
+  &__arrow {
+    cursor: pointer;
+    &.arrow-left {
+      transform: rotate(90deg);
+    }
+    &.arrow-right {
+      transform: rotate(-90deg);
+    }
+
+    &.notActive {
+      color: $gray-lite;
+    }
+  }
+
+  &__heart {
+    border: 1px solid $gray-stroke;
+    background-color: $gray-white;
+    padding: 8px;
+    border-radius: 12px;
+    position: absolute;
+    top: 191.5px;
+    left: 207px;
+  }
+}

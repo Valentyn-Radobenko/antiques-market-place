@@ -1,0 +1,124 @@
+.item-evaluation {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include on-tablet {
+    gap: 16px;
+  }
+
+  &__h2 {
+    @include h2-bold;
+  }
+
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @include on-tablet {
+      gap: 16px;
+    }
+
+    @include on-phone {
+      gap: 16px;
+    }
+  }
+
+  &__card {
+    padding: 40px;
+    @include on-tablet {
+      padding: 24px;
+    }
+  }
+}
+
+.card {
+  display: flex;
+  gap: 32px;
+
+  @include on-tablet {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__text-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include on-tablet {
+      justify-content: flex-start;
+      gap: 24px;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__h2 {
+    @include h2-bold;
+    color: $additional-greenas;
+  }
+
+  &__price {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &-h4 {
+      @include h4-bold;
+      color: $gray-dark;
+    }
+
+    &-text {
+      @include main-text;
+      color: $freshherb-elect;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__h4 {
+    @include h4-bold;
+    color: $gray-dark;
+  }
+
+  &__item {
+    @include main-text;
+    color: $gray-dark;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 16px;
+
+    @include on-phone {
+      gap: 8px;
+      flex-direction: column;
+    }
+  }
+  &__button {
+    height: 40px;
+    width: 100%;
+    border-radius: 12px;
+
+    &.light {
+    }
+
+    &.dark {
+      background-image: $primary;
+    }
+  }
+
+  &__img {
+    height: 400px;
+  }
+}
