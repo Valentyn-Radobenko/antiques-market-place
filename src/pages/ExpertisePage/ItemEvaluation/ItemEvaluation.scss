@@ -34,6 +34,7 @@
 }
 
 .card {
+  align-self: center;
   display: flex;
   gap: 32px;
 
@@ -94,6 +95,22 @@
   &__item {
     @include main-text;
     color: $gray-dark;
+    display: flex;
+    // align-items: center;
+    gap: 8px;
+    position: relative;
+    padding-left: 12px;
+
+    &::before {
+      left: 0;
+      top: 10px;
+      position: absolute;
+      content: '';
+      background-color: $gray-dark;
+      width: 4px;
+      height: 4px;
+      border-radius: 100000px;
+    }
   }
 
   &__buttons {
@@ -109,12 +126,31 @@
     height: 40px;
     width: 100%;
     border-radius: 12px;
+    @include button-semibold;
 
     &.light {
+      position: relative;
+      display: inline-block;
+      color: $additional-black-green;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        padding: 1px;
+        border-radius: inherit;
+        background: $primary;
+        -webkit-mask:
+          linear-gradient(white 0 0) content-box,
+          linear-gradient(white 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+      }
     }
 
     &.dark {
       background-image: $primary;
+      color: $gray-white;
     }
   }
 
