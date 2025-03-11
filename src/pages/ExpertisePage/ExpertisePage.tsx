@@ -3,6 +3,7 @@
 // import { Tooltip } from '../../components/Tooltip/Tooltip';
 // import { useTranslation } from 'react-i18next';
 import { HowToExpertise } from './HowToExpertise/HowToExpertise';
+import { ItemEvaluation } from './ItemEvaluation/ItemEvaluation';
 
 export const ExpertisePage = () => {
   // const { t } = useTranslation();
@@ -25,9 +26,10 @@ export const ExpertisePage = () => {
   // }[];
 
   return (
-    <div className="experise">
+    <div className="expertise">
       <h1 className="expertise__header">Оцінювання та експертиза лотів</h1>
       <HowToExpertise />
+      <ItemEvaluation />
     </div>
   );
 };

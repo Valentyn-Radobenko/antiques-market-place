@@ -265,7 +265,10 @@ export const Categories = () => {
                   <h4 className="settings-mobile__list-h">Каталог</h4>
                 </div>
                 <svg
-                  className="settings-mobile__clear-icon"
+                  className={classNames('settings-mobile__clear-icon', {
+                    // add info
+                    isActive: true,
+                  })}
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"

@@ -1,3 +1,9 @@
+.expertise {
+  &__header {
+    @include h1-bold;
+  }
+}
+
 // .expertise {
 //   display: flex;
 //   flex-direction: column;

@@ -3,6 +3,7 @@ import { SortType } from '../../types/sorting';
 import { sortings } from '../../data/sortings';
 import { Sorting } from './Sorting/Sorting';
 import { SortingMob } from './SortingMob/SortingMob';
+import classNames from 'classnames';
 
 export const Sortings = () => {
   const [activeSortType, setActiveSortType] = useState<number | null>(null);
@@ -127,7 +128,10 @@ export const Sortings = () => {
                   <h4 className="settings-mobile__list-h">Сортування</h4>
                 </div>
                 <svg
-                  className="settings-mobile__clear-icon"
+                  className={classNames('settings-mobile__clear-icon', {
+                    // add info
+                    isActive: true,
+                  })}
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"
