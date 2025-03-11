@@ -1,4 +1,10 @@
+import { useState } from 'react';
+import { MoreInfo } from '../MoreInfo/MoreInfo';
+import { assessment } from '../../../data/assessment';
+
 export const ItemEvaluation = () => {
+  const [moreInfoBase, setMoreInfoBase] = useState(false);
+  const [moreInfoExpert, setMoreInfoExpert] = useState(false);
   return (
     <div className="item-evaluation">
       <h2 className="item-evaluation__h2">
@@ -24,7 +30,18 @@ export const ItemEvaluation = () => {
               </ul>
             </div>
             <div className="card__buttons">
-              <button className="card__button light">Дізнатися більше</button>
+              <button
+                onClick={() => setMoreInfoBase(true)}
+                className="card__button light"
+              >
+                Дізнатися більше
+              </button>
+              {moreInfoBase && (
+                <MoreInfo
+                  assessment={assessment[0]}
+                  closeModal={setMoreInfoBase}
+                />
+              )}
               <button className="card__button dark">Подати заявку</button>
             </div>
           </div>
@@ -59,7 +76,19 @@ export const ItemEvaluation = () => {
               </ul>
             </div>
             <div className="card__buttons">
-              <button className="card__button light">Дізнатися більше</button>
+              <button
+                onClick={() => setMoreInfoExpert(true)}
+                className="card__button light"
+              >
+                Дізнатися більше
+              </button>
+              {moreInfoExpert && (
+                <MoreInfo
+                  assessment={assessment[1]}
+                  closeModal={setMoreInfoExpert}
+                />
+              )}
+
               <button className="card__button dark">Подати заявку</button>
             </div>
           </div>
