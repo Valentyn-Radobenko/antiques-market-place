@@ -73,7 +73,7 @@
       order: 1;
       width: 100%;
       height: auto;
-      padding-bottom: 40px;
+      padding-bottom: 112px;
       padding-top: 16px;
     }
   }
@@ -103,6 +103,7 @@
       align-items: center;
     }
     &-h {
+      color: $additional-greenas;
       @include h4-bold;
     }
 
@@ -113,7 +114,12 @@
   }
 
   &__clear-icon {
+    color: $gray-lite;
     cursor: pointer;
+
+    &.isActive {
+      color: $gray-black;
+    }
   }
 
   &__backdrop {
@@ -185,7 +191,7 @@
     background-color: $gray-white;
 
     &.simplebarPadding {
-      padding-right: 40px;
+      padding-right: 8px;
     }
   }
 }

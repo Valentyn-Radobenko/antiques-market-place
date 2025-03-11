@@ -36,6 +36,7 @@
 @import '../pages/ProfilePage/ProfilePage';
 
 @import '../pages/ExpertisePage/HowToExpertise/HowToExpertise.scss';
+@import '../pages/ExpertisePage/ItemEvaluation/ItemEvaluation.scss';
 
 html * {
   box-sizing: border-box;
@@ -48,7 +49,7 @@ html * {
   margin: 0;
   padding: 0;
   background-color: #fff;
-  color: #000;
+  color: $gray-black;
   scroll-behavior: smooth;
 
   &__header {
