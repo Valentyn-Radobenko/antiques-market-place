@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Український Дім «Гривня. Більше, ніж гроші»",
+    "status": "Запланована",
+    "date": "березень – квітень",
+    "image": "/images/exhibitions/exhibition-1.jfif",
+    "content": ""
+  },
+  {
+    "title": "Виставка Марії Примаченко",
+    "status": "Завершена",
+    "date": "12 грудня",
+    "image": "/images/exhibitions/exhibition-2.jfif",
+    "content": ""
+  },
+  {
+    "title": "\"VLP: Легенди Французького Стріт-арту – Безкоштовний Пог...\"",
+    "status": "Досі триває",
+    "date": "Січень – Березень",
+    "image": "/images/exhibitions/exhibition-3.jfif",
+    "content": ""
+  },
+  {
+    "title": "Р.Е.П, війна та політика: виставки сучасного українського мистецтва, які варто відвідати",
+    "status": "Досі триває",
+    "date": "18, 23, 27 січня та 1, 7, 14 лютого",
+    "image": "/images/exhibitions/exhibition-4.jfif",
+    "content": ""
+  },
+  {
+    "title": "Я галерея",
+    "status": "Досі триває",
+    "date": "27 грудня по 23 лютого",
+    "image": "/images/exhibitions/exhibition-5.jfif",
+    "content": ""
+  },
+  {
+    "title": "Кімната, де думки стали до болю глухими",
+    "status": "Досі триває",
+    "date": "19 грудня по 19 лютого",
+    "image": "/images/exhibitions/exhibition-6.jfif",
+    "content": ""
+  }
+]

@@ -5,6 +5,7 @@
     align-items: flex-start;
     gap: 24px;
     align-self: stretch;
+    margin-bottom: 32px;
   }
 
   &__crumbs {
@@ -90,4 +91,8 @@
       }
     }
   }
+
+  // &__articles-block {
+
+  // }
 }
