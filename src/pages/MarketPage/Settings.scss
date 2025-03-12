@@ -124,7 +124,6 @@
 
   &__backdrop {
     background-color: $background-sklo-bag;
-    opacity: 50%;
     flex-grow: 1;
   }
 }
@@ -191,7 +190,7 @@
     background-color: $gray-white;
 
     &.simplebarPadding {
-      padding-right: 8px;
+      padding-right: 24px;
     }
   }
 }

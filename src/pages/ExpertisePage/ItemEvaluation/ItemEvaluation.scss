@@ -96,13 +96,12 @@
     @include main-text;
     color: $gray-dark;
     display: flex;
-    // align-items: center;
     gap: 8px;
     position: relative;
-    padding-left: 12px;
+    padding-left: 20px;
 
     &::before {
-      left: 0;
+      left: 8px;
       top: 10px;
       position: absolute;
       content: '';
