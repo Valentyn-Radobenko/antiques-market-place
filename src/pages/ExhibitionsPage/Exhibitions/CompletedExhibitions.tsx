@@ -1,3 +1,10 @@
+import exhibitions from './../../../data/exhibitions.json';
+import { Exhibitions } from './Exhibitions';
+
 export const CompletedExhibitions = () => {
-  return <h1>404</h1>;
+  const completedExhibitions = exhibitions.filter(
+    (exh) => exh.status === 'Завершена',
+  );
+
+  return <Exhibitions exhibitions={completedExhibitions} />;
 };

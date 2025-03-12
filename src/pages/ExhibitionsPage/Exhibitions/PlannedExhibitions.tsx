@@ -1,3 +1,10 @@
+import exhibitions from './../../../data/exhibitions.json';
+import { Exhibitions } from './Exhibitions';
+
 export const PlannedExhibitions = () => {
-  return <h1>404</h1>;
+  const plannedExhibitions = exhibitions.filter(
+    (exh) => exh.status === 'Запланована',
+  );
+
+  return <Exhibitions exhibitions={plannedExhibitions} />;
 };
