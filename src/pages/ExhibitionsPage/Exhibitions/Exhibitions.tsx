@@ -10,10 +10,10 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
     <div className="exhibitions__articles-block">
       <div className="exhibitions__offer">
         <div className="exhibitions__offer-heading">
-          <div className="exhibitions__offer-title"></div>
+          <h3 className="exhibitions__offer-title">Запропонувати виставку</h3>
           <div className="exhibitions__offer-icon"></div>
         </div>
-        <div className="exhibitions__offer-button"></div>
+        <button className="exhibitions__offer-button">Додати виставку</button>
       </div>
       <div className="exhibitions__articles">
         {exhibitions.map((exh) => {
