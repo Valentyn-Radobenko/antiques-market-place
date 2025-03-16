@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { MoreInfo } from '../MoreInfo/MoreInfo';
-import { assessment } from '../../../data/assessment';
+import { assessmentInfo, assessmentForm } from '../../../data/assessment';
+import { ValuabilityForm } from '../ValuabilityForm/ValuabilityForm';
 
 export const ItemEvaluation = () => {
   const [moreInfoBase, setMoreInfoBase] = useState(false);
   const [moreInfoExpert, setMoreInfoExpert] = useState(false);
+  const [valuabilityForm, setValuabilityForm] = useState(false);
+  const [expertiseForm, setExpertiseForm] = useState(false);
+
   return (
     <div className="item-evaluation">
       <h2 className="item-evaluation__h2">
@@ -38,11 +42,23 @@ export const ItemEvaluation = () => {
               </button>
               {moreInfoBase && (
                 <MoreInfo
-                  assessment={assessment[0]}
+                  request={setValuabilityForm}
                   closeModal={setMoreInfoBase}
+                  assessment={assessmentInfo[0]}
                 />
               )}
-              <button className="card__button dark">Подати заявку</button>
+              <button
+                onClick={() => setValuabilityForm(true)}
+                className="card__button dark"
+              >
+                Подати заявку
+              </button>
+              {valuabilityForm && (
+                <ValuabilityForm
+                  assessment={assessmentForm[0]}
+                  closeModal={setValuabilityForm}
+                />
+              )}
             </div>
           </div>
           <img
@@ -84,12 +100,23 @@ export const ItemEvaluation = () => {
               </button>
               {moreInfoExpert && (
                 <MoreInfo
-                  assessment={assessment[1]}
+                  request={setExpertiseForm}
+                  assessment={assessmentInfo[1]}
                   closeModal={setMoreInfoExpert}
                 />
               )}
-
-              <button className="card__button dark">Подати заявку</button>
+              <button
+                onClick={() => setExpertiseForm(true)}
+                className="card__button dark"
+              >
+                Подати заявку
+              </button>
+              {expertiseForm && (
+                <ValuabilityForm
+                  assessment={assessmentForm[1]}
+                  closeModal={setExpertiseForm}
+                />
+              )}
             </div>
           </div>
           <img
