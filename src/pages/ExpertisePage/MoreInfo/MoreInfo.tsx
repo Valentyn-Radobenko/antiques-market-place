@@ -1,13 +1,18 @@
 import { Close } from '../../../components/Imgs/Close';
 import { Dispatch, SetStateAction, useEffect } from 'react';
-import { Assessment } from '../../../types/assessment';
+import { AssessmentInfo } from '../../../types/assessment';
 
 type Props = {
   closeModal: Dispatch<SetStateAction<boolean>>;
-  assessment: Assessment;
+  request: Dispatch<SetStateAction<boolean>>;
+  assessment: AssessmentInfo;
 };
 
-export const MoreInfo: React.FC<Props> = ({ closeModal, assessment }) => {
+export const MoreInfo: React.FC<Props> = ({
+  closeModal,
+  request,
+  assessment,
+}) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -62,7 +67,15 @@ export const MoreInfo: React.FC<Props> = ({ closeModal, assessment }) => {
             ))}
           </ul>
         </div>
-        <button className="more-info__button">Подати заявку</button>
+        <button
+          onClick={() => {
+            closeModal(false);
+            request(true);
+          }}
+          className="more-info__button"
+        >
+          Подати заявку
+        </button>
       </div>
       <div
         onClick={() => closeModal(false)}
