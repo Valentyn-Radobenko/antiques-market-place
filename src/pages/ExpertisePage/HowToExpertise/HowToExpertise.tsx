@@ -2,26 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Arrow } from '../../../components/Imgs/Arrow';
 import classNames from 'classnames';
 import { ArrowRound } from '../../../components/Imgs/ArrowRound';
-
-const useResizeObserver = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(0);
-
-  useEffect(() => {
-    const updateWidth = () => {
-      if (ref.current) {
-        setWidth(ref.current.offsetWidth);
-      }
-    };
-
-    const resizeObserver = new ResizeObserver(updateWidth);
-    if (ref.current) resizeObserver.observe(ref.current);
-
-    return () => resizeObserver.disconnect();
-  }, []);
-
-  return { ref, width };
-};
+import { useResizeObserver } from '../../../utils/useResizeObserver';
 
 export const HowToExpertise = () => {
   const assesmantRef = useRef<HTMLDivElement>(null); // ширина всього блоку
@@ -66,7 +47,6 @@ export const HowToExpertise = () => {
     const b = width / (pages.length - 1);
 
     setClientView((a - b) * page);
-    console.log(a, b, page);
   }, [page]);
 
   return (
