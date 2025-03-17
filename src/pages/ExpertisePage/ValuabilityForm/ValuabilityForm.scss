@@ -7,7 +7,7 @@
   width: 100vw;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
 
   @include on-tablet {
     align-items: end;
@@ -158,8 +158,9 @@
     right: 4px;
     z-index: 10;
     cursor: pointer;
-    background-color: $gray-lite;
+    background-image: $background-plate;
     border-radius: 8px;
+    backdrop-filter: blur(5px);
   }
 
   &__img {

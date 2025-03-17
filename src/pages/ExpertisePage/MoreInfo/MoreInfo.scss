@@ -7,7 +7,7 @@
   width: 100vw;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 2;
 
   @include on-tablet {
     align-items: end;
@@ -136,6 +136,7 @@
   }
 
   &__button {
+    @include button-semibold;
     height: 40px;
     color: $gray-white;
     background-image: $primary;

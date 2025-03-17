@@ -1,4 +1,7 @@
 .expertise {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   &__header {
     @include h1-bold;
   }

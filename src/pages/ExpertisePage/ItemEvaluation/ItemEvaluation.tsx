@@ -63,12 +63,10 @@ export const ItemEvaluation = () => {
           </div>
           <img
             className="card__img"
-            src="images\expertise\Photo.png"
+            src="images\expertise\expertise-1.png"
             alt=""
           />
         </div>
-      </div>
-      <div className="item-evaluation__cards">
         <div className="item-evaluation__card card">
           <div className="card__text-block">
             <div className="card__text">
@@ -121,7 +119,7 @@ export const ItemEvaluation = () => {
           </div>
           <img
             className="card__img"
-            src="images\expertise\Photo.png"
+            src="images\expertise\expertise-2.png"
             alt=""
           />
         </div>
