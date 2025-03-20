@@ -27,15 +27,16 @@
   }
 
   &__assesments {
-    padding-block: 81px;
+    padding-block: 122.5px;
     display: flex;
-    gap: 20px;
+    gap: 40px;
     align-self: center;
     transition: all $effect-duration ease;
 
     @include on-tablet {
       align-self: flex-start;
-      padding-left: 16px;
+      padding-inline: 40px;
+      padding-block: 90px;
     }
   }
 
@@ -68,35 +69,30 @@
       position: absolute;
       display: flex;
       gap: 4px;
-
+      width: 130%;
+      left: -15%;
       &.title-pos-1 {
-        top: 31px;
-        left: -43px;
+        top: 32.5px;
       }
 
       &.title-pos-2 {
-        top: 171.5px;
-        left: -56px;
+        top: 183.5px;
       }
 
       &.title-pos-3 {
-        top: 21px;
-        left: -39px;
+        top: 32.5px;
       }
 
       &.title-pos-4 {
-        top: 211px;
-        left: -69px;
+        top: 263.5px;
       }
 
       &.title-pos-5 {
-        top: 25px;
-        left: -59px;
+        top: 32.5px;
       }
 
       &.title-pos-6 {
         top: 191.5px;
-        left: 207px;
       }
     }
 
@@ -107,6 +103,7 @@
 
     &-text {
       @include tab-regular;
+      text-align: center;
     }
   }
 
@@ -139,20 +136,13 @@
   }
 
   &__low-screen-nav {
-    display: none;
+    display: flex;
     justify-content: space-between;
-
-    @include on-tablet {
-      display: flex;
-    }
   }
 
   &__arrow-down {
     align-self: flex-end;
-
-    @include on-tablet {
-      display: none;
-    }
+    cursor: pointer;
   }
 
   &__dots {
@@ -195,7 +185,7 @@
     padding: 8px;
     border-radius: 12px;
     position: absolute;
-    top: 191.5px;
-    left: 207px;
+    top: 227px;
+    left: 167px;
   }
 }
