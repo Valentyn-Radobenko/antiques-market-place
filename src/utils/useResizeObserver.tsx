@@ -19,3 +19,23 @@ export const useResizeObserver = () => {
 
   return { ref, width };
 };
+
+export const useResizeObserverHieight = () => {
+  const refH = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    const updateHeight = () => {
+      if (refH.current) {
+        setHeight(refH.current.offsetHeight);
+      }
+    };
+
+    const resizeObserver = new ResizeObserver(updateHeight);
+    if (refH.current) resizeObserver.observe(refH.current);
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
+  return { refH, height };
+};

@@ -2,8 +2,11 @@
 // import examplePhoto from '/images/expertise/Photo.png';
 // import { Tooltip } from '../../components/Tooltip/Tooltip';
 // import { useTranslation } from 'react-i18next';
+import { useRef, useState } from 'react';
 import { HowToExpertise } from './HowToExpertise/HowToExpertise';
 import { ItemEvaluation } from './ItemEvaluation/ItemEvaluation';
+import { Info } from '../../components/Imgs/Info';
+import { PageHelper } from './PageHelper/PageHelper';
 
 export const ExpertisePage = () => {
   // const { t } = useTranslation();
@@ -25,11 +28,46 @@ export const ExpertisePage = () => {
   //   button: string;
   // }[];
 
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToSection = () => {
+    sectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const [helperOn, setHelperOn] = useState(false);
+
+  let timeout: NodeJS.Timeout;
+
+  const leaveLeave = () => {
+    timeout = setTimeout(() => {
+      setHelperOn(false);
+    }, 2000);
+  };
+
+  const mouseOn = () => {
+    clearTimeout(timeout);
+    setHelperOn(true);
+  };
+
   return (
     <div className="expertise">
-      <h1 className="expertise__header">Оцінювання та експертиза лотів</h1>
-      <HowToExpertise />
-      <ItemEvaluation />
+      <div className="expertise__title">
+        <h1 className="expertise__header"> Оцінювання та експертиза лотів</h1>
+        <Info
+          onMouseLeave={() => leaveLeave()}
+          onMouseEnter={() => mouseOn()}
+          onClick={() => setHelperOn(true)}
+          className="expertise__icon"
+        />
+        <PageHelper
+          setHelperOn={setHelperOn}
+          onMouseLeave={() => leaveLeave()}
+          onMouseEnter={() => mouseOn()}
+          helperOn={helperOn}
+        />
+      </div>
+      <HowToExpertise scrollToSection={scrollToSection} />
+      <ItemEvaluation sectionRef={sectionRef} />
     </div>
   );
 };

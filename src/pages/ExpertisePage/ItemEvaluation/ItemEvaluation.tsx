@@ -2,8 +2,11 @@ import { useState } from 'react';
 import { MoreInfo } from '../MoreInfo/MoreInfo';
 import { assessmentInfo, assessmentForm } from '../../../data/assessment';
 import { ValuabilityForm } from '../ValuabilityForm/ValuabilityForm';
+interface Props {
+  sectionRef: React.RefObject<HTMLDivElement>;
+}
 
-export const ItemEvaluation = () => {
+export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
   const [moreInfoBase, setMoreInfoBase] = useState(false);
   const [moreInfoExpert, setMoreInfoExpert] = useState(false);
   const [valuabilityForm, setValuabilityForm] = useState(false);
@@ -11,7 +14,10 @@ export const ItemEvaluation = () => {
 
   return (
     <div className="item-evaluation">
-      <h2 className="item-evaluation__h2">
+      <h2
+        ref={sectionRef}
+        className="item-evaluation__h2"
+      >
         Оберіть необхідний варіант оцінювання предмета :
       </h2>
       <div className="item-evaluation__cards">
@@ -63,12 +69,10 @@ export const ItemEvaluation = () => {
           </div>
           <img
             className="card__img"
-            src="images\expertise\Photo.png"
+            src="images\expertise\expertise-1.png"
             alt=""
           />
         </div>
-      </div>
-      <div className="item-evaluation__cards">
         <div className="item-evaluation__card card">
           <div className="card__text-block">
             <div className="card__text">
@@ -121,7 +125,7 @@ export const ItemEvaluation = () => {
           </div>
           <img
             className="card__img"
-            src="images\expertise\Photo.png"
+            src="images\expertise\expertise-2.png"
             alt=""
           />
         </div>
