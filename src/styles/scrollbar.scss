@@ -1,4 +1,13 @@
+.simplebar-mask {
+  border-radius: inherit !important;
+}
+
+/* Трек (фон скроллбара) */
 .simplebar-track {
+  border-radius: inherit !important;
+  overflow: hidden !important;
+}
+.market .simplebar-track {
   width: 10px !important;
   opacity: 1;
 
@@ -14,18 +23,8 @@
 
   border-inline: 1px solid #cbdbd9;
 }
-
-/* Ширина самого ползунка */
-.simplebar-scrollbar {
-  width: 8px !important;
-  left: -2px !important;
-  @media (max-width: 1439px) {
-    left: 5.5px !important;
-  }
-}
-
 /* Ползунок (скролбар) */
-.simplebar-scrollbar::before {
+.market .simplebar-scrollbar::before {
   min-height: 50px;
   width: 8px !important;
   background: #b9ccc9 !important;
@@ -33,12 +32,38 @@
   opacity: 1 !important;
 }
 
-.simplebar-mask {
-  border-radius: inherit !important;
+/* Ширина самого ползунка */
+.market .simplebar-scrollbar {
+  width: 8px !important;
+  left: -2px !important;
+  @media (max-width: 1439px) {
+    left: 5.5px !important;
+  }
 }
 
-/* Трек (фон скроллбара) */
-.simplebar-track {
-  border-radius: inherit !important;
-  overflow: hidden !important;
+.expertise .simplebar-track {
+  width: 24px !important;
+  opacity: 1;
+  background-color: inherit;
+  background-image: none;
+
+  @media (max-width: 1439px) {
+    width: 16px !important;
+  }
+}
+
+.expertise .simplebar-scrollbar::before {
+  min-height: 50px;
+  width: 4px !important;
+  background: #b9ccc9 !important;
+  border-radius: 4px !important;
+  opacity: 1 !important;
+}
+
+.expertise .simplebar-scrollbar {
+  width: 8px !important;
+  left: 10px !important;
+  @media (max-width: 1439px) {
+    left: 6px !important;
+  }
 }

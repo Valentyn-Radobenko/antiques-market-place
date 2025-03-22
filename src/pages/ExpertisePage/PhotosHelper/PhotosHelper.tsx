@@ -1,10 +1,8 @@
-import classNames from 'classnames';
 import { Info } from '../../../components/Imgs/Info';
 import { Close } from '../../../components/Imgs/Close';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useResizeObserverHieight } from '../../../utils/useResizeObserver';
 type Props = {
-  helperOn: boolean;
   onMouseLeave: () => void;
   onMouseEnter: () => void;
   setHelperOn: Dispatch<SetStateAction<boolean>>;
@@ -14,7 +12,6 @@ type Props = {
 export const PhotosHelper: React.FC<Props> = ({
   setCurrentHeight,
   setHelperOn,
-  helperOn,
   onMouseLeave,
   onMouseEnter,
 }) => {
@@ -31,9 +28,7 @@ export const PhotosHelper: React.FC<Props> = ({
       ref={refH}
       onMouseLeave={onMouseLeave}
       onMouseEnter={onMouseEnter}
-      className={classNames('photos-helper', {
-        isActive: helperOn,
-      })}
+      className="photos-helper"
     >
       <div className="photos-helper__icons">
         <Info className="photos-helper__info" />

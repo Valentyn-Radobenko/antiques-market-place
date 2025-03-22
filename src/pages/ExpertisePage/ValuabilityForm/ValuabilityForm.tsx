@@ -14,7 +14,6 @@ import { useResizeObserver } from '../../../utils/useResizeObserver';
 import { AssessmentForm } from '../../../types/assessment';
 import { PlusIMG } from '../../../components/Imgs/PlusIMG';
 import classNames from 'classnames';
-import { Important } from '../../../components/Imgs/Important';
 import SimpleBar from 'simplebar-react';
 import { PhotosHelper } from '../PhotosHelper/PhotosHelper';
 
@@ -42,6 +41,8 @@ export const ValuabilityForm: React.FC<Props> = ({
       document.body.style.overflow = 'auto';
     };
   }, []);
+
+  console.log(width);
 
   useEffect(() => {
     setPhotoWidth(width / PHOTO_AMOUNT);
@@ -91,10 +92,7 @@ export const ValuabilityForm: React.FC<Props> = ({
 
   return (
     <div className="valuability-form">
-      <SimpleBar
-        style={{ maxHeight: '100vh' }}
-        className="valuability-form__bar"
-      >
+      <SimpleBar className="valuability-form__bar ">
         <div className="valuability-form__container">
           <div className="valuability-form__header">
             <h3 className="valuability-form__h3">{assessment.title}</h3>
@@ -119,6 +117,7 @@ export const ValuabilityForm: React.FC<Props> = ({
             <div
               ref={ref}
               className="valuability-form__photo"
+              style={{ gap: photosHelper && width < 592 ? '16px' : '8px' }}
             >
               <div className="valuability-form__photo-title-text">
                 <p className="valuability-form__photo-text">Фото матеріали</p>
@@ -138,7 +137,6 @@ export const ValuabilityForm: React.FC<Props> = ({
               >
                 <PhotosHelper
                   setCurrentHeight={setCurrentHeight}
-                  helperOn={photosHelper}
                   onMouseLeave={leaveLeave}
                   onMouseEnter={mouseOn}
                   setHelperOn={setPhotosHelper}
@@ -222,8 +220,7 @@ export const ValuabilityForm: React.FC<Props> = ({
                   ))}
                 </div>
                 <div className="valuability-form__photos-text-block">
-                  <Important />
-                  <p>{`Максимальна кількість фото: ${PHOTO_AMOUNT}`}</p>
+                  {`Максимальна кількість фото: ${PHOTO_AMOUNT}`}
                 </div>
               </div>
             )}
