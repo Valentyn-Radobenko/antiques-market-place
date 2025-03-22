@@ -23,7 +23,11 @@ export const PageHelper: React.FC<Props> = ({
         isActive: helperOn,
       })}
     >
-      <div className="pagehelper__container">
+      <div
+        className={classNames('pagehelper__container', {
+          isActive: helperOn,
+        })}
+      >
         <div className="pagehelper__icons">
           <Info className="pagehelper__icon" />
           <Close

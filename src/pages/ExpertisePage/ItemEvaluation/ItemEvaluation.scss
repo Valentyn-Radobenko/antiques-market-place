@@ -12,6 +12,9 @@
     @include on-tablet {
       @include h2-mobile-bold;
     }
+    @include on-phone {
+      @include h3-bold;
+    }
   }
 
   &__cards {
@@ -70,10 +73,11 @@
   }
 
   &__h2 {
-    @include h2-bold;
+    @include h3-bold;
     color: $additional-greenas;
-    @include on-tablet {
-      @include h2-mobile-bold;
+
+    @include on-phone {
+      @include h4-bold;
     }
   }
 
@@ -85,11 +89,19 @@
     &-h4 {
       @include h4-bold;
       color: $gray-dark;
+
+      @include on-phone {
+        @include label-bold;
+      }
     }
 
     &-text {
       @include main-text;
       color: $freshherb-elect;
+
+      @include on-phone {
+        @include tab-regular;
+      }
     }
   }
 
@@ -102,6 +114,10 @@
   &__h4 {
     @include h4-bold;
     color: $gray-dark;
+
+    @include on-phone {
+      @include label-bold;
+    }
   }
 
   &__item {
@@ -111,6 +127,10 @@
     gap: 8px;
     position: relative;
     padding-left: 20px;
+
+    @include on-phone {
+      @include tab-regular;
+    }
 
     &::before {
       left: 8px;
@@ -138,7 +158,7 @@
     width: 100%;
     border-radius: 12px;
     @include button-semibold;
-    transition: all 1s;
+    transition: all $dropdown-effect-duration;
 
     &.light {
       position: relative;
@@ -167,6 +187,10 @@
         -webkit-mask-composite: xor;
         mask-composite: exclude;
       }
+
+      &.isActive {
+        color: $freshherb-elect;
+      }
     }
 
     &.dark {
@@ -178,6 +202,11 @@
         background-color: $additional-mint;
 
         color: $gray-black;
+      }
+
+      &.isActive {
+        background-color: $additional-greenas;
+        background-image: none;
       }
     }
   }

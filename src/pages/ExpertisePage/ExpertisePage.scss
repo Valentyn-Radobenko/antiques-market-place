@@ -2,6 +2,11 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin-bottom: 32px;
+
+  @include on-tablet {
+    margin-bottom: 24px;
+  }
 
   &__title {
     display: flex;
@@ -12,6 +17,10 @@
 
   &__header {
     @include h1-bold;
+
+    @include on-phone {
+      @include h3-bold;
+    }
   }
 
   &__icon {

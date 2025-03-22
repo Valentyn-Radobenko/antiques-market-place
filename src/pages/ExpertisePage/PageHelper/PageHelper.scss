@@ -27,6 +27,7 @@
   }
 
   &__container {
+    transition: inherit;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -34,10 +35,15 @@
     border-radius: 12px;
     border: 1px solid $system-info;
     background-color: $gray-white;
-    width: 415px;
+    width: 375px;
     z-index: 3;
 
+    &.isActive {
+      transform: translateY(0);
+    }
+
     @include on-phone {
+      transform: translateY(100%);
       position: absolute;
       width: 100%;
       bottom: 0;
@@ -57,12 +63,9 @@
   }
 
   &__close {
-    display: none;
-
-    @include on-tablet {
-      display: block;
-    }
+    cursor: pointer;
   }
+
   &__text-block {
     display: flex;
     flex-direction: column;
