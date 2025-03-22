@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { Arrow } from '../../../components/Imgs/Arrow';
 import classNames from 'classnames';
 import { ArrowRound } from '../../../components/Imgs/ArrowRound';
 import { useResizeObserver } from '../../../utils/useResizeObserver';
+import { BigArrow } from '../../../components/Imgs/BigArrow';
 
 type Props = {
   scrollToSection: () => void;
@@ -61,6 +61,25 @@ export const HowToExpertise: React.FC<Props> = ({ scrollToSection }) => {
     setClientView((a - b) * page);
   }, [page]);
 
+  let startX = 0;
+
+  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    startX = e.touches[0].clientX;
+  };
+
+  const onTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    const endX = e.changedTouches[0].clientX;
+    const deltaX = startX - endX;
+
+    if (Math.abs(deltaX) > 50) {
+      if (deltaX > 0) {
+        addPage();
+      } else {
+        minusPage();
+      }
+    }
+  };
+
   return (
     <section className="howtoexperise">
       <div
@@ -86,6 +105,8 @@ export const HowToExpertise: React.FC<Props> = ({ scrollToSection }) => {
               }
           }
           className="howtoexperise__assesments"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
         >
           <div className="howtoexperise__assesment">
             <img
@@ -166,7 +187,7 @@ export const HowToExpertise: React.FC<Props> = ({ scrollToSection }) => {
         </div>
         {pages.length > 1 && (
           <div className="howtoexperise__low-screen-nav">
-            <Arrow
+            <BigArrow
               className={classNames('howtoexperise__arrow arrow-left', {
                 notActive: page === 0,
               })}
@@ -182,7 +203,7 @@ export const HowToExpertise: React.FC<Props> = ({ scrollToSection }) => {
                 />
               ))}
             </div>
-            <Arrow
+            <BigArrow
               className={classNames('howtoexperise__arrow arrow-right', {
                 notActive: page === pages.length - 1,
               })}

@@ -168,10 +168,10 @@
   &__arrow {
     cursor: pointer;
     &.arrow-left {
-      transform: rotate(90deg);
+      // transform: rotate(90deg);
     }
     &.arrow-right {
-      transform: rotate(-90deg);
+      transform: rotate(-180deg);
     }
 
     &.notActive {
