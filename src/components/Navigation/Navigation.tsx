@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { HeaderTooltip } from '../Tooltip/HeaderTooltip';
@@ -25,6 +25,9 @@ export const Navigation: React.FC<Props> = ({ customClassName, mode }) => {
       'nav__link--is-active': isActive,
       'nav--menu__link': mode === 'menu',
     });
+
+  const location = useLocation();
+  const isClubActive = location.pathname.includes('/club');
 
   return (
     <nav className={`nav ${customClassName}`}>
@@ -76,6 +79,7 @@ export const Navigation: React.FC<Props> = ({ customClassName, mode }) => {
                     <button
                       className={classNames('nav__club-button', {
                         [`${customClassName}__club-button`]: customClassName,
+                        'nav__club-button--active': isClubActive,
                       })}
                     ></button>
                   </div>

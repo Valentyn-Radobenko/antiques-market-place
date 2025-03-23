@@ -44,8 +44,13 @@
 
     &-button {
       background-image: url('/images/header/keyboard-arrow-down-rounded.svg');
+      transition: $effect-duration;
       width: 24px;
       height: 24px;
+
+      &--active {
+        background-image: url('/images/header/keyboard-arrow-down-rounded-active.svg');
+      }
     }
   }
 
