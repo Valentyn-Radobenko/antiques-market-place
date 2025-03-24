@@ -63,11 +63,15 @@ html * {
   background-size: cover;
 
   @include on-tablet {
-    background-image: url('/images/background-tablet.png');
+    background: url('/images/background-tablet.png') no-repeat center center
+      fixed;
+    background-size: cover;
   }
 
   @include on-phone {
-    background-image: url('/images/background-phone.png');
+    background: url('/images/background-phone.png') no-repeat center center
+      fixed;
+    background-size: cover;
   }
 }
 
