@@ -69,9 +69,11 @@ html * {
   }
 
   @include on-phone {
-    background: url('/images/background-phone.png') no-repeat center center
-      fixed;
+    background: url('/images/background-phone.png') no-repeat center center;
     background-size: cover;
+    position: fixed;
+    width: 100%;
+    height: 100%;
   }
 }
 
