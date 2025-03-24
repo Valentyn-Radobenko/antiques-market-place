@@ -6,6 +6,10 @@
     gap: 24px;
     align-self: stretch;
     margin-bottom: 32px;
+
+    @include on-tablet {
+      margin-bottom: 24px;
+    }
   }
 
   &__crumbs {
@@ -59,6 +63,10 @@
 
     &::-webkit-scrollbar {
       display: none;
+    }
+
+    @include on-tablet {
+      height: 44px;
     }
 
     &-link {
@@ -141,6 +149,7 @@
     @include on-tablet {
       position: static;
       width: 100%;
+      height: auto;
     }
 
     &-heading {
@@ -149,6 +158,11 @@
       align-items: center;
       gap: 8px;
       align-self: stretch;
+
+      @include on-tablet {
+        flex-direction: row;
+        justify-content: center;
+      }
     }
 
     &-title {
@@ -227,6 +241,10 @@
 
     @include on-tablet {
       width: 100%;
+    }
+
+    @include on-phone {
+      max-height: 290px;
     }
 
     &-img {

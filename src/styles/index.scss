@@ -59,8 +59,7 @@ html * {
     margin-bottom: 24px;
   }
 
-  background-image: url('/images/background-laptop.png');
-  background-position: center;
+  background: url('/images/background-laptop.png') no-repeat center center fixed;
   background-size: cover;
 
   @include on-tablet {
