@@ -59,19 +59,26 @@ html * {
     margin-bottom: 24px;
   }
 
-  background: url('/images/background-laptop.png') no-repeat center center fixed;
-  background-size: cover;
-
-  @include on-tablet {
-    background: url('/images/background-tablet.png') no-repeat center center
-      fixed;
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('/images/background-laptop.png') no-repeat center center;
     background-size: cover;
-  }
+    z-index: -1;
 
-  @include on-phone {
-    background: url('/images/background-phone.png') no-repeat center center
-      fixed;
-    background-size: cover;
+    @include on-tablet {
+      background: url('/images/background-tablet.png') no-repeat center center;
+      background-size: cover;
+    }
+
+    @include on-phone {
+      background: url('/images/background-phone.png') no-repeat center center;
+      background-size: cover;
+    }
   }
 }
 
