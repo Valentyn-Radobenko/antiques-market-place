@@ -19,11 +19,20 @@
 
   &__h2 {
     @include h2-bold;
+
+    @include on-phone {
+      @include h4-bold;
+      color: $gray-dark;
+    }
   }
 
   &__subtext {
     @include h4-bold;
     color: $gray-darks;
+
+    @include on-phone {
+      @include button-semibold;
+    }
   }
 
   &__assesments {

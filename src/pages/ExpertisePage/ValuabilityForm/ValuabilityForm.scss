@@ -28,7 +28,10 @@
 
     @include on-phone {
       max-height: calc(100vh - 16px);
+      padding-bottom: 112px;
       width: 100%;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
     }
   }
 
@@ -52,6 +55,7 @@
   &__icon {
     align-self: flex-start;
     cursor: pointer;
+    flex-shrink: 0;
   }
 
   &__form {
@@ -87,24 +91,6 @@
     color: $additional-greenas;
   }
 
-  &__helper-wrapper {
-    transition: all ease $dropdown-effect-duration;
-    position: fixed;
-    width: 572px;
-    left: 40%;
-
-    @include on-tablet {
-      left: auto;
-      right: 0%;
-    }
-
-    @include on-phone {
-      width: auto;
-      left: 0;
-      position: static;
-    }
-  }
-
   &__underline {
     display: flex;
 
@@ -116,12 +102,29 @@
     }
   }
 
+  &__helper-wrapper {
+    transition: all ease $dropdown-effect-duration;
+    // position: fixed;
+    // width: 572px;
+    // left: 40%;
+
+    // @include on-tablet {
+    // left: auto;
+    // right: 0%;
+    // }
+
+    // @include on-phone {
+    // width: auto;
+    // left: 0;
+    // position: static;
+    // }
+  }
+
   &__photo {
     transition: all ease $dropdown-effect-duration;
 
     display: flex;
     flex-direction: column;
-    // gap: 16px;
     position: relative;
 
     &-title {

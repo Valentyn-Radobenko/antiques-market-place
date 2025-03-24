@@ -117,7 +117,7 @@ export const ValuabilityForm: React.FC<Props> = ({
             <div
               ref={ref}
               className="valuability-form__photo"
-              style={{ gap: photosHelper && width < 592 ? '16px' : '8px' }}
+              style={{ gap: photosHelper ? '16px' : '8px' }}
             >
               <div className="valuability-form__photo-title-text">
                 <p className="valuability-form__photo-text">Фото матеріали</p>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { MoreInfo } from '../MoreInfo/MoreInfo';
 import { assessmentInfo, assessmentForm } from '../../../data/assessment';
 import { ValuabilityForm } from '../ValuabilityForm/ValuabilityForm';
+import classNames from 'classnames';
 interface Props {
   sectionRef: React.RefObject<HTMLDivElement>;
 }
@@ -42,7 +43,9 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
             <div className="card__buttons">
               <button
                 onClick={() => setMoreInfoBase(true)}
-                className="card__button light"
+                className={classNames('card__button light', {
+                  isActive: moreInfoBase,
+                })}
               >
                 Дізнатися більше
               </button>
@@ -55,7 +58,9 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
               )}
               <button
                 onClick={() => setValuabilityForm(true)}
-                className="card__button dark"
+                className={classNames('card__button dark', {
+                  isActive: valuabilityForm,
+                })}
               >
                 Подати заявку
               </button>
@@ -98,7 +103,9 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
             <div className="card__buttons">
               <button
                 onClick={() => setMoreInfoExpert(true)}
-                className="card__button light"
+                className={classNames('card__button light', {
+                  isActive: moreInfoExpert,
+                })}
               >
                 Дізнатися більше
               </button>
@@ -111,7 +118,9 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
               )}
               <button
                 onClick={() => setExpertiseForm(true)}
-                className="card__button dark"
+                className={classNames('card__button dark', {
+                  isActive: expertiseForm,
+                })}
               >
                 Подати заявку
               </button>
