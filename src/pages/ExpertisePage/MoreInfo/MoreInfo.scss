@@ -20,10 +20,10 @@
     background-color: $gray-white;
     padding: 24px;
     width: 670px;
+    max-height: calc(100vh - 24px);
 
     @include on-tablet {
       width: 640px;
-      max-height: calc(100vh - 24px);
     }
 
     @include on-phone {

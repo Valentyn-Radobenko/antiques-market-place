@@ -20,9 +20,9 @@
     background-color: $gray-white;
     padding: 24px;
     width: 670px;
+    max-height: calc(100vh - 24px);
 
     @include on-tablet {
-      max-height: calc(100vh - 24px);
       width: 640px;
     }
 
@@ -290,11 +290,17 @@
       @include main-text;
       outline: none;
       color: $additional-black-green;
+
       &:focus {
         border-color: $additional-fresh-herb-icon;
       }
       &::placeholder {
         color: $gray-lite;
+      }
+
+      &:hover {
+        background-color: $additional-white-green;
+        border-color: $additional-mint;
       }
     }
   }

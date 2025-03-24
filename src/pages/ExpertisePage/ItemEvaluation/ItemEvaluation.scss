@@ -91,17 +91,13 @@
       color: $gray-dark;
 
       @include on-phone {
-        @include label-bold;
+        @include button-semibold;
       }
     }
 
     &-text {
       @include main-text;
       color: $freshherb-elect;
-
-      @include on-phone {
-        @include tab-regular;
-      }
     }
   }
 
@@ -116,7 +112,7 @@
     color: $gray-dark;
 
     @include on-phone {
-      @include label-bold;
+      @include button-semibold;
     }
   }
 
@@ -127,10 +123,6 @@
     gap: 8px;
     position: relative;
     padding-left: 20px;
-
-    @include on-phone {
-      @include tab-regular;
-    }
 
     &::before {
       left: 8px;
@@ -158,7 +150,7 @@
     width: 100%;
     border-radius: 12px;
     @include button-semibold;
-    transition: all $dropdown-effect-duration;
+    transition: ease all $dropdown-effect-duration;
 
     &.light {
       position: relative;
@@ -171,7 +163,7 @@
 
       &:hover {
         border: 1px solid $additional-mint;
-        background-color: $additional-white-green;
+        background: $additional-white-green;
       }
 
       &::before {
@@ -194,18 +186,16 @@
     }
 
     &.dark {
-      background-image: $primary;
+      background: $primary;
       color: $gray-white;
 
       &:hover {
-        background-image: none;
-        background-color: $additional-mint;
-
+        background: $additional-mint;
         color: $gray-black;
       }
 
       &.isActive {
-        background-color: $additional-greenas;
+        background: $additional-greenas;
         background-image: none;
       }
     }

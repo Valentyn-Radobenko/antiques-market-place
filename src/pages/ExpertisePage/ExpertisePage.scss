@@ -18,8 +18,12 @@
   &__header {
     @include h1-bold;
 
+    @include on-tablet {
+      @include h2-bold;
+    }
+
     @include on-phone {
-      @include h3-bold;
+      @include h2-mobile-bold;
     }
   }
 
@@ -29,5 +33,11 @@
     width: 24px;
     flex-shrink: 0;
     cursor: pointer;
+    color: $system-info;
+    transition: all ease $effect-duration;
+
+    &:hover {
+      color: $freshherb-elect;
+    }
   }
 }
