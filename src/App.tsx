@@ -30,6 +30,7 @@ export const App: React.FC = () => {
   }, [token, dispatch]);
   return (
     <>
+      <div className="page__bg"></div>
       <Header />
 
       <main className="main">
