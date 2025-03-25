@@ -159,11 +159,9 @@
   }
 
   &__button {
-    @include button-semibold;
     height: 40px;
-    color: $gray-white;
-    background-image: $primary;
-    border-radius: 12px;
+    @include button-semibold;
+    @include primary-button;
   }
 
   &__backdrop {

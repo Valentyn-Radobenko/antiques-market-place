@@ -160,6 +160,8 @@
 @mixin primary-button {
   color: $gray-white;
   transition: all ease $effect-duration;
+  position: relative;
+  z-index: 1;
 
   &:hover {
     color: $gray-black;
@@ -196,6 +198,7 @@
 }
 
 @mixin additional-button {
+  z-index: 1;
   position: relative;
   color: $additional-black-green;
 
