@@ -45,8 +45,6 @@ export const ValuabilityForm: React.FC<Props> = ({
     }
   }, [activeState]);
 
-  console.log(width);
-
   useEffect(() => {
     setPhotoWidth(width / PHOTO_AMOUNT);
   }, [width]);
