@@ -20,11 +20,13 @@ import { PhotosHelper } from '../PhotosHelper/PhotosHelper';
 type Props = {
   closeModal: Dispatch<SetStateAction<boolean>>;
   assessment: AssessmentForm;
+  activeState: boolean;
 };
 
 export const ValuabilityForm: React.FC<Props> = ({
   closeModal,
   assessment,
+  activeState,
 }) => {
   const PHOTO_AMOUNT = 5;
   const [files, setFiles] = useState<File[]>([]);
@@ -36,11 +38,12 @@ export const ValuabilityForm: React.FC<Props> = ({
   const [currentHeight, setCurrentHeight] = useState<number>(0);
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => {
+    if (activeState) {
+      document.body.style.overflow = 'hidden';
+    } else {
       document.body.style.overflow = 'auto';
-    };
-  }, []);
+    }
+  }, [activeState]);
 
   console.log(width);
 
@@ -91,7 +94,11 @@ export const ValuabilityForm: React.FC<Props> = ({
   };
 
   return (
-    <div className="valuability-form">
+    <div
+      className={classNames('valuability-form', {
+        isActive: activeState,
+      })}
+    >
       <SimpleBar className="valuability-form__bar ">
         <div className="valuability-form__container">
           <div className="valuability-form__header">
