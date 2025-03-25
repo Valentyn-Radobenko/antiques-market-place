@@ -42,12 +42,17 @@
 @import '../pages/ExpertisePage/PageHelper/PageHelper.scss';
 @import '../pages/ExpertisePage/PhotosHelper/PhotosHelper.scss';
 
+html {
+  height: 100%;
+}
+
 html * {
   box-sizing: border-box;
   font-family: Mulish, sans-serif;
 }
 
 .page {
+  height: 100%;
   max-width: 100vw;
   overflow-x: hidden;
   margin: 0;
