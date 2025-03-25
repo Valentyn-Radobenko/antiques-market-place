@@ -136,6 +136,15 @@
     flex-direction: column;
     position: relative;
 
+    &-icon {
+      color: $system-info;
+      cursor: pointer;
+
+      &:hover {
+        color: $freshherb-elect;
+      }
+    }
+
     &-title {
       display: flex;
       gap: 8px;
