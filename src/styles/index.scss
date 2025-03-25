@@ -64,8 +64,7 @@ html * {
     margin-bottom: 24px;
   }
 
-  &::before {
-    content: '';
+  &__bg {
     position: fixed;
     top: 0;
     left: 0;
