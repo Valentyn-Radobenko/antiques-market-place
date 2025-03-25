@@ -1,5 +1,6 @@
 // import { useEffect, useState } from "react";
 // import { useSearchParams } from "react-router-dom";
+// import { useEffect, useState } from 'react';
 import { Item } from '../../types/item';
 import { MarketItem } from '../MarketItem/MatketItem';
 
@@ -360,6 +361,27 @@ export const Catalog = () => {
 
   //   return newArrayOfItems;
   // }
+
+  // const [goods, setGoods] = useState([])
+
+  // function wait(delay: number) {
+  //   return new Promise(resolve => setTimeout(resolve, delay));
+  // }
+
+  // async function getGoods(){
+  //   return wait(500)
+  //     .then(() => fetch('https://tp136-production.up.railway.app/api/products'))
+  //     .then(response => response.json());
+  // }
+
+  // useEffect(() => {
+  //   getGoods()
+  //     .then(peopleArray => {
+  //       setGoods(peopleArray);
+  //     })
+  // }, [])
+
+  // console.log(goods);
 
   return (
     <>
