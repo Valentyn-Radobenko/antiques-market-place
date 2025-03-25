@@ -2,27 +2,35 @@ import { Close } from '../../../components/Imgs/Close';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import { AssessmentInfo } from '../../../types/assessment';
 import SimpleBar from 'simplebar-react';
+import classNames from 'classnames';
 
 type Props = {
   closeModal: Dispatch<SetStateAction<boolean>>;
   request: Dispatch<SetStateAction<boolean>>;
   assessment: AssessmentInfo;
+  activeState: boolean;
 };
 
 export const MoreInfo: React.FC<Props> = ({
   closeModal,
   request,
   assessment,
+  activeState,
 }) => {
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => {
+    if (activeState) {
+      document.body.style.overflow = 'hidden';
+    } else {
       document.body.style.overflow = 'auto';
-    };
-  }, []);
+    }
+  }, [activeState]);
 
   return (
-    <div className="more-info">
+    <div
+      className={classNames('more-info', {
+        isActive: activeState,
+      })}
+    >
       <SimpleBar className="more-info__bar">
         <div className="more-info__container">
           <div className="more-info__title">

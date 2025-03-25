@@ -49,13 +49,12 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
               >
                 Дізнатися більше
               </button>
-              {moreInfoBase && (
-                <MoreInfo
-                  request={setValuabilityForm}
-                  closeModal={setMoreInfoBase}
-                  assessment={assessmentInfo[0]}
-                />
-              )}
+              <MoreInfo
+                request={setValuabilityForm}
+                closeModal={setMoreInfoBase}
+                assessment={assessmentInfo[0]}
+                activeState={moreInfoBase}
+              />
               <button
                 onClick={() => setValuabilityForm(true)}
                 className={classNames('card__button dark', {
@@ -64,12 +63,11 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
               >
                 Подати заявку
               </button>
-              {valuabilityForm && (
-                <ValuabilityForm
-                  assessment={assessmentForm[0]}
-                  closeModal={setValuabilityForm}
-                />
-              )}
+              <ValuabilityForm
+                assessment={assessmentForm[0]}
+                closeModal={setValuabilityForm}
+                activeState={valuabilityForm}
+              />
             </div>
           </div>
           <img
@@ -109,13 +107,14 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
               >
                 Дізнатися більше
               </button>
-              {moreInfoExpert && (
-                <MoreInfo
-                  request={setExpertiseForm}
-                  assessment={assessmentInfo[1]}
-                  closeModal={setMoreInfoExpert}
-                />
-              )}
+
+              <MoreInfo
+                request={setExpertiseForm}
+                assessment={assessmentInfo[1]}
+                closeModal={setMoreInfoExpert}
+                activeState={moreInfoExpert}
+              />
+
               <button
                 onClick={() => setExpertiseForm(true)}
                 className={classNames('card__button dark', {
@@ -124,12 +123,11 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
               >
                 Подати заявку
               </button>
-              {expertiseForm && (
-                <ValuabilityForm
-                  assessment={assessmentForm[1]}
-                  closeModal={setExpertiseForm}
-                />
-              )}
+              <ValuabilityForm
+                assessment={assessmentForm[1]}
+                closeModal={setExpertiseForm}
+                activeState={expertiseForm}
+              />
             </div>
           </div>
           <img

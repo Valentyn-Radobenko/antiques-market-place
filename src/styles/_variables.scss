@@ -56,6 +56,12 @@ $additional-gradient: radial-gradient(
   rgba(255, 255, 255, 0.08) 98.67%
 );
 
+$user-notifications-gradient: linear-gradient(
+  90deg,
+  rgba(230, 253, 245, 0.25) 0%,
+  rgba(134, 191, 174, 0.125) 100%
+);
+
 $gray-black: #061814;
 $gray-dark: #34403d;
 $gray-darks: #646464;
