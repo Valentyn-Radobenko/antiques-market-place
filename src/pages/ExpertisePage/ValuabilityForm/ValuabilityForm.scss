@@ -309,9 +309,6 @@
       outline: none;
       color: $additional-black-green;
 
-      &:focus {
-        border-color: $additional-fresh-herb-icon;
-      }
       &::placeholder {
         color: $gray-lite;
       }
@@ -319,6 +316,10 @@
       &:hover {
         background-color: $additional-white-green;
         border-color: $additional-mint;
+      }
+      &:focus {
+        border-color: $additional-fresh-herb-icon;
+        background: inherit;
       }
     }
   }
