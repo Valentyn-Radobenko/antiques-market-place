@@ -153,6 +153,7 @@
   &__arrow-down {
     align-self: flex-end;
     cursor: pointer;
+    transform: rotate(90deg);
   }
 
   &__dots {

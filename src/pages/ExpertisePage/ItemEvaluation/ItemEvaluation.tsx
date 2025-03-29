@@ -72,7 +72,7 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
           </div>
           <img
             className="card__img"
-            src="images\expertise\expertise-1.png"
+            src="images\expertise\exp3.webp"
             alt=""
           />
         </div>
@@ -132,7 +132,7 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
           </div>
           <img
             className="card__img"
-            src="images\expertise\expertise-2.png"
+            src="images\expertise\exp1.webp"
             alt=""
           />
         </div>

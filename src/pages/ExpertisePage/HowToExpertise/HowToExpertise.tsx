@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { ArrowRound } from '../../../components/Imgs/ArrowRound';
 import { useResizeObserver } from '../../../utils/useResizeObserver';
 import { BigArrow } from '../../../components/Imgs/BigArrow';
+import { ArrowTale } from '../../../components/Imgs/ArrowTale';
 
 type Props = {
   scrollToSection: () => void;
@@ -212,20 +213,10 @@ export const HowToExpertise: React.FC<Props> = ({ scrollToSection }) => {
           </div>
         )}
         {pages.length < 1 && (
-          <svg
+          <ArrowTale
             onClick={scrollToSection}
             className="howtoexperise__arrow-down"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11.5 5V17.079L5.708 11.287L5 12L12 19L19 12L18.292 11.287L12.5 17.079V5H11.5Z"
-              fill="#1B4332"
-            />
-          </svg>
+          />
         )}
       </div>
     </section>

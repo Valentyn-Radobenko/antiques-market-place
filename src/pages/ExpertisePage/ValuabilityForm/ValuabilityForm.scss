@@ -136,6 +136,15 @@
     flex-direction: column;
     position: relative;
 
+    &-icon {
+      color: $system-info;
+      cursor: pointer;
+
+      &:hover {
+        color: $freshherb-elect;
+      }
+    }
+
     &-title {
       display: flex;
       gap: 8px;
@@ -300,9 +309,6 @@
       outline: none;
       color: $additional-black-green;
 
-      &:focus {
-        border-color: $additional-fresh-herb-icon;
-      }
       &::placeholder {
         color: $gray-lite;
       }
@@ -310,6 +316,10 @@
       &:hover {
         background-color: $additional-white-green;
         border-color: $additional-mint;
+      }
+      &:focus {
+        border-color: $additional-fresh-herb-icon;
+        background: inherit;
       }
     }
   }

@@ -1,22 +1,24 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store/store';
-import { logout } from '../../store/slices/authSlice';
-import { useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { AppDispatch, RootState } from '../../store/store';
+// import { logout } from '../../store/slices/authSlice';
+// import { useEffect } from 'react';
+import { ProfileMenu } from './ProfileMenu/ProfileMenu';
+import { ProfileAccount } from './ProfileAccount/ProfileAccount';
 
 export const ProfilePage = () => {
-  const { firstName, lastName, phoneNumber, email, auctionNumber, verified } =
-    useSelector((state: RootState) => state.user);
-  const dispatch = useDispatch<AppDispatch>();
+  // const { firstName, lastName, phoneNumber, email, auctionNumber, verified } =
+  //   useSelector((state: RootState) => state.user);
+  // const dispatch = useDispatch<AppDispatch>();
 
-  useEffect(() => {
-    if (!verified) {
-      dispatch(logout());
-    }
-  }, [verified]);
+  // useEffect(() => {
+  //   if (!verified) {
+  //     dispatch(logout());
+  //   }
+  // }, [verified]);
 
   return (
-    <>
-      <h2>
+    <div className="profile-page">
+      {/* <h2>
         Тестова сторінка для перевірки роботи авторизації. Дизайн буде змінено
         після його затвердження.
       </h2>
@@ -35,7 +37,10 @@ export const ProfilePage = () => {
         className="logout-button"
       >
         Вийти
-      </button>
-    </>
+      </button> */}
+
+      <ProfileMenu />
+      <ProfileAccount />
+    </div>
   );
 };

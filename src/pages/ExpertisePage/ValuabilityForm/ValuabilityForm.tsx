@@ -127,6 +127,7 @@ export const ValuabilityForm: React.FC<Props> = ({
               <div className="valuability-form__photo-title-text">
                 <p className="valuability-form__photo-text">Фото матеріали</p>
                 <Info
+                  className={'valuability-form__photo-icon'}
                   onMouseLeave={() => leaveLeave()}
                   onMouseEnter={() => mouseOn()}
                   onClick={() => setPhotosHelper(true)}
