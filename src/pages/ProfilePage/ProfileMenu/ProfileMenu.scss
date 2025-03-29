@@ -1,0 +1,30 @@
+.profile-menu {
+  width: 209px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  background: $background-plate;
+
+  &__item {
+    display: flex;
+    gap: 8px;
+    color: $additional-greenas;
+    @include main-text;
+    align-items: center;
+    padding: 16px;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $gray-stroke;
+    }
+
+    &.isActive {
+      color: $freshherb-elect;
+      @include button-semibold;
+    }
+  }
+
+  &__svg {
+    color: red;
+  }
+}

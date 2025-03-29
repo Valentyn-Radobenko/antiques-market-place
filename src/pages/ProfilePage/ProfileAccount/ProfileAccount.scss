@@ -1,0 +1,293 @@
+.profile-account {
+  background: $stroke-button-primary;
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  align-items: baseline;
+
+  &__main-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: auto;
+    flex-grow: 1;
+    margin: 24px;
+  }
+
+  &__title {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__arrow {
+    display: none;
+    transform: rotate(180deg);
+
+    @include on-tablet {
+      display: block;
+    }
+  }
+
+  &__h2 {
+    @include h2-bold;
+
+    @include on-tablet {
+      @include h2-mobile-bold;
+    }
+
+    @include on-phone {
+      @include h3-bold;
+    }
+  }
+}
+
+.account-main-info {
+  display: flex;
+  gap: 16px;
+  border-radius: 12px;
+  padding: 24px;
+  background: $background-plate;
+
+  @include on-tablet {
+    padding: 16px;
+  }
+
+  &__img-block {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 116px;
+    height: 116px;
+    background: $gray-white;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  &__placehilder {
+    width: 40px;
+    height: 40px;
+    color: $additional-gray-gray;
+  }
+
+  &__svg {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border-radius: 8px;
+    color: $additional-greenas;
+    background: $background-plate;
+    width: 24px;
+    height: 24px;
+  }
+
+  &__text-block {
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    color: $gray-black;
+  }
+
+  &__name {
+    @include h4-bold;
+  }
+
+  &__location {
+    @include main-text;
+  }
+
+  &__veryfic-status {
+    display: flex;
+    gap: 1px;
+    padding-inline: 8px;
+    padding-block: 4px;
+    border: 1px solid $system-warning;
+    border-radius: 8px;
+    background: $background-page;
+  }
+
+  &__veryfic-svg {
+    color: $system-warning;
+  }
+
+  &__veryfic-text {
+    @include tab-regular;
+  }
+}
+
+.account-fullfiling {
+  border-radius: 16px;
+  background: $background-important;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  width: 219px;
+
+  @include on-tablet {
+    flex-direction: row;
+    width: auto;
+    gap: 0;
+    justify-content: space-between;
+  }
+
+  @include on-phone {
+    display: none;
+  }
+
+  &__text {
+    @include button-semibold;
+    color: $additional-black-green;
+    text-align: center;
+
+    &.desctop {
+      @include on-tablet {
+        display: none;
+      }
+    }
+
+    &.tablet {
+      display: none;
+
+      @include on-tablet {
+        display: block;
+      }
+    }
+  }
+
+  &__circle {
+    width: 196px;
+    height: 196px;
+    background: $selected-bright;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    @include on-tablet {
+      order: 2;
+    }
+  }
+
+  &__circle-out {
+    width: 163px;
+    height: 163px;
+    background: $gray-white;
+    z-index: 10;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__circle-line {
+    position: absolute;
+    stroke: $additional-gray-gray;
+
+    &.isActive {
+      stroke: $freshherb-elect;
+    }
+  }
+
+  &__circle-text {
+    padding-inline: 10px;
+    text-align: center;
+    @include tab-regular;
+  }
+
+  &__tablet-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    width: 100%;
+    @include on-tablet {
+      order: 1;
+    }
+  }
+
+  &__steps-container {
+    overflow: hidden;
+    transition: all ease $effect-duration;
+  }
+
+  &__step {
+    border-radius: 12px;
+    padding: 8px 16px;
+    background: $background-plate;
+    display: flex;
+    justify-content: space-between;
+    color: $additional-greenas;
+    @include tab-regular;
+
+    &.isActive {
+      background: $gray-white;
+      border-bottom: 1px solid $freshherb-elect;
+    }
+  }
+
+  &__step-svg {
+    color: $gray-lite;
+
+    &.isActive {
+      color: $freshherb-elect;
+    }
+  }
+}
+
+.account-fullfiling-mobile {
+  background: $background-important;
+  display: none;
+  padding: 16px;
+  border-radius: 12px;
+
+  @include on-phone {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__arrow {
+    transition: all ease $effect-duration;
+
+    &.isActive {
+      transform: rotateX(180deg);
+    }
+  }
+
+  &__progres {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__lines {
+    display: flex;
+    background: $selected-bright;
+    gap: 8px;
+  }
+
+  &__line {
+    border-radius: 12px;
+    width: 100%;
+    height: 8px;
+    background: $additional-gray-gray;
+  }
+
+  &__lines-text {
+    color: $gray-dark;
+  }
+}
