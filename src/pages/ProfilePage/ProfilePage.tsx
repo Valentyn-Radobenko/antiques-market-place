@@ -1,20 +1,23 @@
-// import { useDispatch, useSelector } from 'react-redux';
-// import { AppDispatch, RootState } from '../../store/store';
-// import { logout } from '../../store/slices/authSlice';
-// import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
+import { logout } from '../../store/slices/authSlice';
+import { useEffect } from 'react';
 import { ProfileMenu } from './ProfileMenu/ProfileMenu';
-import { ProfileAccount } from './ProfileAccount/ProfileAccount';
+import { Outlet } from 'react-router-dom';
 
 export const ProfilePage = () => {
-  // const { firstName, lastName, phoneNumber, email, auctionNumber, verified } =
-  //   useSelector((state: RootState) => state.user);
-  // const dispatch = useDispatch<AppDispatch>();
+  const { verified } = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch<AppDispatch>();
 
-  // useEffect(() => {
-  //   if (!verified) {
-  //     dispatch(logout());
-  //   }
-  // }, [verified]);
+  const client = useSelector((state: RootState) => state.user);
+
+  console.log(client);
+
+  useEffect(() => {
+    if (!verified) {
+      dispatch(logout());
+    }
+  }, [verified]);
 
   return (
     <div className="profile-page">
@@ -40,7 +43,7 @@ export const ProfilePage = () => {
       </button> */}
 
       <ProfileMenu />
-      <ProfileAccount />
+      <Outlet />
     </div>
   );
 };

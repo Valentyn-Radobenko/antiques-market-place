@@ -1,5 +1,10 @@
 import { createRoot } from 'react-dom/client';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  HashRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import './styles/index.scss';
@@ -17,6 +22,13 @@ import { AllExhibitions } from './pages/ExhibitionsPage/Exhibitions/AllExhibitio
 import { OngoingExhibitions } from './pages/ExhibitionsPage/Exhibitions/OngoingExhibitions';
 import { CompletedExhibitions } from './pages/ExhibitionsPage/Exhibitions/CompletedExhibitions';
 import { PlannedExhibitions } from './pages/ExhibitionsPage/Exhibitions/PlannedExhibitions';
+import { ProfileAccount } from './pages/ProfilePage/ProfileAccount/ProfileAccount';
+import { Cart } from './pages/ProfilePage/Cart/Cart';
+import { Discussions } from './pages/ProfilePage/Discussions/Discussions';
+import { Messages } from './pages/ProfilePage/Messages/Messages';
+import { Orders } from './pages/ProfilePage/Orders/Orders';
+import { Security } from './pages/ProfilePage/Security/Security';
+import { Settings } from './pages/ProfilePage/Settings/Settings';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <StrictMode>
@@ -70,17 +82,48 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
                 element={<PlannedExhibitions />}
               />
             </Route>
-
             <Route
               path="expertise"
               element={<ExpertisePage />}
             />
-
             <Route element={<PrivateRoute />}>
               <Route
                 path="me"
                 element={<ProfilePage />}
-              />
+              >
+                <Route
+                  index
+                  element={<ProfileAccount />}
+                />
+                <Route
+                  path="account"
+                  element={<Navigate to="/me" />}
+                />
+                <Route
+                  path="cart"
+                  element={<Cart />}
+                />
+                <Route
+                  path="discussions"
+                  element={<Discussions />}
+                />
+                <Route
+                  path="messages"
+                  element={<Messages />}
+                />
+                <Route
+                  path="orders"
+                  element={<Orders />}
+                />
+                <Route
+                  path="security"
+                  element={<Security />}
+                />
+                <Route
+                  path="settings"
+                  element={<Settings />}
+                />
+              </Route>
             </Route>
             <Route
               path="*"

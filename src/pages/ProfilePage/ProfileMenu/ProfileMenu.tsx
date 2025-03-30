@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { AccountSVG } from '../../../components/Imgs/AccountSVG';
 import { CartSVG } from '../../../components/Imgs/CartSVG';
 import { DiscussonsSVG } from '../../../components/Imgs/DiscussionsSVG';
@@ -5,6 +6,7 @@ import { Messaging } from '../../../components/Imgs/Messaging';
 import { OrdersSVG } from '../../../components/Imgs/OrdersSVG';
 import { SecuritySVG } from '../../../components/Imgs/SecuritySVG';
 import { SettingsSVG } from '../../../components/Imgs/SettingsSVG';
+import { profileNav } from '../../../types/ProfileNav';
 
 const profileNavigation: profileNav[] = [
   {
@@ -40,7 +42,7 @@ const profileNavigation: profileNav[] = [
   {
     nameUa: 'Вхід і безпека',
     nameEng: 'Login and Security',
-    slug: 'login-security',
+    slug: 'security',
     svg: <SecuritySVG />,
   },
   {
@@ -51,23 +53,18 @@ const profileNavigation: profileNav[] = [
   },
 ];
 
-type profileNav = {
-  nameUa: string;
-  nameEng: string;
-  slug: string;
-  svg: React.ReactNode;
-};
 export const ProfileMenu = () => {
   return (
     <div className="profile-menu">
       {profileNavigation.map((item) => (
-        <div
+        <NavLink
+          to={`${item.slug}`}
           key={item.slug}
           className="profile-menu__item"
         >
           {item.svg}
           <p>{item.nameUa}</p>
-        </div>
+        </NavLink>
       ))}
     </div>
   );

@@ -4,6 +4,10 @@ import { useWindowSize } from '../../../utils/useWindowSize';
 import { AccountFullfiling } from './AccountFullfiling/AccountFullfiling';
 import { AccountMainInfo } from './AccountMainInfo/AccountMainInfo';
 import { RootState } from '../../../store/store';
+import { AccountGeneral } from './AccountGeneral/AccountGeneral';
+import { ExitSVG } from '../../../components/Imgs/ExitSVG';
+import { ShiledCrossSVG } from '../../../components/Imgs/ShiledCrossSVG';
+import { Verification } from './Verification/Verification';
 
 export const ProfileAccount = () => {
   const { firstName, lastName } = useSelector((state: RootState) => state.user);
@@ -22,12 +26,24 @@ export const ProfileAccount = () => {
           lastName={lastName}
         />
         {windowSize.width < 1440 && <AccountFullfiling />}
-        <div className="profile-account__info">
-          <div className="profile-account__personal-info"></div>
-          <div className="profile-account__contact-info"></div>
+        <AccountGeneral />
+
+        <Verification />
+
+        <div className="profile-account__exit-deleting">
+          <div className="profile-account__exit">
+            <ExitSVG />
+            <p className="profile-account__exit-deleting-text">
+              Вийти з акаунта
+            </p>
+          </div>
+          <div className="profile-account__delete">
+            <ShiledCrossSVG />
+            <p className="profile-account__exit-deleting-text">
+              Видалити акаунт{' '}
+            </p>
+          </div>
         </div>
-        <div className="profile-account__verification"></div>
-        <div className="profile-account__exit-deleting"></div>
       </div>
       {windowSize.width >= 1440 && <AccountFullfiling />}
     </div>
