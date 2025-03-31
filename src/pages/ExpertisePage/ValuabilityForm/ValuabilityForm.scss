@@ -141,7 +141,7 @@
       cursor: pointer;
 
       &:hover {
-        color: $freshherb-elect;
+        color: $additional-freshherb-elect;
       }
     }
 
@@ -244,7 +244,7 @@
     }
 
     &-1stword {
-      color: $freshherb-elect;
+      color: $additional-freshherb-elect;
 
       &.disabled {
         color: $gray-lite;
