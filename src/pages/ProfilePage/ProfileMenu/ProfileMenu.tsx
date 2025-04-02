@@ -7,6 +7,7 @@ import { OrdersSVG } from '../../../components/Imgs/OrdersSVG';
 import { SecuritySVG } from '../../../components/Imgs/SecuritySVG';
 import { SettingsSVG } from '../../../components/Imgs/SettingsSVG';
 import { profileNav } from '../../../types/ProfileNav';
+import { SetStateAction, Dispatch } from 'react';
 
 const profileNavigation: profileNav[] = [
   {
@@ -53,11 +54,16 @@ const profileNavigation: profileNav[] = [
   },
 ];
 
-export const ProfileMenu = () => {
+type Props = {
+  setOpenMenu: Dispatch<SetStateAction<boolean>>;
+};
+
+export const ProfileMenu: React.FC<Props> = ({ setOpenMenu }) => {
   return (
     <div className="profile-menu">
       {profileNavigation.map((item) => (
         <NavLink
+          onClick={() => setOpenMenu(true)}
           to={`${item.slug}`}
           key={item.slug}
           className="profile-menu__item"

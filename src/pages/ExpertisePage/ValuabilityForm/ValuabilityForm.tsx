@@ -1,21 +1,13 @@
-import {
-  ChangeEvent,
-  SetStateAction,
-  DragEvent,
-  useEffect,
-  Dispatch,
-  useState,
-} from 'react';
+import { SetStateAction, useEffect, Dispatch, useState } from 'react';
 import { Close } from '../../../components/Imgs/Close';
 import { Info } from '../../../components/Imgs/Info';
-import { AddIMGS } from '../../../components/Imgs/AddIMGS';
 import { Bin } from '../../../components/Imgs/Bin';
 import { useResizeObserver } from '../../../utils/useResizeObserver';
 import { AssessmentForm } from '../../../types/assessment';
-import { PlusIMG } from '../../../components/Imgs/PlusIMG';
 import classNames from 'classnames';
 import SimpleBar from 'simplebar-react';
 import { PhotosHelper } from '../PhotosHelper/PhotosHelper';
+import { FilesInput } from '../../../components/FilesInput/FilesInput';
 
 type Props = {
   closeModal: Dispatch<SetStateAction<boolean>>;
@@ -33,7 +25,6 @@ export const ValuabilityForm: React.FC<Props> = ({
   const [photoWidth, setPhotoWidth] = useState<number>(0);
   const { ref, width } = useResizeObserver();
   const [query, setQuery] = useState<string>('');
-  const [dragOn, setDragOn] = useState<boolean>(false);
   const [photosHelper, setPhotosHelper] = useState<boolean>(false);
   const [currentHeight, setCurrentHeight] = useState<number>(0);
 
@@ -49,33 +40,10 @@ export const ValuabilityForm: React.FC<Props> = ({
     setPhotoWidth(width / PHOTO_AMOUNT);
   }, [width]);
 
-  const addFiles = (event: ChangeEvent<HTMLInputElement>) => {
-    const newFiles = event.target.files ? Array.from(event.target.files) : [];
-    setFiles((prev) => [...prev, ...newFiles].slice(0, PHOTO_AMOUNT));
-  };
-
-  const dropFiles = (event: React.DragEvent<HTMLLabelElement>) => {
-    event.preventDefault();
-
-    const newFiles =
-      event.dataTransfer.files ? Array.from(event.dataTransfer.files) : [];
-    setFiles((prev) => [...prev, ...newFiles].slice(0, PHOTO_AMOUNT));
-    setDragOn(false);
-  };
-
   const deletePhoto = (i: number) => {
     const newFiles = files.filter((_, index) => index !== i);
 
     setFiles(newFiles);
-  };
-
-  const handleDragOn = (event: DragEvent<HTMLLabelElement>) => {
-    event.preventDefault();
-    setDragOn(true);
-  };
-
-  const hadleDragLeave = () => {
-    setDragOn(false);
   };
 
   let timeout: NodeJS.Timeout;
@@ -148,60 +116,10 @@ export const ValuabilityForm: React.FC<Props> = ({
                   setHelperOn={setPhotosHelper}
                 />
               </div>
-
-              <label
-                htmlFor="fileInput"
-                className={classNames('valuability-form__photo-input', {
-                  isActive: files.length !== 0,
-                  disabled: files.length === 5,
-                  hoverEffect: dragOn,
-                })}
-                onDrop={dropFiles}
-                onDragOver={handleDragOn}
-                onDragLeave={hadleDragLeave}
-              >
-                <AddIMGS
-                  className={classNames('valuability-form__photo-add-img', {
-                    disabled: files.length === 5,
-                  })}
-                />
-                <div className="valuability-form__photo-text-block">
-                  <p
-                    className={classNames('valuability-form__photo-text-1', {
-                      disabled: files.length === 5,
-                    })}
-                  >
-                    <span
-                      className={classNames('valuability-form__photo-1stword', {
-                        disabled: files.length === 5,
-                      })}
-                    >
-                      Натисніть
-                    </span>{' '}
-                    , щоб завантажити або перетягніть файл
-                  </p>
-                  <p
-                    className={classNames('valuability-form__photo-text-2', {
-                      disabled: files.length === 5,
-                    })}
-                  >
-                    Ми підтримуємо PNG, JPEG та GIF розміром до 10MB
-                  </p>
-                </div>
-                <PlusIMG
-                  className={classNames('valuability-form__photo-plus-img', {
-                    disabled: files.length === 5,
-                  })}
-                />
-              </label>
-              <input
-                accept=".jpg, .jpeg, .png, .pdf, image/jpeg, image/png, application/pdf"
-                multiple
-                onChange={addFiles}
-                id="fileInput"
-                hidden
-                type="file"
-                disabled={files.length === 5}
+              <FilesInput
+                files={files}
+                setFiles={setFiles}
+                PHOTO_AMOUNT={PHOTO_AMOUNT}
               />
             </div>
             {files.length > 0 && (

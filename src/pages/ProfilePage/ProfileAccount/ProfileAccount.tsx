@@ -8,16 +8,22 @@ import { AccountGeneral } from './AccountGeneral/AccountGeneral';
 import { ExitSVG } from '../../../components/Imgs/ExitSVG';
 import { ShiledCrossSVG } from '../../../components/Imgs/ShiledCrossSVG';
 import { Verification } from './Verification/Verification';
+import { useOutletContext } from 'react-router-dom';
+import { OutletContextType } from '../../../types/openMenuOtlet';
 
 export const ProfileAccount = () => {
   const { firstName, lastName } = useSelector((state: RootState) => state.user);
   const windowSize = useWindowSize();
+  const [setOpenMenu] = useOutletContext<OutletContextType>();
 
   return (
     <div className="profile-account">
       <div className="profile-account__main-section">
         <div className="profile-account__title">
-          <ArrowTale className="profile-account__arrow" />
+          <ArrowTale
+            onClick={() => setOpenMenu(false)}
+            className="profile-account__arrow"
+          />
           <h2 className="profile-account__h2">Акаунт</h2>
         </div>
 

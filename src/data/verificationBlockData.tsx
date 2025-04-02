@@ -1,9 +1,11 @@
+import { ChatSVG } from '../components/Imgs/ChatSVG';
+import { DownliadSVG } from '../components/Imgs/Download.SVG';
 import { ShiledSVG } from '../components/Imgs/ShieldSVG';
 
 export const verifivationData = {
   title: {
     nameUa: 'Верифікація',
-    nameEng: '',
+    nameEng: 'Verification',
   },
 
   steps: [
@@ -11,59 +13,60 @@ export const verifivationData = {
       svg: <ShiledSVG className="account-verification__svg" />,
       title: {
         nameUa: 'Навіщо проходити верифікацію?',
-        nameEng: '',
+        nameEng: 'Why undergo verification?',
       },
       list: [
         {
           nameUa: 'Уникнути шахрайства та підробок',
-          nameEng: '',
+          nameEng: 'Prevent fraud and forgery',
         },
         {
           nameUa: 'Отримати доступ до ексклюзивних аукціонів та угод',
-          nameEng: '',
+          nameEng: 'Access exclusive auctions and deals',
         },
         {
           nameUa: 'Стати перевіреним продавцем або покупцем',
-          nameEng: '',
+          nameEng: 'Become a verified seller or buyer',
         },
       ],
     },
     {
-      svg: <ShiledSVG className="account-verification__svg" />,
+      svg: <ChatSVG className="account-verification__svg" />,
       title: {
         nameUa: 'Як пройти верифікацію?',
-        nameEng: '',
+        nameEng: 'How to undergo verification?',
       },
       list: [
         {
           nameUa:
             'Завантажте фото документа (на вибір: паспорт, ID-картка, водійське посвідчення).',
-          nameEng: '',
+          nameEng:
+            "Upload a document photo (choose: passport, ID card, driver's license).",
         },
         {
           nameUa: 'Очікуйте перевірку модератором.',
-          nameEng: '',
+          nameEng: 'Await moderation review.',
         },
         {
-          nameUa: '3️. Отримайте сповіщення про статус верифікації.',
-          nameEng: '',
+          nameUa: 'Отримайте сповіщення про статус верифікації.',
+          nameEng: 'Receive notification of verification status.',
         },
       ],
     },
     {
-      svg: <ShiledSVG className="account-verification__svg" />,
+      svg: <DownliadSVG className="account-verification__svg" />,
       title: {
         nameUa: 'Завантаження документа',
-        nameEng: '',
+        nameEng: 'Document upload',
       },
       list: [
         {
           nameUa: 'Виберіть файл – JPG, PNG, PDF',
-          nameEng: '',
+          nameEng: 'Select file – JPG, PNG, PDF',
         },
         {
           nameUa: 'Фото має бути чітким, без розмиття та відблисків.',
-          nameEng: '',
+          nameEng: 'Photo must be clear, without blurring or reflections.',
         },
       ],
     },

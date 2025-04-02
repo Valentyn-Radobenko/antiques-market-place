@@ -2,4 +2,32 @@
   display: flex;
   gap: 16px;
   align-items: flex-start;
+  overflow: hidden;
+
+  & > *:last-child {
+    @include on-tablet {
+      transform: translate(100%);
+      opacity: 0;
+      transition: all ease $effect-duration;
+    }
+  }
+
+  &.nonActiveMenu > *:last-child {
+    @include on-tablet {
+      transform: translate(0);
+      opacity: 1;
+      z-index: 1;
+    }
+  }
+  & > *:first-child {
+    @include on-tablet {
+      transition: all ease $effect-duration;
+    }
+  }
+
+  &.nonActiveMenu > *:first-child {
+    @include on-tablet {
+      opacity: 0;
+    }
+  }
 }

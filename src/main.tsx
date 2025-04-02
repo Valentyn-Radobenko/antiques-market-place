@@ -1,10 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import {
-  HashRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import './styles/index.scss';
@@ -97,7 +92,7 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
                 />
                 <Route
                   path="account"
-                  element={<Navigate to="/me" />}
+                  element={<ProfileAccount />}
                 />
                 <Route
                   path="cart"

@@ -1,0 +1,95 @@
+.file-input {
+  box-sizing: border-box;
+
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  /* dashed border */
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%231B4332' stroke-width='1' stroke-dasharray='12%2c 12' stroke-dashoffset='30' stroke-linecap='square'/%3e%3c/svg%3e");
+  /* fill: background-color */
+  /* stroke: border-color */
+  /* stroke-dasharray: space bewtween dots */
+  /* rx and ry needs to be equal to the border-radius */
+  border-radius: 12px;
+  padding: 31px 16px;
+  background-color: $background-page;
+
+  &.isActive {
+    background-color: #d6f2e8;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%23388964' stroke-width='1' stroke-dasharray='12%2c 0' stroke-dashoffset='30' stroke-linecap='square'/%3e%3c/svg%3e");
+  }
+
+  &:hover {
+    background-color: $additional-white-green;
+  }
+
+  &.hoverEffect {
+    background-color: $additional-white-green;
+  }
+
+  &.disabled {
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%23B9CCC9' stroke-width='1' stroke-dasharray='12%2c 0' stroke-dashoffset='30' stroke-linecap='square'/%3e%3c/svg%3e");
+    background-color: $gray-white-darks;
+  }
+
+  @include on-phone {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  &-add-img {
+    @include on-phone {
+      align-self: flex-start;
+    }
+    color: $additional-greenas;
+    flex-shrink: 0;
+
+    &.disabled {
+      color: $gray-darks;
+    }
+  }
+  &-plus-img {
+    @include on-phone {
+      align-self: flex-end;
+    }
+    color: $additional-greenas;
+    flex-shrink: 0;
+
+    &.disabled {
+      color: $gray-darks;
+    }
+  }
+
+  &-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &-text-1 {
+    @include h4-bold;
+    color: $gray-black;
+    &.disabled {
+      color: $gray-darks;
+    }
+  }
+
+  &-text-2 {
+    @include main-text;
+    color: $gray-black;
+    &.disabled {
+      color: $gray-dis;
+    }
+  }
+
+  &-1stword {
+    color: $freshherb-elect;
+
+    &.disabled {
+      color: $gray-lite;
+    }
+  }
+}

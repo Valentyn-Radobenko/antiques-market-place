@@ -1,17 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 import { logout } from '../../store/slices/authSlice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ProfileMenu } from './ProfileMenu/ProfileMenu';
 import { Outlet } from 'react-router-dom';
+import classNames from 'classnames';
 
 export const ProfilePage = () => {
   const { verified } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch<AppDispatch>();
-
-  const client = useSelector((state: RootState) => state.user);
-
-  console.log(client);
+  const [openMenu, setOpenMenu] = useState(true);
+  // const client = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
     if (!verified) {
@@ -20,7 +19,11 @@ export const ProfilePage = () => {
   }, [verified]);
 
   return (
-    <div className="profile-page">
+    <div
+      className={classNames('profile-page', {
+        nonActiveMenu: openMenu,
+      })}
+    >
       {/* <h2>
         Тестова сторінка для перевірки роботи авторизації. Дизайн буде змінено
         після його затвердження.
@@ -42,8 +45,8 @@ export const ProfilePage = () => {
         Вийти
       </button> */}
 
-      <ProfileMenu />
-      <Outlet />
+      <ProfileMenu setOpenMenu={setOpenMenu} />
+      <Outlet context={[setOpenMenu]} />
     </div>
   );
 };
