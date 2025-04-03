@@ -3,6 +3,7 @@
   gap: 16px;
   align-items: flex-start;
   overflow: hidden;
+  position: relative;
 
   & > *:last-child {
     @include on-tablet {
@@ -28,6 +29,34 @@
   &.nonActiveMenu > *:first-child {
     @include on-tablet {
       opacity: 0;
+    }
+  }
+
+  &__section-title {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__section-arrow {
+    display: none;
+    transform: rotate(180deg);
+    cursor: pointer;
+
+    @include on-tablet {
+      display: block;
+    }
+  }
+
+  &__section-h2 {
+    @include h2-bold;
+
+    @include on-tablet {
+      @include h2-mobile-bold;
+    }
+
+    @include on-phone {
+      @include h3-bold;
     }
   }
 }

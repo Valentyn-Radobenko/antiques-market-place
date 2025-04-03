@@ -45,7 +45,10 @@ export const ProfilePage = () => {
         Вийти
       </button> */}
 
-      <ProfileMenu setOpenMenu={setOpenMenu} />
+      <ProfileMenu
+        openMenu={openMenu}
+        setOpenMenu={setOpenMenu}
+      />
       <Outlet context={[setOpenMenu]} />
     </div>
   );

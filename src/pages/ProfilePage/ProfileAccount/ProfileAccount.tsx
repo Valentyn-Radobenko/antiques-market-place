@@ -19,12 +19,12 @@ export const ProfileAccount = () => {
   return (
     <div className="profile-account">
       <div className="profile-account__main-section">
-        <div className="profile-account__title">
+        <div className="profile-page__section-title">
           <ArrowTale
             onClick={() => setOpenMenu(false)}
-            className="profile-account__arrow"
+            className="profile-page__section-arrow"
           />
-          <h2 className="profile-account__h2">Акаунт</h2>
+          <h2 className="profile-page__section-h2">Акаунт</h2>
         </div>
 
         <AccountMainInfo

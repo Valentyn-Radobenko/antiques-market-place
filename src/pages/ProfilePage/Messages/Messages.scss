@@ -1,0 +1,38 @@
+.profile-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 40px;
+  background: $stroke-button-primary;
+  width: 100%;
+
+  &__messages {
+    display: flex;
+    gap: 16px;
+    height: 550px;
+  }
+
+  &__simple-bar-container {
+    width: 352px;
+    border-radius: 12px;
+    background: $gray-white;
+    padding-top: 24px;
+    box-shadow: $drop-shadow;
+  }
+
+  &__sources {
+    padding-left: 8px;
+    padding-right: 26px;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    height: auto;
+    overflow: hidden;
+  }
+
+  &__source {
+    height: 60px;
+    background: lightcoral;
+    border-radius: 12px;
+  }
+}
