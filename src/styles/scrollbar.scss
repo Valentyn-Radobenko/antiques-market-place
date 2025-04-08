@@ -69,7 +69,7 @@
   }
 }
 
-.profile-messages__simple-bar-container {
+.profile-messages__simple-bar {
   & .simplebar-track {
     width: 8px !important;
     right: 8px;
@@ -79,6 +79,10 @@
       rgba(240, 255, 248, 0.35) 26.78%,
       rgba(214, 242, 232, 0.63) 96.71%
     );
+  }
+
+  & .simplebar-placeholder {
+    width: auto !important;
   }
 
   & .simplebar-vertical {
