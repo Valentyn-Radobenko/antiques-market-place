@@ -181,7 +181,7 @@
     stroke: $additional-gray-gray;
 
     &.isActive {
-      stroke: $freshherb-elect;
+      stroke: $additional-freshherb-elect;
     }
   }
 
@@ -223,7 +223,7 @@
 
     &.isActive {
       background: $gray-white;
-      border-bottom: 1px solid $freshherb-elect;
+      border-bottom: 1px solid $additional-freshherb-elect;
     }
   }
 
@@ -231,7 +231,7 @@
     color: $gray-lite;
 
     &.isActive {
-      color: $freshherb-elect;
+      color: $additional-freshherb-elect;
     }
   }
 }

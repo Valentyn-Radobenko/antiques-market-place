@@ -1,25 +1,92 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import classNames from 'classnames';
 import { exhibition } from '../../../types/exhibition';
+import { SearchLink } from '../../../utils/SearchLink';
 
 type Props = {
   exhibitions: exhibition[];
 };
 
+const useMediaQuery = (query: string) => {
+  const [matches, setMatches] = React.useState(
+    window.matchMedia(query).matches,
+  );
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    const listener = () => setMatches(media.matches);
+    media.addEventListener('change', listener);
+    return () => media.removeEventListener('change', listener);
+  }, [query]);
+
+  return matches;
+};
+
 export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
+  const isTablet = useMediaQuery('(max-width: 1439px)');
+  const itemsPerPage = isTablet ? 3 : 6;
+  const totalPages = Math.ceil(exhibitions.length / itemsPerPage);
+
+  const [searchParams] = useSearchParams();
+  const currentPage = Number(searchParams.get('page')) || 1;
+
+  useEffect(() => {
+    if (currentPage > totalPages && totalPages > 0) {
+      // Можна реалізувати редірект або оновлення параметрів
+    }
+  }, [currentPage, totalPages]);
+
+  const currentItems = exhibitions.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage,
+  );
+
+  const getDisplayedPages = (
+    currentPage: number,
+    totalPages: number,
+  ): (number | string)[] => {
+    if (totalPages <= 5) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+    if (currentPage <= 3) {
+      return [1, 2, 3, 4, '...', totalPages];
+    }
+    if (currentPage >= totalPages - 2) {
+      return [
+        1,
+        '...',
+        totalPages - 3,
+        totalPages - 2,
+        totalPages - 1,
+        totalPages,
+      ];
+    }
+    return [
+      1,
+      '...',
+      currentPage - 1,
+      currentPage,
+      currentPage + 1,
+      '...',
+      totalPages,
+    ];
+  };
+
   return (
-    <div className="exhibitions__articles-block">
-      <div className="exhibitions__offer">
-        <div className="exhibitions__offer-heading">
-          <h3 className="exhibitions__offer-title">Запропонувати виставку</h3>
-          <div className="exhibitions__offer-icon"></div>
+    <>
+      <div className="exhibitions__articles-block">
+        <div className="exhibitions__offer">
+          <div className="exhibitions__offer-heading">
+            <h3 className="exhibitions__offer-title">Запропонувати виставку</h3>
+            <div className="exhibitions__offer-icon"></div>
+          </div>
+          <button className="exhibitions__offer-button">Додати виставку</button>
         </div>
-        <button className="exhibitions__offer-button">Додати виставку</button>
-      </div>
-      <div className="exhibitions__articles">
-        {exhibitions.map((exh) => {
-          return (
+        <div className="exhibitions__articles">
+          {currentItems.map((exh, index) => (
             <article
-              key={exh.title}
+              key={`${exh.title}-${index}`}
               className="exhibitions__article"
             >
               <div
@@ -54,9 +121,81 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
                 </div>
               </div>
             </article>
-          );
-        })}
+          ))}
+        </div>
       </div>
-    </div>
+
+      {totalPages > 1 && (
+        <div className="exhibitions__pg">
+          {/* Стрілка "Назад" */}
+          {currentPage === 1 ?
+            <div
+              className={classNames(
+                'exhibitions__pg-arrow',
+                'exhibitions__pg-arrow--back',
+                'exhibitions__pg-arrow--back--disabled',
+              )}
+              style={{ cursor: 'not-allowed' }}
+            />
+          : <SearchLink
+              className={classNames(
+                'exhibitions__pg-arrow',
+                'exhibitions__pg-arrow--back',
+              )}
+              params={{ page: String(currentPage - 1) }}
+              style={{ cursor: 'pointer' }}
+            />
+          }
+
+          {/* Список сторінок */}
+          <div className="exhibitions__pg-pages">
+            {getDisplayedPages(currentPage, totalPages).map((page, index) => {
+              if (page === '...') {
+                return (
+                  <div
+                    key={`ellipsis-${index}`}
+                    className="exhibitions__pg-page"
+                  >
+                    ...
+                  </div>
+                );
+              }
+              return (
+                <SearchLink
+                  key={`page-${page}`}
+                  className={classNames('exhibitions__pg-page', {
+                    'exhibitions__pg-page--active': currentPage === page,
+                  })}
+                  params={{ page: page === 1 ? null : String(page) }}
+                  style={{ cursor: 'pointer' }}
+                >
+                  {page}
+                </SearchLink>
+              );
+            })}
+          </div>
+
+          {/* Стрілка "Вперед" */}
+          {currentPage === totalPages ?
+            <div
+              className={classNames(
+                'exhibitions__pg-arrow',
+                'exhibitions__pg-arrow--forward',
+                'exhibitions__pg-arrow--forward--disabled',
+              )}
+              style={{ cursor: 'not-allowed' }}
+            />
+          : <SearchLink
+              className={classNames(
+                'exhibitions__pg-arrow',
+                'exhibitions__pg-arrow--forward',
+              )}
+              params={{ page: String(currentPage + 1) }}
+              style={{ cursor: 'pointer' }}
+            />
+          }
+        </div>
+      )}
+    </>
   );
 };
