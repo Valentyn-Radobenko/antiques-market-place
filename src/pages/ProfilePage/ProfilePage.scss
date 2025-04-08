@@ -1,21 +1,62 @@
-// .logout-button {
-//   width: 100px;
-//   height: 50px;
-//   background-color: rgba(200, 0, 0, 0.3);
-//   border: 1px solid rgba(20, 20, 20, 0.7);
-//   margin: 40px;
-
-//   @include h4-bold;
-
-//   @include hover(background-color, rgba(200, 0, 0, 0.5));
-
-//   &:active {
-//     background-color: rgba(200, 0, 0, 0.8);
-//   }
-// }
-
 .profile-page {
   display: flex;
   gap: 16px;
   align-items: flex-start;
+  overflow: hidden;
+  position: relative;
+
+  & > *:last-child {
+    @include on-tablet {
+      transform: translate(100%);
+      opacity: 0;
+      transition: all ease $effect-duration;
+    }
+  }
+
+  &.nonActiveMenu > *:last-child {
+    @include on-tablet {
+      transform: translate(0);
+      opacity: 1;
+      z-index: 1;
+    }
+  }
+  & > *:first-child {
+    @include on-tablet {
+      transition: all ease $effect-duration;
+    }
+  }
+
+  &.nonActiveMenu > *:first-child {
+    @include on-tablet {
+      opacity: 0;
+    }
+  }
+
+  &__section-title {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__section-arrow {
+    display: none;
+    transform: rotate(180deg);
+    cursor: pointer;
+
+    @include on-tablet {
+      display: block;
+    }
+  }
+
+  &__section-h2 {
+    @include h2-bold;
+
+    @include on-tablet {
+      @include h2-mobile-bold;
+    }
+
+    @include on-phone {
+      @include h3-bold;
+    }
+  }
 }

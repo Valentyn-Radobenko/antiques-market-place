@@ -2,7 +2,7 @@
   border-radius: inherit !important;
 }
 
-/* Трек (фон скроллбара) */
+/* Трек (фон скролбара) */
 .simplebar-track {
   border-radius: inherit !important;
   overflow: hidden !important;
@@ -24,6 +24,7 @@
   border-inline: 1px solid #cbdbd9;
 }
 /* Ползунок (скролбар) */
+
 .market .simplebar-scrollbar::before {
   min-height: 50px;
   width: 8px !important;
@@ -32,7 +33,7 @@
   opacity: 1 !important;
 }
 
-/* Ширина самого ползунка */
+// /* Ширина самого ползунка */
 .market .simplebar-scrollbar {
   width: 8px !important;
   left: -2px !important;
@@ -65,5 +66,37 @@
   left: 10px !important;
   @media (max-width: 1439px) {
     left: 6px !important;
+  }
+}
+
+.profile-messages__simple-bar {
+  & .simplebar-track {
+    width: 8px !important;
+    right: 8px;
+    background: linear-gradient(
+      267deg,
+      rgba(226, 247, 237, 0.63) 5.61%,
+      rgba(240, 255, 248, 0.35) 26.78%,
+      rgba(214, 242, 232, 0.63) 96.71%
+    );
+  }
+
+  & .simplebar-placeholder {
+    width: auto !important;
+  }
+
+  & .simplebar-vertical {
+    top: 24px;
+    width: 24px;
+  }
+
+  & .simplebar-scrollbar {
+    width: 8px;
+    left: -2px;
+
+    &::before {
+      background: #b9ccc9;
+      width: 8px;
+    }
   }
 }

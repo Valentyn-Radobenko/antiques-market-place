@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { AccountSVG } from '../../../components/Imgs/AccountSVG';
 import { CartSVG } from '../../../components/Imgs/CartSVG';
 import { DiscussonsSVG } from '../../../components/Imgs/DiscussionsSVG';
@@ -5,6 +6,9 @@ import { Messaging } from '../../../components/Imgs/Messaging';
 import { OrdersSVG } from '../../../components/Imgs/OrdersSVG';
 import { SecuritySVG } from '../../../components/Imgs/SecuritySVG';
 import { SettingsSVG } from '../../../components/Imgs/SettingsSVG';
+import { profileNav } from '../../../types/ProfileNav';
+import { SetStateAction, Dispatch, useEffect } from 'react';
+import { ArrowTale } from '../../../components/Imgs/ArrowTale';
 
 const profileNavigation: profileNav[] = [
   {
@@ -40,7 +44,7 @@ const profileNavigation: profileNav[] = [
   {
     nameUa: 'Вхід і безпека',
     nameEng: 'Login and Security',
-    slug: 'login-security',
+    slug: 'security',
     svg: <SecuritySVG />,
   },
   {
@@ -51,23 +55,36 @@ const profileNavigation: profileNav[] = [
   },
 ];
 
-type profileNav = {
-  nameUa: string;
-  nameEng: string;
-  slug: string;
-  svg: React.ReactNode;
+type Props = {
+  setOpenMenu: Dispatch<SetStateAction<boolean>>;
+  openMenu: boolean;
 };
-export const ProfileMenu = () => {
+
+export const ProfileMenu: React.FC<Props> = ({ openMenu, setOpenMenu }) => {
+  useEffect(() => {
+    if (!openMenu) {
+      document.body.style.overflow = 'hidden';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [openMenu]);
+
   return (
     <div className="profile-menu">
       {profileNavigation.map((item) => (
-        <div
+        <NavLink
+          onClick={() => setOpenMenu(true)}
+          to={`${item.slug}`}
           key={item.slug}
           className="profile-menu__item"
         >
-          {item.svg}
-          <p>{item.nameUa}</p>
-        </div>
+          <div className="profile-menu__name">
+            {item.svg}
+            <p>{item.nameUa}</p>
+          </div>
+          <ArrowTale className="" />
+        </NavLink>
       ))}
     </div>
   );

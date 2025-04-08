@@ -1,23 +1,29 @@
-// import { useDispatch, useSelector } from 'react-redux';
-// import { AppDispatch, RootState } from '../../store/store';
-// import { logout } from '../../store/slices/authSlice';
-// import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
+import { logout } from '../../store/slices/authSlice';
+import { useEffect, useState } from 'react';
 import { ProfileMenu } from './ProfileMenu/ProfileMenu';
-import { ProfileAccount } from './ProfileAccount/ProfileAccount';
+import { Outlet } from 'react-router-dom';
+import classNames from 'classnames';
 
 export const ProfilePage = () => {
-  // const { firstName, lastName, phoneNumber, email, auctionNumber, verified } =
-  //   useSelector((state: RootState) => state.user);
-  // const dispatch = useDispatch<AppDispatch>();
+  const { verified } = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch<AppDispatch>();
+  const [openMenu, setOpenMenu] = useState(true);
+  // const client = useSelector((state: RootState) => state.user);
 
-  // useEffect(() => {
-  //   if (!verified) {
-  //     dispatch(logout());
-  //   }
-  // }, [verified]);
+  useEffect(() => {
+    if (!verified) {
+      dispatch(logout());
+    }
+  }, [verified]);
 
   return (
-    <div className="profile-page">
+    <div
+      className={classNames('profile-page', {
+        nonActiveMenu: openMenu,
+      })}
+    >
       {/* <h2>
         Тестова сторінка для перевірки роботи авторизації. Дизайн буде змінено
         після його затвердження.
@@ -39,8 +45,11 @@ export const ProfilePage = () => {
         Вийти
       </button> */}
 
-      <ProfileMenu />
-      <ProfileAccount />
+      <ProfileMenu
+        openMenu={openMenu}
+        setOpenMenu={setOpenMenu}
+      />
+      <Outlet context={[setOpenMenu]} />
     </div>
   );
 };

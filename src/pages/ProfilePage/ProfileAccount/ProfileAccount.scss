@@ -14,31 +14,24 @@
     margin: 24px;
   }
 
-  &__title {
+  &__exit-deleting {
+    display: flex;
+    flex-direction: column;
+    @include main-text;
+  }
+
+  &__exit,
+  &__delete {
     display: flex;
     gap: 8px;
-    align-items: center;
+    padding: 16px;
   }
 
-  &__arrow {
-    display: none;
-    transform: rotate(180deg);
-
-    @include on-tablet {
-      display: block;
-    }
+  &__exit {
+    color: $additional-greenas;
   }
-
-  &__h2 {
-    @include h2-bold;
-
-    @include on-tablet {
-      @include h2-mobile-bold;
-    }
-
-    @include on-phone {
-      @include h3-bold;
-    }
+  &__delete {
+    color: $system-error;
   }
 }
 
@@ -123,7 +116,6 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  align-items: center;
   width: 219px;
 
   @include on-tablet {
@@ -158,6 +150,7 @@
   }
 
   &__circle {
+    align-self: center;
     width: 196px;
     height: 196px;
     background: $selected-bright;
@@ -176,7 +169,7 @@
     width: 163px;
     height: 163px;
     background: $gray-white;
-    z-index: 10;
+    z-index: 1;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -288,6 +281,127 @@
   }
 
   &__lines-text {
+    color: $gray-dark;
+  }
+}
+
+.account-general {
+  display: flex;
+  gap: 16px;
+  color: $gray-black;
+
+  @include on-tablet {
+    flex-direction: column;
+  }
+
+  &__block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    background: $background-plate;
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  &__title {
+    @include h3-bold;
+
+    @include on-phone {
+      @include h4-bold;
+    }
+  }
+
+  &__data {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__single-data {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid $gray-stroke;
+  }
+
+  &__data-text {
+    @include main-text;
+  }
+
+  &__data-ico {
+    color: $additional-greenas;
+  }
+}
+
+.account-verification {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: $background-plate;
+  padding: 24px;
+  border-radius: 12px;
+
+  @include on-tablet {
+    gap: 16px;
+  }
+
+  &__title {
+    @include h3-bold;
+    color: $gray-black;
+
+    @include on-phone {
+      @include h4-bold;
+    }
+  }
+
+  &__reasons {
+    display: flex;
+    gap: 16px;
+
+    @include on-tablet {
+      gap: 8px;
+    }
+
+    @include on-phone {
+      flex-direction: column;
+    }
+  }
+
+  &__reason {
+    border-radius: 12px;
+    background: $background-texts;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  &__resons-title {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__svg {
+    color: $gray-black;
+  }
+
+  &__resons-title-text {
+    @include button-semibold;
+    color: $additional-black-green;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: disc;
+    padding-left: 20px;
+  }
+
+  &__item {
+    @include tab-regular;
     color: $gray-dark;
   }
 }
