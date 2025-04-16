@@ -1,26 +1,119 @@
 import SimpleBar from 'simplebar-react';
 import { ArrowTale } from '../../../components/Imgs/ArrowTale';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useSearchParams } from 'react-router-dom';
 import { OutletContextType } from '../../../types/openMenuOtlet';
-import { EclipseGoldGreenSVG } from '../../../components/Imgs/EclipseGoldGreenSVG';
-import { PlusIMG } from '../../../components/Imgs/PlusIMG';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { SendButtonSVG } from '../../../components/Imgs/SendButtonSVG';
-import { SendMessageReadedSVG } from '../../../components/Imgs/SendMessageReadedSVG';
+import { Chat } from './Chat/Chat';
+import { ActiveChat } from './ActiveChat/ActiveChat';
+
+const testMessages = [
+  {
+    id: 1,
+    name: 'Системні сповіщення',
+    sender: 'Платформа DIKO',
+    canAnswer: false,
+    messages: [
+      {
+        id: 1,
+        sender: 'webSite',
+        messageTitle: 'Вітаємо на Diko!',
+        messageText:
+          'Ви успішно зареєструвалися! Заповніть профіль та пройдіть верифікацію, щоб отримати повний доступ до платформи.',
+        date: new Date('2025-03-22T08:09:00'),
+        status: 'read',
+      },
+      {
+        id: 2,
+        sender: 'webSite',
+        messageTitle: 'Нові надходження у розділі "Монети України"! ',
+        messageText:
+          'Нові надходження у розділі "Монети України"! Щойно додано рідкісні монети та унікальні лоти. Перегляньте, перш ніж їх розкуплять!',
+        date: new Date('2025-03-22T08:09:53'),
+        status: 'read',
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: 'Чат підтримки',
+    sender: 'Платформа DIKO',
+    canAnswer: true,
+    messages: [
+      {
+        id: 1,
+        sender: 'webSite',
+        messageTitle: 'Вітаємо',
+        messageText: 'yaka u vas problema',
+        date: new Date('2025-03-22T08:09:23'),
+        status: 'read',
+      },
+      {
+        id: 2,
+        sender: 'client',
+        messageText: 'Vitayu yak kupiti monetu',
+        date: new Date('2025-03-22T08:21:00'),
+        status: 'read',
+      },
+    ],
+  },
+];
+
+type CurrentChatT = {
+  id: number;
+  sender: string;
+  messageTitle?: string;
+  messageText: string;
+  date: Date;
+  status: string;
+};
+
+type ChatT = {
+  id: number;
+  name: string;
+  sender: string;
+  canAnswer: boolean;
+  messages: CurrentChatT[];
+};
 
 export const Messages = () => {
   const [setOpenMenu] = useOutletContext<OutletContextType>();
-  const ref = useRef<HTMLTextAreaElement>(null);
-  const [query, setQuery] = useState<string>('');
   const [activeMessges, setActiveMessages] = useState<boolean>(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [activeChat, setActiveChat] = useState<ChatT>();
+  const chatName = searchParams.get('chat');
+
+  function formatDate(date: Date) {
+    const months = [
+      'січня',
+      'лютого',
+      'березня',
+      'квітня',
+      'травня',
+      'червня',
+      'липня',
+      'серпня',
+      'вересня',
+      'жовтня',
+      'листопада',
+      'грудня',
+    ];
+
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    return `${day} ${month} ${hours}:${minutes}`;
+  }
 
   useEffect(() => {
-    if (ref.current) {
-      ref.current.style.height = 'auto';
-      ref.current.style.height = `${ref.current.scrollHeight}px`;
-    }
-  }, [query]);
+    setSearchParams({ chat: 'Чат підтримки' });
+  }, []);
+
+  useEffect(() => {
+    setActiveChat(testMessages.find((a) => a.name === chatName));
+  }, [chatName]);
 
   return (
     <div className="profile-messages">
@@ -42,31 +135,27 @@ export const Messages = () => {
           )}
         >
           <div className="profile-messages__sources">
-            <div
-              onClick={() => setActiveMessages(true)}
-              className="message-source"
-            >
-              <div className="message-source__top-bar">
-                <div className="message-source__title">
-                  <EclipseGoldGreenSVG />
-                  <p className="message-source__title-text">Платформа DIKO</p>
-                </div>
-                <ArrowTale className="message-source__arrow-tale" />
-              </div>
-              <div className="message-source__chat-info">
-                <h4 className="message-source__chat-title">
-                  Системні сповіщення
-                </h4>
-                <div className="message-source__date-status">
-                  <p className="message-source__date">date</p>
-                  <SendMessageReadedSVG className="message-source__status" />
-                </div>
-              </div>
-            </div>
+            {testMessages.map((chat) => (
+              <Chat
+                key={chat.id}
+                formatDate={formatDate}
+                chat={chat}
+                setActiveMessages={setActiveMessages}
+              />
+            ))}
           </div>
         </SimpleBar>
 
-        <div
+        <ActiveChat
+          testMessages={testMessages}
+          setActiveMessages={setActiveMessages}
+          activeMessges={activeMessges}
+          chatName={chatName}
+          formatDate={formatDate}
+          activeChat={activeChat}
+        />
+
+        {/* <div
           className={classNames('profile-messages__current-chat current-chat', {
             isActive: activeMessges,
           })}
@@ -77,21 +166,22 @@ export const Messages = () => {
               onClick={() => setActiveMessages(false)}
             />
             <EclipseGoldGreenSVG />
-            <p className="current-chat__title">Платформа DIKO</p>
+            <p className="current-chat__title">{activeChat?.sender}</p>
           </div>
           <SimpleBar className="current-chat__container profile-messages__simple-bar">
             <div className="current-chat__messages">
-              <div className="current-chat__message">
-                <p className="current-chat__message-title">Вітаємо на Diko!</p>
-                <p className="current-chat__message-text">
-                  Ви успішно зареєструвалися! Заповніть профіль та пройдіть
-                  верифікацію, щоб отримати повний доступ до платформи.
-                </p>
-                <div className="current-chat__message-date-status">
-                  <p className="current-chat__message-date">date</p>
-                  <SendMessageReadedSVG className="current-chat__message-status" />
+              {testMessages.find(chat => chat.name === chatName)?.messages.map(currentChat => (
+                <div className="current-chat__message">
+                  <p className="current-chat__message-title">{currentChat.messageTitle}</p>
+                  <p className="current-chat__message-text">
+                    {currentChat.messageText}
+                  </p>
+                  <div className="current-chat__message-date-status">
+                    <p className="current-chat__message-date">{formatDate(currentChat.date)}</p>
+                    <SendMessageReadedSVG className="current-chat__message-status" />
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           </SimpleBar>
           <div className="current-chat__form">
@@ -124,7 +214,7 @@ export const Messages = () => {
               <SendButtonSVG />
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

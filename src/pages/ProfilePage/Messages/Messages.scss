@@ -169,6 +169,12 @@
     flex-direction: column;
     gap: 8px;
     border-radius: 12px;
+    width: 90%;
+
+    &.myMessage {
+      align-self: flex-end;
+      background: $user-notifications-gradient;
+    }
   }
 
   &__message-title {
