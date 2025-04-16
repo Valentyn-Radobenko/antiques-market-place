@@ -72,20 +72,23 @@ export const ProfileMenu: React.FC<Props> = ({ openMenu, setOpenMenu }) => {
 
   return (
     <div className="profile-menu">
-      {profileNavigation.map((item) => (
-        <NavLink
-          onClick={() => setOpenMenu(true)}
-          to={`${item.slug}`}
-          key={item.slug}
-          className="profile-menu__item"
-        >
-          <div className="profile-menu__name">
-            {item.svg}
-            <p>{item.nameUa}</p>
-          </div>
-          <ArrowTale className="" />
-        </NavLink>
-      ))}
+      <h2 className="profile-menu__h2">Мій кабінет</h2>
+      <div className="profile-menu__wrapper">
+        {profileNavigation.map((item) => (
+          <NavLink
+            onClick={() => setOpenMenu(true)}
+            to={`${item.slug}`}
+            key={item.slug}
+            className="profile-menu__item"
+          >
+            <div className="profile-menu__name">
+              {item.svg}
+              <p>{item.nameUa}</p>
+            </div>
+            <ArrowTale className="profile-menu__svg" />
+          </NavLink>
+        ))}
+      </div>
     </div>
   );
 };
