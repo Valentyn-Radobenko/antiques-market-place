@@ -365,11 +365,11 @@
     }
 
     &-page {
-      color: $gray-darks;
+      color: $gray;
 
       @include main-text;
 
-      @include hover(color, $additional-freshherb-elect);
+      @include hover(color, $gray-darks);
 
       &:hover {
         @include button-semibold;
