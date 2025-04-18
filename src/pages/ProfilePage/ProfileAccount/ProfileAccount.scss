@@ -1,11 +1,12 @@
 .profile-account {
-  background: $stroke-button-primary;
   display: flex;
   gap: 16px;
   width: 100%;
   align-items: baseline;
 
   &__main-section {
+    background: $stroke-button-primary;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -127,6 +128,11 @@
 
   @include on-phone {
     display: none;
+  }
+
+  &__attention {
+    color: $additional-freshherb-elect;
+    text-decoration: underline;
   }
 
   &__text {
@@ -375,6 +381,7 @@
     flex-direction: column;
     gap: 16px;
     padding: 16px;
+    box-shadow: $drop-shadow;
   }
 
   &__resons-title {

@@ -40,7 +40,7 @@
     padding: 16px;
   }
 
-  &-add-img {
+  &__add-img {
     @include on-phone {
       align-self: flex-start;
     }
@@ -51,7 +51,7 @@
       color: $gray-darks;
     }
   }
-  &-plus-img {
+  &__plus-img {
     @include on-phone {
       align-self: flex-end;
     }
@@ -63,13 +63,13 @@
     }
   }
 
-  &-text-block {
+  &__text-block {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
 
-  &-text-1 {
+  &__text-1 {
     @include h4-bold;
     color: $gray-black;
     &.disabled {
@@ -77,7 +77,7 @@
     }
   }
 
-  &-text-2 {
+  &__text-2 {
     @include main-text;
     color: $gray-black;
     &.disabled {
@@ -85,7 +85,7 @@
     }
   }
 
-  &-1stword {
+  &__1stword {
     color: $additional-freshherb-elect;
 
     &.disabled {

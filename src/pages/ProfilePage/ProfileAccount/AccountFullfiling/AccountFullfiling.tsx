@@ -17,7 +17,10 @@ export const AccountFullfiling = () => {
         <div className="account-fullfiling__circle">
           <div className="account-fullfiling__circle-out">
             <p className="account-fullfiling__circle-text">
-              Додайте контакти та верифікацію, щоб завершити профіль.
+              Додайте <span className="account-fullfiling__attention"></span>
+              контакти та{' '}
+              <span className="account-fullfiling__attention">верифікацію</span>
+              , щоб завершити профіль.
             </p>
           </div>
           <VerLineSVG
@@ -70,7 +73,10 @@ export const AccountFullfiling = () => {
             <div className="account-fullfiling-mobile__line"></div>
           </div>
           <p className="account-fullfiling-mobile__lines-text">
-            Додайте контакти та верифікацію, щоб завершити профіль.
+            Додайте{' '}
+            <span className="account-fullfiling__attention">контакти</span> та{' '}
+            <span className="account-fullfiling__attention"></span>верифікацію,
+            щоб завершити профіль.
           </p>
         </div>
         <div

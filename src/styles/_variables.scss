@@ -104,11 +104,6 @@ $selected-bright: linear-gradient(
   rgba(240, 255, 248, 0.35) 25%,
   rgba(214, 242, 232, 0.63) 100%
 );
-$background-important: linear-gradient(
-  90deg,
-  rgba(144, 190, 176, 0.4) 0%,
-  /* 0.8 * 0.5 = 0.4 */ rgba(211, 241, 226, 0.25) 100% /* 0.5 * 0.5 = 0.25 */
-);
 
 $system-error: #f40000;
 $system-info: #034bf5;

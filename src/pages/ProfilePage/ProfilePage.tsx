@@ -20,12 +20,15 @@ export const ProfilePage = () => {
   // }, [verified]);
 
   return (
-    <div
-      className={classNames('profile-page', {
-        nonActiveMenu: openMenu,
-      })}
-    >
-      {/* <h2>
+    <div className="profile-page">
+      <h1 className="profile-page__h2">Мій кабінет</h1>
+
+      <div
+        className={classNames('profile-page__wrapper', {
+          nonActiveMenu: openMenu,
+        })}
+      >
+        {/* <h2>
         Тестова сторінка для перевірки роботи авторизації. Дизайн буде змінено
         після його затвердження.
       </h2>
@@ -46,11 +49,12 @@ export const ProfilePage = () => {
         Вийти
       </button> */}
 
-      <ProfileMenu
-        openMenu={openMenu}
-        setOpenMenu={setOpenMenu}
-      />
-      <Outlet context={[setOpenMenu]} />
+        <ProfileMenu
+          openMenu={openMenu}
+          setOpenMenu={setOpenMenu}
+        />
+        <Outlet context={[setOpenMenu]} />
+      </div>
     </div>
   );
 };
