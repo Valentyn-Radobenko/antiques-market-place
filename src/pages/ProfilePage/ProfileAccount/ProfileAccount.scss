@@ -12,7 +12,12 @@
     gap: 24px;
     width: auto;
     flex-grow: 1;
-    margin: 24px;
+    border-radius: 12px;
+
+    @include on-tablet {
+      background: none;
+      padding: 0;
+    }
   }
 
   &__exit-deleting {
@@ -37,11 +42,17 @@
 }
 
 .account-main-info {
-  display: flex;
-  gap: 16px;
-  border-radius: 12px;
   padding: 24px;
   background: $background-plate;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 12px;
+
+  &__container {
+    display: flex;
+    gap: 16px;
+  }
 
   @include on-tablet {
     padding: 16px;
@@ -57,6 +68,11 @@
     background: $gray-white;
     border-radius: 12px;
     cursor: pointer;
+
+    @include on-phone {
+      width: 80px;
+      height: 80px;
+    }
   }
 
   &__placehilder {
@@ -74,6 +90,11 @@
     background: $background-plate;
     width: 24px;
     height: 24px;
+
+    @include on-phone {
+      top: 3px;
+      right: 3px;
+    }
   }
 
   &__text-block {
@@ -81,6 +102,11 @@
     gap: 16px;
     flex-direction: column;
     color: $gray-black;
+
+    @include on-phone {
+      gap: 8px;
+      justify-content: center;
+    }
   }
 
   &__name {
@@ -99,6 +125,20 @@
     border: 1px solid $system-warning;
     border-radius: 8px;
     background: $background-page;
+
+    &.desc-tab {
+      @include on-phone {
+        display: none;
+      }
+    }
+
+    &.phone {
+      display: none;
+
+      @include on-phone {
+        display: flex;
+      }
+    }
   }
 
   &__veryfic-svg {
@@ -118,12 +158,12 @@
   flex-direction: column;
   gap: 24px;
   width: 219px;
+  align-self: flex-start;
 
   @include on-tablet {
     flex-direction: row;
-    width: auto;
-    gap: 0;
-    justify-content: space-between;
+    width: 100%;
+    gap: 46px;
   }
 
   @include on-phone {
@@ -226,6 +266,7 @@
     justify-content: space-between;
     color: $additional-greenas;
     @include tab-regular;
+    border-bottom: 1px solid $gray-stroke;
 
     &.isActive {
       background: $gray-white;
@@ -277,6 +318,11 @@
     display: flex;
     background: $selected-bright;
     gap: 8px;
+    height: 24px;
+    background: $selected-bright;
+    align-items: center;
+    border-radius: 12px;
+    padding-inline: 8px;
   }
 
   &__line {
@@ -284,6 +330,10 @@
     width: 100%;
     height: 8px;
     background: $additional-gray-gray;
+
+    &.isActive {
+      background: $additional-freshherb-elect;
+    }
   }
 
   &__lines-text {

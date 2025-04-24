@@ -1,8 +1,13 @@
 import { ArrowTale } from '../../../../components/Imgs/ArrowTale';
+import { EclipseGeenGold } from '../../../../components/Imgs/EclipseGeenGold';
 import { EclipseGoldGreenSVG } from '../../../../components/Imgs/EclipseGoldGreenSVG';
+import { EclipseGoldWhite } from '../../../../components/Imgs/EclipseGoldWhite';
+import { EclipseGreenWhite } from '../../../../components/Imgs/EclipseGreenWhite';
+import { EclipseMintGreen } from '../../../../components/Imgs/EclipseMintGreen';
 import { SendMessageReadedSVG } from '../../../../components/Imgs/SendMessageReadedSVG';
 import { SearchLink } from '../../../../utils/SearchLink';
 import { Dispatch, SetStateAction } from 'react';
+import classNames from 'classnames';
 
 type CurrentChatT = {
   id: number;
@@ -25,12 +30,14 @@ type Props = {
   chat: ChatT;
   setActiveMessages: Dispatch<SetStateAction<boolean>>;
   formatDate: (date: Date) => string;
+  chatName: string | null;
 };
 
 export const Chat: React.FC<Props> = ({
   chat,
   setActiveMessages,
   formatDate,
+  chatName,
 }) => {
   return (
     <SearchLink
@@ -38,12 +45,18 @@ export const Chat: React.FC<Props> = ({
         chat: chat.name,
       }}
       onClick={() => setActiveMessages(true)}
-      className="message-source"
+      className={classNames('message-source', {
+        isActive: chat.name === chatName,
+      })}
       key={chat.id}
     >
       <div className="message-source__top-bar">
         <div className="message-source__title">
-          <EclipseGoldGreenSVG />
+          {chat.name === 'Системні сповіщення' && <EclipseGoldWhite />}
+          {chat.name === 'Чат підтримки' && <EclipseGeenGold />}
+          {chat.name === 'Замовлення' && <EclipseGoldGreenSVG />}
+          {chat.name === 'Оцінювання та сертифікація' && <EclipseMintGreen />}
+          {chat.name === 'Пропозиції щодо виставок' && <EclipseGreenWhite />}
           <p className="message-source__title-text">{chat.sender}</p>
         </div>
         <ArrowTale className="message-source__arrow-tale" />
