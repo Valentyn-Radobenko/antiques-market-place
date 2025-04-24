@@ -3,6 +3,8 @@ import { SavingState } from '../../store/store';
 import { exhibitionsSlides } from '../../data/exhibitionsSlides';
 import Slider from './Slider';
 import { useTranslation } from 'react-i18next';
+import { useIsTablet } from '../../hooks/useMediaQuery';
+import { Link } from 'react-router-dom';
 
 interface ExhibitionSlide {
   id: number;
@@ -20,6 +22,8 @@ interface ExhibitionSlide {
 export const ExhibitionsSlider: React.FC = () => {
   const { t } = useTranslation();
   const language = useSelector((state: SavingState) => state.language.language);
+
+  const isTablet = useIsTablet();
   return (
     <Slider<ExhibitionSlide>
       sliderTitle={t('exhibitionsSlider.title')}
@@ -28,16 +32,17 @@ export const ExhibitionsSlider: React.FC = () => {
           href="#"
           className="slider__header-link"
         >
-          {t('exhibitionsSlider.headerLink')}
+          переглянути більше
         </a>
       )}
       slides={exhibitionsSlides}
-      slidesPerView={2}
+      slidesPerView={isTablet ? 1 : 2}
       renderSlide={(slide) => (
         <div
           key={slide.id}
           className="slider__slide"
         >
+          <p className="slider__slide-new">Новий</p>
           <img
             className="slider__slide-img"
             src={slide.imageUrl}
@@ -47,12 +52,11 @@ export const ExhibitionsSlider: React.FC = () => {
             <h3 className="slider__slide-title">{slide.title[language]}</h3>
             <div className="slider__slide-info">
               <p className="slider__slide-status">{slide.status[language]}</p>
-              <a
-                href="#"
+              <p className="slider__slide-date">{slide.status[language]}</p>
+              <Link
+                to="exhibitions"
                 className="slider__slide-link"
-              >
-                {t('exhibitionsSlider.slideLink')}
-              </a>
+              ></Link>
             </div>
           </div>
         </div>

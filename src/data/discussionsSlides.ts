@@ -1,41 +1,30 @@
+import img1 from '/images/sliders/users/user-1.png';
+import img2 from '/images/sliders/users/user-2.png';
+import img3 from '/images/sliders/users/user-3.png';
+
 export const discussionsSlides = [
   {
-    id: '037465',
-    createdAt: '08:09 14.07',
-    category: {
-      ua: 'Живопис',
-      en: 'Painting',
-    },
-    text: {
-      ua: 'Архістратіг іирпчлвкопдв о вкп щупту к чертктев...',
-      en: 'Archistratigos some placeholder text...',
-    },
-    commentsLength: 58,
+    img: img1,
+    name: 'Олександр Тичина',
+    topic: 'Нумізматика',
+    title: 'Як відрізнити оригінал від підробки?',
+    date: '6 лютого 09:45',
+    comments: '9',
   },
   {
-    id: '037465',
-    createdAt: '08:09 14.07',
-    category: {
-      ua: 'Живопис',
-      en: 'Painting',
-    },
-    text: {
-      ua: 'Ще якийсь текст...',
-      en: 'Some text...',
-    },
-    commentsLength: 58,
+    img: img2,
+    name: 'Андрій Глиба',
+    topic: 'Нумізматика',
+    title: 'В чому краще зберігати монету, щоб зберегти гарний стан?',
+    date: '23 січня 17:04',
+    comments: '2',
   },
   {
-    id: '037465',
-    createdAt: '08:09 14.07',
-    category: {
-      ua: 'Живопис',
-      en: 'Painting',
-    },
-    text: {
-      ua: 'Ще інший текст...',
-      en: 'Some other text...',
-    },
-    commentsLength: 58,
+    img: img3,
+    name: 'Остап Скоропацький',
+    topic: 'Нумізматика',
+    title: 'Шукаю монету з заноком задіаку Ваги',
+    date: '23 січня 12:34',
+    comments: '4',
   },
 ];
