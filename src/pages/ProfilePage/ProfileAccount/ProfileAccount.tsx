@@ -18,7 +18,7 @@ export const ProfileAccount = () => {
 
   return (
     <div className="profile-account">
-      <div className="profile-account__main-section">
+      <div className="profile-page__section">
         <div className="profile-page__section-title">
           <ArrowTale
             onClick={() => setOpenMenu(false)}
