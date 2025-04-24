@@ -1,0 +1,132 @@
+.cart {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 24px 24px 40px;
+  background: $gray-white;
+  border-radius: 12px;
+  box-shadow: $drop-shadow;
+
+  &__top-bar {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 8px;
+    align-items: center;
+  }
+
+  &__top-bar-left {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  &__top-bar-text {
+    @include main-text;
+    color: $gray-black;
+
+    & .gray {
+      color: $gray-lite;
+    }
+  }
+
+  &__checked-global {
+    cursor: pointer;
+  }
+
+  &__bin {
+    color: $additional-greenas;
+    cursor: pointer;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__item {
+    display: flex;
+    background: $background-user-notifications;
+    border-radius: 12px;
+    box-shadow: $drop-shadow;
+  }
+
+  &__checked-single {
+    margin-inline: 16px;
+    align-self: center;
+    flex-shrink: 0;
+    cursor: pointer;
+
+    @include on-phone {
+      align-self: flex-start;
+    }
+  }
+
+  &__item-img {
+    border-radius: 12px;
+    width: 120px;
+  }
+
+  &__item-text {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__item-name {
+    @include main-text;
+    color: $additional-black-green;
+    font-style: italic;
+  }
+
+  &__item-price {
+    align-self: flex-end;
+    color: $additional-freshherb-elect;
+    font-weight: bold;
+  }
+
+  &__bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include on-phone {
+      display: none;
+    }
+  }
+
+  &__bottom-bar-text {
+    @include main-text;
+    color: $gray-black;
+  }
+
+  &__bottom-bar-price {
+    @include h3-bold;
+    color: $additional-freshherb-elect;
+    text-wrap: nowrap;
+  }
+
+  &__button {
+    @include primary-button;
+    padding-block: 16px;
+    width: 320px;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    @include button-semibold;
+
+    @include on-tablet {
+      width: auto;
+      padding: 16px;
+    }
+
+    &.on-mob {
+      display: none;
+      @include on-phone {
+        display: flex;
+      }
+    }
+  }
+}

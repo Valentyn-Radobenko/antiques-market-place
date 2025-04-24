@@ -4,22 +4,6 @@
   width: 100%;
   align-items: baseline;
 
-  &__main-section {
-    background: $stroke-button-primary;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: auto;
-    flex-grow: 1;
-    border-radius: 12px;
-
-    @include on-tablet {
-      background: none;
-      padding: 0;
-    }
-  }
-
   &__exit-deleting {
     display: flex;
     flex-direction: column;

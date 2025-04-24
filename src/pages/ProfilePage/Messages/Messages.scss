@@ -1,15 +1,4 @@
 .profile-messages {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 40px;
-  background: $stroke-button-primary;
-  width: 100%;
-
-  @include on-tablet {
-    background: none;
-  }
-
   &__main {
     display: flex;
     gap: 16px;

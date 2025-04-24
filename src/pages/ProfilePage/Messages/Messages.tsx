@@ -199,7 +199,7 @@ export const Messages = () => {
   }, [chatName]);
 
   return (
-    <div className="profile-messages">
+    <div className="profile-page__section">
       <div className="profile-page__section-title">
         <ArrowTale
           onClick={() => {
