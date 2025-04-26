@@ -22,6 +22,14 @@
       color: $additional-black-green;
 
       @include h2-bold;
+
+      @include on-tablet {
+        @include h2-mobile-bold;
+      }
+
+      @include on-phone {
+        @include h3-bold;
+      }
     }
 
     &-link {
@@ -170,13 +178,6 @@
       height: 24px;
       width: 24px;
       background-image: url('/images/sliders/arrow-forward.svg');
-
-      @include hover(background-color, #444);
-      @include hover(color, white);
-
-      &:active {
-        background-color: #333;
-      }
     }
   }
 
@@ -273,6 +274,8 @@
       0px -4px 12px 0px rgba(255, 255, 255, 0) inset;
     backdrop-filter: blur(12px);
 
+    @include hover(transform, scale(1.05));
+
     &-top {
       display: flex;
       width: 100%;
@@ -345,12 +348,14 @@
     }
 
     &-comments {
+      cursor: pointer;
       display: flex;
       align-items: center;
       gap: 4px;
     }
 
     &-icon-forward {
+      cursor: pointer;
       width: 24px;
       height: 24px;
       background-image: url('/images/sliders/arrow-forward.svg');

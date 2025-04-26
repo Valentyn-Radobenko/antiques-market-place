@@ -1,29 +1,20 @@
-import { useSelector } from 'react-redux';
-import { SavingState } from '../../store/store';
-import { articlesSlides } from '../../data/articlesSlides';
+// import { useSelector } from 'react-redux';
+// import { SavingState } from '../../store/store';
+import articles from '../../data/articles.json';
 import { useTranslation } from 'react-i18next';
 import Slider from './Slider';
 import { useIsMobile, useIsTablet } from '../../hooks/useMediaQuery';
 
 interface ArticleSlide {
-  title: {
-    ua: string;
-    en: string;
-  };
-  status: {
-    ua: string;
-    en: string;
-  };
-  category: {
-    ua: string;
-    en: string;
-  };
-  imageUrl: string;
+  title: string;
+  image: string;
+  content: string;
 }
 
 export const ArticlesSlider: React.FC = () => {
   const { t } = useTranslation();
-  const language = useSelector((state: SavingState) => state.language.language);
+  // const language = useSelector((state: SavingState) => state.language.language);
+  const articlesSlides = articles.slice(0, 6);
 
   const isTablet = useIsTablet();
   const isMobile = useIsMobile();
@@ -36,7 +27,7 @@ export const ArticlesSlider: React.FC = () => {
           href="#"
           className="slider__header-link"
         >
-          переглянути більше
+          {isMobile ? 'більше' : 'переглянути більше'}
         </a>
       )}
       slides={articlesSlides}
@@ -48,17 +39,17 @@ export const ArticlesSlider: React.FC = () => {
       }
       renderSlide={(slide) => (
         <div
-          key={slide.imageUrl}
+          key={slide.title + slide.image}
           className="slider__slide"
         >
           <p className="slider__slide-new">Новий</p>
           <img
             className="slider__slide-img"
-            src={slide.imageUrl}
-            alt={slide.title[language]}
+            src={slide.image}
+            alt={slide.title}
           />
           <div className="slider__slide-content">
-            <h3 className="slider__slide-title">{slide.title[language]}</h3>
+            <h3 className="slider__slide-title">{slide.title}</h3>
             <div className="slider__slide-info">
               <div className="slider__slide-info-block"></div>
               <a

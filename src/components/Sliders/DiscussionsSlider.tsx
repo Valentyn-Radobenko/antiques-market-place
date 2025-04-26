@@ -3,7 +3,7 @@
 import { useTranslation } from 'react-i18next';
 import { discussionsSlides } from '../../data/discussionsSlides';
 import Slider from './Slider';
-import { useIsTablet } from '../../hooks/useMediaQuery';
+import { useIsMobile, useIsTablet } from '../../hooks/useMediaQuery';
 
 interface DiscussionSlide {
   img: string;
@@ -19,6 +19,7 @@ export const DiscussionsSlider: React.FC = () => {
   // const language = useSelector((state: SavingState) => state.language.language);
 
   const isTablet = useIsTablet();
+  const isMobile = useIsMobile();
 
   return (
     <Slider<DiscussionSlide>
@@ -28,7 +29,7 @@ export const DiscussionsSlider: React.FC = () => {
           href="#"
           className="slider__header-link"
         >
-          переглянути більше
+          {isMobile ? 'більше' : 'переглянути більше'}
         </a>
       )}
       slides={discussionsSlides}
