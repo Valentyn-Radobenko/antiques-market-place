@@ -58,6 +58,7 @@
 
     @include on-tablet {
       background: none;
+      padding: 0;
     }
   }
 
@@ -65,6 +66,19 @@
     display: flex;
     gap: 8px;
     align-items: center;
+
+    &.onDescktop {
+      @include on-tablet {
+        display: none;
+      }
+    }
+
+    &.ontablet-mob {
+      display: none;
+      @include on-tablet {
+        display: flex;
+      }
+    }
   }
 
   &__section-arrow {

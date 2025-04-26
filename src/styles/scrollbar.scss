@@ -79,6 +79,7 @@
       rgba(240, 255, 248, 0.35) 26.78%,
       rgba(214, 242, 232, 0.63) 96.71%
     );
+    border-radius: 12px !important;
   }
 
   & .simplebar-placeholder {
@@ -88,6 +89,7 @@
   & .simplebar-vertical {
     top: 24px;
     width: 24px;
+    height: calc(100% - 48px);
   }
 
   & .simplebar-scrollbar {

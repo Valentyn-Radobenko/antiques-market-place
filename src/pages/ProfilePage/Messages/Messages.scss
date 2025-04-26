@@ -4,15 +4,17 @@
     gap: 16px;
     width: 100%;
     position: relative;
+    @include on-tablet {
+      gap: 0;
+    }
   }
 
-  &__sources-container {
-    height: 550px;
-
-    border-radius: 12px;
-    background: $gray-white;
-    box-shadow: $drop-shadow;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
     width: 352px;
+    flex-shrink: 0;
 
     @include on-tablet {
       position: relative;
@@ -27,17 +29,35 @@
     }
   }
 
-  &__sources {
+  &__sources-container {
+    height: 550px;
     padding-block: 24px;
-    padding-left: 8px;
-    padding-right: 26px;
+    border-radius: 12px;
+
+    background: $gray-white;
+    box-shadow: $drop-shadow;
+    @include on-tablet {
+      height: auto;
+      padding: 0;
+    }
+  }
+
+  &__sources {
+    border-radius: 12px;
+    padding-left: 24px;
+    padding-right: 24px;
     display: flex;
-    gap: 5px;
+    gap: 16px;
     flex-direction: column;
+
+    @include on-tablet {
+      padding: 0;
+    }
   }
 
   &__current-chat {
     border-radius: 12px;
+    height: 100%;
 
     @include on-tablet {
       transition: all ease $effect-duration;
@@ -67,12 +87,14 @@
 
   &.isActive {
     background: $selected-bright;
-    outline: 1px solid $additional-freshherb-elect;
+    border: 1px solid $additional-freshherb-elect;
+    box-sizing: border-box;
   }
 
   &__top-bar {
     display: flex;
     justify-content: space-between;
+    padding-block: 3px;
   }
 
   &__title {
@@ -244,7 +266,7 @@
 
   &__form.disabled &__input-wrapper {
     border: none;
-    background-color: $gray;
+    background-color: $gray-white-darks;
   }
 
   &__form.disabled &__input {
