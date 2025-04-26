@@ -17,6 +17,7 @@
     flex-shrink: 0;
 
     @include on-tablet {
+      width: auto;
       position: relative;
       min-width: 100%;
       transition: all ease $effect-duration;
