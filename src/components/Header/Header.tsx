@@ -56,7 +56,11 @@ export const Header = () => {
         <div className="header__container">
           <Link to={'market'}>
             <div className="header__logo">
-              <p className="header__logo-title-main">DIKO</p>
+              <img
+                className="header__logo-title-main"
+                src="images/header/logo.svg"
+                alt="DIKO logo"
+              />
               <img
                 className="header__logo-rectangle"
                 src="images/header/Rectangle-91.png"
@@ -117,6 +121,32 @@ export const Header = () => {
                       (!expHeader ||
                         expHeader === 'club' ||
                         expHeader === 'search'),
+                  },
+                )}
+              ></button>
+            </li>
+            <li>
+              <button
+                onMouseEnter={() => {
+                  dispatch(setExpHeader('shopping-card'));
+                }}
+                onMouseLeave={() => {
+                  dispatch(setExpHeader(null));
+                }}
+                className={classNames(
+                  'header__actions-item header__actions-item-shopping-card',
+                  {
+                    'header__actions-item-shopping-card--active': expSearch,
+                    'header__actions-item-shopping-card--inactive':
+                      !expSearch &&
+                      expHeader &&
+                      expHeader !== 'club' &&
+                      expHeader !== 'shopping-card',
+                    'header__actions-item-shopping-card--default':
+                      !expSearch &&
+                      (!expHeader ||
+                        expHeader === 'club' ||
+                        expHeader === 'shopping-card'),
                   },
                 )}
               ></button>

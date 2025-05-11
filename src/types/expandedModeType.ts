@@ -4,4 +4,5 @@ export type expandedModeType =
   | 'questions'
   | 'currency'
   | 'search'
-  | 'account';
+  | 'account'
+  | 'shopping-card';
