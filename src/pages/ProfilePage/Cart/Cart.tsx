@@ -3,7 +3,7 @@ import { OutletContextType } from '../../../types/openMenuOtlet';
 import { ArrowTale } from '../../../components/Imgs/ArrowTale';
 import { Bin } from '../../../components/Imgs/Bin';
 import { OrdersSVG } from '../../../components/Imgs/OrdersSVG';
-import { CheckboxSquareSVG } from '../../../components/Imgs/checkboxSquareSVG';
+import { CheckboxSquareSVG } from '../../../components/Imgs/CheckboxSquareSVG';
 
 const testItems = [
   {

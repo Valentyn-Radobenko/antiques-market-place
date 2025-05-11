@@ -38,6 +38,8 @@
 @import '../pages/ProfilePage/ProfileAccount/ProfileAccount.scss';
 @import '../pages/ProfilePage/Messages/Messages.scss';
 @import '../pages//ProfilePage/Cart/Cart.scss';
+@import '../pages/ProfilePage/Orders/Orders.scss';
+@import '../pages/ProfilePage/Orders/Order/Order.scss';
 
 @import '../pages/ExpertisePage/HowToExpertise/HowToExpertise.scss';
 @import '../pages/ExpertisePage/ItemEvaluation/ItemEvaluation.scss';
@@ -47,7 +49,6 @@
 @import '../pages/ExpertisePage/PhotosHelper/PhotosHelper.scss';
 
 @import '../components/FilesInput/FilesInput.scss';
-
 html {
   height: 100%;
 }
@@ -96,6 +97,8 @@ html * {
   @include standard-inline-paddings;
 
   padding-top: $header-height + 32px;
+
+  overflow: hidden;
 }
 
 button {
