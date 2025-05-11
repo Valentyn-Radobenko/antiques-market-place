@@ -16,8 +16,12 @@
     display: flex;
     gap: 16px;
     align-items: flex-start;
-    overflow: hidden;
+    // overflow: hidden;
     position: relative;
+
+    &.isActive {
+      height: 100vh;
+    }
 
     & > *:last-child {
       @include on-tablet {
