@@ -26,6 +26,7 @@ export const ProfilePage = () => {
       <div
         className={classNames('profile-page__wrapper', {
           nonActiveMenu: openMenu,
+          isActive: !openMenu,
         })}
       >
         {/* <h2>

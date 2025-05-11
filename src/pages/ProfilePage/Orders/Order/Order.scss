@@ -1,0 +1,336 @@
+.order {
+  padding: 16px;
+  border-radius: 12px;
+  background: $gray-white;
+  box-shadow: $drop-shadow;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $additional-black-green;
+  }
+  &__name {
+    font-style: italic;
+    @include label-bold;
+  }
+  &__arrow {
+    transition: all ease $effect-duration;
+    cursor: pointer;
+    color: $additional-freshherb-elect;
+
+    &.isActive {
+      transform: rotate(180deg);
+    }
+  }
+  &__general-info {
+    display: flex;
+    gap: 40px;
+
+    @include on-tablet {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    &.isActive {
+      gap: 72px;
+
+      @include on-tablet {
+        gap: 24px;
+      }
+    }
+  }
+  &__items {
+    display: flex;
+    gap: 8px;
+    width: 47%;
+
+    @include on-phone {
+      width: 100%;
+    }
+
+    &.isActive {
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+
+  &__item-block {
+    display: flex;
+
+    &.isActive {
+      box-shadow: $drop-shadow;
+      border-radius: 12px;
+    }
+  }
+
+  &__item-img {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+
+    &.isActive {
+      width: 76px;
+      height: 76px;
+    }
+  }
+
+  &__item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  &__item-name {
+    color: $additional-black-green;
+    font-style: italic;
+    @include main-text;
+  }
+
+  &__item-price {
+    @include button-semibold;
+    color: $additional-greenas;
+  }
+
+  &__delivery {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+  }
+  &__statuses {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+
+    @include on-tablet {
+      gap: 16px;
+    }
+
+    @include on-phone {
+      flex-direction: column;
+    }
+  }
+
+  &__general-status {
+    border-radius: 12px;
+    border: 1px solid;
+    border-color: inherit;
+    min-width: 112px;
+    @include tab-regular;
+    text-align: center;
+
+    @include on-phone {
+      align-self: flex-start;
+    }
+
+    &.bought {
+      color: $additional-greenas;
+    }
+
+    &.pending {
+      color: $system-info;
+    }
+
+    &.delivered {
+      color: $additional-freshherb-elect;
+    }
+
+    &.canseled {
+      color: $gray-dis;
+      background: $background-dis;
+      border: none;
+    }
+  }
+  &__progres {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 226px;
+
+    @include on-phone {
+      display: none;
+
+      &.isActive {
+        display: flex;
+        width: 100%;
+      }
+    }
+  }
+
+  &__svgs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__svg {
+    color: $additional-gray-gray;
+    &.bought {
+      color: $additional-greenas;
+    }
+
+    &.pending {
+      color: $system-info;
+    }
+
+    &.delivered {
+      color: $additional-freshherb-elect;
+    }
+  }
+
+  &__underline {
+    width: inherit;
+    display: flex;
+    padding-inline: 8px;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 100px;
+    background: $gray-stroke;
+    flex-shrink: 0;
+    &.bought {
+      background: $additional-greenas;
+    }
+
+    &.pending {
+      background: $system-info;
+    }
+
+    &.delivered {
+      background: $additional-freshherb-elect;
+    }
+  }
+
+  &__line {
+    width: 100%;
+    height: 1px;
+    background: $gray-stroke;
+
+    &.bought {
+      background: $additional-greenas;
+    }
+
+    &.pending {
+      background: $system-info;
+    }
+
+    &.delivered {
+      background: $additional-freshherb-elect;
+    }
+  }
+  &__general-detailed-status {
+    text-align: end;
+    width: 100%;
+
+    @include on-phone {
+      text-align: start;
+    }
+    &.bought {
+      color: $additional-greenas;
+    }
+
+    &.pending {
+      color: $system-info;
+    }
+
+    &.delivered {
+      color: $additional-freshherb-elect;
+    }
+
+    &.canseled {
+      color: $gray-dis;
+    }
+  }
+
+  &__delivery-info-cancel {
+    display: flex;
+    justify-content: space-between;
+
+    @include on-tablet {
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+
+  &__cancel {
+    color: $system-error;
+    @include button-semibold;
+    align-self: flex-end;
+    padding: 16px 35px;
+
+    @include on-phone {
+      align-self: center;
+    }
+  }
+
+  &__delivery-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  &__delivery-item {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  &__delivery-status {
+    display: flex;
+    gap: 8px;
+    width: 123.23px;
+    flex-shrink: 0;
+  }
+  &__delivery-icon {
+    color: $additional-greenas;
+    flex-shrink: 0;
+  }
+  &__delivery-status-name {
+    color: $gray-black;
+    @include button-semibold;
+  }
+  &__delivery-status-info {
+    color: $gray-black;
+    @include main-text;
+  }
+
+  &__delivery-lock {
+    color: $additional-greenas;
+    text-decoration: underline;
+  }
+
+  &__price-amount {
+    color: $additional-freshherb-elect;
+    @include h4-bold;
+  }
+
+  &__delivery-time {
+    display: flex;
+    gap: 16px;
+
+    @include on-phone {
+      justify-content: space-between;
+    }
+  }
+  &__start-date {
+    color: $gray-darks;
+    @include main-text;
+  }
+  &__end-date {
+    @include label-bold;
+    color: $gray-dark;
+  }
+}

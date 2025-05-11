@@ -200,7 +200,7 @@ export const Messages = () => {
 
   return (
     <div className="profile-page__section">
-      <div className="profile-page__section-title">
+      <div className="profile-page__section-title onDescktop">
         <ArrowTale
           onClick={() => {
             setOpenMenu(false);
@@ -212,26 +212,35 @@ export const Messages = () => {
       </div>
 
       <div className="profile-messages__main">
-        <SimpleBar
-          className={classNames(
-            'profile-messages__sources-container profile-messages__simple-bar',
-            {
-              isNotActive: activeMessges,
-            },
-          )}
+        <div
+          className={classNames('profile-messages__wrapper', {
+            isNotActive: activeMessges,
+          })}
         >
-          <div className="profile-messages__sources">
-            {testMessages.map((chat) => (
-              <Chat
-                key={chat.id}
-                chatName={chatName}
-                formatDate={formatDate}
-                chat={chat}
-                setActiveMessages={setActiveMessages}
-              />
-            ))}
+          <div className="profile-page__section-title ontablet-mob">
+            <ArrowTale
+              onClick={() => {
+                setOpenMenu(false);
+                setActiveMessages(false);
+              }}
+              className="profile-page__section-arrow"
+            />
+            <h2 className="profile-page__section-h2">Листування</h2>
           </div>
-        </SimpleBar>
+          <SimpleBar className="profile-messages__sources-container profile-messages__simple-bar">
+            <div className="profile-messages__sources">
+              {testMessages.map((chat) => (
+                <Chat
+                  key={chat.id}
+                  chatName={chatName}
+                  formatDate={formatDate}
+                  chat={chat}
+                  setActiveMessages={setActiveMessages}
+                />
+              ))}
+            </div>
+          </SimpleBar>
+        </div>
 
         <ActiveChat
           setActiveMessages={setActiveMessages}
