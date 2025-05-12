@@ -39,7 +39,11 @@ export const Menu = () => {
             to={'market'}
           >
             <div className="menu__logo">
-              <p className="menu__logo-title-main">DIKO</p>
+              <img
+                className="header__logo-title-main"
+                src="images/header/logo.svg"
+                alt="DIKO logo"
+              />
               <img
                 className="menu__logo-rectangle"
                 src="images/header/Rectangle-91.png"

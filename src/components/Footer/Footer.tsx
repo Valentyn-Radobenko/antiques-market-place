@@ -1,14 +1,19 @@
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 export const Footer = () => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   return (
     <footer className="footer">
-      <div className="footer__content">
+      <div className="footer__vector"></div>
+      <div className="footer__row">
         <Link to={'market'}>
           <div className="header__logo">
-            <p className="header__logo-title-main">DIKO</p>
+            <img
+              className="header__logo-title-main"
+              src="images/header/logo.svg"
+              alt="DIKO logo"
+            />
             <img
               className="header__logo-rectangle"
               src="images/header/Rectangle-91.png"
@@ -17,79 +22,7 @@ export const Footer = () => {
             <p className="header__logo-title-minor">антикварна платформа </p>
           </div>
         </Link>
-        <div className="footer__columns">
-          <div className="footer__column">
-            <h4 className="footer__title">{t('footer.help')}</h4>
-            <ul className="footer__list">
-              <li>
-                <a
-                  href="#"
-                  className="footer__link"
-                >
-                  {t('footer.tradeWithDucat')}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="footer__link"
-                >
-                  {t('footer.askQuestion')}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="footer__link"
-                >
-                  {t('footer.auctions')}
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="footer__column">
-            <h4 className="footer__title">{t('footer.policiesAndRules')}</h4>
-            <ul className="footer__list">
-              <li>
-                <a
-                  href="#"
-                  className="footer__link"
-                >
-                  {t('footer.privacyPolicy')}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="footer__link"
-                >
-                  {t('footer.termsOfUse')}
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="footer__column">
-            <h4 className="footer__title">{t('footer.getToKnowUs')}</h4>
-            <ul className="footer__list">
-              <li>
-                <a
-                  href="#"
-                  className="footer__link"
-                >
-                  {t('footer.aboutDucat')}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="footer__link"
-                >
-                  {t('footer.careers')}
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+
         <div className="footer__sm">
           <a
             href="telegram.com"
@@ -105,7 +38,74 @@ export const Footer = () => {
           ></a>
         </div>
       </div>
-      <div className="footer__copyright">©Ducat Dubovyk&KO 2004 - 2025</div>
+      <div className="footer__columns">
+        <div className="footer__column">
+          <h4 className="footer__title">Правила користування</h4>
+          <ul className="footer__list">
+            <li>
+              <a
+                href="#"
+                className="footer__link"
+              >
+                Умови використання
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="footer__link"
+              >
+                Політика конфіденційності
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="footer__column">
+          <h4 className="footer__title">Підтримка та поради</h4>
+          <ul className="footer__list">
+            <li>
+              <a
+                href="#"
+                className="footer__link"
+              >
+                Торгуйте з нами
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="footer__link"
+              >
+                Популярні питання
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="footer__column">
+          <h4 className="footer__title">Про нас</h4>
+          <ul className="footer__list">
+            <li>
+              <a
+                href="#"
+                className="footer__link"
+              >
+                Про платформу DIKO
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="footer__link"
+              >
+                Наші продукти та послуги
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="footer__copyright">
+        © 2004 – 2025 | DIKO | Усі права захищено.
+      </div>
     </footer>
   );
 };
