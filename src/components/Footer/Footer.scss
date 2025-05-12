@@ -12,6 +12,90 @@
   border-radius: 12px 12px 0px 0px;
   background: $additional-black-green;
 
+  @include on-tablet {
+    justify-content: initial;
+    height: auto;
+    padding-top: 24px;
+  }
+
+  @include on-phone {
+    padding-top: 16px;
+    padding-bottom: 24px;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 16px;
+    gap: 16px;
+    align-self: stretch;
+
+    & li {
+      width: 100%;
+    }
+  }
+
+  &__dropdown {
+    margin: 0;
+    padding: 0;
+    height: auto;
+
+    &-button {
+      display: flex;
+      padding: 16px;
+      align-items: center;
+      gap: 8px;
+      align-self: stretch;
+    }
+
+    &-text {
+      color: $gray-white;
+
+      @include h4-bold;
+    }
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__option {
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+
+    border-radius: 12px;
+    background: var(
+      --Backgrounds-User-notifications,
+      linear-gradient(
+        95deg,
+        rgba(230, 253, 245, 0.25) 1.57%,
+        rgba(134, 191, 174, 0.13) 96.4%
+      )
+    );
+
+    /* Button */
+    box-shadow: 0px 0px 8px 0px rgba(236, 255, 252, 0);
+    backdrop-filter: blur(25px);
+
+    color: $gray-white;
+
+    @include button-semibold;
+
+    @include hover(background-color, $additional-white-green);
+    @include hover(color, $additional-black-green);
+
+    &:active {
+      background-color: $additional-freshherb-elect;
+      color: $gray-white;
+    }
+  }
+
   &__vector {
     background-image: url('/images/footer/Vector.svg');
     background-repeat: no-repeat;
@@ -22,6 +106,10 @@
     bottom: -85px;
     stroke-width: 0.2px;
     stroke: var(--Additional-Gold, #e5a000);
+
+    @include on-tablet {
+      display: none;
+    }
   }
 
   &__row {
@@ -130,7 +218,7 @@
 
     border-top: 0.3px solid #e5a000;
 
-    color: $gray-white;
+    color: $gray-stroke;
 
     @include tab-regular;
   }
