@@ -16,13 +16,13 @@ type Props = {
 export const Order: React.FC<Props> = ({ order }) => {
   const [openDetailed, setOpenDetailed] = useState<boolean>(false);
 
-  function formattedDate(date: Date) {
-    return new Intl.DateTimeFormat('uk-UA', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    }).format(date);
-  }
+  // function formattedDate(date: Date) {
+  //   return new Intl.DateTimeFormat('uk-UA', {
+  //     day: 'numeric',
+  //     month: 'long',
+  //     year: 'numeric',
+  //   }).format(date);
+  // }
 
   const statuses = {
     bought: order.status === 'Куплено',
@@ -185,11 +185,13 @@ export const Order: React.FC<Props> = ({ order }) => {
       </div>
       <div className="order__delivery-time">
         <p className="order__start-date">
-          від {formattedDate(order.orderDate)}
+          від
+          {/* {formattedDate(order.orderDate)} */}
         </p>
         {order.deliveryDate && (
           <p className="order__end-date">
-            до {formattedDate(order.deliveryDate)}
+            до
+            {/* {formattedDate(order.deliveryDate)} */}
           </p>
         )}
       </div>
