@@ -9,14 +9,14 @@ const testItems = [
   {
     id: 1,
     checked: false,
-    img: './images/expertise/exp1.webp',
+    img: 'images/expertise/exp1.webp',
     name: 'Талер. 1643.',
     price: '4000',
   },
   {
     id: 2,
     checked: false,
-    img: './images/expertise/exp1.webp',
+    img: 'images/expertise/exp1.webp',
     name: 'Талер. 1643.',
     price: '4000',
   },
