@@ -52,9 +52,9 @@ const orders: OrderType[] = [
         id: 1253424234,
 
         img: [
-          'public/images/expertise/Photo1.png',
-          'public/images/expertise/Photo1.png',
-          'public/images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
         ],
         name: 'taler',
         price: 3180,
@@ -63,9 +63,9 @@ const orders: OrderType[] = [
         id: 1233425234,
 
         img: [
-          'public/images/expertise/Photo1.png',
-          'public/images/expertise/Photo1.png',
-          'public/images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
         ],
         name: 'taler',
         price: 3180,
@@ -73,9 +73,9 @@ const orders: OrderType[] = [
       {
         id: 1253425234,
         img: [
-          'public/images/expertise/Photo1.png',
-          'public/images/expertise/Photo1.png',
-          'public/images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
         ],
         name: 'taler',
         price: 3180,
@@ -98,9 +98,9 @@ const orders: OrderType[] = [
       {
         id: 124124124234,
         img: [
-          'public/images/expertise/Photo1.png',
-          'public/images/expertise/Photo1.png',
-          'public/images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
         ],
         name: 'taler',
         price: 3180,
@@ -108,9 +108,9 @@ const orders: OrderType[] = [
       {
         id: 1241241234,
         img: [
-          'public/images/expertise/Photo1.png',
-          'public/images/expertise/Photo1.png',
-          'public/images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
         ],
         name: 'taler',
         price: 3180,
@@ -133,9 +133,9 @@ const orders: OrderType[] = [
       {
         id: 1253421234,
         img: [
-          'public/images/expertise/Photo1.png',
-          'public/images/expertise/Photo1.png',
-          'public/images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
         ],
         name: 'taler',
         price: 3180,
@@ -156,9 +156,9 @@ const orders: OrderType[] = [
       {
         id: 1214241234,
         img: [
-          'public/images/expertise/Photo1.png',
-          'public/images/expertise/Photo1.png',
-          'public/images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
         ],
         name: 'taler',
         price: 3180,
@@ -166,9 +166,9 @@ const orders: OrderType[] = [
       {
         id: 12314241234,
         img: [
-          'public/images/expertise/Photo1.png',
-          'public/images/expertise/Photo1.png',
-          'public/images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
+          '../images/expertise/Photo1.png',
         ],
         name: 'taler',
         price: 3180,
