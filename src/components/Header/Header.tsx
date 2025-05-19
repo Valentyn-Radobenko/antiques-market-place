@@ -57,10 +57,11 @@ export const Header = () => {
           <Link to={'market'}>
             <div className="header__logo">
               <img
-                className="header__logo-title-main"
+                className="header__logo-icon"
                 src="images/header/logo.svg"
                 alt="DIKO logo"
               />
+              <p className="header__logo-title-main">DIKO</p>
               <img
                 className="header__logo-rectangle"
                 src="images/header/Rectangle-91.png"

@@ -38,18 +38,13 @@ export const Menu = () => {
             onClick={() => dispatch(setIsMenuOn(!isMenuOn))}
             to={'market'}
           >
-            <div className="menu__logo">
+            <div className="header__logo">
               <img
-                className="header__logo-title-main"
+                className="header__logo-icon"
                 src="images/header/logo.svg"
                 alt="DIKO logo"
               />
-              <img
-                className="menu__logo-rectangle"
-                src="images/header/Rectangle-91.png"
-                alt="rectangle"
-              />
-              <p className="menu__logo-title-minor">антикварна платформа </p>
+              <p className="header__logo-title-main">DIKO</p>
             </div>
           </Link>
           <button

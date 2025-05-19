@@ -47,11 +47,19 @@
       align-items: center;
       gap: 8px;
       align-self: stretch;
+      color: $gray-white;
+      transition: $effect-duration;
+
+      &--active {
+        color: $additional-freshherb-elect;
+      }
+    }
+
+    &-arrow--active {
+      background-image: url('/images/header/keyboard-arrow-down-rounded-active.svg') !important;
     }
 
     &-text {
-      color: $gray-white;
-
       @include h4-bold;
     }
   }
@@ -123,12 +131,15 @@
 
   &__logo {
     display: flex;
-    width: 179px;
-    height: 39px;
     align-items: center;
     gap: 8px;
 
     @include hover(transform, scale(1.05));
+
+    &-icon {
+      width: 24px;
+      height: 24px;
+    }
 
     &-title {
       &-main {

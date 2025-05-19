@@ -38,12 +38,15 @@
 
   &__logo {
     display: flex;
-    width: 179px;
-    height: 39px;
     align-items: center;
     gap: 8px;
 
     @include hover(transform, scale(1.05));
+
+    &-icon {
+      width: 24px;
+      height: 24px;
+    }
 
     &-title {
       &-main {
@@ -63,7 +66,13 @@
         font-size: 12px;
         line-height: 100%;
         color: $system-warning;
+
+        animation: fadeOut 10s forwards;
       }
+    }
+
+    &-rectangle {
+      animation: fadeOut 10s forwards;
     }
   }
 
