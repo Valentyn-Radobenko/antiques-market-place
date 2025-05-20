@@ -96,7 +96,7 @@ html * {
 .main {
   @include standard-inline-paddings;
 
-  padding-top: $header-height + 32px;
+  @include use-header-height(padding-top, 32px, 24px);
 
   overflow: hidden;
 }

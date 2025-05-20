@@ -3,7 +3,7 @@
 @import './Expanded/ExpCurrency/ExpCurrency';
 
 .header {
-  height: $header-height;
+  @include use-header-height(height);
   position: fixed;
   left: 0;
   right: 0;
@@ -138,7 +138,7 @@
 
       &-wrapper {
         display: flex;
-        height: $header-height;
+        @include use-header-height(height);
         align-items: center;
         justify-content: center;
         width: 40px;
@@ -297,22 +297,7 @@
       }
 
       &--reg {
-        background: linear-gradient(
-          95deg,
-          #0d392c 26.29%,
-          #40916c 72.35%,
-          #95d5b2 95.39%
-        );
-        color: $gray-white;
-
-        @include hover(background, $additional-mint);
-        @include hover(color, $gray-black);
-        @include hover(font-weight, 700);
-
-        &:active {
-          background-color: $additional-greenas;
-          color: $gray-white;
-        }
+        @include primary-button;
       }
     }
   }

@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     gap: 36px;
-    height: $header-height;
+    @include use-header-height(height);
   }
 
   &__item {
@@ -15,7 +15,7 @@
     &-big-button {
       display: flex;
       align-items: center;
-      height: $header-height;
+      @include use-header-height(height);
     }
 
     &-wrapper {

@@ -1,7 +1,7 @@
 .exp-currency {
   position: fixed;
   left: 0;
-  top: $header-height;
+  @include use-header-height(top);
   display: flex;
   height: 0;
   width: 100%;

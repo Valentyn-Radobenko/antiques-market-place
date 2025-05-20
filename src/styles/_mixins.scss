@@ -35,6 +35,14 @@
   }
 }
 
+@mixin use-header-height($_property, $_addValue: 0, $_addValue2: 0) {
+  #{$_property}: #{$desktop-header-height + $_addValue};
+
+  @include on-tablet {
+    #{$_property}: #{$tablet-header-height + $_addValue2};
+  }
+}
+
 @mixin page-grid {
   --columns: 2;
 
