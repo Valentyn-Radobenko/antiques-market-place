@@ -151,6 +151,13 @@
     background-color: $additional-fresh-herb-icon;
     color: $gray-white;
   }
+
+  @include on-tablet {
+    &:hover {
+      background-color: $additional-fresh-herb-icon;
+      color: $gray-white;
+    }
+  }
 }
 
 // #endregion
