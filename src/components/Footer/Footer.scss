@@ -16,18 +16,19 @@
     justify-content: initial;
     height: auto;
     padding-top: 24px;
+    gap: 16px;
   }
 
   @include on-phone {
     padding-top: 16px;
     padding-bottom: 24px;
+    gap: 24px;
   }
 
   &__actions {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-bottom: 16px;
     gap: 16px;
     align-self: stretch;
 
