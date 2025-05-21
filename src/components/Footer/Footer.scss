@@ -52,7 +52,7 @@
       transition: $effect-duration;
 
       &--active {
-        color: $additional-freshherb-elect;
+        color: $additional-mint;
       }
     }
 
@@ -205,7 +205,7 @@
 
       color: $gray-stroke;
 
-      @include button-semibold;
+      @include main-text;
 
       &:hover {
         text-decoration: underline;

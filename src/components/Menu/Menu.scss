@@ -108,14 +108,16 @@
       border-radius: 12px;
       text-align: center;
 
-      @include button-semibold;
-
       &--active {
         color: $additional-white-green;
+
+        @include button-bold;
       }
 
       &--inactive {
         color: $gray-lite;
+
+        @include main-text;
       }
     }
   }
@@ -129,6 +131,30 @@
       width: fit-content;
       align-items: center;
       gap: 8px;
+
+      &--active {
+        color: $additional-mint;
+
+        & .menu__dropdown-text {
+          color: $additional-mint;
+        }
+
+        & .menu__icon--questions--default {
+          background-image: url('/images/header/questions-mint.svg');
+        }
+
+        & .menu__icon--currency--default {
+          background-image: url('/images/header/currency-mint.svg');
+        }
+
+        & .nav--menu__link {
+          color: $additional-mint;
+        }
+      }
+    }
+
+    &-arrow--active {
+      background-image: url('/images/header/keyboard-arrow-down-rounded-active.svg') !important;
     }
 
     &-text {
@@ -251,8 +277,11 @@
       text-shadow: 0px 0px 15px rgba(208, 255, 226, 0.5);
 
       &--login {
+        color: $additional-black-green;
         border: 1px solid $primary;
         background: $gray-white;
+
+        @include button-semibold;
 
         @include hover(font-weight, 700);
 

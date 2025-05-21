@@ -29,12 +29,12 @@
       border-radius: 12px;
 
       &--active {
-        border-bottom: 1px solid $additional-white-green;
+        border-bottom: 1px solid $gray-dark;
 
         &::after {
           content: '';
           position: absolute;
-          background-color: $additional-white-green;
+          background-color: $gray-dark;
           height: 17px;
           width: 1px;
           top: 40px;
@@ -63,7 +63,7 @@
     flex: 1 0 0;
     transition: $effect-duration;
 
-    @include button-semibold;
+    @include main-text;
 
     color: $gray-white;
     text-align: center;
@@ -72,6 +72,8 @@
 
     &--is-active {
       color: $additional-fresh-herb-icon;
+
+      @include button-bold;
     }
   }
 

@@ -30,32 +30,44 @@
     gap: 8px;
 
     position: absolute;
-    right: 47vw;
+    right: 46vw;
     top: 0;
 
     padding: 8px;
     border-radius: 12px;
-    border: 1px solid $additional-white-green;
+    border: 1px solid $gray-dark;
 
     @media (min-width: 1800px) {
-      right: 48vw;
+      right: 47vw;
     }
     @media (min-width: 2400px) {
-      right: 48.5vw;
+      right: 47.5vw;
     }
     @media (min-width: 3400px) {
-      right: 49vw;
+      right: 48vw;
     }
 
     &--not-auth {
       right: 56vw;
 
-      @media (min-width: 1800px) {
+      @media (min-width: 1500px) {
         right: 55vw;
       }
 
-      @media (min-width: 2400px) {
+      @media (min-width: 1900px) {
+        right: 54.5vw;
+      }
+
+      @media (min-width: 2000px) {
         right: 54vw;
+      }
+
+      @media (min-width: 2400px) {
+        right: 53.5vw;
+      }
+
+      @media (min-width: 2600px) {
+        right: 53vw;
       }
 
       @media (min-width: 3000px) {

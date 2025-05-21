@@ -115,14 +115,16 @@
       border-radius: 12px;
       text-align: center;
 
-      @include button-semibold;
-
       &--active {
         color: $additional-white-green;
+
+        @include button-bold;
       }
 
       &--inactive {
         color: $gray-lite;
+
+        @include main-text;
       }
     }
 
@@ -193,7 +195,7 @@
           &::after {
             content: '';
             position: absolute;
-            background-color: $additional-white-green;
+            background-color: $gray-dark;
             height: 26px;
             width: 1px;
             top: 30px;
@@ -217,7 +219,7 @@
           &::after {
             content: '';
             position: absolute;
-            background-color: $additional-white-green;
+            background-color: $gray-dark;
             height: 24px;
             width: 1px;
             top: 33px;
