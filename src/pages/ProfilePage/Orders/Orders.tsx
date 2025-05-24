@@ -38,7 +38,7 @@ const orders: OrderType[] = [
   {
     id: 1,
     status: 'Куплено',
-    deliveryStatus: 'waiting to be send',
+    deliveryStatus: 'Очікує відправки',
     orderDate: new Date('2025.01.05'),
     deliveryDate: new Date('2025.01.10'),
     payment: {
@@ -85,7 +85,7 @@ const orders: OrderType[] = [
   {
     id: 2,
     status: 'Відправлено',
-    deliveryStatus: 'sended',
+    deliveryStatus: 'Передано до перевізника',
     orderDate: new Date('2025.01.05'),
     deliveryDate: new Date('2025.01.10'),
     payment: {
@@ -120,7 +120,7 @@ const orders: OrderType[] = [
   {
     id: 3,
     status: 'Отримано',
-    deliveryStatus: 'delivered',
+    deliveryStatus: 'Доставлено',
     orderDate: new Date('2025.01.05'),
     deliveryDate: new Date('2025.01.10'),
     payment: {
@@ -210,7 +210,7 @@ export const Orders = () => {
             <p className="orders__filter">Куплені</p>
             <p className="orders__filter">Відправлені</p>
             <p className="orders__filter">Отримані</p>
-            <p className="orders__filter">Скасовні</p>
+            <p className="orders__filter">Скасовані</p>
           </div>
         </SimpleBar>
 
@@ -317,7 +317,10 @@ export const Orders = () => {
 
       <div className="orders__list">
         {orders.map((order) => (
-          <Order order={order} />
+          <Order
+            key={order.id}
+            order={order}
+          />
         ))}
       </div>
     </div>

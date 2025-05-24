@@ -57,23 +57,23 @@ export const Cart = () => {
                 value="checked"
                 className="cart__checked-single"
               />
-              <img
-                className="cart__item-img"
-                src={a.img}
-                alt="#"
-              />
-              <div className="cart__item-text">
-                <p className="cart__item-name">{a.name}</p>
-                <p className="cart__item-price">{a.price} грн</p>
+              <div className="cart__item-info">
+                <img
+                  className="cart__item-img"
+                  src={a.img}
+                  alt="#"
+                />
+                <div className="cart__item-text">
+                  <p className="cart__item-name">{a.name}</p>
+                  <p className="cart__item-price">{a.price} грн</p>
+                </div>
               </div>
             </div>
           ))}
         </div>
         <div className="cart__bottom-bar">
-          <p className="cart__bottom-bar-text">
-            Загальна сума{' '}
-            <span className="cart__bottom-bar-price">8 000 грн</span>
-          </p>
+          <p className="cart__bottom-bar-text">Загальна сума </p>
+          <p className="cart__bottom-bar-price">8 000 грн</p>
           <button className="cart__button">
             <p>Оформити замовлення</p>
             <OrdersSVG />
