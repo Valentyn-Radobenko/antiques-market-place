@@ -394,13 +394,16 @@
     height: 12px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 8px;
   }
 
   li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0;
-    width: 8px;
+    width: fit-content;
     height: 8px;
     transition: $effect-duration;
 
@@ -418,7 +421,6 @@
       margin-top: 2px;
       width: 8px;
       height: 8px;
-      margin-top: px;
       border-radius: 1000px;
       background: $gray;
       transition: $effect-duration;
