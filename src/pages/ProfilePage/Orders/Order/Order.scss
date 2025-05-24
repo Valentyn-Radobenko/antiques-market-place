@@ -35,6 +35,7 @@
   &__general-info {
     display: flex;
     gap: 40px;
+    align-items: center;
 
     @include on-tablet {
       flex-direction: column;
@@ -53,6 +54,7 @@
     display: flex;
     gap: 8px;
     width: 47%;
+    align-self: flex-start;
 
     @include on-phone {
       width: 100%;
@@ -272,6 +274,7 @@
     @include button-semibold;
     align-self: flex-end;
     padding: 16px 35px;
+    @include button-semibold;
 
     @include on-phone {
       align-self: center;

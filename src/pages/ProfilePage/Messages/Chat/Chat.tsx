@@ -53,10 +53,10 @@ export const Chat: React.FC<Props> = ({
       <div className="message-source__top-bar">
         <div className="message-source__title">
           {chat.name === 'Системні сповіщення' && <EclipseGoldWhite />}
-          {chat.name === 'Чат підтримки' && <EclipseGeenGold />}
-          {chat.name === 'Замовлення' && <EclipseGoldGreenSVG />}
-          {chat.name === 'Оцінювання та сертифікація' && <EclipseMintGreen />}
-          {chat.name === 'Пропозиції щодо виставок' && <EclipseGreenWhite />}
+          {chat.name === 'Чат підтримки' && <EclipseGoldGreenSVG />}
+          {chat.name === 'Замовлення' && <EclipseGeenGold />}
+          {chat.name === 'Оцінювання та сертифікація' && <EclipseGreenWhite />}
+          {chat.name === 'Пропозиції щодо виставок' && <EclipseMintGreen />}
           <p className="message-source__title-text">{chat.sender}</p>
         </div>
         <ArrowTale className="message-source__arrow-tale" />
