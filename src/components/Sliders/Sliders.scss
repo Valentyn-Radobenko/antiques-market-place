@@ -383,7 +383,6 @@
   position: static;
   display: flex;
   width: 100%;
-  // height: 24px;
   justify-content: space-between;
   align-items: center;
   padding-top: 24px;
@@ -391,10 +390,10 @@
   background-color: $background-plate;
 
   ul {
-    height: 12px;
     display: flex;
+    height: 12px;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 8px;
   }
 
@@ -412,13 +411,10 @@
       background-color: $additional-greenas;
       width: 12px;
       height: 12px;
-      justify-self: center;
-      align-self: center;
       transition: $effect-duration;
     }
 
     div {
-      margin-top: 2px;
       width: 8px;
       height: 8px;
       border-radius: 1000px;
@@ -427,6 +423,12 @@
 
       &:hover {
         background-color: $gray-lite;
+      }
+
+      @include on-tablet {
+        &:hover {
+          background-color: $gray-dark;
+        }
       }
 
       &:active {
