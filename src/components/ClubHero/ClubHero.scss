@@ -22,7 +22,7 @@
   }
 
   &__text {
-    @include h4-bold;
+    @include main-text;
     width: 613px;
 
     color: $gray-dark;
@@ -30,7 +30,6 @@
     @include on-tablet {
       width: 100%;
       max-width: 592px;
-      @include button-semibold;
     }
   }
 }
