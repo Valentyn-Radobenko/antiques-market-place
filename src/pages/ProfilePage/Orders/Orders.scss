@@ -7,7 +7,12 @@
 
   &__wrapper-filters {
     @include on-tablet {
-      min-width: 100%;
+      min-width: 100vw;
+      margin-left: -24px;
+    }
+
+    @include on-phone {
+      margin-left: -16px;
     }
 
     & .simplebar-track {
@@ -18,29 +23,43 @@
   &__filters {
     display: flex;
     box-shadow: $drop-shadow;
+
+    @include on-tablet {
+      box-shadow: none;
+    }
   }
 
   &__filter {
-    &:first-child {
-      border-bottom-left-radius: 12px;
-      border-top-left-radius: 12px;
-    }
-    &:last-child {
-      border-bottom-right-radius: 12px;
-      border-top-right-radius: 12px;
-    }
     background: $background-page;
     min-width: 211px;
     flex-grow: 1;
     text-align: center;
     cursor: pointer;
-    @include main-text;
     color: $additional-greenas;
     padding-block: 16px;
+    border-bottom: 1px solid $gray-white-darks;
+
+    @include main-text;
 
     @include on-tablet {
       padding-block: 9px;
       min-width: 165.6px;
+      background: none;
+    }
+
+    &:first-child {
+      border-bottom-left-radius: 12px;
+      border-top-left-radius: 12px;
+      @include on-tablet {
+        border-radius: 0;
+      }
+    }
+    &:last-child {
+      border-bottom-right-radius: 12px;
+      border-top-right-radius: 12px;
+      @include on-tablet {
+        border-radius: 0;
+      }
     }
 
     &:not(:first-child) {
@@ -51,12 +70,19 @@
       @include button-semibold;
       color: $additional-freshherb-elect;
       position: relative;
+      border-bottom: none;
 
       &:first-child::before {
         border-bottom-left-radius: 12px;
+        @include on-tablet {
+          border-radius: 0;
+        }
       }
       &:last-child::before {
         border-bottom-right-radius: 12px;
+        @include on-tablet {
+          border-radius: 0;
+        }
       }
 
       &::before {
@@ -142,8 +168,8 @@
 
   &__sorting {
     display: none;
-    flex-grow: 1;
     position: relative;
+    max-width: 208px;
 
     &.isActive {
       display: block;

@@ -195,7 +195,9 @@ export const Messages = () => {
   }
 
   useEffect(() => {
-    setActiveChat(testMessages.find((a) => a.name === chatName));
+    setActiveChat(
+      testMessages.find((a) => a.name === chatName) || testMessages[0],
+    );
   }, [chatName]);
 
   return (

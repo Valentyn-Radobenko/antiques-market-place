@@ -16,17 +16,15 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
     >
       {value === 'hover' && (
         <svg
-          width="40"
-          height="40"
-          viewBox="0 0 40 40"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <g filter="url(#filter0_d_1273_44730)">
             <g clip-path="url(#clip0_1273_44730)">
               <rect
-                x="8"
-                y="8"
                 width="24"
                 height="24"
                 rx="4"
@@ -34,8 +32,8 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               />
             </g>
             <rect
-              x="8.5"
-              y="8.5"
+              x="0.5"
+              y="0.5"
               width="23"
               height="23"
               rx="3.5"
@@ -85,8 +83,6 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
             </filter>
             <clipPath id="clip0_1273_44730">
               <rect
-                x="8"
-                y="8"
                 width="24"
                 height="24"
                 rx="4"
@@ -98,24 +94,22 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
       )}
       {value === 'disabled' && (
         <svg
-          width="40"
-          height="40"
-          viewBox="0 0 40 40"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <g filter="url(#filter0_d_1273_44728)">
             <rect
-              x="8"
-              y="8"
               width="24"
               height="24"
               rx="4"
               fill="#B9CCC9"
             />
             <rect
-              x="8.5"
-              y="8.5"
+              x="0.5"
+              y="0.5"
               width="23"
               height="23"
               rx="3.5"
@@ -124,8 +118,8 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
             />
             <g filter="url(#filter1_i_1273_44728)">
               <rect
-                x="9"
-                y="9"
+                x="1"
+                y="1"
                 width="22"
                 height="22"
                 rx="3"
@@ -176,8 +170,8 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
             </filter>
             <filter
               id="filter1_i_1273_44728"
-              x="9"
-              y="9"
+              x="1"
+              y="1"
               width="22"
               height="22"
               filterUnits="userSpaceOnUse"
@@ -243,30 +237,28 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
       )}
       {value === 'checked' && (
         <svg
-          width="40"
-          height="40"
-          viewBox="0 0 40 40"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <g filter="url(#filter0_d_3854_150623)">
             <g clip-path="url(#clip0_3854_150623)">
               <rect
-                x="8"
-                y="8"
                 width="24"
                 height="24"
                 rx="4"
                 fill="#388964"
               />
               <path
-                d="M18.2572 24.601C17.8667 24.9915 17.2335 24.9915 16.843 24.601L12.9371 20.6951C12.74 20.498 12.7401 20.1783 12.9373 19.9813C13.1344 19.7846 13.4536 19.7847 13.6506 19.9816L16.843 23.174C17.2335 23.5645 17.8667 23.5645 18.2572 23.174L26.3491 15.0821C26.5462 14.885 26.8658 14.8851 27.0628 15.0823C27.2596 15.2794 27.2595 15.5987 27.0626 15.7956L18.2572 24.601Z"
+                d="M10.257 16.601C9.86653 16.9915 9.23331 16.9915 8.84281 16.601L4.93691 12.6951C4.73984 12.498 4.73988 12.1783 4.93705 11.9813C5.13417 11.7846 5.45333 11.7847 5.65036 11.9816L8.84281 15.174C9.23331 15.5645 9.86653 15.5645 10.257 15.174L18.3489 7.0821C18.546 6.88501 18.8656 6.88506 19.0626 7.08226C19.2595 7.27937 19.2594 7.59865 19.0625 7.79557L10.257 16.601Z"
                 fill="#F7FFFD"
               />
             </g>
             <rect
-              x="8.5"
-              y="8.5"
+              x="0.5"
+              y="0.5"
               width="23"
               height="23"
               rx="3.5"
@@ -332,8 +324,6 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
             </linearGradient>
             <clipPath id="clip0_3854_150623">
               <rect
-                x="8"
-                y="8"
                 width="24"
                 height="24"
                 rx="4"
@@ -345,16 +335,16 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
       )}
       {value === 'defoult' && (
         <svg
-          width="42"
-          height="42"
-          viewBox="0 0 42 42"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g filter="url(#filter0_d_1273_44726)">
+          <g filter="url(#filter0_d)">
             <rect
-              x="9"
-              y="9"
+              x="0"
+              y="0"
               width="24"
               height="24"
               rx="4"
@@ -362,19 +352,19 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               shape-rendering="crispEdges"
             />
             <rect
-              x="8.5"
-              y="8.5"
-              width="25"
-              height="25"
+              x="0.5"
+              y="0.5"
+              width="23"
+              height="23"
               rx="4.5"
-              stroke="url(#paint0_linear_1273_44726)"
+              stroke="url(#paint0_linear)"
               stroke-opacity="0.25"
               shape-rendering="crispEdges"
             />
-            <g filter="url(#filter1_i_1273_44726)">
+            <g filter="url(#filter1_i)">
               <rect
-                x="10"
-                y="10"
+                x="1"
+                y="1"
                 width="22"
                 height="22"
                 rx="3"
@@ -384,11 +374,11 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
           </g>
           <defs>
             <filter
-              id="filter0_d_1273_44726"
-              x="-42"
-              y="-42"
-              width="126"
-              height="126"
+              id="filter0_d"
+              x="-8"
+              y="-8"
+              width="40"
+              height="40"
               filterUnits="userSpaceOnUse"
               color-interpolation-filters="sRGB"
             >
@@ -414,19 +404,19 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               <feBlend
                 mode="normal"
                 in2="BackgroundImageFix"
-                result="effect1_dropShadow_1273_44726"
+                result="effect1_dropShadow"
               />
               <feBlend
                 mode="normal"
                 in="SourceGraphic"
-                in2="effect1_dropShadow_1273_44726"
+                in2="effect1_dropShadow"
                 result="shape"
               />
             </filter>
             <filter
-              id="filter1_i_1273_44726"
-              x="10"
-              y="10"
+              id="filter1_i"
+              x="1"
+              y="1"
               width="22"
               height="22"
               filterUnits="userSpaceOnUse"
@@ -452,7 +442,7 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
                 radius="1"
                 operator="dilate"
                 in="SourceAlpha"
-                result="effect1_innerShadow_1273_44726"
+                result="effect1_innerShadow"
               />
               <feOffset />
               <feGaussianBlur stdDeviation="4" />
@@ -469,15 +459,15 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               <feBlend
                 mode="normal"
                 in2="shape"
-                result="effect1_innerShadow_1273_44726"
+                result="effect1_innerShadow"
               />
             </filter>
             <linearGradient
-              id="paint0_linear_1273_44726"
-              x1="9"
-              y1="13.4717"
-              x2="33.645"
-              y2="15.739"
+              id="paint0_linear"
+              x1="0"
+              y1="4"
+              x2="24"
+              y2="6"
               gradientUnits="userSpaceOnUse"
             >
               <stop stop-color="#E6FDF5" />
