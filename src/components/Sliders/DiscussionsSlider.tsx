@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { discussionsSlides } from '../../data/discussionsSlides';
 import Slider from './Slider';
 import { useIsMobile, useIsTablet } from '../../hooks/useMediaQuery';
+import commentImg from '/images/sliders/comments.png';
 
 interface DiscussionSlide {
   img: string;
@@ -58,7 +59,7 @@ export const DiscussionsSlider: React.FC = () => {
             <div className="slider__discussion-comments">
               <img
                 className="slider__discussion-comments-img"
-                src="/images/sliders/comments.png"
+                src={commentImg}
                 alt="comments"
               />
               <div className="slider__discussion-comments-amount">

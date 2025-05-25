@@ -16,7 +16,16 @@
     height: 48px;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
+
+    @include on-tablet {
+      margin-bottom: 8px;
+    }
+
+    @include on-phone {
+      height: auto;
+      margin-bottom: 16px;
+    }
 
     &-title {
       color: $additional-black-green;
@@ -140,9 +149,12 @@
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
       flex: 1 0 0;
+
       overflow: hidden;
       color: #000;
       text-overflow: ellipsis;
+
+      max-height: 44px;
 
       @include h4-bold;
     }
@@ -359,6 +371,25 @@
       align-items: flex-start;
       gap: 8px;
       align-self: stretch;
+    }
+
+    &-question {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      align-self: stretch;
+
+      overflow: hidden;
+      color: #000;
+      text-overflow: ellipsis;
+
+      @include h4-bold;
+    }
+
+    &-date {
+      color: $gray-dis;
+
+      @include tab-regular;
     }
 
     &-bottom {
