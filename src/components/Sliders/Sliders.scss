@@ -215,6 +215,12 @@
     flex-shrink: 0;
     background-image: url('/images/header/arrow-back.svg');
     cursor: pointer;
+
+    transition: $effect-duration;
+
+    &--dis {
+      background-image: url('/images/header/arrow-back-dis.svg');
+    }
   }
 
   &__next-arr {
@@ -223,6 +229,12 @@
     flex-shrink: 0;
     background-image: url('/images/header/arrow-forward.svg');
     cursor: pointer;
+
+    transition: $effect-duration;
+
+    &--dis {
+      background-image: url('/images/header/arrow-forward-dis.svg');
+    }
   }
 
   &__discussions {

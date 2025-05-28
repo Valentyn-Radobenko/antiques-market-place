@@ -1,5 +1,6 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import SlickSlider from 'react-slick';
+import classNames from 'classnames';
 
 interface SliderProps<T> {
   sliderTitle: string;
@@ -24,16 +25,17 @@ export default function Slider<T>({
   renderSlide,
 }: SliderProps<T>) {
   const sliderRef = useRef<SlickSlider>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const next = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickNext();
+    if (currentSlide < slides.length - slidesPerView) {
+      sliderRef.current?.slickNext();
     }
   };
 
   const previous = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickPrev();
+    if (currentSlide > 0) {
+      sliderRef.current?.slickPrev();
     }
   };
 
@@ -45,21 +47,33 @@ export default function Slider<T>({
     autoplay: true,
     autoplaySpeed: 4000,
     slidesToShow: slidesPerView,
-    slidesToScroll: 1,
+    slidesToScroll: slidesPerView,
     lazyLoad: 'ondemand' as const,
-    appendDots: (dots: React.ReactNode) => (
-      <div className="slider__dots">
-        <div
-          onClick={previous}
-          className="slider__prev-arr"
-        ></div>
-        <ul>{dots}</ul>
-        <div
-          onClick={next}
-          className="slider__next-arr"
-        ></div>
-      </div>
-    ),
+    beforeChange: (_oldIndex: number, newIndex: number) => {
+      setCurrentSlide(newIndex);
+    },
+    appendDots: (dots: React.ReactNode) => {
+      const isFirst = currentSlide === 0;
+      const isLast = currentSlide >= slides.length - slidesPerView;
+
+      return (
+        <div className="slider__dots">
+          <div
+            onClick={previous}
+            className={classNames('slider__prev-arr', {
+              'slider__prev-arr--dis': isFirst,
+            })}
+          ></div>
+          <ul>{dots}</ul>
+          <div
+            onClick={next}
+            className={classNames('slider__next-arr', {
+              'slider__next-arr--dis': isLast,
+            })}
+          ></div>
+        </div>
+      );
+    },
     customPaging: () => <div></div>,
   };
 
