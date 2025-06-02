@@ -1,0 +1,171 @@
+.create-discussion {
+  max-width: 670px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  background: $gray-white;
+  border-radius: 12px;
+
+  &__top-bar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__info-svg {
+    color: $system-info;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    color: $gray-black;
+    @include h2-mobile-bold;
+    width: 100%;
+  }
+
+  &__close-svg {
+    color: $additional-greenas;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__create-theme {
+    background: $user-notifications-gradient;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+  }
+
+  &__add-theme {
+    color: $additional-black-green;
+    @include button-bold;
+  }
+
+  &__add-theme-svg {
+    color: $gray-black;
+    cursor: pointer;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    background: $background-plate;
+    border-radius: 12px;
+  }
+
+  &__input-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__input-title {
+    @include button-bold;
+    color: $gray-dark;
+  }
+
+  &__input {
+    border-radius: 12px;
+    border: 1px solid $gray-stroke;
+    background: $gray-white;
+    padding: 16px;
+    display: flex;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__buttons-list {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__textarea-svg-button {
+    cursor: pointer;
+    color: $gray-black;
+  }
+
+  &__bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__checkbox {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__anonim {
+    @include main-text;
+    color: $additional-greenas;
+  }
+
+  &__button {
+    @include primary-button;
+    @include main-text;
+    width: 213px;
+    padding-block: 16px;
+  }
+}
+
+.ProseMirror {
+  // min-height: 160px;
+  // outline: none;
+  // font-size: 16px;
+  // border: 1px solid black;
+
+  border-radius: 12px;
+  border: 1px solid $gray-stroke;
+  background: $gray-white;
+  padding: 16px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.ProseMirror p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.ProseMirror a {
+  color: #007bff;
+  text-decoration: underline;
+}
+.ProseMirror p.is-empty::before {
+  content: attr(data-placeholder);
+  color: #aaa;
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.ProseMirror ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+  padding-left: 20px;
+}

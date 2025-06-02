@@ -1,5 +1,5 @@
 import { ChatSVG } from '../components/Imgs/ChatSVG';
-import { DownliadSVG } from '../components/Imgs/Download.SVG';
+import { DownliadSVG } from '../components/Imgs/DownloadSVG';
 import { ShiledSVG } from '../components/Imgs/ShieldSVG';
 
 export const verifivationData = {

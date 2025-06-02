@@ -33,6 +33,9 @@
 @import '../components/Categories/Categories.scss';
 @import '../components/Categories/SubcategoryDesc/SubcategoryDesc.scss';
 @import '../components/Categories/CategoryMob/CategoryMob.scss';
+@import '../components/Discussion/Discussion.scss';
+@import '../components/CreateDiscussion/CreateDiscussion.scss';
+@import '../components/PageBaseNavigation/PageBaseNavigation.scss';
 @import '../pages/MarketPage/Settings.scss';
 
 @import '../pages/ProfilePage/ProfilePage';
@@ -42,6 +45,9 @@
 @import '../pages//ProfilePage/Cart/Cart.scss';
 @import '../pages/ProfilePage/Orders/Orders.scss';
 @import '../pages/ProfilePage/Orders/Order/Order.scss';
+@import '../pages/ProfilePage/Discussions/Discussions.scss';
+
+@import '../components/DropdownOptions/DropdownOptions.scss';
 
 @import '../pages/ExpertisePage/HowToExpertise/HowToExpertise.scss';
 @import '../pages/ExpertisePage/ItemEvaluation/ItemEvaluation.scss';

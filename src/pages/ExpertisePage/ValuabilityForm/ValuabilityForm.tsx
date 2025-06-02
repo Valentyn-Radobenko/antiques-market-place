@@ -59,6 +59,8 @@ export const ValuabilityForm: React.FC<Props> = ({
     setPhotosHelper(true);
   };
 
+  // console.log(files.length);
+
   return (
     <div
       className={classNames('valuability-form', {

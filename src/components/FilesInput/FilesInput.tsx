@@ -24,7 +24,7 @@ export const FilesInput: React.FC<Props> = ({
 
   const addFiles = (event: ChangeEvent<HTMLInputElement>) => {
     const newFiles = event.target.files ? Array.from(event.target.files) : [];
-    setFiles((prev) => [...prev, ...newFiles].slice(0, PHOTO_AMOUNT));
+    setFiles(() => [...files, ...newFiles].slice(0, PHOTO_AMOUNT));
   };
 
   const dropFiles = (event: React.DragEvent<HTMLLabelElement>) => {
@@ -32,7 +32,7 @@ export const FilesInput: React.FC<Props> = ({
 
     const newFiles =
       event.dataTransfer.files ? Array.from(event.dataTransfer.files) : [];
-    setFiles((prev) => [...prev, ...newFiles].slice(0, PHOTO_AMOUNT));
+    setFiles(() => [...files, ...newFiles].slice(0, PHOTO_AMOUNT));
     setDragOn(false);
   };
 
