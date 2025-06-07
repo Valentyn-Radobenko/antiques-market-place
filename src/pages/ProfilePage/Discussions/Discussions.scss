@@ -50,4 +50,11 @@
       display: block;
     }
   }
+
+  &__add-new-visibility {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+  }
 }

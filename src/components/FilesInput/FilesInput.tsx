@@ -7,6 +7,7 @@ import {
   DragEvent,
   Dispatch,
   SetStateAction,
+  useRef,
 } from 'react';
 
 type Props = {
@@ -21,10 +22,13 @@ export const FilesInput: React.FC<Props> = ({
   PHOTO_AMOUNT,
 }) => {
   const [dragOn, setDragOn] = useState<boolean>(false);
+  const ref = useRef<HTMLInputElement | null>(null);
 
   const addFiles = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log('ON CHANGE TARGET:', event.target);
     const newFiles = event.target.files ? Array.from(event.target.files) : [];
-    setFiles(() => [...files, ...newFiles].slice(0, PHOTO_AMOUNT));
+    setFiles((prevFiles) => [...prevFiles, ...newFiles].slice(0, PHOTO_AMOUNT));
+    event.target.value = '';
   };
 
   const dropFiles = (event: React.DragEvent<HTMLLabelElement>) => {
@@ -48,7 +52,6 @@ export const FilesInput: React.FC<Props> = ({
   return (
     <>
       <label
-        htmlFor="fileInput"
         className={classNames('file-input', {
           isActive: files.length !== 0,
           disabled: files.length === 5,
@@ -57,6 +60,7 @@ export const FilesInput: React.FC<Props> = ({
         onDrop={dropFiles}
         onDragOver={handleDragOn}
         onDragLeave={hadleDragLeave}
+        onClick={() => ref.current?.click()}
       >
         <AddIMGS
           className={classNames('file-input__add-img', {
@@ -96,7 +100,7 @@ export const FilesInput: React.FC<Props> = ({
         accept=".jpg, .jpeg, .png, .pdf, image/jpeg, image/png, application/pdf"
         multiple
         onChange={addFiles}
-        id="fileInput"
+        ref={ref}
         hidden
         type="file"
         disabled={files.length === 5}

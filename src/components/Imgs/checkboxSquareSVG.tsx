@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 type Props = {
   className?: string;
   onClick?: () => void;
@@ -9,12 +11,16 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
   onClick,
   value,
 }) => {
+  const [hoverOn, setHoverOn] = useState<boolean>(false);
+
   return (
     <div
       onClick={onClick}
       className={className}
+      onMouseEnter={() => setHoverOn(true)}
+      onMouseLeave={() => setHoverOn(false)}
     >
-      {value === 'hover' && (
+      {/* {value === 'hover' && (
         <svg
           width="24"
           height="24"
@@ -91,7 +97,7 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
             </clipPath>
           </defs>
         </svg>
-      )}
+      )} */}
       {value === 'disabled' && (
         <svg
           width="24"
@@ -348,7 +354,9 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               width="24"
               height="24"
               rx="4"
-              fill="#708080"
+              // fill="#708080"
+              style={{ transition: 'all ease 0.3s' }}
+              fill={hoverOn ? '#1B4332' : '#708080'}
               shapeRendering="crispEdges"
             />
             <rect
@@ -368,7 +376,9 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
                 width="22"
                 height="22"
                 rx="3"
-                fill="#F7FFFD"
+                // fill="#F7FFFD"
+                style={{ transition: 'all ease 0.3s' }}
+                fill={hoverOn ? '#95D5B2' : '#F7FFFD'}
               />
             </g>
           </g>

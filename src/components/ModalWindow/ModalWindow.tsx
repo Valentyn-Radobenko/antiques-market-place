@@ -5,7 +5,7 @@ type Props = {
   children: ReactNode;
   openModal: boolean;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
-  visibility: string;
+  visibility?: string;
 };
 
 export const ModalWindow: React.FC<Props> = ({

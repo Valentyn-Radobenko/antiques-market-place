@@ -102,3 +102,33 @@
     }
   }
 }
+
+.discussion-rules__simple-bar {
+  & .simplebar-track {
+    width: 8px !important;
+    right: -16px;
+    background: linear-gradient(
+      267deg,
+      rgba(226, 247, 237, 0.63) 5.61%,
+      rgba(240, 255, 248, 0.35) 26.78%,
+      rgba(214, 242, 232, 0.63) 96.71%
+    );
+    border-radius: 12px !important;
+  }
+
+  & .simplebar-vertical {
+    top: 24px;
+    width: 24px;
+    height: calc(100% - 48px);
+  }
+
+  & .simplebar-scrollbar {
+    width: 8px;
+    left: -2px;
+
+    &::before {
+      background: #b9ccc9;
+      width: 8px;
+    }
+  }
+}

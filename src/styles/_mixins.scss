@@ -258,3 +258,26 @@
     opacity: 1;
   }
 }
+
+@mixin input-style {
+  padding: 16px;
+  border-radius: 12px;
+  border: $gray-stroke 1px solid;
+  @include main-text;
+  outline: none;
+  color: $additional-black-green;
+  background: $gray-white;
+
+  &::placeholder {
+    color: $gray-lite;
+  }
+
+  &:hover {
+    background: $additional-white-green;
+    border-color: $additional-mint;
+  }
+  &:focus {
+    border-color: $additional-fresh-herb-icon;
+    // background: inherit;
+  }
+}

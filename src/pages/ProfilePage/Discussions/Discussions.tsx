@@ -6,6 +6,8 @@ import { Info } from '../../../components/Imgs/Info';
 import { PlusSVG } from '../../../components/Imgs/PlusSVG';
 import { Discussion } from '../../../components/Discussion/Discussion';
 import { CreateDiscussion } from '../../../components/CreateDiscussion/CreateDiscussion';
+import { useState } from 'react';
+import { ModalWindow } from '../../../components/ModalWindow/ModalWindow';
 
 const sortings = [
   {
@@ -32,6 +34,7 @@ const sortings = [
 
 export const Discussions = () => {
   const [setOpenMenu] = useOutletContext<OutletContextType>();
+  const [openAddModal, setOpenAddModal] = useState<boolean>(false);
 
   return (
     <div className="profile-discussions">
@@ -47,7 +50,6 @@ export const Discussions = () => {
         </div>
         <NavSortSearch sortings={sortings} />
         <Discussion />
-        <CreateDiscussion />
         {/* <div className="orders__list">
         {orders.map((order) => (
           <Order
@@ -56,6 +58,14 @@ export const Discussions = () => {
           />
         ))}
       </div> */}
+
+        <ModalWindow
+          visibility={'profile-discussions__add-new-visibility'}
+          openModal={openAddModal}
+          setOpenModal={setOpenAddModal}
+        >
+          <CreateDiscussion setOpenModal={setOpenAddModal} />
+        </ModalWindow>
       </div>
       <div className="profile-discussions__create-new">
         <p className="profile-discussions__create-new-text">
@@ -66,7 +76,10 @@ export const Discussions = () => {
           Додати тему
         </button>
       </div>
-      <button className="profile-discussions__create-new-fixed-button">
+      <button
+        onClick={() => setOpenAddModal(true)}
+        className="profile-discussions__create-new-fixed-button"
+      >
         <PlusSVG />
       </button>
     </div>
