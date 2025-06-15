@@ -96,6 +96,9 @@ html * {
 }
 
 .main {
+  display: flex;
+  flex-direction: column;
+
   @include standard-inline-paddings;
 
   @include use-header-height(padding-top, 32px, 24px);

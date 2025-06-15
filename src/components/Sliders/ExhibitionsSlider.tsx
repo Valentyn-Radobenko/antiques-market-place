@@ -26,12 +26,12 @@ export const ExhibitionsSlider: React.FC = () => {
     <Slider<ExhibitionSlide>
       sliderTitle={t('exhibitionsSlider.title')}
       renderSliderLink={() => (
-        <a
-          href="#"
+        <Link
+          to="exhibitions"
           className="slider__header-link"
         >
           {isMobile ? 'більше' : 'переглянути більше'}
-        </a>
+        </Link>
       )}
       slides={exhibitionsSlides}
       slidesPerView={isTablet ? 1 : 2}

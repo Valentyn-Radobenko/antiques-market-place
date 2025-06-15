@@ -1,9 +1,16 @@
 .club-hero {
   display: flex;
   flex-direction: column;
+  min-width: 1360px;
   align-items: flex-start;
   gap: 16px;
-  align-self: stretch;
+  justify-self: stretch;
+  align-self: center;
+
+  @include on-tablet {
+    min-width: 100%;
+    width: 100%;
+  }
 
   margin-bottom: 24px;
 

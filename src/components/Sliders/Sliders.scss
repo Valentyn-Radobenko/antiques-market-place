@@ -1,6 +1,7 @@
 .slider {
   display: block;
   padding: 24px;
+  max-width: 1360px;
   flex-direction: column;
   align-items: center;
   gap: 24px;
@@ -10,6 +11,14 @@
   border: 1px solid $background-strouke-plate;
   background: $background-plate;
   backdrop-filter: blur(5px);
+  align-self: center;
+  overflow: hidden;
+
+  @include on-tablet {
+    padding: 16px;
+    width: 100%;
+    max-width: 100%;
+  }
 
   &__header {
     display: flex;
@@ -46,6 +55,19 @@
 
       @include main-text;
       text-decoration: underline;
+      transition: $effect-duration;
+
+      &:hover {
+        @include button-bold;
+
+        @include on-tablet {
+          color: $additional-freshherb-elect;
+        }
+      }
+
+      &:active {
+        color: $additional-freshherb-elect;
+      }
     }
 
     &-button {
@@ -73,9 +95,9 @@
     }
   }
 
-  // &__big-container {
-  //   // backdrop-filter: blur(5px);
-  // }
+  &__big-container {
+    overflow: hidden;
+  }
 
   &__container {
     display: block;
@@ -88,16 +110,17 @@
     display: flex !important;
     flex-direction: column;
     height: 412px;
+    width: 100%;
     align-self: stretch;
     border-radius: 12px;
     background-size: cover;
     background-position: center;
     border: 2px solid rgba($color: $additional-mint, $alpha: 0);
 
-    // box-shadow:
-    //   0px 8px 20px 2px rgba(170, 182, 178, 0.2),
-    //   0px -4px 12px 0px rgba(255, 255, 255, 0) inset;
-    // backdrop-filter: blur(12px);
+    box-shadow:
+      0px 8px 20px 2px rgba(170, 182, 178, 0.2),
+      0px -4px 12px 0px rgba(255, 255, 255, 0) inset;
+    backdrop-filter: blur(12px);
 
     @include hover(border, 2px solid $additional-mint);
 
@@ -488,4 +511,13 @@
 
 .slick-slide > div {
   margin: 0 8px;
+}
+
+.slick-list {
+  overflow: visible;
+}
+
+.slick-track {
+  display: flex;
+  // gap: 16px;
 }
