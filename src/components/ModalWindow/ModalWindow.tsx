@@ -1,4 +1,4 @@
-import React, { Dispatch, ReactNode, SetStateAction } from 'react';
+import React, { Dispatch, ReactNode, SetStateAction, useEffect } from 'react';
 import classNames from 'classnames';
 import ReactDOM from 'react-dom';
 type Props = {
@@ -14,6 +14,14 @@ export const ModalWindow: React.FC<Props> = ({
   openModal,
   setOpenModal,
 }) => {
+  useEffect(() => {
+    if (openModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [openModal]);
+
   return ReactDOM.createPortal(
     <div
       className={classNames('modal', visibility, {

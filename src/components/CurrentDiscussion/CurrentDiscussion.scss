@@ -1,0 +1,368 @@
+.current-discussion {
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+
+  @include on-tablet {
+    flex-direction: column;
+    width: 100%;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+
+  &__images {
+    width: 607px;
+    position: relative;
+
+    @include on-tablet {
+      width: auto;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+  }
+
+  &__images-list {
+    display: flex;
+    overflow: hidden;
+    height: 100%;
+    transition: all ease $effect-duration;
+  }
+
+  &__imagie {
+    width: 100%;
+    height: inherit;
+    object-fit: cover;
+    display: block;
+    transition: all ease $effect-duration;
+  }
+
+  &__zoom {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 8px;
+    background: $background-plate;
+    color: $gray-black;
+    border-radius: 8px;
+    cursor: pointer;
+    box-sizing: content-box;
+  }
+
+  &__images-pagination {
+    position: absolute;
+    bottom: 32px;
+    width: calc(100% - 48px);
+    display: flex;
+
+    justify-content: space-between;
+    margin-inline: 24px;
+    background: $background-plate;
+    border-radius: 12px;
+    padding: 8px;
+  }
+
+  &__arrow {
+    color: $additional-gray-gray;
+    &.isActive {
+      cursor: pointer;
+      color: $additional-greenas;
+    }
+
+    &.left {
+      transform: rotate(90deg);
+    }
+
+    &.reight {
+      transform: rotate(270deg);
+    }
+  }
+
+  &__length {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__dot {
+    background: $additional-gray-gray;
+    width: 4px;
+    height: 4px;
+    border-radius: 50px;
+    padding: 2px;
+    transition: all ease $effect-duration;
+
+    &.isActive {
+      background: $additional-greenas;
+      width: 8px;
+      height: 8px;
+      padding: 0;
+    }
+  }
+
+  &__text-block {
+    background: $gray-white;
+    display: flex;
+    flex-direction: column;
+    padding-inline: 24px;
+    width: 749px;
+
+    @include on-tablet {
+      width: auto;
+      padding-top: 24px;
+      padding-bottom: 112px;
+    }
+
+    @include on-phone {
+      padding-inline: 16px;
+    }
+  }
+  &__main-info {
+    padding-block: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include on-phone {
+      gap: 8px;
+    }
+  }
+
+  &__top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__title {
+    color: $gray-black;
+    @include h2-bold;
+  }
+
+  &__close {
+    color: $additional-greenas;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  &__discussion-info {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: $background-plate;
+    border-radius: 12px;
+  }
+  &__author-theme {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__author {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__author-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    border-radius: 50px;
+  }
+  &__author-name {
+    color: $gray-black;
+    @include label-bold;
+    width: 100%;
+  }
+
+  &__more-options {
+    flex-shrink: 0;
+    color: $gray-dark;
+    cursor: pointer;
+  }
+
+  &__theme {
+    @include main-text;
+    color: $gray-black;
+    border-radius: 12px;
+    background: $additional-white-green;
+    padding-inline: 8px;
+  }
+  &__description {
+    @include h4-bold;
+    color: $gray-black;
+  }
+  &__date {
+    color: $gray-dis;
+  }
+
+  &__simplebar {
+    // position: relative;
+    max-height: 326px;
+    margin-right: -24px;
+    border-top: 1px solid $gray-stroke;
+    border-bottom: 1px solid $gray-stroke;
+
+    & .simplebar-track {
+      width: 8px !important;
+      right: 8px;
+      border-radius: 12px !important;
+    }
+
+    & .simplebar-vertical {
+      top: 24px;
+      width: 24px;
+      height: calc(100% - 48px);
+    }
+
+    & .simplebar-scrollbar {
+      width: 8px;
+      left: -2px;
+
+      &::before {
+        background: $additional-gray-gray;
+        opacity: 1 !important;
+        width: 8px;
+      }
+    }
+  }
+
+  &__comments {
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-right: 24px;
+  }
+  &__comment {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 12px;
+    width: calc(100% - 40px);
+    overflow: hidden;
+
+    &.myComment {
+      background: $background-user-notifications;
+      align-self: flex-end;
+    }
+  }
+  &__comment-text {
+    @include main-text;
+    color: $gray-dark;
+  }
+
+  &__date-answer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__comment-date {
+    @include tab-regular;
+    color: $gray-dis;
+  }
+
+  &__answer-button {
+    color: $additional-greenas;
+    @include button-bold;
+    padding: 7px 16px;
+  }
+
+  &__action-list {
+    z-index: -1;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-bottom-left-radius: 12px;
+    overflow: hidden;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    transition: all ease $effect-duration;
+
+    &.isActive {
+      opacity: 1;
+      z-index: 1;
+    }
+  }
+
+  &__action {
+    cursor: pointer;
+    padding: 8px 16px;
+    background: $background-plate;
+    display: flex;
+    gap: 8px;
+    color: $additional-greenas;
+    align-items: center;
+
+    &:first-child {
+      border-bottom: 1px solid $gray-stroke;
+    }
+  }
+
+  &__action-svg {
+  }
+
+  &__action-text {
+  }
+
+  &__replied-comment {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: $background-texts;
+    border-radius: 12px;
+    border-left: $additional-mint solid 1px;
+  }
+
+  &__hint {
+    width: 100%;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    position: absolute;
+    background: $background-plate;
+    top: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all ease $effect-duration;
+    transform: translateY(-100%);
+    backdrop-filter: blur(5px);
+
+    &.isActive {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__hint-close {
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  &__hint-text {
+    @include main-text;
+    color: $gray-black;
+  }
+
+  &__add-comment {
+    padding-block: 24px;
+    display: flex;
+    gap: 16px;
+    position: relative;
+  }
+
+  &__input {
+    @include input-style;
+    width: 100%;
+  }
+
+  &__add-comment-button {
+    @include primary-button;
+    padding-inline: 33px;
+    @include button-bold;
+  }
+}

@@ -12,17 +12,13 @@ type Sortings = {
 
 type Props = {
   sortings: Sortings[];
+  pageNavigation: string[];
 };
 
-const pageNavigation = [
-  'Усі замовлення',
-  'Куплені',
-  'Відправлені',
-  'Отримані',
-  'Скасовані',
-];
-
-export const NavSortSearch: React.FC<Props> = ({ sortings }) => {
+export const NavSortSearch: React.FC<Props> = ({
+  pageNavigation,
+  sortings,
+}) => {
   const [activeInput, setActiveInput] = useState<boolean>(false);
 
   return (

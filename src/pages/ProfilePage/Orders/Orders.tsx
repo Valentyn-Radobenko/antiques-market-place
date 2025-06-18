@@ -5,6 +5,13 @@ import { OrderType } from '../../../types/order';
 import { Order } from './Order/Order';
 import { NavSortSearch } from '../../../components/NavSortSearch/NavSortSearch';
 
+const pageNavigation = [
+  'Усі замовлення',
+  'Куплені',
+  'Відправлені',
+  'Отримані',
+  'Скасовані',
+];
 const sortings = [
   {
     id: 1,
@@ -185,7 +192,10 @@ export const Orders = () => {
         />
         <h2 className="profile-page__section-h2">Замовлення</h2>
       </div>
-      <NavSortSearch sortings={sortings} />
+      <NavSortSearch
+        pageNavigation={pageNavigation}
+        sortings={sortings}
+      />
       <div className="orders__list">
         {orders.map((order) => (
           <Order

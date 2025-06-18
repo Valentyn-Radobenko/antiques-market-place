@@ -130,6 +130,7 @@
     gap: 8px;
     color: $additional-greenas;
     align-items: center;
+    cursor: pointer;
 
     &:first-child {
       border-bottom: 1px solid $gray-stroke;
@@ -140,5 +141,16 @@
   }
 
   &__action-text {
+  }
+
+  &__current-disussion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+    @include on-tablet {
+      align-items: end;
+    }
   }
 }

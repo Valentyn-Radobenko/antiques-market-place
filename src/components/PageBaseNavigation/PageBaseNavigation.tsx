@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import SimpleBar from 'simplebar-react';
 
 type Props = {
@@ -11,7 +12,9 @@ export const PageBaseNavigation: React.FC<Props> = ({ pageNavigation }) => {
         {pageNavigation.map((a, i) => (
           <p
             key={i}
-            className="page-base-navigation__filter isActive"
+            className={classNames('page-base-navigation__filter', {
+              isActive: i === 0, //доробити
+            })}
           >
             {a}
           </p>

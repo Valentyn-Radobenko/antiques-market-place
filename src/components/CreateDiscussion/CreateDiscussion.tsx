@@ -101,10 +101,6 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
     };
   }, [editor]);
 
-  console.log(errorHeight);
-  console.log(errorHeight);
-  console.log(errorRef.current?.clientHeight);
-
   return (
     <div className="create-discussion">
       <div className="create-discussion__top-bar">
@@ -247,7 +243,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
               />
             </div>
           </div>
-          <p
+          <div
             style={{ height: errorHeight }}
             className={classNames('create-discussion__error-text', {
               isActive: linkError,
@@ -256,7 +252,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
             <p ref={errorRef}>
               Щоб вставити посилання, виділіть слово та натисніть на іконку
             </p>
-          </p>
+          </div>
         </div>
       </div>
       <div className="create-discussion__bottom-bar">
