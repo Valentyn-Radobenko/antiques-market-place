@@ -51,17 +51,19 @@
       color: $gray-white;
       transition: $effect-duration;
 
+      @include h4-bold;
+
+      @include main-text;
+
       &--active {
+        @include h4-bold;
+
         color: $additional-mint;
       }
     }
 
     &-arrow--active {
       background-image: url('/images/header/keyboard-arrow-down-rounded-active.svg') !important;
-    }
-
-    &-text {
-      @include h4-bold;
     }
   }
 
@@ -94,12 +96,13 @@
 
     color: $gray-white;
 
-    @include button-semibold;
+    @include main-text;
 
     @include hover(background-color, $additional-white-green);
     @include hover(color, $additional-black-green);
 
     &:active {
+      @include button-bold;
       background-color: $additional-freshherb-elect;
       color: $gray-white;
     }
