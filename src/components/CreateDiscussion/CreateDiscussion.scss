@@ -52,16 +52,100 @@
     display: flex;
     justify-content: space-between;
     padding: 16px;
+    height: 64px;
+    align-items: center;
   }
 
   &__add-theme {
     color: $additional-black-green;
     @include button-bold;
+    transition: all ease $effect-duration;
+
+    &.isActive {
+      color: $additional-freshherb-elect;
+    }
+  }
+
+  &__create-theme-title-list {
+    display: flex;
+    gap: 16px;
+    align-items: center;
   }
 
   &__add-theme-svg {
     color: $gray-black;
     cursor: pointer;
+    transition: all ease $effect-duration;
+    flex-shrink: 0;
+
+    &.isActive {
+      color: $additional-freshherb-elect;
+    }
+  }
+
+  &__chosen-themes {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  &__chosen-theme {
+    display: flex;
+    gap: 8px;
+    padding: 5px 8px;
+    @include tab-regular;
+    color: $gray-black;
+    background: $additional-white-green;
+    border-radius: 8px;
+    border: 1px; // доробити!!!
+  }
+
+  &__delete-theme {
+    color: $additional-black-green;
+    cursor: pointer;
+  }
+
+  &__themes-wrapper {
+    overflow: hidden;
+    transition: all ease $effect-duration;
+  }
+
+  &__themes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__theme {
+    background: $additional-white-green;
+    color: $gray-black;
+    @include tab-regular;
+    border-radius: 12px;
+    padding: 5px 8px;
+    cursor: pointer;
+  }
+
+  &__my-theme {
+    display: flex;
+    align-items: center;
+    padding: 4px 16px;
+    gap: 8px;
+    border-radius: 12px;
+    border: 1px solid green;
+    transition: all ease $effect-duration;
+    @include tab-regular;
+
+    &:hover {
+      background: $additional-white-green;
+      border-color: $additional-mint;
+      color: $additional-greenas;
+    }
+  }
+
+  &__create-new-theme {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__form {

@@ -26,14 +26,32 @@ import { PhotosList } from '../PhotosList/PhotosList';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
 import { DiscussionRules } from '../DiscussionRules/DiscussionRules';
 import classNames from 'classnames';
+import { CreateNewTheme } from '../CreateNewTheme/CreateNewTheme';
 
 const PHOTO_AMOUNT = 5;
+
+const popularThems = [
+  'Монети України',
+  'Колекціонування',
+  'Нумізматика',
+  'Книги',
+  'Марки',
+  'Живопис',
+  'Філателія',
+  "Предмети інтер'єру",
+  'Монети Польщі',
+  'Сфрагістика',
+  'Паперові колекції',
+  'Монети Європи',
+  'Інші монети',
+];
 
 type Form = {
   name: string;
   description: string;
   files: File[];
   anonimus: boolean;
+  themes: string[];
 };
 
 type Props = {
@@ -41,18 +59,22 @@ type Props = {
 };
 
 export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
+  const heightRef = useRef<HTMLDivElement>(null);
   const errorRef = useRef<HTMLParagraphElement>(null);
+  const [activeThemes, setActiveThemes] = useState<boolean>(false);
   const [errorHeight, setErrorHight] = useState<number>(0);
   const [openRules, setOpenRules] = useState<boolean>(false);
   const ref = useRef<HTMLInputElement | null>(null);
   const [openLinkModal, setOpenLinkModal] = useState(false);
   const [link, setLink] = useState<string>('');
   const [linkError, setLinkError] = useState<boolean>(false);
+  const [createNewTheme, setCreateNewTheme] = useState<boolean>(false);
   const [form, setForm] = useState<Form>({
     name: '',
     description: '',
     files: [],
     anonimus: false,
+    themes: [],
   });
 
   useEffect(() => {
@@ -101,6 +123,12 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
     };
   }, [editor]);
 
+  const handleAddTheme = (theme: string) => {
+    if (!form.themes.includes(theme)) {
+      setForm({ ...form, themes: [...form.themes, theme] });
+    }
+  };
+
   return (
     <div className="create-discussion">
       <div className="create-discussion__top-bar">
@@ -114,10 +142,79 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
           className="create-discussion__close-svg"
         />
       </div>
+
       <div className="create-discussion__main">
         <div className="create-discussion__create-theme">
-          <p className="create-discussion__add-theme">Додайте тему:</p>
-          <CirclePlusSVG className="create-discussion__add-theme-svg" />
+          <div className="create-discussion__create-theme-title-list">
+            <p
+              className={classNames('create-discussion__add-theme', {
+                isActive: activeThemes,
+              })}
+            >
+              Додайте тему:
+            </p>
+            <div className="create-discussion__chosen-themes">
+              {form.themes.map((theme, i) => (
+                <div
+                  key={i}
+                  className="create-discussion__chosen-theme"
+                >
+                  <p>{theme}</p>
+                  <Close
+                    onClick={() =>
+                      setForm({
+                        ...form,
+                        themes: [...form.themes.filter((a) => a !== theme)],
+                      })
+                    }
+                    className="create-discussion__delete-theme"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+          <CirclePlusSVG
+            onClick={() => setActiveThemes(!activeThemes)}
+            className={classNames('create-discussion__add-theme-svg', {
+              isActive: activeThemes,
+            })}
+          />
+        </div>
+        <div
+          style={{ height: activeThemes ? heightRef.current?.clientHeight : 0 }}
+          className="create-discussion__themes-wrapper"
+        >
+          <div
+            ref={heightRef}
+            className="create-discussion__themes"
+          >
+            {popularThems.map((theme) => (
+              <p
+                onClick={() => handleAddTheme(theme)}
+                key={theme}
+                className="create-discussion__theme"
+              >
+                {theme}
+              </p>
+            ))}
+            <button
+              onClick={() => setCreateNewTheme(true)}
+              className="create-discussion__my-theme"
+            >
+              <p>Моя тема</p>
+              <CirclePlusSVG />
+            </button>
+            <ModalWindow
+              openModal={createNewTheme}
+              setOpenModal={setCreateNewTheme}
+              visibility="create-discussion__create-new-theme"
+            >
+              <CreateNewTheme
+                handleAddTheme={handleAddTheme}
+                setCreateNewTheme={setCreateNewTheme}
+              />
+            </ModalWindow>
+          </div>
         </div>
         <div className="create-discussion__form">
           <div className="create-discussion__input-block">
