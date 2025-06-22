@@ -1,13 +1,12 @@
 import { SetStateAction, useEffect, Dispatch, useState } from 'react';
 import { Close } from '../../../components/Imgs/Close';
 import { Info } from '../../../components/Imgs/Info';
-import { Bin } from '../../../components/Imgs/Bin';
-import { useResizeObserver } from '../../../utils/useResizeObserver';
 import { AssessmentForm } from '../../../types/assessment';
 import classNames from 'classnames';
 import SimpleBar from 'simplebar-react';
 import { PhotosHelper } from '../PhotosHelper/PhotosHelper';
 import { FilesInput } from '../../../components/FilesInput/FilesInput';
+import { PhotosList } from '../../../components/PhotosList/PhotosList';
 
 type Props = {
   closeModal: Dispatch<SetStateAction<boolean>>;
@@ -22,8 +21,7 @@ export const ValuabilityForm: React.FC<Props> = ({
 }) => {
   const PHOTO_AMOUNT = 5;
   const [files, setFiles] = useState<File[]>([]);
-  const [photoWidth, setPhotoWidth] = useState<number>(0);
-  const { ref, width } = useResizeObserver();
+
   const [query, setQuery] = useState<string>('');
   const [photosHelper, setPhotosHelper] = useState<boolean>(false);
   const [currentHeight, setCurrentHeight] = useState<number>(0);
@@ -35,16 +33,6 @@ export const ValuabilityForm: React.FC<Props> = ({
       document.body.style.overflow = 'auto';
     }
   }, [activeState]);
-
-  useEffect(() => {
-    setPhotoWidth(width / PHOTO_AMOUNT);
-  }, [width]);
-
-  const deletePhoto = (i: number) => {
-    const newFiles = files.filter((_, index) => index !== i);
-
-    setFiles(newFiles);
-  };
 
   let timeout: NodeJS.Timeout;
 
@@ -88,7 +76,6 @@ export const ValuabilityForm: React.FC<Props> = ({
             </div>
             <div className="valuability-form__underline" />
             <div
-              ref={ref}
               className="valuability-form__photo"
               style={{ gap: photosHelper ? '16px' : '8px' }}
             >
@@ -123,30 +110,10 @@ export const ValuabilityForm: React.FC<Props> = ({
               />
             </div>
             {files.length > 0 && (
-              <div className="valuability-form__photos">
-                <div className="valuability-form__list-of-photos">
-                  {files.map((file, index) => (
-                    <div
-                      style={{ width: `${photoWidth}px` }}
-                      key={index}
-                      className="valuability-form__photo-block"
-                    >
-                      <Bin
-                        className="valuability-form__bin"
-                        onClick={() => deletePhoto(index)}
-                      />
-                      <img
-                        className="valuability-form__img"
-                        src={URL.createObjectURL(file)}
-                        alt="#"
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div className="valuability-form__photos-text-block">
-                  {`Максимальна кількість фото: ${PHOTO_AMOUNT}`}
-                </div>
-              </div>
+              <PhotosList
+                files={files}
+                setFiles={setFiles}
+              />
             )}
             <div className="valuability-form__underline" />
             <div className="valuability-form__description">

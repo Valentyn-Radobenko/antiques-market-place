@@ -160,13 +160,23 @@
   transition: all ease $effect-duration;
   position: relative;
   z-index: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+
+  &:disabled {
+    background: $gray-lite;
+    cursor: initial;
+  }
 
   &:hover {
     color: $gray-black;
   }
+  &:disabled:hover {
+    color: $gray-white;
+  }
   &::before,
   &::after {
-    border-radius: 12px;
     transition: inherit;
     content: '';
     position: absolute;
@@ -193,6 +203,11 @@
   &:hover::after {
     opacity: 1;
   }
+
+  &:disabled::before,
+  &:disabled::after {
+    opacity: 0;
+  }
 }
 
 @mixin additional-button {
@@ -206,8 +221,6 @@
     content: '';
     position: absolute;
     inset: 0;
-
-    border-radius: 12px;
   }
 
   &::before {
@@ -236,6 +249,28 @@
   }
 }
 
+@mixin input-style {
+  padding: 16px;
+  border-radius: 12px;
+  border: $gray-stroke 1px solid;
+  @include main-text;
+  outline: none;
+  color: $additional-black-green;
+  background: $gray-white;
+
+  &::placeholder {
+    color: $gray-lite;
+  }
+
+  &:hover {
+    background: $additional-white-green;
+    border-color: $additional-mint;
+  }
+  &:focus {
+    border-color: $additional-fresh-herb-icon;
+    // background: inherit;
+  }
+}
 // #endregion
 
 // #region styles

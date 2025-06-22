@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 type Props = {
   className?: string;
   onClick?: () => void;
@@ -9,12 +11,16 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
   onClick,
   value,
 }) => {
+  const [hoverOn, setHoverOn] = useState<boolean>(false);
+
   return (
     <div
       onClick={onClick}
       className={className}
+      onMouseEnter={() => setHoverOn(true)}
+      onMouseLeave={() => setHoverOn(false)}
     >
-      {value === 'hover' && (
+      {/* {value === 'hover' && (
         <svg
           width="24"
           height="24"
@@ -48,10 +54,10 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               width="124"
               height="124"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
               <feFlood
-                flood-opacity="0"
+                floodOpacity="0"
                 result="BackgroundImageFix"
               />
               <feColorMatrix
@@ -91,7 +97,7 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
             </clipPath>
           </defs>
         </svg>
-      )}
+      )} */}
       {value === 'disabled' && (
         <svg
           width="24"
@@ -114,7 +120,7 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               height="23"
               rx="3.5"
               stroke="url(#paint0_linear_1273_44728)"
-              stroke-opacity="0.25"
+              strokeOpacity="0.25"
             />
             <g filter="url(#filter1_i_1273_44728)">
               <rect
@@ -135,10 +141,10 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               width="124"
               height="124"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
               <feFlood
-                flood-opacity="0"
+                floodOpacity="0"
                 result="BackgroundImageFix"
               />
               <feColorMatrix
@@ -175,10 +181,10 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               width="22"
               height="22"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
               <feFlood
-                flood-opacity="0"
+                floodOpacity="0"
                 result="BackgroundImageFix"
               />
               <feBlend
@@ -225,11 +231,11 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               y2="14.739"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#E6FDF5" />
+              <stop stopColor="#E6FDF5" />
               <stop
                 offset="1"
-                stop-color="#86BFAE"
-                stop-opacity="0.5"
+                stopColor="#86BFAE"
+                stopOpacity="0.5"
               />
             </linearGradient>
           </defs>
@@ -263,7 +269,7 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               height="23"
               rx="3.5"
               stroke="url(#paint0_linear_3854_150623)"
-              stroke-opacity="0.25"
+              strokeOpacity="0.25"
             />
           </g>
           <defs>
@@ -274,10 +280,10 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               width="124"
               height="124"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
               <feFlood
-                flood-opacity="0"
+                floodOpacity="0"
                 result="BackgroundImageFix"
               />
               <feColorMatrix
@@ -315,11 +321,11 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               y2="14.739"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#E6FDF5" />
+              <stop stopColor="#E6FDF5" />
               <stop
                 offset="1"
-                stop-color="#86BFAE"
-                stop-opacity="0.5"
+                stopColor="#86BFAE"
+                stopOpacity="0.5"
               />
             </linearGradient>
             <clipPath id="clip0_3854_150623">
@@ -348,8 +354,10 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               width="24"
               height="24"
               rx="4"
-              fill="#708080"
-              shape-rendering="crispEdges"
+              // fill="#708080"
+              style={{ transition: 'all ease 0.3s' }}
+              fill={hoverOn ? '#1B4332' : '#708080'}
+              shapeRendering="crispEdges"
             />
             <rect
               x="0.5"
@@ -358,8 +366,8 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               height="23"
               rx="4.5"
               stroke="url(#paint0_linear)"
-              stroke-opacity="0.25"
-              shape-rendering="crispEdges"
+              strokeOpacity="0.25"
+              shapeRendering="crispEdges"
             />
             <g filter="url(#filter1_i)">
               <rect
@@ -368,7 +376,9 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
                 width="22"
                 height="22"
                 rx="3"
-                fill="#F7FFFD"
+                // fill="#F7FFFD"
+                style={{ transition: 'all ease 0.3s' }}
+                fill={hoverOn ? '#95D5B2' : '#F7FFFD'}
               />
             </g>
           </g>
@@ -380,10 +390,10 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               width="40"
               height="40"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
               <feFlood
-                flood-opacity="0"
+                floodOpacity="0"
                 result="BackgroundImageFix"
               />
               <feColorMatrix
@@ -420,10 +430,10 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               width="22"
               height="22"
               filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
+              colorInterpolationFilters="sRGB"
             >
               <feFlood
-                flood-opacity="0"
+                floodOpacity="0"
                 result="BackgroundImageFix"
               />
               <feBlend
@@ -470,11 +480,11 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
               y2="6"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#E6FDF5" />
+              <stop stopColor="#E6FDF5" />
               <stop
                 offset="1"
-                stop-color="#86BFAE"
-                stop-opacity="0.5"
+                stopColor="#86BFAE"
+                stopOpacity="0.5"
               />
             </linearGradient>
           </defs>

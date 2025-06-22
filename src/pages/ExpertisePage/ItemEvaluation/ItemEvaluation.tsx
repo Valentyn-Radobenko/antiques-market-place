@@ -3,9 +3,9 @@ import { MoreInfo } from '../MoreInfo/MoreInfo';
 import { assessmentInfo, assessmentForm } from '../../../data/assessment';
 import { ValuabilityForm } from '../ValuabilityForm/ValuabilityForm';
 import classNames from 'classnames';
-interface Props {
+type Props = {
   sectionRef: React.RefObject<HTMLDivElement>;
-}
+};
 
 export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
   const [moreInfoBase, setMoreInfoBase] = useState(false);

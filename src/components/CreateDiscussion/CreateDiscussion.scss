@@ -1,0 +1,328 @@
+.create-discussion {
+  max-width: 670px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  background: $gray-white;
+  border-radius: 12px;
+  width: 100%;
+
+  @include on-tablet {
+    max-width: 640px;
+  }
+
+  &__top-bar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__info-svg {
+    color: $system-info;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    color: $gray-black;
+    @include h2-mobile-bold;
+    width: 100%;
+
+    @include on-phone {
+      @include h3-bold;
+    }
+  }
+
+  &__close-svg {
+    color: $additional-greenas;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__create-theme {
+    background: $user-notifications-gradient;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    height: 64px;
+    align-items: center;
+  }
+
+  &__add-theme {
+    color: $additional-black-green;
+    @include button-bold;
+    transition: all ease $effect-duration;
+
+    &.isActive {
+      color: $additional-freshherb-elect;
+    }
+  }
+
+  &__create-theme-title-list {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  &__add-theme-svg {
+    color: $gray-black;
+    cursor: pointer;
+    transition: all ease $effect-duration;
+    flex-shrink: 0;
+
+    &.isActive {
+      color: $additional-freshherb-elect;
+    }
+  }
+
+  &__chosen-themes {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  &__chosen-theme {
+    display: flex;
+    gap: 8px;
+    padding: 5px 8px;
+    @include tab-regular;
+    color: $gray-black;
+    background: $additional-white-green;
+    border-radius: 8px;
+    border: 1px; // доробити!!!
+  }
+
+  &__delete-theme {
+    color: $additional-black-green;
+    cursor: pointer;
+  }
+
+  &__themes-wrapper {
+    overflow: hidden;
+    transition: all ease $effect-duration;
+  }
+
+  &__themes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__theme {
+    background: $additional-white-green;
+    color: $gray-black;
+    @include tab-regular;
+    border-radius: 12px;
+    padding: 5px 8px;
+    cursor: pointer;
+  }
+
+  &__my-theme {
+    display: flex;
+    align-items: center;
+    padding: 4px 16px;
+    gap: 8px;
+    border-radius: 12px;
+    border: 1px solid green;
+    transition: all ease $effect-duration;
+    @include tab-regular;
+
+    &:hover {
+      background: $additional-white-green;
+      border-color: $additional-mint;
+      color: $additional-greenas;
+    }
+  }
+
+  &__create-new-theme {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    background: $background-plate;
+    border-radius: 12px;
+  }
+
+  &__input-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__input-title {
+    @include button-bold;
+    color: $gray-dark;
+  }
+
+  &__input {
+    @include input-style;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__buttons-list {
+    display: flex;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  &__textarea-svg-button {
+    cursor: pointer;
+    color: $gray-black;
+  }
+
+  &__error-text {
+    color: $gray-dis;
+    @include tab-regular;
+    opacity: 0;
+    transition: all ease $effect-duration;
+    align-self: center;
+    visibility: hidden;
+    align-self: flex-start;
+
+    &.isActive {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &__bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include on-phone {
+      flex-direction: column;
+      gap: 16px;
+      justify-content: baseline;
+      align-items: baseline;
+    }
+  }
+
+  &__checkbox {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__anonim {
+    @include main-text;
+    color: $additional-greenas;
+  }
+
+  &__button {
+    @include primary-button;
+    @include main-text;
+    width: 213px;
+    padding-block: 16px;
+    @include on-phone {
+      width: 100%;
+    }
+  }
+
+  &__link-modal-vis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__link-modal {
+    border-radius: 12px;
+    padding: 24px;
+    width: 670px;
+    align-self: center;
+    justify-self: center;
+    background: $gray-white;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__link-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__link-text {
+    @include h3-bold;
+    color: $gray-black;
+  }
+
+  &__close-modal {
+    cursor: pointer;
+    color: $additional-greenas;
+  }
+
+  &__link-button {
+    width: 213px;
+    @include primary-button;
+    padding-block: 16px;
+    align-self: flex-end;
+    @include main-text;
+  }
+
+  &__anonim-svg {
+    cursor: pointer;
+  }
+
+  & .ProseMirror {
+    @include input-style;
+
+    & p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    & a {
+      color: $additional-freshherb-elect;
+      @include button-bold;
+      text-decoration: underline;
+    }
+
+    & p.is-empty::before {
+      content: attr(data-placeholder);
+      color: $gray-lite;
+      float: left;
+      @include main-text;
+      pointer-events: none;
+    }
+
+    & ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    & ol {
+      list-style-type: decimal;
+      padding-left: 20px;
+    }
+  }
+
+  &__rules-visibility {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+
+    @include on-phone {
+      align-items: end;
+    }
+  }
+}
