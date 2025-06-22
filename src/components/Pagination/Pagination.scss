@@ -1,0 +1,52 @@
+.pagination {
+  display: flex;
+
+  margin-bottom: 24px;
+
+  padding: 9px 8px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 12px;
+  border: 1px solid #e6fdf5;
+  background: $background-plate;
+  backdrop-filter: blur(15px);
+
+  &__pages {
+    display: flex;
+    height: 43px;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__page {
+    color: $gray;
+
+    @include main-text;
+
+    @include hover(color, $gray-darks);
+
+    &:hover {
+      @include button-semibold;
+    }
+
+    &--active {
+      color: $additional-freshherb-elect;
+
+      @include button-semibold;
+    }
+  }
+
+  &__arrow {
+    width: 24px;
+    height: 24px;
+
+    &--back {
+      @include previous-arrow;
+    }
+
+    &--forward {
+      @include next-arrow;
+    }
+  }
+}

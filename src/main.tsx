@@ -24,6 +24,7 @@ import { Messages } from './pages/ProfilePage/Messages/Messages';
 import { Orders } from './pages/ProfilePage/Orders/Orders';
 import { Security } from './pages/ProfilePage/Security/Security';
 import { Settings } from './pages/ProfilePage/Settings/Settings';
+import { ArticlesPage } from './pages/ArticlesPage/ArticlesPage';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <StrictMode>
@@ -77,6 +78,10 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
                 element={<PlannedExhibitions />}
               />
             </Route>
+            <Route
+              path="club/articles"
+              element={<ArticlesPage />}
+            />
             <Route
               path="expertise"
               element={<ExpertisePage />}

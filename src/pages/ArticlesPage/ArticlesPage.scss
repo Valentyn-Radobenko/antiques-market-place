@@ -1,4 +1,4 @@
-.exhibitions {
+.articles {
   &__nav-bar {
     display: flex;
     flex-direction: column;
@@ -123,98 +123,8 @@
     }
   }
 
-  &__offer {
-    position: absolute;
-    z-index: 1;
-    right: 0;
-    top: 0;
-
-    display: flex;
-    width: 210px;
-    height: 168px;
-    padding: 16px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-
-    border-radius: 12px;
-    background: $background-plate;
-
-    box-shadow:
-      0px -4px 16px 0px rgba(255, 255, 255, 0),
-      0px 4px 16px -6px rgba(255, 255, 255, 0),
-      0px 8px 32px -4px rgba(0, 0, 0, 0);
-    backdrop-filter: blur(15px);
-
-    @include on-tablet {
-      position: static;
-      width: 100%;
-      height: auto;
-    }
-
-    &-heading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      align-self: stretch;
-
-      @include on-tablet {
-        flex-direction: row;
-        justify-content: center;
-      }
-    }
-
-    &-title {
-      align-self: stretch;
-      color: $additional-black-green;
-      text-align: center;
-
-      @include main-text;
-    }
-
-    &-icon {
-      width: 24px;
-      height: 24px;
-
-      background-image: url('/images/exhibitions/info-outline-rounded.svg');
-    }
-
-    &-button {
-      display: flex;
-      height: 44px;
-      padding: 16px;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      align-self: stretch;
-
-      border-radius: 12px;
-      background: linear-gradient(
-        95deg,
-        #0d392c 26.29%,
-        #40916c 72.35%,
-        #95d5b2 95.39%
-      );
-
-      /* Button */
-      box-shadow: 0px 0px 8px 0px rgba(236, 255, 252, 0);
-      backdrop-filter: blur(25px);
-
-      color: $gray-white;
-
-      @include button-semibold;
-
-      @include on-phone {
-        position: absolute;
-        right: 0px;
-        top: -114px;
-      }
-    }
-  }
-
   &__articles {
-    width: 900px;
+    width: 872px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -229,7 +139,7 @@
 
   &__article {
     display: flex;
-    width: 440px;
+    width: 426px;
     max-height: 412px;
     flex-direction: column;
 
@@ -303,11 +213,9 @@
       @include h4-bold;
     }
 
-    &-buttons {
+    &-icon {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      align-self: stretch;
+      align-self: flex-end;
     }
 
     &-data {
@@ -346,6 +254,67 @@
       text-overflow: ellipsis;
 
       @include tab-regular;
+    }
+  }
+
+  &__pg {
+    display: flex;
+
+    margin-bottom: 24px;
+
+    padding: 9px 8px;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 12px;
+    border: 1px solid #e6fdf5;
+    background: $background-plate;
+    backdrop-filter: blur(15px);
+
+    &-pages {
+      display: flex;
+      height: 43px;
+      align-items: center;
+      gap: 16px;
+    }
+
+    &-page {
+      color: $gray;
+
+      @include main-text;
+
+      @include hover(color, $gray-darks);
+
+      &:hover {
+        @include button-semibold;
+      }
+
+      &--active {
+        color: $additional-freshherb-elect;
+
+        @include button-semibold;
+      }
+    }
+
+    &-arrow {
+      width: 24px;
+      height: 24px;
+
+      &--back {
+        background-image: url('/images/exhibitions/arrow-back.svg');
+
+        &--disabled {
+          background-image: url('/images/exhibitions/arrow-back-disabled.svg');
+        }
+      }
+
+      &--forward {
+        background-image: url('/images/exhibitions/arrow-forward.svg');
+
+        &--disabled {
+          background-image: url('/images/exhibitions/arrow-forward-disabled.svg');
+        }
+      }
     }
   }
 }

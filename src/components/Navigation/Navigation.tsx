@@ -106,13 +106,26 @@ export const Navigation: React.FC<Props> = ({ customClassName, mode }) => {
                   className={classNames('menu__options menu__options--club')}
                 >
                   <Link
+                    onClick={() => dispatch(setIsMenuOn(false))}
                     to={'club/exhibitions'}
                     className="menu__option"
                   >
                     Виставки
                   </Link>
-                  <button className="menu__option">Статті</button>
-                  <button className="menu__option">Обговорення</button>
+                  <Link
+                    onClick={() => dispatch(setIsMenuOn(false))}
+                    to={'club/articles'}
+                    className="menu__option"
+                  >
+                    Статті
+                  </Link>
+                  <Link
+                    onClick={() => dispatch(setIsMenuOn(false))}
+                    to={'club'}
+                    className="menu__option"
+                  >
+                    Обговорення
+                  </Link>
                 </div>
               )}
               customClassName="menu__dropdown"

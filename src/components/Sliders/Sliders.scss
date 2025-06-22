@@ -1,6 +1,8 @@
 .slider {
   display: block;
-  padding: 24px;
+  padding-block: 24px;
+  padding-inline: 16px;
+  max-width: 1360px;
   flex-direction: column;
   align-items: center;
   gap: 24px;
@@ -10,12 +12,22 @@
   border: 1px solid $background-strouke-plate;
   background: $background-plate;
   backdrop-filter: blur(5px);
+  align-self: center;
+  overflow: hidden;
+
+  @include on-tablet {
+    padding-block: 16px;
+    padding-inline: 8px;
+    width: 100%;
+    max-width: 100%;
+  }
 
   &__header {
     display: flex;
     height: 48px;
     justify-content: space-between;
     align-items: center;
+    padding-inline: 8px;
     margin-bottom: 16px;
 
     @include on-tablet {
@@ -46,6 +58,19 @@
 
       @include main-text;
       text-decoration: underline;
+      transition: $effect-duration;
+
+      &:hover {
+        @include button-bold;
+
+        @include on-tablet {
+          color: $additional-freshherb-elect;
+        }
+      }
+
+      &:active {
+        color: $additional-freshherb-elect;
+      }
     }
 
     &-button {
@@ -73,9 +98,9 @@
     }
   }
 
-  // &__big-container {
-  //   // backdrop-filter: blur(5px);
-  // }
+  &__big-container {
+    overflow: hidden;
+  }
 
   &__container {
     display: block;
@@ -88,22 +113,18 @@
     display: flex !important;
     flex-direction: column;
     height: 412px;
+    width: 100%;
     align-self: stretch;
     border-radius: 12px;
     background-size: cover;
     background-position: center;
-    border: 2px solid rgba($color: $additional-mint, $alpha: 0);
 
-    // box-shadow:
-    //   0px 8px 20px 2px rgba(170, 182, 178, 0.2),
-    //   0px -4px 12px 0px rgba(255, 255, 255, 0) inset;
-    // backdrop-filter: blur(12px);
+    box-shadow:
+      0px 8px 20px 2px rgba(170, 182, 178, 0.2),
+      0px -4px 12px 0px rgba(255, 255, 255, 0) inset;
+    backdrop-filter: blur(12px);
 
-    @include hover(border, 2px solid $additional-mint);
-
-    &:active {
-      border-color: #0d392c;
-    }
+    @include block-hover;
 
     &-new {
       position: absolute;
@@ -136,7 +157,7 @@
       height: 122px;
       padding: 16px;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: flex-start;
       gap: 8px;
       align-self: stretch;
@@ -154,6 +175,7 @@
       color: #000;
       text-overflow: ellipsis;
 
+      height: 44px;
       max-height: 44px;
 
       @include h4-bold;
@@ -210,19 +232,11 @@
   }
 
   &__prev-arr {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-    background-image: url('/images/header/arrow-back.svg');
-    cursor: pointer;
+    @include previous-arrow;
   }
 
   &__next-arr {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-    background-image: url('/images/header/arrow-forward.svg');
-    cursor: pointer;
+    @include next-arrow;
   }
 
   &__discussions {
@@ -362,6 +376,10 @@
       text-overflow: ellipsis;
 
       @include tab-regular;
+
+      @include on-phone {
+        width: 73px;
+      }
     }
 
     &-middle {
@@ -421,9 +439,18 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding-top: 24px;
+  padding-top: 16px;
+  padding-inline: 8px;
   z-index: 1;
   background-color: $background-plate;
+
+  @include on-tablet {
+    padding-top: 18px;
+  }
+
+  @include on-phone {
+    padding-top: 25px;
+  }
 
   ul {
     display: flex;
@@ -476,4 +503,13 @@
 
 .slick-slide > div {
   margin: 0 8px;
+}
+
+.slick-list {
+  overflow: visible;
+}
+
+.slick-track {
+  display: flex;
+  // gap: 16px;
 }
