@@ -4,6 +4,7 @@ import articles from '../../data/articles.json';
 import { useTranslation } from 'react-i18next';
 import Slider from './Slider';
 import { useIsMobile, useIsTablet } from '../../hooks/useMediaQuery';
+import { Link } from 'react-router-dom';
 
 interface ArticleSlide {
   title: string;
@@ -23,12 +24,12 @@ export const ArticlesSlider: React.FC = () => {
     <Slider<ArticleSlide>
       sliderTitle={t('articlesSlider.title')}
       renderSliderLink={() => (
-        <a
-          href="#"
+        <Link
+          to="articles"
           className="slider__header-link"
         >
           {isMobile ? 'більше' : 'переглянути більше'}
-        </a>
+        </Link>
       )}
       slides={articlesSlides}
       slidesPerView={
@@ -52,10 +53,10 @@ export const ArticlesSlider: React.FC = () => {
             <h3 className="slider__slide-title">{slide.title}</h3>
             <div className="slider__slide-info">
               <div className="slider__slide-info-block"></div>
-              <a
-                href="#"
+              <Link
+                to="articles"
                 className="slider__slide-link"
-              ></a>
+              ></Link>
             </div>
           </div>
         </div>

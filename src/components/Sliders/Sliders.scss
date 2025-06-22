@@ -118,18 +118,13 @@
     border-radius: 12px;
     background-size: cover;
     background-position: center;
-    border: 2px solid rgba($color: $additional-mint, $alpha: 0);
 
     box-shadow:
       0px 8px 20px 2px rgba(170, 182, 178, 0.2),
       0px -4px 12px 0px rgba(255, 255, 255, 0) inset;
     backdrop-filter: blur(12px);
 
-    @include hover(border, 2px solid $additional-mint);
-
-    &:active {
-      border-color: #0d392c;
-    }
+    @include block-hover;
 
     &-new {
       position: absolute;
@@ -237,71 +232,11 @@
   }
 
   &__prev-arr {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-    background-image: url('/images/header/arrow-back.svg');
-    cursor: pointer;
-
-    transition: $effect-duration;
-
-    &:hover {
-      background-image: url('/images/header/arrow-back-hover.svg');
-
-      @include on-tablet {
-        background-image: url('/images/header/arrow-back-active.svg');
-      }
-    }
-
-    &:active {
-      background-image: url('/images/header/arrow-back-active.svg');
-    }
-
-    &--dis {
-      background-image: url('/images/header/arrow-back-dis.svg');
-
-      &:hover {
-        background-image: url('/images/header/arrow-back-dis.svg');
-      }
-
-      &:active {
-        background-image: url('/images/header/arrow-back-dis.svg');
-      }
-    }
+    @include previous-arrow;
   }
 
   &__next-arr {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-    background-image: url('/images/header/arrow-forward.svg');
-    cursor: pointer;
-
-    transition: $effect-duration;
-
-    &:hover {
-      background-image: url('/images/header/arrow-forward-hover.svg');
-    }
-
-    &:active {
-      background-image: url('/images/header/arrow-forward-active.svg');
-    }
-
-    &--dis {
-      background-image: url('/images/header/arrow-forward-dis.svg');
-
-      &:hover {
-        background-image: url('/images/header/arrow-forward-dis.svg');
-
-        @include on-tablet {
-          background-image: url('/images/header/arrow-forward-dis.svg');
-        }
-      }
-
-      &:active {
-        background-image: url('/images/header/arrow-forward-dis.svg');
-      }
-    }
+    @include next-arrow;
   }
 
   &__discussions {

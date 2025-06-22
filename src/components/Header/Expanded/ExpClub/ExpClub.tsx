@@ -21,8 +21,18 @@ export const ExpClub: React.FC = () => {
         >
           Виставки
         </Link>
-        <button className="exp-club__button">Статті</button>
-        <button className="exp-club__button">Обговорення</button>
+        <Link
+          to={'club/articles'}
+          className="exp-club__button"
+        >
+          Статті
+        </Link>
+        <Link
+          to={'club'}
+          className="exp-club__button"
+        >
+          Обговорення
+        </Link>
       </div>
     </>
   );

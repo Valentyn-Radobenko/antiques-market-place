@@ -16,6 +16,7 @@
 
 // #endregion
 
+// #region hover&active-effects
 @mixin hover($_property, $_toValue) {
   transition: $effect-duration;
   &:hover {
@@ -23,6 +24,18 @@
   }
 }
 
+@mixin block-hover {
+  border: 2px solid rgba($color: $additional-mint, $alpha: 0);
+
+  @include hover(border, 2px solid $additional-mint);
+
+  &:active {
+    border-color: #0d392c;
+  }
+}
+// #endregion
+
+// #region sizing
 @mixin standard-inline-paddings() {
   padding-inline: 40px;
 
@@ -42,32 +55,8 @@
     #{$_property}: #{$tablet-header-height + $_addValue2};
   }
 }
+// #endregion
 
-@mixin page-grid {
-  --columns: 2;
-
-  display: grid;
-  column-gap: 20px;
-  grid-template-columns: repeat(var(--columns), 1fr);
-
-  @include on-tablet {
-    --columns: 6;
-
-    column-gap: 30px;
-  }
-
-  @include on-small-desktop {
-    --columns: 12;
-
-    column-gap: 20px;
-  }
-
-  @include on-desktop {
-    --columns: 12;
-
-    column-gap: 30px;
-  }
-}
 // #region fonts
 
 @mixin h1-bold {
@@ -166,18 +155,6 @@
   }
 }
 
-// #endregion
-
-@mixin backdropStyle {
-  visibility: inherit;
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  background-color: $background-sklo-bag;
-  top: 0;
-  left: 0;
-}
-
 @mixin primary-button {
   color: $gray-white;
   transition: all ease $effect-duration;
@@ -258,3 +235,89 @@
     opacity: 1;
   }
 }
+
+// #endregion
+
+// #region styles
+@mixin backdropStyle {
+  visibility: inherit;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: $background-sklo-bag;
+  top: 0;
+  left: 0;
+}
+// #endregion
+
+// #region icons
+
+@mixin previous-arrow {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  background-image: url('/images/header/arrow-back.svg');
+  cursor: pointer;
+
+  transition: $effect-duration;
+
+  &:hover {
+    background-image: url('/images/header/arrow-back-hover.svg');
+
+    @include on-tablet {
+      background-image: url('/images/header/arrow-back-active.svg');
+    }
+  }
+
+  &:active {
+    background-image: url('/images/header/arrow-back-active.svg');
+  }
+
+  &--dis {
+    background-image: url('/images/header/arrow-back-dis.svg');
+
+    &:hover {
+      background-image: url('/images/header/arrow-back-dis.svg');
+    }
+
+    &:active {
+      background-image: url('/images/header/arrow-back-dis.svg');
+    }
+  }
+}
+
+@mixin next-arrow {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  background-image: url('/images/header/arrow-forward.svg');
+  cursor: pointer;
+
+  transition: $effect-duration;
+
+  &:hover {
+    background-image: url('/images/header/arrow-forward-hover.svg');
+  }
+
+  &:active {
+    background-image: url('/images/header/arrow-forward-active.svg');
+  }
+
+  &--dis {
+    background-image: url('/images/header/arrow-forward-dis.svg');
+
+    &:hover {
+      background-image: url('/images/header/arrow-forward-dis.svg');
+
+      @include on-tablet {
+        background-image: url('/images/header/arrow-forward-dis.svg');
+      }
+    }
+
+    &:active {
+      background-image: url('/images/header/arrow-forward-dis.svg');
+    }
+  }
+}
+
+// #endregion
