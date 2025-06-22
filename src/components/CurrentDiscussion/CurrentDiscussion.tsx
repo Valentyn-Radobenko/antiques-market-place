@@ -120,114 +120,262 @@ export const CurrentDiscussion: React.FC<Props> = ({
 
   return (
     <div className="current-discussion">
-      {/* {currentDiscussion.images.length > 0 && <div className="current-discussion__images">
-        <div
-          className="current-discussion__images-list"
-        >
-          {currentDiscussion.images.map(image => (
-            <img
-              style={{ transform: `translate(-${currentImage * 100}%)` }}
-              key={image} className="current-discussion__imagie"
-              src={image}
-              alt="#"
-            />
-          ))}
-        </div>
-        <FrameInspectSVG className="current-discussion__zoom" />
-        <div className="current-discussion__images-pagination">
-          <Arrow
-            onClick={() => {
-              if (currentImage > 0) {
-                setCurrentImage(currentImage - 1)
-              }
-            }}
-            className={classNames("current-discussion__arrow left", {
-              isActive: currentImage > 0
-            })}
-          />
-          <div className="current-discussion__length">
-            {currentDiscussion.images.map((_, i) => (
-              <div
-                key={i}
-                className={classNames("current-discussion__dot", {
-                  isActive: i === currentImage
-                })}
+      {currentDiscussion.images.length > 0 && (
+        <div className="current-discussion__images desktop">
+          <div className="current-discussion__images-list">
+            {currentDiscussion.images.map((image) => (
+              <img
+                style={{ transform: `translate(-${currentImage * 100}%)` }}
+                key={image}
+                className="current-discussion__imagie"
+                src={image}
+                alt="#"
               />
             ))}
           </div>
-          <Arrow
-            onClick={() => {
-              if (currentImage < imagesLength - 1) {
-                setCurrentImage(currentImage + 1)
-              }
-            }}
-            className={classNames("current-discussion__arrow reight", {
-              isActive: currentImage < imagesLength - 1
-            })}
-          />
-        </div>
-      </div>} */}
-      <div className="current-discussion__text-block">
-        <div className="current-discussion__main-info">
-          <div className="current-discussion__top-bar">
-            <h2 className="current-discussion__title">
-              {currentDiscussion.name}
-            </h2>
-            <Close
-              className="current-discussion__close"
-              onClick={() => setOpenDiscussion(false)}
+          <FrameInspectSVG className="current-discussion__zoom" />
+          <div className="current-discussion__images-pagination">
+            <Arrow
+              onClick={() => {
+                if (currentImage > 0) {
+                  setCurrentImage(currentImage - 1);
+                }
+              }}
+              className={classNames('current-discussion__arrow left', {
+                isActive: currentImage > 0,
+              })}
             />
-          </div>
-          {currentDiscussion.images.length > 0 && (
-            <div className="current-discussion__images">
-              <div className="current-discussion__images-list">
-                {currentDiscussion.images.map((image) => (
-                  <img
-                    style={{ transform: `translate(-${currentImage * 100}%)` }}
-                    key={image}
-                    className="current-discussion__imagie"
-                    src={image}
-                    alt="#"
-                  />
-                ))}
-              </div>
-              <FrameInspectSVG className="current-discussion__zoom" />
-              <div className="current-discussion__images-pagination">
-                <Arrow
-                  onClick={() => {
-                    if (currentImage > 0) {
-                      setCurrentImage(currentImage - 1);
-                    }
-                  }}
-                  className={classNames('current-discussion__arrow left', {
-                    isActive: currentImage > 0,
+            <div className="current-discussion__length">
+              {currentDiscussion.images.map((_, i) => (
+                <div
+                  key={i}
+                  className={classNames('current-discussion__dot', {
+                    isActive: i === currentImage,
                   })}
                 />
-                <div className="current-discussion__length">
-                  {currentDiscussion.images.map((_, i) => (
-                    <div
-                      key={i}
-                      className={classNames('current-discussion__dot', {
-                        isActive: i === currentImage,
-                      })}
+              ))}
+            </div>
+            <Arrow
+              onClick={() => {
+                if (currentImage < imagesLength - 1) {
+                  setCurrentImage(currentImage + 1);
+                }
+              }}
+              className={classNames('current-discussion__arrow reight', {
+                isActive: currentImage < imagesLength - 1,
+              })}
+            />
+          </div>
+        </div>
+      )}
+      <SimpleBar className="current-discussion__simplebar-block">
+        <div className="current-discussion__text-block">
+          <div className="current-discussion__main-info">
+            <div className="current-discussion__top-bar">
+              <h2 className="current-discussion__title">
+                {currentDiscussion.name}
+              </h2>
+              <Close
+                className="current-discussion__close"
+                onClick={() => setOpenDiscussion(false)}
+              />
+            </div>
+            {currentDiscussion.images.length > 0 && (
+              <div className="current-discussion__images tablet-phone">
+                <div className="current-discussion__images-list">
+                  {currentDiscussion.images.map((image) => (
+                    <img
+                      style={{
+                        transform: `translate(-${currentImage * 100}%)`,
+                      }}
+                      key={image}
+                      className="current-discussion__imagie"
+                      src={image}
+                      alt="#"
                     />
                   ))}
                 </div>
-                <Arrow
-                  onClick={() => {
-                    if (currentImage < imagesLength - 1) {
-                      setCurrentImage(currentImage + 1);
-                    }
-                  }}
-                  className={classNames('current-discussion__arrow reight', {
-                    isActive: currentImage < imagesLength - 1,
-                  })}
-                />
+                <FrameInspectSVG className="current-discussion__zoom" />
+                <div className="current-discussion__images-pagination">
+                  <Arrow
+                    onClick={() => {
+                      if (currentImage > 0) {
+                        setCurrentImage(currentImage - 1);
+                      }
+                    }}
+                    className={classNames('current-discussion__arrow left', {
+                      isActive: currentImage > 0,
+                    })}
+                  />
+                  <div className="current-discussion__length">
+                    {currentDiscussion.images.map((_, i) => (
+                      <div
+                        key={i}
+                        className={classNames('current-discussion__dot', {
+                          isActive: i === currentImage,
+                        })}
+                      />
+                    ))}
+                  </div>
+                  <Arrow
+                    onClick={() => {
+                      if (currentImage < imagesLength - 1) {
+                        setCurrentImage(currentImage + 1);
+                      }
+                    }}
+                    className={classNames('current-discussion__arrow reight', {
+                      isActive: currentImage < imagesLength - 1,
+                    })}
+                  />
+                </div>
               </div>
+            )}
+            <div className="current-discussion__discussion-info">
+              <div className="current-discussion__author-theme">
+                <div className="current-discussion__author">
+                  <img
+                    className="current-discussion__author-img"
+                    src="#"
+                    alt="#"
+                  />
+                  <p className="current-discussion__author-name">
+                    {currentDiscussion.author}
+                  </p>
+                </div>
+                <div className="current-discussion__themes">
+                  {currentDiscussion.theme.map((theme) => (
+                    <p
+                      className="current-discussion__theme"
+                      key={theme}
+                    >
+                      {theme}
+                    </p>
+                  ))}
+                </div>
+              </div>
+              <p className="current-discussion__description">
+                {currentDiscussion.description}
+              </p>
+              <p className="current-discussion__date">
+                {currentDiscussion.date.toString()}
+              </p>
             </div>
-          )}
-          <div className="current-discussion__discussion-info">
-            <div className="current-discussion__author-theme">
+          </div>
+
+          <SimpleBar className="current-discussion__simplebar">
+            <div className="current-discussion__comments">
+              {currentDiscussion.comments.map((comment) => {
+                const repliedComment =
+                  comment.isAnswer ?
+                    currentDiscussion.comments.find(
+                      (a) => a.id === comment.isAnswer,
+                    )
+                  : null;
+                return (
+                  <div
+                    key={comment.id}
+                    id={`comment-${comment.id}`}
+                    className={classNames('current-discussion__comment', {
+                      myComment: comment.userName === currentUser.name,
+                    })}
+                  >
+                    <div className="current-discussion__author">
+                      <img
+                        className="current-discussion__author-img"
+                        src="#"
+                        alt="#"
+                      />
+                      <p className="current-discussion__author-name">
+                        {comment.userName}
+                      </p>
+                      {comment.userId === currentUser.id &&
+                        (changeComment === comment.id ?
+                          <EditSVG className="current-discussion__more-options" />
+                        : <ThreeDotsSVG
+                            onClick={() => setCommentOptions(comment.id)}
+                            className="current-discussion__more-options"
+                          />)}
+                    </div>
+                    {repliedComment && (
+                      <div
+                        onClick={() => {
+                          handleScrollToComment(comment.isAnswer || '');
+                        }}
+                        className="current-discussion__replied-comment"
+                      >
+                        <div className="current-discussion__author">
+                          <img
+                            className="current-discussion__author-img"
+                            src="#"
+                            alt="#"
+                          />
+                          <p className="current-discussion__author-name">
+                            {repliedComment.userName}
+                          </p>
+                        </div>
+                        <p className="current-discussion__comment-text">
+                          {repliedComment.text}
+                        </p>
+                      </div>
+                    )}
+                    <p className="current-discussion__comment-text">
+                      {comment.text}
+                    </p>
+                    <div className="current-discussion__date-answer">
+                      <p className="current-discussion__comment-date">
+                        {comment.date.toString().slice(0, 10)}
+                      </p>
+                      <button
+                        onClick={() => {
+                          setAnswerToComment(comment.id);
+                          setActiveAnswer(true);
+                          inputRef.current?.focus();
+                        }}
+                        className="current-discussion__answer-button"
+                      >
+                        Відповісти
+                      </button>
+                    </div>
+                    <div
+                      className={classNames('discussion__action-list', {
+                        isActive: commentOptions === comment.id,
+                      })}
+                    >
+                      <div
+                        onClick={() => {
+                          setAddComment(comment.text);
+                          setChangeComment(comment.id);
+                          setCommentOptions('');
+                          inputRef.current?.focus();
+                        }}
+                        className="current-discussion__action"
+                      >
+                        <EditSVG className="current-discussion__action-svg" />
+                        <p className="current-discussion__action-text">
+                          Змінити коментар
+                        </p>
+                      </div>
+                      <div
+                        onClick={() => deleteComment(comment.id)}
+                        className="current-discussion__action"
+                      >
+                        <Bin className="current-discussion__action-svg" />
+                        <p className="current-discussion__action-text">
+                          Видалити коментар
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </SimpleBar>
+          <div className="current-discussion__add-comment">
+            <div
+              className={classNames('current-discussion__hint', {
+                isActive: activeAnswer,
+              })}
+            >
               <div className="current-discussion__author">
                 <img
                   className="current-discussion__author-img"
@@ -235,193 +383,57 @@ export const CurrentDiscussion: React.FC<Props> = ({
                   alt="#"
                 />
                 <p className="current-discussion__author-name">
-                  {currentDiscussion.author}
+                  {
+                    currentDiscussion.comments.find(
+                      (a) => a.id === answerToComment,
+                    )?.userName
+                  }
                 </p>
               </div>
-              <p className="current-discussion__theme">
-                {currentDiscussion.theme}
-              </p>
-            </div>
-            <p className="current-discussion__description">
-              {currentDiscussion.description}
-            </p>
-            <p className="current-discussion__date">
-              {currentDiscussion.date.toString()}
-            </p>
-          </div>
-        </div>
-
-        <SimpleBar className="current-discussion__simplebar">
-          <div className="current-discussion__comments">
-            {currentDiscussion.comments.map((comment) => {
-              const repliedComment =
-                comment.isAnswer ?
-                  currentDiscussion.comments.find(
-                    (a) => a.id === comment.isAnswer,
-                  )
-                : null;
-              return (
-                <div
-                  key={comment.id}
-                  id={`comment-${comment.id}`}
-                  className={classNames('current-discussion__comment', {
-                    myComment: comment.userName === currentUser.name,
-                  })}
-                >
-                  <div className="current-discussion__author">
-                    <img
-                      className="current-discussion__author-img"
-                      src="#"
-                      alt="#"
-                    />
-                    <p className="current-discussion__author-name">
-                      {comment.userName}
-                    </p>
-                    {comment.userId === currentUser.id &&
-                      (changeComment === comment.id ?
-                        <EditSVG className="current-discussion__more-options" />
-                      : <ThreeDotsSVG
-                          onClick={() => setCommentOptions(comment.id)}
-                          className="current-discussion__more-options"
-                        />)}
-                  </div>
-                  {repliedComment && (
-                    <div
-                      onClick={() => {
-                        handleScrollToComment(comment.isAnswer || '');
-                      }}
-                      className="current-discussion__replied-comment"
-                    >
-                      <div className="current-discussion__author">
-                        <img
-                          className="current-discussion__author-img"
-                          src="#"
-                          alt="#"
-                        />
-                        <p className="current-discussion__author-name">
-                          {repliedComment.userName}
-                        </p>
-                      </div>
-                      <p className="current-discussion__comment-text">
-                        {repliedComment.text}
-                      </p>
-                    </div>
-                  )}
-                  <p className="current-discussion__comment-text">
-                    {comment.text}
-                  </p>
-                  <div className="current-discussion__date-answer">
-                    <p className="current-discussion__comment-date">
-                      {comment.date.toString().slice(0, 10)}
-                    </p>
-                    <button
-                      onClick={() => {
-                        setAnswerToComment(comment.id);
-                        setActiveAnswer(true);
-                        inputRef.current?.focus();
-                      }}
-                      className="current-discussion__answer-button"
-                    >
-                      Відповісти
-                    </button>
-                  </div>
-                  <div
-                    className={classNames('discussion__action-list', {
-                      isActive: commentOptions === comment.id,
-                    })}
-                  >
-                    <div
-                      onClick={() => {
-                        setAddComment(comment.text);
-                        setChangeComment(comment.id);
-                        setCommentOptions('');
-                        inputRef.current?.focus();
-                      }}
-                      className="current-discussion__action"
-                    >
-                      <EditSVG className="current-discussion__action-svg" />
-                      <p className="current-discussion__action-text">
-                        Змінити коментар
-                      </p>
-                    </div>
-                    <div
-                      onClick={() => deleteComment(comment.id)}
-                      className="current-discussion__action"
-                    >
-                      <Bin className="current-discussion__action-svg" />
-                      <p className="current-discussion__action-text">
-                        Видалити коментар
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </SimpleBar>
-        <div className="current-discussion__add-comment">
-          <div
-            className={classNames('current-discussion__hint', {
-              isActive: activeAnswer,
-            })}
-          >
-            <div className="current-discussion__author">
-              <img
-                className="current-discussion__author-img"
-                src="#"
-                alt="#"
+              <Close
+                onClick={() => {
+                  setActiveAnswer(false);
+                  setTimeout(() => setAnswerToComment(null), 300);
+                }}
+                className="current-discussion__hint-close"
               />
-              <p className="current-discussion__author-name">
-                {
-                  currentDiscussion.comments.find(
-                    (a) => a.id === answerToComment,
-                  )?.userName
-                }
-              </p>
             </div>
-            <Close
-              onClick={() => {
-                setActiveAnswer(false);
-                setTimeout(() => setAnswerToComment(null), 300);
-              }}
-              className="current-discussion__hint-close"
+            <div
+              className={classNames('current-discussion__hint', {
+                isActive: changeComment,
+              })}
+            >
+              <p className="current-discussion__hint-text">Редагувати текст</p>
+              <Close
+                onClick={() => {
+                  setChangeComment('');
+                  setAddComment('');
+                }}
+                className="current-discussion__hint-close"
+              />
+            </div>
+            <input
+              ref={inputRef}
+              value={addComment}
+              onChange={(e) => setAddComment(e.target.value)}
+              placeholder="Додати коментар"
+              className="current-discussion__input"
+              type="text"
             />
+            <button
+              disabled={!addComment}
+              onClick={() =>
+                changeComment ?
+                  handleChangeComment(changeComment)
+                : handleAddComment()
+              }
+              className="current-discussion__add-comment-button"
+            >
+              Надіслати
+            </button>
           </div>
-          <div
-            className={classNames('current-discussion__hint', {
-              isActive: changeComment,
-            })}
-          >
-            <p className="current-discussion__hint-text">Редагувати текст</p>
-            <Close
-              onClick={() => {
-                setChangeComment('');
-                setAddComment('');
-              }}
-              className="current-discussion__hint-close"
-            />
-          </div>
-          <input
-            ref={inputRef}
-            value={addComment}
-            onChange={(e) => setAddComment(e.target.value)}
-            placeholder="Додати коментар"
-            className="current-discussion__input"
-            type="text"
-          />
-          <button
-            disabled={!addComment}
-            onClick={() =>
-              changeComment ?
-                handleChangeComment(changeComment)
-              : handleAddComment()
-            }
-            className="current-discussion__add-comment-button"
-          >
-            Надіслати
-          </button>
         </div>
-      </div>
+      </SimpleBar>
     </div>
   );
 };

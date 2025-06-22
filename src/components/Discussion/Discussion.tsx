@@ -78,7 +78,11 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
                 {currentDiscussion.author}
               </p>
             </div>
-            <p className="discussion__theme">{currentDiscussion.theme}</p>
+            <div className="discussion__themes">
+              {currentDiscussion.theme.map((theme) => (
+                <p className="discussion__theme">{theme}</p>
+              ))}
+            </div>
           </div>
           <ThreeDotsSVG
             onClick={() => setOpenActions(true)}

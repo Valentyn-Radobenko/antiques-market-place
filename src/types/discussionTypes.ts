@@ -10,7 +10,7 @@ export type Comment = {
 export type DiscussionData = {
   id: string;
   name: string;
-  theme: string;
+  theme: string[];
   description: string;
   date: Date;
   author: string;

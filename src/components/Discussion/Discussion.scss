@@ -8,6 +8,12 @@
   box-shadow: $drop-shadow;
   border-radius: 12px;
   background: $gray-white;
+  transition: all ease $effect-duration;
+  outline: 2px solid transparent;
+
+  &:hover {
+    outline: 2px solid $additional-mint;
+  }
 
   @include on-tablet {
     padding: 16px;
@@ -21,7 +27,9 @@
   &__name-theme {
     display: flex;
     justify-content: space-between;
-    flex-grow: 1;
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
   }
 
   &__creator {
@@ -38,6 +46,11 @@
   &__creator-name {
     @include label-bold;
     color: $gray-black;
+  }
+
+  &__themes {
+    display: flex;
+    gap: 8px;
   }
 
   &__theme {

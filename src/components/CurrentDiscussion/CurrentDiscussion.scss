@@ -6,13 +6,27 @@
   @include on-tablet {
     flex-direction: column;
     width: 100%;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
   &__images {
     width: 607px;
     position: relative;
+
+    &.descktop {
+      @include on-tablet {
+        display: none;
+      }
+    }
+
+    &.tablet-phone {
+      display: none;
+
+      @include on-tablet {
+        display: block;
+      }
+    }
 
     @include on-tablet {
       width: auto;
@@ -99,6 +113,17 @@
     }
   }
 
+  &__simplebar-block {
+    @include on-tablet {
+      height: 100vh;
+      padding-top: 24px;
+    }
+
+    @include on-phone {
+      padding-top: 16px;
+    }
+  }
+
   &__text-block {
     background: $gray-white;
     display: flex;
@@ -110,6 +135,8 @@
       width: auto;
       padding-top: 24px;
       padding-bottom: 112px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
     }
 
     @include on-phone {
@@ -178,6 +205,11 @@
     cursor: pointer;
   }
 
+  &__themes {
+    display: flex;
+    gap: 8px;
+  }
+
   &__theme {
     @include main-text;
     color: $gray-black;
@@ -194,7 +226,6 @@
   }
 
   &__simplebar {
-    // position: relative;
     max-height: 326px;
     margin-right: -24px;
     border-top: 1px solid $gray-stroke;
