@@ -1,0 +1,31 @@
+.product {
+  &__dropdown {
+    margin: 0;
+    padding: 0;
+    height: auto;
+
+    &-button {
+      display: flex;
+      padding: 16px;
+      align-items: center;
+      gap: 8px;
+      align-self: stretch;
+      color: $gray-black;
+      transition: $effect-duration;
+
+      @include h4-bold;
+
+      @include main-text;
+
+      &--active {
+        @include h4-bold;
+
+        color: $additional-mint;
+      }
+    }
+
+    &-arrow--active {
+      background-image: url('/images/header/keyboard-arrow-down-rounded-active.svg') !important;
+    }
+  }
+}
