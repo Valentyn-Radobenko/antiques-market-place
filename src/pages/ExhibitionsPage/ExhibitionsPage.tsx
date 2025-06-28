@@ -11,7 +11,10 @@ export const ExhibitionsPage = () => {
   return (
     <div className="exhibitions">
       <div className="exhibitions__nav-bar">
-        <Crumbs links={['/club', '/club/exhibitions']} />
+        <Crumbs
+          links={['/club', '/club/exhibitions']}
+          titles={['Клуб колекціонерів', 'Виставки']}
+        />
 
         <div className="exhibitions__heading">
           <h1 className="exhibitions__title">Виставки</h1>

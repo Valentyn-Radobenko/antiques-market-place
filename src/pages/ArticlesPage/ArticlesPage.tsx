@@ -20,7 +20,10 @@ export const ArticlesPage = () => {
   return (
     <div className="articles">
       <div className="articles__nav-bar">
-        <Crumbs links={['/club', '/club/articles']} />
+        <Crumbs
+          links={['/club', '/club/articles']}
+          titles={['Клуб колекціонерів', 'Статті']}
+        />
 
         <div className="articles__heading">
           <h1 className="articles__title">Статті</h1>
