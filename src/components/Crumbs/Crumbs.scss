@@ -1,0 +1,26 @@
+.crumbs {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  padding: 8px 4px;
+
+  &__link {
+    @include main-text;
+
+    &--inactive {
+      color: $gray-dis;
+    }
+
+    &--active {
+      color: $additional-black-green;
+    }
+  }
+
+  &__chevron {
+    width: 24px;
+    height: 24px;
+    background-image: url('/images/bread-crumbs/chevron-right.svg');
+    margin-left: 4px;
+    margin-right: 8px;
+  }
+}
