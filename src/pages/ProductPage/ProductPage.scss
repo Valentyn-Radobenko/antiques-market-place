@@ -1,4 +1,142 @@
 .product {
+  display: flex;
+  width: 1360px;
+  align-items: flex-start;
+
+  border-radius: 12px;
+  background: $gray-white;
+
+  align-self: center;
+
+  &__crumbs {
+    margin-bottom: 16px;
+  }
+
+  &__media {
+    display: flex;
+    flex-direction: column;
+    width: 670px;
+    align-items: flex-start;
+    gap: 8px;
+    flex-shrink: 0;
+    align-self: stretch;
+
+    border-radius: 12px 0px 0px 12px;
+    background: $background-page;
+
+    /* Floating card Double shadow */
+    box-shadow:
+      0px 8px 20px 2px rgba(170, 182, 178, 0.2),
+      0px -4px 12px 0px rgba(255, 255, 255, 0) inset;
+    backdrop-filter: blur(12px);
+  }
+
+  &__title {
+    color: $gray-black;
+    padding: 24px;
+
+    @include h2-bold;
+  }
+
+  &__img {
+    display: flex;
+    width: 670px;
+    height: 670px;
+    padding: 8px;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+
+    background-image: url('../../../public/images/product/product-1.png');
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 0 0;
+    align-self: stretch;
+
+    border-radius: 0px 12px 12px 0px;
+    background: var(--Gray-White, #f7fffd);
+
+    /* Floating card Double shadow */
+    box-shadow:
+      0px 8px 20px 2px rgba(170, 182, 178, 0.2),
+      0px -4px 12px 0px rgba(255, 255, 255, 0) inset;
+    backdrop-filter: blur(12px);
+  }
+
+  &__top {
+    display: flex;
+    padding: 24px 24px 16px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+
+    border-bottom: 1px solid $gray-stroke;
+  }
+
+  &__chars {
+    display: flex;
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+
+    border-radius: 12px;
+    background: $background-plate;
+
+    /* Double glass */
+    box-shadow:
+      0px -4px 16px 0px rgba(255, 255, 255, 0),
+      0px 4px 16px -6px rgba(255, 255, 255, 0),
+      0px 8px 32px -4px rgba(0, 0, 0, 0);
+    backdrop-filter: blur(15px);
+  }
+
+  &__char {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+
+    border-radius: 12px;
+
+    &-icon {
+      width: 24px;
+      height: 24px;
+      aspect-ratio: 1/1;
+      color: $gray-black;
+    }
+
+    &-label {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 8px;
+      width: 96px;
+
+      color: $additional-black-green;
+      @include button-bold;
+    }
+
+    &-value {
+      display: flex;
+      padding: 4px 8px;
+      align-items: center;
+      gap: 8px;
+      flex: 1 0 0;
+
+      border-radius: 12px;
+
+      color: $additional-greenas;
+      @include main-text;
+    }
+  }
+
   &__dropdown {
     margin: 0;
     padding: 0;
@@ -16,16 +154,121 @@
       @include h4-bold;
 
       @include main-text;
+    }
+  }
 
-      &--active {
-        @include h4-bold;
+  &__middle {
+    display: flex;
+    padding: 24px;
+    align-items: flex-end;
+    gap: 16px;
+    align-self: stretch;
 
-        color: $additional-mint;
-      }
+    border-bottom: 1px solid $gray-stroke;
+  }
+
+  &__price {
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    gap: 8px;
+
+    border-radius: 12px;
+
+    &-label {
+      color: $additional-black-green;
+
+      @include label-bold;
     }
 
-    &-arrow--active {
-      background-image: url('/images/header/keyboard-arrow-down-rounded-active.svg') !important;
+    &-value {
+      color: $additional-freshherb-elect;
+
+      @include h4-bold;
+    }
+  }
+
+  &__cta {
+    display: flex;
+    height: 58px;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex: 1 0 0;
+
+    @include primary-button;
+
+    &-text {
+      color: inherit;
+
+      @include button-bold;
+    }
+
+    &-icon {
+      color: inherit;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+
+    &-block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      align-self: stretch;
+
+      border-radius: 12px;
+
+      /* Double glass */
+      box-shadow:
+        0px -4px 16px 0px rgba(255, 255, 255, 0),
+        0px 4px 16px -6px rgba(255, 255, 255, 0),
+        0px 8px 32px -4px rgba(0, 0, 0, 0);
+      backdrop-filter: blur(15px);
+
+      &-title {
+        color: $additional-black-green;
+
+        @include button-bold;
+      }
+
+      &-options {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        align-self: stretch;
+      }
+
+      &-option {
+        display: flex;
+        padding: 4px 8px;
+        align-items: center;
+        gap: 8px;
+        flex: 1 0 0;
+
+        border-radius: 12px;
+
+        &-icon {
+          width: 24px;
+          height: 24px;
+          aspect-ratio: 1/1;
+        }
+
+        &-description {
+          color: $gray-dark;
+
+          @include main-text;
+        }
+      }
     }
   }
 }

@@ -4,11 +4,16 @@ import { Link } from 'react-router-dom';
 interface Props {
   links: string[];
   titles: string[];
+  customClassName?: string;
 }
 
-export const Crumbs: React.FC<Props> = ({ links, titles }) => {
+export const Crumbs: React.FC<Props> = ({
+  links,
+  titles,
+  customClassName = '',
+}) => {
   return (
-    <div className="crumbs">
+    <div className={`crumbs ${customClassName}`}>
       {links.map((link, ind) => {
         return ind === 0 ?
             <Link

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import classNames from 'classnames';
+import { Arrow } from '../Imgs/Arrow';
 
 interface Props {
   buttonArea: 'all' | 'arrow';
@@ -32,14 +33,14 @@ export const Dropdown: React.FC<Props> = ({
         >
           {buttonIcon && buttonIcon()}
           {buttonTitle()}
-          <button
+          <Arrow
             className={classNames(`${customClassName}-arrow dropdown__arrow`, {
               [`${customClassName}-arrow--active dropdown__arrow--active`]:
                 isVisible,
               [`${customClassName}-arrow--inactive dropdown__arrow--inactive`]:
                 !isVisible,
             })}
-          ></button>
+          />
         </button>
       )}
 
@@ -54,7 +55,7 @@ export const Dropdown: React.FC<Props> = ({
         >
           {buttonIcon && buttonIcon()}
           {buttonTitle()}
-          <button
+          <Arrow
             onClick={() => setIsVisible(!isVisible)}
             className={classNames(`${customClassName}-arrow dropdown__arrow`, {
               [`${customClassName}-arrow--active dropdown__arrow--active`]:
@@ -62,7 +63,7 @@ export const Dropdown: React.FC<Props> = ({
               [`${customClassName}-arrow--inactive dropdown__arrow--inactive`]:
                 !isVisible,
             })}
-          ></button>
+          />
         </button>
       )}
 

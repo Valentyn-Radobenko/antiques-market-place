@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../store/store';
 import { setIsMenuOn } from '../../store/slices/menuSlice';
 import { Dropdown } from '../Dropdown/Dropdown';
+import { Arrow } from '../Imgs/Arrow';
 
 type Props = {
   customClassName?: string;
@@ -76,12 +77,12 @@ export const Navigation: React.FC<Props> = ({ customClassName, mode }) => {
                     >
                       {t('navigation.collectors_club')}
                     </NavLink>
-                    <button
+                    <Arrow
                       className={classNames('nav__club-button', {
                         [`${customClassName}__club-button`]: customClassName,
                         'nav__club-button--active': isClubActive,
                       })}
-                    ></button>
+                    />
                   </div>
                 </div>
               )}

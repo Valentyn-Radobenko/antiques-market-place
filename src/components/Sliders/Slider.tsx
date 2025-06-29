@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 interface SliderProps<T> {
   sliderTitle: string;
-  renderSliderLink: () => React.ReactNode;
+  renderSliderLink?: () => React.ReactNode;
   renderSecondSliderTitle?: () => React.ReactNode;
   slides: T[];
   slidesPerView?: number;
@@ -82,7 +82,7 @@ export default function Slider<T>({
     <section className={`slider ${customSectionClassName}`}>
       <header className="slider__header">
         <h2 className="slider__header-title">{sliderTitle}</h2>
-        {renderSliderLink()}
+        {renderSliderLink && renderSliderLink()}
       </header>
       <div className={`slider__big-container ${customWrapperClassName}-big`}>
         <div className={`slider__container ${customWrapperClassName}`}>

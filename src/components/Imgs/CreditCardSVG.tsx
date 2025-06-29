@@ -3,7 +3,7 @@ type Props = {
   onClick?: () => void;
 };
 
-export const PaymentSVG: React.FC<Props> = ({ className, onClick }) => {
+export const CreditCardSVG: React.FC<Props> = ({ className, onClick }) => {
   return (
     <svg
       className={className}

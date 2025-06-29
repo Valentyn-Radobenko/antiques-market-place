@@ -153,8 +153,11 @@
       }
     }
 
-    &-arrow--active {
-      background-image: url('/images/header/keyboard-arrow-down-rounded-active.svg') !important;
+    &-arrow {
+      color: $gray-white;
+      &--active {
+        color: $additional-mint;
+      }
     }
 
     &-text {
