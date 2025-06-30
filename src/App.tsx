@@ -29,7 +29,7 @@ export const App: React.FC = () => {
     }
   }, [token, dispatch]);
   return (
-    <>
+    <div className="page__wrapper">
       <div className="page__bg"></div>
       <Header />
 
@@ -37,6 +37,6 @@ export const App: React.FC = () => {
         <Outlet />
       </main>
       <Footer />
-    </>
+    </div>
   );
 };

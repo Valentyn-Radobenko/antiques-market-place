@@ -83,6 +83,12 @@ html * {
   color: $gray-black;
   scroll-behavior: smooth;
 
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
   &__header {
     margin-bottom: 24px;
   }
@@ -112,6 +118,7 @@ html * {
 .main {
   display: flex;
   flex-direction: column;
+  flex: 1;
 
   @include standard-inline-paddings;
 
