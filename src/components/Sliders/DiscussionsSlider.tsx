@@ -35,7 +35,6 @@ export const DiscussionsSlider: React.FC = () => {
       )}
       slides={discussionsSlides}
       slidesPerView={isTablet ? 1 : 3}
-      customSectionClassName="slider__discussions"
       renderSlide={(slide) => (
         <div
           key={slide.date + slide.name + slide.title}

@@ -8,8 +8,7 @@ interface SliderProps<T> {
   renderSecondSliderTitle?: () => React.ReactNode;
   slides: T[];
   slidesPerView?: number;
-  customSectionClassName?: string;
-  customWrapperClassName?: string;
+  customClassName?: string;
 
   renderSlide: (slide: T) => React.ReactNode;
 }
@@ -20,8 +19,7 @@ export default function Slider<T>({
   renderSecondSliderTitle,
   slides,
   slidesPerView = 1,
-  customSectionClassName = '',
-  customWrapperClassName = '',
+  customClassName = '',
   renderSlide,
 }: SliderProps<T>) {
   const sliderRef = useRef<SlickSlider>(null);
@@ -45,7 +43,7 @@ export default function Slider<T>({
     infinite: true,
     speed: 1100,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 4000000,
     slidesToShow: slidesPerView,
     slidesToScroll: slidesPerView,
     lazyLoad: 'ondemand' as const,
@@ -79,13 +77,17 @@ export default function Slider<T>({
   };
 
   return (
-    <section className={`slider ${customSectionClassName}`}>
-      <header className="slider__header">
-        <h2 className="slider__header-title">{sliderTitle}</h2>
+    <section className={`slider ${customClassName}`}>
+      <header className={`slider__header ${customClassName}__header`}>
+        <h2 className={`slider__header-title ${customClassName}__header-title`}>
+          {sliderTitle}
+        </h2>
         {renderSliderLink && renderSliderLink()}
       </header>
-      <div className={`slider__big-container ${customWrapperClassName}-big`}>
-        <div className={`slider__container ${customWrapperClassName}`}>
+      <div
+        className={`slider__big-container ${customClassName}__big-container`}
+      >
+        <div className={`slider__container ${customClassName}__container`}>
           {renderSecondSliderTitle && renderSecondSliderTitle()}
           <SlickSlider
             ref={sliderRef}

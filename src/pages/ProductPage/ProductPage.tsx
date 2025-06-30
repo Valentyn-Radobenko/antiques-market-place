@@ -11,6 +11,7 @@ import { CreditCardSVG } from '../../components/Imgs/CreditCardSVG';
 import { PaymentsSVG } from '../../components/Imgs/PaymentsSVG';
 import { BoxSVG } from '../../components/Imgs/BoxSVG';
 import { WarehouseSVG } from '../../components/Imgs/WarehouseSVG';
+import { ProductSlider } from '../../components/Sliders/ProductSlider';
 
 export const ProductPage = () => {
   return (
@@ -22,10 +23,13 @@ export const ProductPage = () => {
       />
 
       <div className="product">
-        <div className="product__media">
-          <h1 className="product__title">Талер 1641</h1>
-          <div className="product__img"></div>
-        </div>
+        <ProductSlider
+          title={{ ua: 'Талер 1641', eng: 'Taler 1641' }}
+          imgs={[
+            { image: 'images/product/product-1-img-1.png' },
+            { image: 'images/product/product-1-img-2.png' },
+          ]}
+        />
         <div className="product__info">
           <div className="product__top">
             <div className="product__chars">
