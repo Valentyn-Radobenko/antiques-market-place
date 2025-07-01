@@ -43,7 +43,7 @@ export default function Slider<T>({
     infinite: true,
     speed: 1100,
     autoplay: true,
-    autoplaySpeed: 4000000,
+    autoplaySpeed: 4000,
     slidesToShow: slidesPerView,
     slidesToScroll: slidesPerView,
     lazyLoad: 'ondemand' as const,
