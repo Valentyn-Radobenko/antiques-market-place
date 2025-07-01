@@ -8,6 +8,11 @@
 
   align-self: center;
 
+  @include on-tablet {
+    width: auto;
+    flex-direction: column;
+  }
+
   &__crumbs {
     margin-bottom: 16px;
   }
@@ -152,6 +157,18 @@
       transition: $effect-duration;
 
       @include h4-bold;
+
+      @include main-text;
+
+      &--active {
+        color: $additional-freshherb-elect;
+      }
+    }
+
+    &-option {
+      padding: 0 16px 16px;
+
+      color: $gray-dark;
 
       @include main-text;
     }

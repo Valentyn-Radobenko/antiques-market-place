@@ -12,6 +12,7 @@ import { PaymentsSVG } from '../../components/Imgs/PaymentsSVG';
 import { BoxSVG } from '../../components/Imgs/BoxSVG';
 import { WarehouseSVG } from '../../components/Imgs/WarehouseSVG';
 import { ProductSlider } from '../../components/Sliders/ProductSlider';
+import { ProductsSlider } from '../../components/Sliders/ProductsSlider';
 
 export const ProductPage = () => {
   return (
@@ -22,7 +23,7 @@ export const ProductPage = () => {
         customClassName="product__crumbs"
       />
 
-      <div className="product">
+      <div className="product page__product">
         <ProductSlider
           title={{ ua: 'Талер 1641', eng: 'Taler 1641' }}
           imgs={[
@@ -68,7 +69,9 @@ export const ProductPage = () => {
               buttonTitle={() => (
                 <p className="product__dropdown-text">Детальна інформація</p>
               )}
-              renderContent={() => <></>}
+              renderContent={() => (
+                <p className="product__dropdown-option">Не вказана</p>
+              )}
               customClassName="product__dropdown"
             />
           </div>
@@ -126,6 +129,7 @@ export const ProductPage = () => {
           </div>
         </div>
       </div>
+      <ProductsSlider />
     </>
   );
 };

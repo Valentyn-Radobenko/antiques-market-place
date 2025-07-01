@@ -516,10 +516,11 @@
 
 .product-slider {
   width: 670px;
+  // height: 892px;
+  margin: 0;
   padding-inline: 0;
   padding-top: 21px;
   padding-bottom: 22px;
-
   border-radius: 12px 0px 0px 12px;
   background: $background-page;
 
@@ -535,7 +536,7 @@
 
   & .slick-dots {
     padding: 8px;
-    margin-top: 28px;
+    margin-top: 49px;
     margin-inline: 24px;
     width: 622px;
     border-radius: 12px;
@@ -544,7 +545,7 @@
 
   &__header {
     padding-inline: 24px;
-    margin-bottom: 26px;
+    margin-bottom: 47px;
   }
 
   &__slide {
@@ -558,6 +559,50 @@
     &-img {
       width: 670px;
       height: 670px;
+    }
+  }
+}
+
+.products-slider {
+  &__slide {
+    height: 356px;
+
+    @include on-tablet {
+      height: 260px;
+    }
+
+    @include on-phone {
+      height: 236px;
+    }
+
+    &-img {
+      height: 266px;
+
+      @include on-tablet {
+        height: 186px;
+      }
+
+      @include on-phone {
+        height: 162px;
+      }
+    }
+
+    &-content {
+      @include on-tablet {
+        padding: 8px;
+      }
+    }
+
+    &-title {
+      color: $additional-black-green;
+
+      @include main-text;
+    }
+
+    &-price {
+      color: $gray-black;
+
+      @include h4-bold;
     }
   }
 }
