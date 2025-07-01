@@ -1,51 +1,51 @@
 [
   {
-    "image": "/images/product/product-2-img-1.png",
+    "image": "./images/product/product-2-img-1.png",
     "title": "Талер. 1641.",
     "price": "4000 грн"
   },
   {
-    "image": "/images/product/product-3-img-1.png",
+    "image": "./images/product/product-3-img-1.png",
     "title": "Талер. 1641.",
     "price": "4500 грн"
   },
   {
-    "image": "/images/product/product-4-img-1.png",
+    "image": "./images/product/product-4-img-1.png",
     "title": "Талер. 1643.",
     "price": "4000 грн"
   },
   {
-    "image": "/images/product/product-5-img-1.png",
+    "image": "./images/product/product-5-img-1.png",
     "title": "Талер. 1643.",
     "price": "4800 грн"
   },
   {
-    "image": "/images/product/product-6-img-1.png",
+    "image": "./images/product/product-6-img-1.png",
     "title": "Талер. 1644.",
     "price": "4000 грн"
   },
   {
-    "image": "/images/product/product-7-img-1.png",
+    "image": "./images/product/product-7-img-1.png",
     "title": "Талер. 1646.",
     "price": "4300 грн"
   },
   {
-    "image": "/images/product/product-8-img-1.png",
+    "image": "./images/product/product-8-img-1.png",
     "title": "Талер. 1647.",
     "price": "4000 грн"
   },
   {
-    "image": "/images/product/product-9-img-1.png",
+    "image": "./images/product/product-9-img-1.png",
     "title": "Талер. 1648.",
     "price": "4000 грн"
   },
   {
-    "image": "/images/product/product-10-img-1.png",
+    "image": "./images/product/product-10-img-1.png",
     "title": "Талер. 1648.",
     "price": "4100 грн"
   },
   {
-    "image": "/images/product/product-11-img-1.png",
+    "image": "./images/product/product-11-img-1.png",
     "title": "Талер. 1649.",
     "price": "4000 грн"
   }
