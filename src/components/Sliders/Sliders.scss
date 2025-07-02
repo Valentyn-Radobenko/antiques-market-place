@@ -516,7 +516,6 @@
 
 .product-slider {
   width: 670px;
-  // height: 892px;
   margin: 0;
   padding-inline: 0;
   padding-top: 21px;
@@ -530,6 +529,17 @@
     0px -4px 12px 0px rgba(255, 255, 255, 0) inset;
   backdrop-filter: blur(12px);
 
+  @include on-tablet {
+    position: relative;
+    padding: 0;
+    width: 592px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  @include on-phone {
+    width: 343px;
+  }
+
   & .slick-slide > div {
     margin: 0;
   }
@@ -541,29 +551,138 @@
     width: 622px;
     border-radius: 12px;
     background: $background-plate;
+
+    @include on-tablet {
+      width: 0;
+      height: 0;
+      background: inherit;
+      padding-block: 0;
+      margin: 0;
+    }
+
+    & .slider__prev-arr {
+      @include on-tablet {
+        position: absolute;
+        width: 80px;
+        height: 432px;
+        background-repeat: no-repeat;
+        top: 0;
+        left: 0;
+        background-position: center;
+        border-top-left-radius: 12px;
+      }
+
+      @include on-phone {
+        width: 48px;
+        height: 247px;
+      }
+    }
+
+    & .slider__next-arr {
+      @include on-tablet {
+        position: absolute;
+        width: 80px;
+        height: 432px;
+        background-repeat: no-repeat;
+        top: 0;
+        right: 0;
+        background-position: center;
+        border-top-right-radius: 12px;
+      }
+
+      @include on-phone {
+        width: 48px;
+        height: 247px;
+      }
+    }
+
+    & ul {
+      @include on-tablet {
+        display: none;
+      }
+    }
   }
 
   &__header {
     padding-inline: 24px;
     margin-bottom: 47px;
+
+    @include on-tablet {
+      display: none;
+      padding-inline: 0;
+    }
+
+    &-title {
+      @include on-tablet {
+        display: flex;
+        align-items: center;
+        padding-inline: 0px;
+        padding-bottom: 16px;
+        gap: 8px;
+        align-self: stretch;
+
+        background-color: white;
+        backdrop-filter: blur(15px);
+
+        color: $gray-black;
+        @include h2-bold;
+        text-align: left;
+      }
+
+      @include on-phone {
+        @include h2-mobile-bold;
+      }
+    }
+  }
+
+  &__big-container {
+    @include on-tablet {
+      border-radius: 12px 12px 0px 0px;
+    }
   }
 
   &__slide {
     display: flex;
     width: 670px;
     height: 670px;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-shrink: 0;
+
+    @include on-tablet {
+      width: 592px;
+      height: 432px;
+      border-radius: 12px 12px 0 0;
+    }
+
+    @include on-phone {
+      width: 343px;
+      height: 247px;
+    }
 
     &-img {
       width: 670px;
       height: 670px;
+
+      justify-self: center;
+      @include on-tablet {
+        width: 432px;
+        height: 432px;
+      }
+
+      @include on-phone {
+        width: 247px;
+        height: 247px;
+      }
     }
   }
 }
 
 .products-slider {
+  @include on-tablet {
+    max-width: 592px;
+  }
+
   &__slide {
     height: 356px;
 

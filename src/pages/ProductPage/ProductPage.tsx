@@ -13,8 +13,10 @@ import { BoxSVG } from '../../components/Imgs/BoxSVG';
 import { WarehouseSVG } from '../../components/Imgs/WarehouseSVG';
 import { ProductSlider } from '../../components/Sliders/ProductSlider';
 import { ProductsSlider } from '../../components/Sliders/ProductsSlider';
+import { useIsTablet } from '../../hooks/useMediaQuery';
 
 export const ProductPage = () => {
+  const isTablet = useIsTablet();
   return (
     <>
       <Crumbs
@@ -24,11 +26,14 @@ export const ProductPage = () => {
       />
 
       <div className="product page__product">
+        {isTablet && (
+          <h2 className="product-slider__header-title">{'Талер 1641'}</h2>
+        )}
         <ProductSlider
           title={{ ua: 'Талер 1641', eng: 'Taler 1641' }}
           imgs={[
-            { image: 'images/product/product-1-img-1.png' },
-            { image: 'images/product/product-1-img-2.png' },
+            'images/product/product-1-img-1.png',
+            'images/product/product-1-img-2.png',
           ]}
         />
         <div className="product__info">
