@@ -54,9 +54,14 @@
 
     &.nonActiveMenu > *:first-child {
       @include on-tablet {
+        transform: translate(-100%);
         opacity: 0;
       }
     }
+  }
+
+  &__content-wrapper {
+    width: 100%;
   }
 
   &__section {

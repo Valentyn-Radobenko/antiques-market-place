@@ -1,0 +1,73 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 820px;
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 16px;
+    color: $gray-black;
+    border-radius: 12px;
+    background: $background-plate;
+
+    &-title {
+      display: flex;
+      gap: 11px;
+      align-items: center;
+    }
+
+    &-h4 {
+      @include h4-bold;
+    }
+
+    &-icon {
+    }
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__option {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    &-title {
+      @include main-text;
+    }
+
+    &-status {
+      cursor: pointer;
+      position: relative;
+      min-width: 48px;
+      height: 24px;
+      border-radius: 12px;
+      background: $gray-dis;
+      transition: all ease $effect-duration;
+      display: flex;
+      &.isActive {
+        background: $additional-freshherb-elect;
+      }
+    }
+
+    &-circle {
+      position: absolute;
+      width: 20px;
+      height: 18px;
+      border-radius: 12px;
+      background: $gray-white;
+      margin: 3px;
+      transition: all ease $effect-duration;
+      left: 0;
+
+      &.isActive {
+        left: 22px;
+      }
+    }
+  }
+}

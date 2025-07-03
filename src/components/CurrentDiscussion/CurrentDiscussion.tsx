@@ -121,7 +121,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
   return (
     <div className="current-discussion">
       {currentDiscussion.images.length > 0 && (
-        <div className="current-discussion__images desktop">
+        <div className="current-discussion__images descktop">
           <div className="current-discussion__images-list">
             {currentDiscussion.images.map((image) => (
               <img

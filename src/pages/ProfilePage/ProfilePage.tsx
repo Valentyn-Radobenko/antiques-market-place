@@ -22,41 +22,19 @@ export const ProfilePage = () => {
   return (
     <div className="profile-page">
       <h1 className="profile-page__h2">Мій кабінет</h1>
-
       <div
         className={classNames('profile-page__wrapper', {
           nonActiveMenu: openMenu,
           isActive: !openMenu,
         })}
       >
-        {/* <h2>
-        Тестова сторінка для перевірки роботи авторизації. Дизайн буде змінено
-        після його затвердження.
-      </h2>
-
-      <p>Ім'я: {firstName}</p>
-      <p>Прізвище: {lastName}</p>
-      <p>Номер телефону: {phoneNumber}</p>
-      <p>Логін: {email} </p>
-      <p>Номер в аукціоні: {auctionNumber} </p>
-      <p>
-        Статус верифікації: {verified ? 'Верифікований' : 'Не верифікований'}
-      </p>
-
-      <button
-        onClick={() => dispatch(logout())}
-        className="logout-button"
-      >
-        Вийти
-      </button> */}
-
-        {
-          <ProfileMenu
-            openMenu={openMenu}
-            setOpenMenu={setOpenMenu}
-          />
-        }
-        <Outlet context={[setOpenMenu]} />
+        <ProfileMenu
+          openMenu={openMenu}
+          setOpenMenu={setOpenMenu}
+        />
+        <div className="profile-page__content-wrapper">
+          <Outlet context={[setOpenMenu]} />
+        </div>
       </div>
     </div>
   );

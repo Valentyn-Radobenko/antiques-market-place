@@ -114,13 +114,15 @@
   }
 
   &__simplebar-block {
+    width: 749px;
+
     @include on-tablet {
-      height: 100vh;
-      padding-top: 24px;
+      width: auto;
+      max-height: calc(100vh - 24px);
     }
 
     @include on-phone {
-      padding-top: 16px;
+      max-height: calc(100vh - 16px);
     }
   }
 
@@ -129,10 +131,8 @@
     display: flex;
     flex-direction: column;
     padding-inline: 24px;
-    width: 749px;
 
     @include on-tablet {
-      width: auto;
       padding-top: 24px;
       padding-bottom: 112px;
       border-top-left-radius: 12px;
@@ -226,7 +226,7 @@
   }
 
   &__simplebar {
-    max-height: 326px;
+    height: 326px;
     margin-right: -24px;
     border-top: 1px solid $gray-stroke;
     border-bottom: 1px solid $gray-stroke;

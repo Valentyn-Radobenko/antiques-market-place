@@ -6,9 +6,11 @@ type Props = {
   openModal: boolean;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
   visibility?: string;
+  secondModal: boolean;
 };
 
 export const ModalWindow: React.FC<Props> = ({
+  secondModal,
   visibility,
   children,
   openModal,
@@ -30,7 +32,9 @@ export const ModalWindow: React.FC<Props> = ({
     >
       {children}
       <div
-        className="modal__background"
+        className={classNames('modal__background', {
+          secondModal: secondModal,
+        })}
         onClick={() => setOpenModal(false)}
       />
     </div>,

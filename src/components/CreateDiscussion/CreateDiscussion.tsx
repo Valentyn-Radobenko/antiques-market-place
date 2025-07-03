@@ -1,4 +1,4 @@
-import { CheckboxSquareSVG } from '../Imgs/CheckboxSquareSVG';
+import { CheckboxSquareSVG } from '../Imgs/СheckboxSquareSVG';
 import { Close } from '../Imgs/Close';
 import { Info } from '../Imgs/Info';
 import React, {
@@ -208,6 +208,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
               openModal={createNewTheme}
               setOpenModal={setCreateNewTheme}
               visibility="create-discussion__create-new-theme"
+              secondModal={true}
             >
               <CreateNewTheme
                 handleAddTheme={handleAddTheme}
@@ -285,6 +286,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                 visibility="create-discussion__link-modal-vis"
                 setOpenModal={setOpenLinkModal}
                 openModal={openLinkModal}
+                secondModal={false}
               >
                 <div className="create-discussion__link-modal">
                   <div className="create-discussion__link-header">
@@ -367,6 +369,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
         visibility="create-discussion__rules-visibility"
         openModal={openRules}
         setOpenModal={setOpenRules}
+        secondModal={true}
       >
         <DiscussionRules setOpenModal={setOpenRules} />
       </ModalWindow>

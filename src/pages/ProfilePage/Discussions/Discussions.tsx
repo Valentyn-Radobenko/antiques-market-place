@@ -184,6 +184,7 @@ export const Discussions = () => {
           visibility={'profile-discussions__add-new-visibility'}
           openModal={openAddModal}
           setOpenModal={setOpenAddModal}
+          secondModal={false}
         >
           <CreateDiscussion setOpenModal={setOpenAddModal} />
         </ModalWindow>
