@@ -126,26 +126,19 @@
   }
 
   &__my-theme {
+    @include additional-button;
     display: flex;
     align-items: center;
     padding: 4px 16px;
     gap: 8px;
-    border-radius: 12px;
-    border: 1px solid green;
-    transition: all ease $effect-duration;
     @include tab-regular;
-
-    &:hover {
-      background: $additional-white-green;
-      border-color: $additional-mint;
-      color: $additional-greenas;
-    }
   }
 
   &__create-new-theme {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 3;
   }
 
   &__form {

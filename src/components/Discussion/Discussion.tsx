@@ -80,7 +80,12 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
             </div>
             <div className="discussion__themes">
               {currentDiscussion.theme.map((theme) => (
-                <p className="discussion__theme">{theme}</p>
+                <p
+                  key={theme}
+                  className="discussion__theme"
+                >
+                  {theme}
+                </p>
               ))}
             </div>
           </div>
@@ -141,6 +146,7 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
         visibility={'discussion__current-disussion'}
         openModal={openDiscussion}
         setOpenModal={setOpenDiscussion}
+        secondModal={false}
       >
         <CurrentDiscussion
           setCurrentDiscussion={setCurrentDiscussion}
