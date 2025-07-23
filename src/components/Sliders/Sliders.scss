@@ -648,6 +648,7 @@
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
+    cursor: zoom-in;
 
     @include on-tablet {
       width: 592px;
@@ -675,6 +676,38 @@
         height: 247px;
       }
     }
+  }
+
+  &__modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    padding: 40px;
+  }
+
+  &__modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+
+  &__modal-close {
+    position: absolute;
+    top: -32px;
+    right: -32px;
+    font-size: 32px;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__modal-slide img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
   }
 }
 

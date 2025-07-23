@@ -9,6 +9,7 @@ interface SliderProps<T> {
   slides: T[];
   slidesPerView?: number;
   customClassName?: string;
+  autoplayOn?: boolean;
 
   renderSlide: (slide: T) => React.ReactNode;
 }
@@ -20,6 +21,7 @@ export default function Slider<T>({
   slides,
   slidesPerView = 1,
   customClassName = '',
+  autoplayOn = true,
   renderSlide,
 }: SliderProps<T>) {
   const sliderRef = useRef<SlickSlider>(null);
@@ -42,7 +44,7 @@ export default function Slider<T>({
     dots: true,
     infinite: true,
     speed: 1100,
-    autoplay: true,
+    autoplay: autoplayOn,
     autoplaySpeed: 4000,
     slidesToShow: slidesPerView,
     slidesToScroll: slidesPerView,
