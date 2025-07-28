@@ -10,8 +10,9 @@ interface SliderProps<T> {
   slidesPerView?: number;
   customClassName?: string;
   autoplayOn?: boolean;
+  initialSlide?: number;
 
-  renderSlide: (slide: T) => React.ReactNode;
+  renderSlide: (slide: T, index?: number) => React.ReactNode;
 }
 
 export default function Slider<T>({
@@ -22,6 +23,7 @@ export default function Slider<T>({
   slidesPerView = 1,
   customClassName = '',
   autoplayOn = true,
+  initialSlide = 0,
   renderSlide,
 }: SliderProps<T>) {
   const sliderRef = useRef<SlickSlider>(null);
@@ -45,6 +47,7 @@ export default function Slider<T>({
     infinite: true,
     speed: 1100,
     autoplay: autoplayOn,
+    initialSlide: initialSlide,
     autoplaySpeed: 4000,
     slidesToShow: slidesPerView,
     slidesToScroll: slidesPerView,
@@ -95,7 +98,7 @@ export default function Slider<T>({
             ref={sliderRef}
             {...settings}
           >
-            {slides.map((slide) => renderSlide(slide))}
+            {slides.map((slide, index) => renderSlide(slide, index))}
           </SlickSlider>
         </div>
       </div>

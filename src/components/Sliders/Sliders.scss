@@ -724,12 +724,13 @@
 
   &__modal-close {
     position: absolute;
-    top: 32px;
-    right: 32px;
-    font-size: 32px;
-    color: black;
-    background: transparent;
-    border: none;
+    top: 0;
+    right: 0;
+    padding: 8px;
+    color: $gray-black;
+
+    background: $background-plate;
+    border-radius: 0 12px;
     cursor: pointer;
     z-index: 1001;
   }
@@ -746,8 +747,14 @@
     padding: 0;
     width: 800px;
     height: 846px;
+    max-height: 100%;
     align-items: flex-start;
     gap: 8px;
+
+    @include on-small-laptop {
+      width: 670px;
+      height: 716px;
+    }
 
     border-radius: 12px;
 
@@ -757,6 +764,25 @@
       0 -4px 12px 0 rgba(255, 255, 255, 0) inset;
     backdrop-filter: blur(12px);
 
+    .slick-slide > div {
+      margin: 0;
+    }
+
+    & .slick-dots {
+      display: flex;
+      height: 46px;
+      padding: 8px;
+      justify-content: space-between;
+      align-items: center;
+      border: none;
+
+      border-radius: 0 0 12px 12px;
+      background: $background-plate;
+
+      box-shadow: 0 0 8px 0 rgba(236, 255, 252, 0);
+      backdrop-filter: blur(25px);
+    }
+
     &__header {
       display: none;
     }
@@ -764,6 +790,10 @@
     &__big-container {
       padding: 0;
       width: 800px;
+
+      @include on-small-laptop {
+        width: 670px;
+      }
     }
 
     &__container {
@@ -773,16 +803,32 @@
     &__slide {
       display: flex;
       width: 800px;
-      height: 799px;
+      height: 797px;
 
       gap: 8px;
 
       border-radius: 12px 12px 0 0;
 
+      cursor: grab;
+
+      &:active {
+        cursor: grabbing;
+      }
+
+      @include on-small-laptop {
+        width: 670px;
+        height: 667px;
+      }
+
       &-img {
         width: 800px;
-        height: 799px;
+        height: 800px;
         justify-self: auto;
+
+        @include on-small-laptop {
+          width: 670px;
+          height: 670px;
+        }
       }
     }
   }

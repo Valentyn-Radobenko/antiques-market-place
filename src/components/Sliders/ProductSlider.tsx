@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Slider from './Slider';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
 import { FrameInspectSVG } from '../Imgs/FrameInspectSVG';
+import { Close } from '../Imgs/Close';
 // import { useTranslation } from 'react-i18next';
 
 interface Props {
@@ -16,7 +17,6 @@ export const ProductSlider: React.FC<Props> = ({ title, imgs }) => {
   // const language = useSelector((state: SavingState) => state.language.language);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <>
@@ -27,15 +27,12 @@ export const ProductSlider: React.FC<Props> = ({ title, imgs }) => {
         customClassName="product-slider"
         autoplayOn={false}
         renderSlide={(slide) => {
-          // const index = imgs.indexOf(slide);
-
           return (
             <div
               key={slide}
               className="product-slider__slide"
               onClick={() => {
                 setIsModalOpen(true);
-                // setActiveIndex(index);
               }}
             >
               <FrameInspectSVG className="product-slider__slide-icon" />
@@ -59,7 +56,7 @@ export const ProductSlider: React.FC<Props> = ({ title, imgs }) => {
             className="product-slider__modal-close"
             onClick={() => setIsModalOpen(false)}
           >
-            ×
+            <Close />
           </button>
 
           <Slider<string>
@@ -69,15 +66,12 @@ export const ProductSlider: React.FC<Props> = ({ title, imgs }) => {
             customClassName="product-slider--modal"
             autoplayOn={false}
             renderSlide={(slide) => {
-              // const index = imgs.indexOf(slide);
-
               return (
                 <div
                   key={slide}
                   className="product-slider__slide product-slider--modal__slide"
                   onClick={() => {
                     setIsModalOpen(true);
-                    // setActiveIndex(index);
                   }}
                 >
                   <img
