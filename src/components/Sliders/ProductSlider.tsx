@@ -2,8 +2,8 @@
 // import { SavingState } from '../../store/store';
 import { useState } from 'react';
 import Slider from './Slider';
-import SlickSlider from 'react-slick';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
+import { FrameInspectSVG } from '../Imgs/FrameInspectSVG';
 // import { useTranslation } from 'react-i18next';
 
 interface Props {
@@ -16,7 +16,7 @@ export const ProductSlider: React.FC<Props> = ({ title, imgs }) => {
   // const language = useSelector((state: SavingState) => state.language.language);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
+  // const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <>
@@ -25,8 +25,9 @@ export const ProductSlider: React.FC<Props> = ({ title, imgs }) => {
         slides={imgs}
         slidesPerView={1}
         customClassName="product-slider"
+        autoplayOn={false}
         renderSlide={(slide) => {
-          const index = imgs.indexOf(slide);
+          // const index = imgs.indexOf(slide);
 
           return (
             <div
@@ -34,10 +35,10 @@ export const ProductSlider: React.FC<Props> = ({ title, imgs }) => {
               className="product-slider__slide"
               onClick={() => {
                 setIsModalOpen(true);
-                setActiveIndex(index);
+                // setActiveIndex(index);
               }}
             >
-              <div className="product-slider__slide-icon"></div>
+              <FrameInspectSVG className="product-slider__slide-icon" />
               <img
                 className="product-slider__slide-img"
                 src={slide}
@@ -61,26 +62,33 @@ export const ProductSlider: React.FC<Props> = ({ title, imgs }) => {
             ×
           </button>
 
-          <SlickSlider
-            initialSlide={activeIndex}
-            infinite
-            speed={500}
-            slidesToShow={1}
-            slidesToScroll={1}
-            dots
-          >
-            {imgs.map((imgUrl, index) => (
-              <div
-                key={index}
-                className="product-slider__modal-slide"
-              >
-                <img
-                  src={imgUrl}
-                  alt={`Фото ${index}`}
-                />
-              </div>
-            ))}
-          </SlickSlider>
+          <Slider<string>
+            sliderTitle={title.ua}
+            slides={imgs}
+            slidesPerView={1}
+            customClassName="product-slider--modal"
+            autoplayOn={false}
+            renderSlide={(slide) => {
+              // const index = imgs.indexOf(slide);
+
+              return (
+                <div
+                  key={slide}
+                  className="product-slider__slide product-slider--modal__slide"
+                  onClick={() => {
+                    setIsModalOpen(true);
+                    // setActiveIndex(index);
+                  }}
+                >
+                  <img
+                    className="product-slider__slide-img product-slider--modal__slide-img"
+                    src={slide}
+                    alt={slide}
+                  />
+                </div>
+              );
+            }}
+          />
         </div>
       </ModalWindow>
     </>
