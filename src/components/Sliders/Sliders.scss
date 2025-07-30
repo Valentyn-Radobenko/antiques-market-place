@@ -553,11 +553,12 @@
     background: $background-plate;
 
     @include on-tablet {
-      width: 0;
+      width: 432px;
       height: 0;
       background: inherit;
-      padding-block: 0;
+      padding: 0;
       margin: 0;
+      justify-self: center;
     }
 
     & .slider__prev-arr {
@@ -598,7 +599,27 @@
 
     & ul {
       @include on-tablet {
-        display: none;
+        width: min-content;
+        height: 28px;
+        position: absolute;
+        bottom: 15px;
+        left: 296px;
+        transform: translateX(-50%);
+        padding-inline: 8px;
+
+        border-radius: 12px;
+        background: $background-plate;
+
+        box-shadow:
+          0 -4px 16px 0 rgba(255, 255, 255, 0),
+          0 4px 16px -6px rgba(255, 255, 255, 0),
+          0 8px 32px -4px rgba(0, 0, 0, 0);
+        backdrop-filter: blur(15px);
+      }
+
+      @include on-phone {
+        left: 171.5px;
+        bottom: 8px;
       }
     }
   }
@@ -696,6 +717,16 @@
       border-radius: 8px;
       background: $background-plate;
       backdrop-filter: blur(5px);
+
+      @include on-tablet {
+        top: 16px;
+        right: 96px;
+      }
+
+      @include on-phone {
+        top: 8px;
+        right: 56px;
+      }
     }
   }
 
@@ -703,8 +734,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 1000;
   }
 
   &__modal-content {
@@ -732,7 +761,7 @@
     background: $background-plate;
     border-radius: 0 12px;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 2;
   }
 
   &__modal-slide img {
@@ -754,6 +783,16 @@
     @include on-small-laptop {
       width: 670px;
       height: 716px;
+    }
+
+    @include on-tablet {
+      width: 592px;
+      height: 638px;
+    }
+
+    @include on-phone {
+      width: 343px;
+      height: 389px;
     }
 
     border-radius: 12px;
@@ -794,6 +833,14 @@
       @include on-small-laptop {
         width: 670px;
       }
+
+      @include on-tablet {
+        width: 592px;
+      }
+
+      @include on-phone {
+        width: 343px;
+      }
     }
 
     &__container {
@@ -820,6 +867,16 @@
         height: 667px;
       }
 
+      @include on-tablet {
+        width: 592px;
+        height: 589px;
+      }
+
+      @include on-phone {
+        width: 343px;
+        height: 340px;
+      }
+
       &-img {
         width: 800px;
         height: 800px;
@@ -828,6 +885,16 @@
         @include on-small-laptop {
           width: 670px;
           height: 670px;
+        }
+
+        @include on-tablet {
+          width: 592px;
+          height: 592px;
+        }
+
+        @include on-phone {
+          width: 343px;
+          height: 343px;
         }
       }
     }
