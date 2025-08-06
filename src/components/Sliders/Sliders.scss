@@ -664,7 +664,7 @@
 
   &__slide {
     position: relative;
-    display: flex;
+    display: flex !important;
     width: 670px;
     height: 670px;
     justify-content: center;
