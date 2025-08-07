@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from './store/store';
 import { useEffect } from 'react';
 import { fetchUserData } from './store/slices/userSlice';
+import 'simplebar-react/dist/simplebar.min.css';
+import './styles/_scrollbar.scss';
 
 export const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();

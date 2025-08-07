@@ -4,6 +4,18 @@
   gap: 16px;
   max-width: 820px;
 
+  // @include on-tablet {
+  //   margin-block: 24px;
+  // }
+
+  &__title {
+    @include h3-bold;
+
+    @include on-phone {
+      @include h4-bold;
+    }
+  }
+
   &__section {
     display: flex;
     flex-direction: column;

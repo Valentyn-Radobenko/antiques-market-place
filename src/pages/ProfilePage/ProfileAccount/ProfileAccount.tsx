@@ -10,9 +10,17 @@ import { ShiledCrossSVG } from '../../../components/Imgs/ShiledCrossSVG';
 import { Verification } from './Verification/Verification';
 import { useOutletContext } from 'react-router-dom';
 import { OutletContextType } from '../../../types/openMenuOtlet';
+import { PasswordEmail } from './PasswordEmail/PasswordEmail';
+import { UserState } from '../../../types/user';
 
 export const ProfileAccount = () => {
-  const { firstName, lastName } = useSelector((state: RootState) => state.user);
+  const {
+    firstName,
+    lastName,
+    // country,
+    // email,
+    // phoneNumber
+  }: UserState = useSelector((state: RootState) => state.user);
   const windowSize = useWindowSize();
   const [setOpenMenu] = useOutletContext<OutletContextType>();
 
@@ -31,8 +39,15 @@ export const ProfileAccount = () => {
           firstName={firstName}
           lastName={lastName}
         />
+
         {windowSize.width < 1440 && <AccountFullfiling />}
-        <AccountGeneral />
+
+        <PasswordEmail />
+
+        <AccountGeneral
+          firstName={firstName}
+          lastName={lastName}
+        />
 
         <Verification />
 

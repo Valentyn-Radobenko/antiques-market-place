@@ -1,30 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { SavingState } from '../store';
 import apiClient from '../../utils/apiClient';
+import { UserState } from '../../types/user';
 
 // Типи для даних користувача
-export interface UserState {
-  email: string | null;
-  phoneNumber: string | null;
-  firstName: string | null;
-  lastName: string | null;
-  country: string | null;
-  auctionNumber: string | null;
-  verified: boolean;
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
-}
 
 const initialState: UserState = {
-  email: null,
+  email: 'dukat.ua@gmail.com',
   phoneNumber: null,
-  firstName: null,
-  lastName: null,
-  country: null,
-  auctionNumber: null,
-  verified: false,
-  status: 'idle',
+  firstName: 'Андрій',
+  lastName: 'Містеряков',
+  country: 'Україна, Київ',
+  auctionNumber: '+380503332222',
+  verified: true,
+  status: 'succeeded',
 };
 
 // Запит до API для отримання даних користувача
@@ -61,7 +52,14 @@ const userSlice = createSlice({
     logoutUser: () => {
       return initialState;
     },
+    updateUserField: <K extends keyof UserState>(
+      state: UserState,
+      action: PayloadAction<{ field: K; value: UserState[K] }>,
+    ) => {
+      state[action.payload.field] = action.payload.value;
+    },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserData.pending, (state) => {
@@ -77,5 +75,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { logoutUser } = userSlice.actions;
+export const { logoutUser, updateUserField } = userSlice.actions;
 export default userSlice.reducer;
