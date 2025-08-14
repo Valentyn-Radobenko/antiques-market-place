@@ -1,0 +1,1138 @@
+[
+  {
+    "id": "1",
+    "slug": "thaler-netherlands-1",
+    "imgs": ["./images/product/1001.jpg", "./images/product/1101.jpg"],
+    "name": {
+      "ua": "Талер 1641",
+      "eng": "Thaler 1641"
+    },
+    "description": {
+      "ua": "Талер. 27.6 грам. Дельмонте 825.",
+      "eng": "Thaler. 27.6 grams. Delmonte 825."
+    },
+    "country": {
+      "ua": "Нідерланди, Гелдерланд",
+      "eng": "Netherlands, Gelderland",
+      "slug": "netherlands"
+    },
+    "year": "1641",
+    "material": {
+      "ua": "Срібло",
+      "eng": "Silver",
+      "slug": "silver"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4000,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "2",
+    "slug": "thaler-netherlands-2",
+    "imgs": ["./images/product/1002.jpg", "./images/product/1102.jpg"],
+    "name": {
+      "ua": "Талер 1641",
+      "eng": "Thaler 1641"
+    },
+    "description": {
+      "ua": "Талер. 27.6 грам. Дельмонте 825.",
+      "eng": "Thaler. 27.6 grams. Delmonte 825."
+    },
+    "country": {
+      "ua": "Нідерланди, Гелдерланд",
+      "eng": "Netherlands, Gelderland",
+      "slug": "netherlands"
+    },
+    "year": "1641",
+    "material": {
+      "ua": "Срібло",
+      "eng": "Silver",
+      "slug": "silver"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4500,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "3",
+    "slug": "thaler-netherlands-3",
+    "imgs": ["./images/product/1003.jpg", "./images/product/1103.jpg"],
+    "name": {
+      "ua": "Талер 1643",
+      "eng": "Thaler 1643"
+    },
+    "description": {
+      "ua": "Талер. 27.0 грам. Дельмонте 825.",
+      "eng": "Thaler. 27.0 grams. Delmonte 825."
+    },
+    "country": {
+      "ua": "Нідерланди, Гелдерланд",
+      "eng": "Netherlands, Gelderland",
+      "slug": "netherlands"
+    },
+    "year": "1643",
+    "material": {
+      "ua": "Срібло",
+      "eng": "Silver",
+      "slug": "silver"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4000,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "4",
+    "slug": "thaler-netherlands-4",
+    "imgs": ["./images/product/1004.jpg", "./images/product/1104.jpg"],
+    "name": {
+      "ua": "Талер 1643",
+      "eng": "Thaler 1643"
+    },
+    "description": {
+      "ua": "Талер. 26.4 грам. Дельмонте 825.",
+      "eng": "Thaler. 26.4 grams. Delmonte 825."
+    },
+    "country": {
+      "ua": "Нідерланди, Гелдерланд",
+      "eng": "Netherlands, Gelderland",
+      "slug": "netherlands"
+    },
+    "year": "1643",
+    "material": {
+      "ua": "Срібло",
+      "eng": "Silver",
+      "slug": "silver"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4800,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "5",
+    "slug": "thaler-netherlands-5",
+    "imgs": ["./images/product/1005.jpg", "./images/product/1105.jpg"],
+    "name": {
+      "ua": "Талер 1644",
+      "eng": "Thaler 1644"
+    },
+    "description": {
+      "ua": "Талер. 27.2 грам. Дельмонте 825.",
+      "eng": "Thaler. 27.2 grams. Delmonte 825."
+    },
+    "country": {
+      "ua": "Нідерланди, Гелдерланд",
+      "eng": "Netherlands, Gelderland",
+      "slug": "netherlands"
+    },
+    "year": "1644",
+    "material": {
+      "ua": "Срібло",
+      "eng": "Silver",
+      "slug": "silver"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4000,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "6",
+    "slug": "thaler-netherlands-6",
+    "imgs": ["./images/product/1006.jpg", "./images/product/1106.jpg"],
+    "name": {
+      "ua": "Талер 1646",
+      "eng": "Thaler 1646"
+    },
+    "description": {
+      "ua": "Талер. 27.2 грам. Дельмонте 825.",
+      "eng": "Thaler. 27.2 grams. Delmonte 825."
+    },
+    "country": {
+      "ua": "Нідерланди, Гелдерланд",
+      "eng": "Netherlands, Gelderland",
+      "slug": "netherlands"
+    },
+    "year": "1646",
+    "material": {
+      "ua": "Срібло",
+      "eng": "Silver",
+      "slug": "silver"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4300,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "7",
+    "slug": "thaler-netherlands-7",
+    "imgs": ["./images/product/1007.jpg", "./images/product/1107.jpg"],
+    "name": {
+      "ua": "Талер 1647",
+      "eng": "Thaler 1647"
+    },
+    "description": {
+      "ua": "Талер. 27.0 грам. Дельмонте 825.",
+      "eng": "Thaler. 27.0 grams. Delmonte 825."
+    },
+    "country": {
+      "ua": "Нідерланди, Гелдерланд",
+      "eng": "Netherlands, Gelderland",
+      "slug": "netherlands"
+    },
+    "year": "1647",
+    "material": {
+      "ua": "Срібло",
+      "eng": "Silver",
+      "slug": "silver"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4000,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "8",
+    "slug": "thaler-netherlands-8",
+    "imgs": ["./images/product/1008.jpg", "./images/product/1108.jpg"],
+    "name": {
+      "ua": "Талер 1648",
+      "eng": "Thaler 1648"
+    },
+    "description": {
+      "ua": "Талер. 26.9 грам. Дельмонте 825.",
+      "eng": "Thaler. 26.9 grams. Delmonte 825."
+    },
+    "country": {
+      "ua": "Нідерланди, Гелдерланд",
+      "eng": "Netherlands, Gelderland",
+      "slug": "netherlands"
+    },
+    "year": "1648",
+    "material": {
+      "ua": "Срібло",
+      "eng": "Silver",
+      "slug": "silver"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4000,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "9",
+    "slug": "thaler-netherlands-9",
+    "imgs": ["./images/product/1009.jpg", "./images/product/1109.jpg"],
+    "name": {
+      "ua": "Талер 1648",
+      "eng": "Thaler 1648"
+    },
+    "description": {
+      "ua": "Талер. 27.0 грам. Дельмонте 825.",
+      "eng": "Thaler. 27.0 grams. Delmonte 825."
+    },
+    "country": {
+      "ua": "Нідерланди, Гелдерланд",
+      "eng": "Netherlands, Gelderland",
+      "slug": "netherlands"
+    },
+    "year": "1648",
+    "material": {
+      "ua": "Срібло",
+      "eng": "Silver",
+      "slug": "silver"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4100,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "10",
+    "slug": "thaler-netherlands-10",
+    "imgs": ["./images/product/1010.jpg", "./images/product/1110.jpg"],
+    "name": {
+      "ua": "Талер 1649",
+      "eng": "Thaler 1649"
+    },
+    "description": {
+      "ua": "Талер. 27.2 грам. Дельмонте 825.",
+      "eng": "Thaler. 27.2 grams. Delmonte 825."
+    },
+    "country": {
+      "ua": "Нідерланди, Гелдерланд",
+      "eng": "Netherlands, Gelderland",
+      "slug": "netherlands"
+    },
+    "year": "1649",
+    "material": {
+      "ua": "Срібло",
+      "eng": "Silver",
+      "slug": "silver"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4000,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "11",
+    "slug": "ducat-hungary-11",
+    "imgs": ["./images/product/000001A.jpg", "./images/product/000001R.jpg"],
+    "name": {
+      "ua": "Дукат 1593",
+      "eng": "Ducat 1593"
+    },
+    "description": {
+      "ua": "Дукат. Кремниця. Фрідберг 63.",
+      "eng": "Ducat. Kremnica. Friedberg 63."
+    },
+    "country": {
+      "ua": "Угорщина",
+      "eng": "Hungary",
+      "slug": "hungary"
+    },
+    "year": "1593",
+    "material": {
+      "ua": "Золото",
+      "eng": "Gold",
+      "slug": "gold"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4000,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "12",
+    "slug": "ducat-hungary-12",
+    "imgs": ["./images/product/000002A.jpg", "./images/product/000002R.jpg"],
+    "name": {
+      "ua": "Дукат 1663",
+      "eng": "Ducat 1663"
+    },
+    "description": {
+      "ua": "Дукат. Кремниця. Фрідберг 128.",
+      "eng": "Ducat. Kremnica. Friedberg 128."
+    },
+    "country": {
+      "ua": "Угорщина",
+      "eng": "Hungary",
+      "slug": "hungary"
+    },
+    "year": "1663",
+    "material": {
+      "ua": "Золото",
+      "eng": "Gold",
+      "slug": "gold"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4000,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "13",
+    "slug": "ducat-hungary-13",
+    "imgs": ["./images/product/000003A.jpg", "./images/product/000003R.jpg"],
+    "name": {
+      "ua": "Дукат 1729",
+      "eng": "Ducat 1729"
+    },
+    "description": {
+      "ua": "Дукат. Кремниця. Фрідберг 171.",
+      "eng": "Ducat. Kremnica. Friedberg 171."
+    },
+    "country": {
+      "ua": "Угорщина",
+      "eng": "Hungary",
+      "slug": "hungary"
+    },
+    "year": "1729",
+    "material": {
+      "ua": "Золото",
+      "eng": "Gold",
+      "slug": "gold"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4000,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "14",
+    "slug": "ducat-romania-14",
+    "imgs": ["./images/product/000004A.jpg", "./images/product/000004R.jpg"],
+    "name": {
+      "ua": "Дукат 1727",
+      "eng": "Ducat 1727"
+    },
+    "description": {
+      "ua": "Дукат. Карлсбург. Фрідберг 520.",
+      "eng": "Ducat. Karlsburg. Friedberg 520."
+    },
+    "country": {
+      "ua": "Румунія, Трансильванія",
+      "eng": "Romania, Transylvania",
+      "slug": "romania"
+    },
+    "year": "1727",
+    "material": {
+      "ua": "Золото",
+      "eng": "Gold",
+      "slug": "gold"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4000,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "15",
+    "slug": "ducat-germany-15",
+    "imgs": ["./images/product/000005A.jpg", "./images/product/000005R.jpg"],
+    "name": {
+      "ua": "Дукат 1650",
+      "eng": "Ducat 1650"
+    },
+    "description": {
+      "ua": "Дукат. Фрідберг 1839.",
+      "eng": "Ducat. Friedberg 1839."
+    },
+    "country": {
+      "ua": "Німеччина, Нюрнберг",
+      "eng": "Germany, Nuremberg",
+      "slug": "germany"
+    },
+    "year": "1650",
+    "material": {
+      "ua": "Золото",
+      "eng": "Gold",
+      "slug": "gold"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4000,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "16",
+    "slug": "thaler-austria-16",
+    "imgs": ["./images/product/000006A.jpg", "./images/product/000006R.jpg"],
+    "name": {
+      "ua": "Талер 1607",
+      "eng": "Thaler 1607"
+    },
+    "description": {
+      "ua": "Талер. Галль. Давенпорт. 3005",
+      "eng": "Thaler. Hall. Davenport. 3005"
+    },
+    "country": {
+      "ua": "Австрія",
+      "eng": "Austria",
+      "slug": "austria"
+    },
+    "year": "1607",
+    "material": {
+      "ua": "Срібло",
+      "eng": "Silver",
+      "slug": "silver"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4000,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "17",
+    "slug": "thaler-austria-17",
+    "imgs": ["./images/product/000007A.jpg", "./images/product/000007R.jpg"],
+    "name": {
+      "ua": "Талер 1632",
+      "eng": "Thaler 1632"
+    },
+    "description": {
+      "ua": "Талер. Галль. Давенпорт. 3338",
+      "eng": "Thaler. Hall. Davenport. 3338"
+    },
+    "country": {
+      "ua": "Австрія",
+      "eng": "Austria",
+      "slug": "austria"
+    },
+    "year": "1632",
+    "material": {
+      "ua": "Срібло",
+      "eng": "Silver",
+      "slug": "silver"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4000,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "18",
+    "slug": "thaler-hungary-18",
+    "imgs": ["./images/product/000008A.jpg", "./images/product/000008R.jpg"],
+    "name": {
+      "ua": "Талер 1655",
+      "eng": "Thaler 1655"
+    },
+    "description": {
+      "ua": "Талер. Кремниця. Давенпорт. 3198",
+      "eng": "Thaler. Kremnitsa. Davenport. 3198"
+    },
+    "country": {
+      "ua": "Угорщина",
+      "eng": "Hungary",
+      "slug": "hungary"
+    },
+    "year": "1655",
+    "material": {
+      "ua": "Срібло",
+      "eng": "Silver",
+      "slug": "silver"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4000,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "19",
+    "slug": "thaler-germany-19",
+    "imgs": ["./images/product/000009A.jpg", "./images/product/000009R.jpg"],
+    "name": {
+      "ua": "Талер 1623",
+      "eng": "Thaler 1623"
+    },
+    "description": {
+      "ua": "Талер. Давенпорт. 6067",
+      "eng": "Thaler. Davenport. 6067"
+    },
+    "country": {
+      "ua": "Німеччина, Баварія",
+      "eng": "Germany, Bavaria",
+      "slug": "germany"
+    },
+    "year": "1623",
+    "material": {
+      "ua": "Срібло",
+      "eng": "Silver",
+      "slug": "silver"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4000,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "20",
+    "slug": "riksdaler-sweden-20",
+    "imgs": ["./images/product/000010A.jpg", "./images/product/000010R.jpg"],
+    "name": {
+      "ua": "Ріксдалер 1644",
+      "eng": "Riksdaler 1644"
+    },
+    "description": {
+      "ua": "Ріксдалер. Давенпорт. 4525",
+      "eng": "Riksdaler. Davenport. 4525"
+    },
+    "country": {
+      "ua": "Швеція",
+      "eng": "Sweden",
+      "slug": "sweden"
+    },
+    "year": "1644",
+    "material": {
+      "ua": "Срібло",
+      "eng": "Silver",
+      "slug": "silver"
+    },
+    "category": {
+      "ua": "Нумізматика",
+      "eng": "Numismatics",
+      "slug": "numismatics"
+    },
+    "subcategory": {
+      "ua": "Монети Європи",
+      "eng": "Coins of Europe",
+      "slug": "coins-of-europe"
+    },
+    "info": {
+      "ua": "Не вказана",
+      "eng": "Not specified"
+    },
+    "price": 4000,
+    "publicationDate": "2025-08-13"
+  },
+  {
+    "id": "21",
+    "slug": "scenery-with-a-river-21",
+    "imgs": ["./images/product/11.0021.0001..JPG"],
+    "name": {
+      "ua": "Пейзаж з річкою",
+      "eng": "Scenery with a river"
+    },
+    "description": {
+      "ua": "Картина \"Пейзаж з річкою\"",
+      "eng": "Painting \"Scenery with a river\""
+    },
+    "country": {
+      "ua": "Україна",
+      "eng": "Ukraine",
+      "slug": "ukraine"
+    },
+    "year": "Початок XX століття",
+    "material": {
+      "ua": "Олія на полотні",
+      "eng": "Oil on canvas",
+      "slug": "oil-on-canvas"
+    },
+    "category": {
+      "ua": "Інтерʼєрна спадщина",
+      "eng": "Interior heritage",
+      "slug": "interior-heritage"
+    },
+    "subcategory": {
+      "ua": "Живопис",
+      "eng": "Painting",
+      "slug": "painting"
+    },
+    "info": {
+      "ua": "Інвентарний номер: 11.0021.0001.\nАвтор: Брюквін В.С.\nРозмір: 61х87 см.\nДодаткова інформація: Підпис праворуч внизу.",
+      "eng": "Inventory number: 11.0021.0001.\nAuthor: Bryuquin V.S.\nSize: 61x87 cm.\nAdditional information: Signature at the bottom right."
+    },
+    "price": 8500,
+    "publicationDate": "2025-08-14"
+  },
+  {
+    "id": "22",
+    "slug": "night-on-the-river-bank-22",
+    "imgs": ["./images/product/11.0003.0014..JPG"],
+    "name": {
+      "ua": "Ніч на березі річки",
+      "eng": "Night on the river bank"
+    },
+    "description": {
+      "ua": "Картина \"Ніч на березі річки\"",
+      "eng": "Painting \"Night on the river bank\""
+    },
+    "country": {
+      "ua": "Україна",
+      "eng": "Ukraine",
+      "slug": "ukraine"
+    },
+    "year": "Не вказаний",
+    "material": {
+      "ua": "Олія на текстоліті",
+      "eng": "Oil on textolite",
+      "slug": "oil-on-textolite"
+    },
+    "category": {
+      "ua": "Інтерʼєрна спадщина",
+      "eng": "Interior heritage",
+      "slug": "interior-heritage"
+    },
+    "subcategory": {
+      "ua": "Живопис",
+      "eng": "Painting",
+      "slug": "painting"
+    },
+    "info": {
+      "ua": "Інвентарний номер: 11.0003.0014.\nАвтор: Максименко Н.А.\nРозмір: 41х50 см.\nДодаткова інформація: Підпис праворуч внизу.",
+      "eng": "Inventory number: 11.0003.0014.\nAuthor: Maksymenko N.A.\nSize: 41x50 cm.\nAdditional information: Signature at the bottom right."
+    },
+    "price": 3000,
+    "publicationDate": "2025-08-14"
+  },
+  {
+    "id": "23",
+    "slug": "apiary-in-spring-23",
+    "imgs": ["./images/product/11.0003.0009..JPG"],
+    "name": {
+      "ua": "Пасіка навесні",
+      "eng": "Apiary in spring"
+    },
+    "description": {
+      "ua": "Картина \"Пасіка навесні\"",
+      "eng": "Painting \"Apiary in spring\""
+    },
+    "country": {
+      "ua": "Україна",
+      "eng": "Ukraine",
+      "slug": "ukraine"
+    },
+    "year": "1995",
+    "material": {
+      "ua": "Олія на полотні",
+      "eng": "Oil on canvas",
+      "slug": "oil-on-canvas"
+    },
+    "category": {
+      "ua": "Інтерʼєрна спадщина",
+      "eng": "Interior heritage",
+      "slug": "interior-heritage"
+    },
+    "subcategory": {
+      "ua": "Живопис",
+      "eng": "Painting",
+      "slug": "painting"
+    },
+    "info": {
+      "ua": "Інвентарний номер: 11.0003.0009.\nАвтор: Максименко Н.А.\nРозмір: 80х74 см.\nДодаткова інформація: Підпис праворуч внизу.",
+      "eng": "Inventory number: 11.0003.0009.\nAuthor: Maksymenko N.A.\nSize: 80x74 cm.\nAdditional information: Signature at the bottom right."
+    },
+    "price": 5000,
+    "publicationDate": "2025-08-14"
+  },
+  {
+    "id": "24",
+    "slug": "flame-of-love-24",
+    "imgs": ["./images/product/11.0014.0002..JPG"],
+    "name": {
+      "ua": "Полум'я кохання",
+      "eng": "Flame of love"
+    },
+    "description": {
+      "ua": "Картина \"Полум'я кохання\"",
+      "eng": "Painting \"Flame of love\""
+    },
+    "country": {
+      "ua": "Україна",
+      "eng": "Ukraine",
+      "slug": "ukraine"
+    },
+    "year": "2011",
+    "material": {
+      "ua": "Олія на полотні",
+      "eng": "Oil on canvas",
+      "slug": "oil-on-canvas"
+    },
+    "category": {
+      "ua": "Інтерʼєрна спадщина",
+      "eng": "Interior heritage",
+      "slug": "interior-heritage"
+    },
+    "subcategory": {
+      "ua": "Живопис",
+      "eng": "Painting",
+      "slug": "painting"
+    },
+    "info": {
+      "ua": "Інвентарний номер: 11.0014.0002.\nАвтор: Дубовик К.В.\nРозмір: 55х65 см.\nДодаткова інформація: Підпис праворуч внизу.",
+      "eng": "Inventory number: 11.0014.0002.\nAuthor: Dubovik K.V.\nSize: 55x65 cm.\nAdditional information: Signature at the bottom right."
+    },
+    "price": 1000,
+    "publicationDate": "2025-08-14"
+  },
+  {
+    "id": "25",
+    "slug": "wind-25",
+    "imgs": ["./images/product/11.0026.0001..JPG"],
+    "name": {
+      "ua": "Вітер",
+      "eng": "Wind"
+    },
+    "description": {
+      "ua": "Картина \"Вітер\"",
+      "eng": "Painting \"Wind\""
+    },
+    "country": {
+      "ua": "Україна",
+      "eng": "Ukraine",
+      "slug": "ukraine"
+    },
+    "year": "1979",
+    "material": {
+      "ua": "Олія на полотні",
+      "eng": "Oil on canvas",
+      "slug": "oil-on-canvas"
+    },
+    "category": {
+      "ua": "Інтерʼєрна спадщина",
+      "eng": "Interior heritage",
+      "slug": "interior-heritage"
+    },
+    "subcategory": {
+      "ua": "Живопис",
+      "eng": "Painting",
+      "slug": "painting"
+    },
+    "info": {
+      "ua": "Інвентарний номер: 11.0026.0001.\nАвтор: Єлисеєв В. Я.\nРозмір: 50х80 см.",
+      "eng": "Inventory number: 11.0026.0001.\nAuthor: V. Ya. Eliseev\nSize: 50x80 cm."
+    },
+    "price": 1500,
+    "publicationDate": "2025-08-14"
+  },
+  {
+    "id": "26",
+    "slug": "kotygoroshko-26",
+    "imgs": [
+      "./images/product/10.0001.0008..JPG",
+      "./images/product/10.0001.0008.1..JPG",
+      "./images/product/10.0001.0008.2..JPG",
+      "./images/product/10.0001.0008.3..JPG",
+      "./images/product/10.0001.0008.4..JPG"
+    ],
+    "name": {
+      "ua": "Котигорошко",
+      "eng": "Kotygoroshko"
+    },
+    "description": {
+      "ua": "Порцеляна \"Котигорошко\"",
+      "eng": "Porcelain \"Kotygoroshko\""
+    },
+    "country": {
+      "ua": "Україна",
+      "eng": "Ukraine",
+      "slug": "ukraine"
+    },
+    "year": "Не вказаний",
+    "material": {
+      "ua": "Фарфор",
+      "eng": "Porcelain",
+      "slug": "porcelain"
+    },
+    "category": {
+      "ua": "Інтерʼєрна спадщина",
+      "eng": "Interior heritage",
+      "slug": "interior-heritage"
+    },
+    "subcategory": {
+      "ua": "Фарфор",
+      "eng": "Porcelain",
+      "slug": "porcelain"
+    },
+    "info": {
+      "ua": "Інвентарний номер: 10.0001.0008.\nАвтор: Полонне\nРозмір: Висота 33 см.",
+      "eng": "Inventory number: 10.0001.0008.\nAuthor: Polonne\nSize: Height 33 cm."
+    },
+    "price": 450,
+    "publicationDate": "2025-08-14"
+  },
+  {
+    "id": "27",
+    "slug": "may-night-27",
+    "imgs": [
+      "./images/product/10.0001.0001..JPG",
+      "./images/product/10.0001.0001.1..JPG",
+      "./images/product/10.0001.0001.2..JPG"
+    ],
+    "name": {
+      "ua": "Травнева ніч",
+      "eng": "May night"
+    },
+    "description": {
+      "ua": "Порцеляна \"Травнева ніч\"",
+      "eng": "Porcelain \"May night\""
+    },
+    "country": {
+      "ua": "Україна",
+      "eng": "Ukraine",
+      "slug": "ukraine"
+    },
+    "year": "Не вказаний",
+    "material": {
+      "ua": "Фарфор",
+      "eng": "Porcelain",
+      "slug": "porcelain"
+    },
+    "category": {
+      "ua": "Інтерʼєрна спадщина",
+      "eng": "Interior heritage",
+      "slug": "interior-heritage"
+    },
+    "subcategory": {
+      "ua": "Фарфор",
+      "eng": "Porcelain",
+      "slug": "porcelain"
+    },
+    "info": {
+      "ua": "Інвентарний номер: 10.0001.0001.\nАвтор: Полонне\nРозмір: Висота 30 см.",
+      "eng": "Inventory number: 10.0001.0001.\nAuthor: Polonne\nSize: Height 30 cm."
+    },
+    "price": 55,
+    "publicationDate": "2025-08-14"
+  },
+  {
+    "id": "28",
+    "slug": "sledder-28",
+    "imgs": [
+      "./images/product/10.0003.0005..JPG",
+      "./images/product/10.0003.0005.1..JPG",
+      "./images/product/10.0003.0005.2..JPG",
+      "./images/product/10.0003.0005.3..JPG",
+      "./images/product/10.0003.0005.4..JPG"
+    ],
+    "name": {
+      "ua": "Саночник",
+      "eng": "Sledder"
+    },
+    "description": {
+      "ua": "Порцеляна \"Саночник\"",
+      "eng": "Porcelain \"Sledder\""
+    },
+    "country": {
+      "ua": "Україна",
+      "eng": "Ukraine",
+      "slug": "ukraine"
+    },
+    "year": "Не вказаний",
+    "material": {
+      "ua": "Фарфор",
+      "eng": "Porcelain",
+      "slug": "porcelain"
+    },
+    "category": {
+      "ua": "Інтерʼєрна спадщина",
+      "eng": "Interior heritage",
+      "slug": "interior-heritage"
+    },
+    "subcategory": {
+      "ua": "Фарфор",
+      "eng": "Porcelain",
+      "slug": "porcelain"
+    },
+    "info": {
+      "ua": "Інвентарний номер: 10.0003.0005.\nАвтор: Городниця\nРозмір: Висота 12,5 см.",
+      "eng": "Inventory number: 10.0003.0005.\nAuthor: Horodnytsia\nSize: Height 12.5 cm."
+    },
+    "price": 150,
+    "publicationDate": "2025-08-14"
+  }
+]
