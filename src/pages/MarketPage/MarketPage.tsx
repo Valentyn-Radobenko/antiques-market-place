@@ -18,6 +18,7 @@ export const MarketPage = () => {
           <h2 className="market__h2">
             {query ? query : 'Всі предмети *кількість*'}
           </h2>
+          <DropdownNavigation optionType={categories} />
           {/* <Categories /> */}
         </div>
         <div className="market__settings-catalog">
@@ -39,9 +40,9 @@ export const MarketPage = () => {
           <div className="market-mob__settings">
             {/* <Categories /> */}
             {/* <Filters /> */}
+            <DropdownNavigation optionType={categories} />
             <DropdownNavigation optionType={filters} />
             <DropdownNavigation optionType={sortings} />
-            <DropdownNavigation optionType={categories} />
             {/* <Sortings /> */}
           </div>
         </div>

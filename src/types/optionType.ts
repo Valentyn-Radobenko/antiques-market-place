@@ -1,5 +1,5 @@
 export type SingleOption = {
-  id: number;
+  id: string;
   nameUa: string;
   nameEng: string;
   slug: string;
@@ -10,12 +10,12 @@ export type Options = {
   nameEng: string;
   slug: string;
   subcategories: SingleOption[];
-  id: number;
+  id: string;
 };
 
 export type OptionType = {
   nameUa: string;
   slug: 'filters' | 'categories' | 'sort';
-  type: 'filter' | 'sort';
+  type: 'multiple' | 'single';
   options: Options[];
 };
