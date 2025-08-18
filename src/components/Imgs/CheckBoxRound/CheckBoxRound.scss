@@ -1,0 +1,54 @@
+.checkbox-round {
+  box-shadow: inset 0px 0px 8px -1px rgba(175, 196, 190, 0.5);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  background: $gray-white;
+  transition: all ease $effect-duration;
+  &:hover {
+    box-shadow: none;
+    background: $additional-mint;
+
+    & .checkbox-round__circle1 {
+      stroke: $additional-greenas;
+    }
+  }
+
+  &.isActive {
+    background: $additional-freshherb-elect !important;
+
+    & .checkbox-round__circle1 {
+      stroke: #86bfae !important;
+    }
+  }
+
+  &__base-svg {
+    overflow: visible;
+  }
+
+  &__circle1 {
+    transition: all ease $effect-duration;
+    stroke: $gray-dis;
+    stroke-width: 1px;
+  }
+
+  &__circle2 {
+    stroke: $gray-white;
+    stroke-width: 1px;
+    opacity: 0;
+    transition: all ease $effect-duration;
+
+    &.isActive {
+      opacity: 1;
+    }
+  }
+}
+
+.hoverable:hover {
+  .checkbox-round {
+    background: $additional-mint;
+    & .checkbox-round__circle1 {
+      stroke: $additional-greenas;
+    }
+  }
+}

@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
-import { SortType } from '../../types/sorting';
-import { sortings } from '../../data/sortings';
-import { Sorting } from './Sorting/Sorting';
-import { SortingMob } from './SortingMob/SortingMob';
+// import { SortType } from '../../types/sorting';
+// import { sortings } from '../../data/sortings';
+// import { Sorting } from './Sorting/Sorting';
+// import { SortingMob } from './SortingMob/SortingMob';
 import classNames from 'classnames';
 
 export const Sortings = () => {
-  const [activeSortType, setActiveSortType] = useState<number | null>(null);
+  // const [activeSortType, setActiveSortType] = useState<number | null>(null);
   const [openSortings, setOpenSortings] = useState<boolean>(false);
 
-  const toggleSub = (current: SortType) => {
-    if (activeSortType === current.id) {
-      setActiveSortType(null);
-    } else {
-      setActiveSortType(current.id);
-    }
-  };
+  // const toggleSub = (current: SortType) => {
+  //   if (activeSortType === current.id) {
+  //     setActiveSortType(null);
+  //   } else {
+  //     setActiveSortType(current.id);
+  //   }
+  // };
 
   useEffect(() => {
     if (openSortings) {
@@ -56,14 +56,14 @@ export const Sortings = () => {
           </button>
         </div>
         <div className="sortings__options">
-          {sortings.map((sorting) => (
+          {/* {sortings.map((sorting) => (
             <Sorting
               key={sorting.id}
               sorting={sorting}
               activeSortType={activeSortType}
               setActiveSortType={setActiveSortType}
             />
-          ))}
+          ))} */}
         </div>
       </div>
 
@@ -142,14 +142,14 @@ export const Sortings = () => {
                 </svg>
               </div>
               <div className="settings-mobile__list-items">
-                {sortings.map((sorting) => (
+                {/* {sortings.map((sorting) => (
                   <SortingMob
                     key={sorting.id}
                     sorting={sorting}
                     activeSortType={activeSortType}
                     toggleSub={toggleSub}
                   />
-                ))}
+                ))} */}
               </div>
             </div>
           </div>

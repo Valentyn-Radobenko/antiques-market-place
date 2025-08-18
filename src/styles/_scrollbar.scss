@@ -11,40 +11,6 @@
   border-radius: inherit !important;
   overflow: hidden !important;
 }
-.market .simplebar-track {
-  width: 10px !important;
-  opacity: 1;
-
-  @media (max-width: 1439px) {
-    width: 24px !important;
-  }
-
-  background-image: linear-gradient(
-    286deg,
-    rgba(198, 223, 211, 0.24) 15.68%,
-    rgba(232, 245, 240, 0.8) 82.46%
-  );
-
-  border-inline: 1px solid #cbdbd9;
-}
-/* Ползунок (скролбар) */
-
-.market .simplebar-scrollbar::before {
-  min-height: 50px;
-  width: 8px !important;
-  background: #b9ccc9 !important;
-  border-radius: 4px !important;
-  opacity: 1 !important;
-}
-
-// /* Ширина самого ползунка */
-.market .simplebar-scrollbar {
-  width: 8px !important;
-  left: -2px !important;
-  @media (max-width: 1439px) {
-    left: 5.5px !important;
-  }
-}
 
 .expertise .simplebar-track {
   width: 24px !important;

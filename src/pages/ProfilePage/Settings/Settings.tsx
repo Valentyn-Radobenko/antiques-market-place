@@ -37,7 +37,7 @@ const baseSettings = [
   },
   {
     title: 'Пуш-сповіщення',
-    icon: <MarkUnreadChatSVG />, // місце для майбутнього SVG
+    icon: <MarkUnreadChatSVG />,
     options: [
       {
         label: 'Отримання нових повідомлень та пропозицій в реальному часі',
@@ -53,7 +53,7 @@ const baseSettings = [
   },
   {
     title: 'Додаткові налаштування',
-    icon: <CirclePlusSVG />, // місце для майбутнього SVG
+    icon: <CirclePlusSVG />,
     options: [
       { label: 'Звуковий сигнал для нових повідомлень', enabled: true },
       { label: '“Не турбувати”', enabled: false },
@@ -94,6 +94,7 @@ export const Settings = () => {
         <h2 className="profile-page__section-h2">Налаштування</h2>
       </div>
       <div className="settings">
+        <h3 className="settings__title">Сповіщення та повідомлення</h3>
         {settings.map((section) => (
           <div
             key={section.title}

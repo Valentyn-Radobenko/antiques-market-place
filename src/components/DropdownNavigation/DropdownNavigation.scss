@@ -1,0 +1,317 @@
+.dropdown-navigation {
+  background: $background-plate;
+  border-radius: 12px;
+
+  &.desktop {
+    @include on-tablet {
+      display: none;
+    }
+  }
+
+  &__top-bar {
+    display: flex;
+    padding: 16px;
+    gap: 8px;
+    align-items: center;
+    box-shadow: $drop-shadow;
+
+    &.categories {
+      background: $gray-white !important;
+    }
+
+    &.tablet-phone {
+      background: $background-plate;
+      border-radius: 12px;
+      display: none;
+      @include on-tablet {
+        display: flex;
+      }
+
+      @include on-phone {
+        flex-direction: column;
+      }
+    }
+  }
+
+  &__type-svg {
+    flex-shrink: 0;
+    color: $gray-black;
+  }
+
+  &__h4 {
+    width: 100%;
+    color: $additional-greenas;
+    @include h4-bold;
+  }
+
+  &__mop-wrapper {
+    visibility: hidden;
+    transition: all ease $effect-duration;
+    opacity: 0;
+    &.isActive {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__mop {
+    flex-shrink: 0;
+    color: $gray-lite;
+    cursor: pointer;
+    transition: inherit;
+    &:hover {
+      color: $additional-greenas;
+    }
+  }
+
+  &__arrow {
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: inherit;
+
+    &.isActive {
+      transform: rotate(180deg);
+    }
+
+    &.phone {
+      @include on-phone {
+        display: none;
+      }
+    }
+  }
+
+  &__list-of-options {
+  }
+
+  &__option {
+    border-top: 1px solid $gray-stroke;
+  }
+
+  &__option-top-bar {
+    transition: all ease $effect-duration;
+    color: $additional-greenas;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    align-items: center;
+
+    @include main-text;
+
+    &.categories {
+      background: $gray-white !important;
+    }
+
+    &.isActive {
+      @include button-bold;
+      color: $additional-freshherb-elect !important;
+    }
+
+    &.categories.isActive {
+      border-bottom: 1px solid;
+      border-image: $primary;
+      border-image-slice: 1;
+    }
+  }
+
+  &__nav-icon {
+    color: $gray-black;
+    flex-shrink: 0;
+  }
+
+  &__list-of-suboptions-wrapper {
+    background: $gray-white;
+
+    overflow: hidden;
+    transition: all ease $effect-duration;
+  }
+
+  &__list-of-suboptions {
+  }
+
+  &__modal-visibility {
+    display: flex;
+    justify-content: start;
+    z-index: 2;
+
+    @include on-phone {
+      align-items: end;
+    }
+  }
+
+  &__modal-window {
+    width: 394px;
+    background: $gray-white;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 56px;
+    padding-bottom: 112px;
+
+    @include on-phone {
+      width: 100%;
+      padding-top: 16px;
+    }
+  }
+
+  &__close {
+    color: $gray-black;
+    align-self: flex-end;
+    margin-right: 16px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  &__suboption {
+    padding: 16px;
+    @include main-text;
+    color: $gray-black;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    transition: all ease $effect-duration;
+
+    &:hover {
+      background: $additional-white-green;
+    }
+
+    &.isActive {
+      color: $additional-freshherb-elect;
+      @include button-bold;
+    }
+  }
+
+  &__simplebar {
+    .simplebar-track {
+      width: 10px !important;
+      opacity: 1;
+
+      @include on-tablet {
+        width: 24px !important;
+      }
+
+      background-image: $background-plate-2;
+
+      border-inline: 1px solid $gray-stroke;
+    }
+
+    .simplebar-scrollbar {
+      width: 8px !important;
+      left: -2px !important;
+      @media (max-width: 1439px) {
+        left: 5.5px !important;
+      }
+    }
+
+    .simplebar-scrollbar::before {
+      min-height: 50px;
+      width: 8px !important;
+      background: $additional-gray-gray !important;
+      border-radius: 4px !important;
+      opacity: 1 !important;
+    }
+  }
+
+  &__categories {
+    display: flex;
+    width: 100%;
+    box-shadow: $drop-shadow;
+    position: relative;
+    border-radius: 12px;
+    background: $gray-white;
+
+    @include on-tablet {
+      display: none;
+    }
+
+    &.isActive {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &-border-wrapper {
+      overflow: hidden;
+      width: 100%;
+    }
+    &-option {
+      border-radius: inherit;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition:
+        font-size ease $effect-duration,
+        font-weight ease $effect-duration,
+        background ease $effect-duration,
+        color ease $effect-duration;
+      cursor: pointer;
+      @include main-text;
+      color: $gray-black;
+      border-bottom: 1px solid transparent;
+
+      &:hover {
+        @include button-bold;
+        background: $additional-white-green;
+      }
+
+      &.isActive {
+        color: $additional-freshherb-elect;
+        @include button-bold;
+        border-image: $primary;
+        border-image-slice: 1;
+      }
+
+      &.notActive {
+        color: $gray-darks;
+        border-bottom: 1px solid $gray-stroke;
+      }
+    }
+
+    &-option-name {
+    }
+
+    &-arrow {
+      transition: all ease $effect-duration;
+      &.isActive {
+        transform: rotate(180deg);
+      }
+    }
+
+    &-subcategories-list {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      transform: translateY(100%);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 24px;
+      background: $gray-white;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      box-shadow: $drop-shadow;
+    }
+
+    &-subcategories {
+      width: 25%;
+      text-align: center;
+      padding: 16px;
+      @include main-text;
+      color: $additional-greenas;
+      cursor: pointer;
+      border-radius: 12px;
+
+      &:hover {
+        @include button-bold;
+        background: $additional-white-green;
+      }
+
+      &.isActive {
+        @include button-bold;
+        color: $additional-freshherb-elect;
+      }
+    }
+  }
+}

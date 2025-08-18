@@ -208,7 +208,7 @@
   &__circle-line {
     position: absolute;
     stroke: $additional-gray-gray;
-    z-index: 10;
+    z-index: 1;
 
     &.isActive {
       stroke: $additional-freshherb-elect;
@@ -449,5 +449,267 @@
   &__item {
     @include tab-regular;
     color: $gray-dark;
+  }
+}
+
+.password-email {
+  background: $background-plate;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__h3 {
+    @include h3-bold;
+
+    @include on-phone {
+      @include h4-bold;
+    }
+  }
+
+  &__main-info {
+    display: flex;
+
+    @include on-phone {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+  &__texts {
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__section-title {
+    @include label-bold;
+    color: $additional-greenas;
+  }
+
+  &__section-value {
+    @include main-text;
+    color: $gray-dark;
+  }
+
+  &__password-block {
+    display: flex;
+    gap: 8px;
+    position: relative;
+  }
+
+  &__info-svg {
+    color: $system-info;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  &__button {
+    align-self: flex-end;
+    @include primary-button;
+    display: flex;
+    gap: 8px;
+    width: 238px;
+    padding-block: 16px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    @include button-bold;
+
+    @include on-phone {
+      width: 100%;
+    }
+  }
+
+  &__button-text {
+  }
+
+  &__change-pass-info {
+    max-width: 361px;
+    position: absolute;
+    right: -8px;
+    display: flex;
+    gap: 8px;
+    padding: 16px;
+    background: $background-page;
+    border-radius: 12px;
+    border: 1px solid $system-info;
+    z-index: 3;
+    opacity: 0;
+    transition: all ease $effect-duration;
+    visibility: hidden;
+
+    &.isActive {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__change-pass-info-text {
+    @include main-text;
+
+    &-bold {
+      @include button-bold;
+    }
+  }
+
+  &__change-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+    @include on-tablet {
+      align-items: end;
+    }
+  }
+}
+
+.change-password {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  border-radius: 12px;
+  background: $background-page;
+  padding: 40px;
+  width: 458px;
+
+  &__top-bar {
+    display: flex;
+    justify-content: space-between;
+    color: $additional-greenas;
+  }
+
+  &__arrow {
+    transform: rotate(180deg);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+
+    &.isActive {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__close {
+    cursor: pointer;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__h2 {
+    @include h2-bold;
+    color: $additional-black-green;
+  }
+
+  &__info-texts {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    @include main-text;
+
+    &.isActive {
+      display: flex;
+    }
+  }
+
+  &__text {
+    color: $gray-black;
+  }
+
+  &__email {
+    color: $additional-greenas;
+  }
+
+  &__email-text {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  &__form-wrapper {
+  }
+
+  &__form {
+    display: none;
+    flex-direction: column;
+    gap: 32px;
+
+    &.isActive {
+      display: flex;
+    }
+  }
+
+  &__change-password {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__general-form-part {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__input-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__title {
+    color: $additional-greenas;
+    @include label-bold;
+  }
+
+  &__input {
+    @include input-style;
+  }
+
+  &__error {
+    @include tab-regular;
+    color: $system-error;
+  }
+
+  &__time-to-put {
+    @include tab-regular;
+    color: $gray-lite;
+  }
+
+  &__send-again {
+    @include main-text;
+    color: $additional-greenas;
+  }
+
+  &__button {
+    @include primary-button;
+    width: 100%;
+    padding-block: 16px;
+    @include button-bold;
+  }
+
+  &__successes {
+    @include main-text;
+    color: $additional-freshherb-elect;
+    text-align: center;
   }
 }

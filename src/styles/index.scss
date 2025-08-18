@@ -20,6 +20,9 @@
 @import '../components/Crumbs/Crumbs';
 @import '../pages/ExhibitionsPage/ExhibitionsPage';
 @import '../pages/ArticlesPage/ArticlesPage';
+@import '../components/DropdownNavigation/DropdownNavigation.scss';
+@import '../components/Imgs/CheckBoxRound/CheckBoxRound.scss';
+@import '../components/Imgs/CheckBoxSquare/CheckBoxSquare.scss';
 
 @import '../components/MarketItem/MarketItem.scss';
 @import '../components/Catalog/Catalog.scss';
@@ -55,6 +58,8 @@
 @import '../pages/ProfilePage/Orders/Order/Order.scss';
 @import '../pages/ProfilePage/Discussions/Discussions.scss';
 @import '../pages/ProfilePage//Settings/Settings.scss';
+
+@import '../components/DropdownNavigation/DropdownNavigation.scss';
 
 @import '../components/DropdownOptions/DropdownOptions.scss';
 

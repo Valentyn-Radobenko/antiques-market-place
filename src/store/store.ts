@@ -4,11 +4,12 @@ import expHeaderReducer, { ExpHeaderState } from './slices/expHeaderSlice';
 import currencyReducer, { CurrencyState } from './slices/currencySlice';
 import authModeReducer, { AuthModeState } from './slices/authModeSlice';
 import authReducer, { AuthState } from './slices/authSlice';
-import userReducer, { UserState } from './slices/userSlice';
+import userReducer from './slices/userSlice';
 import expSearchReducer, { ExpSearchState } from './slices/expSearchSlice';
 import menuReducer, { MenuState } from './slices/menuSlice';
 import { saveState, loadState } from './../utils/localStorageUtils';
 import { availableCurrencies } from '../data/availableCurrencies';
+import { UserState } from '../types/user';
 
 // Завантажуємо стан з localStorage
 const persistedState = loadState();

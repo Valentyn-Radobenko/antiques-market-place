@@ -1,9 +1,10 @@
 import { Catalog } from '../../components/Catalog/Catalog';
 import { MarketForm } from '../../components/MarketForm/MarketForm';
-import { Categories } from '../../components/Categories/Categories';
 import { useSearchParams } from 'react-router-dom';
-import { Filters } from '../../components/Filters/Filters';
-import { Sortings } from '../../components/Sortings/Sortings';
+import { DropdownNavigation } from '../../components/DropdownNavigation/DropdownNavigation';
+import { filters } from '../../data/filters';
+import { sortings } from '../../data/sortings';
+import { categories } from '../../data/categories';
 
 export const MarketPage = () => {
   const [searchParams] = useSearchParams();
@@ -17,12 +18,15 @@ export const MarketPage = () => {
           <h2 className="market__h2">
             {query ? query : 'Всі предмети *кількість*'}
           </h2>
-          <Categories />
+          <DropdownNavigation optionType={categories} />
+          {/* <Categories /> */}
         </div>
         <div className="market__settings-catalog">
           <div className="market__settings">
-            <Filters />
-            <Sortings />
+            <DropdownNavigation optionType={filters} />
+            <DropdownNavigation optionType={sortings} />
+            {/* <Filters /> */}
+            {/* <Sortings /> */}
           </div>
           <Catalog />
         </div>
@@ -34,9 +38,12 @@ export const MarketPage = () => {
             {query ? query : 'Всі предмети *кількість*'}
           </h2>
           <div className="market-mob__settings">
-            <Categories />
-            <Filters />
-            <Sortings />
+            {/* <Categories /> */}
+            {/* <Filters /> */}
+            <DropdownNavigation optionType={categories} />
+            <DropdownNavigation optionType={filters} />
+            <DropdownNavigation optionType={sortings} />
+            {/* <Sortings /> */}
           </div>
         </div>
 

@@ -1,23 +1,16 @@
 import { EditSVG } from '../../../../components/Imgs/EditSVG';
-import apiClient from '../../../../utils/apiClient';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../../../store/store';
+import { updateUserField } from '../../../../store/slices/userSlice';
 
-export const AccountGeneral = () => {
-  //test func
-  const handleChangeInfo = async () => {
-    try {
-      await apiClient
-        .put('/users/me/upd-profile', {
-          firstName: '123',
-          lastName: '567',
-          coutry: 'Ua',
-        })
-        .then(() => {
-          console.log('OK');
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+type Props = {
+  firstName: string | null;
+  lastName: string | null;
+};
+export const AccountGeneral: React.FC<Props> = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const [changeName, setChangeName] = useState<boolean>(false);
 
   return (
     <div className="account-general">
@@ -27,14 +20,29 @@ export const AccountGeneral = () => {
           <div className="account-general__single-data">
             <p className="account-general__data-text">Андрій Містеряков</p>
             <EditSVG
-              onClick={handleChangeInfo}
+              onClick={() => setChangeName(true)}
               className="account-general__data-ico"
             />
           </div>
-          <div className="account-general__single-data">
-            <p className="account-general__data-text">Україна, Київ</p>
-            <EditSVG className="account-general__data-ico" />
-          </div>
+          {changeName ?
+            <div className="account-general__single-data">
+              <p className="account-general__data-text">Україна, Київ</p>
+              <EditSVG className="account-general__data-ico" />
+            </div>
+          : <div>
+              {/* <input value={firstName} placeholder='firtName' type="text" /> */}
+              {/* <input value={lastName} placeholder='lastName' type="text" /> */}
+              <button
+                onClick={() =>
+                  dispatch(
+                    updateUserField({ field: 'firstName', value: 'Іван' }),
+                  )
+                }
+              >
+                accepte Change
+              </button>
+            </div>
+          }
         </div>
       </div>
       <div className="account-general__block">
