@@ -25,6 +25,7 @@ import { Orders } from './pages/ProfilePage/Orders/Orders';
 import { Security } from './pages/ProfilePage/Security/Security';
 import { Settings } from './pages/ProfilePage/Settings/Settings';
 import { ArticlesPage } from './pages/ArticlesPage/ArticlesPage';
+import { ProductPage } from './pages/ProductPage/ProductPage';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <StrictMode>
@@ -47,6 +48,11 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
                 element={<MarketPage />}
               />
             </Route>
+
+            <Route
+              path="product"
+              element={<ProductPage />}
+            />
 
             <Route
               path="club"

@@ -2,6 +2,12 @@
 
 // #region media
 
+@mixin on-small-laptop {
+  @media (max-width: $small-laptop-max-width) {
+    @content;
+  }
+}
+
 @mixin on-tablet {
   @media (max-width: $tablet-max-width) {
     @content;

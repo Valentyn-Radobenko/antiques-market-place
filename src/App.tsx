@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { fetchUserData } from './store/slices/userSlice';
 import 'simplebar-react/dist/simplebar.min.css';
 import './styles/_scrollbar.scss';
+import { ProductStickyCTA } from './components/ProductStickyCTA/ProductStickyCTA';
 
 export const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -31,14 +32,15 @@ export const App: React.FC = () => {
     }
   }, [token, dispatch]);
   return (
-    <>
+    <div className="page__wrapper">
       <div className="page__bg"></div>
       <Header />
 
       <main className="main">
         <Outlet />
       </main>
+      <ProductStickyCTA />
       <Footer />
-    </>
+    </div>
   );
 };

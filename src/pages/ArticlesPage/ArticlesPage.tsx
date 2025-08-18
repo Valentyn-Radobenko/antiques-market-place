@@ -1,7 +1,8 @@
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { useIsTablet } from '../../hooks/useMediaQuery';
 import articles from '../../data/articles.json';
+import { Crumbs } from '../../components/Crumbs/Crumbs';
 
 export const ArticlesPage = () => {
   const isTablet = useIsTablet();
@@ -19,21 +20,10 @@ export const ArticlesPage = () => {
   return (
     <div className="articles">
       <div className="articles__nav-bar">
-        <div className="articles__crumbs">
-          <Link
-            to={'/club'}
-            className="articles__crumbs-link articles__crumbs-link--inactive"
-          >
-            Клуб колекціонерів
-          </Link>
-          <div className="articles__crumbs-chevron"></div>
-          <Link
-            to={'/club/articles'}
-            className="articles__crumbs-link articles__crumbs-link--active"
-          >
-            Статті
-          </Link>
-        </div>
+        <Crumbs
+          links={['/club', '/club/articles']}
+          titles={['Клуб колекціонерів', 'Статті']}
+        />
 
         <div className="articles__heading">
           <h1 className="articles__title">Статті</h1>

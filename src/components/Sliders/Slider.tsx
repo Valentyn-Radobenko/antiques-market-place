@@ -4,14 +4,15 @@ import classNames from 'classnames';
 
 interface SliderProps<T> {
   sliderTitle: string;
-  renderSliderLink: () => React.ReactNode;
+  renderSliderLink?: () => React.ReactNode;
   renderSecondSliderTitle?: () => React.ReactNode;
   slides: T[];
   slidesPerView?: number;
-  customSectionClassName?: string;
-  customWrapperClassName?: string;
+  customClassName?: string;
+  autoplayOn?: boolean;
+  initialSlide?: number;
 
-  renderSlide: (slide: T) => React.ReactNode;
+  renderSlide: (slide: T, index?: number) => React.ReactNode;
 }
 
 export default function Slider<T>({
@@ -20,8 +21,9 @@ export default function Slider<T>({
   renderSecondSliderTitle,
   slides,
   slidesPerView = 1,
-  customSectionClassName = '',
-  customWrapperClassName = '',
+  customClassName = '',
+  autoplayOn = true,
+  initialSlide = 0,
   renderSlide,
 }: SliderProps<T>) {
   const sliderRef = useRef<SlickSlider>(null);
@@ -44,7 +46,8 @@ export default function Slider<T>({
     dots: true,
     infinite: true,
     speed: 1100,
-    autoplay: true,
+    autoplay: autoplayOn,
+    initialSlide: initialSlide,
     autoplaySpeed: 4000,
     slidesToShow: slidesPerView,
     slidesToScroll: slidesPerView,
@@ -79,19 +82,23 @@ export default function Slider<T>({
   };
 
   return (
-    <section className={`slider ${customSectionClassName}`}>
-      <header className="slider__header">
-        <h2 className="slider__header-title">{sliderTitle}</h2>
-        {renderSliderLink()}
+    <section className={`slider ${customClassName}`}>
+      <header className={`slider__header ${customClassName}__header`}>
+        <h2 className={`slider__header-title ${customClassName}__header-title`}>
+          {sliderTitle}
+        </h2>
+        {renderSliderLink && renderSliderLink()}
       </header>
-      <div className={`slider__big-container ${customWrapperClassName}-big`}>
-        <div className={`slider__container ${customWrapperClassName}`}>
+      <div
+        className={`slider__big-container ${customClassName}__big-container`}
+      >
+        <div className={`slider__container ${customClassName}__container`}>
           {renderSecondSliderTitle && renderSecondSliderTitle()}
           <SlickSlider
             ref={sliderRef}
             {...settings}
           >
-            {slides.map((slide) => renderSlide(slide))}
+            {slides.map((slide, index) => renderSlide(slide, index))}
           </SlickSlider>
         </div>
       </div>

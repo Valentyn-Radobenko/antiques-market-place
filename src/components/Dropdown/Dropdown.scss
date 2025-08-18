@@ -19,9 +19,6 @@
   }
 
   &__arrow {
-    background-image: url('/images/header/keyboard-arrow-down-rounded.svg');
-    width: 24px;
-    height: 24px;
     transition: $effect-duration;
 
     &--active {

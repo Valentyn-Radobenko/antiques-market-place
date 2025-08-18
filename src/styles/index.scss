@@ -17,6 +17,7 @@
 @import '../components/Dropdown/Dropdown';
 @import '../components/NavSortSearch/NavSortSearch.scss';
 @import '../components/Pagination/Pagination';
+@import '../components/Crumbs/Crumbs';
 @import '../pages/ExhibitionsPage/ExhibitionsPage';
 @import '../pages/ArticlesPage/ArticlesPage';
 @import '../components/DropdownNavigation/DropdownNavigation.scss';
@@ -30,6 +31,7 @@
 @import '../components/Filters/FilterItem/FilterItem.scss';
 @import '../components/Filters/FilterMob/FilterMob.scss';
 @import '../pages/MarketPage/MarketPage.scss';
+@import '../pages/ProductPage/ProductPage.scss';
 @import '../components/MarketForm/MarketForm.scss';
 @import '../components/Sortings/Sortings.scss';
 @import '../components/Sortings/SortingItem/SotingItme.scss';
@@ -87,6 +89,12 @@ html * {
   color: $gray-black;
   scroll-behavior: smooth;
 
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
   &__header {
     margin-bottom: 24px;
   }
@@ -111,11 +119,20 @@ html * {
       background-size: cover;
     }
   }
+
+  &__product {
+    margin-bottom: 32px;
+
+    @include on-tablet {
+      margin-bottom: 16px;
+    }
+  }
 }
 
 .main {
   display: flex;
   flex-direction: column;
+  flex: 1;
 
   @include standard-inline-paddings;
 

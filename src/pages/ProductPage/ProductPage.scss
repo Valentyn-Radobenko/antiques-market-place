@@ -1,0 +1,328 @@
+.product {
+  display: flex;
+  width: 1360px;
+  align-items: flex-start;
+
+  border-radius: 12px;
+  background: $gray-white;
+
+  align-self: center;
+
+  @include on-tablet {
+    width: auto;
+    flex-direction: column;
+  }
+
+  &__crumbs {
+    margin-bottom: 16px;
+  }
+
+  &__media {
+    display: flex;
+    flex-direction: column;
+    width: 670px;
+    align-items: flex-start;
+    gap: 8px;
+    flex-shrink: 0;
+    align-self: stretch;
+
+    border-radius: 12px 0px 0px 12px;
+    background: $background-page;
+
+    /* Floating card Double shadow */
+    box-shadow:
+      0px 8px 20px 2px rgba(170, 182, 178, 0.2),
+      0px -4px 12px 0px rgba(255, 255, 255, 0) inset;
+    backdrop-filter: blur(12px);
+  }
+
+  &__title {
+    color: $gray-black;
+    padding: 24px;
+
+    @include h2-bold;
+  }
+
+  &__img {
+    display: flex;
+    width: 670px;
+    height: 670px;
+    padding: 8px;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+
+    background-image: url('images/product/product-1.png');
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 0 0;
+    align-self: stretch;
+
+    border-radius: 0px 0px 12px 12px;
+    background: var(--Gray-White, #f7fffd);
+
+    /* Floating card Double shadow */
+    box-shadow:
+      0px 8px 20px 2px rgba(170, 182, 178, 0.2),
+      0px -4px 12px 0px rgba(255, 255, 255, 0) inset;
+    backdrop-filter: blur(12px);
+  }
+
+  &__top {
+    display: flex;
+    padding: 24px 24px 16px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+
+    border-bottom: 1px solid $gray-stroke;
+  }
+
+  &__chars {
+    display: flex;
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+
+    border-radius: 12px;
+    background: $background-plate;
+
+    /* Double glass */
+    box-shadow:
+      0px -4px 16px 0px rgba(255, 255, 255, 0),
+      0px 4px 16px -6px rgba(255, 255, 255, 0),
+      0px 8px 32px -4px rgba(0, 0, 0, 0);
+    backdrop-filter: blur(15px);
+  }
+
+  &__char {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+
+    border-radius: 12px;
+
+    &-icon {
+      width: 24px;
+      height: 24px;
+      aspect-ratio: 1/1;
+      color: $gray-black;
+    }
+
+    &-label {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 8px;
+      width: 96px;
+
+      color: $additional-black-green;
+      @include button-bold;
+    }
+
+    &-value {
+      display: flex;
+      padding: 4px 8px;
+      align-items: center;
+      gap: 8px;
+      flex: 1 0 0;
+
+      border-radius: 12px;
+
+      color: $additional-greenas;
+      @include main-text;
+    }
+  }
+
+  &__dropdown {
+    margin: 0;
+    padding: 0;
+    height: auto;
+
+    &-button {
+      display: flex;
+      padding: 16px;
+      align-items: center;
+      gap: 8px;
+      align-self: stretch;
+      color: $gray-black;
+      transition: $effect-duration;
+
+      @include h4-bold;
+
+      @include main-text;
+
+      &--active {
+        color: $additional-freshherb-elect;
+      }
+    }
+
+    &-option {
+      padding: 0 16px 16px;
+
+      color: $gray-dark;
+
+      @include main-text;
+    }
+  }
+
+  &__middle {
+    display: flex;
+    padding: 24px;
+    align-items: flex-end;
+    gap: 16px;
+    align-self: stretch;
+
+    border-bottom: 1px solid $gray-stroke;
+
+    @include on-tablet {
+      display: none;
+    }
+  }
+
+  &__price {
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    gap: 8px;
+
+    border-radius: 12px;
+
+    &-label {
+      color: $additional-black-green;
+
+      @include label-bold;
+    }
+
+    &-value {
+      color: $additional-freshherb-elect;
+
+      @include h4-bold;
+    }
+  }
+
+  &__cta {
+    display: flex;
+    height: 58px;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex: 1 0 0;
+
+    @include primary-button;
+
+    @include on-tablet {
+      display: flex;
+      width: 100%;
+      height: 58px;
+      padding: 16px;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      position: sticky;
+      bottom: 0;
+      left: 0;
+
+      border-radius: 12px;
+      background: var(
+        --Primary,
+        linear-gradient(94deg, #0d392c 24.5%, #40916c 73.5%, #95d5b2 98%)
+      );
+
+      /* Button */
+      box-shadow: 0px 0px 8px 0px rgba(236, 255, 252, 0);
+      backdrop-filter: blur(25px);
+
+      &-wrapper {
+        display: flex;
+        margin-bottom: 16px;
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        z-index: 10;
+      }
+    }
+
+    &-text {
+      color: inherit;
+
+      @include button-bold;
+    }
+
+    &-icon {
+      color: inherit;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+
+    &-block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      align-self: stretch;
+
+      border-radius: 12px;
+
+      /* Double glass */
+      box-shadow:
+        0px -4px 16px 0px rgba(255, 255, 255, 0),
+        0px 4px 16px -6px rgba(255, 255, 255, 0),
+        0px 8px 32px -4px rgba(0, 0, 0, 0);
+      backdrop-filter: blur(15px);
+
+      &-title {
+        color: $additional-black-green;
+
+        @include button-bold;
+      }
+
+      &-options {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        align-self: stretch;
+      }
+
+      &-option {
+        display: flex;
+        padding: 4px 8px;
+        align-items: center;
+        gap: 8px;
+        flex: 1 0 0;
+
+        border-radius: 12px;
+
+        &-icon {
+          width: 24px;
+          height: 24px;
+          aspect-ratio: 1/1;
+        }
+
+        &-description {
+          color: $gray-dark;
+
+          @include main-text;
+        }
+      }
+    }
+  }
+}

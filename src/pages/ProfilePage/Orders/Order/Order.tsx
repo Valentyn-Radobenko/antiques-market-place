@@ -7,7 +7,7 @@ import { HandsSVG } from '../../../../components/Imgs/HandsSVG';
 import { useState } from 'react';
 import { AccountSVG } from '../../../../components/Imgs/AccountSVG';
 import { LocationSVG } from '../../../../components/Imgs/LocationSVG';
-import { PaymentSVG } from '../../../../components/Imgs/paymentSVG';
+import { CreditCardSVG } from '../../../../components/Imgs/CreditCardSVG';
 
 type Props = {
   order: OrderType;
@@ -163,7 +163,7 @@ export const Order: React.FC<Props> = ({ order }) => {
                   </div>
                   <div className="order__delivery-item">
                     <div className="order__delivery-status">
-                      <PaymentSVG className="order__delivery-icon" />
+                      <CreditCardSVG className="order__delivery-icon" />
                       <p className="order__delivery-status-name">Оплата:</p>
                     </div>
                     <p className="order__delivery-status-info">
