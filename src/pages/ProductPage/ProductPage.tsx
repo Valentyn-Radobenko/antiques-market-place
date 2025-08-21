@@ -14,9 +14,19 @@ import { WarehouseSVG } from '../../components/Imgs/WarehouseSVG';
 import { ProductSlider } from '../../components/Sliders/ProductSlider';
 import { ProductsSlider } from '../../components/Sliders/ProductsSlider';
 import { useIsTablet } from '../../hooks/useMediaQuery';
+import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
+import { ShoppingCart } from '../../components/ShoppingCart/ShoppingCart';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, SavingState } from '../../store/store';
+import { setIsOpen } from '../../store/slices/shoppingCartSlice';
 
 export const ProductPage = () => {
   const isTablet = useIsTablet();
+  const dispatch = useDispatch<AppDispatch>();
+  const isModalOpen = useSelector(
+    (state: SavingState) => state.shoppingCart.isOpen,
+  );
+
   return (
     <>
       <Crumbs
@@ -85,7 +95,12 @@ export const ProductPage = () => {
               <span className="product__price-label">Ціна:</span>
               <span className="product__price-value">4000 грн</span>
             </div>
-            <button className="product__cta">
+            <button
+              onClick={() => {
+                dispatch(setIsOpen(true));
+              }}
+              className="product__cta"
+            >
               <span className="product__cta-text">Купити</span>
               <ShoppingCartSVG className="product__cta-icon" />
             </button>
@@ -135,6 +150,14 @@ export const ProductPage = () => {
         </div>
       </div>
       <ProductsSlider />
+      <ModalWindow
+        openModal={isModalOpen}
+        isCart={true}
+        visibility="shopping-cart__modal"
+        secondModal={false}
+      >
+        <ShoppingCart />
+      </ModalWindow>
     </>
   );
 };

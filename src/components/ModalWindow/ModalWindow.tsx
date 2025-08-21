@@ -1,12 +1,16 @@
 import React, { Dispatch, ReactNode, SetStateAction, useEffect } from 'react';
 import classNames from 'classnames';
 import ReactDOM from 'react-dom';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store/store';
+import { setIsOpen } from '../../store/slices/shoppingCartSlice';
 type Props = {
   children: ReactNode;
   openModal: boolean;
-  setOpenModal: Dispatch<SetStateAction<boolean>>;
+  setOpenModal?: Dispatch<SetStateAction<boolean>>;
   visibility?: string;
   secondModal: boolean;
+  isCart?: boolean;
 };
 
 export const ModalWindow: React.FC<Props> = ({
@@ -15,6 +19,7 @@ export const ModalWindow: React.FC<Props> = ({
   children,
   openModal,
   setOpenModal,
+  isCart = false,
 }) => {
   useEffect(() => {
     if (openModal) {
@@ -23,6 +28,8 @@ export const ModalWindow: React.FC<Props> = ({
       document.body.style.overflow = 'auto';
     }
   }, [openModal]);
+
+  const dispatch = useDispatch<AppDispatch>();
 
   return ReactDOM.createPortal(
     <div
@@ -35,7 +42,11 @@ export const ModalWindow: React.FC<Props> = ({
         className={classNames('modal__background', {
           secondModal: secondModal,
         })}
-        onClick={() => setOpenModal(false)}
+        onClick={() =>
+          isCart ?
+            dispatch(setIsOpen(false))
+          : setOpenModal && setOpenModal(false)
+        }
       />
     </div>,
     document.body,

@@ -10,6 +10,8 @@ import menuReducer, { MenuState } from './slices/menuSlice';
 import { saveState, loadState } from './../utils/localStorageUtils';
 import { availableCurrencies } from '../data/availableCurrencies';
 import { UserState } from '../types/user';
+import { ShoppingCartState } from '../types/shoppingCart';
+import shoppingCartReducer from './slices/shoppingCartSlice';
 
 // Завантажуємо стан з localStorage
 const persistedState = loadState();
@@ -24,6 +26,7 @@ export interface RootState {
   expSearch: ExpSearchState;
   user: UserState;
   menu: MenuState;
+  shoppingCart: ShoppingCartState;
 }
 
 // Тип для стану який зберігається в локальній пам'яті
@@ -35,6 +38,7 @@ export interface SavingState {
   auth: AuthState;
   expSearch: ExpSearchState;
   menu: MenuState;
+  shoppingCart: ShoppingCartState;
 }
 
 // Приведення стану до правильного типу
@@ -123,6 +127,52 @@ const validatedState: SavingState =
             persistedState.menu.isMenuOn
           : false,
       },
+      shoppingCart: {
+        items:
+          persistedState.shoppingCart && persistedState.shoppingCart.items ?
+            persistedState.shoppingCart.items
+          : [],
+        isOpen:
+          persistedState.shoppingCart && persistedState.shoppingCart.isOpen ?
+            persistedState.shoppingCart.isOpen
+          : false,
+        user:
+          persistedState.shoppingCart && persistedState.shoppingCart.user ?
+            persistedState.shoppingCart.user
+          : {
+              firstName: '',
+              lastName: '',
+              phone: '',
+              country: '',
+              city: '',
+            },
+        delivery:
+          persistedState.shoppingCart && persistedState.shoppingCart.delivery ?
+            persistedState.shoppingCart.delivery
+          : {
+              type: null,
+              method: null,
+              service: '',
+              branch: '',
+              street: '',
+              house: '',
+              apartment: '',
+            },
+        payment:
+          persistedState.shoppingCart && persistedState.shoppingCart.payment ?
+            persistedState.shoppingCart.payment
+          : {
+              method: null,
+              screenshot: '',
+            },
+        orderStatus:
+          (
+            persistedState.shoppingCart &&
+            persistedState.shoppingCart.orderStatus
+          ) ?
+            persistedState.shoppingCart.orderStatus
+          : 'draft',
+      },
     }
   : {
       language: { language: 'ua' },
@@ -132,6 +182,35 @@ const validatedState: SavingState =
       auth: { token: null, isAuthenticated: false },
       expSearch: { expSearch: false },
       menu: { isMenuOn: false },
+      shoppingCart: {
+        items: [],
+        isOpen: false,
+
+        user: {
+          firstName: '',
+          lastName: '',
+          phone: '',
+          country: '',
+          city: '',
+        },
+
+        delivery: {
+          type: null,
+          method: null,
+          service: '',
+          branch: '',
+          street: '',
+          house: '',
+          apartment: '',
+        },
+
+        payment: {
+          method: null,
+          screenshot: '',
+        },
+
+        orderStatus: 'draft',
+      },
     };
 
 // Створюємо store
@@ -145,6 +224,7 @@ const store = configureStore({
     user: userReducer,
     expSearch: expSearchReducer,
     menu: menuReducer,
+    shoppingCart: shoppingCartReducer,
     // Додаємо редюсери тут
   },
   preloadedState: validatedState, // Використовуємо validatedState замість persistedState

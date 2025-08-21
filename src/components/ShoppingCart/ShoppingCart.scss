@@ -1,0 +1,33 @@
+.shopping-cart {
+  &__modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  position: relative;
+
+  display: flex;
+  width: 669px;
+  height: fit-content;
+  padding: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+
+  border-radius: 12px;
+  background: $gray-white;
+
+  &-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px;
+    color: $gray-black;
+
+    background: $background-plate;
+    border-radius: 0 12px;
+    cursor: pointer;
+    z-index: 2;
+  }
+}
