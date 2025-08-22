@@ -30,7 +30,7 @@ export const ModalWindow: React.FC<Props> = ({
         isActive: openModal,
       })}
     >
-      {children}
+      {openModal && children}
       <div
         className={classNames('modal__background', {
           secondModal: secondModal,

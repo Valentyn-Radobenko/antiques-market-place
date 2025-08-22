@@ -94,7 +94,7 @@ export const DropdownNavigation: React.FC<Props> = ({ optionType }) => {
 
   return (
     <>
-      {optionType.slug !== 'categories' && (
+      {optionType.slug !== 'category' && (
         <div className="dropdown-navigation desktop">
           <div className="dropdown-navigation__top-bar">
             {optionType.slug === 'filters' && (
@@ -211,7 +211,7 @@ export const DropdownNavigation: React.FC<Props> = ({ optionType }) => {
           </div>
         </div>
       )}
-      {optionType.slug === 'categories' && (
+      {optionType.slug === 'category' && (
         <div
           className={classNames('dropdown-navigation__categories', {
             isActive: activeOptionType,
@@ -280,13 +280,13 @@ export const DropdownNavigation: React.FC<Props> = ({ optionType }) => {
       <button
         onClick={() => setOpenModal(true)}
         className={classNames('dropdown-navigation__top-bar tablet-phone', {
-          categories: optionType.slug === 'categories',
+          categories: optionType.slug === 'category',
         })}
       >
         {optionType.slug === 'filters' && (
           <InstantMixRounded className="dropdown-navigation__nav-icon" />
         )}
-        {optionType.slug === 'categories' && (
+        {optionType.slug === 'category' && (
           <ActionKeySVG className="dropdown-navigation__nav-icon" />
         )}
         {optionType.slug === 'sort' && (
@@ -309,20 +309,20 @@ export const DropdownNavigation: React.FC<Props> = ({ optionType }) => {
           <div className="dropdown-navigation">
             <div
               className={classNames('dropdown-navigation__top-bar', {
-                categories: optionType.slug === 'categories',
+                categories: optionType.slug === 'category',
               })}
             >
               {optionType.slug === 'filters' && (
                 <InstantMixRounded className="dropdown-navigation__nav-icon" />
               )}
-              {optionType.slug === 'categories' && (
+              {optionType.slug === 'category' && (
                 <ActionKeySVG className="dropdown-navigation__nav-icon" />
               )}
               {optionType.slug === 'sort' && (
                 <SortArrowSVG className="dropdown-navigation__nav-icon" />
               )}
               <h4 className="dropdown-navigation__h4">{optionType.nameUa}</h4>
-              {optionType.slug !== 'categories' && (
+              {optionType.slug !== 'category' && (
                 <SearchLink
                   params={
                     optionType.type === 'multiple' ?
@@ -354,7 +354,7 @@ export const DropdownNavigation: React.FC<Props> = ({ optionType }) => {
                     className={classNames(
                       'dropdown-navigation__option-top-bar',
                       {
-                        categories: optionType.slug === 'categories',
+                        categories: optionType.slug === 'category',
                         isActive: activeOptionType === option.id,
                       },
                     )}
@@ -442,3 +442,4 @@ export const DropdownNavigation: React.FC<Props> = ({ optionType }) => {
 
 // add borders on modal
 // stretch filters on tablet/phone
+//fix problem with existing mop (відкривається багато модалок???), скоріш треба приховувати модалку взагалі, чи хоча б її контент

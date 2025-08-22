@@ -48,7 +48,9 @@
     visibility: hidden;
     transition: all ease $effect-duration;
     opacity: 0;
+    pointer-events: none;
     &.isActive {
+      pointer-events: all;
       opacity: 1;
       visibility: visible;
     }

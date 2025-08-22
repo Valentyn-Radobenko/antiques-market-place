@@ -21,6 +21,26 @@ export const sortings: OptionType = {
       ],
     },
     {
+      id: '2',
+      nameUa: 'За новизною',
+      nameEng: 'By novelty',
+      slug: 'by-novelty',
+      subcategories: [
+        {
+          id: '1',
+          nameUa: 'Спочатку нові',
+          nameEng: 'Newest first',
+          slug: 'new-first',
+        },
+        {
+          id: '2',
+          nameUa: 'Спочатку старі',
+          nameEng: 'Oldest first',
+          slug: 'old-first',
+        },
+      ],
+    },
+    {
       id: '3',
       nameUa: 'За алфавітом',
       nameEng: 'Alphabetically',
@@ -38,14 +58,14 @@ export const sortings: OptionType = {
       subcategories: [
         {
           id: '5',
-          nameUa: 'Спочатку нові',
-          nameEng: 'Newest first',
+          nameUa: 'Від нового до старого',
+          nameEng: 'From new to old',
           slug: 'newest',
         },
         {
           id: '6',
-          nameUa: 'Спочатку старі',
-          nameEng: 'Oldest first',
+          nameUa: 'Від старого до нового',
+          nameEng: 'From old to new',
           slug: 'oldest',
         },
       ],
