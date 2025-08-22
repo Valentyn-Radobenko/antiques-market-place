@@ -2,7 +2,7 @@ import { OptionType } from '../types/optionType';
 
 export const categories: OptionType = {
   nameUa: 'Категорії',
-  slug: 'categories',
+  slug: 'category',
   type: 'single',
   options: [
     {
@@ -15,19 +15,19 @@ export const categories: OptionType = {
           id: '101',
           nameUa: 'Монети України',
           nameEng: 'Coins of Ukraine',
-          slug: 'coins-ukraine',
+          slug: 'coins-of-ukraine',
         },
         {
           id: '102',
           nameUa: 'Монети Античних Держав',
           nameEng: 'Coins of Ancient States',
-          slug: 'coins-ancient-states',
+          slug: 'coins-of-ancient-states',
         },
         {
           id: '103',
           nameUa: 'Монети Стародавнього Риму',
           nameEng: 'Coins of Ancient Rome',
-          slug: 'coins-ancient-rome',
+          slug: 'coins-of-ancient-rome',
         },
         {
           id: '104',
@@ -39,25 +39,25 @@ export const categories: OptionType = {
           id: '105',
           nameUa: 'Монети Європи',
           nameEng: 'Coins of Europe',
-          slug: 'coins-europe',
+          slug: 'coins-of-europe',
         },
         {
           id: '106',
           nameUa: 'Монети СРСР',
           nameEng: 'Coins of USSR',
-          slug: 'coins-ussr',
+          slug: 'coins-of-ussr',
         },
         {
           id: '107',
           nameUa: 'Монети Росії',
           nameEng: 'Coins of Russia',
-          slug: 'coins-russia',
+          slug: 'coins-of-russia',
         },
         {
           id: '108',
           nameUa: 'Монети Польщі',
           nameEng: 'Coins of Poland',
-          slug: 'coins-poland',
+          slug: 'coins-of-poland',
         },
         {
           id: '109',

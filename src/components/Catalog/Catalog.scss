@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-content: space-between;
+  row-gap: 16px;
 
   @include on-tablet {
     @include on-tablet {
