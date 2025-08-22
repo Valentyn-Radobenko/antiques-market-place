@@ -1,0 +1,43 @@
+.checkbox-square-interactive {
+  border-radius: 3px;
+  border: 1px solid $gray-dis;
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  background: $gray-white;
+  box-shadow: inset 0px 0px 8px -1px rgba(175, 196, 190, 0.5);
+  transition: all ease $dropdown-effect-duration;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    border-color: $additional-greenas;
+    background: $additional-mint;
+    box-shadow: none;
+  }
+
+  &.isActive {
+    background-color: $additional-freshherb-elect !important;
+    border: 1px solid $stroke-button-primary !important;
+    box-shadow: none !important;
+  }
+
+  &__arrow {
+    opacity: 0;
+    transition: all ease $dropdown-effect-duration;
+
+    &.isActive {
+      opacity: 1;
+    }
+  }
+}
+
+.hoverable:hover {
+  .checkbox-square-interactive {
+    border-color: $additional-greenas;
+    background: $additional-mint;
+    box-shadow: none;
+  }
+}

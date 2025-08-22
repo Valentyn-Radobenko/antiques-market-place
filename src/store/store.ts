@@ -132,6 +132,13 @@ const validatedState: SavingState =
           persistedState.shoppingCart && persistedState.shoppingCart.items ?
             persistedState.shoppingCart.items
           : [],
+        selectedItems:
+          (
+            persistedState.shoppingCart &&
+            persistedState.shoppingCart.selectedItems
+          ) ?
+            persistedState.shoppingCart.selectedItems
+          : [],
         isOpen:
           persistedState.shoppingCart && persistedState.shoppingCart.isOpen ?
             persistedState.shoppingCart.isOpen
@@ -184,6 +191,7 @@ const validatedState: SavingState =
       menu: { isMenuOn: false },
       shoppingCart: {
         items: [],
+        selectedItems: [],
         isOpen: false,
 
         user: {

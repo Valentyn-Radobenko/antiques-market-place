@@ -1,11 +1,10 @@
- 
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ShoppingCartState } from '../../types/shoppingCart';
 import { product } from '../../types/product';
 
 const initialState: ShoppingCartState = {
   items: [],
+  selectedItems: [],
   isOpen: false,
 
   user: {
@@ -46,6 +45,14 @@ const shoppingCartSlice = createSlice({
     },
     removeItem(state, action: PayloadAction<string>) {
       state.items = state.items.filter((item) => item.id !== action.payload);
+    },
+    addSelectedItem(state, action: PayloadAction<product>) {
+      state.selectedItems.push(action.payload);
+    },
+    removeSelectedItem(state, action: PayloadAction<string>) {
+      state.items = state.selectedItems.filter(
+        (item) => item.id !== action.payload,
+      );
     },
     updateUserInfo(state, action: PayloadAction<ShoppingCartState['user']>) {
       state.user = action.payload;

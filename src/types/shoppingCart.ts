@@ -2,6 +2,7 @@ import { product } from './product';
 
 export interface ShoppingCartState {
   items: product[];
+  selectedItems: product[];
   isOpen: boolean;
 
   user: {
