@@ -1,30 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { exhibition } from '../../../types/exhibition';
-import { useIsMobile } from '../../../hooks/useMediaQuery';
+import { useIsMobile, useIsTablet } from '../../../hooks/useMediaQuery';
 import { Pagination } from '../../../components/Pagination/Pagination';
 
 type Props = {
   exhibitions: exhibition[];
 };
 
-const useMediaQuery = (query: string) => {
-  const [matches, setMatches] = React.useState(
-    window.matchMedia(query).matches,
-  );
-
-  useEffect(() => {
-    const media = window.matchMedia(query);
-    const listener = () => setMatches(media.matches);
-    media.addEventListener('change', listener);
-    return () => media.removeEventListener('change', listener);
-  }, [query]);
-
-  return matches;
-};
-
 export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
-  const isTablet = useMediaQuery('(max-width: 1439px)');
+  const isTablet = useIsTablet();
   const itemsPerPage = isTablet ? 3 : 6;
   const totalPages = Math.ceil(exhibitions.length / itemsPerPage);
 

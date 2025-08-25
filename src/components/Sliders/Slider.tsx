@@ -44,7 +44,7 @@ export default function Slider<T>({
   const settings = {
     arrows: false,
     dots: true,
-    infinite: true,
+    infinite: slides.length > 1,
     speed: 1100,
     autoplay: autoplayOn,
     initialSlide: initialSlide,
