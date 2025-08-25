@@ -139,6 +139,11 @@
 
       color: $additional-greenas;
       @include main-text;
+
+      &--underline {
+        text-decoration: underline;
+        cursor: pointer;
+      }
     }
   }
 

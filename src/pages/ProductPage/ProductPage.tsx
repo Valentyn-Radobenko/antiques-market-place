@@ -19,6 +19,8 @@ import { ShoppingCart } from '../../components/ShoppingCart/ShoppingCart';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../store/store';
 import { setIsOpen } from '../../store/slices/shoppingCartSlice';
+import { Link, useParams } from 'react-router-dom';
+import products from '../../data/products.json';
 
 export const ProductPage = () => {
   const isTablet = useIsTablet();
@@ -26,57 +28,89 @@ export const ProductPage = () => {
   const isModalOpen = useSelector(
     (state: SavingState) => state.shoppingCart.isOpen,
   );
+  const { slug } = useParams();
+  const product = products.find((p) => p.slug === slug);
+  const lang = useSelector((state: SavingState) => state.language.language);
+
+  if (!product) {
+    return <h2>Product not found</h2>;
+  }
 
   return (
     <>
       <Crumbs
-        links={['/product', '/product', '/product', '/product']}
-        titles={['Маркет', 'Нумізматика', 'Монети Європи', 'Талер 1641']}
+        links={[
+          '/market',
+          `/market?category=${product.subcategory.slug}`,
+          `/market?category=${product.subcategory.slug}`,
+          '',
+        ]}
+        titles={[
+          'Маркет',
+          product.category[lang],
+          product.subcategory[lang],
+          product.name[lang],
+        ]}
         customClassName="product__crumbs"
       />
 
       <div className="product page__product">
         {isTablet && (
-          <h2 className="product-slider__header-title">{'Талер 1641'}</h2>
+          <h2 className="product-slider__header-title">{product.name[lang]}</h2>
         )}
         <ProductSlider
-          title={{ ua: 'Талер 1641', eng: 'Taler 1641' }}
-          imgs={[
-            'images/product/product-1-img-1.png',
-            'images/product/product-1-img-2.png',
-          ]}
+          title={{ ua: product.name.ua, eng: product.name.en }}
+          imgs={product.imgs}
         />
         <div className="product__info">
           <div className="product__top">
             <div className="product__chars">
               <div className="product__char">
                 <MapSearchSVG className="product__char-icon" />
-                <span className="product__char-label">Країни:</span>
-                <span className="product__char-value">
-                  Нідерланди, Гелдерланд
-                </span>
+                <span className="product__char-label">Країна:</span>
+                <Link
+                  to={`/market?country=${product.country.slug}`}
+                  className="product__char-value product__char-value--underline"
+                >
+                  {product.country[lang]}
+                </Link>
               </div>
               <div className="product__char">
                 <DocsSVG className="product__char-icon" />
                 <span className="product__char-label">Опис:</span>
                 <span className="product__char-value">
-                  Талер. 27,6 грам. Дельмонте 825.
+                  {product.description[lang]}
                 </span>
               </div>
               <div className="product__char">
                 <HourglassEmptySVG className="product__char-icon" />
                 <span className="product__char-label">Рік:</span>
-                <span className="product__char-value">1641</span>
+                <Link
+                  to={`/market?year=${product.year}`}
+                  className="product__char-value product__char-value--underline"
+                >
+                  {product.year}
+                </Link>
               </div>
               <div className="product__char">
                 <LandslideSVG className="product__char-icon" />
                 <span className="product__char-label">Матеріал:</span>
-                <span className="product__char-value">Срібло</span>
+                <Link
+                  to={`/market?material=${product.material.slug}`}
+                  className="product__char-value product__char-value--underline"
+                >
+                  {product.material[lang]}
+                </Link>
               </div>
               <div className="product__char">
                 <ViewComfySVG className="product__char-icon" />
                 <span className="product__char-label">Категорія:</span>
-                <span className="product__char-value">Монети Європи</span>
+                <Link
+                  to={`/market?subcategory=${product.subcategory.slug}`}
+                  className="product__char-value product__char-value--underline"
+                >
+                  {product.subcategory[lang]}
+                </Link>
               </div>
             </div>
             <Dropdown
@@ -85,7 +119,7 @@ export const ProductPage = () => {
                 <p className="product__dropdown-text">Детальна інформація</p>
               )}
               renderContent={() => (
-                <p className="product__dropdown-option">Не вказана</p>
+                <p className="product__dropdown-option">{product.info[lang]}</p>
               )}
               customClassName="product__dropdown"
             />
@@ -93,7 +127,7 @@ export const ProductPage = () => {
           <div className="product__middle">
             <div className="product__price">
               <span className="product__price-label">Ціна:</span>
-              <span className="product__price-value">4000 грн</span>
+              <span className="product__price-value">{product.price} грн</span>
             </div>
             <button
               onClick={() => {

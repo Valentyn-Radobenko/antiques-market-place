@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 // import apiClient from '../../utils/apiClient';
 import { MarketItem } from '../MarketItem/MatketItem';
 import goodsJson from '../../data/products.json';
-import { Product } from '../../types/Product';
-import { useSearchParams } from 'react-router-dom';
+import { Product } from '../../types/product';
+import { Link, useSearchParams } from 'react-router-dom';
 
 export const Catalog = () => {
   const [searchParams] = useSearchParams();
@@ -98,10 +98,12 @@ export const Catalog = () => {
       <div className="items">
         {/* {loader && <p>loader</p>} */}
         {goods.map((item, i) => (
-          <MarketItem
-            item={item}
-            key={i}
-          />
+          <Link to={`/market/product/${item.slug}`}>
+            <MarketItem
+              item={item}
+              key={i}
+            />
+          </Link>
         ))}
       </div>
     </>

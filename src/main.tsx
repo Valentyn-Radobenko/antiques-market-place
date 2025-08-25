@@ -47,12 +47,12 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
                 path=":slug?"
                 element={<MarketPage />}
               />
-            </Route>
 
-            <Route
-              path="product"
-              element={<ProductPage />}
-            />
+              <Route
+                path="product/:slug"
+                element={<ProductPage />}
+              />
+            </Route>
 
             <Route
               path="club"
