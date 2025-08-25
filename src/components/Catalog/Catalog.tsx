@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { MarketItem } from '../MarketItem/MatketItem';
 import goodsJson from '../../data/products.json';
 import { Product } from '../../types/product';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 export const Catalog = () => {
   const [searchParams] = useSearchParams();
@@ -57,8 +57,15 @@ export const Catalog = () => {
       goodsToShow = goodsToShow.filter((a) => {
         for (let i = 0; i < year.length; i++) {
           const yearArray = year[i].split('-');
-          if (+a.year > +yearArray[0] && +a.year < +yearArray[1]) {
+          if (+a.year >= +yearArray[0] && +a.year <= +yearArray[1]) {
             console.log(true);
+            return true;
+          }
+
+          if (
+            (+a.year > 2025 || !+a.year || isNaN(+a.year)) &&
+            year[i] === 'other'
+          ) {
             return true;
           }
         }
@@ -98,12 +105,10 @@ export const Catalog = () => {
       <div className="items">
         {/* {loader && <p>loader</p>} */}
         {goods.map((item, i) => (
-          <Link to={`/market/product/${item.slug}`}>
-            <MarketItem
-              item={item}
-              key={i}
-            />
-          </Link>
+          <MarketItem
+            item={item}
+            key={i}
+          />
         ))}
       </div>
     </>

@@ -32,6 +32,30 @@ export const ProductPage = () => {
   const product = products.find((p) => p.slug === slug);
   const lang = useSelector((state: SavingState) => state.language.language);
 
+  const yearLink = (year: string) => {
+    if (!product) {
+      return '';
+    }
+
+    if (+year < 1453) {
+      return '/market?year=0-0';
+    }
+    if (+year <= 1800) {
+      return '/market?year=1453-1800';
+    }
+    if (+year <= 1945) {
+      return '/market?year=1800-1945';
+    }
+    if (+year <= 1991) {
+      return '/market?year=1945-1991';
+    }
+    if (+year <= 2025) {
+      return '/market?year=1991-2025';
+    }
+
+    return '/market?year=other';
+  };
+
   if (!product) {
     return <h2>Product not found</h2>;
   }
@@ -86,7 +110,7 @@ export const ProductPage = () => {
                 <HourglassEmptySVG className="product__char-icon" />
                 <span className="product__char-label">Рік:</span>
                 <Link
-                  to={`/market?year=${product.year}`}
+                  to={yearLink(product.year)}
                   className="product__char-value product__char-value--underline"
                 >
                   {product.year}
