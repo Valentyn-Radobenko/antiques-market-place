@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ShoppingCartState } from '../../types/shoppingCart';
-import { product } from '../../types/product';
+import { Product } from '../../types/product';
 
 const initialState: ShoppingCartState = {
   items: [],
@@ -40,17 +40,17 @@ const shoppingCartSlice = createSlice({
     setIsOpen: (state, action: PayloadAction<boolean>) => {
       state.isOpen = action.payload;
     },
-    addItem(state, action: PayloadAction<product>) {
+    addItem(state, action: PayloadAction<Product>) {
       state.items.push(action.payload);
     },
     removeItem(state, action: PayloadAction<string>) {
       state.items = state.items.filter((item) => item.id !== action.payload);
     },
-    addSelectedItem(state, action: PayloadAction<product>) {
+    addSelectedItem(state, action: PayloadAction<Product>) {
       state.selectedItems.push(action.payload);
     },
     removeSelectedItem(state, action: PayloadAction<string>) {
-      state.items = state.selectedItems.filter(
+      state.selectedItems = state.selectedItems.filter(
         (item) => item.id !== action.payload,
       );
     },
@@ -73,6 +73,8 @@ export const {
   setIsOpen,
   addItem,
   removeItem,
+  addSelectedItem,
+  removeSelectedItem,
   updateUserInfo,
   updateDelivery,
   updatePayment,

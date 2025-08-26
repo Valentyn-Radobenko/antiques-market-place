@@ -18,7 +18,7 @@ import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
 import { ShoppingCart } from '../../components/ShoppingCart/ShoppingCart';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../store/store';
-import { setIsOpen } from '../../store/slices/shoppingCartSlice';
+import { addItem, setIsOpen } from '../../store/slices/shoppingCartSlice';
 import { Link, useParams } from 'react-router-dom';
 import products from '../../data/products.json';
 
@@ -31,6 +31,8 @@ export const ProductPage = () => {
   const { slug } = useParams();
   const product = products.find((p) => p.slug === slug);
   const lang = useSelector((state: SavingState) => state.language.language);
+
+  const cart = useSelector((state: SavingState) => state.shoppingCart);
 
   const yearLink = (year: string) => {
     if (!product) {
@@ -156,6 +158,8 @@ export const ProductPage = () => {
             <button
               onClick={() => {
                 dispatch(setIsOpen(true));
+                if (!cart.items.find((p) => p.id === product.id))
+                  dispatch(addItem(product));
               }}
               className="product__cta"
             >

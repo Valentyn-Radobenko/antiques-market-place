@@ -70,6 +70,34 @@
     }
   }
 
+  &__no-content {
+    display: flex;
+    padding: 16px;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+
+    border-radius: 12px;
+    border: 1px solid $system-info;
+
+    &-info-icon {
+      color: $system-info;
+    }
+
+    &-text {
+      color: $gray-black;
+
+      @include main-text;
+    }
+
+    &-link {
+      color: $additional-greenas;
+
+      @include button-bold;
+      text-decoration: underline;
+    }
+  }
+
   &__selected {
     display: flex;
     width: 387.5px;
@@ -85,6 +113,14 @@
         color: $gray-lite;
       }
     }
+  }
+
+  &__products {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
   }
 
   &__product {
