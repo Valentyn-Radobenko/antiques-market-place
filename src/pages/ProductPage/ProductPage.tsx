@@ -21,6 +21,7 @@ import { AppDispatch, SavingState } from '../../store/store';
 import { addItem, setIsOpen } from '../../store/slices/shoppingCartSlice';
 import { Link, useParams } from 'react-router-dom';
 import products from '../../data/products.json';
+import { filters } from '../../data/filters';
 
 export const ProductPage = () => {
   const isTablet = useIsTablet();
@@ -33,6 +34,9 @@ export const ProductPage = () => {
   const lang = useSelector((state: SavingState) => state.language.language);
 
   const cart = useSelector((state: SavingState) => state.shoppingCart);
+  const countriesSlugs = filters.options[0].subcategories.map(
+    (country) => country.slug,
+  );
 
   const yearLink = (year: string) => {
     if (!product) {
@@ -56,6 +60,14 @@ export const ProductPage = () => {
     }
 
     return '/market?year=other';
+  };
+
+  const countryLink = (countrySlug: string) => {
+    if (countriesSlugs.includes(countrySlug)) {
+      return `/market?country=${countrySlug}`;
+    } else {
+      return '/market?country=other';
+    }
   };
 
   if (!product) {
@@ -95,7 +107,7 @@ export const ProductPage = () => {
                 <MapSearchSVG className="product__char-icon" />
                 <span className="product__char-label">Країна:</span>
                 <Link
-                  to={`/market?country=${product.country.slug}`}
+                  to={countryLink(product.country.slug)}
                   className="product__char-value product__char-value--underline"
                 >
                   {product.country[lang]}

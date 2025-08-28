@@ -4,6 +4,7 @@ import { MarketItem } from '../MarketItem/MatketItem';
 import goodsJson from '../../data/products.json';
 import { Product } from '../../types/product';
 import { useSearchParams } from 'react-router-dom';
+import { filters } from '../../data/filters';
 
 export const Catalog = () => {
   const [searchParams] = useSearchParams();
@@ -14,6 +15,10 @@ export const Catalog = () => {
   const year = searchParams.getAll('year');
   const material = searchParams.getAll('material');
   const [goods, setGoods] = useState<Product[]>([]);
+
+  const countriesSlugs = filters.options[0].subcategories.map(
+    (country) => country.slug,
+  );
 
   useEffect(() => {
     let goodsToShow = goodsJson;
@@ -51,7 +56,18 @@ export const Catalog = () => {
     }
 
     if (country.length > 0) {
-      goodsToShow = goodsToShow.filter((a) => country.includes(a.country.slug));
+      if (country.includes('other')) {
+        goodsToShow = goodsToShow.filter((a) => {
+          return (
+            country.includes(a.country.slug) ||
+            !countriesSlugs.includes(a.country.slug)
+          );
+        });
+      } else {
+        goodsToShow = goodsToShow.filter((a) =>
+          country.includes(a.country.slug),
+        );
+      }
     }
     if (year.length > 0) {
       goodsToShow = goodsToShow.filter((a) => {
