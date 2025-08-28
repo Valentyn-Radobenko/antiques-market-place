@@ -121,6 +121,9 @@
     align-items: flex-start;
     gap: 16px;
     align-self: stretch;
+
+    max-height: 262px;
+    overflow-y: auto;
   }
 
   &__product {
