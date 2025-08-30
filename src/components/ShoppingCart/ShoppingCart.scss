@@ -243,3 +243,128 @@
     }
   }
 }
+
+.order {
+  display: flex;
+  width: 622px;
+  padding-right: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+
+  border-radius: 12px;
+
+  &__block {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+
+    border-radius: 12px;
+    background: $background-plate;
+
+    &-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      align-self: stretch;
+    }
+
+    &-title {
+      color: $gray-black;
+
+      @include h3-bold;
+    }
+
+    &-step {
+      color: $additional-greenas;
+
+      @include main-text;
+    }
+
+    &-steps {
+      color: $gray-lite;
+    }
+
+    &-data-content {
+      display: flex;
+      padding: 0 8px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      align-self: stretch;
+    }
+
+    &-dropdown {
+      width: 100%;
+
+      &-button {
+        display: flex;
+        padding: 8px;
+        margin-bottom: 24px;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+
+        border-bottom: 1px solid $gray-stroke;
+
+        &--active {
+          border-bottom-color: $additional-freshherb-elect;
+        }
+      }
+
+      &-option {
+        color: $gray-black;
+
+        @include main-text;
+      }
+
+      &-custom-arrow {
+        color: $gray-black;
+
+        &--active {
+          color: $additional-freshherb-elect;
+        }
+      }
+    }
+
+    &-inputs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-auto-flow: column;
+      width: 552px;
+      padding: 0 8px;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    &-label {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      align-self: stretch;
+
+      color: $gray-black;
+
+      @include label-bold;
+    }
+
+    &-input {
+      display: flex;
+      height: 56px;
+      padding: 16px;
+      align-items: center;
+      gap: 8px;
+      align-self: stretch;
+
+      border-radius: 12px;
+      border: 1px solid $gray-stroke;
+      background: $gray-white;
+    }
+  }
+}

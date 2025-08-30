@@ -1,4 +1,4 @@
-import { product } from './product';
+import { Product as product } from './product';
 
 export interface ShoppingCartState {
   items: product[];
@@ -9,6 +9,7 @@ export interface ShoppingCartState {
     firstName: string;
     lastName: string;
     phone: string;
+    email: string;
     country: string;
     city: string;
   };

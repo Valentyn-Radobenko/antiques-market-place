@@ -11,6 +11,7 @@ const initialState: ShoppingCartState = {
     firstName: '',
     lastName: '',
     phone: '',
+    email: '',
     country: '',
     city: '',
   },
@@ -57,6 +58,24 @@ const shoppingCartSlice = createSlice({
     updateUserInfo(state, action: PayloadAction<ShoppingCartState['user']>) {
       state.user = action.payload;
     },
+    updateUserFirstName(state, action: PayloadAction<string>) {
+      state.user.firstName = action.payload;
+    },
+    updateUserLastName(state, action: PayloadAction<string>) {
+      state.user.lastName = action.payload;
+    },
+    updateUserPhone(state, action: PayloadAction<string>) {
+      state.user.phone = action.payload;
+    },
+    updateUserEmail(state, action: PayloadAction<string>) {
+      state.user.email = action.payload;
+    },
+    updateUserCountry(state, action: PayloadAction<string>) {
+      state.user.country = action.payload;
+    },
+    updateUserCity(state, action: PayloadAction<string>) {
+      state.user.city = action.payload;
+    },
     updateDelivery(
       state,
       action: PayloadAction<ShoppingCartState['delivery']>,
@@ -76,6 +95,12 @@ export const {
   addSelectedItem,
   removeSelectedItem,
   updateUserInfo,
+  updateUserFirstName,
+  updateUserLastName,
+  updateUserPhone,
+  updateUserEmail,
+  updateUserCountry,
+  updateUserCity,
   updateDelivery,
   updatePayment,
 } = shoppingCartSlice.actions;
