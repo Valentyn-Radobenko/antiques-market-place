@@ -150,6 +150,7 @@ const validatedState: SavingState =
               firstName: '',
               lastName: '',
               phone: '',
+              email: '',
               country: '',
               city: '',
             },
@@ -157,7 +158,7 @@ const validatedState: SavingState =
           persistedState.shoppingCart && persistedState.shoppingCart.delivery ?
             persistedState.shoppingCart.delivery
           : {
-              type: null,
+              type: 'delivery',
               method: null,
               service: '',
               branch: '',
@@ -198,12 +199,13 @@ const validatedState: SavingState =
           firstName: '',
           lastName: '',
           phone: '',
+          email: '',
           country: '',
           city: '',
         },
 
         delivery: {
-          type: null,
+          type: 'delivery',
           method: null,
           service: '',
           branch: '',

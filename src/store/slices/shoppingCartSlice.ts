@@ -17,7 +17,7 @@ const initialState: ShoppingCartState = {
   },
 
   delivery: {
-    type: null,
+    type: 'delivery',
     method: null,
     service: '',
     branch: '',

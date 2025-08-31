@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Close } from '../Imgs/Close';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../store/store';
@@ -13,6 +13,7 @@ import {
   updateUserEmail,
   updateUserCountry,
   updateUserCity,
+  updateDelivery,
 } from '../../store/slices/shoppingCartSlice';
 import { DeleteSVG } from '../Imgs/DeleteSVG';
 import products from '../../data/products.json';
@@ -22,6 +23,7 @@ import { Info } from '../Imgs/Info';
 import { CheckBoxSquare } from '../Imgs/CheckBoxSquare/CheckBoxSquare';
 import { Dropdown } from '../Dropdown/Dropdown';
 import { InkHighlighterSVG } from '../Imgs/InkHighlighterSVG';
+import classNames from 'classnames';
 
 export const ShoppingCart: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -31,6 +33,8 @@ export const ShoppingCart: React.FC = () => {
   const lang = useSelector((state: SavingState) => state.language.language);
   const [showAll, setShowAll] = useState(false);
   const [step, setStep] = useState(1);
+
+  useEffect(() => {});
 
   const deleteSelectedItems = () =>
     cart.items.forEach((i) => {
@@ -237,33 +241,33 @@ export const ShoppingCart: React.FC = () => {
       )}
       {step === 2 && (
         <form
-          className="order"
+          className="shopping-cart__order"
           method="post"
         >
-          <div className="order__block">
-            <div className="order__block-top">
-              <h3 className="order__block-title"> Ваші дані</h3>
-              <p className="order__block-step">
-                1<span className="order__block-steps">/5</span>
+          <div className="shopping-cart__order-block">
+            <div className="shopping-cart__order-block-top">
+              <h3 className="shopping-cart__order-block-title"> Ваші дані</h3>
+              <p className="shopping-cart__order-block-step">
+                1<span className="shopping-cart__order-block-steps">/5</span>
               </p>
             </div>
-            <div className="order__block-data-content">
+            <div className="shopping-cart__order-block-data-content">
               <Dropdown
-                customClassName="order__block-dropdown"
+                customClassName="shopping-cart__order-block-dropdown"
                 buttonArea="all"
                 buttonTitle={() => (
-                  <p className="order__block-dropdown-option">
+                  <p className="shopping-cart__order-block-dropdown-option">
                     {cart.user.firstName ? cart.user.firstName : "Ім'я"}{' '}
                     {cart.user.lastName ? cart.user.lastName : 'Прізвище'}
                   </p>
                 )}
                 renderContent={() => (
-                  <div className="order__block-inputs">
-                    <label className="order__block-label">
+                  <div className="shopping-cart__order-block-inputs">
+                    <label className="shopping-cart__order-block-label">
                       {' '}
                       Ім'я
                       <input
-                        className="order__block-input"
+                        className="shopping-cart__order-block-input"
                         type="text"
                         placeholder="Андрій"
                         onChange={(e) =>
@@ -274,11 +278,11 @@ export const ShoppingCart: React.FC = () => {
                       />
                     </label>
 
-                    <label className="order__block-label">
+                    <label className="shopping-cart__order-block-label">
                       {' '}
                       Прізвище
                       <input
-                        className="order__block-input"
+                        className="shopping-cart__order-block-input"
                         type="text"
                         placeholder="Містеряков"
                         onChange={(e) =>
@@ -289,11 +293,11 @@ export const ShoppingCart: React.FC = () => {
                       />
                     </label>
 
-                    <label className="order__block-label">
+                    <label className="shopping-cart__order-block-label">
                       {' '}
                       Номер телефону
                       <input
-                        className="order__block-input"
+                        className="shopping-cart__order-block-input"
                         type="tel"
                         placeholder="+38 093 674 34 67"
                         onChange={(e) =>
@@ -304,11 +308,11 @@ export const ShoppingCart: React.FC = () => {
                       />
                     </label>
 
-                    <label className="order__block-label">
+                    <label className="shopping-cart__order-block-label">
                       {' '}
                       Електронна пошта
                       <input
-                        className="order__block-input"
+                        className="shopping-cart__order-block-input"
                         type="email"
                         placeholder="artemmisti@gmail.com"
                         onChange={(e) =>
@@ -323,21 +327,21 @@ export const ShoppingCart: React.FC = () => {
                 customArrow={() => <InkHighlighterSVG />}
               />
               <Dropdown
-                customClassName="order__block-dropdown"
+                customClassName="shopping-cart__order-block-dropdown"
                 buttonArea="all"
                 buttonTitle={() => (
-                  <p className="order__block-dropdown-option">
+                  <p className="shopping-cart__order-block-dropdown-option">
                     {cart.user.country ? cart.user.country : 'Країна'},{' '}
                     {cart.user.city ? cart.user.city : 'Місто'}
                   </p>
                 )}
                 renderContent={() => (
-                  <div className="order__block-inputs">
-                    <label className="order__block-label">
+                  <div className="shopping-cart__order-block-inputs">
+                    <label className="shopping-cart__order-block-label">
                       {' '}
                       Країна
                       <input
-                        className="order__block-input"
+                        className="shopping-cart__order-block-input"
                         type="text"
                         placeholder="Україна"
                         onChange={(e) =>
@@ -348,11 +352,11 @@ export const ShoppingCart: React.FC = () => {
                       />
                     </label>
 
-                    <label className="order__block-label">
+                    <label className="shopping-cart__order-block-label">
                       {' '}
                       Місто
                       <input
-                        className="order__block-input"
+                        className="shopping-cart__order-block-input"
                         type="text"
                         placeholder="Київ"
                         onChange={(e) =>
@@ -366,6 +370,100 @@ export const ShoppingCart: React.FC = () => {
                 )}
                 customArrow={() => <InkHighlighterSVG />}
               />
+            </div>
+          </div>
+
+          <div className="shopping-cart__order-block">
+            <div className="shopping-cart__order-block-top">
+              <h3 className="shopping-cart__order-block-title"> Замовлення</h3>
+              <p className="shopping-cart__order-block-step">
+                2<span className="shopping-cart__order-block-steps">/5</span>
+              </p>
+            </div>
+            <div className="shopping-cart__order-block-products">
+              {cart.items.map((p, ind) => {
+                return (
+                  <div
+                    key={ind + p.id}
+                    className="shopping-cart__order-block-product"
+                  >
+                    <div className="shopping-cart__order-block-product-top">
+                      <h4 className="shopping-cart__order-block-product-number">
+                        Замовлення №{ind + 1}
+                      </h4>
+                      <DeleteSVG
+                        className="shopping-cart__order-block-product-delete"
+                        onClick={() => {
+                          if (cart.selectedItems.find((si) => si.id === p.id)) {
+                            dispatch(removeSelectedItem(p.id));
+                          }
+
+                          dispatch(removeItem(p.id));
+                        }}
+                      />
+                    </div>
+
+                    <div className="shopping-cart__order-block-product-content">
+                      <img
+                        className="shopping-cart__order-block-product-img"
+                        src={p.imgs[0]}
+                        alt={p.name[lang]}
+                      />
+                      <div className="shopping-cart__order-block-product-data">
+                        <p className="shopping-cart__order-block-product-name">
+                          {p.name[lang]}
+                        </p>
+                        <p className="shopping-cart__order-block-product-price">
+                          {p.price} грн
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="shopping-cart__order-block">
+            <div className="shopping-cart__order-block-top">
+              <h3 className="shopping-cart__order-block-title">Отримання</h3>
+              <p className="shopping-cart__order-block-step">
+                3<span className="shopping-cart__order-block-steps">/5</span>
+              </p>
+            </div>
+            <div className="shopping-cart__order-block-receiving-nav">
+              <div
+                className={classNames(
+                  'shopping-cart__order-block-receiving-nav-section',
+                  {
+                    'shopping-cart__order-block-receiving-nav-section--inactive':
+                      cart.delivery.type === 'pickup',
+                    'shopping-cart__order-block-receiving-nav-section--active':
+                      cart.delivery.type === 'delivery',
+                  },
+                )}
+                onClick={() => {
+                  dispatch(updateDelivery({ type: 'delivery' }));
+                }}
+              >
+                Доставка
+              </div>
+              <div
+                className={classNames(
+                  'shopping-cart__order-block-receiving-nav-section',
+                  {
+                    'shopping-cart__order-block-receiving-nav-section--active':
+                      cart.delivery.type === 'pickup',
+                    'shopping-cart__order-block-receiving-nav-section--inactive':
+                      cart.delivery.type === 'delivery',
+                  },
+                )}
+                onClick={() => {
+                  dispatch(updateDelivery({ type: 'pickup' }));
+                }}
+              >
+                Самовивіз з складу
+              </div>
             </div>
           </div>
         </form>

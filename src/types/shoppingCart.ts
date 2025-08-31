@@ -15,7 +15,7 @@ export interface ShoppingCartState {
   };
 
   delivery: {
-    type: 'pickup' | 'delivery' | null; // самовивіз зі складу чи доставка
+    type: 'pickup' | 'delivery'; // самовивіз зі складу чи доставка
     method?: 'post' | 'courier' | null; // для доставки
     service?: string; // служба доставки
     branch?: string; // номер відділення (якщо поштою)
