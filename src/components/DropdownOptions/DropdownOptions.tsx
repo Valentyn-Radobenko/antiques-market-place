@@ -100,7 +100,7 @@ export const DropdownOptions: React.FC<Props> = ({ sortings }) => {
                     className="dropdown-options__list-item-item"
                   >
                     <p>{b}</p>
-                    <CheckboxRound value="defoult" />
+                    <CheckboxRound value="default" />
                   </div>
                 ))}
               </div>
@@ -179,7 +179,7 @@ export const DropdownOptions: React.FC<Props> = ({ sortings }) => {
                           className="dropdown-options__list-item-item"
                         >
                           <p>{b}</p>
-                          <CheckboxRound value="defoult" />
+                          <CheckboxRound value="default" />
                         </div>
                       ))}
                     </div>

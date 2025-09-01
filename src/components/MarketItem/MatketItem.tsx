@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Product } from '../../types/product';
+import { Product } from '../../types/Product';
 import { ArrowTale } from '../Imgs/ArrowTale';
 
 type Props = {

@@ -3,7 +3,7 @@ import { useState } from 'react';
 type Props = {
   className?: string;
   onClick?: () => void;
-  value: 'defoult' | 'hover' | 'checked' | 'disabled';
+  value: 'default' | 'hover' | 'checked' | 'disabled';
 };
 
 export const CheckboxSquareSVG: React.FC<Props> = ({
@@ -339,7 +339,7 @@ export const CheckboxSquareSVG: React.FC<Props> = ({
           </defs>
         </svg>
       )}
-      {value === 'defoult' && (
+      {value === 'default' && (
         <svg
           width="24"
           height="24"

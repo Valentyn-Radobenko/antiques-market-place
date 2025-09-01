@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 // import apiClient from '../../utils/apiClient';
 import { MarketItem } from '../MarketItem/MatketItem';
 import goodsJson from '../../data/products.json';
-import { Product } from '../../types/product';
+import { Product } from '../../types/Product';
 import { useSearchParams } from 'react-router-dom';
 import { filters } from '../../data/filters';
 

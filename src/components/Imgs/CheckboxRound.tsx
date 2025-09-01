@@ -1,7 +1,7 @@
 type Props = {
   className?: string;
   onClick?: () => void;
-  value: 'defoult' | 'hover' | 'checked' | 'disabled';
+  value: 'default' | 'hover' | 'checked' | 'disabled';
 };
 
 export const CheckboxRound: React.FC<Props> = ({
@@ -438,7 +438,7 @@ export const CheckboxRound: React.FC<Props> = ({
           </defs>
         </svg>
       )}
-      {value === 'defoult' && (
+      {value === 'default' && (
         <svg
           width="40"
           height="40"

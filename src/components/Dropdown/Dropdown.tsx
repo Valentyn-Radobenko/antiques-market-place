@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { Arrow } from '../Imgs/Arrow';
 
@@ -9,6 +9,8 @@ interface Props {
   renderContent: () => React.ReactNode;
   customArrow?: () => React.ReactNode;
   customClassName?: string;
+  onClick?: React.MouseEventHandler | undefined;
+  customIsVisible?: boolean;
 }
 
 export const Dropdown: React.FC<Props> = ({
@@ -18,15 +20,34 @@ export const Dropdown: React.FC<Props> = ({
   renderContent,
   customArrow,
   customClassName = '',
+  onClick,
+  customIsVisible = false,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
+  useEffect(() => {
+    setIsVisible(customIsVisible);
+  }, [customIsVisible]);
+
   return (
-    <div className={`${customClassName} dropdown`}>
+    <div
+      className={classNames(`${customClassName} dropdown`, {
+        [`${customClassName}--active`]: isVisible,
+        [`${customClassName}--inactive`]: !isVisible,
+      })}
+    >
       {buttonArea === 'all' && (
         <button
           type="button"
-          onClick={() => setIsVisible(!isVisible)}
+          onClick={(e) => {
+            onClick?.(e);
+
+            if (customIsVisible) {
+              setIsVisible(customIsVisible);
+            } else {
+              setIsVisible(!isVisible);
+            }
+          }}
           className={classNames(`${customClassName}-button dropdown__button`, {
             [`${customClassName}-button--active dropdown__button--active`]:
               isVisible,
@@ -38,7 +59,15 @@ export const Dropdown: React.FC<Props> = ({
           {buttonTitle()}
           {customArrow ?
             <div
-              onClick={() => setIsVisible(!isVisible)}
+              onClick={(e) => {
+                onClick?.(e);
+
+                if (customIsVisible) {
+                  setIsVisible(customIsVisible);
+                } else {
+                  setIsVisible(!isVisible);
+                }
+              }}
               className={classNames(
                 `${customClassName}-custom-arrow dropdown__custom-arrow`,
                 {
@@ -79,7 +108,15 @@ export const Dropdown: React.FC<Props> = ({
           {buttonTitle()}
           {customArrow ?
             <div
-              onClick={() => setIsVisible(!isVisible)}
+              onClick={(e) => {
+                onClick?.(e);
+
+                if (customIsVisible) {
+                  setIsVisible(customIsVisible);
+                } else {
+                  setIsVisible(!isVisible);
+                }
+              }}
               className={classNames(
                 `${customClassName}-custom-arrow dropdown__custom-arrow`,
                 {
@@ -93,7 +130,15 @@ export const Dropdown: React.FC<Props> = ({
               {customArrow()}
             </div>
           : <Arrow
-              onClick={() => setIsVisible(!isVisible)}
+              onClick={(e) => {
+                onClick?.(e);
+
+                if (customIsVisible) {
+                  setIsVisible(customIsVisible);
+                } else {
+                  setIsVisible(!isVisible);
+                }
+              }}
               className={classNames(
                 `${customClassName}-arrow dropdown__arrow`,
                 {

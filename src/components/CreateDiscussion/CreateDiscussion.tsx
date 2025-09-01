@@ -360,7 +360,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
           <CheckboxSquareSVG
             className="create-discussion__anonim-svg"
             onClick={() => setForm({ ...form, anonimus: !form.anonimus })}
-            value={form.anonimus ? 'checked' : 'defoult'}
+            value={form.anonimus ? 'checked' : 'default'}
           />
         </div>
         <button className="create-discussion__button">Відправити</button>

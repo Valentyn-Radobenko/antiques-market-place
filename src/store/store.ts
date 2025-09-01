@@ -165,6 +165,12 @@ const validatedState: SavingState =
               street: '',
               house: '',
               apartment: '',
+              receiver: {
+                firstName: '',
+                middleName: '',
+                lastName: '',
+                phone: '',
+              },
             },
         payment:
           persistedState.shoppingCart && persistedState.shoppingCart.payment ?
@@ -212,6 +218,12 @@ const validatedState: SavingState =
           street: '',
           house: '',
           apartment: '',
+          receiver: {
+            firstName: '',
+            middleName: '',
+            lastName: '',
+            phone: '',
+          },
         },
 
         payment: {

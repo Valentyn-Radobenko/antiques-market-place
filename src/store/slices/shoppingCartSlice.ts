@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ShoppingCartState } from '../../types/shoppingCart';
-import { Product } from '../../types/product';
+import { Product } from '../../types/Product';
 
 const initialState: ShoppingCartState = {
   items: [],
@@ -24,6 +24,12 @@ const initialState: ShoppingCartState = {
     street: '',
     house: '',
     apartment: '',
+    receiver: {
+      firstName: '',
+      middleName: '',
+      lastName: '',
+      phone: '',
+    },
   },
 
   payment: {
@@ -82,6 +88,39 @@ const shoppingCartSlice = createSlice({
     ) {
       state.delivery = action.payload;
     },
+    updateDeliveryType(state, action: PayloadAction<'delivery' | 'pickup'>) {
+      state.delivery.type = action.payload;
+    },
+    updateDeliveryMethod(state, action: PayloadAction<'post' | 'courier'>) {
+      state.delivery.method = action.payload;
+    },
+    updateDeliveryService(state, action: PayloadAction<string>) {
+      state.delivery.service = action.payload;
+    },
+    updateDeliveryBranch(state, action: PayloadAction<string>) {
+      state.delivery.branch = action.payload;
+    },
+    updateDeliveryStreet(state, action: PayloadAction<string>) {
+      state.delivery.street = action.payload;
+    },
+    updateDeliveryHouse(state, action: PayloadAction<string>) {
+      state.delivery.house = action.payload;
+    },
+    updateDeliveryApartment(state, action: PayloadAction<string>) {
+      state.delivery.apartment = action.payload;
+    },
+    updateReceiverFirstName(state, action: PayloadAction<string>) {
+      state.delivery.receiver.firstName = action.payload;
+    },
+    updateReceiverMiddleName(state, action: PayloadAction<string>) {
+      state.delivery.receiver.middleName = action.payload;
+    },
+    updateReceiverLastName(state, action: PayloadAction<string>) {
+      state.delivery.receiver.lastName = action.payload;
+    },
+    updateReceiverPhone(state, action: PayloadAction<string>) {
+      state.delivery.receiver.phone = action.payload;
+    },
     updatePayment(state, action: PayloadAction<ShoppingCartState['payment']>) {
       state.payment = action.payload;
     },
@@ -102,6 +141,17 @@ export const {
   updateUserCountry,
   updateUserCity,
   updateDelivery,
+  updateDeliveryType,
+  updateDeliveryMethod,
+  updateDeliveryService,
+  updateDeliveryBranch,
+  updateDeliveryStreet,
+  updateDeliveryHouse,
+  updateDeliveryApartment,
+  updateReceiverFirstName,
+  updateReceiverMiddleName,
+  updateReceiverLastName,
+  updateReceiverPhone,
   updatePayment,
 } = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;

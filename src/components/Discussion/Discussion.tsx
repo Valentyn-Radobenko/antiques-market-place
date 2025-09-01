@@ -107,7 +107,7 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
         <div className="discussion__bottom-bar">
           <div className="discussion__messages">
             <DiscussionStatusSVG
-              value="defoult"
+              value="default"
               className="discussion__messages-svg"
             />
             <p className="discussion__messages-amount">

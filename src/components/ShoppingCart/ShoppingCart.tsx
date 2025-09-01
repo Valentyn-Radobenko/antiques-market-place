@@ -13,7 +13,17 @@ import {
   updateUserEmail,
   updateUserCountry,
   updateUserCity,
-  updateDelivery,
+  updateDeliveryService,
+  updateDeliveryBranch,
+  updateDeliveryMethod,
+  updateDeliveryType,
+  updateDeliveryStreet,
+  updateDeliveryHouse,
+  updateDeliveryApartment,
+  updateReceiverFirstName,
+  updateReceiverLastName,
+  updateReceiverPhone,
+  updateReceiverMiddleName,
 } from '../../store/slices/shoppingCartSlice';
 import { DeleteSVG } from '../Imgs/DeleteSVG';
 import products from '../../data/products.json';
@@ -24,6 +34,7 @@ import { CheckBoxSquare } from '../Imgs/CheckBoxSquare/CheckBoxSquare';
 import { Dropdown } from '../Dropdown/Dropdown';
 import { InkHighlighterSVG } from '../Imgs/InkHighlighterSVG';
 import classNames from 'classnames';
+import { CheckboxRound } from '../Imgs/CheckBoxRound/CheckBoxRound';
 
 export const ShoppingCart: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -326,6 +337,7 @@ export const ShoppingCart: React.FC = () => {
                 )}
                 customArrow={() => <InkHighlighterSVG />}
               />
+
               <Dropdown
                 customClassName="shopping-cart__order-block-dropdown"
                 buttonArea="all"
@@ -443,7 +455,7 @@ export const ShoppingCart: React.FC = () => {
                   },
                 )}
                 onClick={() => {
-                  dispatch(updateDelivery({ type: 'delivery' }));
+                  dispatch(updateDeliveryType('delivery'));
                 }}
               >
                 Доставка
@@ -459,12 +471,238 @@ export const ShoppingCart: React.FC = () => {
                   },
                 )}
                 onClick={() => {
-                  dispatch(updateDelivery({ type: 'pickup' }));
+                  dispatch(updateDeliveryType('pickup'));
                 }}
               >
                 Самовивіз з складу
               </div>
             </div>
+
+            {cart.delivery.type === 'delivery' && (
+              <>
+                <Dropdown
+                  onClick={() => {
+                    dispatch(updateDeliveryMethod('post'));
+                  }}
+                  customIsVisible={cart.delivery.method === 'post'}
+                  buttonArea="all"
+                  buttonIcon={() => (
+                    <CheckboxRound isActive={cart.delivery.method === 'post'} />
+                  )}
+                  customClassName="shopping-cart__order-block-receiving-dropdown"
+                  buttonTitle={() => (
+                    <h4 className="shopping-cart__order-block-receiving-dropdown-title">
+                      Самовивіз з пошти
+                    </h4>
+                  )}
+                  renderContent={() => (
+                    <>
+                      <div className="shopping-cart__order-block-receiving-dropdown-inputs">
+                        <label className="shopping-cart__order-block-receiving-dropdown-label">
+                          Служба доставки
+                          <input
+                            type="text"
+                            className="shopping-cart__order-block-receiving-dropdown-input"
+                            placeholder="Нова пошта"
+                            onChange={(e) =>
+                              dispatch(updateDeliveryService(e.target.value))
+                            }
+                            value={cart.delivery.service}
+                          />
+                        </label>
+
+                        <label className="shopping-cart__order-block-receiving-dropdown-label">
+                          Номер відділення
+                          <input
+                            type="text"
+                            className="shopping-cart__order-block-receiving-dropdown-input"
+                            placeholder="№456"
+                            onChange={(e) =>
+                              dispatch(updateDeliveryBranch(e.target.value))
+                            }
+                            value={cart.delivery.branch}
+                          />
+                        </label>
+                      </div>
+
+                      <p className="shopping-cart__order-block-receiving-dropdown-notification">
+                        Послуга післяплати оплачується окремо, за тарифами
+                        перевізника
+                      </p>
+                    </>
+                  )}
+                  customArrow={() => 'за тарифами перевізника'}
+                />
+
+                <Dropdown
+                  onClick={() => {
+                    dispatch(updateDeliveryMethod('courier'));
+                  }}
+                  customIsVisible={cart.delivery.method === 'courier'}
+                  buttonArea="all"
+                  buttonIcon={() => (
+                    <CheckboxRound
+                      isActive={cart.delivery.method === 'courier'}
+                    />
+                  )}
+                  customClassName="shopping-cart__order-block-receiving-dropdown"
+                  buttonTitle={() => (
+                    <h4 className="shopping-cart__order-block-receiving-dropdown-title">
+                      Кур'єр
+                    </h4>
+                  )}
+                  renderContent={() => (
+                    <>
+                      <div className="shopping-cart__order-block-receiving-dropdown-inputs">
+                        <label className="shopping-cart__order-block-receiving-dropdown-label">
+                          Служба доставки
+                          <input
+                            type="text"
+                            className="shopping-cart__order-block-receiving-dropdown-input"
+                            placeholder="Нова пошта"
+                            onChange={(e) =>
+                              dispatch(updateDeliveryService(e.target.value))
+                            }
+                            value={cart.delivery.service}
+                          />
+                        </label>
+
+                        <label className="shopping-cart__order-block-receiving-dropdown-label">
+                          Вулиця
+                          <input
+                            type="text"
+                            className="shopping-cart__order-block-receiving-dropdown-input"
+                            placeholder="Червнева вулиця"
+                            onChange={(e) =>
+                              dispatch(updateDeliveryStreet(e.target.value))
+                            }
+                            value={cart.delivery.street}
+                          />
+                        </label>
+
+                        <label className="shopping-cart__order-block-receiving-dropdown-label">
+                          Будинок
+                          <input
+                            type="text"
+                            className="shopping-cart__order-block-receiving-dropdown-input"
+                            placeholder="1"
+                            onChange={(e) =>
+                              dispatch(updateDeliveryHouse(e.target.value))
+                            }
+                            value={cart.delivery.house}
+                          />
+                        </label>
+
+                        <label className="shopping-cart__order-block-receiving-dropdown-label">
+                          Квартира
+                          <input
+                            type="text"
+                            className="shopping-cart__order-block-receiving-dropdown-input"
+                            placeholder="56"
+                            onChange={(e) =>
+                              dispatch(updateDeliveryApartment(e.target.value))
+                            }
+                            value={cart.delivery.apartment}
+                          />
+                        </label>
+                      </div>
+
+                      <p className="shopping-cart__order-block-receiving-dropdown-notification">
+                        Послуга післяплати оплачується окремо, за тарифами
+                        перевізника
+                      </p>
+                    </>
+                  )}
+                  customArrow={() => 'за тарифами перевізника'}
+                />
+
+                <div className="shopping-cart__order-block-receiving-receiver">
+                  <h4 className="shopping-cart__order-block-receiving-receiver-title">
+                    ПІБ отримувача:
+                  </h4>
+
+                  <Dropdown
+                    customClassName="shopping-cart__order-block-dropdown"
+                    buttonArea="all"
+                    buttonTitle={() => (
+                      <p className="shopping-cart__order-block-dropdown-option">
+                        {cart.delivery.receiver.firstName ?
+                          cart.delivery.receiver.firstName
+                        : "Ім'я"}{' '}
+                        {cart.delivery.receiver.middleName ?
+                          cart.delivery.receiver.middleName
+                        : 'По батькові'}{' '}
+                        {cart.delivery.receiver.lastName ?
+                          cart.delivery.receiver.lastName
+                        : 'Прізвище'}
+                      </p>
+                    )}
+                    renderContent={() => (
+                      <div className="shopping-cart__order-block-inputs">
+                        <label className="shopping-cart__order-block-label">
+                          {' '}
+                          Ім'я
+                          <input
+                            className="shopping-cart__order-block-input"
+                            type="text"
+                            placeholder="Андрій"
+                            onChange={(e) =>
+                              dispatch(updateReceiverFirstName(e.target.value))
+                            }
+                            value={cart.delivery.receiver.firstName}
+                          />
+                        </label>
+
+                        <label className="shopping-cart__order-block-label">
+                          {' '}
+                          Прізвище
+                          <input
+                            className="shopping-cart__order-block-input"
+                            type="text"
+                            placeholder="Містеряков"
+                            onChange={(e) =>
+                              dispatch(updateReceiverLastName(e.target.value))
+                            }
+                            value={cart.delivery.receiver.lastName}
+                          />
+                        </label>
+
+                        <label className="shopping-cart__order-block-label">
+                          {' '}
+                          Номер телефону
+                          <input
+                            className="shopping-cart__order-block-input"
+                            type="tel"
+                            placeholder="+38 093 674 34 67"
+                            onChange={(e) =>
+                              dispatch(updateReceiverPhone(e.target.value))
+                            }
+                            value={cart.delivery.receiver.phone}
+                            required
+                          />
+                        </label>
+
+                        <label className="shopping-cart__order-block-label">
+                          {' '}
+                          По батькові
+                          <input
+                            className="shopping-cart__order-block-input"
+                            type="text"
+                            placeholder="Олександрович"
+                            onChange={(e) =>
+                              dispatch(updateReceiverMiddleName(e.target.value))
+                            }
+                            value={cart.delivery.receiver.middleName}
+                            required
+                          />
+                        </label>
+                      </div>
+                    )}
+                    customArrow={() => <InkHighlighterSVG />}
+                  />
+                </div>
+              </>
+            )}
           </div>
         </form>
       )}

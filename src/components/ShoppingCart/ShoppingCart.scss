@@ -244,7 +244,7 @@
   }
   &__order {
     display: flex;
-    width: 622px;
+    width: 640px;
     padding-right: 24px;
     flex-direction: column;
     align-items: flex-start;
@@ -261,6 +261,7 @@
       align-items: flex-start;
       gap: 24px;
       align-self: stretch;
+      width: 592px;
 
       border-radius: 12px;
       background: $background-plate;
@@ -478,36 +479,148 @@
         }
       }
 
-      &-receiving-nav {
-        display: flex;
-        align-items: flex-start;
-        align-self: stretch;
-
-        &-section {
+      &-receiving {
+        &-nav {
           display: flex;
-          padding: 8px;
-          justify-content: center;
-          align-items: center;
-          gap: 8px;
-          flex: 1 0 0;
-          cursor: pointer;
+          align-items: flex-start;
+          align-self: stretch;
 
+          &-section {
+            display: flex;
+            padding: 8px;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            flex: 1 0 0;
+            cursor: pointer;
+
+            transition: $effect-duration;
+
+            border-bottom: 1px solid;
+
+            @include main-text;
+
+            &--inactive {
+              border-bottom-color: $gray-dis;
+
+              color: $gray-dis;
+            }
+
+            &--active {
+              border-bottom-color: $gray-black;
+
+              color: $gray-black;
+            }
+          }
+        }
+
+        &-dropdown {
+          width: 100%;
           transition: $effect-duration;
 
-          border-bottom: 1px solid;
-
-          @include main-text;
-
-          &--inactive {
-            border-bottom-color: $gray-dis;
-
-            color: $gray-dis;
+          &-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
           }
 
           &--active {
-            border-bottom-color: $gray-black;
+            display: flex;
+            padding: 16px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 24px;
+            align-self: stretch;
 
+            border-radius: 12px;
+            border: 1px solid $additional-freshherb-elect;
+            background: $background-selected-bright;
+
+            /* Sclo plate */
+            backdrop-filter: blur(5px);
+          }
+
+          &-button {
+            display: flex;
+            padding: 16px;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            align-self: stretch;
+
+            border-radius: 12px;
+            background: $background-user-notifications;
+
+            /* Sclo plate */
+            backdrop-filter: blur(5px);
+
+            &--active {
+              background: none;
+              padding: 0;
+            }
+          }
+
+          &-title {
+            flex: 1 0 0;
             color: $gray-black;
+
+            @include h4-bold;
+            text-align: left;
+          }
+
+          &-custom-arrow {
+            color: $gray-dark;
+
+            @include main-text;
+            opacity: 1;
+            transition: $effect-duration;
+
+            &--active {
+              opacity: 0;
+            }
+          }
+
+          &-inputs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: flex-start;
+            gap: 16px;
+            align-self: stretch;
+          }
+
+          &-label {
+            color: $gray-black;
+
+            @include label-bold;
+          }
+
+          &-input {
+            display: flex;
+            height: 56px;
+            width: 248px;
+
+            margin-top: 8px;
+            padding: 16px;
+            align-items: center;
+            gap: 8px;
+            align-self: stretch;
+
+            border-radius: 12px;
+            border: 1px solid $gray-stroke;
+            background: $gray-white;
+
+            @include main-text;
+
+            &::placeholder {
+              color: $gray;
+            }
+          }
+
+          &-notification {
+            width: 327px;
+            color: $additional-freshherb-elect;
+
+            @include main-text;
           }
         }
       }

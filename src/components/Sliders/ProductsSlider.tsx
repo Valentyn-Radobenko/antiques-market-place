@@ -3,7 +3,7 @@ import Slider from './Slider';
 import { useIsMobile, useIsTablet } from '../../hooks/useMediaQuery';
 import { Link, useParams } from 'react-router-dom';
 import products from '../../data/products.json';
-import { Product } from '../../types/product';
+import { Product } from '../../types/Product';
 import { useSelector } from 'react-redux';
 import { SavingState } from '../../store/store';
 

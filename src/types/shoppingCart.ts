@@ -1,4 +1,11 @@
-import { Product as product } from './product';
+import { Product as product } from './Product';
+
+type receiver = {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  phone: string;
+};
 
 export interface ShoppingCartState {
   items: product[];
@@ -22,6 +29,7 @@ export interface ShoppingCartState {
     street?: string; // якщо courier
     house?: string;
     apartment?: string;
+    receiver: receiver;
   };
 
   payment: {
