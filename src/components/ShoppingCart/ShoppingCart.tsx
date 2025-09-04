@@ -24,6 +24,7 @@ import {
   updateReceiverLastName,
   updateReceiverPhone,
   updateReceiverMiddleName,
+  updatePaymentMethod,
 } from '../../store/slices/shoppingCartSlice';
 import { DeleteSVG } from '../Imgs/DeleteSVG';
 import products from '../../data/products.json';
@@ -35,6 +36,10 @@ import { Dropdown } from '../Dropdown/Dropdown';
 import { InkHighlighterSVG } from '../Imgs/InkHighlighterSVG';
 import classNames from 'classnames';
 import { CheckboxRound } from '../Imgs/CheckBoxRound/CheckBoxRound';
+import { LocationSVG } from '../Imgs/LocationSVG';
+import { MapSearchSVG } from '../Imgs/MapSearchSVG';
+import { NestClockSVG } from '../Imgs/NestClockSVG';
+import { CopySVG } from '../Imgs/CopySVG';
 
 export const ShoppingCart: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -335,7 +340,7 @@ export const ShoppingCart: React.FC = () => {
                     </label>
                   </div>
                 )}
-                customArrow={() => <InkHighlighterSVG />}
+                customAfterTitle={() => <InkHighlighterSVG />}
               />
 
               <Dropdown
@@ -380,7 +385,7 @@ export const ShoppingCart: React.FC = () => {
                     </label>
                   </div>
                 )}
-                customArrow={() => <InkHighlighterSVG />}
+                customAfterTitle={() => <InkHighlighterSVG />}
               />
             </div>
           </div>
@@ -436,6 +441,7 @@ export const ShoppingCart: React.FC = () => {
             </div>
           </div>
 
+          {/* #region receiving */}
           <div className="shopping-cart__order-block">
             <div className="shopping-cart__order-block-top">
               <h3 className="shopping-cart__order-block-title">Отримання</h3>
@@ -489,20 +495,20 @@ export const ShoppingCart: React.FC = () => {
                   buttonIcon={() => (
                     <CheckboxRound isActive={cart.delivery.method === 'post'} />
                   )}
-                  customClassName="shopping-cart__order-block-receiving-dropdown"
+                  customClassName="shopping-cart__order-block-radio-dropdown"
                   buttonTitle={() => (
-                    <h4 className="shopping-cart__order-block-receiving-dropdown-title">
+                    <h4 className="shopping-cart__order-block-radio-dropdown-title">
                       Самовивіз з пошти
                     </h4>
                   )}
                   renderContent={() => (
                     <>
-                      <div className="shopping-cart__order-block-receiving-dropdown-inputs">
-                        <label className="shopping-cart__order-block-receiving-dropdown-label">
+                      <div className="shopping-cart__order-block-radio-dropdown-inputs">
+                        <label className="shopping-cart__order-block-radio-dropdown-label">
                           Служба доставки
                           <input
                             type="text"
-                            className="shopping-cart__order-block-receiving-dropdown-input"
+                            className="shopping-cart__order-block-radio-dropdown-input"
                             placeholder="Нова пошта"
                             onChange={(e) =>
                               dispatch(updateDeliveryService(e.target.value))
@@ -511,11 +517,11 @@ export const ShoppingCart: React.FC = () => {
                           />
                         </label>
 
-                        <label className="shopping-cart__order-block-receiving-dropdown-label">
+                        <label className="shopping-cart__order-block-radio-dropdown-label">
                           Номер відділення
                           <input
                             type="text"
-                            className="shopping-cart__order-block-receiving-dropdown-input"
+                            className="shopping-cart__order-block-radio-dropdown-input"
                             placeholder="№456"
                             onChange={(e) =>
                               dispatch(updateDeliveryBranch(e.target.value))
@@ -525,13 +531,13 @@ export const ShoppingCart: React.FC = () => {
                         </label>
                       </div>
 
-                      <p className="shopping-cart__order-block-receiving-dropdown-notification">
+                      <p className="shopping-cart__order-block-receiving-notification">
                         Послуга післяплати оплачується окремо, за тарифами
                         перевізника
                       </p>
                     </>
                   )}
-                  customArrow={() => 'за тарифами перевізника'}
+                  customAfterTitle={() => 'за тарифами перевізника'}
                 />
 
                 <Dropdown
@@ -545,20 +551,20 @@ export const ShoppingCart: React.FC = () => {
                       isActive={cart.delivery.method === 'courier'}
                     />
                   )}
-                  customClassName="shopping-cart__order-block-receiving-dropdown"
+                  customClassName="shopping-cart__order-block-radio-dropdown"
                   buttonTitle={() => (
-                    <h4 className="shopping-cart__order-block-receiving-dropdown-title">
+                    <h4 className="shopping-cart__order-block-radio-dropdown-title">
                       Кур'єр
                     </h4>
                   )}
                   renderContent={() => (
                     <>
-                      <div className="shopping-cart__order-block-receiving-dropdown-inputs">
-                        <label className="shopping-cart__order-block-receiving-dropdown-label">
+                      <div className="shopping-cart__order-block-radio-dropdown-inputs">
+                        <label className="shopping-cart__order-block-radio-dropdown-label">
                           Служба доставки
                           <input
                             type="text"
-                            className="shopping-cart__order-block-receiving-dropdown-input"
+                            className="shopping-cart__order-block-radio-dropdown-input"
                             placeholder="Нова пошта"
                             onChange={(e) =>
                               dispatch(updateDeliveryService(e.target.value))
@@ -567,11 +573,11 @@ export const ShoppingCart: React.FC = () => {
                           />
                         </label>
 
-                        <label className="shopping-cart__order-block-receiving-dropdown-label">
+                        <label className="shopping-cart__order-block-radio-dropdown-label">
                           Вулиця
                           <input
                             type="text"
-                            className="shopping-cart__order-block-receiving-dropdown-input"
+                            className="shopping-cart__order-block-radio-dropdown-input"
                             placeholder="Червнева вулиця"
                             onChange={(e) =>
                               dispatch(updateDeliveryStreet(e.target.value))
@@ -580,11 +586,11 @@ export const ShoppingCart: React.FC = () => {
                           />
                         </label>
 
-                        <label className="shopping-cart__order-block-receiving-dropdown-label">
+                        <label className="shopping-cart__order-block-radio-dropdown-label">
                           Будинок
                           <input
                             type="text"
-                            className="shopping-cart__order-block-receiving-dropdown-input"
+                            className="shopping-cart__order-block-radio-dropdown-input"
                             placeholder="1"
                             onChange={(e) =>
                               dispatch(updateDeliveryHouse(e.target.value))
@@ -593,11 +599,11 @@ export const ShoppingCart: React.FC = () => {
                           />
                         </label>
 
-                        <label className="shopping-cart__order-block-receiving-dropdown-label">
+                        <label className="shopping-cart__order-block-radio-dropdown-label">
                           Квартира
                           <input
                             type="text"
-                            className="shopping-cart__order-block-receiving-dropdown-input"
+                            className="shopping-cart__order-block-radio-dropdown-input"
                             placeholder="56"
                             onChange={(e) =>
                               dispatch(updateDeliveryApartment(e.target.value))
@@ -607,13 +613,13 @@ export const ShoppingCart: React.FC = () => {
                         </label>
                       </div>
 
-                      <p className="shopping-cart__order-block-receiving-dropdown-notification">
+                      <p className="shopping-cart__order-block-receiving-notification">
                         Послуга післяплати оплачується окремо, за тарифами
                         перевізника
                       </p>
                     </>
                   )}
-                  customArrow={() => 'за тарифами перевізника'}
+                  customAfterTitle={() => 'за тарифами перевізника'}
                 />
 
                 <div className="shopping-cart__order-block-receiving-receiver">
@@ -698,12 +704,313 @@ export const ShoppingCart: React.FC = () => {
                         </label>
                       </div>
                     )}
-                    customArrow={() => <InkHighlighterSVG />}
+                    customAfterTitle={() => <InkHighlighterSVG />}
                   />
                 </div>
               </>
             )}
+
+            {cart.delivery.type === 'pickup' && (
+              <>
+                <div className="shopping-cart__order-block-contact">
+                  <h5 className="shopping-cart__order-block-contact-label">
+                    Контактні данні:
+                  </h5>
+                  <Dropdown
+                    customClassName="shopping-cart__order-block-dropdown"
+                    buttonArea="all"
+                    buttonTitle={() => (
+                      <p className="shopping-cart__order-block-dropdown-option">
+                        {cart.user.firstName ? cart.user.firstName : "Ім'я"}{' '}
+                        {cart.user.lastName ? cart.user.lastName : 'Прізвище'}
+                      </p>
+                    )}
+                    renderContent={() => (
+                      <div className="shopping-cart__order-block-inputs">
+                        <label className="shopping-cart__order-block-label">
+                          {' '}
+                          Ім'я
+                          <input
+                            className="shopping-cart__order-block-input"
+                            type="text"
+                            placeholder="Андрій"
+                            onChange={(e) =>
+                              dispatch(updateUserFirstName(e.target.value))
+                            }
+                            value={cart.user.firstName}
+                            required
+                          />
+                        </label>
+
+                        <label className="shopping-cart__order-block-label">
+                          {' '}
+                          Прізвище
+                          <input
+                            className="shopping-cart__order-block-input"
+                            type="text"
+                            placeholder="Містеряков"
+                            onChange={(e) =>
+                              dispatch(updateUserLastName(e.target.value))
+                            }
+                            value={cart.user.lastName}
+                            required
+                          />
+                        </label>
+
+                        <label className="shopping-cart__order-block-label">
+                          {' '}
+                          Номер телефону
+                          <input
+                            className="shopping-cart__order-block-input"
+                            type="tel"
+                            placeholder="+38 093 674 34 67"
+                            onChange={(e) =>
+                              dispatch(updateUserPhone(e.target.value))
+                            }
+                            value={cart.user.phone}
+                            required
+                          />
+                        </label>
+
+                        <label className="shopping-cart__order-block-label">
+                          {' '}
+                          Електронна пошта
+                          <input
+                            className="shopping-cart__order-block-input"
+                            type="email"
+                            placeholder="artemmisti@gmail.com"
+                            onChange={(e) =>
+                              dispatch(updateUserEmail(e.target.value))
+                            }
+                            value={cart.user.email}
+                            required
+                          />
+                        </label>
+                      </div>
+                    )}
+                    customAfterTitle={() => <InkHighlighterSVG />}
+                  />
+                </div>
+                <div className="shopping-cart__order-block-storage">
+                  <div className="shopping-cart__order-block-storage-location">
+                    <p className="shopping-cart__order-block-storage-location-label">
+                      Адреса складу:
+                    </p>
+                    <Link
+                      to={'https://maps.app.goo.gl/wAdeT2GGibefrzub9'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="shopping-cart__order-block-storage-location-link"
+                    >
+                      <LocationSVG />
+                      <span className="shopping-cart__order-block-storage-location-link-text">
+                        10014, м. Житомир, пл. Перемоги, 9
+                      </span>
+                      <MapSearchSVG />
+                    </Link>
+                  </div>
+                  <div className="shopping-cart__order-block-storage-schedule">
+                    <p className="shopping-cart__order-block-storage-schedule-label">
+                      Години роботи:
+                    </p>
+                    <div className="shopping-cart__order-block-storage-schedule-info">
+                      <div className="shopping-cart__order-block-storage-schedule-info-block">
+                        <NestClockSVG />
+                        <p className="shopping-cart__order-block-storage-schedule-info-text">
+                          Вт - Нд: 10:00 - 18:00
+                        </p>
+                      </div>
+                      <div className="shopping-cart__order-block-storage-schedule-info-block">
+                        <p className="shopping-cart__order-block-storage-schedule-info-text">
+                          Обідня перерва: 13:00 – 14:00
+                          <br />
+                          Графік може змінюватися у святкові дні.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
+          {/* #endregion */}
+
+          {/* #region payment */}
+          <div className="shopping-cart__order-block">
+            <div className="shopping-cart__order-block-top">
+              <h3 className="shopping-cart__order-block-title">Оплата</h3>
+              <p className="shopping-cart__order-block-step">
+                4<span className="shopping-cart__order-block-steps">/5</span>
+              </p>
+            </div>
+
+            <Dropdown
+              onClick={() => {
+                dispatch(updatePaymentMethod('onReceipt'));
+              }}
+              customIsVisible={cart.payment.method === 'onReceipt'}
+              buttonArea="all"
+              buttonIcon={() => (
+                <CheckboxRound isActive={cart.payment.method === 'onReceipt'} />
+              )}
+              customClassName="shopping-cart__order-block-radio-dropdown"
+              buttonTitle={() => (
+                <h4 className="shopping-cart__order-block-radio-dropdown-title">
+                  Оплата під час отримання товару ( карта / готівка )
+                </h4>
+              )}
+              subtitle="Послуга післяплати оплачується окремо,
+              за тарифами перевізника"
+              renderContent={() => (
+                <>
+                  <div className="shopping-cart__order-block-radio-dropdown-inputs">
+                    <label className="shopping-cart__order-block-radio-dropdown-label">
+                      Служба доставки
+                      <input
+                        type="text"
+                        className="shopping-cart__order-block-radio-dropdown-input"
+                        placeholder="Нова пошта"
+                        onChange={(e) =>
+                          dispatch(updateDeliveryService(e.target.value))
+                        }
+                        value={cart.delivery.service}
+                      />
+                    </label>
+
+                    <label className="shopping-cart__order-block-radio-dropdown-label">
+                      Номер відділення
+                      <input
+                        type="text"
+                        className="shopping-cart__order-block-radio-dropdown-input"
+                        placeholder="№456"
+                        onChange={(e) =>
+                          dispatch(updateDeliveryBranch(e.target.value))
+                        }
+                        value={cart.delivery.branch}
+                      />
+                    </label>
+                  </div>
+
+                  <p className="shopping-cart__order-block-receiving-notification">
+                    Послуга післяплати оплачується окремо, за тарифами
+                    перевізника
+                  </p>
+                </>
+              )}
+              isAfterTitleOn={false}
+            />
+
+            <Dropdown
+              onClick={() => {
+                dispatch(updatePaymentMethod('international'));
+              }}
+              customIsVisible={cart.payment.method === 'international'}
+              buttonArea="all"
+              buttonIcon={() => (
+                <CheckboxRound
+                  isActive={cart.payment.method === 'international'}
+                />
+              )}
+              customClassName="shopping-cart__order-block-radio-dropdown"
+              buttonTitle={() => (
+                <h4 className="shopping-cart__order-block-radio-dropdown-title">
+                  Міжнародний переказ
+                </h4>
+              )}
+              subtitle="Послуга післяплати оплачується окремо,
+              за тарифами перевізника"
+              renderContent={() => (
+                <>
+                  <div className="shopping-cart__order-block-payments-info">
+                    <div className="shopping-cart__order-block-payments-info-block">
+                      <div className="shopping-cart__order-block-payments-info-unit">
+                        <p className="shopping-cart__order-block-payments-info-label">
+                          IBAN:
+                        </p>
+                        <div className="shopping-cart__order-block-payments-info-copy">
+                          <p className="shopping-cart__order-block-payments-info-value">
+                            UA2134565245678
+                          </p>
+                          <CopySVG
+                            className="shopping-cart__order-block-payments-info-copy-icon"
+                            onClick={() => {
+                              navigator.clipboard.writeText('UA2134565245678');
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="shopping-cart__order-block-payments-info-unit">
+                        <p className="shopping-cart__order-block-payments-info-label">
+                          SWIFT код:
+                        </p>
+                        <div className="shopping-cart__order-block-payments-info-copy">
+                          <p className="shopping-cart__order-block-payments-info-value">
+                            ABCDUAUAXS
+                          </p>
+                          <CopySVG
+                            className="shopping-cart__order-block-payments-info-copy-icon"
+                            onClick={() => {
+                              navigator.clipboard.writeText('ABCDUAUAXS');
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div
+                        className="shopping-cart__order-block-payments-info-unit 
+                      shopping-cart__order-block-payments-info-unit--last"
+                      >
+                        <p className="shopping-cart__order-block-payments-info-label">
+                          Сума:
+                        </p>
+                        <p className="shopping-cart__order-block-payments-info-value">
+                          8000 грн
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="shopping-cart__order-block-payments-info-block">
+                      <div className="shopping-cart__order-block-payments-info-unit">
+                        <p className="shopping-cart__order-block-payments-info-label">
+                          Назва банку:
+                        </p>
+                        <p className="shopping-cart__order-block-payments-info-value">
+                          Приват банк
+                        </p>
+                      </div>
+
+                      <div className="shopping-cart__order-block-payments-info-unit">
+                        <p className="shopping-cart__order-block-payments-info-label">
+                          Юридична адреса:
+                        </p>
+                        <p className="shopping-cart__order-block-payments-info-value">
+                          вул.Велика Бердичівська 75
+                        </p>
+                      </div>
+
+                      <div className="shopping-cart__order-block-payments-info-unit">
+                        <p className="shopping-cart__order-block-payments-info-label">
+                          Додаткова інформація:
+                        </p>
+                        <p className="shopping-cart__order-block-payments-info-value">
+                          Переказ доступний у форматах SEPA/SWIFT з будь-якого
+                          банку.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="shopping-cart__order-block-receiving-notification">
+                    Послуга післяплати оплачується окремо, за тарифами
+                    перевізника
+                  </p>
+                </>
+              )}
+              isAfterTitleOn={false}
+            />
+          </div>
+          {/* #endregion */}
         </form>
       )}
     </div>

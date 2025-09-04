@@ -261,7 +261,7 @@
       align-items: flex-start;
       gap: 24px;
       align-self: stretch;
-      width: 592px;
+      width: 616px;
 
       border-radius: 12px;
       background: $background-plate;
@@ -323,7 +323,7 @@
           @include main-text;
         }
 
-        &-custom-arrow {
+        &-custom-after-title {
           color: $gray-black;
 
           &--active {
@@ -337,7 +337,7 @@
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
         grid-auto-flow: column;
-        width: 552px;
+        width: 100%;
         padding: 0 8px;
         align-items: flex-start;
         gap: 16px;
@@ -514,17 +514,61 @@
           }
         }
 
-        &-dropdown {
-          width: 100%;
-          transition: $effect-duration;
+        &-notification {
+          width: 327px;
+          color: $additional-freshherb-elect;
 
-          &-content {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-          }
+          @include main-text;
+        }
+      }
+
+      &-radio-dropdown {
+        width: 568px;
+        transition: $effect-duration;
+
+        &-content {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          width: 100%;
+        }
+
+        &--active {
+          display: flex;
+          padding: 16px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 24px;
+          align-self: stretch;
+
+          border-radius: 12px;
+          border: 1px solid $additional-freshherb-elect;
+          background: $background-selected-bright;
+
+          /* Sclo plate */
+          backdrop-filter: blur(5px);
+        }
+
+        &-button {
+          display: flex;
+          padding: 16px;
+          justify-content: center;
+          align-items: center;
+          gap: 16px;
+          align-self: stretch;
+
+          border-radius: 12px;
+          background: $background-user-notifications;
+
+          /* Sclo plate */
+          backdrop-filter: blur(5px);
 
           &--active {
+            background: none;
+            padding: 0;
+          }
+
+          &-wrap {
             display: flex;
             padding: 16px;
             flex-direction: column;
@@ -533,94 +577,267 @@
             align-self: stretch;
 
             border-radius: 12px;
-            border: 1px solid $additional-freshherb-elect;
-            background: $background-selected-bright;
+            background: $background-plate;
 
             /* Sclo plate */
             backdrop-filter: blur(5px);
+
+            & .dropdown__button {
+              padding: 0;
+              background: none;
+              backdrop-filter: initial;
+            }
+
+            &--active {
+              padding: 0;
+              background: none;
+            }
           }
 
-          &-button {
+          &-subtitle {
+            color: $gray-black;
+
+            @include main-text;
+
+            &--active {
+              display: none;
+            }
+          }
+        }
+
+        &-title {
+          flex: 1 0 0;
+          color: $gray-black;
+
+          @include h4-bold;
+          text-align: left;
+        }
+
+        &-custom-after-title {
+          color: $gray-dark;
+
+          @include main-text;
+          opacity: 1;
+          transition: $effect-duration;
+
+          &--active {
+            opacity: 0;
+          }
+        }
+
+        &-inputs {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          align-items: flex-start;
+          gap: 16px;
+          align-self: stretch;
+        }
+
+        &-label {
+          color: $gray-black;
+
+          @include label-bold;
+        }
+
+        &-input {
+          display: flex;
+          height: 56px;
+          width: 100%;
+
+          margin-top: 8px;
+          padding: 16px;
+          align-items: center;
+          gap: 8px;
+          align-self: stretch;
+
+          border-radius: 12px;
+          border: 1px solid $gray-stroke;
+          background: $gray-white;
+
+          @include main-text;
+
+          &::placeholder {
+            color: $gray;
+          }
+        }
+      }
+
+      &-contact {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 4px;
+        align-self: stretch;
+
+        &-label {
+          color: $additional-black-green;
+
+          @include button-bold;
+        }
+      }
+
+      &-storage {
+        display: flex;
+        padding: 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        align-self: stretch;
+
+        border-radius: 12px;
+        background: $background-user-notifications;
+
+        /* Sclo plate */
+        backdrop-filter: blur(5px);
+
+        &-location {
+          display: flex;
+          height: 82px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 8px;
+          align-self: stretch;
+
+          border-radius: 12px;
+
+          &-label {
+            width: 123px;
+
+            color: $additional-black-green;
+
+            @include main-text;
+          }
+
+          &-link {
             display: flex;
-            padding: 16px;
-            justify-content: center;
+            padding: 4px 8px;
             align-items: center;
             gap: 16px;
             align-self: stretch;
 
             border-radius: 12px;
-            background: $background-user-notifications;
 
-            /* Sclo plate */
-            backdrop-filter: blur(5px);
+            color: $additional-greenas;
+            text-decoration: underline;
 
-            &--active {
-              background: none;
-              padding: 0;
-            }
-          }
-
-          &-title {
-            flex: 1 0 0;
-            color: $gray-black;
-
-            @include h4-bold;
-            text-align: left;
-          }
-
-          &-custom-arrow {
-            color: $gray-dark;
+            @include hover(color, $additional-freshherb-elect);
 
             @include main-text;
-            opacity: 1;
-            transition: $effect-duration;
+          }
+        }
 
-            &--active {
-              opacity: 0;
-            }
+        &-schedule {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 8px;
+          align-self: stretch;
+
+          &-label {
+            width: 123px;
+
+            color: $additional-black-green;
+
+            @include main-text;
           }
 
-          &-inputs {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+          &-info {
+            display: flex;
+            flex-direction: column;
             align-items: flex-start;
-            gap: 16px;
+            gap: 4px;
+            align-self: stretch;
+
+            &-block {
+              display: flex;
+              padding: 4px 8px;
+              align-items: center;
+              gap: 16px;
+              align-self: stretch;
+
+              color: $gray-dark;
+            }
+
+            &-text {
+              @include main-text;
+            }
+          }
+        }
+      }
+
+      &-payments {
+        &-info {
+          display: flex;
+          align-items: flex-start;
+          gap: 8px;
+          align-self: stretch;
+
+          // height: 376px;
+
+          &-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            flex: 1 0 0;
             align-self: stretch;
           }
 
-          &-label {
-            color: $gray-black;
-
-            @include label-bold;
-          }
-
-          &-input {
+          &-unit {
             display: flex;
-            height: 56px;
-            width: 248px;
-
-            margin-top: 8px;
             padding: 16px;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-start;
             gap: 8px;
             align-self: stretch;
 
             border-radius: 12px;
-            border: 1px solid $gray-stroke;
-            background: $gray-white;
+            background: $background-selected-bright;
 
-            @include main-text;
+            /* Sclo plate */
+            backdrop-filter: blur(5px);
 
-            &::placeholder {
-              color: $gray;
+            &--last {
+              flex: 1 0 0;
             }
           }
 
-          &-notification {
-            width: 327px;
-            color: $additional-freshherb-elect;
+          &-label {
+            color: $additional-black-green;
+
+            @include label-bold;
+          }
+
+          &-value {
+            display: flex;
+            padding: 4px 8px;
+            align-items: center;
+            gap: 8px;
+            align-self: stretch;
+
+            color: $gray-dark;
 
             @include main-text;
+          }
+
+          &-copy {
+            display: flex;
+            padding: 4px 8px;
+            align-items: center;
+            gap: 8px;
+            align-self: stretch;
+            justify-content: space-between;
+
+            border-radius: 12px;
+
+            &-icon {
+              color: $gray-black;
+
+              cursor: pointer;
+            }
           }
         }
       }

@@ -124,6 +124,14 @@ const shoppingCartSlice = createSlice({
     updatePayment(state, action: PayloadAction<ShoppingCartState['payment']>) {
       state.payment = action.payload;
     },
+    updatePaymentMethod(
+      state,
+      action: PayloadAction<
+        'onReceipt' | 'international' | 'internal' | 'cash'
+      >,
+    ) {
+      state.payment.method = action.payload;
+    },
   },
 });
 
@@ -153,5 +161,6 @@ export const {
   updateReceiverLastName,
   updateReceiverPhone,
   updatePayment,
+  updatePaymentMethod,
 } = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;
