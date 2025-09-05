@@ -34,7 +34,7 @@ const initialState: ShoppingCartState = {
 
   payment: {
     method: null,
-    screenshot: '',
+    screenshots: [],
   },
 
   orderStatus: 'draft',
@@ -132,6 +132,12 @@ const shoppingCartSlice = createSlice({
     ) {
       state.payment.method = action.payload;
     },
+    addPaymentScreenshots(state, action: PayloadAction<File>) {
+      state.payment.screenshots.push(action.payload);
+    },
+    updatePaymentScreenshots(state, action: PayloadAction<File[]>) {
+      state.payment.screenshots = [...action.payload];
+    },
   },
 });
 
@@ -162,5 +168,7 @@ export const {
   updateReceiverPhone,
   updatePayment,
   updatePaymentMethod,
+  addPaymentScreenshots,
+  updatePaymentScreenshots,
 } = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;

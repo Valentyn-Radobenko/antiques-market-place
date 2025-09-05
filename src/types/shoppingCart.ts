@@ -34,7 +34,7 @@ export interface ShoppingCartState {
 
   payment: {
     method: 'onReceipt' | 'international' | 'internal' | 'cash' | null;
-    screenshot?: string;
+    screenshots: File[];
   };
 
   orderStatus: 'draft' | 'confirmed' | 'completed';

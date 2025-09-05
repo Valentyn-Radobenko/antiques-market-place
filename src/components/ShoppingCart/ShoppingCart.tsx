@@ -25,6 +25,7 @@ import {
   updateReceiverPhone,
   updateReceiverMiddleName,
   updatePaymentMethod,
+  updatePaymentScreenshots,
 } from '../../store/slices/shoppingCartSlice';
 import { DeleteSVG } from '../Imgs/DeleteSVG';
 import products from '../../data/products.json';
@@ -40,6 +41,9 @@ import { LocationSVG } from '../Imgs/LocationSVG';
 import { MapSearchSVG } from '../Imgs/MapSearchSVG';
 import { NestClockSVG } from '../Imgs/NestClockSVG';
 import { CopySVG } from '../Imgs/CopySVG';
+import { InfoSVG } from '../Imgs/InfoSVG';
+import { FilesInput } from '../FilesInput/FilesInput';
+import { PhotosList } from '../PhotosList/PhotosList';
 
 export const ShoppingCart: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -49,8 +53,15 @@ export const ShoppingCart: React.FC = () => {
   const lang = useSelector((state: SavingState) => state.language.language);
   const [showAll, setShowAll] = useState(false);
   const [step, setStep] = useState(1);
+  const [files, setFiles] = useState<File[]>(cart.payment.screenshots);
 
-  useEffect(() => {});
+  useEffect(() => {
+    dispatch(updatePaymentScreenshots(files));
+
+    console.log(files);
+  }, [files, dispatch]);
+
+  const totalPrice = cart.items.reduce((acc, item) => acc + item.price, 0);
 
   const deleteSelectedItems = () =>
     cart.items.forEach((i) => {
@@ -234,9 +245,7 @@ export const ShoppingCart: React.FC = () => {
               <div className="shopping-cart__content-bottom">
                 <div className="shopping-cart__price">
                   <p className="shopping-cart__price-label">Загальна сума</p>
-                  <p className="shopping-cart__price-value">
-                    {cart.items.reduce((acc, item) => acc + item.price, 0)} грн
-                  </p>
+                  <p className="shopping-cart__price-value">{totalPrice} грн</p>
                 </div>
 
                 <button
@@ -903,6 +912,10 @@ export const ShoppingCart: React.FC = () => {
             <Dropdown
               onClick={() => {
                 dispatch(updatePaymentMethod('international'));
+
+                if (cart.payment.method !== 'international') {
+                  dispatch(updatePaymentScreenshots([]));
+                }
               }}
               customIsVisible={cart.payment.method === 'international'}
               buttonArea="all"
@@ -965,7 +978,7 @@ export const ShoppingCart: React.FC = () => {
                           Сума:
                         </p>
                         <p className="shopping-cart__order-block-payments-info-value">
-                          8000 грн
+                          {totalPrice} грн
                         </p>
                       </div>
                     </div>
@@ -999,6 +1012,26 @@ export const ShoppingCart: React.FC = () => {
                         </p>
                       </div>
                     </div>
+                  </div>
+
+                  <div className="shopping-cart__order-block-payments-upload">
+                    <div className="shopping-cart__order-block-payments-upload-title">
+                      <p className="shopping-cart__order-block-payments-upload-title-text">
+                        Скрін оплати
+                      </p>
+                      <InfoSVG />
+                    </div>
+
+                    <FilesInput
+                      files={files}
+                      setFiles={setFiles}
+                    />
+                    {files.length > 0 && (
+                      <PhotosList
+                        files={files}
+                        setFiles={setFiles}
+                      />
+                    )}
                   </div>
 
                   <p className="shopping-cart__order-block-receiving-notification">

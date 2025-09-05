@@ -177,7 +177,7 @@ const validatedState: SavingState =
             persistedState.shoppingCart.payment
           : {
               method: null,
-              screenshot: '',
+              screenshots: [],
             },
         orderStatus:
           (
@@ -228,7 +228,7 @@ const validatedState: SavingState =
 
         payment: {
           method: null,
-          screenshot: '',
+          screenshots: [],
         },
 
         orderStatus: 'draft',
