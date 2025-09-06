@@ -868,6 +868,38 @@
 
             @include label-bold;
           }
+
+          &-input {
+            display: flex;
+            height: 56px;
+            padding: 16px;
+            align-items: center;
+            gap: 8px;
+            align-self: stretch;
+            justify-content: space-between;
+
+            border-radius: 12px;
+            border: 1px solid $gray-stroke;
+            background: $gray-white;
+
+            cursor: pointer;
+
+            &.isActive {
+              background-color: #d6f2e8;
+            }
+
+            &:hover {
+              background-color: $additional-white-green;
+            }
+
+            &.hoverEffect {
+              background-color: $additional-white-green;
+            }
+
+            &.disabled {
+              background-color: $gray-white-darks;
+            }
+          }
         }
       }
     }

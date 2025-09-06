@@ -44,6 +44,7 @@ import { CopySVG } from '../Imgs/CopySVG';
 import { InfoSVG } from '../Imgs/InfoSVG';
 import { FilesInput } from '../FilesInput/FilesInput';
 import { PhotosList } from '../PhotosList/PhotosList';
+import { AddPhotoAlternateSVG } from '../Imgs/AddPhotoAlternateSVG';
 
 export const ShoppingCart: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -54,6 +55,7 @@ export const ShoppingCart: React.FC = () => {
   const [showAll, setShowAll] = useState(false);
   const [step, setStep] = useState(1);
   const [files, setFiles] = useState<File[]>(cart.payment.screenshots);
+  const PHOTO_AMOUNT = 5;
 
   useEffect(() => {
     dispatch(updatePaymentScreenshots(files));
@@ -1025,6 +1027,16 @@ export const ShoppingCart: React.FC = () => {
                     <FilesInput
                       files={files}
                       setFiles={setFiles}
+                      PHOTO_AMOUNT={PHOTO_AMOUNT}
+                      customClassName="shopping-cart__order-block-payments-upload-input"
+                      customContent={() => (
+                        <>
+                          <p className="shopping-cart__order-block-payments-upload-input-text">
+                            Виберіть файл
+                          </p>
+                          <AddPhotoAlternateSVG />
+                        </>
+                      )}
                     />
                     {files.length > 0 && (
                       <PhotosList
@@ -1032,6 +1044,10 @@ export const ShoppingCart: React.FC = () => {
                         setFiles={setFiles}
                       />
                     )}
+
+                    <p className="shopping-cart__order-block-payments-upload-formats">
+                      Приймаються формати: JPG, PNG, PDF
+                    </p>
                   </div>
 
                   <p className="shopping-cart__order-block-receiving-notification">
