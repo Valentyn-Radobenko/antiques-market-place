@@ -3,6 +3,8 @@
   gap: 8px;
   flex-direction: column;
   color: $gray-black;
+
+  width: 100%;
   @include tab-regular;
 
   &__list-of-photos {

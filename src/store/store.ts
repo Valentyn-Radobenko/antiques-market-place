@@ -139,9 +139,12 @@ const validatedState: SavingState =
           ) ?
             persistedState.shoppingCart.selectedItems
           : [],
-        isOpen:
-          persistedState.shoppingCart && persistedState.shoppingCart.isOpen ?
-            persistedState.shoppingCart.isOpen
+        isCartOpen:
+          (
+            persistedState.shoppingCart &&
+            persistedState.shoppingCart.isCartOpen
+          ) ?
+            persistedState.shoppingCart.isCartOpen
           : false,
         user:
           persistedState.shoppingCart && persistedState.shoppingCart.user ?
@@ -177,7 +180,6 @@ const validatedState: SavingState =
             persistedState.shoppingCart.payment
           : {
               method: null,
-              screenshots: [],
             },
         orderStatus:
           (
@@ -199,7 +201,7 @@ const validatedState: SavingState =
       shoppingCart: {
         items: [],
         selectedItems: [],
-        isOpen: false,
+        isCartOpen: false,
 
         user: {
           firstName: '',
@@ -228,7 +230,6 @@ const validatedState: SavingState =
 
         payment: {
           method: null,
-          screenshots: [],
         },
 
         orderStatus: 'draft',

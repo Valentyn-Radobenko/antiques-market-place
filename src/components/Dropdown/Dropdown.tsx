@@ -101,6 +101,7 @@ export const Dropdown: React.FC<Props> = ({
       >
         {simpleButtonElement}
         <p
+          dangerouslySetInnerHTML={{ __html: subtitle }}
           className={classNames(
             `${customClassName}-button-subtitle dropdown__button-subtitle`,
             {
@@ -110,9 +111,7 @@ export const Dropdown: React.FC<Props> = ({
                 !isVisible,
             },
           )}
-        >
-          {subtitle}
-        </p>
+        ></p>
       </div>
     : simpleButtonElement;
 

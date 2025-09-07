@@ -10,7 +10,7 @@ type receiver = {
 export interface ShoppingCartState {
   items: product[];
   selectedItems: product[];
-  isOpen: boolean;
+  isCartOpen: boolean;
 
   user: {
     firstName: string;
@@ -34,7 +34,6 @@ export interface ShoppingCartState {
 
   payment: {
     method: 'onReceipt' | 'international' | 'internal' | 'cash' | null;
-    screenshots: File[];
   };
 
   orderStatus: 'draft' | 'confirmed' | 'completed';

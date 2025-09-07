@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Close } from '../Imgs/Close';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../store/store';
 import {
   removeItem,
-  setIsOpen,
+  setIsCartOpen,
   addSelectedItem,
   removeSelectedItem,
   updateUserFirstName,
@@ -25,7 +25,6 @@ import {
   updateReceiverPhone,
   updateReceiverMiddleName,
   updatePaymentMethod,
-  updatePaymentScreenshots,
 } from '../../store/slices/shoppingCartSlice';
 import { DeleteSVG } from '../Imgs/DeleteSVG';
 import products from '../../data/products.json';
@@ -45,6 +44,7 @@ import { InfoSVG } from '../Imgs/InfoSVG';
 import { FilesInput } from '../FilesInput/FilesInput';
 import { PhotosList } from '../PhotosList/PhotosList';
 import { AddPhotoAlternateSVG } from '../Imgs/AddPhotoAlternateSVG';
+import { useIsMobile } from '../../hooks/useMediaQuery';
 
 export const ShoppingCart: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -54,14 +54,12 @@ export const ShoppingCart: React.FC = () => {
   const lang = useSelector((state: SavingState) => state.language.language);
   const [showAll, setShowAll] = useState(false);
   const [step, setStep] = useState(1);
-  const [files, setFiles] = useState<File[]>(cart.payment.screenshots);
+  const [orderStep, setOrderStep] = useState(0);
+  const [files, setFiles] = useState<File[]>([]);
   const PHOTO_AMOUNT = 5;
+  const [isPaymentNotificationOn, setIsPaymentNotificationOn] = useState(false);
 
-  useEffect(() => {
-    dispatch(updatePaymentScreenshots(files));
-
-    console.log(files);
-  }, [files, dispatch]);
+  const isPhone = useIsMobile();
 
   const totalPrice = cart.items.reduce((acc, item) => acc + item.price, 0);
 
@@ -78,6 +76,11 @@ export const ShoppingCart: React.FC = () => {
   if (cart.selectedItems.length > cart.items.length) {
     cart.selectedItems.forEach((si) => dispatch(removeSelectedItem(si.id)));
   }
+
+  const handleOrdersSubmit = () => {
+    setStep(3);
+  };
+
   const toggleAll = () => {
     if (cart.selectedItems.length === cart.items.length) {
       cart.items.forEach((i) => {
@@ -104,7 +107,7 @@ export const ShoppingCart: React.FC = () => {
         </h2>
         <button
           className="shopping-cart__close"
-          onClick={() => dispatch(setIsOpen(false))}
+          onClick={() => dispatch(setIsCartOpen(false))}
         >
           <Close />
         </button>
@@ -120,7 +123,7 @@ export const ShoppingCart: React.FC = () => {
                 Знайдіть цікаві товари у розділі{' '}
                 <Link
                   to={'/market'}
-                  onClick={() => dispatch(setIsOpen(false))}
+                  onClick={() => dispatch(setIsCartOpen(false))}
                   className="shopping-cart__no-content-link"
                 >
                   “Маркет”
@@ -251,7 +254,10 @@ export const ShoppingCart: React.FC = () => {
                 </div>
 
                 <button
-                  onClick={() => setStep(2)}
+                  onClick={() => {
+                    setStep(2);
+                    setOrderStep(1);
+                  }}
                   className="shopping-cart__cta"
                 >
                   <span className="shopping-cart__cta-text">
@@ -268,9 +274,13 @@ export const ShoppingCart: React.FC = () => {
       )}
       {step === 2 && (
         <form
+          onSubmit={handleOrdersSubmit}
           className="shopping-cart__order"
           method="post"
         >
+          {
+            // #region user-data
+          }
           <div className="shopping-cart__order-block">
             <div className="shopping-cart__order-block-top">
               <h3 className="shopping-cart__order-block-title"> Ваші дані</h3>
@@ -400,7 +410,13 @@ export const ShoppingCart: React.FC = () => {
               />
             </div>
           </div>
+          {
+            //#endregion
+          }
 
+          {
+            //#region orders
+          }
           <div className="shopping-cart__order-block">
             <div className="shopping-cart__order-block-top">
               <h3 className="shopping-cart__order-block-title"> Замовлення</h3>
@@ -452,7 +468,13 @@ export const ShoppingCart: React.FC = () => {
             </div>
           </div>
 
-          {/* #region receiving */}
+          {
+            //#endregion
+          }
+
+          {
+            // #region receiving
+          }
           <div className="shopping-cart__order-block">
             <div className="shopping-cart__order-block-top">
               <h3 className="shopping-cart__order-block-title">Отримання</h3>
@@ -543,8 +565,8 @@ export const ShoppingCart: React.FC = () => {
                       </div>
 
                       <p className="shopping-cart__order-block-receiving-notification">
-                        Послуга післяплати оплачується окремо, за тарифами
-                        перевізника
+                        Послуга післяплати оплачується окремо,
+                        <br /> за тарифами перевізника
                       </p>
                     </>
                   )}
@@ -625,8 +647,8 @@ export const ShoppingCart: React.FC = () => {
                       </div>
 
                       <p className="shopping-cart__order-block-receiving-notification">
-                        Послуга післяплати оплачується окремо, за тарифами
-                        перевізника
+                        Послуга післяплати оплачується окремо,
+                        <br /> за тарифами перевізника
                       </p>
                     </>
                   )}
@@ -844,9 +866,13 @@ export const ShoppingCart: React.FC = () => {
               </>
             )}
           </div>
-          {/* #endregion */}
+          {
+            // #endregion
+          }
 
-          {/* #region payment */}
+          {
+            // #region payment
+          }
           <div className="shopping-cart__order-block">
             <div className="shopping-cart__order-block-top">
               <h3 className="shopping-cart__order-block-title">Оплата</h3>
@@ -854,7 +880,6 @@ export const ShoppingCart: React.FC = () => {
                 4<span className="shopping-cart__order-block-steps">/5</span>
               </p>
             </div>
-
             <Dropdown
               onClick={() => {
                 dispatch(updatePaymentMethod('onReceipt'));
@@ -870,7 +895,7 @@ export const ShoppingCart: React.FC = () => {
                   Оплата під час отримання товару ( карта / готівка )
                 </h4>
               )}
-              subtitle="Послуга післяплати оплачується окремо,
+              subtitle="Послуга післяплати оплачується окремо,<br/>
               за тарифами перевізника"
               renderContent={() => (
                 <>
@@ -903,8 +928,8 @@ export const ShoppingCart: React.FC = () => {
                   </div>
 
                   <p className="shopping-cart__order-block-receiving-notification">
-                    Послуга післяплати оплачується окремо, за тарифами
-                    перевізника
+                    Послуга післяплати оплачується окремо,
+                    <br /> за тарифами перевізника
                   </p>
                 </>
               )}
@@ -913,11 +938,11 @@ export const ShoppingCart: React.FC = () => {
 
             <Dropdown
               onClick={() => {
-                dispatch(updatePaymentMethod('international'));
-
                 if (cart.payment.method !== 'international') {
-                  dispatch(updatePaymentScreenshots([]));
+                  setFiles([]);
                 }
+
+                dispatch(updatePaymentMethod('international'));
               }}
               customIsVisible={cart.payment.method === 'international'}
               buttonArea="all"
@@ -932,7 +957,7 @@ export const ShoppingCart: React.FC = () => {
                   Міжнародний переказ
                 </h4>
               )}
-              subtitle="Послуга післяплати оплачується окремо,
+              subtitle="Послуга доставки оплачується окремо,<br/>
               за тарифами перевізника"
               renderContent={() => (
                 <>
@@ -1017,11 +1042,40 @@ export const ShoppingCart: React.FC = () => {
                   </div>
 
                   <div className="shopping-cart__order-block-payments-upload">
+                    {isPaymentNotificationOn && (
+                      <div className="shopping-cart__order-block-payments-upload-notification">
+                        <div className="shopping-cart__order-block-payments-upload-notification-top">
+                          <InfoSVG className="shopping-cart__order-block-payments-upload-notification-top-info" />
+                          <Close
+                            onClick={() => {
+                              setIsPaymentNotificationOn(false);
+                            }}
+                            className="shopping-cart__order-block-payments-upload-notification-top-close"
+                          />
+                        </div>
+
+                        <p className="shopping-cart__order-block-payments-upload-notification-content">
+                          &nbsp;Для підтвердження платежу, будь ласка, додайте
+                          скріншот квитанції. <br /> &nbsp;Це допоможе нам
+                          швидше розпочати обробку замовлення — без очікування
+                          підтвердження з боку банку.
+                        </p>
+                      </div>
+                    )}
+
                     <div className="shopping-cart__order-block-payments-upload-title">
                       <p className="shopping-cart__order-block-payments-upload-title-text">
                         Скрін оплати
                       </p>
-                      <InfoSVG />
+                      <InfoSVG
+                        onClick={() => {
+                          setIsPaymentNotificationOn(true);
+                        }}
+                        onMouseEnter={() => {
+                          setIsPaymentNotificationOn(true);
+                        }}
+                        className="shopping-cart__order-block-payments-upload-title-info"
+                      />
                     </div>
 
                     <FilesInput
@@ -1051,15 +1105,312 @@ export const ShoppingCart: React.FC = () => {
                   </div>
 
                   <p className="shopping-cart__order-block-receiving-notification">
-                    Послуга післяплати оплачується окремо, за тарифами
-                    перевізника
+                    Послуга доставки оплачується окремо,
+                    <br /> за тарифами перевізника
+                  </p>
+                </>
+              )}
+              isAfterTitleOn={false}
+            />
+
+            <Dropdown
+              onClick={() => {
+                if (cart.payment.method !== 'internal') {
+                  setFiles([]);
+                }
+
+                dispatch(updatePaymentMethod('internal'));
+              }}
+              customIsVisible={cart.payment.method === 'internal'}
+              buttonArea="all"
+              buttonIcon={() => (
+                <CheckboxRound isActive={cart.payment.method === 'internal'} />
+              )}
+              customClassName="shopping-cart__order-block-radio-dropdown"
+              buttonTitle={() => (
+                <h4 className="shopping-cart__order-block-radio-dropdown-title">
+                  Переказ на картковий рахунок компанії
+                </h4>
+              )}
+              subtitle="Послуга доставки оплачується окремо,<br/>
+              за тарифами перевізника"
+              renderContent={() => (
+                <>
+                  <div className="shopping-cart__order-block-payments-info">
+                    <div className="shopping-cart__order-block-payments-info-block">
+                      <div className="shopping-cart__order-block-payments-info-unit">
+                        <p className="shopping-cart__order-block-payments-info-label">
+                          Номер карти:
+                        </p>
+                        <div className="shopping-cart__order-block-payments-info-copy">
+                          <p className="shopping-cart__order-block-payments-info-value">
+                            1234 3456 5245 6785
+                          </p>
+                          <CopySVG
+                            className="shopping-cart__order-block-payments-info-copy-icon"
+                            onClick={() => {
+                              navigator.clipboard.writeText('1234345652456785');
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="shopping-cart__order-block-payments-info-unit">
+                        <p className="shopping-cart__order-block-payments-info-label">
+                          Сума:
+                        </p>
+                        <p className="shopping-cart__order-block-payments-info-value">
+                          {totalPrice} грн
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="shopping-cart__order-block-payments-info-block">
+                      <div className="shopping-cart__order-block-payments-info-unit">
+                        <p className="shopping-cart__order-block-payments-info-label">
+                          Назва банку:
+                        </p>
+                        <p className="shopping-cart__order-block-payments-info-value">
+                          Приват банк
+                        </p>
+                      </div>
+
+                      <div
+                        className="shopping-cart__order-block-payments-info-unit 
+                      shopping-cart__order-block-payments-info-unit--last"
+                      >
+                        <p className="shopping-cart__order-block-payments-info-label">
+                          Ім’я власника картки:
+                        </p>
+                        <p className="shopping-cart__order-block-payments-info-value">
+                          Віктор Вікторович Бабкан
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="shopping-cart__order-block-payments-upload">
+                    {isPaymentNotificationOn && (
+                      <div className="shopping-cart__order-block-payments-upload-notification">
+                        <div className="shopping-cart__order-block-payments-upload-notification-top">
+                          <InfoSVG className="shopping-cart__order-block-payments-upload-notification-top-info" />
+                          <Close
+                            onClick={() => {
+                              setIsPaymentNotificationOn(false);
+                            }}
+                            className="shopping-cart__order-block-payments-upload-notification-top-close"
+                          />
+                        </div>
+
+                        <p className="shopping-cart__order-block-payments-upload-notification-content">
+                          &nbsp;Для підтвердження платежу, будь ласка, додайте
+                          скріншот квитанції. <br /> &nbsp;Це допоможе нам
+                          швидше розпочати обробку замовлення — без очікування
+                          підтвердження з боку банку.
+                        </p>
+                      </div>
+                    )}
+
+                    <div className="shopping-cart__order-block-payments-upload-title">
+                      <p className="shopping-cart__order-block-payments-upload-title-text">
+                        Скрін оплати
+                      </p>
+                      <InfoSVG
+                        onClick={() => {
+                          setIsPaymentNotificationOn(true);
+                        }}
+                        onMouseEnter={() => {
+                          setIsPaymentNotificationOn(true);
+                        }}
+                        className="shopping-cart__order-block-payments-upload-title-info"
+                      />
+                    </div>
+
+                    <FilesInput
+                      files={files}
+                      setFiles={setFiles}
+                      PHOTO_AMOUNT={PHOTO_AMOUNT}
+                      customClassName="shopping-cart__order-block-payments-upload-input"
+                      customContent={() => (
+                        <>
+                          <p className="shopping-cart__order-block-payments-upload-input-text">
+                            Виберіть файл
+                          </p>
+                          <AddPhotoAlternateSVG />
+                        </>
+                      )}
+                    />
+                    {files.length > 0 && (
+                      <PhotosList
+                        files={files}
+                        setFiles={setFiles}
+                      />
+                    )}
+
+                    <p className="shopping-cart__order-block-payments-upload-formats">
+                      Приймаються формати: JPG, PNG, PDF
+                    </p>
+                  </div>
+
+                  <p className="shopping-cart__order-block-receiving-notification">
+                    Послуга доставки оплачується окремо,
+                    <br /> за тарифами перевізника
+                  </p>
+                </>
+              )}
+              isAfterTitleOn={false}
+            />
+
+            <Dropdown
+              onClick={() => {
+                if (cart.payment.method !== 'cash') {
+                  setFiles([]);
+                }
+
+                dispatch(updatePaymentMethod('cash'));
+              }}
+              customIsVisible={cart.payment.method === 'cash'}
+              buttonArea="all"
+              buttonIcon={() => (
+                <CheckboxRound isActive={cart.payment.method === 'cash'} />
+              )}
+              customClassName="shopping-cart__order-block-radio-dropdown"
+              buttonTitle={() => (
+                <h4 className="shopping-cart__order-block-radio-dropdown-title">
+                  Готівка
+                </h4>
+              )}
+              subtitle="Оплата готівкою здійснюється при самовивозі зі складу"
+              renderContent={() => (
+                <>
+                  <div className="shopping-cart__order-block-payments-info">
+                    <div className="shopping-cart__order-block-payments-info-block">
+                      <div
+                        className="shopping-cart__order-block-payments-info-unit 
+                      shopping-cart__order-block-payments-info-unit--last"
+                      >
+                        <p className="shopping-cart__order-block-payments-info-label">
+                          Адреса складу:
+                        </p>
+                        <Link
+                          to={'https://maps.app.goo.gl/wAdeT2GGibefrzub9'}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="shopping-cart__order-block-payments-info-link"
+                        >
+                          м. Житомир, пл. Перемоги, 9
+                        </Link>
+                      </div>
+                    </div>
+
+                    <div className="shopping-cart__order-block-payments-info-block">
+                      <div className="shopping-cart__order-block-payments-info-unit">
+                        <p className="shopping-cart__order-block-payments-info-label">
+                          Сума:
+                        </p>
+                        <p className="shopping-cart__order-block-payments-info-value">
+                          {totalPrice} грн
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="shopping-cart__order-block-receiving-notification">
+                    Оплата готівкою здійснюється при самовивозі зі складу
                   </p>
                 </>
               )}
               isAfterTitleOn={false}
             />
           </div>
-          {/* #endregion */}
+          {
+            // #endregion
+          }
+          {
+            // #region conclusion
+          }
+          <div className="shopping-cart__order-block">
+            <div className="shopping-cart__order-block-top">
+              <h3 className="shopping-cart__order-block-title">
+                Підсумок замовлення
+              </h3>
+              <p className="shopping-cart__order-block-step">
+                5<span className="shopping-cart__order-block-steps">/5</span>
+              </p>
+            </div>
+            <div className="shopping-cart__order-conclusion">
+              <div className="shopping-cart__order-conclusion-top">
+                <h4 className="shopping-cart__order-conclusion-top-title">
+                  До сплати
+                </h4>
+
+                <div className="shopping-cart__order-conclusion-top-amount">
+                  <p className="shopping-cart__order-conclusion-top-amount-label">
+                    {cart.items.length} товари на суму:{' '}
+                  </p>
+
+                  <p className="shopping-cart__order-conclusion-top-amount-value">
+                    {totalPrice} грн
+                  </p>
+                </div>
+              </div>
+
+              <div className="shopping-cart__order-conclusion-delivery">
+                <h4 className="shopping-cart__order-conclusion-delivery-title">
+                  Оплата за доставку
+                </h4>
+
+                <p className="shopping-cart__order-conclusion-delivery-text">
+                  сплачуються за тарифами перевізника
+                </p>
+              </div>
+
+              <div className="shopping-cart__order-conclusion-line"></div>
+
+              <div className="shopping-cart__order-conclusion-terms">
+                <div className="shopping-cart__order-conclusion-terms-block">
+                  <h4 className="shopping-cart__order-conclusion-terms-block-title">
+                    Умови:
+                  </h4>
+
+                  <p className="shopping-cart__order-conclusion-terms-block-text">
+                    Отримання замовлення від 5 000 ₴ - 30 000 ₴ за наявності
+                    документів. При оплаті готівкою від 30 000 ₴ необхідно
+                    надати документи для верифікації згідно вимог Закону України
+                    від 06.12.2019 №361-IX
+                  </p>
+                </div>
+
+                <div className="shopping-cart__order-conclusion-terms-block">
+                  <h4 className="shopping-cart__order-conclusion-terms-block-title">
+                    Підтверджуючи замовлення, я приймаю умови:
+                  </h4>
+                  <ul className="shopping-cart__order-conclusion-terms-block-links">
+                    <li className="shopping-cart__order-conclusion-terms-block-link">
+                      угоди користувача
+                    </li>
+                    <li className="shopping-cart__order-conclusion-terms-block-link">
+                      положення про обробку і захист персональних даних
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          {
+            // #endregion
+          }
+
+          <div className="shopping-cart__order-button-block">
+            <button
+              type="submit"
+              className="shopping-cart__cta"
+            >
+              <span className="shopping-cart__cta-text">
+                Замовлення підтверджую
+              </span>
+            </button>
+          </div>
         </form>
       )}
     </div>

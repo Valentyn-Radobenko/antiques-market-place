@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
-import { setIsOpen } from '../../store/slices/shoppingCartSlice';
+import { setIsCartOpen } from '../../store/slices/shoppingCartSlice';
 type Props = {
   children: ReactNode;
   openModal: boolean;
@@ -44,7 +44,7 @@ export const ModalWindow: React.FC<Props> = ({
         })}
         onClick={() =>
           isCart ?
-            dispatch(setIsOpen(false))
+            dispatch(setIsCartOpen(false))
           : setOpenModal && setOpenModal(false)
         }
       />

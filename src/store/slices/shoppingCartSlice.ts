@@ -5,7 +5,7 @@ import { Product } from '../../types/Product';
 const initialState: ShoppingCartState = {
   items: [],
   selectedItems: [],
-  isOpen: false,
+  isCartOpen: false,
 
   user: {
     firstName: '',
@@ -34,7 +34,6 @@ const initialState: ShoppingCartState = {
 
   payment: {
     method: null,
-    screenshots: [],
   },
 
   orderStatus: 'draft',
@@ -44,8 +43,8 @@ const shoppingCartSlice = createSlice({
   name: 'shoppingCart',
   initialState,
   reducers: {
-    setIsOpen: (state, action: PayloadAction<boolean>) => {
-      state.isOpen = action.payload;
+    setIsCartOpen: (state, action: PayloadAction<boolean>) => {
+      state.isCartOpen = action.payload;
     },
     addItem(state, action: PayloadAction<Product>) {
       state.items.push(action.payload);
@@ -132,17 +131,11 @@ const shoppingCartSlice = createSlice({
     ) {
       state.payment.method = action.payload;
     },
-    addPaymentScreenshots(state, action: PayloadAction<File>) {
-      state.payment.screenshots.push(action.payload);
-    },
-    updatePaymentScreenshots(state, action: PayloadAction<File[]>) {
-      state.payment.screenshots = [...action.payload];
-    },
   },
 });
 
 export const {
-  setIsOpen,
+  setIsCartOpen,
   addItem,
   removeItem,
   addSelectedItem,
@@ -168,7 +161,5 @@ export const {
   updateReceiverPhone,
   updatePayment,
   updatePaymentMethod,
-  addPaymentScreenshots,
-  updatePaymentScreenshots,
 } = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;
