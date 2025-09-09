@@ -14,7 +14,7 @@
     "country": {
       "ua": "Нідерланди, Гелдерланд",
       "en": "Netherlands, Gelderland",
-      "slug": "netherlands"
+      "slug": "europe"
     },
     "year": "1641",
     "material": {
@@ -54,7 +54,7 @@
     "country": {
       "ua": "Нідерланди, Гелдерланд",
       "en": "Netherlands, Gelderland",
-      "slug": "netherlands"
+      "slug": "europe"
     },
     "year": "1641",
     "material": {
@@ -94,7 +94,7 @@
     "country": {
       "ua": "Нідерланди, Гелдерланд",
       "en": "Netherlands, Gelderland",
-      "slug": "netherlands"
+      "slug": "europe"
     },
     "year": "1643",
     "material": {
@@ -134,7 +134,7 @@
     "country": {
       "ua": "Нідерланди, Гелдерланд",
       "en": "Netherlands, Gelderland",
-      "slug": "netherlands"
+      "slug": "europe"
     },
     "year": "1643",
     "material": {
@@ -174,7 +174,7 @@
     "country": {
       "ua": "Нідерланди, Гелдерланд",
       "en": "Netherlands, Gelderland",
-      "slug": "netherlands"
+      "slug": "europe"
     },
     "year": "1644",
     "material": {
@@ -214,7 +214,7 @@
     "country": {
       "ua": "Нідерланди, Гелдерланд",
       "en": "Netherlands, Gelderland",
-      "slug": "netherlands"
+      "slug": "europe"
     },
     "year": "1646",
     "material": {
@@ -254,7 +254,7 @@
     "country": {
       "ua": "Нідерланди, Гелдерланд",
       "en": "Netherlands, Gelderland",
-      "slug": "netherlands"
+      "slug": "europe"
     },
     "year": "1647",
     "material": {
@@ -294,7 +294,7 @@
     "country": {
       "ua": "Нідерланди, Гелдерланд",
       "en": "Netherlands, Gelderland",
-      "slug": "netherlands"
+      "slug": "europe"
     },
     "year": "1648",
     "material": {
@@ -334,7 +334,7 @@
     "country": {
       "ua": "Нідерланди, Гелдерланд",
       "en": "Netherlands, Gelderland",
-      "slug": "netherlands"
+      "slug": "europe"
     },
     "year": "1648",
     "material": {
@@ -374,7 +374,7 @@
     "country": {
       "ua": "Нідерланди, Гелдерланд",
       "en": "Netherlands, Gelderland",
-      "slug": "netherlands"
+      "slug": "europe"
     },
     "year": "1649",
     "material": {
@@ -414,7 +414,7 @@
     "country": {
       "ua": "Угорщина",
       "en": "Hungary",
-      "slug": "hungary"
+      "slug": "europe"
     },
     "year": "1593",
     "material": {
@@ -454,7 +454,7 @@
     "country": {
       "ua": "Угорщина",
       "en": "Hungary",
-      "slug": "hungary"
+      "slug": "europe"
     },
     "year": "1663",
     "material": {
@@ -494,7 +494,7 @@
     "country": {
       "ua": "Угорщина",
       "en": "Hungary",
-      "slug": "hungary"
+      "slug": "europe"
     },
     "year": "1729",
     "material": {
@@ -534,7 +534,7 @@
     "country": {
       "ua": "Румунія, Трансильванія",
       "en": "Romania, Transylvania",
-      "slug": "romania"
+      "slug": "europe"
     },
     "year": "1727",
     "material": {
@@ -614,7 +614,7 @@
     "country": {
       "ua": "Австрія",
       "en": "Austria",
-      "slug": "austria"
+      "slug": "europe"
     },
     "year": "1607",
     "material": {
@@ -654,7 +654,7 @@
     "country": {
       "ua": "Австрія",
       "en": "Austria",
-      "slug": "austria"
+      "slug": "europe"
     },
     "year": "1632",
     "material": {
@@ -694,7 +694,7 @@
     "country": {
       "ua": "Угорщина",
       "en": "Hungary",
-      "slug": "hungary"
+      "slug": "europe"
     },
     "year": "1655",
     "material": {
@@ -774,7 +774,7 @@
     "country": {
       "ua": "Швеція",
       "en": "Sweden",
-      "slug": "sweden"
+      "slug": "europe"
     },
     "year": "1644",
     "material": {

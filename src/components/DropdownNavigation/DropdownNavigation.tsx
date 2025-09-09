@@ -9,7 +9,6 @@ import { InstantMixRounded } from '../Imgs/InstantMixRounded';
 import { ActionKeySVG } from '../Imgs/ActionKeySVG';
 import { SortArrowSVG } from '../Imgs/SortArrowSVG';
 import { OptionType } from '../../types/optionType';
-import { useSearchParams } from 'react-router-dom';
 import { SearchLink } from '../../utils/SearchLink';
 import { CheckboxRound } from '../Imgs/CheckBoxRound/CheckBoxRound';
 import { CheckBoxSquare } from '../Imgs/CheckBoxSquare/CheckBoxSquare';
@@ -19,15 +18,22 @@ const MAXHEIGHTTABLET = 416;
 
 type Props = {
   optionType: OptionType;
+  searchParams: URLSearchParams;
 };
 
-export const DropdownNavigation: React.FC<Props> = ({ optionType }) => {
-  const [searchParams] = useSearchParams();
+export const DropdownNavigation: React.FC<Props> = ({
+  optionType,
+  searchParams,
+}) => {
   const [activeOptionType, setActiveOptionType] = useState<null | string>(null);
   const [currentHeight, setCurrentHeight] = useState<number>(0);
   const [currentHeightMob, setCurrentHeightMob] = useState<number>(0);
+  const [activeCategoriesDescktop, setActiveCategoriesDescktop] = useState<
+    null | string
+  >(null);
   const refs = useRef<(HTMLDivElement | null)[]>([]);
   const refsMob = useRef<(HTMLDivElement | null)[]>([]);
+  const refsCatDesc = useRef<Record<string, HTMLDivElement | null>>({});
 
   const [openModal, setOpenModal] = useState<boolean>(false);
 
@@ -92,6 +98,23 @@ export const DropdownNavigation: React.FC<Props> = ({ optionType }) => {
     }
   }, [activeOptionType]);
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      const clickedInside = Object.values(refsCatDesc.current).some(
+        (el) => el && el.contains(event.target as Node),
+      );
+
+      if (!clickedInside) {
+        setActiveCategoriesDescktop(null);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
       {optionType.slug !== 'category' && (
@@ -127,7 +150,10 @@ export const DropdownNavigation: React.FC<Props> = ({ optionType }) => {
           </div>
           <div className="dropdown-navigation__list-of-options">
             {optionType.options.map((option, index) => (
-              <div className="dropdown-navigation__option">
+              <div
+                key={option.id}
+                className="dropdown-navigation__option"
+              >
                 <div
                   onClick={() =>
                     setActiveOptionType(
@@ -161,6 +187,7 @@ export const DropdownNavigation: React.FC<Props> = ({ optionType }) => {
                     >
                       {option.subcategories.map((subcategorie) => (
                         <SearchLink
+                          key={subcategorie.id}
                           params={toggleOptions(
                             subcategorie.slug,
                             option.slug,
@@ -214,42 +241,51 @@ export const DropdownNavigation: React.FC<Props> = ({ optionType }) => {
       {optionType.slug === 'category' && (
         <div
           className={classNames('dropdown-navigation__categories', {
-            isActive: activeOptionType,
+            isActive: activeCategoriesDescktop,
           })}
         >
           {optionType.options.map((option) => (
-            <div className="dropdown-navigation__categories-border-wrapper">
-              <div
-                onClick={() =>
-                  setActiveOptionType(
-                    option.id === activeOptionType ? null : option.id,
-                  )
-                }
-                className={classNames(
-                  'dropdown-navigation__categories-option',
-                  {
-                    isActive: option.id === activeOptionType,
-                    notActive:
-                      option.id !== activeOptionType &&
-                      activeOptionType !== null,
-                  },
-                )}
-              >
-                <p className="dropdown-navigation__categories-option-name">
-                  {option.nameUa}
-                </p>
-                <Arrow
+            <div
+              ref={(el) => (refsCatDesc.current[option.id] = el)}
+              key={option.id}
+              className="dropdown-navigation__categories-border-wrapper"
+            >
+              <div className="dropdown-navigation__categories-option">
+                <div
+                  onClick={() =>
+                    setActiveCategoriesDescktop(
+                      option.id === activeCategoriesDescktop ? null : option.id,
+                    )
+                  }
                   className={classNames(
-                    'dropdown-navigation__categories-arrow',
+                    'dropdown-navigation__categories-title',
                     {
-                      isActive: option.id === activeOptionType,
+                      isActive: option.id === activeCategoriesDescktop,
+                      notActive:
+                        option.id !== activeCategoriesDescktop &&
+                        activeCategoriesDescktop !== null,
                     },
                   )}
-                />
-                {activeOptionType === option.id && (
+                >
+                  <p className="dropdown-navigation__categories-option-name">
+                    {option.nameUa}
+                  </p>
+                  <Arrow
+                    className={classNames(
+                      'dropdown-navigation__categories-arrow',
+                      {
+                        isActive: option.id === activeCategoriesDescktop,
+                      },
+                    )}
+                  />
+                </div>
+
+                {activeCategoriesDescktop === option.id && (
                   <div className="dropdown-navigation__categories-subcategories-list">
                     {option.subcategories.map((subcategorie) => (
                       <SearchLink
+                        onClick={() => setActiveCategoriesDescktop(null)}
+                        key={subcategorie.id}
                         params={toggleOptions(
                           subcategorie.slug,
                           option.slug,
@@ -344,7 +380,10 @@ export const DropdownNavigation: React.FC<Props> = ({ optionType }) => {
             </div>
             <div className="dropdown-navigation__list-of-options">
               {optionType.options.map((option, index) => (
-                <div className="dropdown-navigation__option">
+                <div
+                  key={option.id}
+                  className="dropdown-navigation__option"
+                >
                   <div
                     onClick={() =>
                       setActiveOptionType(
@@ -383,6 +422,7 @@ export const DropdownNavigation: React.FC<Props> = ({ optionType }) => {
                       >
                         {option.subcategories.map((subcategorie) => (
                           <SearchLink
+                            key={subcategorie.id}
                             params={toggleOptions(
                               subcategorie.slug,
                               option.slug,

@@ -239,9 +239,15 @@ export const filters: OptionType = {
         },
         {
           id: '6',
-          nameUa: 'Інший',
-          nameEng: 'Other',
-          slug: 'other',
+          nameUa: '0-950',
+          nameEng: '0-950',
+          slug: '0-950',
+        },
+        {
+          id: '7',
+          nameUa: '951-1452',
+          nameEng: '951-1452',
+          slug: '951-1452',
         },
       ],
     },

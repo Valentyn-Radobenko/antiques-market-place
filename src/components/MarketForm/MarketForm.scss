@@ -1,26 +1,116 @@
+// .market-search {
+//   align-self: center;
+//   display: flex;
+//   border: 1px solid $gray-stroke;
+//   border-radius: 12px;
+//   height: 56px;
+//   width: 727px;
+//   align-items: center;
+//   gap: 8px;
+//   overflow: hidden;
+//   padding-left: 16px;
+//   box-sizing: border-box;
+
+//   @include on-tablet {
+//     width: 100%;
+//   }
+
+//   &.isActive {
+//     border: solid 2px $additional-fresh-herb-icon;
+//   }
+
+//   &__search-icon {
+//     color: $gray-lite;
+
+//     &.isActive {
+//       color: $additional-black-green;
+//     }
+//   }
+
+//   &__input {
+//     height: 100%;
+//     flex-grow: 1;
+//     border: none;
+//     @include main-text;
+
+//     &:focus {
+//       border: none;
+//       outline: none;
+//     }
+
+//     &::placeholder {
+//       color: $gray-lite;
+//     }
+//   }
+
+//   &__button {
+//     height: 100%;
+//     background: $primary;
+//     width: 155px;
+//     color: $gray-white;
+//     @include button-bold;
+
+//     @include on-phone {
+//       width: 91px;
+//     }
+//   }
+// }
+
 .market-search {
-  align-self: center;
+  // box-sizing: border-box;
   display: flex;
-  border: 1px solid $gray-stroke;
-  border-radius: 12px;
-  height: 56px;
-  width: 727px;
-  align-items: center;
-  gap: 8px;
-  overflow: hidden;
-  padding-left: 16px;
-  box-sizing: border-box;
+  flex-direction: column;
+  gap: 24px;
 
-  @include on-tablet {
+  @include on-phone {
+    gap: 16px;
+  }
+
+  &__form {
+    display: flex;
+    gap: 16px;
+
+    &.isActive {
+      gap: 0;
+    }
+  }
+
+  &__search {
+    background: $gray-white;
+    border: 1px solid $gray-stroke;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    gap: 8px;
     width: 100%;
+    overflow: hidden;
+    align-items: center;
+
+    &.isActive {
+      padding-block: 15px;
+      color: $gray-black;
+      border: 2px $additional-freshherb-elect solid;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-right: 0;
+    }
   }
 
-  &.isActive {
-    border: solid 2px $additional-fresh-herb-icon;
+  &__search-button {
+    @include primary-button;
+    display: none;
+    width: 25%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    @include button-bold;
+
+    &.isActive {
+      display: block;
+    }
   }
 
-  &__search-icon {
-    color: $gray-lite;
+  &__search-svg {
+    color: $additional-gray-gray;
 
     &.isActive {
       color: $additional-black-green;
@@ -28,9 +118,10 @@
   }
 
   &__input {
-    height: 100%;
-    flex-grow: 1;
     border: none;
+    outline: none;
+    width: 100%;
+    @include main-text;
 
     &:focus {
       border: none;
@@ -38,18 +129,20 @@
     }
 
     &::placeholder {
-      color: $gray-lite;
+      color: $additional-gray-gray;
     }
   }
 
-  &__button {
-    height: 100%;
-    background: $primary;
-    width: 155px;
-    color: $gray-white;
+  &__h3 {
+    color: $gray-black;
 
+    @include h3-bold;
     @include on-phone {
-      width: 91px;
+      @include h4-bold;
     }
+  }
+
+  &__green-word {
+    color: $additional-freshherb-elect;
   }
 }
