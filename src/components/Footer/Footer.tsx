@@ -2,6 +2,9 @@
 import { Link } from 'react-router-dom';
 import { useIsTablet } from '../../hooks/useMediaQuery';
 import { Dropdown } from '../Dropdown/Dropdown';
+import { TelegramLogoSVG } from '../Imgs/TelegramLogoSVG';
+import { FacebookLogoSVG } from '../Imgs/FacebookLogoSVG';
+import { MailSVG } from '../Imgs/MailSVG';
 
 export const Footer = () => {
   // const { t } = useTranslation();
@@ -9,7 +12,6 @@ export const Footer = () => {
 
   return (
     <footer className="footer">
-      <div className="footer__vector"></div>
       <div className="footer__row">
         <Link to={'market'}>
           <div className="header__logo">
@@ -23,18 +25,30 @@ export const Footer = () => {
         </Link>
 
         <div className="footer__sm">
-          <a
-            href="telegram.com"
-            className="footer__media footer__media--tg"
-          ></a>
-          <a
-            href="facebook.com"
-            className="footer__media footer__media--fb"
-          ></a>
-          <a
-            href="mailto:valikradobenko@gmail.com"
-            className="footer__media footer__media--email"
-          ></a>
+          <Link
+            to={'https://web.telegram.org/'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer__media"
+          >
+            <TelegramLogoSVG className='footer__media-svg' />
+          </Link>
+          <Link
+            to={'https://www.facebook.com/'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer__media"
+          >
+            <FacebookLogoSVG className='footer__media-svg' />
+          </Link>
+          <Link
+            to="mailto:example@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer__media"
+          >
+            <MailSVG className='footer__media-svg' />
+          </Link>
         </div>
       </div>
       {isTablet ?
@@ -91,69 +105,71 @@ export const Footer = () => {
             />
           </li>
         </ul>
-      : <div className="footer__columns">
-          <div className="footer__column">
-            <h4 className="footer__title">Правила користування</h4>
-            <ul className="footer__list">
-              <li>
-                <a
-                  href="#"
-                  className="footer__link"
-                >
-                  Умови використання
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="footer__link"
-                >
-                  Політика конфіденційності
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="footer__column">
-            <h4 className="footer__title">Підтримка та поради</h4>
-            <ul className="footer__list">
-              <li>
-                <a
-                  href="#"
-                  className="footer__link"
-                >
-                  Торгуйте з нами
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="footer__link"
-                >
-                  Популярні питання
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="footer__column">
-            <h4 className="footer__title">Про нас</h4>
-            <ul className="footer__list">
-              <li>
-                <a
-                  href="#"
-                  className="footer__link"
-                >
-                  Про платформу DIKO
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="footer__link"
-                >
-                  Наші продукти та послуги
-                </a>
-              </li>
-            </ul>
+      : <div className="footer__columns-wrap">
+          <div className="footer__columns">
+            <div className="footer__column">
+              <h4 className="footer__title">Правила користування</h4>
+              <ul className="footer__list">
+                <li>
+                  <a
+                    href="#"
+                    className="footer__link"
+                  >
+                    Умови використання
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="footer__link"
+                  >
+                    Політика конфіденційності
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="footer__column">
+              <h4 className="footer__title">Підтримка та поради</h4>
+              <ul className="footer__list">
+                <li>
+                  <a
+                    href="#"
+                    className="footer__link"
+                  >
+                    Торгуйте з нами
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="footer__link"
+                  >
+                    Популярні питання
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="footer__column">
+              <h4 className="footer__title">Про нас</h4>
+              <ul className="footer__list">
+                <li>
+                  <a
+                    href="#"
+                    className="footer__link"
+                  >
+                    Про платформу DIKO
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="footer__link"
+                  >
+                    Наші продукти та послуги
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       }

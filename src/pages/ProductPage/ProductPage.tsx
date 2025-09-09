@@ -18,7 +18,7 @@ import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
 import { ShoppingCart } from '../../components/ShoppingCart/ShoppingCart';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../store/store';
-import { addItem, setIsOpen } from '../../store/slices/shoppingCartSlice';
+import { addItem, setIsCartOpen } from '../../store/slices/shoppingCartSlice';
 import { Link, useParams } from 'react-router-dom';
 import products from '../../data/products.json';
 import { filters } from '../../data/filters';
@@ -27,7 +27,7 @@ export const ProductPage = () => {
   const isTablet = useIsTablet();
   const dispatch = useDispatch<AppDispatch>();
   const isModalOpen = useSelector(
-    (state: SavingState) => state.shoppingCart.isOpen,
+    (state: SavingState) => state.shoppingCart.isCartOpen,
   );
   const { slug } = useParams();
   const product = products.find((p) => p.slug === slug);
@@ -169,7 +169,7 @@ export const ProductPage = () => {
             </div>
             <button
               onClick={() => {
-                dispatch(setIsOpen(true));
+                dispatch(setIsCartOpen(true));
                 if (!cart.items.find((p) => p.id === product.id))
                   dispatch(addItem(product));
               }}

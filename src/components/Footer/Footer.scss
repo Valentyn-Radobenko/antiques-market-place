@@ -108,22 +108,6 @@
     }
   }
 
-  &__vector {
-    background-image: url('/images/footer/Vector.svg');
-    background-repeat: no-repeat;
-    width: 325px;
-    height: 325px;
-    position: absolute;
-    right: 20px;
-    bottom: -85px;
-    stroke-width: 0.2px;
-    stroke: var(--Additional-Gold, #e5a000);
-
-    @include on-tablet {
-      display: none;
-    }
-  }
-
   &__row {
     display: flex;
     justify-content: space-between;
@@ -161,8 +145,15 @@
 
   &__columns {
     display: flex;
+    width: 882px;
     align-items: center;
     gap: 88px;
+
+    &-wrap {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
   }
 
   &__column {
@@ -220,14 +211,17 @@
     display: flex;
     padding-top: 24px;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     align-self: stretch;
 
-    border-top: 0.3px solid #e5a000;
+    border-top: 0.3px solid $gray-stroke;
 
     color: $gray-stroke;
 
     @include tab-regular;
+
+    text-align: center;
   }
 
   &__sm {
@@ -239,20 +233,22 @@
   }
 
   &__media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 24px;
     height: 24px;
+    stroke-width: 1px;
     background-repeat: no-repeat;
 
-    &--tg {
-      background-image: url('/images/footer/sharp-telegram.svg');
-    }
+    color: $gray-white;
 
-    &--fb {
-      background-image: url('/images/footer/twotone-facebook.svg');
-    }
+    @include icon-hover;
 
-    &--email {
-      background-image: url('/images/footer/outline-email.png');
+    &-sm {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }

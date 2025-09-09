@@ -5,6 +5,7 @@ interface Props {
   renderContent: () => React.ReactNode;
   customTooltipClassName?: string;
   customContentClassName?: string;
+  onMouseEnter?: React.MouseEventHandler;
 }
 
 export const Tooltip: React.FC<Props> = ({
@@ -12,13 +13,18 @@ export const Tooltip: React.FC<Props> = ({
   renderContent,
   customTooltipClassName,
   customContentClassName,
+  onMouseEnter,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
     <div
       className={customTooltipClassName}
-      onMouseEnter={() => setIsVisible(true)}
+      onMouseEnter={(e) => {
+        setIsVisible(true);
+
+        onMouseEnter?.(e);
+      }}
       onMouseLeave={() => setIsVisible(false)}
     >
       {renderButton()}

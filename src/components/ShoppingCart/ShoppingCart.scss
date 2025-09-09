@@ -221,13 +221,12 @@
 
   &__cta {
     display: flex;
-    width: 320px;
+    width: 320px !important;
     height: 58px;
     padding: 16px;
     justify-content: center;
     align-items: center;
     gap: 8px;
-    flex: 1 0 0;
 
     border-radius: 12px;
     @include primary-button;
@@ -241,16 +240,57 @@
 
       @include button-bold;
     }
+
+    &-info {
+      position: absolute;
+      opacity: 0;
+      visibility: hidden;
+      top: -30px;
+      z-index: 1;
+
+      display: inline-flex;
+      padding: 4px 8px;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      border-radius: 12px;
+      border: 1px solid $gray-stroke;
+      background: $gray-dark;
+
+      /* Floating card Double shadow */
+      box-shadow:
+        0 8px 20px 2px rgba(170, 182, 178, 0.2),
+        0 -4px 12px 0 rgba(255, 255, 255, 0) inset;
+      backdrop-filter: blur(12px);
+
+      transition: $effect-duration;
+
+      &-visible {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      &-text {
+        color: $gray-white;
+
+        text-align: center;
+
+        @include tab-regular;
+      }
+    }
   }
   &__order {
     display: flex;
-    width: 622px;
+    width: 640px;
     padding-right: 24px;
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
-    height: 500px;
-    overflow-y: scroll;
+    max-height: 500px;
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     border-radius: 12px;
 
@@ -261,6 +301,7 @@
       align-items: flex-start;
       gap: 24px;
       align-self: stretch;
+      width: 616px;
 
       border-radius: 12px;
       background: $background-plate;
@@ -301,6 +342,15 @@
       &-dropdown {
         width: 100%;
 
+        &-content {
+          max-height: 0;
+          overflow: hidden;
+
+          &--visible {
+            max-height: 1000px;
+          }
+        }
+
         &-button {
           display: flex;
           padding: 8px;
@@ -322,12 +372,14 @@
           @include main-text;
         }
 
-        &-custom-arrow {
+        &-custom-after-title {
           color: $gray-black;
 
           &--active {
             color: $additional-freshherb-elect;
           }
+
+          @include icon-hover;
         }
       }
 
@@ -336,7 +388,7 @@
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
         grid-auto-flow: column;
-        width: 552px;
+        width: 100%;
         padding: 0 8px;
         align-items: flex-start;
         gap: 16px;
@@ -412,6 +464,8 @@
           color: $additional-greenas;
 
           cursor: pointer;
+
+          @include icon-hover;
         }
 
         &-content {
@@ -478,36 +532,618 @@
         }
       }
 
-      &-receiving-nav {
-        display: flex;
-        align-items: flex-start;
-        align-self: stretch;
-
-        &-section {
+      &-receiving {
+        &-nav {
           display: flex;
-          padding: 8px;
+          align-items: flex-start;
+          align-self: stretch;
+
+          &-section {
+            display: flex;
+            padding: 8px;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            flex: 1 0 0;
+            cursor: pointer;
+
+            transition: $effect-duration;
+
+            border-bottom: 1px solid;
+
+            @include main-text;
+
+            &--inactive {
+              border-bottom-color: $gray-dis;
+
+              color: $gray-dis;
+            }
+
+            &--active {
+              border-bottom-color: $gray-black;
+
+              color: $gray-black;
+            }
+          }
+        }
+
+        &-notification {
+          color: $additional-freshherb-elect;
+
+          @include main-text;
+        }
+      }
+
+      &-radio-dropdown {
+        width: 568px;
+        transition: $effect-duration;
+
+        &-content {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          width: 100%;
+
+          max-height: 0;
+          overflow: hidden;
+
+          &--visible {
+            max-height: 1000px;
+          }
+        }
+
+        &--active {
+          display: flex;
+          padding: 16px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 24px;
+          align-self: stretch;
+
+          border-radius: 12px;
+          border: 1px solid $additional-freshherb-elect;
+          background: $background-selected-bright;
+
+          /* Sclo plate */
+          backdrop-filter: blur(5px);
+        }
+
+        &-button {
+          display: flex;
+          padding: 16px;
           justify-content: center;
           align-items: center;
-          gap: 8px;
-          flex: 1 0 0;
-          cursor: pointer;
+          gap: 16px;
+          align-self: stretch;
 
+          border-radius: 12px;
+          background: $background-user-notifications;
+
+          /* Sclo plate */
+          backdrop-filter: blur(5px);
+
+          &--active {
+            background: none;
+            padding: 0;
+          }
+
+          &-wrap {
+            display: flex;
+            padding: 16px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 24px;
+            align-self: stretch;
+
+            border-radius: 12px;
+            background: $background-plate;
+
+            /* Sclo plate */
+            backdrop-filter: blur(5px);
+
+            & .dropdown__button {
+              padding: 0;
+              background: none;
+              backdrop-filter: initial;
+            }
+
+            &--active {
+              padding: 0;
+              background: none;
+            }
+          }
+
+          &-subtitle {
+            color: $gray-dark;
+
+            @include main-text;
+
+            &--active {
+              display: none;
+            }
+          }
+        }
+
+        &-title {
+          flex: 1 0 0;
+          color: $gray-black;
+
+          @include h4-bold;
+          text-align: left;
+        }
+
+        &-custom-after-title {
+          color: $gray-dark;
+
+          @include main-text;
+          opacity: 1;
           transition: $effect-duration;
 
-          border-bottom: 1px solid;
+          &--active {
+            opacity: 0;
+          }
+        }
+
+        &-inputs {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          align-items: flex-start;
+          gap: 16px;
+          align-self: stretch;
+        }
+
+        &-label {
+          color: $gray-black;
+
+          @include label-bold;
+        }
+
+        &-input {
+          display: flex;
+          height: 56px;
+          width: 100%;
+
+          margin-top: 8px;
+          padding: 16px;
+          align-items: center;
+          gap: 8px;
+          align-self: stretch;
+
+          border-radius: 12px;
+          border: 1px solid $gray-stroke;
+          background: $gray-white;
 
           @include main-text;
 
-          &--inactive {
-            border-bottom-color: $gray-dis;
+          &::placeholder {
+            color: $gray;
+          }
+        }
+      }
 
-            color: $gray-dis;
+      &-contact {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 4px;
+        align-self: stretch;
+
+        &-label {
+          color: $additional-black-green;
+
+          @include button-bold;
+        }
+      }
+
+      &-storage {
+        display: flex;
+        padding: 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        align-self: stretch;
+
+        border-radius: 12px;
+        background: $background-user-notifications;
+
+        /* Sclo plate */
+        backdrop-filter: blur(5px);
+
+        &-location {
+          display: flex;
+          height: 82px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 8px;
+          align-self: stretch;
+
+          border-radius: 12px;
+
+          &-label {
+            width: 123px;
+
+            color: $additional-black-green;
+
+            @include main-text;
           }
 
-          &--active {
-            border-bottom-color: $gray-black;
+          &-link {
+            display: flex;
+            padding: 4px 8px;
+            align-items: center;
+            gap: 16px;
+            align-self: stretch;
+
+            border-radius: 12px;
+
+            color: $additional-greenas;
+            text-decoration: underline;
+
+            @include hover(color, $additional-freshherb-elect);
+
+            @include main-text;
+          }
+        }
+
+        &-schedule {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 8px;
+          align-self: stretch;
+
+          &-label {
+            width: 123px;
+
+            color: $additional-black-green;
+
+            @include main-text;
+          }
+
+          &-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            align-self: stretch;
+
+            &-block {
+              display: flex;
+              padding: 4px 8px;
+              align-items: center;
+              gap: 16px;
+              align-self: stretch;
+
+              color: $gray-dark;
+            }
+
+            &-text {
+              @include main-text;
+            }
+          }
+        }
+      }
+
+      &-payments {
+        &-info {
+          display: flex;
+          align-items: flex-start;
+          gap: 8px;
+          align-self: stretch;
+
+          // height: 376px;
+
+          &-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            flex: 1 0 0;
+            align-self: stretch;
+          }
+
+          &-unit {
+            display: flex;
+            padding: 16px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            align-self: stretch;
+
+            border-radius: 12px;
+            background: $background-selected-bright;
+
+            /* Sclo plate */
+            backdrop-filter: blur(5px);
+
+            &--last {
+              flex: 1 0 0;
+            }
+          }
+
+          &-label {
+            color: $additional-black-green;
+
+            @include label-bold;
+          }
+
+          &-value {
+            display: flex;
+            padding: 4px 8px;
+            align-items: center;
+            gap: 8px;
+            align-self: stretch;
+
+            color: $gray-dark;
+
+            @include main-text;
+          }
+
+          &-copy {
+            display: flex;
+            padding: 4px 8px;
+            align-items: center;
+            gap: 8px;
+            align-self: stretch;
+            justify-content: space-between;
+
+            border-radius: 12px;
+
+            &-icon {
+              color: $gray-black;
+
+              cursor: pointer;
+
+              @include icon-hover;
+
+              @include on-tablet {
+                @include hover(color, $additional-freshherb-elect);
+              }
+            }
+          }
+
+          &-link {
+            color: $additional-greenas;
+            text-decoration: underline;
+
+            @include main-text;
+
+            @include hover(color, $additional-freshherb-elect);
+          }
+        }
+
+        &-upload {
+          display: flex;
+          width: 423px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+
+          &-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
 
             color: $gray-black;
+
+            @include label-bold;
+
+            &-info {
+              color: $system-info;
+            }
+          }
+
+          &-input {
+            display: flex;
+            height: 56px;
+            padding: 16px;
+            align-items: center;
+            gap: 8px;
+            align-self: stretch;
+            justify-content: space-between;
+
+            border-radius: 12px;
+            border: 1px solid $gray-stroke;
+            background: $gray-white;
+
+            cursor: pointer;
+
+            &.isActive {
+              background-color: #d6f2e8;
+            }
+
+            &:hover {
+              background-color: $additional-white-green;
+            }
+
+            &.hoverEffect {
+              background-color: $additional-white-green;
+            }
+
+            &.disabled {
+              background-color: $gray-white-darks;
+              cursor: not-allowed;
+            }
+          }
+
+          &-formats {
+            color: $additional-black-green;
+
+            @include tab-regular;
+          }
+
+          &-notification {
+            display: flex;
+            margin-bottom: 8px;
+            width: 423px;
+            padding: 16px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+
+            border-radius: 12px;
+            border: 1px solid $system-info;
+            background: $gray-white;
+
+            &-top {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              align-self: stretch;
+
+              &-info {
+                color: $system-info;
+              }
+
+              &-close {
+                color: $gray-black;
+
+                cursor: pointer;
+              }
+            }
+
+            &-content {
+              color: $gray-black;
+
+              @include main-text;
+            }
+          }
+        }
+      }
+    }
+
+    &-button-block {
+      position: relative;
+
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
+    }
+
+    &-conclusion {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 32px;
+      align-self: stretch;
+
+      &-top {
+        display: flex;
+        padding: 16px;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+
+        border-radius: 12px;
+        background: $background-page;
+
+        &-title {
+          color: $gray-black;
+
+          @include h4-bold;
+        }
+
+        &-amount {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          &-label {
+            color: $gray-dark;
+
+            @include main-text;
+          }
+
+          &-value {
+            color: $additional-freshherb-elect;
+
+            @include h3-bold;
+          }
+        }
+      }
+
+      &-delivery {
+        display: flex;
+        padding: 0 16px;
+        align-items: center;
+        align-self: stretch;
+        justify-content: space-between;
+
+        &-title {
+          color: $gray-black;
+
+          @include button-bold;
+        }
+
+        &-text {
+          color: $gray-dark;
+
+          @include main-text;
+        }
+      }
+
+      &-line {
+        height: 1px;
+        align-self: stretch;
+
+        background: $gray-stroke;
+      }
+
+      &-terms {
+        display: flex;
+        padding: 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        align-self: stretch;
+
+        border-radius: 12px;
+        background: $background-user-notifications;
+
+        &-block {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+          align-self: stretch;
+
+          &-title {
+            flex: 1 0 0;
+
+            color: $gray-dark;
+
+            @include button-bold;
+          }
+
+          &-text {
+            flex: 1 0 0;
+
+            color: $gray-dark;
+
+            @include main-text;
+          }
+
+          &-links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+          }
+
+          &-link {
+            align-self: stretch;
+
+            color: $additional-greenas;
+
+            @include main-text;
+
+            text-decoration-line: underline;
+            list-style: disc;
+            list-style-position: inside;
           }
         }
       }

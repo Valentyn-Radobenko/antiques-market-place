@@ -1,6 +1,6 @@
 type Props = {
   className?: string;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler | undefined;
 };
 
 export const Arrow: React.FC<Props> = ({ className, onClick }) => {

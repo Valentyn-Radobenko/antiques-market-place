@@ -139,9 +139,12 @@ const validatedState: SavingState =
           ) ?
             persistedState.shoppingCart.selectedItems
           : [],
-        isOpen:
-          persistedState.shoppingCart && persistedState.shoppingCart.isOpen ?
-            persistedState.shoppingCart.isOpen
+        isCartOpen:
+          (
+            persistedState.shoppingCart &&
+            persistedState.shoppingCart.isCartOpen
+          ) ?
+            persistedState.shoppingCart.isCartOpen
           : false,
         user:
           persistedState.shoppingCart && persistedState.shoppingCart.user ?
@@ -165,13 +168,18 @@ const validatedState: SavingState =
               street: '',
               house: '',
               apartment: '',
+              receiver: {
+                firstName: '',
+                middleName: '',
+                lastName: '',
+                phone: '',
+              },
             },
         payment:
           persistedState.shoppingCart && persistedState.shoppingCart.payment ?
             persistedState.shoppingCart.payment
           : {
               method: null,
-              screenshot: '',
             },
         orderStatus:
           (
@@ -193,7 +201,7 @@ const validatedState: SavingState =
       shoppingCart: {
         items: [],
         selectedItems: [],
-        isOpen: false,
+        isCartOpen: false,
 
         user: {
           firstName: '',
@@ -212,11 +220,16 @@ const validatedState: SavingState =
           street: '',
           house: '',
           apartment: '',
+          receiver: {
+            firstName: '',
+            middleName: '',
+            lastName: '',
+            phone: '',
+          },
         },
 
         payment: {
           method: null,
-          screenshot: '',
         },
 
         orderStatus: 'draft',

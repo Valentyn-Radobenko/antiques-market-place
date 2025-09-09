@@ -1,9 +1,16 @@
-import { Product as product } from './product';
+import { Product as product } from './Product';
+
+type receiver = {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  phone: string;
+};
 
 export interface ShoppingCartState {
   items: product[];
   selectedItems: product[];
-  isOpen: boolean;
+  isCartOpen: boolean;
 
   user: {
     firstName: string;
@@ -22,11 +29,11 @@ export interface ShoppingCartState {
     street?: string; // якщо courier
     house?: string;
     apartment?: string;
+    receiver: receiver;
   };
 
   payment: {
     method: 'onReceipt' | 'international' | 'internal' | 'cash' | null;
-    screenshot?: string;
   };
 
   orderStatus: 'draft' | 'confirmed' | 'completed';

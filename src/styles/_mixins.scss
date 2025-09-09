@@ -39,6 +39,14 @@
     border-color: #0d392c;
   }
 }
+
+@mixin icon-hover {
+  @include hover(color, $additional-mint);
+
+  &:active {
+    color: $additional-freshherb-elect;
+  }
+}
 // #endregion
 
 // #region sizing
