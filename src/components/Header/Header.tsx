@@ -14,6 +14,7 @@ import { Menu } from '../Menu/Menu';
 import { setIsMenuOn } from '../../store/slices/menuSlice';
 import { setAuthMode } from '../../store/slices/authModeSlice';
 import { setExpHeader } from '../../store/slices/expHeaderSlice';
+import { setExpSearch } from '../../store/slices/expSearchSlice';
 
 export const Header = () => {
   // const { t } = useTranslation();
@@ -108,6 +109,7 @@ export const Header = () => {
                 onMouseLeave={() => {
                   dispatch(setExpHeader(null));
                 }}
+                onClick={() => dispatch(setExpSearch(!expSearch))}
                 className={classNames(
                   'header__actions-item header__actions-item-search',
                   {

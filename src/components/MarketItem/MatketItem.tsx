@@ -20,7 +20,7 @@ export const MarketItem: React.FC<Props> = ({ item }) => {
       <div className="market-item__text-info">
         <p className="market-item__text">{item.name.ua}</p>
         <div className="market-item__price-link">
-          <p className="market-item__price">{item.price}</p>
+          <p className="market-item__price">{item.price} грн</p>
           <ArrowTale className="market-item__arrow" />
         </div>
       </div>

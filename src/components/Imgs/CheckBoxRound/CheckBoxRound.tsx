@@ -35,7 +35,7 @@ export const CheckboxRound: React.FC<Props> = ({ isActive }) => {
           cx="12"
           cy="12"
           r="9"
-          fill="transparent"
+          fill="currentColor"
         />
       </svg>
     </div>

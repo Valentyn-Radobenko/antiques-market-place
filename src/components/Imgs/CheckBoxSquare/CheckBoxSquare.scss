@@ -5,7 +5,7 @@
   height: 24px;
   overflow: hidden;
   background: $gray-white;
-  box-shadow: inset 0px 0px 8px -1px rgba(175, 196, 190, 0.5);
+  // box-shadow: inset 0px 0px 8px -1px rgba(175, 196, 190, 0.5);
   transition: all ease $dropdown-effect-duration;
   flex-shrink: 0;
   display: flex;
@@ -14,13 +14,14 @@
 
   &:hover {
     border-color: $additional-greenas;
-    background: $additional-mint;
+    background: $additional-white-green;
     box-shadow: none;
+    border: 1px solid $additional-black-green !important;
   }
 
   &.isActive {
     background-color: $additional-freshherb-elect !important;
-    border: 1px solid $stroke-button-primary !important;
+    border: none !important;
     box-shadow: none !important;
   }
 
@@ -37,7 +38,7 @@
 .hoverable:hover {
   .checkbox-square {
     border-color: $additional-greenas;
-    background: $additional-mint;
+    background: $additional-white-green;
     box-shadow: none;
   }
 }

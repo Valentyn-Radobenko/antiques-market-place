@@ -12,6 +12,12 @@ export const categories: OptionType = {
       slug: 'numismatics',
       subcategories: [
         {
+          id: '100',
+          nameUa: 'Вся нумізматика',
+          nameEng: 'All numismatics',
+          slug: 'numismatics',
+        },
+        {
           id: '101',
           nameUa: 'Монети України',
           nameEng: 'Coins of Ukraine',
@@ -73,6 +79,12 @@ export const categories: OptionType = {
       nameEng: 'Interior Heritage',
       slug: 'interior-heritage',
       subcategories: [
+        {
+          id: '200',
+          nameUa: "Вся інтер'єрна спадщина",
+          nameEng: 'all interior Heritage',
+          slug: 'interior-heritage',
+        },
         { id: '201', nameUa: 'Живопис', nameEng: 'Painting', slug: 'painting' },
         { id: '202', nameUa: 'Тканини', nameEng: 'Fabrics', slug: 'fabrics' },
         {
@@ -103,6 +115,12 @@ export const categories: OptionType = {
       slug: 'paper-collections',
       subcategories: [
         {
+          id: '300',
+          nameUa: 'Всі паперові колекції',
+          nameEng: 'All paper Collections',
+          slug: 'paper-collections',
+        },
+        {
           id: '301',
           nameUa: 'Філателія',
           nameEng: 'Philately',
@@ -130,6 +148,12 @@ export const categories: OptionType = {
       nameEng: 'Other Items',
       slug: 'other-items',
       subcategories: [
+        {
+          id: '400',
+          nameUa: 'Всі інші предмети',
+          nameEng: 'All other Items',
+          slug: 'other-items',
+        },
         {
           id: '401',
           nameUa: 'Фалеристика',

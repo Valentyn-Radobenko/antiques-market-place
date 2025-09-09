@@ -8,9 +8,16 @@
   &:hover {
     box-shadow: none;
     background: $additional-mint;
+    border-color: $additional-greenas;
 
     & .checkbox-round__circle1 {
       stroke: $additional-greenas;
+    }
+
+    & .checkbox-round__circle2 {
+      opacity: 1;
+      stroke: none;
+      color: $additional-white-green;
     }
   }
 
@@ -33,13 +40,15 @@
   }
 
   &__circle2 {
-    stroke: $gray-white;
-    stroke-width: 1px;
     opacity: 0;
     transition: all ease $effect-duration;
+    color: transparent;
 
     &.isActive {
-      opacity: 1;
+      stroke: $gray-white !important;
+      stroke-width: 1px !important;
+      opacity: 1 !important;
+      color: $additional-freshherb-elect !important;
     }
   }
 }
@@ -49,6 +58,11 @@
     background: $additional-mint;
     & .checkbox-round__circle1 {
       stroke: $additional-greenas;
+    }
+    & .checkbox-round__circle2 {
+      opacity: 1;
+      stroke: none;
+      color: $additional-white-green;
     }
   }
 }
