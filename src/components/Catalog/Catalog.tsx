@@ -1,5 +1,5 @@
 import { MarketItem } from '../MarketItem/MatketItem';
-import { Product } from '../../types/product';
+import { Product } from '../../types/Product';
 
 type Props = {
   goods: Product[];
