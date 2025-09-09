@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { Close } from '../Imgs/Close';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../store/store';
@@ -45,6 +45,7 @@ import { FilesInput } from '../FilesInput/FilesInput';
 import { PhotosList } from '../PhotosList/PhotosList';
 import { AddPhotoAlternateSVG } from '../Imgs/AddPhotoAlternateSVG';
 import { useIsMobile } from '../../hooks/useMediaQuery';
+import { Tooltip } from '../Tooltip/Tooltip';
 
 export const ShoppingCart: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -58,10 +59,50 @@ export const ShoppingCart: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
   const PHOTO_AMOUNT = 5;
   const [isPaymentNotificationOn, setIsPaymentNotificationOn] = useState(false);
+  const [areErrorsOn, setAreErrorsOn] = useState(false);
 
   const isPhone = useIsMobile();
 
   const totalPrice = cart.items.reduce((acc, item) => acc + item.price, 0);
+
+  const isUserDataChecked =
+    cart.user.firstName &&
+    cart.user.lastName &&
+    cart.user.phone &&
+    cart.user.email &&
+    cart.user.city &&
+    cart.user.country;
+
+  const isDeliveryChecked =
+    (cart.delivery.type === 'delivery' &&
+      cart.delivery.receiver.firstName &&
+      cart.delivery.receiver.lastName &&
+      cart.delivery.receiver.phone &&
+      ((cart.delivery.method === 'post' &&
+        cart.delivery.service &&
+        cart.delivery.branch) ||
+        (cart.delivery.method === 'courier' &&
+          cart.delivery.service &&
+          cart.delivery.street &&
+          cart.delivery.house))) ||
+    (cart.delivery.type === 'pickup' && isUserDataChecked);
+
+  const isPaymentsChecked =
+    (cart.payment.method === 'onReceipt' &&
+      cart.delivery.method === 'post' &&
+      cart.delivery.service &&
+      cart.delivery.branch) ||
+    (cart.payment.method === 'international' && files.length > 0) ||
+    (cart.payment.method === 'internal' && files.length > 0) ||
+    (cart.payment.method === 'cash' && cart.delivery.type === 'pickup');
+
+  const canSubmit = isUserDataChecked && isDeliveryChecked && isPaymentsChecked;
+
+  useEffect(() => {
+    if (canSubmit) {
+      setAreErrorsOn(false);
+    }
+  }, [canSubmit]);
 
   const deleteSelectedItems = () =>
     cart.items.forEach((i) => {
@@ -77,8 +118,12 @@ export const ShoppingCart: React.FC = () => {
     cart.selectedItems.forEach((si) => dispatch(removeSelectedItem(si.id)));
   }
 
-  const handleOrdersSubmit = () => {
-    setStep(3);
+  const handleOrdersSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (canSubmit) {
+      setStep(3);
+    }
   };
 
   const toggleAll = () => {
@@ -1401,18 +1446,38 @@ export const ShoppingCart: React.FC = () => {
             // #endregion
           }
 
-          <div className="shopping-cart__order-button-block">
-            <button
-              type="submit"
-              className="shopping-cart__cta"
-            >
-              <span className="shopping-cart__cta-text">
-                Замовлення підтверджую
-              </span>
-            </button>
-          </div>
+          <Tooltip
+            onMouseEnter={() => {
+              if (!canSubmit) {
+                setAreErrorsOn(true);
+              }
+            }}
+            customTooltipClassName="shopping-cart__order-button-block"
+            customContentClassName="shopping-cart__cta-info"
+            renderButton={() => (
+              <button
+                type="submit"
+                disabled={!canSubmit}
+                className="shopping-cart__cta shopping-cart__cta--submit"
+              >
+                <span className="shopping-cart__cta-text">
+                  Замовлення підтверджую
+                </span>
+              </button>
+            )}
+            renderContent={() => (
+              <>
+                {!canSubmit && (
+                  <p className="shopping-cart__cta-info-text">
+                    Треба заповнити усі розділи, щоб підтвердити замовлення.
+                  </p>
+                )}
+              </>
+            )}
+          />
         </form>
       )}
+      {step === 3 && <></>}
     </div>
   );
 };

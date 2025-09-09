@@ -240,6 +240,45 @@
 
       @include button-bold;
     }
+
+    &-info {
+      position: absolute;
+      opacity: 0;
+      visibility: hidden;
+      top: -30px;
+      z-index: 1;
+
+      display: inline-flex;
+      padding: 4px 8px;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      border-radius: 12px;
+      border: 1px solid $gray-stroke;
+      background: $gray-dark;
+
+      /* Floating card Double shadow */
+      box-shadow:
+        0 8px 20px 2px rgba(170, 182, 178, 0.2),
+        0 -4px 12px 0 rgba(255, 255, 255, 0) inset;
+      backdrop-filter: blur(12px);
+
+      transition: $effect-duration;
+
+      &-visible {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      &-text {
+        color: $gray-white;
+
+        text-align: center;
+
+        @include tab-regular;
+      }
+    }
   }
   &__order {
     display: flex;
@@ -978,6 +1017,8 @@
     }
 
     &-button-block {
+      position: relative;
+
       display: flex;
       width: 100%;
       justify-content: flex-end;
