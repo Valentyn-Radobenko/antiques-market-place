@@ -219,7 +219,7 @@ export const Header = () => {
                 customTooltipClassName="exp-currency__tooltip"
               />
             </li>
-            {isAuthenticated && (
+            {true && (
               <li>
                 <div className="header__actions-item-wrapper">
                   <NavLink
@@ -235,7 +235,7 @@ export const Header = () => {
                 </div>
               </li>
             )}
-            {!isAuthenticated && (
+            {false && (
               <li>
                 <div className="header__auth-buttons">
                   <button

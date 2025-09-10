@@ -57,13 +57,22 @@
 // }
 
 .market-search {
-  // box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  gap: 24px;
+  justify-content: center;
 
-  @include on-phone {
-    gap: 16px;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 900px;
+
+    @include on-tablet {
+      max-width: none;
+    }
+    @include on-phone {
+      gap: 16px;
+    }
   }
 
   &__form {
@@ -102,7 +111,7 @@
     width: 25%;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    @include button-bold;
+    @include main-text;
 
     &.isActive {
       display: block;
@@ -130,6 +139,36 @@
 
     &::placeholder {
       color: $additional-gray-gray;
+    }
+  }
+
+  &__decline {
+    padding: 8px;
+    align-self: center;
+    color: $additional-greenas;
+    transition: all ease $effect-duration;
+    @include label-bold;
+    @include on-phone {
+      display: none;
+    }
+    &:hover {
+      color: $additional-freshherb-elect;
+    }
+  }
+
+  &__arrow-wrapper {
+    padding: 8px;
+    display: none;
+    color: $gray-black;
+    cursor: pointer;
+    transform: rotate(180deg);
+    align-self: center;
+    @include on-phone {
+      display: block;
+    }
+
+    &:hover {
+      color: $additional-freshherb-elect;
     }
   }
 
