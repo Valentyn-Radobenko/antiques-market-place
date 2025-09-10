@@ -179,7 +179,7 @@ export const Header = () => {
                 mode={'questions'}
                 customContentClassName={classNames(
                   {
-                    'exp-questions--not-auth': !isAuthenticated,
+                    'exp-questions--not-auth': false,
                   },
                   'exp-questions',
                 )}
@@ -212,7 +212,7 @@ export const Header = () => {
                 mode={'currency'}
                 customContentClassName={classNames(
                   {
-                    'exp-currency--not-auth': !isAuthenticated,
+                    'exp-currency--not-auth': false,
                   },
                   'exp-currency',
                 )}
