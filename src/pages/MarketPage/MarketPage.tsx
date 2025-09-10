@@ -8,10 +8,10 @@ import { categories } from '../../data/categories';
 import { SearchLink } from '../../utils/SearchLink';
 import { useEffect, useState } from 'react';
 import goodsJson from '../../data/products.json';
-import { Product } from '../../types/product';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { Arrow } from '../../components/Imgs/Arrow';
+import { Product } from '../../types/Product';
 
 export const MarketPage = () => {
   const [searchParams] = useSearchParams();
