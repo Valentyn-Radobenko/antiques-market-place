@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { SearchSVG } from '../Imgs/SearchSVG';
 import { getSearchWith } from '../../utils/SearchHelper';
+import { ArrowTale } from '../Imgs/ArrowTale';
 
 type Props = {
   searchQuery: string | null;
@@ -15,83 +16,81 @@ export const MarketForm: React.FC<Props> = ({ searchQuery }) => {
 
   return (
     <div className="market-search">
-      {/* <form
-        className={classNames('market-search', {
-          isActive: focus,
-        })}
-        onSubmit={() => setSearchPrams({ query })}
-      >
-        <SearchSVG
-          className={classNames('market-search__search-icon', {
-            isActive: focus,
-          })}
-        />
-        <input
-          value={query}
-          placeholder="Я шукаю..."
-          className="market-search__input"
-          type="text"
+      <div className="market-search__wrapper">
+        <form
+          tabIndex={-1}
+          onBlur={(e) => {
+            if (e.currentTarget.contains(e.relatedTarget as Node)) {
+              return;
+            }
+            setFocus(false);
+          }}
           onFocus={() => setFocus(true)}
-          onChange={(e) => setQuery(e.target.value)}
-          onBlur={() => setFocus(false)}
-        />
-        <button className="market-search__button">Знайти</button>
-      </form> */}
-      <form
-        tabIndex={-1}
-        onBlur={(e) => {
-          if (e.currentTarget.contains(e.relatedTarget as Node)) {
-            return;
-          }
-          setFocus(false);
-        }}
-        onFocus={() => setFocus(true)}
-        className={classNames('market-search__form', {
-          isActive: focus,
-        })}
-        onSubmit={(e) => {
-          e.preventDefault();
-          setSearchPrams(
-            getSearchWith(searchParams, { query: query ? query : null }),
-          );
-          setFocus(false);
-        }}
-      >
-        <div
-          className={classNames('market-search__search', {
+          className={classNames('market-search__form', {
             isActive: focus,
           })}
+          onSubmit={(e) => {
+            e.preventDefault();
+            setSearchPrams(
+              getSearchWith(searchParams, { query: query ? query : null }),
+            );
+            setFocus(false);
+          }}
         >
-          <SearchSVG
-            className={classNames('market-search__search-svg', {
+          <div
+            onClick={() => {
+              setQuery('');
+              setSearchPrams(getSearchWith(searchParams, { query: null }));
+            }}
+            className="market-search__arrow-wrapper"
+          >
+            <ArrowTale />
+          </div>
+
+          <div
+            className={classNames('market-search__search', {
               isActive: focus,
             })}
-          />
-          <input
-            autoFocus={focus}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Пошук товару"
-            type="text"
-            className="market-search__input"
-            value={query}
-          />
-        </div>
-        <button
-          type="submit"
-          className={classNames('market-search__search-button', {
-            isActive: focus,
-          })}
-          onClick={() => console.log('clisk')}
-        >
-          Знайти
-        </button>
-      </form>
-      {searchQuery && (
-        <h2 className="market-search__h3">
-          Результати пошуку“
-          <span className="market-search__green-word">{searchQuery}</span>”
-        </h2>
-      )}
+          >
+            <SearchSVG
+              className={classNames('market-search__search-svg', {
+                isActive: focus,
+              })}
+            />
+            <input
+              autoFocus={focus}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Пошук товару"
+              type="text"
+              className="market-search__input"
+              value={query}
+            />
+          </div>
+          <button
+            type="submit"
+            className={classNames('market-search__search-button', {
+              isActive: focus,
+            })}
+          >
+            Знайти
+          </button>
+          <button
+            onClick={() => {
+              setQuery('');
+              setSearchPrams(getSearchWith(searchParams, { query: null }));
+            }}
+            className="market-search__decline"
+          >
+            Скасувати
+          </button>
+        </form>
+        {searchQuery && (
+          <h2 className="market-search__h3">
+            Результати пошуку“
+            <span className="market-search__green-word">{searchQuery}</span>”
+          </h2>
+        )}
+      </div>
     </div>
   );
 };
