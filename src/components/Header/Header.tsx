@@ -51,7 +51,8 @@ export const Header = () => {
       {isMenuOn && <Menu />}
       <header
         className={classNames('header page__header', {
-          'header--expanded': expHeader,
+          'header--expanded':
+            expHeader && expHeader !== 'search' && expHeader !== 'account',
         })}
       >
         <div className="header__container">
