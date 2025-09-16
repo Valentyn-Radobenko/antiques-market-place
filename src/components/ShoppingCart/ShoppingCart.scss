@@ -417,6 +417,17 @@
         border-radius: 12px;
         border: 1px solid $gray-stroke;
         background: $gray-white;
+        transition: $effect-duration;
+
+        &--error {
+          border-color: $system-error;
+        }
+      }
+
+      &-error {
+        color: $system-error;
+
+        @include tab-regular;
       }
 
       &-products {
@@ -715,8 +726,14 @@
 
           @include main-text;
 
+          transition: $effect-duration;
+
           &::placeholder {
             color: $gray;
+          }
+
+          &--error {
+            border-color: $system-error;
           }
         }
       }

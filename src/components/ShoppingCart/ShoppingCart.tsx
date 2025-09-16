@@ -76,6 +76,7 @@ export const ShoppingCart: React.FC = () => {
   const isDeliveryChecked =
     (cart.delivery.type === 'delivery' &&
       cart.delivery.receiver.firstName &&
+      cart.delivery.receiver.middleName &&
       cart.delivery.receiver.lastName &&
       cart.delivery.receiver.phone &&
       ((cart.delivery.method === 'post' &&
@@ -84,7 +85,8 @@ export const ShoppingCart: React.FC = () => {
         (cart.delivery.method === 'courier' &&
           cart.delivery.service &&
           cart.delivery.street &&
-          cart.delivery.house))) ||
+          cart.delivery.house &&
+          cart.delivery.apartment))) ||
     (cart.delivery.type === 'pickup' && isUserDataChecked);
 
   const isPaymentsChecked =
@@ -349,7 +351,13 @@ export const ShoppingCart: React.FC = () => {
                       {' '}
                       Ім'я
                       <input
-                        className="shopping-cart__order-block-input"
+                        className={classNames(
+                          'shopping-cart__order-block-input',
+                          {
+                            'shopping-cart__order-block-input--error':
+                              areErrorsOn && !cart.user.firstName,
+                          },
+                        )}
                         type="text"
                         placeholder="Андрій"
                         onChange={(e) =>
@@ -358,13 +366,25 @@ export const ShoppingCart: React.FC = () => {
                         value={cart.user.firstName}
                         required
                       />
+                      {areErrorsOn && !cart.user.firstName && (
+                        <p className="shopping-cart__order-block-error">
+                          Вкажіть ім'я
+                        </p>
+                      )}
+                      {orderStep === 1 && isPhone && <></>}
                     </label>
 
                     <label className="shopping-cart__order-block-label">
                       {' '}
                       Прізвище
                       <input
-                        className="shopping-cart__order-block-input"
+                        className={classNames(
+                          'shopping-cart__order-block-input',
+                          {
+                            'shopping-cart__order-block-input--error':
+                              areErrorsOn && !cart.user.lastName,
+                          },
+                        )}
                         type="text"
                         placeholder="Містеряков"
                         onChange={(e) =>
@@ -373,13 +393,24 @@ export const ShoppingCart: React.FC = () => {
                         value={cart.user.lastName}
                         required
                       />
+                      {areErrorsOn && !cart.user.lastName && (
+                        <p className="shopping-cart__order-block-error">
+                          Вкажіть прізвище
+                        </p>
+                      )}
                     </label>
 
                     <label className="shopping-cart__order-block-label">
                       {' '}
                       Номер телефону
                       <input
-                        className="shopping-cart__order-block-input"
+                        className={classNames(
+                          'shopping-cart__order-block-input',
+                          {
+                            'shopping-cart__order-block-input--error':
+                              areErrorsOn && !cart.user.phone,
+                          },
+                        )}
                         type="tel"
                         placeholder="+38 093 674 34 67"
                         onChange={(e) =>
@@ -388,13 +419,24 @@ export const ShoppingCart: React.FC = () => {
                         value={cart.user.phone}
                         required
                       />
+                      {areErrorsOn && !cart.user.phone && (
+                        <p className="shopping-cart__order-block-error">
+                          Вкажіть телефон
+                        </p>
+                      )}
                     </label>
 
                     <label className="shopping-cart__order-block-label">
                       {' '}
                       Електронна пошта
                       <input
-                        className="shopping-cart__order-block-input"
+                        className={classNames(
+                          'shopping-cart__order-block-input',
+                          {
+                            'shopping-cart__order-block-input--error':
+                              areErrorsOn && !cart.user.email,
+                          },
+                        )}
                         type="email"
                         placeholder="artemmisti@gmail.com"
                         onChange={(e) =>
@@ -403,6 +445,11 @@ export const ShoppingCart: React.FC = () => {
                         value={cart.user.email}
                         required
                       />
+                      {areErrorsOn && !cart.user.email && (
+                        <p className="shopping-cart__order-block-error">
+                          Вкажіть email
+                        </p>
+                      )}
                     </label>
                   </div>
                 )}
@@ -424,7 +471,13 @@ export const ShoppingCart: React.FC = () => {
                       {' '}
                       Країна
                       <input
-                        className="shopping-cart__order-block-input"
+                        className={classNames(
+                          'shopping-cart__order-block-input',
+                          {
+                            'shopping-cart__order-block-input--error':
+                              areErrorsOn && !cart.user.country,
+                          },
+                        )}
                         type="text"
                         placeholder="Україна"
                         onChange={(e) =>
@@ -433,13 +486,24 @@ export const ShoppingCart: React.FC = () => {
                         value={cart.user.country}
                         required
                       />
+                      {areErrorsOn && !cart.user.country && (
+                        <p className="shopping-cart__order-block-error">
+                          Вкажіть країну
+                        </p>
+                      )}
                     </label>
 
                     <label className="shopping-cart__order-block-label">
                       {' '}
                       Місто
                       <input
-                        className="shopping-cart__order-block-input"
+                        className={classNames(
+                          'shopping-cart__order-block-input',
+                          {
+                            'shopping-cart__order-block-input--error':
+                              areErrorsOn && !cart.user.city,
+                          },
+                        )}
                         type="text"
                         placeholder="Київ"
                         onChange={(e) =>
@@ -448,6 +512,11 @@ export const ShoppingCart: React.FC = () => {
                         value={cart.user.city}
                         required
                       />
+                      {areErrorsOn && !cart.user.city && (
+                        <p className="shopping-cart__order-block-error">
+                          Вкажіть місто
+                        </p>
+                      )}
                     </label>
                   </div>
                 )}
@@ -586,26 +655,48 @@ export const ShoppingCart: React.FC = () => {
                           Служба доставки
                           <input
                             type="text"
-                            className="shopping-cart__order-block-radio-dropdown-input"
+                            className={classNames(
+                              'shopping-cart__order-block-radio-dropdown-input',
+                              {
+                                'shopping-cart__order-block-radio-dropdown-input--error':
+                                  areErrorsOn && !cart.delivery.service,
+                              },
+                            )}
                             placeholder="Нова пошта"
                             onChange={(e) =>
                               dispatch(updateDeliveryService(e.target.value))
                             }
                             value={cart.delivery.service}
                           />
+                          {areErrorsOn && !cart.delivery.service && (
+                            <p className="shopping-cart__order-block-error">
+                              Вкажіть службу доставки
+                            </p>
+                          )}
                         </label>
 
                         <label className="shopping-cart__order-block-radio-dropdown-label">
                           Номер відділення
                           <input
                             type="text"
-                            className="shopping-cart__order-block-radio-dropdown-input"
+                            className={classNames(
+                              'shopping-cart__order-block-radio-dropdown-input',
+                              {
+                                'shopping-cart__order-block-radio-dropdown-input--error':
+                                  areErrorsOn && !cart.delivery.branch,
+                              },
+                            )}
                             placeholder="№456"
                             onChange={(e) =>
                               dispatch(updateDeliveryBranch(e.target.value))
                             }
                             value={cart.delivery.branch}
                           />
+                          {areErrorsOn && !cart.delivery.branch && (
+                            <p className="shopping-cart__order-block-error">
+                              Вкажіть номер відділення
+                            </p>
+                          )}
                         </label>
                       </div>
 
@@ -642,52 +733,96 @@ export const ShoppingCart: React.FC = () => {
                           Служба доставки
                           <input
                             type="text"
-                            className="shopping-cart__order-block-radio-dropdown-input"
+                            className={classNames(
+                              'shopping-cart__order-block-radio-dropdown-input',
+                              {
+                                'shopping-cart__order-block-radio-dropdown-input--error':
+                                  areErrorsOn && !cart.delivery.service,
+                              },
+                            )}
                             placeholder="Нова пошта"
                             onChange={(e) =>
                               dispatch(updateDeliveryService(e.target.value))
                             }
                             value={cart.delivery.service}
                           />
+                          {areErrorsOn && !cart.delivery.service && (
+                            <p className="shopping-cart__order-block-error">
+                              Вкажіть службу доставки
+                            </p>
+                          )}
                         </label>
 
                         <label className="shopping-cart__order-block-radio-dropdown-label">
                           Вулиця
                           <input
                             type="text"
-                            className="shopping-cart__order-block-radio-dropdown-input"
+                            className={classNames(
+                              'shopping-cart__order-block-radio-dropdown-input',
+                              {
+                                'shopping-cart__order-block-radio-dropdown-input--error':
+                                  areErrorsOn && !cart.delivery.street,
+                              },
+                            )}
                             placeholder="Червнева вулиця"
                             onChange={(e) =>
                               dispatch(updateDeliveryStreet(e.target.value))
                             }
                             value={cart.delivery.street}
                           />
+                          {areErrorsOn && !cart.delivery.street && (
+                            <p className="shopping-cart__order-block-error">
+                              Вкажіть вулицю
+                            </p>
+                          )}
                         </label>
 
                         <label className="shopping-cart__order-block-radio-dropdown-label">
                           Будинок
                           <input
                             type="text"
-                            className="shopping-cart__order-block-radio-dropdown-input"
+                            className={classNames(
+                              'shopping-cart__order-block-radio-dropdown-input',
+                              {
+                                'shopping-cart__order-block-radio-dropdown-input--error':
+                                  areErrorsOn && !cart.delivery.house,
+                              },
+                            )}
                             placeholder="1"
                             onChange={(e) =>
                               dispatch(updateDeliveryHouse(e.target.value))
                             }
                             value={cart.delivery.house}
                           />
+                          {areErrorsOn && !cart.delivery.house && (
+                            <p className="shopping-cart__order-block-error">
+                              Вкажіть номер будинку
+                            </p>
+                          )}
                         </label>
 
                         <label className="shopping-cart__order-block-radio-dropdown-label">
                           Квартира
                           <input
                             type="text"
-                            className="shopping-cart__order-block-radio-dropdown-input"
+                            className={classNames(
+                              'shopping-cart__order-block-radio-dropdown-input',
+                              {
+                                'shopping-cart__order-block-radio-dropdown-input--error':
+                                  areErrorsOn && !cart.delivery.apartment,
+                              },
+                            )}
                             placeholder="56"
                             onChange={(e) =>
                               dispatch(updateDeliveryApartment(e.target.value))
                             }
                             value={cart.delivery.apartment}
                           />
+                          {areErrorsOn && !cart.delivery.apartment && (
+                            <p className="shopping-cart__order-block-error">
+                              Вкажіть номер квартири або поставте “-”
+                            </p>
+                          )}
                         </label>
                       </div>
 
@@ -727,7 +862,14 @@ export const ShoppingCart: React.FC = () => {
                           {' '}
                           Ім'я
                           <input
-                            className="shopping-cart__order-block-input"
+                            className={classNames(
+                              'shopping-cart__order-block-input',
+                              {
+                                'shopping-cart__order-block-input--error':
+                                  areErrorsOn &&
+                                  !cart.delivery.receiver.firstName,
+                              },
+                            )}
                             type="text"
                             placeholder="Андрій"
                             onChange={(e) =>
@@ -735,13 +877,25 @@ export const ShoppingCart: React.FC = () => {
                             }
                             value={cart.delivery.receiver.firstName}
                           />
+                          {areErrorsOn && !cart.delivery.receiver.firstName && (
+                            <p className="shopping-cart__order-block-error">
+                              Вкажіть ім'я
+                            </p>
+                          )}
                         </label>
 
                         <label className="shopping-cart__order-block-label">
                           {' '}
                           Прізвище
                           <input
-                            className="shopping-cart__order-block-input"
+                            className={classNames(
+                              'shopping-cart__order-block-input',
+                              {
+                                'shopping-cart__order-block-input--error':
+                                  areErrorsOn &&
+                                  !cart.delivery.receiver.lastName,
+                              },
+                            )}
                             type="text"
                             placeholder="Містеряков"
                             onChange={(e) =>
@@ -749,28 +903,50 @@ export const ShoppingCart: React.FC = () => {
                             }
                             value={cart.delivery.receiver.lastName}
                           />
+                          {areErrorsOn && !cart.delivery.receiver.lastName && (
+                            <p className="shopping-cart__order-block-error">
+                              Вкажіть прізвище
+                            </p>
+                          )}
                         </label>
 
                         <label className="shopping-cart__order-block-label">
                           {' '}
                           Номер телефону
                           <input
-                            className="shopping-cart__order-block-input"
+                            className={classNames(
+                              'shopping-cart__order-block-input',
+                              {
+                                'shopping-cart__order-block-input--error':
+                                  areErrorsOn && !cart.delivery.receiver.phone,
+                              },
+                            )}
                             type="tel"
                             placeholder="+38 093 674 34 67"
                             onChange={(e) =>
                               dispatch(updateReceiverPhone(e.target.value))
                             }
                             value={cart.delivery.receiver.phone}
-                            required
                           />
+                          {areErrorsOn && !cart.delivery.receiver.phone && (
+                            <p className="shopping-cart__order-block-error">
+                              Вкажіть номер телефону
+                            </p>
+                          )}
                         </label>
 
                         <label className="shopping-cart__order-block-label">
                           {' '}
                           По батькові
                           <input
-                            className="shopping-cart__order-block-input"
+                            className={classNames(
+                              'shopping-cart__order-block-input',
+                              {
+                                'shopping-cart__order-block-input--error':
+                                  areErrorsOn &&
+                                  !cart.delivery.receiver.middleName,
+                              },
+                            )}
                             type="text"
                             placeholder="Олександрович"
                             onChange={(e) =>
@@ -779,6 +955,12 @@ export const ShoppingCart: React.FC = () => {
                             value={cart.delivery.receiver.middleName}
                             required
                           />
+                          {areErrorsOn &&
+                            !cart.delivery.receiver.middleName && (
+                              <p className="shopping-cart__order-block-error">
+                                Вкажіть по батькові або поставте “-”
+                              </p>
+                            )}
                         </label>
                       </div>
                     )}
@@ -809,7 +991,13 @@ export const ShoppingCart: React.FC = () => {
                           {' '}
                           Ім'я
                           <input
-                            className="shopping-cart__order-block-input"
+                            className={classNames(
+                              'shopping-cart__order-block-input',
+                              {
+                                'shopping-cart__order-block-input--error':
+                                  areErrorsOn && !cart.user.firstName,
+                              },
+                            )}
                             type="text"
                             placeholder="Андрій"
                             onChange={(e) =>
@@ -818,13 +1006,24 @@ export const ShoppingCart: React.FC = () => {
                             value={cart.user.firstName}
                             required
                           />
+                          {areErrorsOn && !cart.user.firstName && (
+                            <p className="shopping-cart__order-block-error">
+                              Вкажіть ім'я
+                            </p>
+                          )}
                         </label>
 
                         <label className="shopping-cart__order-block-label">
                           {' '}
                           Прізвище
                           <input
-                            className="shopping-cart__order-block-input"
+                            className={classNames(
+                              'shopping-cart__order-block-input',
+                              {
+                                'shopping-cart__order-block-input--error':
+                                  areErrorsOn && !cart.user.lastName,
+                              },
+                            )}
                             type="text"
                             placeholder="Містеряков"
                             onChange={(e) =>
@@ -833,13 +1032,24 @@ export const ShoppingCart: React.FC = () => {
                             value={cart.user.lastName}
                             required
                           />
+                          {areErrorsOn && !cart.user.lastName && (
+                            <p className="shopping-cart__order-block-error">
+                              Вкажіть прізвище
+                            </p>
+                          )}
                         </label>
 
                         <label className="shopping-cart__order-block-label">
                           {' '}
                           Номер телефону
                           <input
-                            className="shopping-cart__order-block-input"
+                            className={classNames(
+                              'shopping-cart__order-block-input',
+                              {
+                                'shopping-cart__order-block-input--error':
+                                  areErrorsOn && !cart.user.phone,
+                              },
+                            )}
                             type="tel"
                             placeholder="+38 093 674 34 67"
                             onChange={(e) =>
@@ -848,13 +1058,24 @@ export const ShoppingCart: React.FC = () => {
                             value={cart.user.phone}
                             required
                           />
+                          {areErrorsOn && !cart.user.phone && (
+                            <p className="shopping-cart__order-block-error">
+                              Вкажіть телефон
+                            </p>
+                          )}
                         </label>
 
                         <label className="shopping-cart__order-block-label">
                           {' '}
                           Електронна пошта
                           <input
-                            className="shopping-cart__order-block-input"
+                            className={classNames(
+                              'shopping-cart__order-block-input',
+                              {
+                                'shopping-cart__order-block-input--error':
+                                  areErrorsOn && !cart.user.email,
+                              },
+                            )}
                             type="email"
                             placeholder="artemmisti@gmail.com"
                             onChange={(e) =>
@@ -863,6 +1084,11 @@ export const ShoppingCart: React.FC = () => {
                             value={cart.user.email}
                             required
                           />
+                          {areErrorsOn && !cart.user.email && (
+                            <p className="shopping-cart__order-block-error">
+                              Вкажіть email
+                            </p>
+                          )}
                         </label>
                       </div>
                     )}
@@ -949,26 +1175,48 @@ export const ShoppingCart: React.FC = () => {
                       Служба доставки
                       <input
                         type="text"
-                        className="shopping-cart__order-block-radio-dropdown-input"
+                        className={classNames(
+                          'shopping-cart__order-block-radio-dropdown-input',
+                          {
+                            'shopping-cart__order-block-radio-dropdown-input--error':
+                              areErrorsOn && !cart.delivery.service,
+                          },
+                        )}
                         placeholder="Нова пошта"
                         onChange={(e) =>
                           dispatch(updateDeliveryService(e.target.value))
                         }
                         value={cart.delivery.service}
                       />
+                      {areErrorsOn && !cart.delivery.service && (
+                        <p className="shopping-cart__order-block-error">
+                          Вкажіть службу доставки
+                        </p>
+                      )}
                     </label>
 
                     <label className="shopping-cart__order-block-radio-dropdown-label">
                       Номер відділення
                       <input
                         type="text"
-                        className="shopping-cart__order-block-radio-dropdown-input"
+                        className={classNames(
+                          'shopping-cart__order-block-radio-dropdown-input',
+                          {
+                            'shopping-cart__order-block-radio-dropdown-input--error':
+                              areErrorsOn && !cart.delivery.branch,
+                          },
+                        )}
                         placeholder="№456"
                         onChange={(e) =>
                           dispatch(updateDeliveryBranch(e.target.value))
                         }
                         value={cart.delivery.branch}
                       />
+                      {areErrorsOn && !cart.delivery.branch && (
+                        <p className="shopping-cart__order-block-error">
+                          Вкажіть номер відділення
+                        </p>
+                      )}
                     </label>
                   </div>
 

@@ -12,7 +12,7 @@ import { setLanguage } from '../../store/slices/languageSlice';
 import i18n from '../../i18n/i18n';
 import { Menu } from '../Menu/Menu';
 import { setIsMenuOn } from '../../store/slices/menuSlice';
-import { setAuthMode } from '../../store/slices/authModeSlice';
+// import { setAuthMode } from '../../store/slices/authModeSlice';
 import { setExpHeader } from '../../store/slices/expHeaderSlice';
 import { setExpSearch } from '../../store/slices/expSearchSlice';
 
@@ -28,9 +28,9 @@ export const Header = () => {
   const expHeader = useSelector(
     (state: SavingState) => state.expHeader.expHeader,
   );
-  const isAuthenticated = useSelector(
-    (state: SavingState) => state.auth.isAuthenticated,
-  );
+  // const isAuthenticated = useSelector(
+  //   (state: SavingState) => state.auth.isAuthenticated,
+  // );
   const expSearch = useSelector(
     (state: SavingState) => state.expSearch.expSearch,
   );
@@ -187,7 +187,6 @@ export const Header = () => {
                 customTooltipClassName="exp-questions__tooltip"
               />
             </li>
-
             <li>
               <HeaderTooltip
                 renderButton={() => (
@@ -220,23 +219,23 @@ export const Header = () => {
                 customTooltipClassName="exp-currency__tooltip"
               />
             </li>
-            {true && (
-              <li>
-                <div className="header__actions-item-wrapper">
-                  <NavLink
-                    onMouseEnter={() => {
-                      dispatch(setExpHeader('account'));
-                    }}
-                    onMouseLeave={() => {
-                      dispatch(setExpHeader(null));
-                    }}
-                    to={'me'}
-                    className={getAccountLinkClass}
-                  ></NavLink>
-                </div>
-              </li>
-            )}
-            {false && (
+            (
+            <li>
+              <div className="header__actions-item-wrapper">
+                <NavLink
+                  onMouseEnter={() => {
+                    dispatch(setExpHeader('account'));
+                  }}
+                  onMouseLeave={() => {
+                    dispatch(setExpHeader(null));
+                  }}
+                  to={'me'}
+                  className={getAccountLinkClass}
+                ></NavLink>
+              </div>
+            </li>
+            )
+            {/* {false && (
               <li>
                 <div className="header__auth-buttons">
                   <button
@@ -253,7 +252,7 @@ export const Header = () => {
                   </button>
                 </div>
               </li>
-            )}
+            )} */}
             <li>
               <button
                 onClick={() => dispatch(setIsMenuOn(!isMenuOn))}
