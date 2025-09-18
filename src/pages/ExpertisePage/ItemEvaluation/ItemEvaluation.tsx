@@ -3,6 +3,7 @@ import { MoreInfo } from '../MoreInfo/MoreInfo';
 import { assessmentInfo, assessmentForm } from '../../../data/assessment';
 import { ValuabilityForm } from '../ValuabilityForm/ValuabilityForm';
 import classNames from 'classnames';
+import { ModalWindow } from '../../../components/ModalWindow/ModalWindow';
 type Props = {
   sectionRef: React.RefObject<HTMLDivElement>;
 };
@@ -49,12 +50,19 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
               >
                 Дізнатися більше
               </button>
-              <MoreInfo
-                request={setValuabilityForm}
-                closeModal={setMoreInfoBase}
-                assessment={assessmentInfo[0]}
-                activeState={moreInfoBase}
-              />
+              <ModalWindow
+                openModal={moreInfoBase}
+                setOpenModal={setMoreInfoBase}
+                secondModal={false}
+                visibility="card__modal-visibility"
+              >
+                <MoreInfo
+                  request={setValuabilityForm}
+                  closeModal={setMoreInfoBase}
+                  assessment={assessmentInfo[0]}
+                  activeState={moreInfoBase}
+                />
+              </ModalWindow>
               <button
                 onClick={() => setValuabilityForm(true)}
                 className={classNames('card__button dark', {
@@ -63,11 +71,18 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
               >
                 Подати заявку
               </button>
-              <ValuabilityForm
-                assessment={assessmentForm[0]}
-                closeModal={setValuabilityForm}
-                activeState={valuabilityForm}
-              />
+              <ModalWindow
+                openModal={valuabilityForm}
+                setOpenModal={setValuabilityForm}
+                secondModal={false}
+                visibility="card__modal-visibility"
+              >
+                <ValuabilityForm
+                  assessment={assessmentForm[0]}
+                  closeModal={setValuabilityForm}
+                  activeState={valuabilityForm}
+                />
+              </ModalWindow>
             </div>
           </div>
           <img
@@ -107,14 +122,19 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
               >
                 Дізнатися більше
               </button>
-
-              <MoreInfo
-                request={setExpertiseForm}
-                assessment={assessmentInfo[1]}
-                closeModal={setMoreInfoExpert}
-                activeState={moreInfoExpert}
-              />
-
+              <ModalWindow
+                openModal={moreInfoExpert}
+                setOpenModal={setMoreInfoExpert}
+                secondModal={false}
+                visibility="card__modal-visibility"
+              >
+                <MoreInfo
+                  request={setExpertiseForm}
+                  assessment={assessmentInfo[1]}
+                  closeModal={setMoreInfoExpert}
+                  activeState={moreInfoExpert}
+                />
+              </ModalWindow>
               <button
                 onClick={() => setExpertiseForm(true)}
                 className={classNames('card__button dark', {
@@ -123,11 +143,18 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
               >
                 Подати заявку
               </button>
-              <ValuabilityForm
-                assessment={assessmentForm[1]}
-                closeModal={setExpertiseForm}
-                activeState={expertiseForm}
-              />
+              <ModalWindow
+                openModal={expertiseForm}
+                setOpenModal={setExpertiseForm}
+                secondModal={false}
+                visibility="card__modal-visibility"
+              >
+                <ValuabilityForm
+                  assessment={assessmentForm[1]}
+                  closeModal={setExpertiseForm}
+                  activeState={expertiseForm}
+                />
+              </ModalWindow>
             </div>
           </div>
           <img
