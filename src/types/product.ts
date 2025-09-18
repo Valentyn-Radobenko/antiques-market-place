@@ -17,5 +17,5 @@ export interface Product {
   subcategory: LocalizedText;
   info: Omit<LocalizedText, 'slug'>;
   price: number;
-  publicationDate: string; // можно уточнить как Date, если ты потом парсишь
+  publicationDate: string;
 }
