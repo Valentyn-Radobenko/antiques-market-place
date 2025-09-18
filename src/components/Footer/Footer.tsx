@@ -31,7 +31,7 @@ export const Footer = () => {
             rel="noopener noreferrer"
             className="footer__media"
           >
-            <TelegramLogoSVG className='footer__media-svg' />
+            <TelegramLogoSVG className="footer__media-svg" />
           </Link>
           <Link
             to={'https://www.facebook.com/'}
@@ -39,7 +39,7 @@ export const Footer = () => {
             rel="noopener noreferrer"
             className="footer__media"
           >
-            <FacebookLogoSVG className='footer__media-svg' />
+            <FacebookLogoSVG className="footer__media-svg" />
           </Link>
           <Link
             to="mailto:example@gmail.com"
@@ -47,7 +47,7 @@ export const Footer = () => {
             rel="noopener noreferrer"
             className="footer__media"
           >
-            <MailSVG className='footer__media-svg' />
+            <MailSVG className="footer__media-svg" />
           </Link>
         </div>
       </div>

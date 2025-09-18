@@ -3,6 +3,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @include on-tablet {
+      align-items: bottom;
+    }
   }
 
   position: relative;
@@ -18,10 +22,31 @@
   border-radius: 12px;
   background: $gray-white;
 
+  @include on-tablet {
+    position: fixed;
+    width: 100%;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    bottom: 0;
+  }
+
+  @include on-phone {
+    padding: 16px;
+  }
+
+  &--end {
+    gap: 24px;
+
+    @include on-tablet {
+      position: relative;
+      width: auto;
+    }
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: top;
     align-self: stretch;
   }
 
@@ -29,6 +54,14 @@
     color: $gray-black;
 
     @include h2-bold;
+
+    &--end {
+      @include h3-bold;
+    }
+
+    &--green {
+      color: $additional-freshherb-elect;
+    }
   }
 
   &__close {
@@ -129,6 +162,7 @@
   &__product {
     display: flex;
     padding-left: 16px;
+    // max-width: 621px;
     align-items: center;
     gap: 16px;
     align-self: stretch;
@@ -235,6 +269,10 @@
     box-shadow: 0 0 8px 0 rgba(236, 255, 252, 0);
     backdrop-filter: blur(25px);
 
+    @include on-phone {
+      width: auto !important;
+    }
+
     &-text {
       text-align: center;
 
@@ -294,6 +332,15 @@
 
     border-radius: 12px;
 
+    @include on-tablet {
+      max-height: 87vh;
+      align-self: center;
+    }
+
+    @include on-phone {
+      width: 100%;
+    }
+
     &-block {
       display: flex;
       padding: 24px;
@@ -305,6 +352,10 @@
 
       border-radius: 12px;
       background: $background-plate;
+
+      @include on-phone {
+        width: 100%;
+      }
 
       &-top {
         display: flex;
@@ -1163,6 +1214,56 @@
             list-style-position: inside;
           }
         }
+      }
+    }
+  }
+
+  &__end {
+    &-top {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      flex: 1 0 0;
+    }
+
+    &-subtitle {
+      color: $gray-black;
+
+      @include main-text;
+    }
+
+    &-message {
+      display: flex;
+      padding: 16px;
+      align-items: flex-start;
+      gap: 8px;
+      align-self: stretch;
+
+      border-radius: 12px;
+      border: 1px solid $system-info;
+
+      &-icon {
+        &-wrapper {
+          display: flex;
+          align-items: top;
+        }
+
+        color: $system-info;
+      }
+
+      &-text {
+        width: 410px;
+        color: $gray-black;
+
+        @include main-text;
+      }
+
+      &-link {
+        color: $additional-greenas;
+        text-decoration: underline;
+
+        @include button-bold;
       }
     }
   }

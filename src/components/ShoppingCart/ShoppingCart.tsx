@@ -143,15 +143,35 @@ export const ShoppingCart: React.FC = () => {
   };
 
   return (
-    <div className="shopping-cart">
+    <div
+      className={classNames('shopping-cart', {
+        'shopping-cart--end': step === 3,
+      })}
+    >
       <div className="shopping-cart__header">
-        <h2 className="shopping-cart__title">
-          {step === 1 ?
-            !currentProduct || cart.items.length === 0 ?
+        {step === 1 && (
+          <h2 className="shopping-cart__title">
+            {!currentProduct || cart.items.length === 0 ?
               'Кошик пустий'
-            : 'Кошик'
-          : 'Оформити замовлення'}
-        </h2>
+            : 'Кошик'}
+          </h2>
+        )}
+        {step === 2 && (
+          <h2 className="shopping-cart__title">Оформити замовлення</h2>
+        )}
+        {step === 3 && (
+          <div className="shopping-cart__end-top">
+            <h2 className="shopping-cart__title shopping-cart__title--end">
+              <span className="shopping-cart__title shopping-cart__title--end shopping-cart__title--green">
+                Дякуємо,
+              </span>{' '}
+              замовлення оформлено!
+            </h2>
+            <p className="shopping-cart__end-subtitle">
+              Чекайте на зміну статусу замовлення
+            </p>
+          </div>
+        )}
         <button
           className="shopping-cart__close"
           onClick={() => dispatch(setIsCartOpen(false))}
@@ -295,10 +315,14 @@ export const ShoppingCart: React.FC = () => {
                 )}
               </div>
               <div className="shopping-cart__content-bottom">
-                <div className="shopping-cart__price">
-                  <p className="shopping-cart__price-label">Загальна сума</p>
-                  <p className="shopping-cart__price-value">{totalPrice} грн</p>
-                </div>
+                {!isPhone && (
+                  <div className="shopping-cart__price">
+                    <p className="shopping-cart__price-label">Загальна сума</p>
+                    <p className="shopping-cart__price-value">
+                      {totalPrice} грн
+                    </p>
+                  </div>
+                )}
 
                 <button
                   onClick={() => {
@@ -308,7 +332,9 @@ export const ShoppingCart: React.FC = () => {
                   className="shopping-cart__cta"
                 >
                   <span className="shopping-cart__cta-text">
-                    Оформити замовлення
+                    {isPhone ?
+                      `Оформити замовлення - ${totalPrice} грн`
+                    : 'Оформити замовлення'}
                   </span>
                   <div className="shopping-cart__cta-button">
                     <LocalMallSVG />
@@ -1725,7 +1751,22 @@ export const ShoppingCart: React.FC = () => {
           />
         </form>
       )}
-      {step === 3 && <></>}
+      {step === 3 && (
+        <div className="shopping-cart__end-message">
+          <div className="shopping-cart__end-message-icon-wrapper">
+            <InfoSVG className="shopping-cart__end-message-icon" />
+          </div>
+          <p className="shopping-cart__end-message-text">
+            Слідкуйте за вашим замовленням у вашому кабінеті у розділі{' '}
+            <Link
+              className="shopping-cart__end-message-link"
+              to={'/me/orders'}
+            >
+              “Мої покупки”
+            </Link>
+          </p>
+        </div>
+      )}
     </div>
   );
 };
