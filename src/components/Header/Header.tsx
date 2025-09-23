@@ -15,6 +15,7 @@ import { setIsMenuOn } from '../../store/slices/menuSlice';
 // import { setAuthMode } from '../../store/slices/authModeSlice';
 import { setExpHeader } from '../../store/slices/expHeaderSlice';
 import { setExpSearch } from '../../store/slices/expSearchSlice';
+import { setIsCartOpen } from '../../store/slices/shoppingCartSlice';
 
 export const Header = () => {
   // const { t } = useTranslation();
@@ -24,6 +25,7 @@ export const Header = () => {
     dispatch(setLanguage(lang));
     i18n.changeLanguage(lang);
   };
+  const cart = useSelector((state: SavingState) => state.shoppingCart);
   const authMode = useSelector((state: SavingState) => state.authMode.authMode);
   const expHeader = useSelector(
     (state: SavingState) => state.expHeader.expHeader,
@@ -52,7 +54,10 @@ export const Header = () => {
       <header
         className={classNames('header page__header', {
           'header--expanded':
-            expHeader && expHeader !== 'search' && expHeader !== 'account',
+            expHeader &&
+            expHeader !== 'search' &&
+            expHeader !== 'account' &&
+            expHeader !== 'shopping-card',
         })}
       >
         <div className="header__container">
@@ -133,6 +138,7 @@ export const Header = () => {
               <button
                 onMouseEnter={() => {
                   dispatch(setExpHeader('shopping-card'));
+                  dispatch(setIsCartOpen(true));
                 }}
                 onMouseLeave={() => {
                   dispatch(setExpHeader(null));
@@ -140,14 +146,15 @@ export const Header = () => {
                 className={classNames(
                   'header__actions-item header__actions-item-shopping-card',
                   {
-                    'header__actions-item-shopping-card--active': expSearch,
+                    'header__actions-item-shopping-card--active':
+                      cart.isCartOpen,
                     'header__actions-item-shopping-card--inactive':
-                      !expSearch &&
+                      !cart.isCartOpen &&
                       expHeader &&
                       expHeader !== 'club' &&
                       expHeader !== 'shopping-card',
                     'header__actions-item-shopping-card--default':
-                      !expSearch &&
+                      !cart.isCartOpen &&
                       (!expHeader ||
                         expHeader === 'club' ||
                         expHeader === 'shopping-card'),

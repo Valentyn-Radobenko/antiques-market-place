@@ -169,6 +169,10 @@
           display: block;
           margin-right: 8px;
 
+          @include on-phone {
+            margin-right: 0;
+          }
+
           &--default {
             background-image: url('/images/header/shopping-card-default.svg');
           }

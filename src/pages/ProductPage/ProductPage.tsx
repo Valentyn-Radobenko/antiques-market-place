@@ -14,8 +14,6 @@ import { WarehouseSVG } from '../../components/Imgs/WarehouseSVG';
 import { ProductSlider } from '../../components/Sliders/ProductSlider';
 import { ProductsSlider } from '../../components/Sliders/ProductsSlider';
 import { useIsTablet } from '../../hooks/useMediaQuery';
-import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
-import { ShoppingCart } from '../../components/ShoppingCart/ShoppingCart';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../store/store';
 import { addItem, setIsCartOpen } from '../../store/slices/shoppingCartSlice';
@@ -26,9 +24,6 @@ import { filters } from '../../data/filters';
 export const ProductPage = () => {
   const isTablet = useIsTablet();
   const dispatch = useDispatch<AppDispatch>();
-  const isModalOpen = useSelector(
-    (state: SavingState) => state.shoppingCart.isCartOpen,
-  );
   const { slug } = useParams();
   const product = products.find((p) => p.slug === slug);
   const lang = useSelector((state: SavingState) => state.language.language);
@@ -224,14 +219,6 @@ export const ProductPage = () => {
         </div>
       </div>
       <ProductsSlider />
-      <ModalWindow
-        openModal={isModalOpen}
-        isCart={true}
-        visibility="shopping-cart__modal"
-        secondModal={false}
-      >
-        <ShoppingCart />
-      </ModalWindow>
     </>
   );
 };

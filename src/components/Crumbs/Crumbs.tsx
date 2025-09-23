@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 interface Props {
@@ -17,12 +18,13 @@ export const Crumbs: React.FC<Props> = ({
       {links.map((link, ind) => {
         return ind === 0 ?
             <Link
+              key={ind + link}
               to={link}
               className="crumbs__link crumbs__link--inactive"
             >
               {titles[ind]}
             </Link>
-          : <>
+          : <React.Fragment key={ind + link}>
               <div className="crumbs__chevron"></div>
               <Link
                 to={link}
@@ -33,7 +35,7 @@ export const Crumbs: React.FC<Props> = ({
               >
                 {titles[ind]}
               </Link>
-            </>;
+            </React.Fragment>;
       })}
     </div>
   );

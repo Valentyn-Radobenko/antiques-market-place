@@ -6,9 +6,6 @@
 
     @include on-tablet {
       align-items: bottom;
-    }
-
-    @include on-phone {
       height: 100dvh;
     }
   }
@@ -47,6 +44,11 @@
       position: relative;
       width: auto;
     }
+
+    @include on-phone {
+      width: 87.2dvw;
+      gap: 16px;
+    }
   }
 
   &__header {
@@ -61,8 +63,16 @@
 
     @include h2-bold;
 
+    @include on-phone {
+      @include h2-mobile-bold;
+    }
+
     &--end {
       @include h3-bold;
+
+      @include on-phone {
+        @include h4-bold;
+      }
     }
 
     &--green {
@@ -276,7 +286,7 @@
     backdrop-filter: blur(25px);
 
     @include on-phone {
-      width: auto !important;
+      width: 100% !important;
     }
 
     &-text {
@@ -339,12 +349,15 @@
     border-radius: 12px;
 
     @include on-tablet {
-      max-height: 87vh;
       align-self: center;
+      padding-right: 0;
+      width: 616px;
+      max-height: 87dvh;
     }
 
     @include on-phone {
       width: 100%;
+      max-height: 80dvh;
     }
 
     &-block {
@@ -360,7 +373,9 @@
       background: $background-plate;
 
       @include on-phone {
+        padding: 0;
         width: 100%;
+        background: none;
       }
 
       &-top {
@@ -369,6 +384,16 @@
         align-items: center;
         gap: 8px;
         align-self: stretch;
+      }
+
+      &-heading {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      &-back-button {
+        @include icon-hover;
       }
 
       &-title {
@@ -449,6 +474,11 @@
         padding: 0 8px;
         align-items: flex-start;
         gap: 16px;
+
+        @include on-phone {
+          display: flex;
+          flex-direction: column;
+        }
       }
 
       &-label {
@@ -495,6 +525,10 @@
         gap: 8px;
         align-self: stretch;
         flex-wrap: wrap;
+
+        @include on-phone {
+          grid-template-columns: repeat(1, 1fr);
+        }
       }
 
       &-product {
@@ -550,6 +584,10 @@
             0 8px 20px 2px rgba(170, 182, 178, 0.2),
             0 -4px 12px 0 rgba(255, 255, 255, 0) inset;
           backdrop-filter: blur(12px);
+
+          @include on-phone {
+            width: 100%;
+          }
         }
 
         &-img {
@@ -569,6 +607,8 @@
           align-items: flex-start;
           flex: 1 0 0;
           align-self: stretch;
+
+          border-radius: 12px;
 
           /* Button */
           box-shadow: 0 0 8px 0 rgba(236, 255, 252, 0);
@@ -597,6 +637,10 @@
           @include main-text;
           width: 100%;
           text-align: right;
+
+          @include on-phone {
+            text-align: left;
+          }
         }
       }
 
@@ -646,6 +690,10 @@
         width: 568px;
         transition: $effect-duration;
 
+        @include on-phone {
+          width: 100%;
+        }
+
         &-content {
           display: flex;
           flex-direction: column;
@@ -656,7 +704,7 @@
           overflow: hidden;
 
           &--visible {
-            max-height: 1000px;
+            max-height: min-content;
           }
         }
 
@@ -715,6 +763,10 @@
               backdrop-filter: initial;
             }
 
+            @include on-phone {
+              gap: 8px;
+            }
+
             &--active {
               padding: 0;
               background: none;
@@ -758,6 +810,10 @@
           align-items: flex-start;
           gap: 16px;
           align-self: stretch;
+
+          @include on-phone {
+            grid-template-columns: repeat(1, 1fr);
+          }
         }
 
         &-label {
@@ -836,11 +892,9 @@
           border-radius: 12px;
 
           &-label {
-            width: 123px;
-
             color: $additional-black-green;
 
-            @include main-text;
+            @include button-bold;
           }
 
           &-link {
@@ -870,11 +924,9 @@
           align-self: stretch;
 
           &-label {
-            width: 123px;
-
             color: $additional-black-green;
 
-            @include main-text;
+            @include button-bold;
           }
 
           &-info {
@@ -908,7 +960,9 @@
           gap: 8px;
           align-self: stretch;
 
-          // height: 376px;
+          @include on-phone {
+            flex-direction: column;
+          }
 
           &-block {
             display: flex;
@@ -996,6 +1050,10 @@
           align-items: flex-start;
           gap: 8px;
 
+          @include on-phone {
+            width: 100%;
+          }
+
           &-title {
             display: flex;
             justify-content: center;
@@ -1063,6 +1121,10 @@
             border: 1px solid $system-info;
             background: $gray-white;
 
+            @include on-phone {
+              width: 100%;
+            }
+
             &-top {
               display: flex;
               justify-content: space-between;
@@ -1096,6 +1158,11 @@
       display: flex;
       width: 100%;
       justify-content: flex-end;
+
+      @include on-phone {
+        position: sticky;
+        bottom: 0;
+      }
     }
 
     &-conclusion {
@@ -1114,6 +1181,14 @@
 
         border-radius: 12px;
         background: $background-page;
+
+        @include on-phone {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+
+          background: $background-selected-bright;
+        }
 
         &-title {
           color: $gray-black;
@@ -1147,6 +1222,12 @@
         align-self: stretch;
         justify-content: space-between;
 
+        @include on-phone {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+        }
+
         &-title {
           color: $gray-black;
 
@@ -1177,6 +1258,10 @@
 
         border-radius: 12px;
         background: $background-user-notifications;
+
+        @include on-phone {
+          background: none;
+        }
 
         &-block {
           display: flex;
@@ -1237,6 +1322,10 @@
       color: $gray-black;
 
       @include main-text;
+
+      @include on-phone {
+        line-height: 120%;
+      }
     }
 
     &-message {

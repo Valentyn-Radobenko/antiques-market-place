@@ -60,6 +60,10 @@ const shoppingCartSlice = createSlice({
         (item) => item.id !== action.payload,
       );
     },
+    removeAllItems(state) {
+      state.items = [];
+      state.selectedItems = [];
+    },
     updateUserInfo(state, action: PayloadAction<ShoppingCartState['user']>) {
       state.user = action.payload;
     },
@@ -140,6 +144,7 @@ export const {
   removeItem,
   addSelectedItem,
   removeSelectedItem,
+  removeAllItems,
   updateUserInfo,
   updateUserFirstName,
   updateUserLastName,

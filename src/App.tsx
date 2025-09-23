@@ -2,12 +2,14 @@ import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from './store/store';
+import { AppDispatch, RootState, SavingState } from './store/store';
 import { useEffect } from 'react';
 import { fetchUserData } from './store/slices/userSlice';
 import 'simplebar-react/dist/simplebar.min.css';
 import './styles/_scrollbar.scss';
 import { ProductStickyCTA } from './components/ProductStickyCTA/ProductStickyCTA';
+import { ModalWindow } from './components/ModalWindow/ModalWindow';
+import { ShoppingCart } from './components/ShoppingCart/ShoppingCart';
 
 export const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -15,6 +17,10 @@ export const App: React.FC = () => {
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
+
+  const isCartOpen = useSelector(
+    (state: SavingState) => state.shoppingCart.isCartOpen,
+  );
 
   useEffect(() => {
     if (pathname === '/') {
@@ -41,6 +47,14 @@ export const App: React.FC = () => {
       </main>
       <ProductStickyCTA />
       <Footer />
+      <ModalWindow
+        openModal={isCartOpen}
+        isCart={true}
+        visibility="shopping-cart__modal"
+        secondModal={false}
+      >
+        <ShoppingCart />
+      </ModalWindow>
     </div>
   );
 };
