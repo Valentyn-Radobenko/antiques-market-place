@@ -74,7 +74,7 @@ export const ProductPage = () => {
       <Crumbs
         links={[
           '/market',
-          `/market?category=${product.subcategory.slug}`,
+          `/market?category=${product.category.slug}`,
           `/market?category=${product.subcategory.slug}`,
           '',
         ]}
