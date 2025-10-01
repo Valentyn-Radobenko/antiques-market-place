@@ -19,7 +19,7 @@
   //     $primary border-box;
   // }
 
-  @include block-hover;
+  @include block-hover-desktop-only;
 
   @include on-tablet {
     width: 100%;
