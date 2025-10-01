@@ -3,7 +3,11 @@ import { ShoppingCartSVG } from '../Imgs/ShoppingCartSVG';
 import { useIsTablet } from '../../hooks/useMediaQuery';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../store/store';
-import { addItem, setIsCartOpen } from '../../store/slices/shoppingCartSlice';
+import {
+  addItem,
+  addSelectedItem,
+  setIsCartOpen,
+} from '../../store/slices/shoppingCartSlice';
 import products from '../../data/products.json';
 
 export const ProductStickyCTA = () => {
@@ -25,8 +29,10 @@ export const ProductStickyCTA = () => {
         className="product__cta"
         onClick={() => {
           dispatch(setIsCartOpen(true));
-          if (product && !items.find((p) => p.id === product.id))
+          if (product && !items.find((p) => p.id === product.id)) {
             dispatch(addItem(product));
+            dispatch(addSelectedItem(product));
+          }
         }}
       >
         <span className="product__cta-text">

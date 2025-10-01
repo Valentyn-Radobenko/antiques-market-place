@@ -35,6 +35,7 @@
 
   @include on-phone {
     padding: 16px;
+    padding-bottom: 32px;
   }
 
   &--end {
@@ -43,6 +44,7 @@
     @include on-tablet {
       position: relative;
       width: auto;
+      border-radius: 12px;
     }
 
     @include on-phone {
@@ -54,7 +56,7 @@
   &__header {
     display: flex;
     justify-content: space-between;
-    align-items: top;
+    align-items: center;
     align-self: stretch;
   }
 
@@ -666,9 +668,9 @@
             @include main-text;
 
             &--inactive {
-              border-bottom-color: $gray-dis;
+              border-bottom-color: $gray-lite;
 
-              color: $gray-dis;
+              color: $gray-lite;
             }
 
             &--active {

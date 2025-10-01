@@ -13,6 +13,10 @@
     flex-direction: column;
   }
 
+  @include on-phone {
+    width: 343px;
+  }
+
   &__crumbs {
     margin-bottom: 16px;
   }
@@ -250,11 +254,17 @@
 
       &-wrapper {
         display: flex;
-        margin-bottom: 16px;
+        margin-bottom: 32px;
+        margin-inline: 24px;
         position: sticky;
         bottom: 0;
         left: 0;
         z-index: 2;
+
+        @include on-phone {
+          margin-bottom: 16px;
+          margin-inline: 16px;
+        }
       }
     }
 

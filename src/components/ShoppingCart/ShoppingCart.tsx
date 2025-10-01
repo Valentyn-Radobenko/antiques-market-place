@@ -25,7 +25,7 @@ import {
   updateReceiverPhone,
   updateReceiverMiddleName,
   updatePaymentMethod,
-  removeAllItems,
+  removeSelectedItems,
 } from '../../store/slices/shoppingCartSlice';
 import { DeleteSVG } from '../Imgs/DeleteSVG';
 import products from '../../data/products.json';
@@ -54,7 +54,7 @@ export const ShoppingCart: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { slug } = useParams();
   const cart = useSelector((state: SavingState) => state.shoppingCart);
-  const currentProduct = products.find((p) => p.slug === slug) || products[0];
+  const currentProduct = products.find((p) => p.slug === slug) || cart.items[0];
   const lang = useSelector((state: SavingState) => state.language.language);
   const [showAll, setShowAll] = useState(false);
   const [step, setStep] = useState(1);
@@ -66,7 +66,10 @@ export const ShoppingCart: React.FC = () => {
 
   const isPhone = useIsMobile();
 
-  const totalPrice = cart.items.reduce((acc, item) => acc + item.price, 0);
+  const totalPrice = cart.selectedItems.reduce(
+    (acc, item) => acc + item.price,
+    0,
+  );
 
   const isUserDataChecked = !!(
     cart.user.firstName &&
@@ -130,7 +133,7 @@ export const ShoppingCart: React.FC = () => {
     e.preventDefault();
 
     if (canSubmit) {
-      dispatch(removeAllItems());
+      dispatch(removeSelectedItems());
       setStep(3);
     }
   };
@@ -592,7 +595,7 @@ export const ShoppingCart: React.FC = () => {
                 </p>
               </div>
               <div className="shopping-cart__order-block-products">
-                {cart.items.map((p, ind) => {
+                {cart.selectedItems.map((p, ind) => {
                   return (
                     <div
                       key={ind + p.id}
@@ -1238,7 +1241,7 @@ export const ShoppingCart: React.FC = () => {
                 {isPhone ?
                   <div className="shopping-cart__order-block-heading">
                     <ArrowBackSVG
-                      onClick={() => setOrderStep(2)}
+                      onClick={() => setOrderStep(3)}
                       className="shopping-cart__order-block-back-button"
                     />
                     <h3 className="shopping-cart__order-block-title">Оплата</h3>
@@ -1734,7 +1737,7 @@ export const ShoppingCart: React.FC = () => {
                 {isPhone ?
                   <div className="shopping-cart__order-block-heading">
                     <ArrowBackSVG
-                      onClick={() => setOrderStep(2)}
+                      onClick={() => setOrderStep(4)}
                       className="shopping-cart__order-block-back-button"
                     />
                     <h3 className="shopping-cart__order-block-title">

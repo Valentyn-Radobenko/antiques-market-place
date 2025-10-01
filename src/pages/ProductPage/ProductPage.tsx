@@ -16,7 +16,11 @@ import { ProductsSlider } from '../../components/Sliders/ProductsSlider';
 import { useIsTablet } from '../../hooks/useMediaQuery';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../store/store';
-import { addItem, setIsCartOpen } from '../../store/slices/shoppingCartSlice';
+import {
+  addItem,
+  addSelectedItem,
+  setIsCartOpen,
+} from '../../store/slices/shoppingCartSlice';
 import { Link, useParams } from 'react-router-dom';
 import products from '../../data/products.json';
 import { filters } from '../../data/filters';
@@ -165,8 +169,10 @@ export const ProductPage = () => {
             <button
               onClick={() => {
                 dispatch(setIsCartOpen(true));
-                if (!cart.items.find((p) => p.id === product.id))
+                if (!cart.items.find((p) => p.id === product.id)) {
                   dispatch(addItem(product));
+                  dispatch(addSelectedItem(product));
+                }
               }}
               className="product__cta"
             >
