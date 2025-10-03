@@ -29,6 +29,7 @@
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     bottom: 0;
+    max-height: 95dvh;
 
     padding-bottom: max(24px, env(safe-area-inset-bottom));
   }
@@ -507,6 +508,14 @@
         border: 1px solid $gray-stroke;
         background: $gray-white;
         transition: $effect-duration;
+
+        @include main-text;
+
+        color: $gray-black;
+
+        &::placeholder {
+          color: $gray-lite;
+        }
 
         &--error {
           border-color: $system-error;

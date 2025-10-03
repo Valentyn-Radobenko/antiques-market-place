@@ -20,17 +20,23 @@ export const ProductStickyCTA = () => {
 
   const product = products.find((p) => p.slug === slug);
   const items = useSelector((state: SavingState) => state.shoppingCart.items);
+  const selectedItems = useSelector(
+    (state: SavingState) => state.shoppingCart.selectedItems,
+  );
 
   if (!isProductPage || !isTablet) return null;
 
   return (
     <div className="product__cta-wrapper">
       <button
-        className="product__cta"
+        className="product__cta product__cta--in-wrapper"
         onClick={() => {
           dispatch(setIsCartOpen(true));
           if (product && !items.find((p) => p.id === product.id)) {
             dispatch(addItem(product));
+          }
+
+          if (product && !selectedItems.find((si) => si.id === product.id)) {
             dispatch(addSelectedItem(product));
           }
         }}

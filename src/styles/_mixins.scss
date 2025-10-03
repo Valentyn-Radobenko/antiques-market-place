@@ -197,12 +197,16 @@
     cursor: initial;
   }
 
-  &:hover {
-    color: $gray-black;
+  @media (hover: hover) {
+    &:hover {
+      color: $gray-black;
+    }
+
+    &:disabled:hover {
+      color: $gray-white;
+    }
   }
-  &:disabled:hover {
-    color: $gray-white;
-  }
+
   &::before,
   &::after {
     transition: inherit;
@@ -224,12 +228,14 @@
     opacity: 0;
   }
 
-  &:hover::before {
-    opacity: 0;
-  }
+  @media (hover: hover) {
+    &:hover::before {
+      opacity: 0;
+    }
 
-  &:hover::after {
-    opacity: 1;
+    &:hover::after {
+      opacity: 1;
+    }
   }
 
   &:disabled::before,
@@ -262,8 +268,10 @@
     background: $primary;
   }
 
-  &:hover::before {
-    opacity: 0;
+  @media (hover: hover) {
+    &:hover::before {
+      opacity: 0;
+    }
   }
 
   &::after {
@@ -273,8 +281,10 @@
     z-index: -1;
   }
 
-  &:hover::after {
-    opacity: 1;
+  @media (hover: hover) {
+    &:hover::after {
+      opacity: 1;
+    }
   }
 }
 

@@ -169,8 +169,14 @@ export const ProductPage = () => {
             <button
               onClick={() => {
                 dispatch(setIsCartOpen(true));
-                if (!cart.items.find((p) => p.id === product.id)) {
+                if (product && !cart.items.find((p) => p.id === product.id)) {
                   dispatch(addItem(product));
+                }
+
+                if (
+                  product &&
+                  !cart.selectedItems.find((si) => si.id === product.id)
+                ) {
                   dispatch(addSelectedItem(product));
                 }
               }}

@@ -138,6 +138,8 @@ export const Header = () => {
               <button
                 onMouseEnter={() => {
                   dispatch(setExpHeader('shopping-card'));
+                }}
+                onClick={() => {
                   dispatch(setIsCartOpen(true));
                 }}
                 onMouseLeave={() => {
