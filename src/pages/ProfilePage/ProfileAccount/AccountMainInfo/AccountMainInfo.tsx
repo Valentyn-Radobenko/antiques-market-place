@@ -5,9 +5,16 @@ import { ShiledSVG } from '../../../../components/Imgs/ShieldSVG';
 type Props = {
   firstName: string | null;
   lastName: string | null;
+  city: string | null;
+  country: string | null;
 };
 
-export const AccountMainInfo: React.FC<Props> = ({ lastName, firstName }) => {
+export const AccountMainInfo: React.FC<Props> = ({
+  lastName,
+  firstName,
+  city,
+  country,
+}) => {
   return (
     <div className="account-main-info">
       <div className="account-main-info__container">
@@ -17,7 +24,9 @@ export const AccountMainInfo: React.FC<Props> = ({ lastName, firstName }) => {
         </div>
         <div className="account-main-info__text-block">
           <p className="account-main-info__name">{`${firstName} ${lastName}`}</p>
-          <p className="account-main-info__location">Україна, Київ </p>
+          <p className="account-main-info__location">
+            {country}, {city}{' '}
+          </p>
           <div className="account-main-info__veryfic-status desc-tab">
             <ShiledSVG className="account-main-info__veryfic-svg" />
             <p className="account-main-info__veryfic-text">

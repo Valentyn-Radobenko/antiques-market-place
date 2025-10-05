@@ -362,11 +362,21 @@
     gap: 16px;
   }
 
+  &__single-option-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
   &__single-data {
     display: flex;
     justify-content: space-between;
     padding: 8px;
     border-bottom: 1px solid $gray-stroke;
+
+    &.isActive {
+      border-color: $additional-freshherb-elect;
+    }
   }
 
   &__data-text {
@@ -375,6 +385,45 @@
 
   &__data-ico {
     color: $additional-greenas;
+    cursor: pointer;
+
+    &.isActive {
+      color: $additional-freshherb-elect;
+    }
+  }
+
+  &__change-data-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__change-data {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-inline: 8px;
+  }
+
+  &__change-data-title {
+    color: $gray-black;
+    @include label-bold;
+  }
+
+  &__change-data-input {
+    @include input-style;
+  }
+
+  &__change-data-button {
+    @include additional-button;
+    padding-inline: 35px;
+    padding-block: 15px;
+    width: 200px;
+    align-self: flex-end;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    @include main-text;
   }
 }
 
