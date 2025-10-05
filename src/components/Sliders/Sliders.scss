@@ -846,7 +846,6 @@
       gap: 8px;
 
       border-radius: 12px 12px 0 0;
-      touch-action: pinch-zoom;
 
       @include on-small-laptop {
         width: 670px;
