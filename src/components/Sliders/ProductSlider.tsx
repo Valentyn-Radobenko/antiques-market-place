@@ -6,6 +6,7 @@ import { ModalWindow } from '../ModalWindow/ModalWindow';
 import { FrameInspectSVG } from '../Imgs/FrameInspectSVG';
 import { Close } from '../Imgs/Close';
 // import { useTranslation } from 'react-i18next';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 interface Props {
   title: { ua: string; eng: string };
@@ -74,11 +75,22 @@ export const ProductSlider: React.FC<Props> = ({ title, imgs }) => {
                     setIsModalOpen(true);
                   }}
                 >
-                  <img
-                    className="product-slider__slide-img product-slider--modal__slide-img"
-                    src={slide}
-                    alt={slide}
-                  />
+                  <TransformWrapper
+                    doubleClick={{ mode: 'zoomIn' }}
+                    pinch={{ step: 0.1 }}
+                    wheel={{ step: 0.1 }}
+                    initialScale={1}
+                    minScale={1}
+                    maxScale={4}
+                  >
+                    <TransformComponent>
+                      <img
+                        className="product-slider__slide-img product-slider--modal__slide-img"
+                        src={slide}
+                        alt={slide}
+                      />
+                    </TransformComponent>
+                  </TransformWrapper>
                 </div>
               );
             }}
