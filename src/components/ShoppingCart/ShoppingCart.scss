@@ -68,13 +68,14 @@
 
     @include on-phone {
       @include h2-mobile-bold;
+      width: 210px;
     }
 
     &--end {
       @include h3-bold;
 
       @include on-phone {
-        @include h4-bold;
+        @include h2-mobile-bold;
       }
     }
 
