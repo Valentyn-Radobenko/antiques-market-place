@@ -847,6 +847,12 @@
 
       border-radius: 12px 12px 0 0;
 
+      cursor: grab;
+
+      &:active {
+        cursor: grabbing;
+      }
+
       @include on-small-laptop {
         width: 670px;
         height: 667px;
