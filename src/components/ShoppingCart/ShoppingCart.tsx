@@ -181,7 +181,9 @@ export const ShoppingCart: React.FC = () => {
           </div>
         )}
         <button
-          className="shopping-cart__close"
+          className={classNames('shopping-cart__close', {
+            'shopping-cart__close--end': step === 3 && isPhone,
+          })}
           onClick={() => dispatch(setIsCartOpen(false))}
         >
           <Close />
