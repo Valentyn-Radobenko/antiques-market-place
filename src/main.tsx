@@ -26,6 +26,7 @@ import { Security } from './pages/ProfilePage/Security/Security';
 import { Settings } from './pages/ProfilePage/Settings/Settings';
 import { ArticlesPage } from './pages/ArticlesPage/ArticlesPage';
 import { ProductPage } from './pages/ProductPage/ProductPage';
+import { ExhibitionPage } from './pages/ExhibitionPage/ExhibitionPage';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <StrictMode>
@@ -57,6 +58,11 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
             <Route
               path="club"
               element={<ClubPage />}
+            />
+
+            <Route
+              path="exhibition"
+              element={<ExhibitionPage />}
             />
 
             <Route

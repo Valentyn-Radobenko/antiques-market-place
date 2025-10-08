@@ -1,0 +1,112 @@
+.exhibition {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 20px;
+  align-self: stretch;
+
+  &__crumbs {
+    margin-bottom: 24px;
+  }
+
+  &__details {
+    display: flex;
+    width: 210px;
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+
+    border-radius: 12px;
+    background: $background-plate;
+
+    /* Double glass */
+    box-shadow:
+      0 -4px 16px 0 rgba(255, 255, 255, 0),
+      0 4px 16px -6px rgba(255, 255, 255, 0),
+      0 8px 32px -4px rgba(0, 0, 0, 0);
+    backdrop-filter: blur(15px);
+
+    &-title {
+      color: $gray-black;
+
+      @include h4-bold;
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      align-self: stretch;
+    }
+
+    &-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 4px;
+      align-self: stretch;
+
+      border-radius: 12px;
+    }
+
+    &-label {
+      color: $additional-black-green;
+
+      @include label-bold;
+    }
+
+    &-value {
+      display: flex;
+      padding: 4px 8px;
+      align-items: center;
+      gap: 8px;
+      align-self: stretch;
+
+      color: $gray-dark;
+
+      @include main-text;
+    }
+  }
+
+  &__content {
+    display: flex;
+    width: 900px;
+    padding: 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+
+    &-title {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 6;
+
+      overflow: hidden;
+      color: $additional-black-green;
+      text-overflow: ellipsis;
+
+      @include h2-bold;
+    }
+
+    &-img {
+      display: flex;
+      height: 362px;
+      align-items: flex-start;
+      gap: 16px;
+      align-self: stretch;
+      object-fit: cover;
+    }
+  }
+
+  &__additional {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 210px;
+  }
+}
