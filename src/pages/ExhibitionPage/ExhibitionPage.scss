@@ -1,6 +1,6 @@
 .exhibition {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: flex-start;
   gap: 20px;
   align-self: stretch;
@@ -99,6 +99,37 @@
       align-self: stretch;
       object-fit: cover;
     }
+
+    &-articles {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 40px;
+      align-self: stretch;
+    }
+
+    &-article {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+
+      &-title {
+        color: $additional-black-green;
+
+        @include h4-bold;
+      }
+
+      &-list {
+        list-style: disc;
+        list-style-position: inside;
+      }
+
+      &-text {
+        color: $gray-dark;
+
+        @include main-text;
+      }
+    }
   }
 
   &__additional {
@@ -108,5 +139,30 @@
     align-items: flex-start;
     gap: 16px;
     width: 210px;
+  }
+
+  &__sm {
+    display: flex;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+
+    border-radius: 12px;
+    background: $background-plate;
+
+    /* Double glass */
+    box-shadow:
+      0 -4px 16px 0 rgba(255, 255, 255, 0),
+      0 4px 16px -6px rgba(255, 255, 255, 0),
+      0 8px 32px -4px rgba(0, 0, 0, 0);
+    backdrop-filter: blur(15px);
+
+    &-icon {
+      color: $additional-black-green;
+
+      @include icon-hover;
+    }
   }
 }
