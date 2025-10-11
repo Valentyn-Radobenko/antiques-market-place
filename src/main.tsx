@@ -27,11 +27,14 @@ import { Settings } from './pages/ProfilePage/Settings/Settings';
 import { ArticlesPage } from './pages/ArticlesPage/ArticlesPage';
 import { ProductPage } from './pages/ProductPage/ProductPage';
 import { ExhibitionPage } from './pages/ExhibitionPage/ExhibitionPage';
+import { ExhibitionsNoContent } from './pages/ExhibitionsPage/ExhibitionsNoContent';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <StrictMode>
     <Provider store={store}>
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route
             path="/"
@@ -55,10 +58,18 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
               />
             </Route>
 
-            <Route
-              path="club"
-              element={<ClubPage />}
-            />
+            <Route path="club">
+              <Route element={<ClubPage />} />
+              <Route
+                path=":slug?"
+                element={<ClubPage />}
+              />
+
+              <Route
+                path="exhibition/:slug"
+                element={<ExhibitionPage />}
+              />
+            </Route>
 
             <Route
               path="exhibition"
@@ -88,6 +99,10 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
               <Route
                 path="planned"
                 element={<PlannedExhibitions />}
+              />
+              <Route
+                path="no-content"
+                element={<ExhibitionsNoContent />}
               />
             </Route>
             <Route

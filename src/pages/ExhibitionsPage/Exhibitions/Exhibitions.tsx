@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { exhibition } from '../../../types/exhibition';
+import { Link, useSearchParams } from 'react-router-dom';
+import { Exhibition } from '../../../types/exhibition';
 import { useIsMobile, useIsTablet } from '../../../hooks/useMediaQuery';
 import { Pagination } from '../../../components/Pagination/Pagination';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../../store/store';
 
 type Props = {
-  exhibitions: exhibition[];
+  exhibitions: Exhibition[];
 };
 
 export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
@@ -28,6 +30,16 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,
   );
+
+  const exhibitionLink = (exhibition: Exhibition) => {
+    if (exhibition.content[lang]) {
+      return `/club/exhibition/${exhibition.slug}`;
+    } else {
+      return '/club/exhibitions/no-content';
+    }
+  };
+
+  const lang = useSelector((state: SavingState) => state.language.language);
 
   return (
     <>
@@ -60,9 +72,10 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
           </div>
         }
         <div className="exhibitions__articles">
-          {currentItems.map((exh, index) => (
-            <article
-              key={`${exh.title}-${index}`}
+          {currentItems.map((exh) => (
+            <Link
+              to={exhibitionLink(exh)}
+              key={exh.id}
               className="exhibitions__article"
             >
               <div
@@ -72,13 +85,17 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
                 <p className="exhibitions__article-tag">Новий</p>
               </div>
               <div className="exhibitions__article-text">
-                <div className="exhibitions__article-title">{exh.title}</div>
+                <div className="exhibitions__article-title">
+                  {exh.title[lang]}
+                </div>
                 <div className="exhibitions__article-buttons">
                   <div className="exhibitions__article-data">
                     <div className="exhibitions__article-status">
-                      {exh.status}
+                      {exh.status[lang]}
                     </div>
-                    <div className="exhibitions__article-date">{exh.date}</div>
+                    <div className="exhibitions__article-date">
+                      {exh.date[lang]}
+                    </div>
                   </div>
                   <div className="exhibitions__article-icon">
                     <svg
@@ -96,7 +113,7 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
                   </div>
                 </div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>

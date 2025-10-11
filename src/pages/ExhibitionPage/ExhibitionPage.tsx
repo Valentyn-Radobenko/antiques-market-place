@@ -1,16 +1,47 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Crumbs } from '../../components/Crumbs/Crumbs';
 import { FacebookLogoSVG } from '../../components/Imgs/FacebookLogoSVG';
 import { MailSVG } from '../../components/Imgs/MailSVG';
 import { TelegramLogoSVG } from '../../components/Imgs/TelegramLogoSVG';
+import exhibitions from '../../data/exhibitions.json';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../store/store';
+import { useEffect, useState } from 'react';
 
 export const ExhibitionPage = () => {
+  const { slug } = useParams();
+  const exhibition = exhibitions.find((p) => p.slug === slug);
+  const lang = useSelector((state: SavingState) => state.language.language);
+
+  const [content, setContent] = useState('');
+
+  useEffect(() => {
+    if (exhibition?.content[lang]) {
+      fetch(exhibition.content[lang])
+        .then((res) => res.text())
+        .then(setContent)
+        .catch(console.error);
+    }
+  }, [exhibition, lang]);
+
+  if (!exhibition) {
+    return <></>;
+  }
+
   return (
     <>
       <Crumbs
         customClassName="exhibition__crumbs"
-        links={['/club', '/club/exhibitions', '/exhibition']}
-        titles={['Клуб колекціонерів', 'Виставки', 'Тема']}
+        links={[
+          '/club',
+          '/club/exhibitions',
+          `/club/exhibition/${exhibition?.slug}`,
+        ]}
+        titles={[
+          'Клуб колекціонерів',
+          'Виставки',
+          `${exhibition?.title[lang]}`,
+        ]}
       />
 
       <div className="exhibition">
@@ -19,156 +50,60 @@ export const ExhibitionPage = () => {
           <div className="exhibition__details-content">
             <div className="exhibition__details-block">
               <p className="exhibition__details-label">Джерело:</p>
-              <p className="exhibition__details-value">Дубовик&Ко</p>
+              <p className="exhibition__details-value">
+                {exhibition?.source[lang]}
+              </p>
             </div>
 
             <div className="exhibition__details-block">
               <p className="exhibition__details-label">Подія:</p>
-              <p className="exhibition__details-value">Досі триває</p>
+              <p className="exhibition__details-value">
+                {exhibition?.status[lang]}
+              </p>
             </div>
 
             <div className="exhibition__details-block">
               <p className="exhibition__details-label">Вхід:</p>
-              <p className="exhibition__details-value">Дубовик&Ко</p>
+              <p className="exhibition__details-value">
+                {exhibition.price[lang]}
+              </p>
             </div>
 
             <div className="exhibition__details-block">
-              <p className="exhibition__details-label">Джерело:</p>
-              <p className="exhibition__details-value">Дубовик&Ко</p>
+              <p className="exhibition__details-label">Адреса:</p>
+              <p className="exhibition__details-value">
+                {exhibition.address[lang]}
+              </p>
             </div>
 
             <div className="exhibition__details-block">
-              <p className="exhibition__details-label">Джерело:</p>
-              <p className="exhibition__details-value">Дубовик&Ко</p>
+              <p className="exhibition__details-label">Місце:</p>
+              <p className="exhibition__details-value">
+                {exhibition.place[lang]}
+              </p>
             </div>
 
             <div className="exhibition__details-block">
-              <p className="exhibition__details-label">Джерело:</p>
-              <p className="exhibition__details-value">Дубовик&Ко</p>
+              <p className="exhibition__details-label">Тривалість:</p>
+              <p className="exhibition__details-value">
+                {exhibition.date[lang]}
+              </p>
             </div>
           </div>
         </div>
         <div className="exhibition__content">
           <h2 className="exhibition__content-title">
-            VLP: Чотири Десятиліття Урбаністичного Майстерства – Ексклюзивна
-            Ретроспектива у Fluctuart
+            {exhibition.title[lang]}
           </h2>
           <img
             className="exhibition__content-img"
-            src="./images/exhibitions/exhibition-3.png"
-            alt="виставка"
+            src={exhibition.image}
+            alt={exhibition.title[lang]}
           />
-          <div className="exhibition__content-articles">
-            <article className="exhibition__content-article">
-              <h4 className="exhibition__content-article-title">
-                Історія VLP: Витоки та Вплив
-              </h4>
-              <p className="exhibition__content-article-text">
-                Група VLP була заснована на початку 1980-х років і з тих пір
-                стала символом французького вуличного мистецтва. Сьогодні у
-                складі VLP – Мішель Еспаньйон та Жан Габаре – продовжують
-                надихати нові покоління митців. Їхній внесок у розвиток
-                урбаністичного мистецтва важко переоцінити: від перших
-                аерозольних малюнків у районі Галлес до престижних виставок у
-                провідних музеях та галереях світу.
-                <br />
-                Виставка "До/після": Мозаїка Часу та Творчості
-                <br />
-                Виставка "До/після" є унікальною можливістю зануритися у
-                40-річну кар'єру VLP. Відвідувачі матимуть змогу побачити
-                численні роботи, що демонструють еволюцію стилю та технік
-                художників.
-              </p>
-            </article>
-
-            <article className="exhibition__content-article">
-              <h4 className="exhibition__content-article-title">
-                Експозиція включає:
-              </h4>
-              <ul className="exhibition__content-article-list">
-                <li className="exhibition__content-article-text">
-                  Перші Аерозольні Малюнки: Відкрийте для себе перші кроки VLP у
-                  світі стріт-арту, де простір міста стає полотном для
-                  творчості.
-                </li>
-
-                <li className="exhibition__content-article-text">
-                  Емблематичні Символи: Побачте народження та розвиток знакових
-                  образів, які стали впізнаваними символами урбаністичного
-                  мистецтва.
-                </li>
-
-                <li className="exhibition__content-article-text">
-                  Тематичні Переходи: Дослідіть важливі теми, що проходять через
-                  творчість VLP, від соціальних коментарів до естетичних
-                  експериментів.
-                </li>
-
-                <li className="exhibition__content-article-text">
-                  Виняткові Роботи: Особливі експонати, зібрані для цієї
-                  виставки, ілюструють ключові моменти в кар'єрі VLP,
-                  підкреслюючи їхній вплив та значущість.
-                </li>
-              </ul>
-            </article>
-
-            <article className="exhibition__content-article">
-              <h4 className="exhibition__content-article-title">
-                Повага до Майстерності та Спадщини
-              </h4>
-              <p className="exhibition__content-article-text">
-                Fluctuart віддає належне VLP як ключовим постатям французького
-                урбаністичного мистецтва. Ця виставка не лише демонструє їхні
-                найкращі роботи, але й надає відвідувачам можливість глибше
-                зрозуміти творчість та цінності, що стоять за кожним твором.
-                Відкрийте для себе, як VLP трансформували вулиці Парижа та інших
-                міст у живі галереї, де кожен штрих аерозолю розповідає свою
-                унікальну історію.
-                <br />
-                Не Пропустіть!
-                <br />
-                Ця безкоштовна виставка – справжній must-see подія цієї зими.
-                Відвідайте Fluctuart з 16 січня по 9 березня 2025 року та
-                станьте свідками історії урбаністичного мистецтва, що
-                формувалася протягом чотирьох десятиліть. Незалежно від того, чи
-                ви шанувальник стріт-арту, чи просто шукаєте натхнення, виставка
-                VLP обіцяє залишити незабутнє враження.
-                <br />
-                Приєднуйтесь до Подорожі в Часі з VLP у Fluctuart!
-              </p>
-            </article>
-
-            <article className="exhibition__content-article">
-              <h4 className="exhibition__content-article-title">
-                Деталі Виставки:
-              </h4>
-              <ul className="exhibition__content-article-list">
-                <li className="exhibition__content-article-text">
-                  Назва: До/після: 40 Років VLP
-                </li>
-
-                <li className="exhibition__content-article-text">
-                  Місце: Арт-центр Fluctuart
-                </li>
-
-                <li className="exhibition__content-article-text">
-                  Адреса: 2 port du Gros Caillou, 75007 Paris, Франція
-                </li>
-
-                <li className="exhibition__content-article-text">
-                  Тривалість: 16 січня – 9 березня 2025 року
-                </li>
-
-                <li className="exhibition__content-article-text">
-                  Вхід: Безкоштовний
-                </li>
-                <p className="exhibition__content-article-text">
-                  Не втрачайте можливість стати частиною історії вуличного
-                  мистецтва разом із VLP. Чекаємо на вас у Fluctuart!
-                </p>
-              </ul>
-            </article>
-          </div>
+          <div
+            className="exhibition__content-articles"
+            dangerouslySetInnerHTML={{ __html: content }}
+          ></div>
         </div>
         <div className="exhibition__additional">
           <div className="exhibitions__offer exhibitions__offer--exhibition">
