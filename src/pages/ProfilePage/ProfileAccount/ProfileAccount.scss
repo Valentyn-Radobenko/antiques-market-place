@@ -109,6 +109,11 @@
     border: 1px solid $system-warning;
     border-radius: 12px;
     background: $background-page;
+    align-items: center;
+
+    &.isActive {
+      border-color: $system-confirmation;
+    }
 
     &.desc-tab {
       @include on-phone {
@@ -118,6 +123,7 @@
 
     &.phone {
       display: none;
+      justify-content: center;
 
       @include on-phone {
         display: flex;
@@ -125,8 +131,12 @@
     }
   }
 
-  &__veryfic-svg {
+  &__veryfic-svg-false {
     color: $system-warning;
+  }
+
+  &__veryfic-svg-true {
+    color: $system-confirmation;
   }
 
   &__veryfic-text {
@@ -163,6 +173,12 @@
     @include button-semibold;
     color: $additional-black-green;
     text-align: center;
+
+    &.isActive {
+      @include on-phone {
+        color: $additional-freshherb-elect;
+      }
+    }
 
     &.desctop {
       @include on-tablet {
@@ -205,6 +221,24 @@
     align-items: center;
   }
 
+  &__fullfield {
+    color: $additional-greenas;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+
+    @include on-phone {
+      flex-direction: row;
+      justify-content: start;
+    }
+  }
+
+  &__svg-fullfield {
+    color: $additional-freshherb-elect;
+  }
+
   &__circle-line {
     position: absolute;
     stroke: $additional-gray-gray;
@@ -218,7 +252,12 @@
   &__circle-text {
     padding-inline: 10px;
     text-align: center;
+    color: $gray-dark;
     @include tab-regular;
+
+    @include on-phone {
+      text-align: start;
+    }
   }
 
   &__tablet-container {
@@ -284,10 +323,18 @@
     justify-content: space-between;
   }
 
+  &__arrow-wrapper {
+    border-radius: 50px;
+    background: $gray-white;
+    width: 24px;
+    height: 24px;
+  }
+
   &__arrow {
     transition: all ease $effect-duration;
-
+    cursor: pointer;
     &.isActive {
+      color: $additional-freshherb-elect;
       transform: rotateX(180deg);
     }
   }
@@ -584,7 +631,7 @@
   &__change-pass-info {
     max-width: 361px;
     position: absolute;
-    right: -8px;
+    left: 0;
     display: flex;
     gap: 8px;
     padding: 16px;
@@ -595,6 +642,11 @@
     opacity: 0;
     transition: all ease $effect-duration;
     visibility: hidden;
+    transform: translate(30%);
+
+    @include on-phone {
+      max-width: 270px;
+    }
 
     &.isActive {
       opacity: 1;

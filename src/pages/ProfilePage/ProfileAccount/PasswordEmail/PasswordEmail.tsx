@@ -5,11 +5,11 @@ import classNames from 'classnames';
 import { ModalWindow } from '../../../../components/ModalWindow/ModalWindow';
 import { ChangePasswordModal } from '../ChangePasswordModal/ChangePasswordModal';
 
-// type Props = {
+type Props = {
+  email: string;
+};
 
-// };
-
-export const PasswordEmail: React.FC = () => {
+export const PasswordEmail: React.FC<Props> = ({ email }) => {
   const [passwordHelper, setPasswordHelper] = useState<boolean>(false);
   const [changePass, setChangePass] = useState<boolean>(false);
 
@@ -28,7 +28,7 @@ export const PasswordEmail: React.FC = () => {
         <div className="password-email__texts">
           <div className="password-email__section">
             <p className="password-email__section-title">E-mail</p>
-            <p className="password-email__section-value">dukat.ua@gmail.com</p>
+            <p className="password-email__section-value">{email}</p>
           </div>
           <div className="password-email__section">
             <div className="password-email__password-block">
@@ -46,7 +46,7 @@ export const PasswordEmail: React.FC = () => {
                 <p className="password-email__change-pass-info-text">
                   Якщо ви хочете змінити пароль, вам потрібно{' '}
                   <span className="password-email__change-pass-info-text-bold">
-                    підтвердіть особистість через пошту.
+                    підтвердити особистість через пошту.
                   </span>
                 </p>
               </div>

@@ -38,7 +38,7 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
               })}
             >
               <p className="account-general__data-text">
-                {user.firstName} {user.lastName}
+                {user.firstName || "ім'я"} {user.lastName || 'прізвище'}
               </p>
               <EditSVG
                 onClick={() => setChangeName(!changeName)}
@@ -53,7 +53,7 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                 <div className="account-general__change-data">
                   <p className="account-general__change-data-title">ім'я</p>
                   <input
-                    value={userData.firstName || "Ім'я"}
+                    value={userData.firstName || ''}
                     className="account-general__change-data-input"
                     type="text"
                     onChange={(e) =>
@@ -64,7 +64,7 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                 <div className="account-general__change-data">
                   <p className="account-general__change-data-title">Прізвище</p>
                   <input
-                    value={userData.lastName || 'Прізвище'}
+                    value={userData.lastName || ''}
                     className="account-general__change-data-input"
                     type="text"
                     onChange={(e) =>
@@ -102,7 +102,7 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
               })}
             >
               <p className="account-general__data-text">
-                {user.country}, {user.city}
+                {user.country || 'Країна'}, {user.city || 'місто'}
               </p>
               <EditSVG
                 onClick={() => setChangeLocation(!changeLocation)}
@@ -116,7 +116,7 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                 <div className="account-general__change-data">
                   <p className="account-general__change-data-title">Місто</p>
                   <input
-                    value={userData.city || "Ім'я"}
+                    value={userData.city || ''}
                     className="account-general__change-data-input"
                     type="text"
                     onChange={(e) =>
@@ -127,7 +127,7 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                 <div className="account-general__change-data">
                   <p className="account-general__change-data-title">Країна</p>
                   <input
-                    value={userData.country || 'Прізвище'}
+                    value={userData.country || ''}
                     className="account-general__change-data-input"
                     type="text"
                     onChange={(e) =>
@@ -169,7 +169,9 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                 isActive: changePhone,
               })}
             >
-              <p className="account-general__data-text">{user.phoneNumber}</p>
+              <p className="account-general__data-text">
+                {user.phoneNumber || 'Номер телефону'}
+              </p>
               <EditSVG
                 onClick={() => setChangePhone(!changePhone)}
                 className={classNames('account-general__data-ico', {
@@ -184,7 +186,7 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                     Номер телефону
                   </p>
                   <input
-                    value={userData.phoneNumber || 'Номер телефону'}
+                    value={userData.phoneNumber || ''}
                     className="account-general__change-data-input"
                     type="tel"
                     onChange={(e) =>
@@ -214,7 +216,9 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                 isActive: changeEmail,
               })}
             >
-              <p className="account-general__data-text">{user.email}</p>
+              <p className="account-general__data-text">
+                {user.email || 'Пошта'}
+              </p>
               <EditSVG
                 onClick={() => setChangeEmail(!changeEmail)}
                 className={classNames('account-general__data-ico', {
@@ -227,7 +231,7 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                 <div className="account-general__change-data">
                   <p className="account-general__change-data-title">Пошта</p>
                   <input
-                    value={userData.email || 'Пошта'}
+                    value={userData.email || ''}
                     className="account-general__change-data-input"
                     type="email"
                     onChange={(e) =>
