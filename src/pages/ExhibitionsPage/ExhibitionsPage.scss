@@ -293,7 +293,13 @@
       @include on-phone {
         position: absolute;
         right: 0px;
-        top: -114px;
+        top: -120px;
+      }
+
+      &--exhibition {
+        @include on-phone {
+          position: static;
+        }
       }
     }
   }

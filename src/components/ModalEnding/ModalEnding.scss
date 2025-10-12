@@ -1,0 +1,152 @@
+.modal-ending {
+  &__modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include on-tablet {
+      align-items: bottom;
+      height: 100dvh;
+    }
+  }
+
+  position: relative;
+
+  display: flex;
+  width: 669px;
+  height: fit-content;
+  padding: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+
+  border-radius: 12px;
+  background: $gray-white;
+
+  @include on-tablet {
+    position: fixed;
+    width: 100%;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    bottom: 0;
+    max-height: 95dvh;
+
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
+
+  @include on-phone {
+    padding: 16px;
+    padding-bottom: 32px;
+  }
+
+  &--end {
+    gap: 24px;
+
+    @include on-tablet {
+      position: relative;
+      width: auto;
+      border-radius: 12px;
+    }
+
+    @include on-phone {
+      width: 87.2dvw;
+      gap: 16px;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+  }
+
+  &__title {
+    color: $gray-black;
+
+    @include h2-bold;
+
+    @include on-phone {
+      @include h2-mobile-bold;
+      width: 210px;
+    }
+
+    &--end {
+      @include h3-bold;
+
+      @include on-phone {
+        @include h2-mobile-bold;
+      }
+    }
+
+    &--green {
+      color: $additional-freshherb-elect;
+    }
+  }
+
+  &__close {
+    color: $gray-black;
+    width: 24px;
+    height: 24px;
+
+    cursor: pointer;
+
+    &--end {
+      align-self: flex-start;
+    }
+  }
+
+  &__end {
+    &-top {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      flex: 1 0 0;
+    }
+
+    &-subtitle {
+      color: $gray-black;
+
+      @include main-text;
+
+      @include on-phone {
+        line-height: 120%;
+      }
+    }
+
+    &-message {
+      display: flex;
+      padding: 16px;
+      align-items: flex-start;
+      gap: 8px;
+      align-self: stretch;
+
+      border-radius: 12px;
+      border: 1px solid $system-info;
+
+      &-icon {
+        &-wrapper {
+          display: flex;
+          align-items: top;
+        }
+
+        color: $system-info;
+      }
+
+      &-text {
+        width: 410px;
+        color: $gray-black;
+
+        @include main-text;
+      }
+
+      &-link {
+        color: $additional-greenas;
+        text-decoration: underline;
+
+        @include button-bold;
+      }
+    }
+  }
+}

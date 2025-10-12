@@ -99,9 +99,7 @@ export const DiscussionRules: React.FC<Props> = ({ setOpenModal }) => {
     <div className="discussion-rules">
       <div className="discussion-rules__top-bar">
         <Info className="discussion-rules__info-icon" />
-        <h2 className="discussion-rules__title">
-          Правила обговорень спільноти "DIKO"
-        </h2>
+        <h2 className="discussion-rules__title">Правила спільноти "DIKO"</h2>
         <Close
           onClick={() => setOpenModal(false)}
           className="discussion-rules__close-icon"

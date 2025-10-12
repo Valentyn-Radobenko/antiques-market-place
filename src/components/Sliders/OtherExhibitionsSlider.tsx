@@ -1,9 +1,9 @@
 // import { useTranslation } from 'react-i18next';
 import Slider from './Slider';
-import { useIsMobile, useIsTablet } from '../../hooks/useMediaQuery';
+import { useIsTablet } from '../../hooks/useMediaQuery';
 import { Link, useParams } from 'react-router-dom';
-import products from '../../data/products.json';
-import { Product } from '../../types/Product';
+import exhibitions from '../../data/exhibitions.json';
+import { Exhibition } from '../../types/exhibition';
 import { useSelector } from 'react-redux';
 import { SavingState } from '../../store/store';
 
@@ -11,47 +11,46 @@ export const OtherExhibitionsSlider: React.FC = () => {
   // const { t } = useTranslation();
 
   const isTablet = useIsTablet();
-  const isMobile = useIsMobile();
   const { slug } = useParams();
-  const currentProduct = products.find((p) => p.slug === slug);
-  const filteredProducts =
-    currentProduct ?
-      products.filter((p) => p.id !== currentProduct.id)
-    : products;
+  const currentExhibition = exhibitions.find((exh) => exh.slug === slug);
+  const filteredExhibitions =
+    currentExhibition ?
+      exhibitions.filter((p) => p.id !== currentExhibition.id)
+    : exhibitions;
   const lang = useSelector((state: SavingState) => state.language.language);
 
+  const exhibitionLink = (exhibition: Exhibition) => {
+    if (exhibition.content[lang]) {
+      return `/club/exhibition/${exhibition.slug}`;
+    } else {
+      return '/club/exhibitions/no-content';
+    }
+  };
+
   return (
-    <Slider<Product>
+    <Slider<Exhibition>
       sliderTitle={'Також вас може зацікавити'}
       customClassName="products-slider"
-      slides={filteredProducts}
-      slidesPerView={
-        isMobile ? 2
-        : isTablet ?
-          3
-        : 4
-      }
+      slides={filteredExhibitions}
+      slidesPerView={isTablet ? 1 : 3}
       renderSlide={(slide) => (
         <Link
-          to={`/market/product/${slide.slug}`}
+          to={exhibitionLink(slide)}
           key={slide.id}
-          className="slider__slide products-slider__slide"
+          className="slider__slide"
         >
-          <p className="slider__slide-new products-slider__slide-new">Новий</p>
+          <p className="slider__slide-new">Новий</p>
           <img
-            className="slider__slide-img products-slider__slide-img"
-            src={slide.imgs[0]}
-            alt={slide.name[lang]}
+            className="slider__slide-img"
+            src={slide.image}
+            alt={slide.title[lang]}
           />
-          <div className="slider__slide-content products-slider__slide-content">
-            <h3 className="slider__slide-title products-slider__slide-title">
-              {slide.name[lang]}
-            </h3>
-            <div className="slider__slide-info products-slider__slide-info">
-              <p className="slider__slide-price products-slider__slide-price">
-                {slide.price}
-              </p>
-              <div className="slider__slide-icon products-slider__slide-icon"></div>
+          <div className="slider__slide-content">
+            <h3 className="slider__slide-title">{slide.title[lang]}</h3>
+            <div className="slider__slide-info">
+              <p className="slider__slide-status">{slide.status[lang]}</p>
+              <p className="slider__slide-date">{slide.date[lang]}</p>
+              <div className="slider__slide-icon"></div>
             </div>
           </div>
         </Link>

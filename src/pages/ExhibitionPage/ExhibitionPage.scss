@@ -1,9 +1,14 @@
 .exhibition {
   display: flex;
+  margin-bottom: 24px;
   justify-content: center;
   align-items: flex-start;
   gap: 20px;
   align-self: stretch;
+
+  @include on-tablet {
+    flex-direction: column;
+  }
 
   &__crumbs {
     margin-bottom: 24px;
@@ -27,10 +32,33 @@
       0 8px 32px -4px rgba(0, 0, 0, 0);
     backdrop-filter: blur(15px);
 
+    @include on-tablet {
+      width: 100%;
+
+      &--inactive {
+        gap: 0;
+      }
+    }
+
+    &-button {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      color: $gray-black;
+
+      &--active {
+        color: $additional-freshherb-elect;
+      }
+    }
+
     &-title {
       color: $gray-black;
 
       @include h4-bold;
+
+      @include on-tablet {
+        color: inherit;
+      }
     }
 
     &-content {
@@ -50,12 +78,24 @@
       align-self: stretch;
 
       border-radius: 12px;
+
+      @include on-tablet {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 4px;
+        align-self: stretch;
+      }
     }
 
     &-label {
       color: $additional-black-green;
 
       @include label-bold;
+
+      @include on-phone {
+        width: 123px;
+      }
     }
 
     &-value {
@@ -68,6 +108,10 @@
       color: $gray-dark;
 
       @include main-text;
+
+      @include on-tablet {
+        flex: 1 0 0;
+      }
     }
   }
 
@@ -79,6 +123,24 @@
     align-items: center;
     gap: 24px;
 
+    border-radius: 24px;
+    background: $background-page;
+
+    /* Floating card Double shadow */
+    box-shadow:
+      0 8px 20px 2px rgba(170, 182, 178, 0.2),
+      0 -4px 12px 0 rgba(255, 255, 255, 0) inset;
+    backdrop-filter: blur(12px);
+
+    @include on-tablet {
+      width: 100%;
+      padding: 24px;
+    }
+
+    @include on-phone {
+      padding: 16px;
+    }
+
     &-title {
       display: -webkit-box;
       -webkit-box-orient: vertical;
@@ -89,6 +151,10 @@
       text-overflow: ellipsis;
 
       @include h2-bold;
+
+      @include on-phone {
+        @include h2-mobile-bold;
+      }
     }
 
     &-img {
@@ -98,6 +164,16 @@
       gap: 16px;
       align-self: stretch;
       object-fit: cover;
+
+      border-radius: 12px;
+
+      @include on-tablet {
+        height: 398px;
+      }
+
+      @include on-phone {
+        height: 222px;
+      }
     }
 
     &-articles {
@@ -143,6 +219,10 @@
     align-items: flex-start;
     gap: 16px;
     width: 210px;
+
+    @include on-tablet {
+      width: 100%;
+    }
   }
 
   &__sm {

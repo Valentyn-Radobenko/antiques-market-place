@@ -7,6 +7,11 @@ import exhibitions from '../../data/exhibitions.json';
 import { useSelector } from 'react-redux';
 import { SavingState } from '../../store/store';
 import { useEffect, useState } from 'react';
+import { OtherExhibitionsSlider } from '../../components/Sliders/OtherExhibitionsSlider';
+import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
+import { CreateExhibition } from '../../components/CreateExhibition/CreateExhibition';
+import { useIsTablet } from '../../hooks/useMediaQuery';
+import { Dropdown } from '../../components/Dropdown/Dropdown';
 
 export const ExhibitionPage = () => {
   const { slug } = useParams();
@@ -14,6 +19,9 @@ export const ExhibitionPage = () => {
   const lang = useSelector((state: SavingState) => state.language.language);
 
   const [content, setContent] = useState('');
+  const [openAddModal, setOpenAddModal] = useState<boolean>(false);
+
+  const isTablet = useIsTablet();
 
   useEffect(() => {
     if (exhibition?.content[lang]) {
@@ -45,52 +53,108 @@ export const ExhibitionPage = () => {
       />
 
       <div className="exhibition">
-        <div className="exhibition__details">
-          <h4 className="exhibition__details-title">Деталі виставки</h4>
-          <div className="exhibition__details-content">
-            <div className="exhibition__details-block">
-              <p className="exhibition__details-label">Джерело:</p>
-              <p className="exhibition__details-value">
-                {exhibition?.source[lang]}
-              </p>
-            </div>
+        {isTablet && (
+          <Dropdown
+            buttonArea="all"
+            buttonTitle={() => (
+              <h4 className="exhibition__details-title">Деталі виставки</h4>
+            )}
+            customClassName="exhibition__details"
+            renderContent={() => (
+              <div className="exhibition__details-content">
+                <div className="exhibition__details-block">
+                  <p className="exhibition__details-label">Джерело:</p>
+                  <p className="exhibition__details-value">
+                    {exhibition?.source[lang]}
+                  </p>
+                </div>
 
-            <div className="exhibition__details-block">
-              <p className="exhibition__details-label">Подія:</p>
-              <p className="exhibition__details-value">
-                {exhibition?.status[lang]}
-              </p>
-            </div>
+                <div className="exhibition__details-block">
+                  <p className="exhibition__details-label">Подія:</p>
+                  <p className="exhibition__details-value">
+                    {exhibition?.status[lang]}
+                  </p>
+                </div>
 
-            <div className="exhibition__details-block">
-              <p className="exhibition__details-label">Вхід:</p>
-              <p className="exhibition__details-value">
-                {exhibition.price[lang]}
-              </p>
-            </div>
+                <div className="exhibition__details-block">
+                  <p className="exhibition__details-label">Вхід:</p>
+                  <p className="exhibition__details-value">
+                    {exhibition.price[lang]}
+                  </p>
+                </div>
 
-            <div className="exhibition__details-block">
-              <p className="exhibition__details-label">Адреса:</p>
-              <p className="exhibition__details-value">
-                {exhibition.address[lang]}
-              </p>
-            </div>
+                <div className="exhibition__details-block">
+                  <p className="exhibition__details-label">Адреса:</p>
+                  <p className="exhibition__details-value">
+                    {exhibition.address[lang]}
+                  </p>
+                </div>
 
-            <div className="exhibition__details-block">
-              <p className="exhibition__details-label">Місце:</p>
-              <p className="exhibition__details-value">
-                {exhibition.place[lang]}
-              </p>
-            </div>
+                <div className="exhibition__details-block">
+                  <p className="exhibition__details-label">Місце:</p>
+                  <p className="exhibition__details-value">
+                    {exhibition.place[lang]}
+                  </p>
+                </div>
 
-            <div className="exhibition__details-block">
-              <p className="exhibition__details-label">Тривалість:</p>
-              <p className="exhibition__details-value">
-                {exhibition.date[lang]}
-              </p>
+                <div className="exhibition__details-block">
+                  <p className="exhibition__details-label">Тривалість:</p>
+                  <p className="exhibition__details-value">
+                    {exhibition.date[lang]}
+                  </p>
+                </div>
+              </div>
+            )}
+          />
+        )}
+        {!isTablet && (
+          <div className="exhibition__details">
+            <h4 className="exhibition__details-title">Деталі виставки</h4>
+            <div className="exhibition__details-content">
+              <div className="exhibition__details-block">
+                <p className="exhibition__details-label">Джерело:</p>
+                <p className="exhibition__details-value">
+                  {exhibition?.source[lang]}
+                </p>
+              </div>
+
+              <div className="exhibition__details-block">
+                <p className="exhibition__details-label">Подія:</p>
+                <p className="exhibition__details-value">
+                  {exhibition?.status[lang]}
+                </p>
+              </div>
+
+              <div className="exhibition__details-block">
+                <p className="exhibition__details-label">Вхід:</p>
+                <p className="exhibition__details-value">
+                  {exhibition.price[lang]}
+                </p>
+              </div>
+
+              <div className="exhibition__details-block">
+                <p className="exhibition__details-label">Адреса:</p>
+                <p className="exhibition__details-value">
+                  {exhibition.address[lang]}
+                </p>
+              </div>
+
+              <div className="exhibition__details-block">
+                <p className="exhibition__details-label">Місце:</p>
+                <p className="exhibition__details-value">
+                  {exhibition.place[lang]}
+                </p>
+              </div>
+
+              <div className="exhibition__details-block">
+                <p className="exhibition__details-label">Тривалість:</p>
+                <p className="exhibition__details-value">
+                  {exhibition.date[lang]}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
         <div className="exhibition__content">
           <h2 className="exhibition__content-title">
             {exhibition.title[lang]}
@@ -113,7 +177,10 @@ export const ExhibitionPage = () => {
               </h3>
               <div className="exhibitions__offer-icon"></div>
             </div>
-            <button className="exhibitions__offer-button">
+            <button
+              onClick={() => setOpenAddModal(true)}
+              className="exhibitions__offer-button exhibitions__offer-button--exhibition"
+            >
               Додати виставку
             </button>
           </div>
@@ -143,6 +210,17 @@ export const ExhibitionPage = () => {
           </div>
         </div>
       </div>
+
+      <OtherExhibitionsSlider />
+
+      <ModalWindow
+        visibility={'profile-discussions__add-new-visibility'}
+        openModal={openAddModal}
+        setOpenModal={setOpenAddModal}
+        secondModal={false}
+      >
+        <CreateExhibition setOpenModal={setOpenAddModal} />
+      </ModalWindow>
     </>
   );
 };

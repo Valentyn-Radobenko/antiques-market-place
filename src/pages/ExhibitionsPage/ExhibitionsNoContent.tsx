@@ -4,7 +4,7 @@ export const ExhibitionsNoContent = () => {
   const isMobile = useIsMobile();
   return (
     <>
-      <div className="exhibitions__articles__block">
+      <div className="exhibitions__articles-block">
         {isMobile ?
           <button className="exhibitions__offer-button">
             <svg

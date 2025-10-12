@@ -24,6 +24,7 @@
   &__top-bar {
     display: flex;
     gap: 8px;
+    align-items: center;
   }
   &__info-icon {
     color: $system-info;
@@ -36,6 +37,7 @@
     }
   }
   &__close-icon {
+    margin-left: auto;
     cursor: pointer;
     color: $gray-black;
     flex-shrink: 0;
