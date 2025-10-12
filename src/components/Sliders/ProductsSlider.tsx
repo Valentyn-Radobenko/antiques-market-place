@@ -51,7 +51,7 @@ export const ProductsSlider: React.FC = () => {
               <p className="slider__slide-price products-slider__slide-price">
                 {slide.price}
               </p>
-              <div className="slider__slide-link products-slider__slide-link"></div>
+              <div className="slider__slide-icon products-slider__slide-icon"></div>
             </div>
           </div>
         </Link>

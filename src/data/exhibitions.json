@@ -32,8 +32,8 @@
       "en": "Mystetskyi Arsenal"
     },
     "content": {
-      "ua": "./src/pages/ExhibitionPage/Content/ua/ExhibitionContent1ua.html",
-      "en": "./src/pages/ExhibitionPage/Content/en/ExhibitionContent1en.html"
+      "ua": "../src/pages/ExhibitionPage/Content/ua/ExhibitionContent1ua.html",
+      "en": "../src/pages/ExhibitionPage/Content/en/ExhibitionContent1en.html"
     }
   },
   {
@@ -69,8 +69,8 @@
       "en": "National Art Museum of Ukraine, Kyiv."
     },
     "content": {
-      "ua": "./src/pages/ExhibitionPage/Content/ua/ExhibitionContent2ua.html",
-      "en": "./src/pages/ExhibitionPage/Content/en/ExhibitionContent2en.html"
+      "ua": "../src/pages/ExhibitionPage/Content/ua/ExhibitionContent2ua.html",
+      "en": "../src/pages/ExhibitionPage/Content/en/ExhibitionContent2en.html"
     }
   },
   {
@@ -106,8 +106,8 @@
       "en": "Fluctuart Art Center"
     },
     "content": {
-      "ua": "./src/pages/ExhibitionPage/Content/ua/ExhibitionContent3ua.html",
-      "en": "./src/pages/ExhibitionPage/Content/en/ExhibitionContent3en.html"
+      "ua": "../src/pages/ExhibitionPage/Content/ua/ExhibitionContent3ua.html",
+      "en": "../src/pages/ExhibitionPage/Content/en/ExhibitionContent3en.html"
     }
   },
   {

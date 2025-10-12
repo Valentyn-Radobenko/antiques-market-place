@@ -56,10 +56,7 @@ export const ExhibitionsSlider: React.FC = () => {
             <div className="slider__slide-info">
               <p className="slider__slide-status">{slide.status[lang]}</p>
               <p className="slider__slide-date">{slide.date[lang]}</p>
-              <Link
-                to="exhibitions"
-                className="slider__slide-link"
-              ></Link>
+              <div className="slider__slide-icon"></div>
             </div>
           </div>
         </Link>
