@@ -9,10 +9,11 @@ import { UserState } from '../../types/user';
 
 const initialState: UserState = {
   email: 'dukat.ua@gmail.com',
-  phoneNumber: null,
+  phoneNumber: '+380503332222',
   firstName: 'Андрій',
   lastName: 'Містеряков',
-  country: 'Україна, Київ',
+  country: 'Україна',
+  city: 'Київ',
   auctionNumber: '+380503332222',
   verified: true,
   status: 'succeeded',
@@ -52,11 +53,11 @@ const userSlice = createSlice({
     logoutUser: () => {
       return initialState;
     },
-    updateUserField: <K extends keyof UserState>(
+    updateUserField: (
       state: UserState,
-      action: PayloadAction<{ field: K; value: UserState[K] }>,
+      action: PayloadAction<Partial<UserState>>,
     ) => {
-      state[action.payload.field] = action.payload.value;
+      Object.assign(state, action.payload);
     },
   },
 
