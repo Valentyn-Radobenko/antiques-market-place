@@ -34,11 +34,12 @@ export const ProfileAccount = () => {
           lastName={user.lastName}
           city={user.city}
           country={user.country}
+          verified={user.verified}
         />
 
-        {windowSize.width < 1440 && <AccountFullfiling />}
+        {windowSize.width < 1440 && <AccountFullfiling user={user} />}
 
-        <PasswordEmail />
+        <PasswordEmail email={user.email || 'Додайте пошту'} />
 
         <AccountGeneral user={user} />
 
@@ -59,7 +60,7 @@ export const ProfileAccount = () => {
           </div>
         </div>
       </div>
-      {windowSize.width >= 1440 && <AccountFullfiling />}
+      {windowSize.width >= 1440 && <AccountFullfiling user={user} />}
     </div>
   );
 };
