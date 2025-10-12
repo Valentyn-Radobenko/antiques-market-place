@@ -224,7 +224,7 @@
       @include tab-regular;
     }
 
-    &-link {
+    &-icon {
       height: 24px;
       width: 24px;
       background-image: url('/images/sliders/arrow-forward.svg');
@@ -652,6 +652,7 @@
 
       @include on-phone {
         @include h2-mobile-bold;
+        background-color: transparent;
       }
     }
   }
@@ -894,6 +895,10 @@
 .products-slider {
   @include on-tablet {
     max-width: 592px;
+  }
+
+  @include on-phone {
+    width: 343px;
   }
 
   &__slide {

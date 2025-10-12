@@ -40,6 +40,20 @@
   }
 }
 
+@mixin block-hover-desktop-only {
+  @media (hover: hover) {
+    @include block-hover;
+
+    @include on-tablet {
+      @include hover(border, 2px solid $additional-mint);
+
+      &:active {
+        border-color: #0d392c;
+      }
+    }
+  }
+}
+
 @mixin icon-hover {
   @include hover(color, $additional-mint);
 
@@ -183,12 +197,16 @@
     cursor: initial;
   }
 
-  &:hover {
-    color: $gray-black;
+  @media (hover: hover) {
+    &:hover {
+      color: $gray-black;
+    }
+
+    &:disabled:hover {
+      color: $gray-white;
+    }
   }
-  &:disabled:hover {
-    color: $gray-white;
-  }
+
   &::before,
   &::after {
     transition: inherit;
@@ -210,12 +228,14 @@
     opacity: 0;
   }
 
-  &:hover::before {
-    opacity: 0;
-  }
+  @media (hover: hover) {
+    &:hover::before {
+      opacity: 0;
+    }
 
-  &:hover::after {
-    opacity: 1;
+    &:hover::after {
+      opacity: 1;
+    }
   }
 
   &:disabled::before,

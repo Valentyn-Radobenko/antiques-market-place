@@ -60,6 +60,13 @@ const shoppingCartSlice = createSlice({
         (item) => item.id !== action.payload,
       );
     },
+    removeSelectedItems(state) {
+      const selectedIds = state.selectedItems.map((si) => si.id);
+      state.items = state.items.filter(
+        (item) => !selectedIds.includes(item.id),
+      );
+      state.selectedItems = [];
+    },
     removeAllItems(state) {
       state.items = [];
       state.selectedItems = [];
@@ -145,6 +152,7 @@ export const {
   addSelectedItem,
   removeSelectedItem,
   removeAllItems,
+  removeSelectedItems,
   updateUserInfo,
   updateUserFirstName,
   updateUserLastName,

@@ -5,14 +5,9 @@ import Slider from './Slider';
 import { useTranslation } from 'react-i18next';
 import { useIsMobile, useIsTablet } from '../../hooks/useMediaQuery';
 import { Link } from 'react-router-dom';
-
-interface ExhibitionSlide {
-  title: string;
-  status: string;
-  date: string;
-  image: string;
-  content: string;
-}
+import { Exhibition } from '../../types/exhibition';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../store/store';
 
 export const ExhibitionsSlider: React.FC = () => {
   const { t } = useTranslation();
@@ -20,10 +15,19 @@ export const ExhibitionsSlider: React.FC = () => {
 
   const isTablet = useIsTablet();
   const isMobile = useIsMobile();
+  const lang = useSelector((state: SavingState) => state.language.language);
+
+  const exhibitionLink = (exhibition: Exhibition) => {
+    if (exhibition.content[lang]) {
+      return `/club/exhibition/${exhibition.slug}`;
+    } else {
+      return '/club/exhibitions/no-content';
+    }
+  };
 
   const exhibitionsSlides = exhibitions.slice(0, 6);
   return (
-    <Slider<ExhibitionSlide>
+    <Slider<Exhibition>
       sliderTitle={t('exhibitionsSlider.title')}
       renderSliderLink={() => (
         <Link
@@ -36,28 +40,26 @@ export const ExhibitionsSlider: React.FC = () => {
       slides={exhibitionsSlides}
       slidesPerView={isTablet ? 1 : 2}
       renderSlide={(slide) => (
-        <div
-          key={slide.title + slide.date + slide.image}
+        <Link
+          to={exhibitionLink(slide)}
+          key={slide.id}
           className="slider__slide"
         >
           <p className="slider__slide-new">Новий</p>
           <img
             className="slider__slide-img"
             src={slide.image}
-            alt={slide.title}
+            alt={slide.title[lang]}
           />
           <div className="slider__slide-content">
-            <h3 className="slider__slide-title">{slide.title}</h3>
+            <h3 className="slider__slide-title">{slide.title[lang]}</h3>
             <div className="slider__slide-info">
-              <p className="slider__slide-status">{slide.status}</p>
-              <p className="slider__slide-date">{slide.date}</p>
-              <Link
-                to="exhibitions"
-                className="slider__slide-link"
-              ></Link>
+              <p className="slider__slide-status">{slide.status[lang]}</p>
+              <p className="slider__slide-date">{slide.date[lang]}</p>
+              <div className="slider__slide-icon"></div>
             </div>
           </div>
-        </div>
+        </Link>
       )}
     />
   );

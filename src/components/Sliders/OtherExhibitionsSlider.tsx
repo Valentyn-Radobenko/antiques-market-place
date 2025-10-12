@@ -7,7 +7,7 @@ import { Product } from '../../types/Product';
 import { useSelector } from 'react-redux';
 import { SavingState } from '../../store/store';
 
-export const ProductsSlider: React.FC = () => {
+export const OtherExhibitionsSlider: React.FC = () => {
   // const { t } = useTranslation();
 
   const isTablet = useIsTablet();

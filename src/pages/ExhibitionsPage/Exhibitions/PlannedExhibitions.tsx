@@ -3,7 +3,7 @@ import { Exhibitions } from './Exhibitions';
 
 export const PlannedExhibitions = () => {
   const plannedExhibitions = exhibitions.filter(
-    (exh) => exh.status === 'Запланована',
+    (exh) => exh.status.ua === 'Запланована',
   );
 
   return <Exhibitions exhibitions={plannedExhibitions} />;

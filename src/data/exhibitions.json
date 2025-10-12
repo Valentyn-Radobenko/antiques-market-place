@@ -1,44 +1,224 @@
 [
   {
-    "title": "Український Дім «Гривня. Більше, ніж гроші»",
-    "status": "Запланована",
-    "date": "березень – квітень",
+    "id": "1",
+    "slug": "ukrainian-house-hryvnia-more-than-money",
     "image": "./images/exhibitions/exhibition-1.jfif",
-    "content": ""
+    "title": {
+      "ua": "Український Дім «Гривня. Більше, ніж гроші»",
+      "en": "Ukrainian House: “The Hryvnia — More Than Money”"
+    },
+    "status": {
+      "ua": "Запланована",
+      "en": "Planned"
+    },
+    "date": {
+      "ua": "березень – квітень",
+      "en": "March – April"
+    },
+    "source": {
+      "ua": "Дубовик&Ко",
+      "en": "Dubovik&Co"
+    },
+    "price": {
+      "ua": "Безкоштовний",
+      "en": "Free"
+    },
+    "address": {
+      "ua": "вул. Лаврська, 12, Київ",
+      "en": "12 Lavrska St., Kyiv"
+    },
+    "place": {
+      "ua": "Мистецький Арсенал",
+      "en": "Mystetskyi Arsenal"
+    },
+    "content": {
+      "ua": "./exhibitions/ua/ExhibitionContent1ua.html",
+      "en": "./exhibitions/en/ExhibitionContent1en.html"
+    }
   },
   {
-    "title": "Виставка Марії Примаченко",
-    "status": "Завершена",
-    "date": "12 грудня",
+    "id": "2",
+    "slug": "maria-prymachenko-exhibition",
     "image": "./images/exhibitions/exhibition-2.jfif",
-    "content": ""
+    "title": {
+      "ua": "Виставка Марії Примаченко",
+      "en": "Maria Prymachenko: The Exhibition"
+    },
+    "status": {
+      "ua": "Завершена",
+      "en": "Completed"
+    },
+    "date": {
+      "ua": "12 грудня",
+      "en": "December 12"
+    },
+    "source": {
+      "ua": "Дубовик&Ко",
+      "en": "Dubovik&Co"
+    },
+    "price": {
+      "ua": "Безкоштовний",
+      "en": "Free"
+    },
+    "address": {
+      "ua": "вул. Михайла Грушевського, 6, Київ, Україна.",
+      "en": "Mykhaylo Hrushevskoho St., 6, Kyiv, Ukraine."
+    },
+    "place": {
+      "ua": "Національний художній музей України, Київ.",
+      "en": "National Art Museum of Ukraine, Kyiv."
+    },
+    "content": {
+      "ua": "./exhibitions/ua/ExhibitionContent2ua.html",
+      "en": "./exhibitions/en/ExhibitionContent2en.html"
+    }
   },
   {
-    "title": "\"VLP: Легенди Французького Стріт-арту – Безкоштовний Погляд у 40-річну Історію\"",
-    "status": "Досі триває",
-    "date": "Січень – Березень",
+    "id": "3",
+    "slug": "vlp-legends-of-french-street-art",
     "image": "./images/exhibitions/exhibition-3.png",
-    "content": ""
+    "title": {
+      "ua": "\"VLP: Легенди Французького Стріт-арту – Безкоштовний Погляд у 40-річну Історію\"",
+      "en": "VLP: Legends of French Street Art – A Free Glimpse into 40 Years of History"
+    },
+    "status": {
+      "ua": "Досі триває",
+      "en": "Ongoing"
+    },
+    "date": {
+      "ua": "Січень – Березень",
+      "en": "January – March"
+    },
+    "source": {
+      "ua": "Дубовик&Ко",
+      "en": "Dubovik&Co"
+    },
+    "price": {
+      "ua": "Безкоштовний",
+      "en": "Free"
+    },
+    "address": {
+      "ua": "2 port du Gros Caillou, 75007 Paris, Франція",
+      "en": "2 port du Gros Caillou, 75007 Paris, France"
+    },
+    "place": {
+      "ua": "Арт-центр Fluctuart",
+      "en": "Fluctuart Art Center"
+    },
+    "content": {
+      "ua": "./exhibitions/ua/ExhibitionContent3ua.html",
+      "en": "./exhibitions/en/ExhibitionContent3en.html"
+    }
   },
   {
-    "title": "Р.Е.П., війна та політика: виставки сучасного українського мистецтва, які варто відвідати у січні",
-    "status": "Досі триває",
-    "date": "18, 23, 27 січня та 1, 7, 14 лютого",
+    "id": "4",
+    "slug": "rep-war-and-politics",
     "image": "./images/exhibitions/exhibition-4.jfif",
-    "content": ""
+    "title": {
+      "ua": "Р.Е.П., війна та політика: виставки сучасного українського мистецтва, які варто відвідати у січні",
+      "en": "R.E.P., War and Politics: Contemporary Ukrainian Art Exhibitions to See in January"
+    },
+    "status": {
+      "ua": "Досі триває",
+      "en": "Ongoing"
+    },
+    "date": {
+      "ua": "18, 23, 27 січня та 1, 7, 14 лютого",
+      "en": "January 18, 23, 27 and February 1, 7, 14"
+    },
+    "source": {
+      "ua": "",
+      "en": ""
+    },
+    "price": {
+      "ua": "",
+      "en": ""
+    },
+    "address": {
+      "ua": "",
+      "en": ""
+    },
+    "place": {
+      "ua": "",
+      "en": ""
+    },
+    "content": {
+      "ua": "",
+      "en": ""
+    }
   },
   {
-    "title": "Я галерея",
-    "status": "Досі триває",
-    "date": "27 грудня по 23 лютого",
+    "id": "5",
+    "slug": "me-gallery",
     "image": "./images/exhibitions/exhibition-5.jfif",
-    "content": ""
+    "title": {
+      "ua": "Я галерея",
+      "en": "Me Gallery"
+    },
+    "status": {
+      "ua": "Досі триває",
+      "en": "Ongoing"
+    },
+    "date": {
+      "ua": "27 грудня по 23 лютого",
+      "en": "December 27 – February 23"
+    },
+    "source": {
+      "ua": "",
+      "en": ""
+    },
+    "price": {
+      "ua": "",
+      "en": ""
+    },
+    "address": {
+      "ua": "",
+      "en": ""
+    },
+    "place": {
+      "ua": "",
+      "en": ""
+    },
+    "content": {
+      "ua": "",
+      "en": ""
+    }
   },
   {
-    "title": "Кімната, де думки стали до болю глухими",
-    "status": "Досі триває",
-    "date": "19 грудня по 19 лютого",
+    "id": "6",
+    "slug": "room-where-thoughts-became-painfully-deaf",
     "image": "./images/exhibitions/exhibition-6.jfif",
-    "content": ""
+    "title": {
+      "ua": "Кімната, де думки стали до болю глухими",
+      "en": "The Room Where Thoughts Became Painfully Silent"
+    },
+    "status": {
+      "ua": "Досі триває",
+      "en": "Ongoing"
+    },
+    "date": {
+      "ua": "19 грудня по 19 лютого",
+      "en": "December 19 – February 19"
+    },
+    "source": {
+      "ua": "",
+      "en": ""
+    },
+    "price": {
+      "ua": "",
+      "en": ""
+    },
+    "address": {
+      "ua": "",
+      "en": ""
+    },
+    "place": {
+      "ua": "",
+      "en": ""
+    },
+    "content": {
+      "ua": "",
+      "en": ""
+    }
   }
 ]

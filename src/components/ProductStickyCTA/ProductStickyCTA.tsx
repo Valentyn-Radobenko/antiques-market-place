@@ -3,7 +3,11 @@ import { ShoppingCartSVG } from '../Imgs/ShoppingCartSVG';
 import { useIsTablet } from '../../hooks/useMediaQuery';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../store/store';
-import { addItem, setIsCartOpen } from '../../store/slices/shoppingCartSlice';
+import {
+  addItem,
+  addSelectedItem,
+  setIsCartOpen,
+} from '../../store/slices/shoppingCartSlice';
 import products from '../../data/products.json';
 
 export const ProductStickyCTA = () => {
@@ -16,17 +20,25 @@ export const ProductStickyCTA = () => {
 
   const product = products.find((p) => p.slug === slug);
   const items = useSelector((state: SavingState) => state.shoppingCart.items);
+  const selectedItems = useSelector(
+    (state: SavingState) => state.shoppingCart.selectedItems,
+  );
 
   if (!isProductPage || !isTablet) return null;
 
   return (
     <div className="product__cta-wrapper">
       <button
-        className="product__cta"
+        className="product__cta product__cta--in-wrapper"
         onClick={() => {
           dispatch(setIsCartOpen(true));
-          if (product && !items.find((p) => p.id === product.id))
+          if (product && !items.find((p) => p.id === product.id)) {
             dispatch(addItem(product));
+          }
+
+          if (product && !selectedItems.find((si) => si.id === product.id)) {
+            dispatch(addSelectedItem(product));
+          }
         }}
       >
         <span className="product__cta-text">

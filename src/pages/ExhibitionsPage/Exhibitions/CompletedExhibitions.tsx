@@ -3,7 +3,7 @@ import { Exhibitions } from './Exhibitions';
 
 export const CompletedExhibitions = () => {
   const completedExhibitions = exhibitions.filter(
-    (exh) => exh.status === 'Завершена',
+    (exh) => exh.status.ua === 'Завершена',
   );
 
   return <Exhibitions exhibitions={completedExhibitions} />;

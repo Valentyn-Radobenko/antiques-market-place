@@ -55,7 +55,7 @@ export const ArticlesSlider: React.FC = () => {
               <div className="slider__slide-info-block"></div>
               <Link
                 to="articles"
-                className="slider__slide-link"
+                className="slider__slide-icon"
               ></Link>
             </div>
           </div>

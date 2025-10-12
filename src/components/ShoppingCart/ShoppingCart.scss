@@ -29,12 +29,14 @@
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     bottom: 0;
+    max-height: 95dvh;
 
     padding-bottom: max(24px, env(safe-area-inset-bottom));
   }
 
   @include on-phone {
     padding: 16px;
+    padding-bottom: 32px;
   }
 
   &--end {
@@ -43,6 +45,7 @@
     @include on-tablet {
       position: relative;
       width: auto;
+      border-radius: 12px;
     }
 
     @include on-phone {
@@ -54,7 +57,7 @@
   &__header {
     display: flex;
     justify-content: space-between;
-    align-items: top;
+    align-items: center;
     align-self: stretch;
   }
 
@@ -65,13 +68,14 @@
 
     @include on-phone {
       @include h2-mobile-bold;
+      width: 210px;
     }
 
     &--end {
       @include h3-bold;
 
       @include on-phone {
-        @include h4-bold;
+        @include h2-mobile-bold;
       }
     }
 
@@ -86,6 +90,10 @@
     height: 24px;
 
     cursor: pointer;
+
+    &--end {
+      align-self: flex-start;
+    }
   }
 
   &__content {
@@ -506,6 +514,14 @@
         background: $gray-white;
         transition: $effect-duration;
 
+        @include main-text;
+
+        color: $gray-black;
+
+        &::placeholder {
+          color: $gray-lite;
+        }
+
         &--error {
           border-color: $system-error;
         }
@@ -666,9 +682,9 @@
             @include main-text;
 
             &--inactive {
-              border-bottom-color: $gray-dis;
+              border-bottom-color: $gray-lite;
 
-              color: $gray-dis;
+              color: $gray-lite;
             }
 
             &--active {

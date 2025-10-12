@@ -1,7 +1,7 @@
 type LocalizedText = {
   ua: string;
   en: string;
-  slug?: string; // если у поля есть slug
+  slug?: string; // якщо у поля є slug
 };
 
 export interface Product {
