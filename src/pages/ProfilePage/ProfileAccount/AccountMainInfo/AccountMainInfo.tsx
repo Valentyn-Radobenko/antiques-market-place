@@ -1,13 +1,24 @@
+import classNames from 'classnames';
 import { AccountSVG } from '../../../../components/Imgs/AccountSVG';
 import { AddImgsPlus } from '../../../../components/Imgs/AddImgsPlus';
 import { ShiledSVG } from '../../../../components/Imgs/ShieldSVG';
+import { VerifiedSVG } from '../../../../components/Imgs/VerifiedSVG';
 
 type Props = {
   firstName: string | null;
   lastName: string | null;
+  city: string | null;
+  country: string | null;
+  verified: boolean;
 };
 
-export const AccountMainInfo: React.FC<Props> = ({ lastName, firstName }) => {
+export const AccountMainInfo: React.FC<Props> = ({
+  lastName,
+  firstName,
+  city,
+  country,
+  verified,
+}) => {
   return (
     <div className="account-main-info">
       <div className="account-main-info__container">
@@ -17,19 +28,36 @@ export const AccountMainInfo: React.FC<Props> = ({ lastName, firstName }) => {
         </div>
         <div className="account-main-info__text-block">
           <p className="account-main-info__name">{`${firstName} ${lastName}`}</p>
-          <p className="account-main-info__location">Україна, Київ </p>
-          <div className="account-main-info__veryfic-status desc-tab">
-            <ShiledSVG className="account-main-info__veryfic-svg" />
+          <p className="account-main-info__location">
+            {country}, {city}{' '}
+          </p>
+          <div
+            className={classNames(
+              'account-main-info__veryfic-status desc-tab',
+              {
+                isActive: verified,
+              },
+            )}
+          >
+            {verified ?
+              <VerifiedSVG className="account-main-info__veryfic-svg-true" />
+            : <ShiledSVG className="account-main-info__veryfic-svg-false" />}
             <p className="account-main-info__veryfic-text">
-              Акаунт не верифікований
+              {verified ? 'Акаунт верифікований' : 'Акаунт не верифікований'}
             </p>
           </div>
         </div>
       </div>
-      <div className="account-main-info__veryfic-status phone">
-        <ShiledSVG className="account-main-info__veryfic-svg" />
+      <div
+        className={classNames('account-main-info__veryfic-status phone', {
+          isActive: verified,
+        })}
+      >
+        {verified ?
+          <VerifiedSVG className="account-main-info__veryfic-svg-true" />
+        : <ShiledSVG className="account-main-info__veryfic-svg-false" />}
         <p className="account-main-info__veryfic-text">
-          Акаунт не верифікований
+          {verified ? 'Акаунт верифікований' : 'Акаунт не верифікований'}
         </p>
       </div>
     </div>

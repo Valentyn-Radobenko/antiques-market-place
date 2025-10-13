@@ -1,14 +1,14 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { AccountSVG } from '../../../components/Imgs/AccountSVG';
 import { CartSVG } from '../../../components/Imgs/CartSVG';
 import { DiscussonsSVG } from '../../../components/Imgs/DiscussionsSVG';
 import { Messaging } from '../../../components/Imgs/Messaging';
 import { OrdersSVG } from '../../../components/Imgs/OrdersSVG';
-import { SecuritySVG } from '../../../components/Imgs/SecuritySVG';
 import { SettingsSVG } from '../../../components/Imgs/SettingsSVG';
 import { profileNav } from '../../../types/ProfileNav';
 import { SetStateAction, Dispatch, useEffect } from 'react';
 import { ArrowTale } from '../../../components/Imgs/ArrowTale';
+import classNames from 'classnames';
 
 const profileNavigation: profileNav[] = [
   {
@@ -42,12 +42,6 @@ const profileNavigation: profileNav[] = [
     svg: <DiscussonsSVG />,
   },
   {
-    nameUa: 'Вхід і безпека',
-    nameEng: 'Login and Security',
-    slug: 'security',
-    svg: <SecuritySVG />,
-  },
-  {
     nameUa: 'Налаштування',
     nameEng: 'Settings',
     slug: 'settings',
@@ -61,6 +55,12 @@ type Props = {
 };
 
 export const ProfileMenu: React.FC<Props> = ({ openMenu, setOpenMenu }) => {
+  const location = useLocation();
+  const currentPath = location.pathname
+    .split('/')
+    .filter((a) => a !== '')
+    .at(-1);
+
   useEffect(() => {
     if (!openMenu) {
       document.body.style.overflow = 'hidden';
@@ -81,7 +81,13 @@ export const ProfileMenu: React.FC<Props> = ({ openMenu, setOpenMenu }) => {
             key={item.slug}
             className="profile-menu__item"
           >
-            <div className="profile-menu__name">
+            <div
+              className={classNames('profile-menu__name', {
+                isActive:
+                  currentPath === item.slug ||
+                  (item.slug === 'account' && currentPath === 'me'),
+              })}
+            >
               {item.svg}
               <p>{item.nameUa}</p>
             </div>

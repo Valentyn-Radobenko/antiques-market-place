@@ -14,13 +14,7 @@ import { PasswordEmail } from './PasswordEmail/PasswordEmail';
 import { UserState } from '../../../types/user';
 
 export const ProfileAccount = () => {
-  const {
-    firstName,
-    lastName,
-    // country,
-    // email,
-    // phoneNumber
-  }: UserState = useSelector((state: RootState) => state.user);
+  const user: UserState = useSelector((state: RootState) => state.user);
   const windowSize = useWindowSize();
   const [setOpenMenu] = useOutletContext<OutletContextType>();
 
@@ -36,18 +30,18 @@ export const ProfileAccount = () => {
         </div>
 
         <AccountMainInfo
-          firstName={firstName}
-          lastName={lastName}
+          firstName={user.firstName}
+          lastName={user.lastName}
+          city={user.city}
+          country={user.country}
+          verified={user.verified}
         />
 
-        {windowSize.width < 1440 && <AccountFullfiling />}
+        {windowSize.width < 1440 && <AccountFullfiling user={user} />}
 
-        <PasswordEmail />
+        <PasswordEmail email={user.email || 'Додайте пошту'} />
 
-        <AccountGeneral
-          firstName={firstName}
-          lastName={lastName}
-        />
+        <AccountGeneral user={user} />
 
         <Verification />
 
@@ -66,7 +60,7 @@ export const ProfileAccount = () => {
           </div>
         </div>
       </div>
-      {windowSize.width >= 1440 && <AccountFullfiling />}
+      {windowSize.width >= 1440 && <AccountFullfiling user={user} />}
     </div>
   );
 };
