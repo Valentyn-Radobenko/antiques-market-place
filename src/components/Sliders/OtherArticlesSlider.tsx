@@ -1,19 +1,23 @@
-import articles from '../../data/articles.json';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 import Slider from './Slider';
-import { useIsMobile, useIsTablet } from '../../hooks/useMediaQuery';
-import { Link } from 'react-router-dom';
-import { Article } from '../../types/article';
+import { useIsTablet } from '../../hooks/useMediaQuery';
+import { Link, useParams } from 'react-router-dom';
+import articles from '../../data/articles.json';
 import { useSelector } from 'react-redux';
 import { SavingState } from '../../store/store';
+import { Article } from '../../types/article';
 
-export const ArticlesSlider: React.FC = () => {
-  const { t } = useTranslation();
-  const lang = useSelector((state: SavingState) => state.language.language);
-  const articlesSlides = articles.slice(0, 6);
+export const OtherArticlesSlider: React.FC = () => {
+  // const { t } = useTranslation();
 
   const isTablet = useIsTablet();
-  const isMobile = useIsMobile();
+  const { slug } = useParams();
+  const currentArticle = articles.find((exh) => exh.slug === slug);
+  const filteredArticles =
+    currentArticle ?
+      articles.filter((p) => p.id !== currentArticle.id)
+    : articles;
+  const lang = useSelector((state: SavingState) => state.language.language);
 
   const ArticleLink = (article: Article) => {
     if (article.content[lang]) {
@@ -25,31 +29,19 @@ export const ArticlesSlider: React.FC = () => {
 
   return (
     <Slider<Article>
-      sliderTitle={t('articlesSlider.title')}
-      renderSliderLink={() => (
-        <Link
-          to="articles"
-          className="slider__header-link"
-        >
-          {isMobile ? 'більше' : 'переглянути більше'}
-        </Link>
-      )}
-      slides={articlesSlides}
-      slidesPerView={
-        isMobile ? 1
-        : isTablet ?
-          2
-        : 3
-      }
+      sliderTitle={'Також вас може зацікавити'}
+      customClassName="other-items-slider--articles"
+      slides={filteredArticles}
+      slidesPerView={isTablet ? 1 : 3}
       renderSlide={(slide) => (
         <Link
           to={ArticleLink(slide)}
           key={slide.id}
-          className="slider__slide"
+          className="slider__slide other-items-slider__slide--articles"
         >
           <p className="slider__slide-new">Новий</p>
           <img
-            className="slider__slide-img"
+            className="slider__slide-img other-items-slider__slide-img--articles"
             src={slide.image}
             alt={slide.title[lang]}
           />

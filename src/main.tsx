@@ -29,6 +29,9 @@ import { ProductPage } from './pages/ProductPage/ProductPage';
 import { ExhibitionPage } from './pages/ExhibitionPage/ExhibitionPage';
 import { ExhibitionsNoContent } from './pages/ExhibitionsPage/ExhibitionsNoContent';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import { ArticlePage } from './pages/ArticlePage/ArticlePage';
+import { ArticlesNoContent } from './pages/ArticlesPage/ArticlesNoContent';
+import { Articles } from './pages/ArticlesPage/Articles/Articles';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <StrictMode>
@@ -69,6 +72,11 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
                 path="exhibition/:slug"
                 element={<ExhibitionPage />}
               />
+
+              <Route
+                path="article/:slug"
+                element={<ArticlePage />}
+              />
             </Route>
 
             <Route
@@ -108,7 +116,16 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
             <Route
               path="club/articles"
               element={<ArticlesPage />}
-            />
+            >
+              <Route
+                index
+                element={<Articles />}
+              />
+              <Route
+                path="no-content/:slug"
+                element={<ArticlesNoContent />}
+              />
+            </Route>
             <Route
               path="expertise"
               element={<ExpertisePage />}

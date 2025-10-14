@@ -1,32 +1,152 @@
 [
   {
-    "title": "Золото б’є рекорди: найвища ціна у 2025 році та що це означає для колекціонерів",
+    "id": "1",
+    "slug": "zoloto-bye-rekordy-2025",
     "image": "./images/articles/1.png",
-    "content": ""
+    "title": {
+      "ua": "Золото б’є рекорди: найвища ціна у 2025 році та що це означає для колекціонерів",
+      "en": "Gold Hits Records: The Highest Price in 2025 and What It Means for Collectors"
+    },
+    "author": {
+      "ua": "Дубовик&Ко",
+      "en": "Dubovik&Co"
+    },
+    "source": {
+      "ua": "Financial Times, Cinco Dias, Barron's, Reuters",
+      "en": "Financial Times, Cinco Dias, Barron's, Reuters"
+    },
+    "date": {
+      "ua": "7 лютого",
+      "en": "February 7"
+    },
+    "content": {
+      "ua": "./articles/ua/ArticleContent1ua.html",
+      "en": "./articles/en/ArticleContent1en.html"
+    }
   },
   {
-    "title": "Як правильно інвестувати в антикваріат у 2025 році: поради експертів",
+    "id": "2",
+    "slug": "investytsiyi-v-antyqvariat-2025",
     "image": "./images/articles/2.png",
-    "content": ""
+    "title": {
+      "ua": "Як правильно інвестувати в антикваріат у 2025 році: поради експертів",
+      "en": "How to Invest in Antiques in 2025: Expert Tips"
+    },
+    "author": {
+      "ua": "Дубовик&Ко",
+      "en": "Dubovik&Co"
+    },
+    "source": {
+      "ua": "Financial Times, Cinco Dias, Barron's, Reuters",
+      "en": "Financial Times, Cinco Dias, Barron's, Reuters"
+    },
+    "date": {
+      "ua": "7 лютого",
+      "en": "February 7"
+    },
+    "content": {
+      "ua": "./articles/ua/ArticleContent2ua.html",
+      "en": "./articles/en/ArticleContent2en.html"
+    }
   },
   {
-    "title": "Скарби у вас вдома: як звичайні речі можуть виявитися антикваріатом",
+    "id": "3",
+    "slug": "skarb-vdoma-antyqvariat",
     "image": "./images/articles/3.png",
-    "content": ""
+    "title": {
+      "ua": "Скарби у вас вдома: як звичайні речі можуть виявитися антикваріатом",
+      "en": "Treasures at Home: How Ordinary Items Can Turn Out to Be Antiques"
+    },
+    "author": {
+      "ua": "Дубовик&Ко",
+      "en": "Dubovik&Co"
+    },
+    "source": {
+      "ua": "Financial Times, Cinco Dias, Barron's, Reuters",
+      "en": "Financial Times, Cinco Dias, Barron's, Reuters"
+    },
+    "date": {
+      "ua": "7 лютого",
+      "en": "February 7"
+    },
+    "content": {
+      "ua": "./articles/ua/ArticleContent3ua.html",
+      "en": "./articles/en/ArticleContent3en.html"
+    }
   },
   {
-    "title": "Тайни королівських прикрас: легендарні ювелірні вироби, що змінили історію",
+    "id": "4",
+    "slug": "tajny-korolivskyh-prykras",
     "image": "./images/articles/4.png",
-    "content": ""
+    "title": {
+      "ua": "Тайни королівських прикрас: легендарні ювелірні вироби, що змінили історію",
+      "en": "Secrets of Royal Jewelry: Legendary Pieces That Changed History"
+    },
+    "author": {
+      "ua": "Дубовик&Ко",
+      "en": "Dubovik&Co"
+    },
+    "source": {
+      "ua": "Financial Times, Cinco Dias, Barron's, Reuters",
+      "en": "Financial Times, Cinco Dias, Barron's, Reuters"
+    },
+    "date": {
+      "ua": "7 лютого",
+      "en": "February 7"
+    },
+    "content": {
+      "ua": "",
+      "en": ""
+    }
   },
   {
-    "title": "Картини, які знайшли випадково: найдорожчі шедеври, що десятиліттями залишались у тіні",
+    "id": "5",
+    "slug": "kartyny-znajdeni-vypadkovo",
     "image": "./images/articles/5.png",
-    "content": ""
+    "title": {
+      "ua": "Картини, які знайшли випадково: найдорожчі шедеври, що десятиліттями залишались у тіні",
+      "en": "Paintings Found by Accident: The Most Expensive Masterpieces Hidden for Decades"
+    },
+    "author": {
+      "ua": "Дубовик&Ко",
+      "en": "Dubovik&Co"
+    },
+    "source": {
+      "ua": "Financial Times, Cinco Dias, Barron's, Reuters",
+      "en": "Financial Times, Cinco Dias, Barron's, Reuters"
+    },
+    "date": {
+      "ua": "7 лютого",
+      "en": "February 7"
+    },
+    "content": {
+      "ua": "",
+      "en": ""
+    }
   },
   {
-    "title": "Ринок антикварних монет: які екземпляри коштують сотні тисяч доларів?",
+    "id": "6",
+    "slug": "rynok-antyqvarnyh-monet",
     "image": "./images/articles/6.png",
-    "content": ""
+    "title": {
+      "ua": "Ринок антикварних монет: які екземпляри коштують сотні тисяч доларів?",
+      "en": "Antique Coin Market: Which Pieces Are Worth Hundreds of Thousands of Dollars?"
+    },
+    "author": {
+      "ua": "Дубовик&Ко",
+      "en": "Dubovik&Co"
+    },
+    "source": {
+      "ua": "Financial Times, Cinco Dias, Barron's, Reuters",
+      "en": "Financial Times, Cinco Dias, Barron's, Reuters"
+    },
+    "date": {
+      "ua": "7 лютого",
+      "en": "February 7"
+    },
+    "content": {
+      "ua": "",
+      "en": ""
+    }
   }
 ]

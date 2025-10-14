@@ -1,4 +1,11 @@
 .articles {
+  &__no-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
   &__nav-bar {
     display: flex;
     flex-direction: column;
