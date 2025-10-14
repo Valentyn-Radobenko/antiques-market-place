@@ -1,0 +1,16 @@
+.not-found-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__link {
+    @include additional-button;
+    padding: 16px;
+
+    color: $additional-greenas;
+    text-align: center;
+    text-shadow: 0 0 15px rgba(208, 255, 226, 0.5);
+
+    @include main-text;
+  }
+}

@@ -32,34 +32,36 @@ export const ExhibitionsNoContent = () => {
             </button>
           </div>
         }
-        <div className="exhibitions-no-content__wrapper">
-          <div className="exhibitions-no-content">
-            <div className="exhibitions-no-content__block">
-              <div className="exhibitions-no-content__block-top">
-                <p className="exhibitions-no-content__block-top-text">
-                  пум-пум-пум
-                </p>
-                <h4 className="exhibitions-no-content__block-top-title">
+        <div className="no-content__wrapper">
+          <div className="no-content">
+            <div className="no-content__block">
+              <div className="no-content__block-top">
+                <p className="no-content__block-top-text">пум-пум-пум</p>
+                <h4 className="no-content__block-top-title">
                   Команда DIKO вже працює над цією статтею
                 </h4>
               </div>
               {!isMobile && (
-                <p className="exhibitions-no-content__block-bottom">
-                  Здається, тут поки що нічого немає. Але, можливо, саме зараз
-                  настав час знайти щось особливе?
+                <p className="no-content__block-bottom">
+                  Якщо ви маєте цікаву ідею або готову виставку, ми будемо раді
+                  представити її тут! Запрошуємо вас поділитися своєю
+                  пропозицією – наша команда із задоволенням розгляне її та
+                  підтримає реалізацію вашого проєкту.
                 </p>
               )}
             </div>
             <img
-              className="exhibitions-no-content__img"
+              className="no-content__img"
               src="./images/exhibitions/no-content.png"
               alt="no-content"
             />
           </div>
           {isMobile && (
-            <p className="exhibitions-no-content__block-bottom">
-              Здається, тут поки що нічого немає. Але, можливо, саме зараз
-              настав час знайти щось особливе?
+            <p className="no-content__block-bottom">
+              Якщо ви маєте цікаву ідею або готову виставку, ми будемо раді
+              представити її тут! Запрошуємо вас поділитися своєю пропозицією –
+              наша команда із задоволенням розгляне її та підтримає реалізацію
+              вашого проєкту.
             </p>
           )}
         </div>
