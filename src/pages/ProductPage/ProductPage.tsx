@@ -11,7 +11,7 @@ import { CreditCardSVG } from '../../components/Imgs/CreditCardSVG';
 import { PaymentsSVG } from '../../components/Imgs/PaymentsSVG';
 import { BoxSVG } from '../../components/Imgs/BoxSVG';
 import { WarehouseSVG } from '../../components/Imgs/WarehouseSVG';
-import { ProductSlider } from '../../components/Sliders/ProductSlider';
+import { ItemSlider } from '../../components/Sliders/ItemSlider';
 import { ProductsSlider } from '../../components/Sliders/ProductsSlider';
 import { useIsTablet } from '../../hooks/useMediaQuery';
 import { useDispatch, useSelector } from 'react-redux';
@@ -93,9 +93,9 @@ export const ProductPage = () => {
 
       <div className="product page__product">
         {isTablet && (
-          <h2 className="product-slider__header-title">{product.name[lang]}</h2>
+          <h2 className="item-slider__header-title">{product.name[lang]}</h2>
         )}
-        <ProductSlider
+        <ItemSlider
           title={{ ua: product.name.ua, eng: product.name.en }}
           imgs={product.imgs}
         />

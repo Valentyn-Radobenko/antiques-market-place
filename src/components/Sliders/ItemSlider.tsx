@@ -13,7 +13,7 @@ interface Props {
   imgs: string[];
 }
 
-export const ProductSlider: React.FC<Props> = ({ title, imgs }) => {
+export const ItemSlider: React.FC<Props> = ({ title, imgs }) => {
   // const { t } = useTranslation();
   // const language = useSelector((state: SavingState) => state.language.language);
 
@@ -25,20 +25,20 @@ export const ProductSlider: React.FC<Props> = ({ title, imgs }) => {
         sliderTitle={title.ua}
         slides={imgs}
         slidesPerView={1}
-        customClassName="product-slider"
+        customClassName="item-slider"
         autoplayOn={false}
         renderSlide={(slide) => {
           return (
             <div
               key={slide}
-              className="product-slider__slide"
+              className="item-slider__slide"
               onClick={() => {
                 setIsModalOpen(true);
               }}
             >
-              <FrameInspectSVG className="product-slider__slide-icon" />
+              <FrameInspectSVG className="item-slider__slide-icon" />
               <img
-                className="product-slider__slide-img"
+                className="item-slider__slide-img"
                 src={slide}
                 alt={slide}
               />
@@ -49,12 +49,12 @@ export const ProductSlider: React.FC<Props> = ({ title, imgs }) => {
       <ModalWindow
         openModal={isModalOpen}
         setOpenModal={setIsModalOpen}
-        visibility="product-slider__modal"
+        visibility="item-slider__modal"
         secondModal={false}
       >
-        <div className="product-slider__modal-content">
+        <div className="item-slider__modal-content">
           <button
-            className="product-slider__modal-close"
+            className="item-slider__modal-close"
             onClick={() => setIsModalOpen(false)}
           >
             <Close />
@@ -64,13 +64,13 @@ export const ProductSlider: React.FC<Props> = ({ title, imgs }) => {
             sliderTitle={title.ua}
             slides={imgs}
             slidesPerView={1}
-            customClassName="product-slider--modal"
+            customClassName="item-slider--modal"
             autoplayOn={false}
             renderSlide={(slide) => {
               return (
                 <div
                   key={slide}
-                  className="product-slider__slide product-slider--modal__slide"
+                  className="item-slider__slide item-slider--modal__slide"
                   onClick={() => {
                     setIsModalOpen(true);
                   }}
@@ -85,7 +85,7 @@ export const ProductSlider: React.FC<Props> = ({ title, imgs }) => {
                   >
                     <TransformComponent>
                       <img
-                        className="product-slider__slide-img product-slider--modal__slide-img"
+                        className="item-slider__slide-img item-slider--modal__slide-img"
                         src={slide}
                         alt={slide}
                       />

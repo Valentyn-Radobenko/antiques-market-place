@@ -23,7 +23,7 @@ export const ProductsSlider: React.FC = () => {
   return (
     <Slider<Product>
       sliderTitle={'Також вас може зацікавити'}
-      customClassName="products-slider"
+      customClassName="other-items-slider"
       slides={filteredProducts}
       slidesPerView={
         isMobile ? 2
@@ -35,23 +35,25 @@ export const ProductsSlider: React.FC = () => {
         <Link
           to={`/market/product/${slide.slug}`}
           key={slide.id}
-          className="slider__slide products-slider__slide"
+          className="slider__slide other-items-slider__slide"
         >
-          <p className="slider__slide-new products-slider__slide-new">Новий</p>
+          <p className="slider__slide-new other-items-slider__slide-new">
+            Новий
+          </p>
           <img
-            className="slider__slide-img products-slider__slide-img"
+            className="slider__slide-img other-items-slider__slide-img"
             src={slide.imgs[0]}
             alt={slide.name[lang]}
           />
-          <div className="slider__slide-content products-slider__slide-content">
-            <h3 className="slider__slide-title products-slider__slide-title">
+          <div className="slider__slide-content other-items-slider__slide-content">
+            <h3 className="slider__slide-title other-items-slider__slide-title">
               {slide.name[lang]}
             </h3>
-            <div className="slider__slide-info products-slider__slide-info">
-              <p className="slider__slide-price products-slider__slide-price">
+            <div className="slider__slide-info other-items-slider__slide-info">
+              <p className="slider__slide-price other-items-slider__slide-price">
                 {slide.price}
               </p>
-              <div className="slider__slide-icon products-slider__slide-icon"></div>
+              <div className="slider__slide-icon other-items-slider__slide-icon"></div>
             </div>
           </div>
         </Link>

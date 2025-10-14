@@ -30,18 +30,18 @@ export const OtherExhibitionsSlider: React.FC = () => {
   return (
     <Slider<Exhibition>
       sliderTitle={'Також вас може зацікавити'}
-      customClassName="products-slider"
+      customClassName="other-items-slider--exhibitions"
       slides={filteredExhibitions}
       slidesPerView={isTablet ? 1 : 3}
       renderSlide={(slide) => (
         <Link
           to={exhibitionLink(slide)}
           key={slide.id}
-          className="slider__slide"
+          className="slider__slide other-items-slider__slide--exhibitions"
         >
           <p className="slider__slide-new">Новий</p>
           <img
-            className="slider__slide-img"
+            className="slider__slide-img other-items-slider__slide-img--exhibitions"
             src={slide.image}
             alt={slide.title[lang]}
           />

@@ -12,6 +12,10 @@ import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
 import { CreateExhibition } from '../../components/CreateExhibition/CreateExhibition';
 import { useIsTablet } from '../../hooks/useMediaQuery';
 import { Dropdown } from '../../components/Dropdown/Dropdown';
+import { Close } from '../../components/Imgs/Close';
+import Slider from '../../components/Sliders/Slider';
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+import { FrameInspectSVG } from '../../components/Imgs/FrameInspectSVG';
 
 export const ExhibitionPage = () => {
   const { slug } = useParams();
@@ -20,6 +24,7 @@ export const ExhibitionPage = () => {
 
   const [content, setContent] = useState('');
   const [openAddModal, setOpenAddModal] = useState<boolean>(false);
+  const [isImgOpen, setIsImgOpen] = useState(false);
 
   const isTablet = useIsTablet();
 
@@ -159,11 +164,21 @@ export const ExhibitionPage = () => {
           <h2 className="exhibition__content-title">
             {exhibition.title[lang]}
           </h2>
-          <img
-            className="exhibition__content-img"
-            src={exhibition.image}
-            alt={exhibition.title[lang]}
-          />
+
+          <div
+            className="exhibition__content-img-wrapper"
+            onClick={() => {
+              setIsImgOpen(true);
+            }}
+          >
+            <FrameInspectSVG className="exhibition__content-img-icon" />
+            <img
+              className="exhibition__content-img"
+              src={exhibition.image}
+              alt={exhibition.title[lang]}
+            />
+          </div>
+
           <div
             className="exhibition__content-articles"
             dangerouslySetInnerHTML={{ __html: content }}
@@ -220,6 +235,58 @@ export const ExhibitionPage = () => {
         secondModal={false}
       >
         <CreateExhibition setOpenModal={setOpenAddModal} />
+      </ModalWindow>
+
+      <ModalWindow
+        openModal={isImgOpen}
+        setOpenModal={setIsImgOpen}
+        visibility="item-slider__modal"
+        secondModal={false}
+      >
+        <div className="item-slider__modal-content">
+          <button
+            className="item-slider__modal-close"
+            onClick={() => setIsImgOpen(false)}
+          >
+            <Close />
+          </button>
+
+          <Slider<string>
+            sliderTitle={exhibition.title[lang]}
+            slides={[exhibition.image]}
+            slidesPerView={1}
+            customClassName="item-slider--modal"
+            autoplayOn={false}
+            renderSlide={(slide) => {
+              return (
+                <div
+                  key={slide}
+                  className="item-slider__slide item-slider--modal__slide"
+                  onClick={() => {
+                    setIsImgOpen(true);
+                  }}
+                >
+                  <TransformWrapper
+                    doubleClick={{ mode: 'zoomIn' }}
+                    pinch={{ step: 0.1 }}
+                    wheel={{ step: 0.1 }}
+                    initialScale={1}
+                    minScale={1}
+                    maxScale={4}
+                  >
+                    <TransformComponent>
+                      <img
+                        className="item-slider__slide-img item-slider--modal__slide-img"
+                        src={slide}
+                        alt={slide}
+                      />
+                    </TransformComponent>
+                  </TransformWrapper>
+                </div>
+              );
+            }}
+          />
+        </div>
       </ModalWindow>
     </>
   );
