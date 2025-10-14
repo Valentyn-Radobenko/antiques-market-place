@@ -125,6 +125,15 @@
   &__dropdown {
     gap: 8px;
 
+    &-content {
+      max-height: 0;
+      overflow: hidden;
+
+      &--visible {
+        max-height: 1000px;
+      }
+    }
+
     &-button {
       display: flex;
       height: 40px;

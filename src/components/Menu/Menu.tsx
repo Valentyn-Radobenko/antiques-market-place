@@ -8,7 +8,7 @@ import { Auth } from '../Auth/Auth';
 import { setLanguage } from '../../store/slices/languageSlice';
 import i18n from '../../i18n/i18n';
 import { setIsMenuOn } from '../../store/slices/menuSlice';
-import { setAuthMode } from '../../store/slices/authModeSlice';
+// import { setAuthMode } from '../../store/slices/authModeSlice';
 import { Dropdown } from '../Dropdown/Dropdown';
 import { availableCurrencies } from '../../data/availableCurrencies';
 import { setCurrency } from '../../store/slices/currencySlice';
@@ -24,9 +24,9 @@ export const Menu = () => {
   };
   const authMode = useSelector((state: SavingState) => state.authMode.authMode);
   const currency = useSelector((state: SavingState) => state.currency.currency);
-  const isAuthenticated = useSelector(
-    (state: SavingState) => state.auth.isAuthenticated,
-  );
+  // const isAuthenticated = useSelector(
+  //   (state: SavingState) => state.auth.isAuthenticated,
+  // );
   const isMenuOn = useSelector((state: SavingState) => state.menu.isMenuOn);
 
   return (
@@ -147,17 +147,16 @@ export const Menu = () => {
               />
             </li>
             <li>
-              {isAuthenticated ?
-                <Link
-                  onClick={() => dispatch(setIsMenuOn(!isMenuOn))}
-                  to={'me'}
-                >
-                  <div className="menu__dropdown-button">
-                    <div className="menu__icon menu__icon--account--default"></div>
-                    <p className="menu__dropdown-text">Акаунт</p>
-                  </div>
-                </Link>
-              : <div className="menu__auth-buttons">
+              <Link
+                onClick={() => dispatch(setIsMenuOn(!isMenuOn))}
+                to={'me'}
+              >
+                <div className="menu__dropdown-button">
+                  <div className="menu__icon menu__icon--account--default"></div>
+                  <p className="menu__dropdown-text">Акаунт</p>
+                </div>
+              </Link>
+              {/* <div className="menu__auth-buttons">
                   <button
                     onClick={() => dispatch(setAuthMode('login'))}
                     className="menu__auth-button menu__auth-button--login"
@@ -170,8 +169,7 @@ export const Menu = () => {
                   >
                     Зареєструватись
                   </button>
-                </div>
-              }
+                </div> */}
             </li>
           </ul>
         </div>
