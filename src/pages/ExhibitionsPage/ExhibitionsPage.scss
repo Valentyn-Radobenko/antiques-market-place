@@ -167,30 +167,26 @@
       align-self: stretch;
 
       border-radius: 12px;
-      background: linear-gradient(
-        95deg,
-        #0d392c 26.29%,
-        #40916c 72.35%,
-        #95d5b2 95.39%
-      );
 
-      /* Button */
-      box-shadow: 0px 0px 8px 0px rgba(236, 255, 252, 0);
-      backdrop-filter: blur(25px);
+      @include primary-button;
 
       color: $gray-white;
 
       @include button-semibold;
 
-      @include on-phone {
-        position: absolute;
-        right: 0px;
-        top: -120px;
-      }
-
       &--exhibition {
         @include on-phone {
-          position: static;
+          position: relative;
+          right: auto;
+          top: auto;
+        }
+      }
+
+      &-wrapper {
+        @include on-phone {
+          position: absolute;
+          right: 0px;
+          top: -120px;
         }
       }
     }
