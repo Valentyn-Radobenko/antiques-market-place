@@ -33,7 +33,7 @@ export const NotFoundPage = () => {
           </div>
           <img
             className="no-content__img"
-            src="images/no-items.png"
+            src="images/404.png"
             alt="no-content"
           />
         </div>
