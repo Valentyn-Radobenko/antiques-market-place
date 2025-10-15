@@ -770,8 +770,8 @@
     gap: 8px;
 
     @include on-small-laptop {
-      width: 670px;
-      height: 716px;
+      width: 592px;
+      height: 638px;
     }
 
     @include on-tablet {
@@ -820,7 +820,7 @@
       width: 800px;
 
       @include on-small-laptop {
-        width: 670px;
+        width: 592px;
       }
 
       @include on-tablet {
@@ -852,8 +852,8 @@
       }
 
       @include on-small-laptop {
-        width: 670px;
-        height: 667px;
+        width: 592px;
+        height: 589px;
       }
 
       @include on-tablet {
@@ -872,8 +872,8 @@
         justify-self: auto;
 
         @include on-small-laptop {
-          width: 670px;
-          height: 670px;
+          width: 592px;
+          height: 592px;
         }
 
         @include on-tablet {
