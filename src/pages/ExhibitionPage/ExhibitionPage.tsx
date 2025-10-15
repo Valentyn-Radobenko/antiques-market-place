@@ -16,6 +16,7 @@ import { Close } from '../../components/Imgs/Close';
 import Slider from '../../components/Sliders/Slider';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import { FrameInspectSVG } from '../../components/Imgs/FrameInspectSVG';
+import { CreateExhibitionInfo } from '../../components/CreateExhibitionInfo/CreateExhibitionInfo';
 
 export const ExhibitionPage = () => {
   const { slug } = useParams();
@@ -27,6 +28,8 @@ export const ExhibitionPage = () => {
   const [isImgOpen, setIsImgOpen] = useState(false);
 
   const isTablet = useIsTablet();
+
+  const [isInfoOpen, setIsInfoOpen] = useState<boolean>(false);
 
   useEffect(() => {
     if (exhibition?.content[lang]) {
@@ -190,7 +193,10 @@ export const ExhibitionPage = () => {
               <h3 className="exhibitions__offer-title">
                 Запропонувати виставку
               </h3>
-              <div className="exhibitions__offer-icon"></div>
+              <div
+                onClick={() => setIsInfoOpen(true)}
+                className="exhibitions__offer-icon"
+              ></div>
             </div>
             <button
               onClick={() => setOpenAddModal(true)}
@@ -287,6 +293,15 @@ export const ExhibitionPage = () => {
             }}
           />
         </div>
+      </ModalWindow>
+
+      <ModalWindow
+        visibility={'profile-discussions__add-new-visibility'}
+        openModal={isInfoOpen}
+        setOpenModal={setIsInfoOpen}
+        secondModal={false}
+      >
+        <CreateExhibitionInfo setOpenModal={setIsInfoOpen} />
       </ModalWindow>
     </>
   );

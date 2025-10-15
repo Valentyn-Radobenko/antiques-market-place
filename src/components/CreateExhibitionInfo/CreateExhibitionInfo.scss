@@ -1,0 +1,458 @@
+.create-exhibition-info {
+  max-width: 670px;
+  // max-height: 95dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  background: $gray-white;
+  border-radius: 12px;
+  width: 100%;
+  // overflow: auto;
+
+  // &::-webkit-scrollbar {
+  //   display: none;
+  // }
+
+  @include on-tablet {
+    max-width: 640px;
+  }
+
+  &__top-bar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__info-svg {
+    color: $system-info;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    color: $gray-black;
+    @include h2-mobile-bold;
+    width: 100%;
+
+    @include on-phone {
+      @include h3-bold;
+    }
+  }
+
+  &__close-svg {
+    color: $additional-greenas;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    display: flex;
+    padding: 0 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+
+    &-text {
+      padding: 0 16px;
+
+      color: $gray-dark;
+
+      @include main-text;
+
+      &--bold {
+        @include button-bold;
+      }
+
+      &--green {
+        color: $additional-freshherb-elect;
+      }
+    }
+  }
+
+  &__conditions {
+    display: flex;
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+
+    border-radius: 12px;
+    background: $background-important;
+
+    &__title {
+      color: $additional-black-green;
+
+      @include h4-bold;
+    }
+
+    &-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      &-top {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      &-icon {
+        height: 24px;
+        width: 24px;
+
+        color: $gray-black;
+      }
+
+      &-title {
+        color: $gray-black;
+
+        @include button-bold;
+      }
+
+      &-text {
+        padding-inline: 32px;
+        color: $gray-dark;
+
+        @include main-text;
+      }
+    }
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__create-theme {
+    background: $user-notifications-gradient;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    height: 64px;
+    align-items: center;
+  }
+
+  &__add-theme {
+    color: $additional-black-green;
+    @include button-bold;
+    transition: all ease $effect-duration;
+
+    &.isActive {
+      color: $additional-freshherb-elect;
+    }
+  }
+
+  &__create-theme-title-list {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  &__add-theme-svg {
+    color: $gray-black;
+    cursor: pointer;
+    transition: all ease $effect-duration;
+    flex-shrink: 0;
+
+    &.isActive {
+      color: $additional-freshherb-elect;
+    }
+  }
+
+  &__chosen-themes {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  &__chosen-theme {
+    display: flex;
+    gap: 8px;
+    padding: 5px 8px;
+    @include tab-regular;
+    color: $gray-black;
+    background: $additional-white-green;
+    border-radius: 8px;
+    border: 1px; // доробити!!!
+  }
+
+  &__delete-theme {
+    color: $additional-black-green;
+    cursor: pointer;
+  }
+
+  &__themes-wrapper {
+    overflow: hidden;
+    transition: all ease $effect-duration;
+  }
+
+  &__themes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__theme {
+    background: $additional-white-green;
+    color: $gray-black;
+    @include tab-regular;
+    border-radius: 12px;
+    padding: 5px 8px;
+    cursor: pointer;
+  }
+
+  &__my-theme {
+    @include additional-button;
+    display: flex;
+    align-items: center;
+    padding: 4px 16px;
+    gap: 8px;
+    @include tab-regular;
+  }
+
+  &__create-new-theme {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    background: $background-plate;
+    border-radius: 12px;
+  }
+
+  &__input-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__input-title {
+    @include button-bold;
+    color: $gray-dark;
+  }
+
+  &__input {
+    height: 58px;
+    overflow: hidden;
+
+    @include input-style;
+
+    @include on-phone {
+      height: fit-content;
+      max-height: 84px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__buttons-list {
+    display: flex;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  &__textarea-svg-button {
+    cursor: pointer;
+    color: $gray-black;
+  }
+
+  &__error-text {
+    color: $gray-dis;
+    @include tab-regular;
+    opacity: 0;
+    transition: all ease $effect-duration;
+    align-self: center;
+    visibility: hidden;
+    align-self: flex-start;
+
+    &.isActive {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &__bottom-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    @include on-phone {
+      flex-direction: column;
+      gap: 16px;
+      justify-content: baseline;
+      align-items: baseline;
+    }
+  }
+
+  &__checkbox {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__anonim {
+    @include main-text;
+    color: $additional-greenas;
+  }
+
+  &__button {
+    @include primary-button;
+    @include main-text;
+    width: 213px;
+    padding-block: 16px;
+    @include on-phone {
+      width: 100%;
+    }
+
+    &-tooltip {
+      position: relative;
+
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
+
+      &-content {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        top: -30px;
+        z-index: 1;
+
+        display: inline-flex;
+        padding: 4px 8px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+
+        border-radius: 12px;
+        border: 1px solid $gray-stroke;
+        background: $gray-dark;
+
+        /* Floating card Double shadow */
+        box-shadow:
+          0 8px 20px 2px rgba(170, 182, 178, 0.2),
+          0 -4px 12px 0 rgba(255, 255, 255, 0) inset;
+        backdrop-filter: blur(12px);
+
+        transition: $effect-duration;
+
+        &-visible {
+          visibility: visible;
+          opacity: 1;
+        }
+
+        &-text {
+          color: $gray-white;
+
+          text-align: center;
+
+          @include tab-regular;
+        }
+      }
+    }
+  }
+
+  &__link-modal-vis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__link-modal {
+    border-radius: 12px;
+    padding: 24px;
+    width: 670px;
+    align-self: center;
+    justify-self: center;
+    background: $gray-white;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__link-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__link-text {
+    @include h3-bold;
+    color: $gray-black;
+  }
+
+  &__close-modal {
+    cursor: pointer;
+    color: $additional-greenas;
+  }
+
+  &__link-button {
+    width: 213px;
+    @include primary-button;
+    padding-block: 16px;
+    align-self: flex-end;
+    @include main-text;
+  }
+
+  &__anonim-svg {
+    cursor: pointer;
+  }
+
+  & .ProseMirror {
+    @include input-style;
+
+    & p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    & a {
+      color: $additional-freshherb-elect;
+      @include button-bold;
+      text-decoration: underline;
+    }
+
+    & p.is-empty::before {
+      content: attr(data-placeholder);
+      color: $gray-lite;
+      float: left;
+      @include main-text;
+      pointer-events: none;
+    }
+
+    & ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    & ol {
+      list-style-type: decimal;
+      padding-left: 20px;
+    }
+  }
+
+  &__rules-visibility {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+
+    @include on-phone {
+      align-items: end;
+    }
+  }
+}

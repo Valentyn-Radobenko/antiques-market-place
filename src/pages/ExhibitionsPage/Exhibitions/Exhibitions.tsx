@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { SavingState } from '../../../store/store';
 import { ModalWindow } from '../../../components/ModalWindow/ModalWindow';
 import { CreateExhibition } from '../../../components/CreateExhibition/CreateExhibition';
+import { CreateExhibitionInfo } from '../../../components/CreateExhibitionInfo/CreateExhibitionInfo';
 
 type Props = {
   exhibitions: Exhibition[];
@@ -44,6 +45,7 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
   const lang = useSelector((state: SavingState) => state.language.language);
 
   const [openAddModal, setOpenAddModal] = useState<boolean>(false);
+  const [isInfoOpen, setIsInfoOpen] = useState<boolean>(false);
 
   return (
     <>
@@ -70,7 +72,10 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
               <h3 className="exhibitions__offer-title">
                 Запропонувати виставку
               </h3>
-              <div className="exhibitions__offer-icon"></div>
+              <div
+                className="exhibitions__offer-icon"
+                onClick={() => setIsInfoOpen(true)}
+              ></div>
             </div>
             <button
               onClick={() => setOpenAddModal(true)}
@@ -139,6 +144,15 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
         secondModal={false}
       >
         <CreateExhibition setOpenModal={setOpenAddModal} />
+      </ModalWindow>
+
+      <ModalWindow
+        visibility={'profile-discussions__add-new-visibility'}
+        openModal={isInfoOpen}
+        setOpenModal={setIsInfoOpen}
+        secondModal={false}
+      >
+        <CreateExhibitionInfo setOpenModal={setIsInfoOpen} />
       </ModalWindow>
     </>
   );
