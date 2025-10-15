@@ -25,6 +25,7 @@ import { ModalWindow } from '../ModalWindow/ModalWindow';
 import { DiscussionRules } from '../DiscussionRules/DiscussionRules';
 import classNames from 'classnames';
 import { ModalEnding } from '../ModalEnding/ModalEnding';
+import { Tooltip } from '../Tooltip/Tooltip';
 
 const PHOTO_AMOUNT = 5;
 
@@ -97,11 +98,24 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
         ...prevForm,
         description: html,
       }));
+      console.log(form.description);
     });
     return () => {
       editor?.destroy();
     };
   }, [editor]);
+
+  const canSubmit: boolean = !!(
+    form.name.length > 0 &&
+    form.description.length > 0 &&
+    form.description !== '<p></p>'
+  );
+
+  const handleSubmit = () => {
+    if (canSubmit) {
+      setStep(2);
+    }
+  };
 
   return (
     <>
@@ -265,12 +279,38 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
             </div>
           </div>
           <div className="create-exhibition__bottom-bar">
-            <button
-              onClick={() => setStep(2)}
-              className="create-exhibition__button"
-            >
-              Відправити
-            </button>
+            {canSubmit && (
+              <button
+                onClick={handleSubmit}
+                className="create-exhibition__button"
+                disabled={!canSubmit}
+              >
+                Відправити
+              </button>
+            )}
+            {!canSubmit && (
+              <Tooltip
+                customTooltipClassName="create-exhibition__button-tooltip"
+                customContentClassName="create-exhibition__button-tooltip-content"
+                renderButton={() => (
+                  <button
+                    onClick={handleSubmit}
+                    className="create-exhibition__button"
+                    disabled={!canSubmit}
+                  >
+                    Відправити
+                  </button>
+                )}
+                renderContent={() => (
+                  <>
+                    <p className="shopping-cart__cta-info-text">
+                      Треба вказати тему і додатковий текст, щоб відправити
+                      виставку.
+                    </p>
+                  </>
+                )}
+              />
+            )}
           </div>
           <ModalWindow
             visibility="create-exhibition__rules-visibility"
