@@ -38,7 +38,7 @@ export const ExhibitionsNoContent = () => {
               <div className="no-content__block-top">
                 <p className="no-content__block-top-text">пум-пум-пум</p>
                 <h4 className="no-content__block-top-title">
-                  Команда DIKO вже працює над цією статтею
+                  Команда DIKO вже працює над цією виставкою
                 </h4>
               </div>
               {!isMobile && (

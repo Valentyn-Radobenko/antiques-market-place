@@ -82,6 +82,10 @@
     &--green {
       color: $additional-freshherb-elect;
     }
+
+    &--underline {
+      text-decoration: underline;
+    }
   }
 
   &__close {

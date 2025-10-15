@@ -3,6 +3,7 @@ import { useIsMobile } from '../../hooks/useMediaQuery';
 import { Dispatch, SetStateAction } from 'react';
 import { Close } from '../Imgs/Close';
 import { InfoSVG } from '../Imgs/InfoSVG';
+import { Link } from 'react-router-dom';
 
 type Props = {
   setOpenModal: Dispatch<SetStateAction<boolean>>;
@@ -15,7 +16,7 @@ export const ModalEnding: React.FC<Props> = ({ setOpenModal }) => {
       <div className="modal-ending__header">
         <h2 className="modal-ending__title modal-ending__title--end">
           Ваша пропозиція щодо виставки{' '}
-          <span className="modal-ending__title modal-ending__title--end modal-ending__title--green">
+          <span className="modal-ending__title modal-ending__title--end modal-ending__title--green modal-ending__title--underline">
             відправлена
           </span>
           !
@@ -36,7 +37,15 @@ export const ModalEnding: React.FC<Props> = ({ setOpenModal }) => {
         <p className="modal-ending__end-message-text">
           Очікуйте на відповідь.
           <br />
-          Повідомлення надійде в діалог «Виставки»
+          Повідомлення надійде в діалог&nbsp;
+          <Link
+            to={
+              '/me/messages?chat=%D0%9F%D1%80%D0%BE%D0%BF%D0%BE%D0%B7%D0%B8%D1%86%D1%96%D1%97+%D1%89%D0%BE%D0%B4%D0%BE+%D0%B2%D0%B8%D1%81%D1%82%D0%B0%D0%B2%D0%BE%D0%BA'
+            }
+            className="modal-ending__end-message-link"
+          >
+            «Виставки»
+          </Link>
         </p>
       </div>
     </div>
