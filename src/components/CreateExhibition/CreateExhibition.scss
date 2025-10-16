@@ -373,4 +373,13 @@
       align-items: end;
     }
   }
+
+  &__editor {
+    max-height: 20dvh;
+
+    & > .tiptap {
+      max-height: 20dvh;
+      overflow: auto;
+    }
+  }
 }

@@ -152,7 +152,7 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
                 </p>
                 <EditorContent
                   editor={editor}
-                  className="your-editor-class"
+                  className="create-exhibition__editor"
                 />
               </div>
               <PhotosList
