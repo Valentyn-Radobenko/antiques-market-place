@@ -33,6 +33,7 @@
       0px -4px 12px 0px rgba(255, 255, 255, 0) inset;
     backdrop-filter: blur(12px);
     overflow-x: auto;
+    background: $gray-white;
 
     &::-webkit-scrollbar {
       display: none;
@@ -45,40 +46,43 @@
     &-link {
       display: flex;
       min-width: max-content;
-      border-left: 1px solid $gray-stroke;
       justify-content: center;
       align-items: center;
+      border-left: 1px solid $gray-stroke;
       gap: 8px;
+      transition:
+        font-size ease $effect-duration,
+        font-weight ease $effect-duration,
+        background ease $effect-duration,
+        color ease $effect-duration;
       flex: 1 0 auto;
       align-self: stretch;
-      background: $background-page;
 
       &:first-child {
         border-radius: 12px 0px 0px 12px;
+        border-left: none;
       }
 
       &:last-child {
         border-radius: 0 12px 12px 0;
       }
       padding: 16px;
-      color: $gray-darks;
+      color: $gray-black;
 
       @include main-text;
 
-      @include hover(background-color, $additional-white-green);
-
-      &:active {
-        background: $background-page;
-        color: $additional-fresh-herb-icon;
-
-        @include button-semibold;
+      &:hover {
+        @include button-bold;
+        // background: $additional-white-green;
+        color: $additional-greenas;
       }
 
       &--active {
+        color: $additional-freshherb-elect;
+        @include button-bold;
+        // border-image: $primary;
+        // border-image-slice: 1;
         border-bottom: 1px solid #0d392c;
-        color: $additional-fresh-herb-icon;
-
-        @include button-semibold;
       }
     }
   }
