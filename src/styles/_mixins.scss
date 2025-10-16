@@ -32,25 +32,16 @@
 
 @mixin block-hover {
   border: 2px solid rgba($color: $additional-mint, $alpha: 0);
+  transition: $effect-duration;
 
-  @include hover(border, 2px solid $additional-mint);
+  @media (hover: hover) {
+    &:hover {
+      border-color: $additional-mint;
+    }
+  }
 
   &:active {
     border-color: #0d392c;
-  }
-}
-
-@mixin block-hover-desktop-only {
-  @media (hover: hover) {
-    @include block-hover;
-
-    @include on-tablet {
-      @include hover(border, 2px solid $additional-mint);
-
-      &:active {
-        border-color: #0d392c;
-      }
-    }
   }
 }
 
