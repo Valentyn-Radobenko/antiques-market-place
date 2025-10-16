@@ -67,6 +67,18 @@
   }
 }
 
+@mixin margins-outside-the-main() {
+  margin-inline: -40px;
+
+  @include on-tablet {
+    margin-inline: -24px;
+  }
+
+  @include on-phone {
+    margin-inline: -16px;
+  }
+}
+
 @mixin use-header-height($_property, $_addValue: 0, $_addValue2: 0) {
   #{$_property}: #{$desktop-header-height + $_addValue};
 

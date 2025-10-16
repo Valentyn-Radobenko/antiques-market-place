@@ -12,6 +12,20 @@
     }
   }
 
+  &__title {
+    color: $gray-black;
+
+    @include h1-bold;
+
+    @include on-tablet {
+      @include h2-bold;
+    }
+
+    @include on-phone {
+      @include h2-mobile-bold;
+    }
+  }
+
   &__heading {
     display: flex;
     flex-direction: column;
@@ -41,6 +55,10 @@
 
     @include on-tablet {
       height: 44px;
+      width: 100dvw;
+      border-radius: 0;
+
+      @include margins-outside-the-main;
     }
 
     &-link {
@@ -58,14 +76,27 @@
       flex: 1 0 auto;
       align-self: stretch;
 
+      @include on-tablet {
+        border: none;
+      }
+
       &:first-child {
         border-radius: 12px 0px 0px 12px;
         border-left: none;
+
+        @include on-tablet {
+          border-radius: 0;
+        }
       }
 
       &:last-child {
         border-radius: 0 12px 12px 0;
+
+        @include on-tablet {
+          border-radius: 0;
+        }
       }
+
       padding: 16px;
       color: $gray-black;
 

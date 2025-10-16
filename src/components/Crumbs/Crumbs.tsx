@@ -20,7 +20,7 @@ export const Crumbs: React.FC<Props> = ({
             <Link
               key={ind + link}
               to={link}
-              className="crumbs__link crumbs__link--inactive"
+              className={`crumbs__link crumbs__link--inactive ${customClassName}__link`}
             >
               {titles[ind]}
             </Link>
@@ -28,10 +28,14 @@ export const Crumbs: React.FC<Props> = ({
               <div className="crumbs__chevron"></div>
               <Link
                 to={link}
-                className={classNames('crumbs__link', {
-                  'crumbs__link--active': ind === links.length - 1,
-                  'crumbs__link--inactive': ind !== links.length - 1,
-                })}
+                className={classNames(
+                  'crumbs__link',
+                  `${customClassName}__link`,
+                  {
+                    'crumbs__link--active': ind === links.length - 1,
+                    'crumbs__link--inactive': ind !== links.length - 1,
+                  },
+                )}
               >
                 {titles[ind]}
               </Link>

@@ -24,9 +24,17 @@ export const ArticlesPage = () => {
         }
 
         <div className="articles__heading">
-          <h1 className="articles__title">
-            {article ? article.title[lang] : 'Статті'}
-          </h1>
+          {article && article.content[lang] && (
+            <h1 className="articles__title">{article.title[lang]}</h1>
+          )}
+
+          {article && !article.content[lang] && (
+            <h1 className="articles__title articles__title--no-content">
+              {article.title[lang]}
+            </h1>
+          )}
+
+          {!article && <h1 className="articles__title">Статті</h1>}
         </div>
       </div>
       <Outlet />
