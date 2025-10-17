@@ -1,6 +1,6 @@
 .create-exhibition-info {
   max-width: 670px;
-  // max-height: 95dvh;
+  max-height: 95dvh;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -8,11 +8,11 @@
   background: $gray-white;
   border-radius: 12px;
   width: 100%;
-  // overflow: auto;
+  overflow: auto;
 
-  // &::-webkit-scrollbar {
-  //   display: none;
-  // }
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @include on-tablet {
     max-width: 640px;
