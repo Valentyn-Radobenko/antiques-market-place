@@ -4,35 +4,29 @@ import { EclipseGoldGreenSVG } from '../../../../components/Imgs/EclipseGoldGree
 import classNames from 'classnames';
 import { PlusIMG } from '../../../../components/Imgs/PlusIMG';
 import { SendButtonSVG } from '../../../../components/Imgs/SendButtonSVG';
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { SendMessageReadedSVG } from '../../../../components/Imgs/SendMessageReadedSVG';
 import { EclipseGoldWhite } from '../../../../components/Imgs/EclipseGoldWhite';
 import { EclipseGeenGold } from '../../../../components/Imgs/EclipseGeenGold';
 import { EclipseMintGreen } from '../../../../components/Imgs/EclipseMintGreen';
 import { EclipseGreenWhite } from '../../../../components/Imgs/EclipseGreenWhite';
-
-type CurrentChatT = {
-  id: number;
-  sender: string;
-  messageTitle?: string;
-  messageText: string;
-  date: Date;
-  status: string;
-};
-
-type ChatT = {
-  id: number;
-  name: string;
-  sender: string;
-  canAnswer: boolean;
-  messages: CurrentChatT[];
-};
+import { ChatT } from '../../../../types/chatTypes';
+import { v4 as uuidv4 } from 'uuid';
 
 type Props = {
   setActiveMessages: Dispatch<SetStateAction<boolean>>;
   activeMessges: boolean;
   formatDate: (date: Date) => string;
-  activeChat: ChatT | undefined;
+  activeChat: ChatT;
+  setActiveChat: Dispatch<SetStateAction<ChatT>>;
+  PHOTO_AMOUNT: number;
 };
 
 export const ActiveChat: React.FC<Props> = ({
@@ -40,9 +34,18 @@ export const ActiveChat: React.FC<Props> = ({
   activeMessges,
   formatDate,
   activeChat,
+  PHOTO_AMOUNT,
+  setActiveChat,
 }) => {
   const [query, setQuery] = useState<string>('');
+  const [files, setFiles] = useState<File[]>([]);
   const ref = useRef<HTMLTextAreaElement>(null);
+
+  const addFiles = (event: ChangeEvent<HTMLInputElement>) => {
+    const newFiles = event.target.files ? Array.from(event.target.files) : [];
+    setFiles((prevFiles) => [...prevFiles, ...newFiles].slice(0, PHOTO_AMOUNT));
+    event.target.value = '';
+  };
 
   useEffect(() => {
     if (ref.current) {
@@ -50,6 +53,25 @@ export const ActiveChat: React.FC<Props> = ({
       ref.current.style.height = `${ref.current.scrollHeight}px`;
     }
   }, [query]);
+
+  const addMessage = () => {
+    const newMessages = [...activeChat.messages];
+
+    newMessages.push({
+      id: uuidv4(),
+      date: new Date(),
+      sender: 'client',
+      messageText: query,
+      status: 'read',
+    });
+    setActiveChat({ ...activeChat, messages: newMessages });
+    setQuery('');
+    setFiles([]);
+
+    //
+    console.log(files);
+    //
+  };
 
   if (activeChat) {
     return (
@@ -143,11 +165,15 @@ export const ActiveChat: React.FC<Props> = ({
               multiple
               id="chatInput"
               type="file"
+              onChange={addFiles}
               hidden
               disabled={!activeChat.canAnswer}
             />
           </div>
-          <button className="current-chat__send-button">
+          <button
+            onClick={addMessage}
+            className="current-chat__send-button"
+          >
             <SendButtonSVG />
           </button>
         </div>
