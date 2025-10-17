@@ -102,10 +102,12 @@
 
       @include main-text;
 
-      &:hover {
-        @include button-bold;
-        // background: $additional-white-green;
-        color: $additional-greenas;
+      @media (hover: hover) {
+        &:hover {
+          @include button-bold;
+          // background: $additional-white-green;
+          color: $additional-greenas;
+        }
       }
 
       &--active {
