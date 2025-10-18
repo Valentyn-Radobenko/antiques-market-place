@@ -18,6 +18,10 @@
     max-width: 640px;
   }
 
+  @include on-phone {
+    padding: 16px;
+  }
+
   &__top-bar {
     display: flex;
     gap: 8px;
@@ -54,6 +58,10 @@
     align-items: center;
     gap: 24px;
     align-self: stretch;
+
+    @include on-phone {
+      padding: 0;
+    }
 
     &-text {
       padding: 0 16px;
