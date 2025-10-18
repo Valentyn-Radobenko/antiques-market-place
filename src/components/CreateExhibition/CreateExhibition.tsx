@@ -24,7 +24,7 @@ import { PhotosList } from '../PhotosList/PhotosList';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
 import { DiscussionRules } from '../DiscussionRules/DiscussionRules';
 import classNames from 'classnames';
-import { ModalEnding } from '../ModalEnding/ModalEnding';
+import { ModalEndingExhibitions } from '../ModalEnding/ModalEndingExhibitions';
 import { Tooltip } from '../Tooltip/Tooltip';
 
 const PHOTO_AMOUNT = 5;
@@ -322,7 +322,7 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
           </ModalWindow>
         </div>
       )}
-      {step === 2 && <ModalEnding setOpenModal={setOpenModal} />}
+      {step === 2 && <ModalEndingExhibitions setOpenModal={setOpenModal} />}
     </>
   );
 };

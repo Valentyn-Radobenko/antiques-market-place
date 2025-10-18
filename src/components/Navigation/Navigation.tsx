@@ -122,7 +122,7 @@ export const Navigation: React.FC<Props> = ({ customClassName, mode }) => {
                   </Link>
                   <Link
                     onClick={() => dispatch(setIsMenuOn(false))}
-                    to={'club'}
+                    to={'club/discussions'}
                     className="menu__option"
                   >
                     Обговорення

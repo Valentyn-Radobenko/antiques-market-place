@@ -40,16 +40,16 @@ const pageNavigation = [
   'Мої  коментарі',
 ];
 
-const data: DiscussionData[] = [
+export const data: DiscussionData[] = [
   {
     id: '1',
     name: 'UI/UX дизайн у 2025 році',
     theme: ['Дизайн ', 'Технології', 'Флуд'],
     description:
       'Обговорюємо новітні тренди у сфері інтерфейсів та користувацького досвіду.',
-    date: new Date('2025-06-10'),
+    date: new Date('2025-06-10T10:02:00'),
     author: 'Марія Іванова',
-    images: ['/images/expertise/exp1.webp'],
+    images: ['./images/expertise/exp1.webp'],
     status: 'ongoin',
     comments: [
       {
@@ -83,7 +83,7 @@ const data: DiscussionData[] = [
     name: 'Майбутнє JavaScript: чи варто вивчати?',
     theme: ['Програмування'],
     description: 'Ділимося думками щодо розвитку мови та екосистеми JS.',
-    date: new Date('2025-06-12'),
+    date: new Date('2025-06-12T08:39:00'),
     author: 'Олексій Смирнов',
     status: 'ongoin',
 
@@ -104,11 +104,11 @@ const data: DiscussionData[] = [
     name: 'У що пограти в настільне цього літа?',
     theme: ['Хобі'],
     description: 'Рекомендуємо улюблені настільні ігри для вечорів з друзями.',
-    date: new Date('2025-06-13'),
+    date: new Date('2025-06-13T18:12:00'),
     author: 'Наталія Романенко',
     status: 'ongoin',
 
-    images: ['/images/expertise/exp1.webp', '/images/expertise/exp2.webp'],
+    images: ['./images/expertise/exp1.webp', './images/expertise/exp2.webp'],
     comments: [
       {
         id: 'c4',
@@ -126,7 +126,7 @@ const data: DiscussionData[] = [
     theme: ['Технології'],
     description:
       'Обговорюємо переваги й недоліки електросамокатів, авто та велосипедів.',
-    date: new Date('2025-06-14'),
+    date: new Date('2025-06-14T14:23:00'),
     author: 'Ігор Коваленко',
     images: [],
     status: 'ongoin',

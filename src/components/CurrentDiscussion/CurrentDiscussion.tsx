@@ -8,6 +8,7 @@ import { ThreeDotsSVG } from '../Imgs/ThreeDotsSVG';
 import { Bin } from '../Imgs/Bin';
 import { EditSVG } from '../Imgs/EditSVG';
 import { Comment, DiscussionData } from '../../types/discussionTypes';
+import { formatUkrDate } from '../../utils/formatUkrDate';
 
 type Props = {
   currentDiscussion: DiscussionData;
@@ -235,8 +236,8 @@ export const CurrentDiscussion: React.FC<Props> = ({
                 <div className="current-discussion__author">
                   <img
                     className="current-discussion__author-img"
-                    src="#"
-                    alt="#"
+                    src="./images/default-photo.webp"
+                    alt={currentDiscussion.author}
                   />
                   <p className="current-discussion__author-name">
                     {currentDiscussion.author}
@@ -257,7 +258,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
                 {currentDiscussion.description}
               </p>
               <p className="current-discussion__date">
-                {currentDiscussion.date.toString()}
+                {formatUkrDate(currentDiscussion.date)}
               </p>
             </div>
           </div>
@@ -282,8 +283,8 @@ export const CurrentDiscussion: React.FC<Props> = ({
                     <div className="current-discussion__author">
                       <img
                         className="current-discussion__author-img"
-                        src="#"
-                        alt="#"
+                        src="./images/default-photo.webp"
+                        alt={comment.userName}
                       />
                       <p className="current-discussion__author-name">
                         {comment.userName}
@@ -306,8 +307,8 @@ export const CurrentDiscussion: React.FC<Props> = ({
                         <div className="current-discussion__author">
                           <img
                             className="current-discussion__author-img"
-                            src="#"
-                            alt="#"
+                            src="./images/default-photo.webp"
+                            alt={repliedComment.userName}
                           />
                           <p className="current-discussion__author-name">
                             {repliedComment.userName}

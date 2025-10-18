@@ -32,6 +32,7 @@ import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import { ArticlePage } from './pages/ArticlePage/ArticlePage';
 import { ArticlesNoContent } from './pages/ArticlesPage/ArticlesNoContent';
 import { Articles } from './pages/ArticlesPage/Articles/Articles';
+import { DiscussionsPage } from './pages/DiscussionsPage/DiscussionsPage';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <StrictMode>
@@ -126,6 +127,12 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
                 element={<ArticlesNoContent />}
               />
             </Route>
+
+            <Route
+              path="club/discussions"
+              element={<DiscussionsPage />}
+            />
+
             <Route
               path="expertise"
               element={<ExpertisePage />}

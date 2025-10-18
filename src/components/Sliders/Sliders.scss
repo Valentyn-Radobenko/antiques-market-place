@@ -300,7 +300,6 @@
   &__discussion {
     display: flex !important;
     width: 426px;
-    height: 186px;
     padding: 24px;
     flex-direction: column;
     align-items: flex-start;
@@ -325,9 +324,9 @@
 
     &-top {
       display: flex;
-      width: 100%;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
       flex: 1 0 0;
     }
 
@@ -341,45 +340,46 @@
         display: flex;
         width: 24px;
         height: 24px;
+        border-radius: 24px;
         justify-content: center;
         align-items: center;
       }
 
       &-name {
         color: $gray-black;
-        /* Label text - Bolt Mulish */
-        font-family: Mulish;
-        font-size: 15px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 160%; /* 24px */
+
+        @include label-bold;
+      }
+    }
+
+    &-topics {
+      display: flex;
+      height: 30px;
+      align-items: flex-start;
+      gap: 8px;
+      align-self: stretch;
+
+      overflow-x: auto;
+
+      &::-webkit-scrollbar {
+        display: none;
       }
     }
 
     &-topic {
-      width: 104px;
       display: flex;
       padding: 4px 8px;
       justify-content: center;
       align-items: center;
       gap: 8px;
+
       border-radius: 8px;
-      border-radius: 12px;
       background: $additional-white-green;
 
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1;
-
-      overflow: hidden;
       color: var(--Gray-Black, #061814);
       text-overflow: ellipsis;
 
       @include tab-regular;
-
-      @include on-phone {
-        width: 73px;
-      }
     }
 
     &-middle {

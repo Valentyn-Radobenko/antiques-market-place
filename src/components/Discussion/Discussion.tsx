@@ -8,6 +8,7 @@ import { ThreeDotsSVG } from '../Imgs/ThreeDotsSVG';
 import { DiscussionData } from '../../types/discussionTypes';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
 import { CurrentDiscussion } from '../CurrentDiscussion/CurrentDiscussion';
+import { formatUkrDate } from '../../utils/formatUkrDate';
 
 type Props = {
   discussion: DiscussionData;
@@ -71,8 +72,8 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
             <div className="discussion__creator">
               <img
                 className="discussion__img"
-                src="#"
-                alt="#"
+                src="./images/default-photo.webp"
+                alt={currentDiscussion.author}
               />
               <p className="discussion__creator-name">
                 {currentDiscussion.author}
@@ -97,8 +98,9 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
         <div className="discussion__info">
           <p className="discussion__text">{currentDiscussion.description}</p>
           <div className="discussion__date">
-            <p className="discussion__day-time">day</p>
-            <p className="discussion__day-time">time</p>
+            <p className="discussion__day-time">
+              {formatUkrDate(discussion.date)}
+            </p>
             {discussion.status === 'ended' && (
               <p className="discussion__status">{discussion.status}</p>
             )}

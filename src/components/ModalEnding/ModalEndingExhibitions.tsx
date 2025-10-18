@@ -9,7 +9,7 @@ type Props = {
   setOpenModal: Dispatch<SetStateAction<boolean>>;
 };
 
-export const ModalEnding: React.FC<Props> = ({ setOpenModal }) => {
+export const ModalEndingExhibitions: React.FC<Props> = ({ setOpenModal }) => {
   const isPhone = useIsMobile();
   return (
     <div className="modal-ending">

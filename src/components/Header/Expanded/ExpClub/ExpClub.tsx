@@ -28,7 +28,7 @@ export const ExpClub: React.FC = () => {
           Статті
         </Link>
         <Link
-          to={'club'}
+          to={'club/discussions'}
           className="exp-club__button"
         >
           Обговорення

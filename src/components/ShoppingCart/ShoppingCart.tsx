@@ -1936,8 +1936,9 @@ export const ShoppingCart: React.FC = () => {
             <Link
               className="shopping-cart__end-message-link"
               to={'/me/orders'}
+              onClick={() => dispatch(setIsCartOpen(false))}
             >
-              “Мої&nbsp;покупки”
+              “Мої&nbsp;замовлення”
             </Link>
           </p>
         </div>
