@@ -12,6 +12,10 @@
     max-width: 640px;
   }
 
+  @include on-phone {
+    padding: 16px;
+  }
+
   &__top-bar {
     display: flex;
     gap: 8px;
