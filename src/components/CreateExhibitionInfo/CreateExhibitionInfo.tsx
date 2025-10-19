@@ -7,8 +7,6 @@ import Placeholder from '@tiptap/extension-placeholder';
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
 import Link from '@tiptap/extension-link';
-import { ModalWindow } from '../ModalWindow/ModalWindow';
-import { DiscussionRules } from '../DiscussionRules/DiscussionRules';
 import { HandsSVG } from '../Imgs/HandsSVG';
 import { GalleryThumbnailSVG } from '../Imgs/GalleryThumbnailSVG';
 
@@ -25,7 +23,6 @@ type Props = {
 };
 
 export const CreateExhibitionInfo: React.FC<Props> = ({ setOpenModal }) => {
-  const [openRules, setOpenRules] = useState<boolean>(false);
   const [form, setForm] = useState<Form>({
     name: '',
     description: '',
@@ -66,10 +63,7 @@ export const CreateExhibitionInfo: React.FC<Props> = ({ setOpenModal }) => {
   return (
     <div className="create-exhibition-info">
       <div className="create-exhibition-info__top-bar">
-        <Info
-          onClick={() => setOpenRules(true)}
-          className="create-exhibition-info__info-svg"
-        />
+        <Info className="create-exhibition-info__info-svg" />
         <h2 className="create-exhibition-info__title">
           Запропонувати виставку
         </h2>
@@ -133,14 +127,6 @@ export const CreateExhibitionInfo: React.FC<Props> = ({ setOpenModal }) => {
           для уточнення умов співпраці та розміщення на платформі.
         </p>
       </div>
-      <ModalWindow
-        visibility="create-exhibition-info__rules-visibility"
-        openModal={openRules}
-        setOpenModal={setOpenRules}
-        secondModal={true}
-      >
-        <DiscussionRules setOpenModal={setOpenRules} />
-      </ModalWindow>
     </div>
   );
 };

@@ -22,10 +22,10 @@ import { TextLinkSVG } from '../Imgs/TextLinkSVG';
 import { AddImgsPlus } from '../Imgs/AddImgsPlus';
 import { PhotosList } from '../PhotosList/PhotosList';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
-import { DiscussionRules } from '../DiscussionRules/DiscussionRules';
 import classNames from 'classnames';
 import { ModalEndingExhibitions } from '../ModalEnding/ModalEndingExhibitions';
 import { Tooltip } from '../Tooltip/Tooltip';
+import { CreateExhibitionInfo } from '../CreateExhibitionInfo/CreateExhibitionInfo';
 
 const PHOTO_AMOUNT = 5;
 
@@ -318,7 +318,7 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
             setOpenModal={setOpenRules}
             secondModal={true}
           >
-            <DiscussionRules setOpenModal={setOpenRules} />
+            <CreateExhibitionInfo setOpenModal={setOpenRules} />
           </ModalWindow>
         </div>
       )}

@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, Dispatch, SetStateAction } from 'react';
 import { Arrow } from '../Imgs/Arrow';
 import { Close } from '../Imgs/Close';
-import { Info } from '../Imgs/Info';
 import classNames from 'classnames';
 import SimpleBar from 'simplebar-react';
 import { SettingsSVG } from '../Imgs/SettingsSVG';
@@ -98,8 +97,9 @@ export const DiscussionRules: React.FC<Props> = ({ setOpenModal }) => {
   return (
     <div className="discussion-rules">
       <div className="discussion-rules__top-bar">
-        <Info className="discussion-rules__info-icon" />
-        <h2 className="discussion-rules__title">Правила спільноти "DIKO"</h2>
+        <h2 className="discussion-rules__title">
+          Правила обговорень спільноти "DIKO"
+        </h2>
         <Close
           onClick={() => setOpenModal(false)}
           className="discussion-rules__close-icon"
