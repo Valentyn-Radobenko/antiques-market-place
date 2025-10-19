@@ -9,17 +9,20 @@ import { Bin } from '../Imgs/Bin';
 import { EditSVG } from '../Imgs/EditSVG';
 import { Comment, DiscussionData } from '../../types/discussionTypes';
 import { formatUkrDate } from '../../utils/formatUkrDate';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   currentDiscussion: DiscussionData;
   setOpenDiscussion: Dispatch<SetStateAction<boolean>>;
   setCurrentDiscussion: Dispatch<SetStateAction<DiscussionData>>;
+  mode?: 'account' | 'club';
 };
 
 export const CurrentDiscussion: React.FC<Props> = ({
   setOpenDiscussion,
   currentDiscussion,
   setCurrentDiscussion,
+  mode = 'account',
 }) => {
   const currentUser = {
     id: '100',
@@ -34,6 +37,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
   const [changeComment, setChangeComment] = useState<string>('');
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   const imagesLength = currentDiscussion.images.length;
 
@@ -178,7 +182,16 @@ export const CurrentDiscussion: React.FC<Props> = ({
               </h2>
               <Close
                 className="current-discussion__close"
-                onClick={() => setOpenDiscussion(false)}
+                onClick={() => {
+                  setOpenDiscussion(false);
+                  if (mode === 'account') {
+                    navigate('/me/discussions');
+                  }
+
+                  if (mode === 'club') {
+                    navigate('/club/discussions');
+                  }
+                }}
               />
             </div>
             {currentDiscussion.images.length > 0 && (
@@ -324,7 +337,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
                     </p>
                     <div className="current-discussion__date-answer">
                       <p className="current-discussion__comment-date">
-                        {comment.date.toString().slice(0, 10)}
+                        {formatUkrDate(comment.date)}
                       </p>
                       <button
                         onClick={() => {

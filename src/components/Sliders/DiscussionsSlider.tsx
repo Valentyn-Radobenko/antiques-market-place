@@ -5,12 +5,9 @@ import { DiscussionData } from '../../types/discussionTypes';
 import Slider from './Slider';
 import { useIsMobile, useIsTablet } from '../../hooks/useMediaQuery';
 import commentImg from '/images/sliders/comments.png';
-import { data } from '../../pages/ProfilePage/Discussions/Discussions';
+import { discussions } from '../../data/discussions';
 import { formatUkrDate } from '../../utils/formatUkrDate';
 import { Link } from 'react-router-dom';
-import { ModalWindow } from '../ModalWindow/ModalWindow';
-import { useState } from 'react';
-import { CurrentDiscussion } from '../CurrentDiscussion/CurrentDiscussion';
 
 export const DiscussionsSlider: React.FC = () => {
   const { t } = useTranslation();
@@ -18,13 +15,6 @@ export const DiscussionsSlider: React.FC = () => {
 
   const isTablet = useIsTablet();
   const isMobile = useIsMobile();
-
-  const discussions = data;
-
-  const [currentDiscussion, setCurrentDiscussion] = useState<DiscussionData>(
-    discussions[0],
-  );
-  const [openDiscussion, setOpenDiscussion] = useState<boolean>(false);
 
   return (
     <>
@@ -41,7 +31,8 @@ export const DiscussionsSlider: React.FC = () => {
         slides={discussions}
         slidesPerView={isTablet ? 1 : 3}
         renderSlide={(slide) => (
-          <div
+          <Link
+            to={`/club/discussions/${slide.slug}`}
             key={slide.id}
             className="slider__discussion"
           >
@@ -78,27 +69,11 @@ export const DiscussionsSlider: React.FC = () => {
                   {slide.comments.length}
                 </div>
               </div>
-              <Link
-                to={'/club/discussions'}
-                onClick={() => setCurrentDiscussion(slide)}
-                className="slider__discussion-icon-forward"
-              ></Link>
+              <div className="slider__discussion-icon-forward"></div>
             </div>
-          </div>
+          </Link>
         )}
       />
-      <ModalWindow
-        visibility={'discussion__current-disussion'}
-        openModal={openDiscussion}
-        setOpenModal={setOpenDiscussion}
-        secondModal={false}
-      >
-        <CurrentDiscussion
-          setCurrentDiscussion={setCurrentDiscussion}
-          setOpenDiscussion={setOpenDiscussion}
-          currentDiscussion={currentDiscussion}
-        />
-      </ModalWindow>
     </>
   );
 };

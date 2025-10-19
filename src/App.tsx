@@ -49,7 +49,7 @@ export const App: React.FC = () => {
       <Footer />
       <ModalWindow
         openModal={isCartOpen}
-        isCart={true}
+        mode="cart"
         visibility="shopping-cart__modal"
         secondModal={false}
       >

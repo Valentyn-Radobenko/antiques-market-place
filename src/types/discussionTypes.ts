@@ -9,6 +9,7 @@ export type Comment = {
 
 export type DiscussionData = {
   id: string;
+  slug: string;
   name: string;
   theme: string[];
   description: string;
@@ -16,5 +17,5 @@ export type DiscussionData = {
   author: string;
   images: string[];
   comments: Comment[];
-  status: 'ongoin' | 'ended';
+  status: 'ongoing' | 'ended';
 };

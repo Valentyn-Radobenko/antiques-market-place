@@ -4,13 +4,14 @@ import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { setIsCartOpen } from '../../store/slices/shoppingCartSlice';
+import { useNavigate } from 'react-router-dom';
 type Props = {
   children: ReactNode;
   openModal: boolean;
   setOpenModal?: Dispatch<SetStateAction<boolean>>;
   visibility?: string;
   secondModal: boolean;
-  isCart?: boolean;
+  mode?: 'standard' | 'account' | 'club' | 'cart';
 };
 
 export const ModalWindow: React.FC<Props> = ({
@@ -19,7 +20,7 @@ export const ModalWindow: React.FC<Props> = ({
   children,
   openModal,
   setOpenModal,
-  isCart = false,
+  mode = 'standard',
 }) => {
   useEffect(() => {
     if (openModal) {
@@ -30,6 +31,27 @@ export const ModalWindow: React.FC<Props> = ({
   }, [openModal]);
 
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+
+  const handleOnClick = () => {
+    if (mode === 'cart') {
+      dispatch(setIsCartOpen(false));
+    }
+
+    if (mode === 'club' && setOpenModal) {
+      navigate('/club/discussions');
+      setOpenModal(false);
+    }
+
+    if (mode === 'account' && setOpenModal) {
+      navigate('/me/discussions');
+      setOpenModal(false);
+    }
+
+    if (mode !== 'cart' && setOpenModal) {
+      setOpenModal(false);
+    }
+  };
 
   return ReactDOM.createPortal(
     <div
@@ -42,11 +64,7 @@ export const ModalWindow: React.FC<Props> = ({
         className={classNames('modal__background', {
           secondModal: secondModal,
         })}
-        onClick={() =>
-          isCart ?
-            dispatch(setIsCartOpen(false))
-          : setOpenModal && setOpenModal(false)
-        }
+        onClick={handleOnClick}
       />
     </div>,
     document.body,

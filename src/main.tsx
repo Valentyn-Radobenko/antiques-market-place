@@ -33,6 +33,7 @@ import { ArticlePage } from './pages/ArticlePage/ArticlePage';
 import { ArticlesNoContent } from './pages/ArticlesPage/ArticlesNoContent';
 import { Articles } from './pages/ArticlesPage/Articles/Articles';
 import { DiscussionsPage } from './pages/DiscussionsPage/DiscussionsPage';
+import { DiscussionPage } from './pages/DiscussionPage/DiscussionPage';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <StrictMode>
@@ -131,7 +132,12 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
             <Route
               path="club/discussions"
               element={<DiscussionsPage />}
-            />
+            >
+              <Route
+                path=":slug"
+                element={<DiscussionPage mode="club" />}
+              />
+            </Route>
 
             <Route
               path="expertise"
@@ -157,7 +163,12 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
                 <Route
                   path="discussions"
                   element={<Discussions />}
-                />
+                >
+                  <Route
+                    path=":slug"
+                    element={<DiscussionPage />}
+                  />
+                </Route>
                 <Route
                   path="messages"
                   element={<Messages />}

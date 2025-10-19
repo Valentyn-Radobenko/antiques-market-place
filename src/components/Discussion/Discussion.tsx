@@ -6,9 +6,8 @@ import { SecuritySVG } from '../Imgs/SecuritySVG';
 import classNames from 'classnames';
 import { ThreeDotsSVG } from '../Imgs/ThreeDotsSVG';
 import { DiscussionData } from '../../types/discussionTypes';
-import { ModalWindow } from '../ModalWindow/ModalWindow';
-import { CurrentDiscussion } from '../CurrentDiscussion/CurrentDiscussion';
 import { formatUkrDate } from '../../utils/formatUkrDate';
+import { Link } from 'react-router-dom';
 
 type Props = {
   discussion: DiscussionData;
@@ -16,20 +15,13 @@ type Props = {
 };
 
 export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
-  const [currentDiscussion, setCurrentDiscussion] =
-    useState<DiscussionData>(discussion);
   const [openActions, setOpenActions] = useState<boolean>(false);
-  const [openDiscussion, setOpenDiscussion] = useState<boolean>(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const startTimer = () => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-    }
-
+    if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
       setOpenActions(false);
-
       timerRef.current = null;
     }, 5000);
   };
@@ -42,11 +34,8 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
   };
 
   useEffect(() => {
-    if (openActions) {
-      startTimer();
-    } else {
-      resetTimer();
-    }
+    if (openActions) startTimer();
+    else resetTimer();
   }, [openActions]);
 
   const handleDeleteDiscussion = (discussionId: string) => {
@@ -54,108 +43,94 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
   };
 
   const handleEndDiscussion = (discussionId: string) => {
-    const updatedDiscussion: DiscussionData = {
-      ...discussion,
-      status: 'ended',
-    };
     setDiscussions((prev) =>
-      prev.map((a) => (a.id === discussionId ? updatedDiscussion : a)),
+      prev.map((a) => (a.id === discussionId ? { ...a, status: 'ended' } : a)),
     );
     setOpenActions(false);
   };
 
   return (
-    <>
-      <div className="discussion">
-        <div className="discussion__top-bar">
-          <div className="discussion__name-theme">
-            <div className="discussion__creator">
-              <img
-                className="discussion__img"
-                src="./images/default-photo.webp"
-                alt={currentDiscussion.author}
-              />
-              <p className="discussion__creator-name">
-                {currentDiscussion.author}
-              </p>
-            </div>
-            <div className="discussion__themes">
-              {currentDiscussion.theme.map((theme) => (
-                <p
-                  key={theme}
-                  className="discussion__theme"
-                >
-                  {theme}
-                </p>
-              ))}
-            </div>
-          </div>
-          <ThreeDotsSVG
-            onClick={() => setOpenActions(true)}
-            className="discussion__actions"
-          />
-        </div>
-        <div className="discussion__info">
-          <p className="discussion__text">{currentDiscussion.description}</p>
-          <div className="discussion__date">
-            <p className="discussion__day-time">
-              {formatUkrDate(discussion.date)}
-            </p>
-            {discussion.status === 'ended' && (
-              <p className="discussion__status">{discussion.status}</p>
-            )}
-          </div>
-        </div>
-        <div className="discussion__bottom-bar">
-          <div className="discussion__messages">
-            <DiscussionStatusSVG
-              value="default"
-              className="discussion__messages-svg"
+    <Link
+      to={discussion.slug}
+      className="discussion"
+    >
+      <div className="discussion__top-bar">
+        <div className="discussion__name-theme">
+          <div className="discussion__creator">
+            <img
+              className="discussion__img"
+              src="./images/default-photo.webp"
+              alt={discussion.author}
             />
-            <p className="discussion__messages-amount">
-              {currentDiscussion.comments.length}
-            </p>
+            <p className="discussion__creator-name">{discussion.author}</p>
           </div>
-          <ArrowTale
-            onClick={() => {
-              setOpenDiscussion(true);
-            }}
-            className="discussion__arrow"
+
+          <div className="discussion__themes">
+            {discussion.theme.map((theme) => (
+              <p
+                key={theme}
+                className="discussion__theme"
+              >
+                {theme}
+              </p>
+            ))}
+          </div>
+        </div>
+
+        <ThreeDotsSVG
+          onClick={() => setOpenActions((prev) => !prev)}
+          className="discussion__actions"
+        />
+      </div>
+
+      <Link
+        to={discussion.slug}
+        className="discussion__info"
+      >
+        <p className="discussion__text">{discussion.description}</p>
+        <div className="discussion__date">
+          <p className="discussion__day-time">
+            {formatUkrDate(discussion.date)}
+          </p>
+          {discussion.status === 'ended' && (
+            <p className="discussion__status">{discussion.status}</p>
+          )}
+        </div>
+      </Link>
+
+      <div className="discussion__bottom-bar">
+        <div className="discussion__messages">
+          <DiscussionStatusSVG
+            value="default"
+            className="discussion__messages-svg"
           />
+          <p className="discussion__messages-amount">
+            {discussion.comments.length}
+          </p>
+        </div>
+        <ArrowTale className="discussion__arrow" />
+      </div>
+
+      <div
+        className={classNames('discussion__action-list', {
+          isActive: openActions,
+        })}
+      >
+        <div
+          onClick={() => handleEndDiscussion(discussion.id)}
+          className="discussion__action"
+        >
+          <SecuritySVG className="discussion__action-svg" />
+          <p className="discussion__action-text">Завершити обговорення</p>
         </div>
         <div
-          className={classNames('discussion__action-list', {
-            isActive: openActions,
-          })}
+          onClick={() => handleDeleteDiscussion(discussion.id)}
+          className="discussion__action"
         >
-          <div
-            onClick={() => handleEndDiscussion(currentDiscussion.id)}
-            className="discussion__action"
-          >
-            <SecuritySVG className="discussion__action-svg" />
-            <p className="discussion__action-text">Завершити обговорення</p>
-          </div>
-          <div
-            onClick={() => handleDeleteDiscussion(currentDiscussion.id)}
-            className="discussion__action"
-          >
-            <Bin className="discussion__action-svg" />
-            <p className="discussion__action-text">Видалити</p>
-          </div>
+          <Bin className="discussion__action-svg" />
+          <p className="discussion__action-text">Видалити</p>
         </div>
       </div>
-      <ModalWindow
-        visibility={'discussion__current-disussion'}
-        openModal={openDiscussion}
-        setOpenModal={setOpenDiscussion}
-        secondModal={false}
-      >
-        <CurrentDiscussion
-          setCurrentDiscussion={setCurrentDiscussion}
-          setOpenDiscussion={setOpenDiscussion}
-          currentDiscussion={currentDiscussion}
-        />
-      </ModalWindow>
-    </>
+    </Link>
   );
 };

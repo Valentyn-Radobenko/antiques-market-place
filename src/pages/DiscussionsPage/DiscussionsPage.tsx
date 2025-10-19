@@ -1,26 +1,18 @@
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { Crumbs } from '../../components/Crumbs/Crumbs';
 import { FacebookLogoSVG } from '../../components/Imgs/FacebookLogoSVG';
 import { MailSVG } from '../../components/Imgs/MailSVG';
 import { TelegramLogoSVG } from '../../components/Imgs/TelegramLogoSVG';
-// import discussions from '../../data/discussions.json';
-// import { useSelector } from 'react-redux';
-// import { SavingState } from '../../store/store';
 import { useState } from 'react';
 import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
 import { useIsTablet } from '../../hooks/useMediaQuery';
 import { CreateDiscussion } from '../../components/CreateDiscussion/CreateDiscussion';
 import { DiscussionRules } from '../../components/DiscussionRules/DiscussionRules';
-import { data } from '../ProfilePage/Discussions/Discussions';
+import { discussions as data } from '../../data/discussions';
 import { DiscussionData } from '../../types/discussionTypes';
 import { Discussion } from '../../components/Discussion/Discussion';
 
 export const DiscussionsPage = () => {
-  // const { slug } = useParams();
-  // const discussions = discussions.find((p) => p.slug === slug);
-  // const lang = useSelector((state: SavingState) => state.language.language);
-
-  // const [content, setContent] = useState('');
   const [openAddModal, setOpenAddModal] = useState<boolean>(false);
   const [isInfoOpen, setIsInfoOpen] = useState<boolean>(false);
 
@@ -28,21 +20,9 @@ export const DiscussionsPage = () => {
 
   const [discussions, setDiscussions] = useState<DiscussionData[]>(data);
 
-  // useEffect(() => {
-  //   if (discussions?.content[lang]) {
-  //     fetch(discussions.content[lang])
-  //       .then((res) => res.text())
-  //       .then(setContent)
-  //       .catch(console.error);
-  //   }
-  // }, [discussions, lang]);
-
-  // if (!discussions) {
-  //   return <></>;
-  // }
-
   return (
     <>
+      <Outlet />
       <div className="discussions__nav-bar">
         <Crumbs
           customClassName="discussions__crumbs"
