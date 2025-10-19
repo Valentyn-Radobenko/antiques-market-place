@@ -5,7 +5,7 @@ export type CurrentChatT = {
   files?: File[];
   messageText: string;
   date: Date;
-  status: string;
+  status: 'read' | 'unread';
 };
 
 export type ChatT = {

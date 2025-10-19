@@ -183,8 +183,7 @@ export const Messages = () => {
       testMessages.find((a) => a.name === chatName) || testMessages[0],
     );
   }, [chatName]);
-  console.log(testMessages.find((a) => a.name === chatName));
-  console.log(activeChat);
+
   return (
     <div className="profile-page__section">
       <div className="profile-page__section-title onDescktop">
