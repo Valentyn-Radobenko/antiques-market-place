@@ -4,35 +4,31 @@ import { EclipseGoldGreenSVG } from '../../../../components/Imgs/EclipseGoldGree
 import classNames from 'classnames';
 import { PlusIMG } from '../../../../components/Imgs/PlusIMG';
 import { SendButtonSVG } from '../../../../components/Imgs/SendButtonSVG';
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { SendMessageReadedSVG } from '../../../../components/Imgs/SendMessageReadedSVG';
 import { EclipseGoldWhite } from '../../../../components/Imgs/EclipseGoldWhite';
 import { EclipseGeenGold } from '../../../../components/Imgs/EclipseGeenGold';
 import { EclipseMintGreen } from '../../../../components/Imgs/EclipseMintGreen';
 import { EclipseGreenWhite } from '../../../../components/Imgs/EclipseGreenWhite';
-
-type CurrentChatT = {
-  id: number;
-  sender: string;
-  messageTitle?: string;
-  messageText: string;
-  date: Date;
-  status: string;
-};
-
-type ChatT = {
-  id: number;
-  name: string;
-  sender: string;
-  canAnswer: boolean;
-  messages: CurrentChatT[];
-};
+import { ChatT } from '../../../../types/chatTypes';
+import { v4 as uuidv4 } from 'uuid';
+import { PhotosList } from '../../../../components/PhotosList/PhotosList';
+import { FrameInspectSVG } from '../../../../components/Imgs/FrameInspectSVG';
 
 type Props = {
   setActiveMessages: Dispatch<SetStateAction<boolean>>;
   activeMessges: boolean;
   formatDate: (date: Date) => string;
-  activeChat: ChatT | undefined;
+  activeChat: ChatT;
+  setActiveChat: Dispatch<SetStateAction<ChatT>>;
+  PHOTO_AMOUNT: number;
 };
 
 export const ActiveChat: React.FC<Props> = ({
@@ -40,8 +36,11 @@ export const ActiveChat: React.FC<Props> = ({
   activeMessges,
   formatDate,
   activeChat,
+  PHOTO_AMOUNT,
+  setActiveChat,
 }) => {
   const [query, setQuery] = useState<string>('');
+  const [files, setFiles] = useState<File[]>([]);
   const ref = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -50,6 +49,28 @@ export const ActiveChat: React.FC<Props> = ({
       ref.current.style.height = `${ref.current.scrollHeight}px`;
     }
   }, [query]);
+
+  const addFiles = (event: ChangeEvent<HTMLInputElement>) => {
+    const newFiles = event.target.files ? Array.from(event.target.files) : [];
+    setFiles((prevFiles) => [...prevFiles, ...newFiles].slice(0, PHOTO_AMOUNT));
+    event.target.value = '';
+  };
+
+  const addMessage = () => {
+    const newMessages = [...activeChat.messages];
+
+    newMessages.push({
+      id: uuidv4(),
+      date: new Date(),
+      sender: 'client',
+      messageText: query,
+      status: 'read',
+      files: files,
+    });
+    setActiveChat({ ...activeChat, messages: newMessages });
+    setQuery('');
+    setFiles([]);
+  };
 
   if (activeChat) {
     return (
@@ -87,22 +108,42 @@ export const ActiveChat: React.FC<Props> = ({
                 </p>
               </div>
             )}
-            {activeChat.messages.map((currentChat) => (
+            {activeChat.messages.map((currentMessage) => (
               <div
-                key={currentChat.id}
+                key={currentMessage.id}
                 className={classNames('current-chat__message', {
-                  myMessage: currentChat.sender === 'client',
+                  myMessage: currentMessage.sender === 'client',
                 })}
               >
-                <p className="current-chat__message-title">
-                  {currentChat.messageTitle}
-                </p>
-                <p className="current-chat__message-text">
-                  {currentChat.messageText}
-                </p>
+                {currentMessage.messageTitle && (
+                  <p className="current-chat__message-title">
+                    {currentMessage.messageTitle}
+                  </p>
+                )}
+                {currentMessage.messageText && (
+                  <p className="current-chat__message-text">
+                    {currentMessage.messageText}
+                  </p>
+                )}
+                {currentMessage.files && (
+                  <div className="current-chat__message-photos">
+                    {currentMessage.files.map((photo) => (
+                      <div className="current-chat__message-photo-container">
+                        <FrameInspectSVG className="current-chat__zoom-photo" />
+                        <img
+                          className="current-chat__message-photo"
+                          key={photo.name}
+                          src={URL.createObjectURL(photo)}
+                          alt="#"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 <div className="current-chat__message-date-status">
                   <p className="current-chat__message-date">
-                    {formatDate(currentChat.date)}
+                    {formatDate(currentMessage.date)}
                   </p>
                   <SendMessageReadedSVG className="current-chat__message-status" />
                 </div>
@@ -116,40 +157,52 @@ export const ActiveChat: React.FC<Props> = ({
             disabled: !activeChat.canAnswer,
           })}
         >
-          <div className="current-chat__input-wrapper">
-            <textarea
-              disabled={!activeChat.canAnswer}
-              ref={ref}
-              value={query}
-              className="current-chat__input"
-              placeholder={
-                (!activeChat.canAnswer &&
-                  'Цей чат лише для перегляду. Відповіді не передбачено.') ||
-                'Написати повідомлення'
-              }
-              onChange={(e) => {
-                setQuery(e.target.value);
-              }}
-              rows={(!activeChat.canAnswer && 2) || 1}
+          {files.length !== 0 && (
+            <PhotosList
+              files={files}
+              setFiles={setFiles}
             />
-            <label
-              className="current-chat__label"
-              htmlFor="chatInput"
+          )}
+          <div className="current-chat__input-button">
+            <div className="current-chat__input-wrapper">
+              <textarea
+                disabled={!activeChat.canAnswer}
+                ref={ref}
+                value={query}
+                className="current-chat__input"
+                placeholder={
+                  (!activeChat.canAnswer &&
+                    'Цей чат лише для перегляду. Відповіді не передбачено.') ||
+                  'Написати повідомлення'
+                }
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                }}
+                rows={(!activeChat.canAnswer && 2) || 1}
+              />
+              <label
+                className="current-chat__label"
+                htmlFor="chatInput"
+              >
+                <PlusIMG className="current-chat__add-items" />
+              </label>
+              <input
+                accept=".jpg, .jpeg, .png, .pdf, image/jpeg, image/png, application/pdf"
+                multiple
+                id="chatInput"
+                type="file"
+                onChange={addFiles}
+                hidden
+                disabled={!activeChat.canAnswer}
+              />
+            </div>
+            <button
+              onClick={addMessage}
+              className="current-chat__send-button"
             >
-              <PlusIMG className="current-chat__add-items" />
-            </label>
-            <input
-              accept=".jpg, .jpeg, .png, .pdf, image/jpeg, image/png, application/pdf"
-              multiple
-              id="chatInput"
-              type="file"
-              hidden
-              disabled={!activeChat.canAnswer}
-            />
+              <SendButtonSVG />
+            </button>
           </div>
-          <button className="current-chat__send-button">
-            <SendButtonSVG />
-          </button>
         </div>
       </div>
     );

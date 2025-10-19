@@ -29,7 +29,6 @@ export const FilesInput: React.FC<Props> = ({
   const ref = useRef<HTMLInputElement | null>(null);
 
   const addFiles = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log('ON CHANGE TARGET:', event.target);
     const newFiles = event.target.files ? Array.from(event.target.files) : [];
     setFiles((prevFiles) => [...prevFiles, ...newFiles].slice(0, PHOTO_AMOUNT));
     event.target.value = '';

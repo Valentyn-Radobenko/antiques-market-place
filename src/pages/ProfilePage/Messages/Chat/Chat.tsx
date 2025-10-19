@@ -8,23 +8,7 @@ import { SendMessageReadedSVG } from '../../../../components/Imgs/SendMessageRea
 import { SearchLink } from '../../../../utils/SearchLink';
 import { Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
-
-type CurrentChatT = {
-  id: number;
-  sender: string;
-  messageTitle?: string;
-  messageText: string;
-  date: Date;
-  status: string;
-};
-
-type ChatT = {
-  id: number;
-  name: string;
-  sender: string;
-  canAnswer: boolean;
-  messages: CurrentChatT[];
-};
+import { ChatT } from '../../../../types/chatTypes';
 
 type Props = {
   chat: ChatT;

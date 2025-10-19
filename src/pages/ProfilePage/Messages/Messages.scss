@@ -253,6 +253,33 @@
     color: $gray-dark;
   }
 
+  &__message-photos {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__message-photo {
+    border-radius: 12px;
+    overflow: hidden;
+    height: 98px;
+    object-fit: cover;
+  }
+
+  &__message-photo-container {
+    position: relative;
+  }
+
+  &__zoom-photo {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: $background-plate;
+    color: $gray-black;
+    border-radius: 8px;
+    cursor: pointer;
+    box-sizing: content-box;
+  }
+
   &__message-date-status {
     display: flex;
     justify-content: space-between;
@@ -274,12 +301,8 @@
   &__form {
     padding-block: 24px;
     display: flex;
+    flex-direction: column;
     gap: 16px;
-    align-items: center;
-
-    @include on-phone {
-      gap: 8px;
-    }
   }
 
   &__form.disabled &__input-wrapper {
@@ -298,6 +321,16 @@
 
   &__form.disabled &__add-items {
     color: $gray-dis;
+  }
+
+  &__input-button {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+
+    @include on-phone {
+      gap: 8px;
+    }
   }
 
   &__input-wrapper {

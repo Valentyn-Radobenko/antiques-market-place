@@ -6,16 +6,17 @@ import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { Chat } from './Chat/Chat';
 import { ActiveChat } from './ActiveChat/ActiveChat';
+import { ChatT } from '../../../types/chatTypes';
 
-const testMessages = [
+const testMessages: ChatT[] = [
   {
-    id: 1,
+    id: '1',
     name: 'Системні сповіщення',
     sender: 'Платформа DIKO',
     canAnswer: false,
     messages: [
       {
-        id: 1,
+        id: '1',
         sender: 'webSite',
         messageTitle: 'Вітаємо на Diko!',
         messageText:
@@ -24,7 +25,7 @@ const testMessages = [
         status: 'read',
       },
       {
-        id: 2,
+        id: '2',
         sender: 'webSite',
         messageTitle: 'Нові надходження у розділі "Монети України"! ',
         messageText:
@@ -33,7 +34,7 @@ const testMessages = [
         status: 'read',
       },
       {
-        id: 3,
+        id: '3',
         sender: 'webSite',
         messageTitle: 'Нові надходження у розділі "Монети України"! ',
         messageText:
@@ -42,7 +43,7 @@ const testMessages = [
         status: 'read',
       },
       {
-        id: 4,
+        id: '4',
         sender: 'webSite',
         messageTitle: 'Нові надходження у розділі "Монети України"! ',
         messageText:
@@ -53,13 +54,13 @@ const testMessages = [
     ],
   },
   {
-    id: 2,
+    id: '2',
     name: 'Чат підтримки',
     sender: 'Платформа DIKO',
     canAnswer: true,
     messages: [
       {
-        id: 1,
+        id: '1',
         sender: 'webSite',
         messageTitle: 'Вітаємо',
         messageText: 'yaka u vas problema',
@@ -67,7 +68,7 @@ const testMessages = [
         status: 'read',
       },
       {
-        id: 2,
+        id: '2',
         sender: 'client',
         messageText: 'Vitayu yak kupiti monetu',
         date: new Date('2025-03-22T08:21:00'),
@@ -76,13 +77,13 @@ const testMessages = [
     ],
   },
   {
-    id: 3,
+    id: '3',
     name: 'Замовлення',
     sender: 'Маркет',
     canAnswer: true,
     messages: [
       {
-        id: 1,
+        id: '1',
         sender: 'webSite',
         messageTitle: 'Вітаємо',
         messageText: 'yaka u vas problema',
@@ -90,7 +91,7 @@ const testMessages = [
         status: 'read',
       },
       {
-        id: 2,
+        id: '2',
         sender: 'client',
         messageText: 'Vitayu yak kupiti monetu',
         date: new Date('2025-03-22T08:21:00'),
@@ -99,13 +100,13 @@ const testMessages = [
     ],
   },
   {
-    id: 4,
+    id: '4',
     name: 'Оцінювання та сертифікація',
     sender: 'Експертиза',
     canAnswer: true,
     messages: [
       {
-        id: 1,
+        id: '1',
         sender: 'webSite',
         messageTitle: 'Вітаємо',
         messageText: 'yaka u vas problema',
@@ -113,7 +114,7 @@ const testMessages = [
         status: 'read',
       },
       {
-        id: 2,
+        id: '2',
         sender: 'client',
         messageText: 'Vitayu yak kupiti monetu',
         date: new Date('2025-03-22T08:21:00'),
@@ -122,13 +123,13 @@ const testMessages = [
     ],
   },
   {
-    id: 5,
+    id: '5',
     name: 'Пропозиції щодо виставок',
     sender: 'Виставки',
     canAnswer: true,
     messages: [
       {
-        id: 1,
+        id: '1',
         sender: 'webSite',
         messageTitle: 'Вітаємо',
         messageText: 'yaka u vas problema',
@@ -136,7 +137,7 @@ const testMessages = [
         status: 'read',
       },
       {
-        id: 2,
+        id: '2',
         sender: 'client',
         messageText: 'Vitayu yak kupiti monetu',
         date: new Date('2025-03-22T08:21:00'),
@@ -146,28 +147,11 @@ const testMessages = [
   },
 ];
 
-type CurrentChatT = {
-  id: number;
-  sender: string;
-  messageTitle?: string;
-  messageText: string;
-  date: Date;
-  status: string;
-};
-
-type ChatT = {
-  id: number;
-  name: string;
-  sender: string;
-  canAnswer: boolean;
-  messages: CurrentChatT[];
-};
-
 export const Messages = () => {
   const [setOpenMenu] = useOutletContext<OutletContextType>();
   const [activeMessges, setActiveMessages] = useState<boolean>(false);
   const [searchParams] = useSearchParams();
-  const [activeChat, setActiveChat] = useState<ChatT>();
+  const [activeChat, setActiveChat] = useState<ChatT>(testMessages[0]);
   const chatName = searchParams.get('chat');
 
   function formatDate(date: Date) {
@@ -245,10 +229,12 @@ export const Messages = () => {
         </div>
 
         <ActiveChat
+          setActiveChat={setActiveChat}
           setActiveMessages={setActiveMessages}
           activeMessges={activeMessges}
           formatDate={formatDate}
           activeChat={activeChat}
+          PHOTO_AMOUNT={5}
         />
       </div>
     </div>
