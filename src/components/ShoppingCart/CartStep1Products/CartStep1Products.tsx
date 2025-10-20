@@ -207,6 +207,7 @@ export const CartStep1Products: React.FC<Props> = ({ setStep }) => {
                 setStep(2);
               }}
               className="shopping-cart__cta"
+              disabled={cart.selectedItems.length === 0}
             >
               <span className="shopping-cart__cta-text">
                 {isPhone ?
