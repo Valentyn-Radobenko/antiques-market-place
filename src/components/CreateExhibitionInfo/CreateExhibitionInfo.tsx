@@ -1,5 +1,4 @@
 import { Close } from '../Imgs/Close';
-import { Info } from '../Imgs/Info';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { useEditor } from '@tiptap/react';
@@ -63,7 +62,6 @@ export const CreateExhibitionInfo: React.FC<Props> = ({ setOpenModal }) => {
   return (
     <div className="create-exhibition-info">
       <div className="create-exhibition-info__top-bar">
-        <Info className="create-exhibition-info__info-svg" />
         <h2 className="create-exhibition-info__title">
           Запропонувати виставку
         </h2>
