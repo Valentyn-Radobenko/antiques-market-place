@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../store/store';
 import { updateUserField } from '../../../../store/slices/userSlice';
-import { UserState } from '../../../../types/user';
+import { User } from '../../../../types/user';
 import { CheckCircleOutlineSVG } from '../../../../components/Imgs/CheckCircleOutlineSVG';
 import classNames from 'classnames';
 
 type Props = {
-  user: UserState;
+  user: User;
 };
 export const AccountGeneral: React.FC<Props> = ({ user }) => {
   const dispatch = useDispatch<AppDispatch>();

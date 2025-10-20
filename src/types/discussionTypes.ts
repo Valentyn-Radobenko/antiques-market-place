@@ -2,9 +2,15 @@ export type Comment = {
   id: string;
   userId: string;
   userName: string;
+  userImage: string;
   text: string;
   date: Date;
   isAnswer: string | null;
+};
+
+type Author = {
+  name: string;
+  image: string;
 };
 
 export type DiscussionData = {
@@ -14,7 +20,7 @@ export type DiscussionData = {
   theme: string[];
   description: string;
   date: Date;
-  author: string;
+  author: Author;
   images: string[];
   comments: Comment[];
   status: 'ongoing' | 'ended';

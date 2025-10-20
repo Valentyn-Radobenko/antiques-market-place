@@ -3,10 +3,10 @@ import { Arrow } from '../../../../components/Imgs/Arrow';
 import { VerLineSVG } from '../../../../components/Imgs/VerLineSVG';
 import { VerifiedSVG } from '../../../../components/Imgs/VerifiedSVG';
 import classNames from 'classnames';
-import { UserState } from '../../../../types/user';
+import { User } from '../../../../types/user';
 
 type Props = {
-  user: UserState;
+  user: User;
 };
 
 export const AccountFullfiling: React.FC<Props> = ({ user }) => {

@@ -3,15 +3,16 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { SavingState } from '../store';
 import apiClient from '../../utils/apiClient';
-import { UserState } from '../../types/user';
+import { User } from '../../types/user';
 
 // Типи для даних користувача
 
-const initialState: UserState = {
+const initialState: User = {
   email: 'dukat.ua@gmail.com',
   phoneNumber: '+380503332222',
   firstName: 'Андрій',
   lastName: 'Містеряков',
+  picture: './images/default-photo.webp',
   country: 'Україна',
   city: 'Київ',
   auctionNumber: '+380503332222',
@@ -53,10 +54,7 @@ const userSlice = createSlice({
     logoutUser: () => {
       return initialState;
     },
-    updateUserField: (
-      state: UserState,
-      action: PayloadAction<Partial<UserState>>,
-    ) => {
+    updateUserField: (state: User, action: PayloadAction<Partial<User>>) => {
       Object.assign(state, action.payload);
     },
   },

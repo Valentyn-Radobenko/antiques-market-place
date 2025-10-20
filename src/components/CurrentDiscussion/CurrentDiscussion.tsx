@@ -27,6 +27,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
   const currentUser = {
     id: '100',
     name: 'теперішній юзер',
+    image: './images/default-photo.webp',
   };
 
   const [addComment, setAddComment] = useState<string>('');
@@ -98,6 +99,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
         id: newCommentId,
         userId: currentUser.id,
         userName: currentUser.name,
+        userImage: currentUser.image,
         text: addComment,
         date: new Date(),
         isAnswer: answerToComment,
@@ -177,9 +179,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
         <div className="current-discussion__text-block">
           <div className="current-discussion__main-info">
             <div className="current-discussion__top-bar">
-              <h2 className="current-discussion__title">
-                {currentDiscussion.name}
-              </h2>
+              <h2 className="current-discussion__title">Обговорення</h2>
               <Close
                 className="current-discussion__close"
                 onClick={() => {
@@ -249,11 +249,11 @@ export const CurrentDiscussion: React.FC<Props> = ({
                 <div className="current-discussion__author">
                   <img
                     className="current-discussion__author-img"
-                    src="./images/default-photo.webp"
-                    alt={currentDiscussion.author}
+                    src={currentDiscussion.author.image}
+                    alt={currentDiscussion.author.name}
                   />
                   <p className="current-discussion__author-name">
-                    {currentDiscussion.author}
+                    {currentDiscussion.author.name}
                   </p>
                 </div>
                 <div className="current-discussion__themes">
@@ -268,7 +268,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
                 </div>
               </div>
               <p className="current-discussion__description">
-                {currentDiscussion.description}
+                {currentDiscussion.name}
               </p>
               <p className="current-discussion__date">
                 {formatUkrDate(currentDiscussion.date)}
@@ -296,7 +296,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
                     <div className="current-discussion__author">
                       <img
                         className="current-discussion__author-img"
-                        src="./images/default-photo.webp"
+                        src={comment.userImage}
                         alt={comment.userName}
                       />
                       <p className="current-discussion__author-name">
@@ -320,7 +320,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
                         <div className="current-discussion__author">
                           <img
                             className="current-discussion__author-img"
-                            src="./images/default-photo.webp"
+                            src={repliedComment.userImage}
                             alt={repliedComment.userName}
                           />
                           <p className="current-discussion__author-name">

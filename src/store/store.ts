@@ -9,7 +9,7 @@ import expSearchReducer, { ExpSearchState } from './slices/expSearchSlice';
 import menuReducer, { MenuState } from './slices/menuSlice';
 import { saveState, loadState } from './../utils/localStorageUtils';
 import { availableCurrencies } from '../data/availableCurrencies';
-import { UserState } from '../types/user';
+import { User } from '../types/user';
 import { ShoppingCartState } from '../types/shoppingCart';
 import shoppingCartReducer from './slices/shoppingCartSlice';
 
@@ -24,7 +24,7 @@ export interface RootState {
   authMode: AuthModeState;
   auth: AuthState;
   expSearch: ExpSearchState;
-  user: UserState;
+  user: User;
   menu: MenuState;
   shoppingCart: ShoppingCartState;
 }

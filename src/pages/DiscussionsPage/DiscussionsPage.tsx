@@ -22,7 +22,6 @@ export const DiscussionsPage = () => {
 
   return (
     <>
-      <Outlet />
       <div className="discussions__nav-bar">
         <Crumbs
           customClassName="discussions__crumbs"
@@ -136,6 +135,7 @@ export const DiscussionsPage = () => {
       >
         <DiscussionRules setOpenModal={setIsInfoOpen} />
       </ModalWindow>
+      <Outlet />
     </>
   );
 };

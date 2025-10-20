@@ -39,11 +39,11 @@ export const DiscussionsSlider: React.FC = () => {
             <div className="slider__discussion-top">
               <div className="slider__discussion-user">
                 <img
-                  src="./images/default-photo.webp"
-                  className="slider__discussion-user-img"
+                  src={slide.author.image}
+                  className={slide.author.name}
                 />
                 <div className="slider__discussion-user-name">
-                  {slide.author}
+                  {slide.author.name}
                 </div>
               </div>
               <div className="slider__discussion-topics">

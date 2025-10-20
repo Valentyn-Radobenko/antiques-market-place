@@ -59,10 +59,10 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
           <div className="discussion__creator">
             <img
               className="discussion__img"
-              src="./images/default-photo.webp"
-              alt={discussion.author}
+              src={discussion.author.image}
+              alt={discussion.author.name}
             />
-            <p className="discussion__creator-name">{discussion.author}</p>
+            <p className="discussion__creator-name">{discussion.author.name}</p>
           </div>
 
           <div className="discussion__themes">
@@ -87,7 +87,7 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
         to={discussion.slug}
         className="discussion__info"
       >
-        <p className="discussion__text">{discussion.description}</p>
+        <p className="discussion__text">{discussion.name}</p>
         <div className="discussion__date">
           <p className="discussion__day-time">
             {formatUkrDate(discussion.date)}

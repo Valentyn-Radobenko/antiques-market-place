@@ -11,10 +11,10 @@ import { Verification } from './Verification/Verification';
 import { useOutletContext } from 'react-router-dom';
 import { OutletContextType } from '../../../types/openMenuOtlet';
 import { PasswordEmail } from './PasswordEmail/PasswordEmail';
-import { UserState } from '../../../types/user';
+import { User } from '../../../types/user';
 
 export const ProfileAccount = () => {
-  const user: UserState = useSelector((state: RootState) => state.user);
+  const user: User = useSelector((state: RootState) => state.user);
   const windowSize = useWindowSize();
   const [setOpenMenu] = useOutletContext<OutletContextType>();
 

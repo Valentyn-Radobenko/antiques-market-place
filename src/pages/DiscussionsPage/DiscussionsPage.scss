@@ -6,6 +6,10 @@
   gap: 20px;
   align-self: stretch;
 
+  max-width: 1360px;
+  width: 100%;
+  align-self: center;
+
   @include on-tablet {
     flex-direction: column;
   }
@@ -39,6 +43,10 @@
     gap: 16px;
     align-self: stretch;
     margin-bottom: 24px;
+
+    max-width: 1360px;
+    width: 100%;
+    align-self: center;
 
     @include on-tablet {
       margin-bottom: 16px;
