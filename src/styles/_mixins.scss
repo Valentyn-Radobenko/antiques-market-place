@@ -207,6 +207,8 @@
   overflow: hidden;
   width: 100%;
 
+  @include button-bold;
+
   &:disabled {
     background: $gray-lite;
     cursor: initial;

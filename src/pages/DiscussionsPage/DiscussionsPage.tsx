@@ -1,24 +1,79 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useSearchParams } from 'react-router-dom';
 import { Crumbs } from '../../components/Crumbs/Crumbs';
 import { FacebookLogoSVG } from '../../components/Imgs/FacebookLogoSVG';
 import { MailSVG } from '../../components/Imgs/MailSVG';
 import { TelegramLogoSVG } from '../../components/Imgs/TelegramLogoSVG';
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
-import { useIsTablet } from '../../hooks/useMediaQuery';
 import { CreateDiscussion } from '../../components/CreateDiscussion/CreateDiscussion';
 import { DiscussionRules } from '../../components/DiscussionRules/DiscussionRules';
 import { discussions as data } from '../../data/discussions';
 import { DiscussionData } from '../../types/discussionTypes';
 import { Discussion } from '../../components/Discussion/Discussion';
+import classNames from 'classnames';
+import { Close } from '../../components/Imgs/Close';
+
+const tagsList = [
+  'Монети України',
+  'Меблі',
+  'Живопис',
+  'Нумізматика',
+  'Книги',
+  'Марки',
+  'Філотелія',
+  'Сфрагістика',
+  'Інші монети',
+];
 
 export const DiscussionsPage = () => {
-  const [openAddModal, setOpenAddModal] = useState<boolean>(false);
-  const [isInfoOpen, setIsInfoOpen] = useState<boolean>(false);
-
-  const isTablet = useIsTablet();
-
+  const [openAddModal, setOpenAddModal] = useState(false);
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [discussions, setDiscussions] = useState<DiscussionData[]>(data);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const selectedTags = useMemo(() => {
+    const tagsParam = searchParams.get('tags');
+    return tagsParam ? decodeURIComponent(tagsParam).split(',') : [];
+  }, [searchParams]);
+
+  const handleTagClick = (tag: string) => {
+    let updatedTags: string[];
+
+    if (selectedTags.includes(tag)) {
+      updatedTags = selectedTags.filter((t) => t !== tag);
+    } else {
+      updatedTags = [...selectedTags, tag];
+    }
+
+    if (updatedTags.length === 0) {
+      searchParams.delete('tags');
+      setSearchParams(searchParams, { replace: true });
+    } else {
+      setSearchParams(
+        { tags: encodeURIComponent(updatedTags.join(',')) },
+        { replace: true },
+      );
+    }
+  };
+
+  const filteredDiscussions = useMemo(() => {
+    if (selectedTags.length === 0) return discussions;
+
+    return discussions.filter((d) =>
+      d.theme.some((themeTag) => selectedTags.includes(themeTag)),
+    );
+  }, [selectedTags, discussions]);
+
+  // При першому завантаженні: якщо є query, то фільтр одразу активний
+  useEffect(() => {
+    const tagsParam = searchParams.get('tags');
+    if (tagsParam) {
+      const tags = decodeURIComponent(tagsParam).split(',');
+      if (tags.length > 0) {
+        // можна зробити preload чи логіку якщо потрібно
+      }
+    }
+  }, [searchParams]);
 
   return (
     <>
@@ -28,46 +83,48 @@ export const DiscussionsPage = () => {
           links={['/club', '/club/discussions']}
           titles={['Клуб колекціонерів', 'Обговорення']}
         />
-
-        <h1 className="discussions__title">Обговорення</h1>
+        <h1 className="discussions__title">
+          Обговорення{' '}
+          {/* {selectedTags.length > 0 && (
+            <span className="discussions__active-tag">
+              {selectedTags.join(', ')}
+            </span>
+          )} */}
+        </h1>
       </div>
 
       <div className="discussions">
-        {!isTablet && (
-          <div className="discussions__details">
-            <h4 className="discussions__details-title">Популярні теми:</h4>
-            <div className="discussions__details-content">
-              <p className="discussions__details-tag">Монети України</p>
-              <p className="discussions__details-tag">Меблі</p>
-              <p className="discussions__details-tag">Живопис</p>
-              <p className="discussions__details-tag">Нумізматика</p>
-              <p className="discussions__details-tag">Книги</p>
-              <p className="discussions__details-tag">Марки</p>
-              <p className="discussions__details-tag">Філотелія</p>
-              <p className="discussions__details-tag">Сфрагістика</p>
-              <p className="discussions__details-tag">Інші монети</p>
-            </div>
+        <div className="discussions__details">
+          <h4 className="discussions__details-title">Популярні теми:</h4>
+          <div className="discussions__details-content">
+            {tagsList.map((tag) => (
+              <p
+                key={tag}
+                className={classNames('discussions__details-tag', {
+                  'discussions__details-tag--active':
+                    selectedTags.includes(tag),
+                })}
+                onClick={() => handleTagClick(tag)}
+              >
+                {tag}
+                {selectedTags.includes(tag) && (
+                  <span
+                    className="discussions__details-close"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleTagClick(tag);
+                    }}
+                  >
+                    <Close />
+                  </span>
+                )}
+              </p>
+            ))}
           </div>
-        )}
+        </div>
 
-        {isTablet && (
-          <div className="discussions__details">
-            <h4 className="discussions__details-title">Популярні теми:</h4>
-            <div className="discussions__details-content">
-              <p className="discussions__details-tag">Монети України</p>
-              <p className="discussions__details-tag">Меблі</p>
-              <p className="discussions__details-tag">Живопис</p>
-              <p className="discussions__details-tag">Нумізматика</p>
-              <p className="discussions__details-tag">Книги</p>
-              <p className="discussions__details-tag">Марки</p>
-              <p className="discussions__details-tag">Філотелія</p>
-              <p className="discussions__details-tag">Сфрагістика</p>
-              <p className="discussions__details-tag">Інші монети</p>
-            </div>
-          </div>
-        )}
         <div className="discussions__content">
-          {discussions.map((discussion) => (
+          {filteredDiscussions.map((discussion) => (
             <Discussion
               setDiscussions={setDiscussions}
               key={discussion.id}
@@ -75,6 +132,7 @@ export const DiscussionsPage = () => {
             />
           ))}
         </div>
+
         <div className="exhibition__additional">
           <div className="exhibitions__offer exhibitions__offer--exhibition">
             <div className="exhibitions__offer-heading">
@@ -135,6 +193,7 @@ export const DiscussionsPage = () => {
       >
         <DiscussionRules setOpenModal={setIsInfoOpen} />
       </ModalWindow>
+
       <Outlet />
     </>
   );

@@ -234,7 +234,6 @@
 
   &__button {
     @include primary-button;
-    @include main-text;
     width: 213px;
     padding-block: 16px;
     @include on-phone {
@@ -327,7 +326,6 @@
     @include primary-button;
     padding-block: 16px;
     align-self: flex-end;
-    @include main-text;
   }
 
   &__anonim-svg {

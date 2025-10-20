@@ -216,8 +216,6 @@
 
       color: $gray-white;
 
-      @include button-semibold;
-
       &--exhibition {
         @include on-phone {
           position: relative;

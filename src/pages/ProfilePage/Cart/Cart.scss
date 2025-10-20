@@ -132,7 +132,6 @@
     gap: 8px;
     justify-content: center;
     align-items: center;
-    @include button-semibold;
 
     @include on-tablet {
       width: auto;

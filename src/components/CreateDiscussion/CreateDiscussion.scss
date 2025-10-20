@@ -226,7 +226,6 @@
 
   &__button {
     @include primary-button;
-    @include main-text;
     width: 213px;
     padding-block: 16px;
     @include on-phone {

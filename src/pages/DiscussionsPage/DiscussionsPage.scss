@@ -96,6 +96,8 @@
 
       @include tab-regular;
 
+      cursor: pointer;
+
       @include on-tablet {
         display: flex;
         display: flex;
@@ -109,9 +111,22 @@
         align-self: stretch;
       }
 
-      &-close {
-        cursor: pointer;
+      &--active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 2px solid $additional-freshherb-elect;
+
+        @include on-tablet {
+          justify-content: space-evenly;
+        }
       }
+    }
+
+    &-close {
+      width: 24px;
+      height: 24px;
     }
 
     &-button {

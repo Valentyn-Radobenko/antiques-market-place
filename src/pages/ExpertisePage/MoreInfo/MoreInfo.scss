@@ -160,7 +160,6 @@
 
   &__button {
     height: 40px;
-    @include button-semibold;
     @include primary-button;
   }
 

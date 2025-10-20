@@ -31,7 +31,6 @@
 
   &__create-new-button {
     @include primary-button;
-    @include button-bold;
     color: $gray-white;
     padding-block: 9px;
     width: 100%;
