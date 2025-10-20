@@ -282,7 +282,13 @@ export const PaymentStep: React.FC<Props> = ({
                 files={files}
                 setFiles={setFiles}
                 PHOTO_AMOUNT={PHOTO_AMOUNT}
-                customClassName="shopping-cart__order-block-payments-upload-input"
+                customClassName={classNames(
+                  'shopping-cart__order-block-payments-upload-input',
+                  {
+                    'shopping-cart__order-block-payments-upload-input--error':
+                      areErrorsOn && files.length === 0,
+                  },
+                )}
                 customContent={() => (
                   <>
                     <p className="shopping-cart__order-block-payments-upload-input-text">
@@ -292,6 +298,11 @@ export const PaymentStep: React.FC<Props> = ({
                   </>
                 )}
               />
+              {areErrorsOn && files.length === 0 && (
+                <p className="shopping-cart__order-block-error">
+                  Додайте принаймні один файл
+                </p>
+              )}
               {files.length > 0 && (
                 <PhotosList
                   files={files}
@@ -430,7 +441,13 @@ export const PaymentStep: React.FC<Props> = ({
                 files={files}
                 setFiles={setFiles}
                 PHOTO_AMOUNT={PHOTO_AMOUNT}
-                customClassName="shopping-cart__order-block-payments-upload-input"
+                customClassName={classNames(
+                  'shopping-cart__order-block-payments-upload-input',
+                  {
+                    'shopping-cart__order-block-payments-upload-input--error':
+                      areErrorsOn && files.length === 0,
+                  },
+                )}
                 customContent={() => (
                   <>
                     <p className="shopping-cart__order-block-payments-upload-input-text">
@@ -440,6 +457,11 @@ export const PaymentStep: React.FC<Props> = ({
                   </>
                 )}
               />
+              {areErrorsOn && files.length === 0 && (
+                <p className="shopping-cart__order-block-error">
+                  Додайте принаймні один файл
+                </p>
+              )}
               {files.length > 0 && (
                 <PhotosList
                   files={files}
@@ -461,67 +483,69 @@ export const PaymentStep: React.FC<Props> = ({
         isAfterTitleOn={false}
       />
 
-      <Dropdown
-        onClick={() => {
-          if (cart.payment.method !== 'cash') {
-            setFiles([]);
-          }
+      {cart.delivery.type === 'pickup' && (
+        <Dropdown
+          onClick={() => {
+            if (cart.payment.method !== 'cash') {
+              setFiles([]);
+            }
 
-          dispatch(updatePaymentMethod('cash'));
-        }}
-        customIsVisible={cart.payment.method === 'cash'}
-        buttonArea="all"
-        buttonIcon={() => (
-          <CheckboxRound isActive={cart.payment.method === 'cash'} />
-        )}
-        customClassName="shopping-cart__order-block-radio-dropdown"
-        buttonTitle={() => (
-          <h4 className="shopping-cart__order-block-radio-dropdown-title">
-            Готівка
-          </h4>
-        )}
-        subtitle="Оплата готівкою здійснюється при самовивозі зі складу"
-        renderContent={() => (
-          <>
-            <div className="shopping-cart__order-block-payments-info">
-              <div className="shopping-cart__order-block-payments-info-block">
-                <div
-                  className="shopping-cart__order-block-payments-info-unit 
+            dispatch(updatePaymentMethod('cash'));
+          }}
+          customIsVisible={cart.payment.method === 'cash'}
+          buttonArea="all"
+          buttonIcon={() => (
+            <CheckboxRound isActive={cart.payment.method === 'cash'} />
+          )}
+          customClassName="shopping-cart__order-block-radio-dropdown"
+          buttonTitle={() => (
+            <h4 className="shopping-cart__order-block-radio-dropdown-title">
+              Готівка
+            </h4>
+          )}
+          subtitle="Оплата готівкою здійснюється при самовивозі зі складу"
+          renderContent={() => (
+            <>
+              <div className="shopping-cart__order-block-payments-info">
+                <div className="shopping-cart__order-block-payments-info-block">
+                  <div
+                    className="shopping-cart__order-block-payments-info-unit 
                   shopping-cart__order-block-payments-info-unit--last"
-                >
-                  <p className="shopping-cart__order-block-payments-info-label">
-                    Адреса складу:
-                  </p>
-                  <Link
-                    to={'https://maps.app.goo.gl/wAdeT2GGibefrzub9'}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="shopping-cart__order-block-payments-info-link"
                   >
-                    м. Житомир, пл. Перемоги, 9
-                  </Link>
+                    <p className="shopping-cart__order-block-payments-info-label">
+                      Адреса складу:
+                    </p>
+                    <Link
+                      to={'https://maps.app.goo.gl/wAdeT2GGibefrzub9'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="shopping-cart__order-block-payments-info-link"
+                    >
+                      м. Житомир, пл. Перемоги, 9
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="shopping-cart__order-block-payments-info-block">
+                  <div className="shopping-cart__order-block-payments-info-unit">
+                    <p className="shopping-cart__order-block-payments-info-label">
+                      Сума:
+                    </p>
+                    <p className="shopping-cart__order-block-payments-info-value">
+                      {totalPrice} грн
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <div className="shopping-cart__order-block-payments-info-block">
-                <div className="shopping-cart__order-block-payments-info-unit">
-                  <p className="shopping-cart__order-block-payments-info-label">
-                    Сума:
-                  </p>
-                  <p className="shopping-cart__order-block-payments-info-value">
-                    {totalPrice} грн
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <p className="shopping-cart__order-block-receiving-notification">
-              Оплата готівкою здійснюється при самовивозі зі складу
-            </p>
-          </>
-        )}
-        isAfterTitleOn={false}
-      />
+              <p className="shopping-cart__order-block-receiving-notification">
+                Оплата готівкою здійснюється при самовивозі зі складу
+              </p>
+            </>
+          )}
+          isAfterTitleOn={false}
+        />
+      )}
     </div>
   );
 };
