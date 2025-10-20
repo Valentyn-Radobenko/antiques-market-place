@@ -393,8 +393,16 @@ export const CurrentDiscussion: React.FC<Props> = ({
               <div className="current-discussion__author">
                 <img
                   className="current-discussion__author-img"
-                  src="#"
-                  alt="#"
+                  src={
+                    currentDiscussion.comments.find(
+                      (a) => a.id === answerToComment,
+                    )?.userImage
+                  }
+                  alt={
+                    currentDiscussion.comments.find(
+                      (a) => a.id === answerToComment,
+                    )?.userName
+                  }
                 />
                 <p className="current-discussion__author-name">
                   {
