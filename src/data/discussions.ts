@@ -9,7 +9,7 @@ export const discussions: DiscussionData[] = [
     description: '',
     date: new Date('2025-01-11T07:50:00'),
     author: { name: 'Олег Капчук', image: './images/discussions/user1.png' },
-    images: ['./images/expertise/exp1.webp'],
+    images: ['./images/discussions/discussion1.png'],
     status: 'ongoing',
     comments: [
       {
@@ -138,7 +138,7 @@ export const discussions: DiscussionData[] = [
       image: './images/discussions/user3.png',
     },
     status: 'ongoing',
-    images: ['./images/expertise/exp1.webp', './images/expertise/exp2.webp'],
+    images: [],
     comments: [
       {
         id: 'c12',
