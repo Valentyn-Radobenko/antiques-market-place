@@ -7,6 +7,7 @@ import { FrameInspectSVG } from '../Imgs/FrameInspectSVG';
 import { Close } from '../Imgs/Close';
 // import { useTranslation } from 'react-i18next';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import { useIsMobile } from '../../hooks/useMediaQuery';
 
 interface Props {
   title: { ua: string; eng: string };
@@ -18,6 +19,8 @@ export const ItemSlider: React.FC<Props> = ({ title, imgs }) => {
   // const language = useSelector((state: SavingState) => state.language.language);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const isPhone = useIsMobile();
 
   return (
     <>
@@ -36,12 +39,29 @@ export const ItemSlider: React.FC<Props> = ({ title, imgs }) => {
                 setIsModalOpen(true);
               }}
             >
-              <FrameInspectSVG className="item-slider__slide-icon" />
-              <img
-                className="item-slider__slide-img"
-                src={slide}
-                alt={slide}
-              />
+              {!isPhone && (
+                <>
+                  <FrameInspectSVG className="item-slider__slide-icon" />
+                  <img
+                    className="item-slider__slide-img"
+                    src={slide}
+                    alt={slide}
+                  />
+                </>
+              )}
+
+              {isPhone && (
+                <>
+                  <div
+                    className="item-slider__slide-img-wrapper"
+                    style={{ backgroundImage: `url(${slide})` }}
+                  >
+                    <div className="item-slider__slide-img-square">
+                      <FrameInspectSVG className="item-slider__slide-icon" />
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           );
         }}
