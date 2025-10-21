@@ -189,7 +189,7 @@
       color: $additional-black-green;
       text-align: center;
 
-      @include main-text;
+      @include button-bold;
     }
 
     &-icon {

@@ -98,7 +98,7 @@ export const DiscussionRules: React.FC<Props> = ({ setOpenModal }) => {
     <div className="discussion-rules">
       <div className="discussion-rules__top-bar">
         <h2 className="discussion-rules__title">
-          Правила обговорень спільноти "DIKO"
+          Правила обговорень спільноти
         </h2>
         <Close
           onClick={() => setOpenModal(false)}
