@@ -279,14 +279,20 @@ export const ExhibitionPage = () => {
                     initialScale={1}
                     minScale={1}
                     maxScale={4}
+                    panning={{ disabled: true }}
                   >
-                    <TransformComponent>
-                      <img
-                        className="item-slider__slide-img item-slider--modal__slide-img"
-                        src={slide}
-                        alt={slide}
-                      />
-                    </TransformComponent>
+                    {() => (
+                      <TransformComponent
+                        wrapperStyle={{ width: '100%', height: '100%' }}
+                        contentStyle={{ width: '100%', height: '100%' }}
+                      >
+                        <img
+                          className="item-slider__slide-img item-slider--modal__slide-img"
+                          src={slide}
+                          alt={slide}
+                        />
+                      </TransformComponent>
+                    )}
                   </TransformWrapper>
                 </div>
               );
