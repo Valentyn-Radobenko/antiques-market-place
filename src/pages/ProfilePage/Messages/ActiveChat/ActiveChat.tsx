@@ -21,6 +21,10 @@ import { ChatT } from '../../../../types/chatTypes';
 import { v4 as uuidv4 } from 'uuid';
 import { PhotosList } from '../../../../components/PhotosList/PhotosList';
 import { FrameInspectSVG } from '../../../../components/Imgs/FrameInspectSVG';
+import { ModalWindow } from '../../../../components/ModalWindow/ModalWindow';
+import { Close } from '../../../../components/Imgs/Close';
+import Slider from '../../../../components/Sliders/Slider';
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 
 type Props = {
   setActiveMessages: Dispatch<SetStateAction<boolean>>;
@@ -42,6 +46,8 @@ export const ActiveChat: React.FC<Props> = ({
   const [query, setQuery] = useState<string>('');
   const [files, setFiles] = useState<File[]>([]);
   const ref = useRef<HTMLTextAreaElement>(null);
+
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   useEffect(() => {
     if (ref.current) {
@@ -71,6 +77,8 @@ export const ActiveChat: React.FC<Props> = ({
     setQuery('');
     setFiles([]);
   };
+
+  console.log(files.map((file) => URL.createObjectURL(file)));
 
   if (activeChat) {
     return (
@@ -128,7 +136,10 @@ export const ActiveChat: React.FC<Props> = ({
                 {currentMessage.files && (
                   <div className="current-chat__message-photos">
                     {currentMessage.files.map((photo) => (
-                      <div className="current-chat__message-photo-container">
+                      <div
+                        onClick={() => setOpenModal(true)}
+                        className="current-chat__message-photo-container"
+                      >
                         <FrameInspectSVG className="current-chat__zoom-photo" />
                         <img
                           className="current-chat__message-photo"
@@ -147,6 +158,73 @@ export const ActiveChat: React.FC<Props> = ({
                   </p>
                   <SendMessageReadedSVG className="current-chat__message-status" />
                 </div>
+                <ModalWindow
+                  openModal={openModal}
+                  setOpenModal={setOpenModal}
+                  visibility="item-slider__modal"
+                  secondModal={false}
+                >
+                  <div className="item-slider__modal-content">
+                    <button
+                      className="item-slider__modal-close"
+                      onClick={() => setOpenModal(false)}
+                    >
+                      <Close />
+                    </button>
+
+                    {currentMessage.files && (
+                      <Slider<string>
+                        sliderTitle={'title.ua'}
+                        slides={currentMessage.files.map((file) =>
+                          URL.createObjectURL(file),
+                        )}
+                        slidesPerView={1}
+                        customClassName="item-slider--modal"
+                        autoplayOn={false}
+                        renderSlide={(slide) => {
+                          return (
+                            <div
+                              key={slide}
+                              className="item-slider__slide item-slider--modal__slide"
+                              onClick={() => {
+                                setOpenModal(true);
+                              }}
+                            >
+                              <TransformWrapper
+                                doubleClick={{ mode: 'zoomIn' }}
+                                pinch={{ step: 0.1 }}
+                                wheel={{ step: 0.1 }}
+                                initialScale={1}
+                                minScale={1}
+                                maxScale={4}
+                                panning={{ disabled: true }}
+                              >
+                                {() => (
+                                  <TransformComponent
+                                    wrapperStyle={{
+                                      width: '100%',
+                                      height: '100%',
+                                    }}
+                                    contentStyle={{
+                                      width: '100%',
+                                      height: '100%',
+                                    }}
+                                  >
+                                    <img
+                                      className="item-slider__slide-img item-slider--modal__slide-img"
+                                      src={slide}
+                                      alt={slide}
+                                    />
+                                  </TransformComponent>
+                                )}
+                              </TransformWrapper>
+                            </div>
+                          );
+                        }}
+                      />
+                    )}
+                  </div>
+                </ModalWindow>
               </div>
             ))}
           </div>

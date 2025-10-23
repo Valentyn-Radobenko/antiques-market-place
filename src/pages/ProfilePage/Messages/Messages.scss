@@ -267,6 +267,7 @@
 
   &__message-photo-container {
     position: relative;
+    cursor: pointer;
   }
 
   &__zoom-photo {
@@ -276,7 +277,6 @@
     background: $background-plate;
     color: $gray-black;
     border-radius: 8px;
-    cursor: pointer;
     box-sizing: content-box;
   }
 
