@@ -127,7 +127,7 @@
     position: relative;
 
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 
     max-width: 1440px;
 
@@ -243,6 +243,7 @@
     margin-bottom: 32px;
 
     @include on-tablet {
+      max-width: none;
       width: 100%;
       grid-template-columns: repeat(1, 1fr);
     }
@@ -250,7 +251,7 @@
 
   &__article {
     display: flex;
-    width: 440px;
+    width: 552px;
     max-height: 412px;
     flex-direction: column;
 
@@ -265,6 +266,10 @@
 
     cursor: pointer;
     @include block-hover;
+
+    &--one {
+      width: 1127px;
+    }
 
     @include on-tablet {
       width: 100%;

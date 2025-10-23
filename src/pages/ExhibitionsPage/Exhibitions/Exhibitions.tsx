@@ -8,6 +8,7 @@ import { SavingState } from '../../../store/store';
 import { ModalWindow } from '../../../components/ModalWindow/ModalWindow';
 import { CreateExhibition } from '../../../components/CreateExhibition/CreateExhibition';
 import { CreateExhibitionInfo } from '../../../components/CreateExhibitionInfo/CreateExhibitionInfo';
+import classNames from 'classnames';
 
 type Props = {
   exhibitions: Exhibition[];
@@ -90,7 +91,9 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
             <Link
               to={exhibitionLink(exh)}
               key={exh.id}
-              className="exhibitions__article"
+              className={classNames('exhibitions__article', {
+                'exhibitions__article--one': currentItems.length === 1,
+              })}
             >
               <div
                 style={{ backgroundImage: `url(${exh.image})` }}
