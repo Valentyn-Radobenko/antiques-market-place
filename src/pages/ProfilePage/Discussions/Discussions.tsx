@@ -10,6 +10,7 @@ import { CreateDiscussion } from '../../../components/CreateDiscussion/CreateDis
 import { useState } from 'react';
 import { ModalWindow } from '../../../components/ModalWindow/ModalWindow';
 import { DiscussionData } from '../../../types/discussionTypes';
+import { DiscussionRules } from '../../../components/DiscussionRules/DiscussionRules';
 
 const sortings = [
   {
@@ -45,6 +46,7 @@ export const Discussions = () => {
   const [setOpenMenu] = useOutletContext<OutletContextType>();
   const [openAddModal, setOpenAddModal] = useState<boolean>(false);
   const [discussions, setDiscussions] = useState<DiscussionData[]>(data);
+  const [openRules, setOpenRules] = useState<boolean>(false);
 
   return (
     <>
@@ -83,7 +85,10 @@ export const Discussions = () => {
           <p className="profile-discussions__create-new-text">
             Створити обговорення
           </p>
-          <Info className="profile-discussions__create-new-icon" />
+          <Info
+            onClick={() => setOpenRules(true)}
+            className="profile-discussions__create-new-icon"
+          />
           <button
             onClick={() => setOpenAddModal(true)}
             className="profile-discussions__create-new-button"
@@ -98,6 +103,15 @@ export const Discussions = () => {
           <PlusSVG />
         </button>
       </div>
+      <ModalWindow
+        visibility="create-discussion__rules-visibility"
+        openModal={openRules}
+        setOpenModal={setOpenRules}
+        secondModal={true}
+      >
+        <DiscussionRules setOpenModal={setOpenRules} />
+      </ModalWindow>
+
       <Outlet />
     </>
   );

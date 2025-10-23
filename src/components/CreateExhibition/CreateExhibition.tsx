@@ -1,5 +1,4 @@
 import { Close } from '../Imgs/Close';
-import { Info } from '../Imgs/Info';
 import React, {
   ChangeEvent,
   Dispatch,
@@ -25,7 +24,6 @@ import { ModalWindow } from '../ModalWindow/ModalWindow';
 import classNames from 'classnames';
 import { ModalEndingExhibitions } from '../ModalEnding/ModalEndingExhibitions';
 import { Tooltip } from '../Tooltip/Tooltip';
-import { CreateExhibitionInfo } from '../CreateExhibitionInfo/CreateExhibitionInfo';
 
 const PHOTO_AMOUNT = 5;
 
@@ -44,7 +42,6 @@ type Props = {
 export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
   const errorRef = useRef<HTMLParagraphElement>(null);
   const [errorHeight, setErrorHight] = useState<number>(0);
-  const [openRules, setOpenRules] = useState<boolean>(false);
   const ref = useRef<HTMLInputElement | null>(null);
   const [openLinkModal, setOpenLinkModal] = useState(false);
   const [link, setLink] = useState<string>('');
@@ -122,10 +119,6 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
       {step === 1 && (
         <div className="create-exhibition">
           <div className="create-exhibition__top-bar">
-            <Info
-              onClick={() => setOpenRules(true)}
-              className="create-exhibition__info-svg"
-            />
             <h2 className="create-exhibition__title">Запропонувати виставку</h2>
             <Close
               onClick={() => setOpenModal(false)}
@@ -312,14 +305,6 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
               />
             )}
           </div>
-          <ModalWindow
-            visibility="create-exhibition__rules-visibility"
-            openModal={openRules}
-            setOpenModal={setOpenRules}
-            secondModal={true}
-          >
-            <CreateExhibitionInfo setOpenModal={setOpenRules} />
-          </ModalWindow>
         </div>
       )}
       {step === 2 && <ModalEndingExhibitions setOpenModal={setOpenModal} />}
