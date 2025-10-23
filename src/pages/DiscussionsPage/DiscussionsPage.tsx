@@ -3,7 +3,7 @@ import { Crumbs } from '../../components/Crumbs/Crumbs';
 import { FacebookLogoSVG } from '../../components/Imgs/FacebookLogoSVG';
 import { MailSVG } from '../../components/Imgs/MailSVG';
 import { TelegramLogoSVG } from '../../components/Imgs/TelegramLogoSVG';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
 import { CreateDiscussion } from '../../components/CreateDiscussion/CreateDiscussion';
 import { DiscussionRules } from '../../components/DiscussionRules/DiscussionRules';
@@ -11,7 +11,8 @@ import { discussions as data } from '../../data/discussions';
 import { DiscussionData } from '../../types/discussionTypes';
 import { Discussion } from '../../components/Discussion/Discussion';
 import classNames from 'classnames';
-import { Close } from '../../components/Imgs/Close';
+import { CloseSmallSVG } from '../../components/Imgs/CloseSmallSVG';
+import { SearchSVG } from '../../components/Imgs/SearchSVG';
 
 const tagsList = [
   'Монети України',
@@ -31,11 +32,18 @@ export const DiscussionsPage = () => {
   const [discussions, setDiscussions] = useState<DiscussionData[]>(data);
   const [searchParams, setSearchParams] = useSearchParams();
 
+  // --- Параметри URL ---
   const selectedTags = useMemo(() => {
     const tagsParam = searchParams.get('tags');
     return tagsParam ? decodeURIComponent(tagsParam).split(',') : [];
   }, [searchParams]);
 
+  const searchQuery = useMemo(() => {
+    const q = searchParams.get('search');
+    return q ? decodeURIComponent(q) : '';
+  }, [searchParams]);
+
+  // --- Обробка кліку по тегу ---
   const handleTagClick = (tag: string) => {
     let updatedTags: string[];
 
@@ -45,35 +53,65 @@ export const DiscussionsPage = () => {
       updatedTags = [...selectedTags, tag];
     }
 
-    if (updatedTags.length === 0) {
-      searchParams.delete('tags');
-      setSearchParams(searchParams, { replace: true });
-    } else {
-      setSearchParams(
-        { tags: encodeURIComponent(updatedTags.join(',')) },
-        { replace: true },
-      );
+    const newParams: Record<string, string> = {};
+
+    if (updatedTags.length > 0) {
+      newParams.tags = encodeURIComponent(updatedTags.join(','));
     }
+    if (searchQuery) {
+      newParams.search = encodeURIComponent(searchQuery);
+    }
+
+    setSearchParams(newParams, { replace: true });
   };
 
-  const filteredDiscussions = useMemo(() => {
-    if (selectedTags.length === 0) return discussions;
+  // --- Пошук ---
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.trimStart();
+    const newParams: Record<string, string> = {};
 
-    return discussions.filter((d) =>
-      d.theme.some((themeTag) => selectedTags.includes(themeTag)),
-    );
-  }, [selectedTags, discussions]);
-
-  // При першому завантаженні: якщо є query, то фільтр одразу активний
-  useEffect(() => {
-    const tagsParam = searchParams.get('tags');
-    if (tagsParam) {
-      const tags = decodeURIComponent(tagsParam).split(',');
-      if (tags.length > 0) {
-        // можна зробити preload чи логіку якщо потрібно
-      }
+    if (selectedTags.length > 0) {
+      newParams.tags = encodeURIComponent(selectedTags.join(','));
     }
-  }, [searchParams]);
+    if (value) {
+      newParams.search = encodeURIComponent(value);
+    }
+
+    setSearchParams(newParams, { replace: true });
+  };
+
+  // --- Фільтрація дискусій ---
+  const filteredDiscussions = useMemo(() => {
+    let filtered = discussions;
+
+    // фільтр за тегами
+    if (selectedTags.length > 0) {
+      filtered = filtered.filter((d) =>
+        d.theme.some((themeTag) => selectedTags.includes(themeTag)),
+      );
+    }
+
+    // фільтр за пошуком
+    if (searchQuery) {
+      const lowerQuery = searchQuery.toLowerCase();
+      filtered = filtered.filter(
+        (d) =>
+          d.name.toLowerCase().includes(lowerQuery) ||
+          d.description.toLowerCase().includes(lowerQuery) ||
+          d.author.name.toLowerCase().includes(lowerQuery) ||
+          d.theme.some((tag) => tag.toLowerCase().includes(lowerQuery)),
+      );
+    }
+
+    return filtered;
+  }, [selectedTags, discussions, searchQuery]);
+
+  // --- Пошук серед тегів ---
+  const filteredTags = useMemo(() => {
+    if (!searchQuery) return tagsList;
+    const lower = searchQuery.toLowerCase();
+    return tagsList.filter((t) => t.toLowerCase().includes(lower));
+  }, [searchQuery]);
 
   return (
     <>
@@ -83,21 +121,26 @@ export const DiscussionsPage = () => {
           links={['/club', '/club/discussions']}
           titles={['Клуб колекціонерів', 'Обговорення']}
         />
-        <h1 className="discussions__title">
-          Обговорення{' '}
-          {/* {selectedTags.length > 0 && (
-            <span className="discussions__active-tag">
-              {selectedTags.join(', ')}
-            </span>
-          )} */}
-        </h1>
+        <h1 className="discussions__title">Обговорення</h1>
       </div>
 
       <div className="discussions">
         <div className="discussions__details">
           <h4 className="discussions__details-title">Популярні теми:</h4>
+
+          <label className="discussions__details-search">
+            <SearchSVG className="discussions__details-search-icon" />
+            <input
+              className="discussions__details-search-input"
+              type="text"
+              placeholder="Я шукаю..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+          </label>
+
           <div className="discussions__details-content">
-            {tagsList.map((tag) => (
+            {filteredTags.map((tag) => (
               <p
                 key={tag}
                 className={classNames('discussions__details-tag', {
@@ -115,7 +158,7 @@ export const DiscussionsPage = () => {
                       handleTagClick(tag);
                     }}
                   >
-                    <Close />
+                    <CloseSmallSVG />
                   </span>
                 )}
               </p>
@@ -131,6 +174,33 @@ export const DiscussionsPage = () => {
               discussion={discussion}
             />
           ))}
+
+          {filteredDiscussions.length === 0 && (
+            <div className="items__no-items-wrapper">
+              <div className="items__no-items">
+                <div className="items__text-block">
+                  <div className="items__text-block-2">
+                    <p className="items__yikes">йо-йо-йой</p>
+                    <p className="items__main-text-no-items">
+                      За обраними фільтрами результатів немає.
+                    </p>
+                  </div>
+
+                  <p className="items__hint-noitems desk-tab">
+                    Спробуйте змінити умови.
+                  </p>
+                </div>
+                <img
+                  className="items__img"
+                  src="images/no-items.png"
+                  alt=""
+                />
+              </div>
+              <p className="items__hint-noitems phone">
+                Спробуйте змінити умови.
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="exhibition__additional">
@@ -152,14 +222,14 @@ export const DiscussionsPage = () => {
 
           <div className="exhibition__sm">
             <Link
-              to={'https://web.telegram.org/'}
+              to="https://web.telegram.org/"
               target="_blank"
               rel="noopener noreferrer"
             >
               <TelegramLogoSVG className="exhibition__sm-icon" />
             </Link>
             <Link
-              to={'https://www.facebook.com/'}
+              to="https://www.facebook.com/"
               target="_blank"
               rel="noopener noreferrer"
             >

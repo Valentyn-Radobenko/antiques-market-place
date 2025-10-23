@@ -59,7 +59,7 @@
     padding: 16px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
+    gap: 16px;
 
     border-radius: 12px;
     background: $background-plate;
@@ -75,8 +75,54 @@
       width: 100%;
       gap: 8px;
 
+      background: none;
+
       &--inactive {
         gap: 0;
+      }
+    }
+
+    &-search {
+      position: relative;
+      display: flex;
+      height: 56px;
+      padding: 16px 0 16px 48px;
+      align-items: center;
+      align-self: stretch;
+
+      border-radius: 12px;
+      border: 1px solid $gray-stroke;
+      background: $background-page;
+
+      &:hover {
+        border-color: $additional-mint;
+      }
+
+      &:focus-within {
+        border-color: $additional-fresh-herb-icon;
+      }
+
+      &-icon {
+        position: absolute;
+        height: 24px;
+        width: 24px;
+        top: 16px;
+        left: 16px;
+        color: $gray-lite;
+
+        cursor: pointer;
+      }
+
+      &-input {
+        width: 100%;
+        outline: none;
+        border: none;
+
+        @include main-text;
+
+        &::placeholder {
+          color: $gray;
+        }
       }
     }
 
@@ -100,14 +146,14 @@
 
       @include on-tablet {
         display: flex;
-        display: flex;
         padding: 4px 8px;
         justify-content: center;
         align-items: center;
         gap: 8px;
-        max-width: none;
-
+        max-width: min-content;
         flex: 1 0 auto;
+        white-space: nowrap;
+
         align-self: stretch;
       }
 
@@ -119,7 +165,7 @@
         border: 2px solid $additional-freshherb-elect;
 
         @include on-tablet {
-          justify-content: space-evenly;
+          justify-content: space-between;
         }
       }
     }
@@ -154,7 +200,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 16px;
+      gap: 8px;
       align-self: stretch;
 
       @include on-tablet {
