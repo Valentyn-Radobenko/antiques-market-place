@@ -48,6 +48,7 @@ export const ActiveChat: React.FC<Props> = ({
   const ref = useRef<HTMLTextAreaElement>(null);
 
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [modalContent, setModalContent] = useState<File[]>();
 
   useEffect(() => {
     if (ref.current) {
@@ -77,8 +78,6 @@ export const ActiveChat: React.FC<Props> = ({
     setQuery('');
     setFiles([]);
   };
-
-  console.log(files.map((file) => URL.createObjectURL(file)));
 
   if (activeChat) {
     return (
@@ -137,7 +136,10 @@ export const ActiveChat: React.FC<Props> = ({
                   <div className="current-chat__message-photos">
                     {currentMessage.files.map((photo) => (
                       <div
-                        onClick={() => setOpenModal(true)}
+                        onClick={() => {
+                          setOpenModal(true);
+                          setModalContent(currentMessage.files);
+                        }}
                         className="current-chat__message-photo-container"
                       >
                         <FrameInspectSVG className="current-chat__zoom-photo" />
@@ -158,73 +160,6 @@ export const ActiveChat: React.FC<Props> = ({
                   </p>
                   <SendMessageReadedSVG className="current-chat__message-status" />
                 </div>
-                <ModalWindow
-                  openModal={openModal}
-                  setOpenModal={setOpenModal}
-                  visibility="item-slider__modal"
-                  secondModal={false}
-                >
-                  <div className="item-slider__modal-content">
-                    <button
-                      className="item-slider__modal-close"
-                      onClick={() => setOpenModal(false)}
-                    >
-                      <Close />
-                    </button>
-
-                    {currentMessage.files && (
-                      <Slider<string>
-                        sliderTitle={'title.ua'}
-                        slides={currentMessage.files.map((file) =>
-                          URL.createObjectURL(file),
-                        )}
-                        slidesPerView={1}
-                        customClassName="item-slider--modal"
-                        autoplayOn={false}
-                        renderSlide={(slide) => {
-                          return (
-                            <div
-                              key={slide}
-                              className="item-slider__slide item-slider--modal__slide"
-                              onClick={() => {
-                                setOpenModal(true);
-                              }}
-                            >
-                              <TransformWrapper
-                                doubleClick={{ mode: 'zoomIn' }}
-                                pinch={{ step: 0.1 }}
-                                wheel={{ step: 0.1 }}
-                                initialScale={1}
-                                minScale={1}
-                                maxScale={4}
-                                panning={{ disabled: true }}
-                              >
-                                {() => (
-                                  <TransformComponent
-                                    wrapperStyle={{
-                                      width: '100%',
-                                      height: '100%',
-                                    }}
-                                    contentStyle={{
-                                      width: '100%',
-                                      height: '100%',
-                                    }}
-                                  >
-                                    <img
-                                      className="item-slider__slide-img item-slider--modal__slide-img"
-                                      src={slide}
-                                      alt={slide}
-                                    />
-                                  </TransformComponent>
-                                )}
-                              </TransformWrapper>
-                            </div>
-                          );
-                        }}
-                      />
-                    )}
-                  </div>
-                </ModalWindow>
               </div>
             ))}
           </div>
@@ -282,6 +217,71 @@ export const ActiveChat: React.FC<Props> = ({
             </button>
           </div>
         </div>
+        <ModalWindow
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          visibility="item-slider__modal"
+          secondModal={false}
+        >
+          <div className="item-slider__modal-content">
+            <button
+              className="item-slider__modal-close"
+              onClick={() => setOpenModal(false)}
+            >
+              <Close />
+            </button>
+
+            {modalContent && (
+              <Slider<string>
+                sliderTitle={'title.ua'}
+                slides={modalContent.map((file) => URL.createObjectURL(file))}
+                slidesPerView={1}
+                customClassName="item-slider--modal"
+                autoplayOn={false}
+                renderSlide={(slide) => {
+                  return (
+                    <div
+                      key={slide}
+                      className="item-slider__slide item-slider--modal__slide"
+                      onClick={() => {
+                        setOpenModal(true);
+                      }}
+                    >
+                      <TransformWrapper
+                        doubleClick={{ mode: 'zoomIn' }}
+                        pinch={{ step: 0.1 }}
+                        wheel={{ step: 0.1 }}
+                        initialScale={1}
+                        minScale={1}
+                        maxScale={4}
+                        panning={{ disabled: true }}
+                      >
+                        {() => (
+                          <TransformComponent
+                            wrapperStyle={{
+                              width: '100%',
+                              height: '100%',
+                            }}
+                            contentStyle={{
+                              width: '100%',
+                              height: '100%',
+                            }}
+                          >
+                            <img
+                              className="item-slider__slide-img item-slider--modal__slide-img"
+                              src={slide}
+                              alt={slide}
+                            />
+                          </TransformComponent>
+                        )}
+                      </TransformWrapper>
+                    </div>
+                  );
+                }}
+              />
+            )}
+          </div>
+        </ModalWindow>
       </div>
     );
   }
