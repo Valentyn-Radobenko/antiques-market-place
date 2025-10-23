@@ -1,7 +1,7 @@
 type LocalizedText = {
   ua: string;
-  eng: string;
-  slug?: string; // если у поля есть slug
+  en: string;
+  slug?: string;
 };
 
 export interface Product {
@@ -17,5 +17,5 @@ export interface Product {
   subcategory: LocalizedText;
   info: Omit<LocalizedText, 'slug'>;
   price: number;
-  publicationDate: string; // можно уточнить как Date, если ты потом парсишь
+  publicationDate: string;
 }
