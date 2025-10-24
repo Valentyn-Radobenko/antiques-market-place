@@ -1,7 +1,8 @@
 .product {
   display: flex;
   width: 1360px;
-  align-items: flex-start;
+  height: fit-content;
+  align-items: stretch;
 
   border-radius: 12px;
 
@@ -65,7 +66,7 @@
     flex: 1 0 0;
     align-self: stretch;
 
-    border-radius: 0px 0px 12px 12px;
+    border-radius: 0 12px 12px 0px;
     background: var(--Gray-White, #f7fffd);
 
     /* Floating card Double shadow */

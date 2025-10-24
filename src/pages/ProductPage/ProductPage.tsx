@@ -95,10 +95,12 @@ export const ProductPage = () => {
         {isTablet && (
           <h2 className="item-slider__header-title">{product.name[lang]}</h2>
         )}
-        <ItemSlider
-          title={{ ua: product.name.ua, eng: product.name.en }}
-          imgs={product.imgs}
-        />
+        <div className="product__slider-wrapper">
+          <ItemSlider
+            title={{ ua: product.name.ua, eng: product.name.en }}
+            imgs={product.imgs}
+          />
+        </div>
         <div className="product__info">
           <div className="product__top">
             <div className="product__chars">

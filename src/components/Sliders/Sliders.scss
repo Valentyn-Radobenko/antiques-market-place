@@ -520,12 +520,17 @@
 
 .item-slider {
   width: 670px;
+  height: 100%;
   margin: 0;
   padding-inline: 0;
   padding-top: 21px;
   padding-bottom: 22px;
   border-radius: 12px 0px 0px 12px;
   background: $background-page;
+
+  align-self: flex-start;
+
+  flex: 1 1 0;
 
   /* Floating card Double shadow */
   box-shadow:

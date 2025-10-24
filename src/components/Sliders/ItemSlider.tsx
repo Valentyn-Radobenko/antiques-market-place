@@ -33,37 +33,39 @@ export const ItemSlider: React.FC<Props> = ({ title, imgs }) => {
         autoplayOn={false}
         renderSlide={(slide) => {
           return (
-            <div
-              key={slide}
-              className="item-slider__slide"
-              onClick={() => {
-                setIsModalOpen(true);
-              }}
-            >
-              {!isPhone && (
-                <>
-                  <FrameInspectSVG className="item-slider__slide-icon" />
-                  <img
-                    className="item-slider__slide-img"
-                    src={slide}
-                    alt={slide}
-                  />
-                </>
-              )}
+            <>
+              <div
+                key={slide}
+                className="item-slider__slide"
+                onClick={() => {
+                  setIsModalOpen(true);
+                }}
+              >
+                {!isPhone && (
+                  <>
+                    <FrameInspectSVG className="item-slider__slide-icon" />
+                    <img
+                      className="item-slider__slide-img"
+                      src={slide}
+                      alt={slide}
+                    />
+                  </>
+                )}
 
-              {isPhone && (
-                <>
-                  <div
-                    className="item-slider__slide-img-wrapper"
-                    style={{ backgroundImage: `url(${slide})` }}
-                  >
-                    <div className="item-slider__slide-img-square">
-                      <FrameInspectSVG className="item-slider__slide-icon" />
+                {isPhone && (
+                  <>
+                    <div
+                      className="item-slider__slide-img-wrapper"
+                      style={{ backgroundImage: `url(${slide})` }}
+                    >
+                      <div className="item-slider__slide-img-square">
+                        <FrameInspectSVG className="item-slider__slide-icon" />
+                      </div>
                     </div>
-                  </div>
-                </>
-              )}
-            </div>
+                  </>
+                )}
+              </div>
+            </>
           );
         }}
       />
