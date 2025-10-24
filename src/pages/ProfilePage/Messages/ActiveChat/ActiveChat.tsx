@@ -20,11 +20,11 @@ import { EclipseGreenWhite } from '../../../../components/Imgs/EclipseGreenWhite
 import { ChatT } from '../../../../types/chatTypes';
 import { v4 as uuidv4 } from 'uuid';
 import { PhotosList } from '../../../../components/PhotosList/PhotosList';
-import { FrameInspectSVG } from '../../../../components/Imgs/FrameInspectSVG';
 import { ModalWindow } from '../../../../components/ModalWindow/ModalWindow';
 import { Close } from '../../../../components/Imgs/Close';
 import Slider from '../../../../components/Sliders/Slider';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+import { PhotosListMessages } from '../../../../components/PhotosListMessages/PhotosListMessages';
 
 type Props = {
   setActiveMessages: Dispatch<SetStateAction<boolean>>;
@@ -133,25 +133,31 @@ export const ActiveChat: React.FC<Props> = ({
                   </p>
                 )}
                 {currentMessage.files && (
-                  <div className="current-chat__message-photos">
-                    {currentMessage.files.map((photo) => (
-                      <div
-                        onClick={() => {
-                          setOpenModal(true);
-                          setModalContent(currentMessage.files);
-                        }}
-                        className="current-chat__message-photo-container"
-                      >
-                        <FrameInspectSVG className="current-chat__zoom-photo" />
-                        <img
-                          className="current-chat__message-photo"
-                          key={photo.name}
-                          src={URL.createObjectURL(photo)}
-                          alt="#"
-                        />
-                      </div>
-                    ))}
-                  </div>
+                  // <div className="current-chat__message-photos">
+                  //   {currentMessage.files.map((photo) => (
+                  //     <div
+                  //       onClick={() => {
+                  //         setOpenModal(true);
+                  //         setModalContent(currentMessage.files);
+                  //       }}
+                  //       className="current-chat__message-photo-container"
+                  //     >
+                  //       <FrameInspectSVG className="current-chat__zoom-photo" />
+                  //       <img
+                  //         className="current-chat__message-photo"
+                  //         key={photo.name}
+                  //         src={URL.createObjectURL(photo)}
+                  //         alt="#"
+                  //       />
+                  //     </div>
+                  //   ))}
+                  // </div>
+
+                  <PhotosListMessages
+                    setOpenModal={setOpenModal}
+                    setModalContent={setModalContent}
+                    files={currentMessage.files}
+                  />
                 )}
 
                 <div className="current-chat__message-date-status">
@@ -170,29 +176,17 @@ export const ActiveChat: React.FC<Props> = ({
             disabled: !activeChat.canAnswer,
           })}
         >
-          {files.length !== 0 && (
-            <PhotosList
-              files={files}
-              setFiles={setFiles}
-            />
-          )}
+          <div className="current-chat__files-wrapper">
+            {files.length !== 0 && (
+              <PhotosList
+                files={files}
+                setFiles={setFiles}
+              />
+            )}
+          </div>
+
           <div className="current-chat__input-button">
             <div className="current-chat__input-wrapper">
-              <textarea
-                disabled={!activeChat.canAnswer}
-                ref={ref}
-                value={query}
-                className="current-chat__input"
-                placeholder={
-                  (!activeChat.canAnswer &&
-                    'Цей чат лише для перегляду. Відповіді не передбачено.') ||
-                  'Написати повідомлення'
-                }
-                onChange={(e) => {
-                  setQuery(e.target.value);
-                }}
-                rows={(!activeChat.canAnswer && 2) || 1}
-              />
               <label
                 className="current-chat__label"
                 htmlFor="chatInput"
@@ -207,6 +201,21 @@ export const ActiveChat: React.FC<Props> = ({
                 onChange={addFiles}
                 hidden
                 disabled={!activeChat.canAnswer}
+              />
+              <textarea
+                disabled={!activeChat.canAnswer}
+                ref={ref}
+                value={query}
+                className="current-chat__input"
+                placeholder={
+                  (!activeChat.canAnswer &&
+                    'Цей чат лише для перегляду. Відповіді не передбачено.') ||
+                  'Написати повідомлення'
+                }
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                }}
+                rows={1}
               />
             </div>
             <button
