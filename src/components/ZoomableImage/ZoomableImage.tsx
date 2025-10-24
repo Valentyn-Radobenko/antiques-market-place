@@ -38,9 +38,19 @@ export const ZoomableImage: React.FC<Props> = ({
 
   const isDisabled = findIsDisabled();
 
+  const handleDoubleClickMode = () => {
+    if (scale > 1 || (customScale && customScale > 1)) {
+      return 'zoomOut';
+    } else {
+      return 'zoomIn';
+    }
+  };
+
+  const mode = handleDoubleClickMode();
+
   return (
     <TransformWrapper
-      doubleClick={{ mode: 'zoomIn' }}
+      doubleClick={{ mode: mode }}
       pinch={{ step: 0.1 }}
       wheel={{ step: 0.1 }}
       initialScale={1}
