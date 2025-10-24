@@ -14,9 +14,9 @@ import { useIsTablet } from '../../hooks/useMediaQuery';
 import { Dropdown } from '../../components/Dropdown/Dropdown';
 import { Close } from '../../components/Imgs/Close';
 import Slider from '../../components/Sliders/Slider';
-import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import { FrameInspectSVG } from '../../components/Imgs/FrameInspectSVG';
 import { CreateExhibitionInfo } from '../../components/CreateExhibitionInfo/CreateExhibitionInfo';
+import { ZoomableImage } from '../../components/ZoomableImage/ZoomableImage';
 
 export const ExhibitionPage = () => {
   const { slug } = useParams();
@@ -272,28 +272,12 @@ export const ExhibitionPage = () => {
                     setIsImgOpen(true);
                   }}
                 >
-                  <TransformWrapper
-                    doubleClick={{ mode: 'zoomIn' }}
-                    pinch={{ step: 0.1 }}
-                    wheel={{ step: 0.1 }}
-                    initialScale={1}
-                    minScale={1}
-                    maxScale={4}
-                    panning={{ disabled: true }}
-                  >
-                    {() => (
-                      <TransformComponent
-                        wrapperStyle={{ width: '100%', height: '100%' }}
-                        contentStyle={{ width: '100%', height: '100%' }}
-                      >
-                        <img
-                          className="item-slider__slide-img item-slider--modal__slide-img"
-                          src={slide}
-                          alt={slide}
-                        />
-                      </TransformComponent>
-                    )}
-                  </TransformWrapper>
+                  <ZoomableImage
+                    src={slide}
+                    className={
+                      'item-slider__slide-img item-slider--modal__slide-img'
+                    }
+                  />
                 </div>
               );
             }}
