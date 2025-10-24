@@ -11,6 +11,7 @@ interface SliderProps<T> {
   customClassName?: string;
   autoplayOn?: boolean;
   initialSlide?: number;
+  isSwipeOn?: boolean;
 
   renderSlide: (slide: T, index?: number) => React.ReactNode;
 }
@@ -24,6 +25,8 @@ export default function Slider<T>({
   customClassName = '',
   autoplayOn = true,
   initialSlide = 0,
+  isSwipeOn = true,
+
   renderSlide,
 }: SliderProps<T>) {
   const sliderRef = useRef<SlickSlider>(null);
@@ -51,8 +54,8 @@ export default function Slider<T>({
     autoplaySpeed: 4000,
     slidesToShow: slidesPerView,
     slidesToScroll: slidesPerView,
-    lazyLoad: 'ondemand' as const,
     centerMode: false,
+    swipe: isSwipeOn,
     beforeChange: (_oldIndex: number, newIndex: number) => {
       setCurrentSlide(newIndex);
     },

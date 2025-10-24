@@ -1,13 +1,42 @@
 import React, { useState } from 'react';
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import {
+  TransformWrapper,
+  TransformComponent,
+  ReactZoomPanPinchRef,
+} from 'react-zoom-pan-pinch';
 
 type Props = {
   src: string;
   className: string;
+  customScale?: number;
+  setCustomScale?: React.Dispatch<React.SetStateAction<number>>;
 };
 
-export const ZoomableImage: React.FC<Props> = ({ src, className }) => {
+export const ZoomableImage: React.FC<Props> = ({
+  src,
+  className,
+  customScale,
+  setCustomScale,
+}) => {
   const [scale, setScale] = useState(1);
+
+  const handleOnTransformed = () => {
+    if (!customScale || !setCustomScale) {
+      return (ref: ReactZoomPanPinchRef) => setScale(ref.state.scale);
+    } else {
+      return (ref: ReactZoomPanPinchRef) => setCustomScale(ref.state.scale);
+    }
+  };
+
+  const findIsDisabled = () => {
+    if (!customScale || !setCustomScale) {
+      return !!(scale <= 1);
+    } else {
+      return !!(customScale <= 1);
+    }
+  };
+
+  const isDisabled = findIsDisabled();
 
   return (
     <TransformWrapper
@@ -17,8 +46,8 @@ export const ZoomableImage: React.FC<Props> = ({ src, className }) => {
       initialScale={1}
       minScale={1}
       maxScale={4}
-      onTransformed={(ref) => setScale(ref.state.scale)}
-      panning={{ disabled: scale <= 1 }}
+      onTransformed={handleOnTransformed()}
+      panning={{ disabled: isDisabled }}
       limitToBounds={true}
       disablePadding={true}
     >

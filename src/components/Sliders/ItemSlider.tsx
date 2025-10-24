@@ -19,6 +19,7 @@ export const ItemSlider: React.FC<Props> = ({ title, imgs }) => {
   // const language = useSelector((state: SavingState) => state.language.language);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [scale, setScale] = useState(1);
 
   const isPhone = useIsMobile();
 
@@ -86,6 +87,7 @@ export const ItemSlider: React.FC<Props> = ({ title, imgs }) => {
             slidesPerView={1}
             customClassName="item-slider--modal"
             autoplayOn={false}
+            isSwipeOn={scale <= 1}
             renderSlide={(slide) => {
               return (
                 <div
@@ -100,6 +102,8 @@ export const ItemSlider: React.FC<Props> = ({ title, imgs }) => {
                     className={
                       'item-slider__slide-img item-slider--modal__slide-img'
                     }
+                    customScale={scale}
+                    setCustomScale={setScale}
                   />
                 </div>
               );
