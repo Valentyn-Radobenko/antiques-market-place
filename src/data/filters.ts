@@ -2,6 +2,7 @@ import { OptionType } from '../types/optionType';
 
 export const filters: OptionType = {
   nameUa: 'Фільтри',
+  nameEng: 'Filters',
   slug: 'filters',
   type: 'multiple',
   options: [

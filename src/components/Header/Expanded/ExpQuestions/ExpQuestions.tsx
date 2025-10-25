@@ -1,16 +1,25 @@
+import { useTranslation } from 'react-i18next';
+
 export const ExpQuestions = () => {
+  const { t } = useTranslation();
   return (
     <>
       <div className="exp-questions__buttons">
         <button className="exp-questions__button">
-          Чи є сертифікат експертизи?
+          {t('exp-questions__button')}
         </button>
         <button className="exp-questions__button">
-          Чи можна продати через платформу?
+          {t('exp-questions__button2')}
         </button>
-        <button className="exp-questions__button">Як купити?</button>
-        <button className="exp-questions__button">Правила сайту</button>
-        <button className="exp-questions__button">Залишити питання</button>
+        <button className="exp-questions__button">
+          {t('exp-questions__button3')}
+        </button>
+        <button className="exp-questions__button">
+          {t('exp-questions__button4')}
+        </button>
+        <button className="exp-questions__button">
+          {t('exp-questions__button5')}
+        </button>
       </div>
     </>
   );

@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { SearchSVG } from '../Imgs/SearchSVG';
 import { getSearchWith } from '../../utils/SearchHelper';
 import { ArrowTale } from '../Imgs/ArrowTale';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   searchQuery: string | null;
@@ -13,6 +14,8 @@ export const MarketForm: React.FC<Props> = ({ searchQuery }) => {
   const [focus, setFocus] = useState(true);
   const [query, setQuery] = useState('');
   const [searchParams, setSearchPrams] = useSearchParams();
+
+  const { t } = useTranslation();
 
   return (
     <div className="market-search">
@@ -60,7 +63,7 @@ export const MarketForm: React.FC<Props> = ({ searchQuery }) => {
             <input
               autoFocus={focus}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Пошук товару"
+              placeholder={t('market-search__input-placeholder')}
               type="text"
               className="market-search__input"
               value={query}
@@ -72,7 +75,7 @@ export const MarketForm: React.FC<Props> = ({ searchQuery }) => {
               isActive: focus,
             })}
           >
-            Знайти
+            {t('market-search__search-button')}
           </button>
           <button
             onClick={() => {
@@ -81,12 +84,12 @@ export const MarketForm: React.FC<Props> = ({ searchQuery }) => {
             }}
             className="market-search__decline"
           >
-            Скасувати
+            {t('market-search__decline')}
           </button>
         </form>
         {searchQuery && (
           <h2 className="market-search__h3">
-            Результати пошуку“
+            {t('market-search__h3')} “
             <span className="market-search__green-word">{searchQuery}</span>”
           </h2>
         )}

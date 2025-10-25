@@ -6,6 +6,8 @@ import { FilterItem } from '../FilterItem/FilterItem';
 
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../../store/store';
 
 type Props = {
   filter: FiltersType;
@@ -23,6 +25,8 @@ export const Filter: React.FC<Props> = ({
   // const [activeFilterType, setActiveFilterType] = useState<number | null>(null);
   const [height, setHeight] = useState<number>(0);
   const [scrollHeight, seScrollHeight] = useState<number>(0);
+
+  const lang = useSelector((state: SavingState) => state.language.language);
 
   const toggleMenu = function () {
     if (activeFilter === filter.id) {
@@ -54,7 +58,10 @@ export const Filter: React.FC<Props> = ({
           toggleMenu();
         }}
       >
-        <SearchLink params={{}}>{filter.nameUa}</SearchLink>
+        <SearchLink params={{}}>
+          {lang === 'ua' && filter.nameUa}
+          {lang === 'en' && filter.nameEng}
+        </SearchLink>
         <button>
           <svg
             className={classNames('filter__arrow', {

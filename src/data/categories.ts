@@ -2,6 +2,7 @@ import { OptionType } from '../types/optionType';
 
 export const categories: OptionType = {
   nameUa: 'Категорії',
+  nameEng: 'Categories',
   slug: 'category',
   type: 'single',
   options: [

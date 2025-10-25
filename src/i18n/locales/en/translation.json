@@ -1,31 +1,112 @@
 {
-  "header": {
-    "search": {
-      "button": "Search"
-    },
-    "languageSwitcher": {
-      "ariaLabel": "Language switcher"
-    },
-    "dropdownQuestions": {
-      "certificate": "Is there a certificate of expertise?",
-      "sell": "Can I sell through the platform?",
-      "buy": "How to buy?",
-      "rules": "Site rules",
-      "leaveQuestion": "Leave a question"
-    },
-    "user": {
-      "login": "Log in",
-      "register": "Register"
-    }
-  },
   "navigation": {
     "market": "Market",
     "collectors_club": "Collectors'\u00A0Club",
     "expertise": "Expertise"
   },
-  "hero": {
-    "title": "A collectible heritage - quality that has stood the test of time."
+  "clubHero": {
+    "title": "Collect your heritage, build your history",
+    "text": "Share, preserve and study rare historical artifacts. Join the collecting community through exhibitions, articles&nbsp;and&nbsp;discussions."
   },
+
+  "editor-placeholder": "Write a message",
+  "create-discussion__title": "Create a discussion",
+  "create-discussion__add-theme": "Add a topic:",
+  "create-discussion__input-title": "Request",
+  "create-discussion__input-placeholder": "How to check the authenticity of an item?",
+  "create-discussion__input-placeholder2": "Enter a link",
+  "create-discussion__input-title2": "Additional text",
+  "create-discussion__link-text": "Edit link",
+  "create-discussion__link-button": "Save",
+  "create-discussion__error-text": "To insert a link, select the word and click the icon",
+  "create-discussion__anonim": "Post a topic anonymously",
+  "create-discussion__button": "Submit",
+  "create-discussion__my-theme": "My Theme",
+  "shopping-cart__cta-info-text": "You need specify a query and additional text to create a discussion.",
+
+  "create-exhibition__title": "Propose an exhibition",
+  "create-exhibition__input-title": "Topic",
+  "create-exhibition__input-placeholder": "Early works of Taras Grigorovich Shevchenko",
+  "shopping-cart__cta-info-text2": "You must specify a topic and additional text to submit an exhibition.",
+
+  "create-exhibition-info__content-text": "We provide an opportunity for organizers and artists to present their exhibitions on the platform for advertising or under other conditions. This is a great opportunity to attract new visitors and expand the audience.",
+  "create-exhibition-info__conditions-title": "Conditions:",
+  "create-exhibition-info__conditions-block-title": "Advertising placement:",
+  "create-exhibition-info__conditions-block-text": "You can place materials and a description of the exhibition with important information for users (location, date, time, ticket prices, etc.). Free or paid placement is possible.",
+  "create-exhibition-info__conditions-block-title2": "Curatorial support:",
+  "create-exhibition-info__conditions-block-text2": "Professional assistance in organizing and designing the exhibition.",
+  "create-exhibition-info__content-text2": "To apply for exhibition placement, click on the button <span class=\"create-exhibition-info__content-text--bold create-exhibition-info__content-text--green\">&nbsp;\"Add an exhibition.\"</span>",
+  "create-exhibition-info__content-text3": "Some topics (for example, military projects dedicated to Ukraine and others) can be placed for free or on flexible terms of cooperation. <br /> Send us information about your exhibition, and we will contact you to clarify the terms of cooperation and placement on the platform.",
+
+  "create-new-theme__h3": "Add your theme",
+  "create-new-theme__input-placeholder": "Enter a theme name",
+
+  "current-discussion__title": "Discussion",
+  "current-discussion__answer-button": "Reply",
+  "current-discussion__action-text": "Edit comment",
+  "current-discussion__action-text2": "Delete comment",
+  "current-discussion__hint-text": "Edit text",
+  "current-discussion__input-placeholder": "Add comment",
+  "current-discussion__add-comment-button": "Submit",
+
+  "discussion__action-text": "End discussion",
+  "discussion__action-text2": "Delete",
+
+  "discussion-rules__title": "Community Discussion Rules",
+  "discussion-rules__helper": "Click on a section to view details.",
+  "discussion-rules__bottom-text": "These rules are designed to create a comfortable space for communication and sharing of experiences in the \"DIKO\" platform community.",
+
+  "dropdown-options__sort-text": "Sort",
+
+  "file-input__1stword": "Click",
+  "file-input__text-1": "to upload or drag a file",
+  "file-input__text-2": "We support PNG, JPEG and GIF up to 10MB",
+
+  "filters__h": "Filters",
+
+  "header__logo-title-main": "DIKO",
+  "footer__dropdown-text": "Terms of Use",
+  "footer__option": "Terms of Use",
+  "footer__option2": "Privacy Policy",
+  "footer__dropdown-text2": "Support & Tips",
+  "footer__option3": "Trade with us",
+  "footer__option4": "FAQs",
+  "footer__dropdown-text3": "About us",
+  "footer__option5": "About the “DIKO” platform",
+  "footer__option6": "Our products and services",
+  "footer__copyright": "© 2004 – 2025 | DIKO | All rights reserved.",
+
+  "exhibitions": "Exhibitions",
+  "articles": "Articles",
+  "discussions": "Discussions",
+
+  "exp-questions__button": "Is there an examination certificate?",
+  "exp-questions__button2": "Can I sell through the platform?",
+  "exp-questions__button3": "How to buy?",
+  "exp-questions__button4": "Site rules",
+  "exp-questions__button5": "Leave a question",
+
+  "header__logo-title-minor": "antiquarian platform",
+
+  "market-search__input-placeholder": "Product search",
+  "market-search__search-button": "Find",
+  "market-search__decline": "Cancel",
+  "market-search__h3": "Search results",
+
+  "market-item__new": "New",
+
+  "questions": "Questions",
+  "currency": "Currency",
+  "account": "Account",
+
+  "modal-ending__title": "Your discussion suggestion is",
+  "modal-ending__title--green": "sent",
+  "modal-ending__end-message-text": "Please wait for review.",
+
+  "modal-ending__title2": "Your exhibition proposal is",
+  "modal-ending__end-message-text2": "Wait for a response.",
+  "modal-ending__end-message-text3": "The message will be sent to the dialog",
+
   "exhibitionsSlider": {
     "title": "Exhibitions",
     "headerLink": "Learn More",
@@ -40,109 +121,5 @@
     "title": "Discussions",
     "minorTitle": "Most popular",
     "headerLink": "Add a topic"
-  },
-  "footer": {
-    "help": "Help",
-    "tradeWithDucat": "Trade with Ducat",
-    "askQuestion": "Ask a Question",
-    "auctions": "Auctions",
-    "policiesAndRules": "Policies and Rules",
-    "privacyPolicy": "Privacy Policy",
-    "termsOfUse": "Terms of Use",
-    "getToKnowUs": "Get to Know Us",
-    "aboutDucat": "About Ducat",
-    "careers": "Careers",
-    "copyright": "© 2004 - 2025 Ducat Dubovyk&Ko. LLC «Ducat Dubovyk&Ko» / IE Dubovyk Vyacheslav Viktorovych. All rights reserved.",
-    "officialInquiries": "For official inquiries:"
-  },
-  "expertise": {
-    "heading": {
-      "title": "Lot Evaluation and Expertise",
-      "tooltip": {
-        "title": "Recommendations for choosing a service:",
-        "list": [
-          "If you are <b>only interested in the price</b> — basic evaluation is sufficient.",
-          "For <b>selling, insurance, or authenticity verification</b> — a detailed evaluation and authenticity certification are suitable."
-        ],
-        "info": "This will not only provide you with the necessary information but also allow you to use your budget most effectively."
-      }
-    },
-    "steps": {
-      "title": "Get a professional evaluation of your item.",
-      "minorTitle": "Follow five simple steps:",
-      "list": [
-        {
-          "title": "1. Familiarize yourself with the types of evaluation.",
-          "text": "Choose the service that best suits your needs: basic evaluation or preparation of an authenticity certificate."
-        },
-        {
-          "title": "2. Fill out a short form",
-          "text": "Add known information about your lot and upload high-quality photos that clearly show the item from different angles."
-        },
-        {
-          "title": "3. Submit your application.",
-          "text": "After submission, our experts will start processing your request."
-        },
-        {
-          "title": "4. Wait for a response",
-          "text": "You will receive preliminary information about the item's value and the cost of the chosen service."
-        },
-        {
-          "title": "5. Confirm the request.",
-          "text": "Pay for the service and receive a comprehensive evaluation."
-        }
-      ]
-    },
-    "options": {
-      "title": "Choose the necessary evaluation option for your item:",
-      "list": [
-        {
-          "header": "1. Basic item evaluation",
-          "details": {
-            "what": {
-              "label": "What it is:",
-              "description": [
-                "A brief consultation or basic evaluation providing a general understanding of the item. You will learn its approximate value and context: history, approximate age, style, or significance.",
-                "IMPORTANT! The evaluation is based on visual characteristics; be sure to provide high-quality photos."
-              ]
-            },
-            "price": {
-              "label": "Average cost:",
-              "description": "400 UAH + 2% of the item's value"
-            }
-          },
-          "button": "Submit application"
-        },
-        {
-          "header": "2. Expertise. Get an authenticity certificate",
-          "details": {
-            "what": {
-              "label": "What it is:",
-              "description": [
-                "A professional conclusion confirming the item's originality. Signed by an expert and can be used for sales, museum placement, auctions, and other platforms.",
-                "IMPORTANT! Expertise always involves physical contact with the item, so the item must be provided for evaluation to achieve objective results.",
-                "The item can be sent for expertise using postal services or in person. Expertise takes from 10 days to 1 month."
-              ]
-            },
-            "price": {
-              "label": "Average cost:",
-              "description": [
-                "Basic expertise: 2000 UAH + 2% of the estimated value.",
-                "Extended: 10,000 UAH (depending on the complexity of the research)."
-              ]
-            },
-            "owner": {
-              "label": "What the lot owner receives:",
-              "description": [
-                "Official authenticity certificate.",
-                "Description of the item's characteristics.",
-                "Confirmation recognized by the professional community."
-              ]
-            }
-          },
-          "button": "Submit application"
-        }
-      ]
-    }
   }
 }

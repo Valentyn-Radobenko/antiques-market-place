@@ -12,6 +12,8 @@ import { OptionType } from '../../types/optionType';
 import { SearchLink } from '../../utils/SearchLink';
 import { CheckboxRound } from '../Imgs/CheckBoxRound/CheckBoxRound';
 import { CheckBoxSquare } from '../Imgs/CheckBoxSquare/CheckBoxSquare';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../store/store';
 
 const MAXHEIGHT = 266;
 const MAXHEIGHTTABLET = 416;
@@ -36,6 +38,8 @@ export const DropdownNavigation: React.FC<Props> = ({
   const refsCatDesc = useRef<Record<string, HTMLDivElement | null>>({});
 
   const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const lang = useSelector((state: SavingState) => state.language.language);
 
   function getFilterKeys() {
     const serchParamsKeys = Array.from(searchParams.keys());
@@ -129,7 +133,10 @@ export const DropdownNavigation: React.FC<Props> = ({
             {optionType.slug === 'sort' && (
               <SortArrowSVG className="dropdown-navigation__nav-icon" />
             )}
-            <h4 className="dropdown-navigation__h4">{optionType.nameUa}</h4>
+            <h4 className="dropdown-navigation__h4">
+              {lang === 'ua' && optionType.nameUa}
+              {lang === 'en' && optionType.nameEng}
+            </h4>
             <SearchLink
               params={
                 optionType.type === 'multiple' ?
@@ -164,7 +171,10 @@ export const DropdownNavigation: React.FC<Props> = ({
                     isActive: activeOptionType === option.id,
                   })}
                 >
-                  <p>{option.nameUa}</p>
+                  <p>
+                    {lang === 'ua' && option.nameUa}
+                    {lang === 'en' && option.nameEng}
+                  </p>
                   <Arrow
                     className={classNames('dropdown-navigation__arrow', {
                       isActive: activeOptionType === option.id,
@@ -209,7 +219,10 @@ export const DropdownNavigation: React.FC<Props> = ({
                             },
                           )} // add 'hoverable' class in case we need hover effect on svg bellow
                         >
-                          <p>{subcategorie.nameUa}</p>
+                          <p>
+                            {lang === 'ua' && subcategorie.nameUa}
+                            {lang === 'en' && subcategorie.nameEng}
+                          </p>
                           {optionType.slug === 'filters' && (
                             <CheckBoxSquare
                               isActive={getActiveClass(
@@ -268,7 +281,8 @@ export const DropdownNavigation: React.FC<Props> = ({
                   )}
                 >
                   <p className="dropdown-navigation__categories-option-name">
-                    {option.nameUa}
+                    {lang === 'ua' && option.nameUa}
+                    {lang === 'en' && option.nameEng}
                   </p>
                   <Arrow
                     className={classNames(
@@ -303,7 +317,8 @@ export const DropdownNavigation: React.FC<Props> = ({
                           },
                         )}
                       >
-                        {subcategorie.nameUa}
+                        {lang === 'ua' && subcategorie.nameUa}
+                        {lang === 'en' && subcategorie.nameEng}
                       </SearchLink>
                     ))}
                   </div>
@@ -328,7 +343,10 @@ export const DropdownNavigation: React.FC<Props> = ({
         {optionType.slug === 'sort' && (
           <SortArrowSVG className="dropdown-navigation__nav-icon" />
         )}
-        <h4 className="dropdown-navigation__h4">{optionType.nameUa}</h4>
+        <h4 className="dropdown-navigation__h4">
+          {lang === 'ua' && optionType.nameUa}
+          {lang === 'en' && optionType.nameEng}
+        </h4>
         <Arrow className="dropdown-navigation__arrow phone" />
       </button>
       <ModalWindow
@@ -357,7 +375,10 @@ export const DropdownNavigation: React.FC<Props> = ({
               {optionType.slug === 'sort' && (
                 <SortArrowSVG className="dropdown-navigation__nav-icon" />
               )}
-              <h4 className="dropdown-navigation__h4">{optionType.nameUa}</h4>
+              <h4 className="dropdown-navigation__h4">
+                {lang === 'ua' && optionType.nameUa}
+                {lang === 'en' && optionType.nameEng}
+              </h4>
               {optionType.slug !== 'category' && (
                 <SearchLink
                   params={
@@ -398,7 +419,10 @@ export const DropdownNavigation: React.FC<Props> = ({
                       },
                     )}
                   >
-                    <p>{option.nameUa}</p>
+                    <p>
+                      {lang === 'ua' && option.nameUa}
+                      {lang === 'en' && option.nameEng}
+                    </p>
                     <Arrow
                       className={classNames('dropdown-navigation__arrow', {
                         isActive: activeOptionType === option.id,
@@ -446,7 +470,10 @@ export const DropdownNavigation: React.FC<Props> = ({
                               },
                             )} // add 'hoverable' class in case we need hover effect on svg bellow
                           >
-                            <p>{subcategorie.nameUa}</p>
+                            <p>
+                              {lang === 'ua' && subcategorie.nameUa}
+                              {lang === 'en' && subcategorie.nameEng}
+                            </p>
                             {optionType.slug === 'filters' && (
                               <CheckBoxSquare
                                 isActive={getActiveClass(

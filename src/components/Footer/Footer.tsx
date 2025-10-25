@@ -1,4 +1,4 @@
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useIsTablet } from '../../hooks/useMediaQuery';
 import { Dropdown } from '../Dropdown/Dropdown';
@@ -7,7 +7,7 @@ import { FacebookLogoSVG } from '../Imgs/FacebookLogoSVG';
 import { MailSVG } from '../Imgs/MailSVG';
 
 export const Footer = () => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
   const isTablet = useIsTablet();
 
   return (
@@ -20,7 +20,9 @@ export const Footer = () => {
               src="images/header/logo.svg"
               alt="DIKO logo"
             />
-            <p className="header__logo-title-main">DIKO</p>
+            <p className="header__logo-title-main">
+              {t('header__logo-title-main')}
+            </p>
           </div>
         </Link>
 
@@ -57,14 +59,18 @@ export const Footer = () => {
             <Dropdown
               buttonArea="all"
               buttonTitle={() => (
-                <p className="footer__dropdown-text">Правила користування</p>
+                <p className="footer__dropdown-text">
+                  {t('footer__dropdown-text')}
+                </p>
               )}
               customClassName="footer__dropdown"
               renderContent={() => (
                 <div className="footer__options">
-                  <button className="footer__option">Умови використання</button>
                   <button className="footer__option">
-                    Політика конфіденційності
+                    {t('footer__option')}
+                  </button>
+                  <button className="footer__option">
+                    {t('footer__option2')}
                   </button>
                 </div>
               )}
@@ -74,13 +80,19 @@ export const Footer = () => {
             <Dropdown
               buttonArea="all"
               buttonTitle={() => (
-                <p className="footer__dropdown-text">Підтримка та поради</p>
+                <p className="footer__dropdown-text">
+                  {t('footer__dropdown-text2')}
+                </p>
               )}
               customClassName="footer__dropdown"
               renderContent={() => (
                 <div className="footer__options">
-                  <button className="footer__option">Торгуйте з нами</button>
-                  <button className="footer__option">Популярні питання</button>
+                  <button className="footer__option">
+                    {t('footer__option3')}
+                  </button>
+                  <button className="footer__option">
+                    {t('footer__option4')}
+                  </button>
                 </div>
               )}
             />
@@ -89,16 +101,18 @@ export const Footer = () => {
             <Dropdown
               buttonArea="all"
               buttonTitle={() => (
-                <p className="footer__dropdown-text">Про нас</p>
+                <p className="footer__dropdown-text">
+                  {t('footer__dropdown-text3')}
+                </p>
               )}
               customClassName="footer__dropdown"
               renderContent={() => (
                 <div className="footer__options">
                   <button className="footer__option">
-                    Про платформу “DIKO”
+                    {t('footer__option5')}
                   </button>
                   <button className="footer__option">
-                    Наші продукти та послуги
+                    {t('footer__option6')}
                   </button>
                 </div>
               )}
@@ -108,14 +122,14 @@ export const Footer = () => {
       : <div className="footer__columns-wrap">
           <div className="footer__columns">
             <div className="footer__column">
-              <h4 className="footer__title">Правила користування</h4>
+              <h4 className="footer__title">{t('footer__dropdown-text')}</h4>
               <ul className="footer__list">
                 <li>
                   <a
                     href="#"
                     className="footer__link"
                   >
-                    Умови використання
+                    {t('footer__option')}
                   </a>
                 </li>
                 <li>
@@ -123,20 +137,20 @@ export const Footer = () => {
                     href="#"
                     className="footer__link"
                   >
-                    Політика конфіденційності
+                    {t('footer__option2')}
                   </a>
                 </li>
               </ul>
             </div>
             <div className="footer__column">
-              <h4 className="footer__title">Підтримка та поради</h4>
+              <h4 className="footer__title">{t('footer__dropdown-text2')}</h4>
               <ul className="footer__list">
                 <li>
                   <a
                     href="#"
                     className="footer__link"
                   >
-                    Торгуйте з нами
+                    {t('footer__option3')}
                   </a>
                 </li>
                 <li>
@@ -144,20 +158,20 @@ export const Footer = () => {
                     href="#"
                     className="footer__link"
                   >
-                    Популярні питання
+                    {t('footer__option4')}
                   </a>
                 </li>
               </ul>
             </div>
             <div className="footer__column">
-              <h4 className="footer__title">Про нас</h4>
+              <h4 className="footer__title">{t('footer__dropdown-text3')}</h4>
               <ul className="footer__list">
                 <li>
                   <a
                     href="#"
                     className="footer__link"
                   >
-                    Про платформу DIKO
+                    {t('footer__option5')}
                   </a>
                 </li>
                 <li>
@@ -165,7 +179,7 @@ export const Footer = () => {
                     href="#"
                     className="footer__link"
                   >
-                    Наші продукти та послуги
+                    {t('footer__option6')}
                   </a>
                 </li>
               </ul>
@@ -173,9 +187,7 @@ export const Footer = () => {
           </div>
         </div>
       }
-      <div className="footer__copyright">
-        © 2004 – 2025 | DIKO | Усі права захищено.
-      </div>
+      <div className="footer__copyright">{t('footer__copyright')}</div>
     </footer>
   );
 };

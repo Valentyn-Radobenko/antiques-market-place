@@ -24,6 +24,7 @@ import { ModalWindow } from '../ModalWindow/ModalWindow';
 import classNames from 'classnames';
 import { ModalEndingExhibitions } from '../ModalEnding/ModalEndingExhibitions';
 import { Tooltip } from '../Tooltip/Tooltip';
+import { useTranslation } from 'react-i18next';
 
 const PHOTO_AMOUNT = 5;
 
@@ -54,6 +55,7 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
     anonimus: false,
     themes: [],
   });
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (linkError) {
@@ -73,7 +75,7 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
         openOnClick: false,
       }),
       Placeholder.configure({
-        placeholder: 'Пишіть повідомлення',
+        placeholder: t('editor-placeholder'),
       }),
     ],
     content: '',
@@ -119,7 +121,9 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
       {step === 1 && (
         <div className="create-exhibition">
           <div className="create-exhibition__top-bar">
-            <h2 className="create-exhibition__title">Запропонувати виставку</h2>
+            <h2 className="create-exhibition__title">
+              {t('create-exhibition__title')}
+            </h2>
             <Close
               onClick={() => setOpenModal(false)}
               className="create-exhibition__close-svg"
@@ -129,9 +133,11 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
           <div className="create-exhibition__main">
             <div className="create-exhibition__form">
               <div className="create-exhibition__input-block">
-                <p className="create-exhibition__input-title">Тема</p>
+                <p className="create-exhibition__input-title">
+                  {t('create-exhibition__input-title')}
+                </p>
                 <textarea
-                  placeholder="Ранні роботи Тараса Григоровича Шевчанка"
+                  placeholder={t('create-exhibition__input-placeholder')}
                   className="create-exhibition__input"
                   value={form.name}
                   onChange={(event) =>
@@ -141,7 +147,7 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
               </div>
               <div className="create-exhibition__input-block">
                 <p className="create-exhibition__input-title">
-                  Додатковий текст
+                  {t('create-discussion__input-title2')}
                 </p>
                 <EditorContent
                   editor={editor}
@@ -208,7 +214,7 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
                     <div className="create-exhibition__link-modal">
                       <div className="create-exhibition__link-header">
                         <p className="create-exhibition__link-text">
-                          Редагувати посилання
+                          {t('create-discussion__link-text')}
                         </p>
                         <Close
                           className="create-exhibition__close-modal"
@@ -216,7 +222,7 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
                         />
                       </div>
                       <input
-                        placeholder="Введіть посилання"
+                        placeholder={t('create-discussion__input-placeholder2')}
                         className="create-exhibition__input"
                         type="text"
                         value={link}
@@ -240,7 +246,7 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
                         }}
                         className="create-exhibition__link-button"
                       >
-                        Зберегти
+                        {t('create-discussion__link-button')}
                       </button>
                     </div>
                   </ModalWindow>
@@ -265,9 +271,7 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
                   isActive: linkError,
                 })}
               >
-                <p ref={errorRef}>
-                  Щоб вставити посилання, виділіть слово та натисніть на іконку
-                </p>
+                <p ref={errorRef}>{t('create-discussion__error-text')}</p>
               </div>
             </div>
           </div>
@@ -278,7 +282,7 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
                 className="create-exhibition__button"
                 disabled={!canSubmit}
               >
-                Відправити
+                {t('create-discussion__button')}
               </button>
             )}
             {!canSubmit && (
@@ -291,14 +295,13 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
                     className="create-exhibition__button"
                     disabled={!canSubmit}
                   >
-                    Відправити
+                    {t('create-discussion__button')}
                   </button>
                 )}
                 renderContent={() => (
                   <>
                     <p className="shopping-cart__cta-info-text">
-                      Треба вказати тему і додатковий текст, щоб відправити
-                      виставку.
+                      {t('shopping-cart__cta-info-text2')}
                     </p>
                   </>
                 )}

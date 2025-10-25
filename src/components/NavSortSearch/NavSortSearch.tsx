@@ -3,6 +3,7 @@ import { SearchSVG } from '../Imgs/SearchSVG';
 import { useState } from 'react';
 import { PageBaseNavigation } from '../PageBaseNavigation/PageBaseNavigation';
 import { DropdownOptions } from '../DropdownOptions/DropdownOptions';
+import { useTranslation } from 'react-i18next';
 
 type Sortings = {
   id: number;
@@ -20,6 +21,7 @@ export const NavSortSearch: React.FC<Props> = ({
   sortings,
 }) => {
   const [activeInput, setActiveInput] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   return (
     <div className="nav-sort-serach">
@@ -38,7 +40,7 @@ export const NavSortSearch: React.FC<Props> = ({
           <input
             onBlur={() => setActiveInput(false)}
             onFocus={() => setActiveInput(true)}
-            placeholder="Пошук товару"
+            placeholder={t('market-search__input-placeholder')}
             type="text"
             className="nav-sort-serach__input"
           />

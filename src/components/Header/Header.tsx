@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../store/store';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { Navigation } from '../Navigation/Navigation';
 import { Auth } from '../Auth/Auth';
@@ -18,7 +18,7 @@ import { setExpSearch } from '../../store/slices/expSearchSlice';
 import { setIsCartOpen } from '../../store/slices/shoppingCartSlice';
 
 export const Header = () => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
   const language = useSelector((state: SavingState) => state.language.language);
   const dispatch = useDispatch<AppDispatch>();
   const handleLanguageChange = (lang: 'ua' | 'en') => {
@@ -68,13 +68,18 @@ export const Header = () => {
                 src="images/header/logo.svg"
                 alt="DIKO logo"
               />
-              <p className="header__logo-title-main">DIKO</p>
+              <p className="header__logo-title-main">
+                {' '}
+                {t('header__logo-title-main')}
+              </p>
               <img
                 className="header__logo-rectangle"
                 src="images/header/Rectangle-91.png"
                 alt="rectangle"
               />
-              <p className="header__logo-title-minor">антикварна платформа </p>
+              <p className="header__logo-title-minor">
+                {t('header__logo-title-minor')}
+              </p>
             </div>
           </Link>
 

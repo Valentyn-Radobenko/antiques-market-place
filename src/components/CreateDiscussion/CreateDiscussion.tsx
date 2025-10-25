@@ -27,24 +27,44 @@ import classNames from 'classnames';
 import { CreateNewTheme } from '../CreateNewTheme/CreateNewTheme';
 import { ModalEndingDiscussions } from '../ModalEnding/ModalEndingDiscussions';
 import { Tooltip } from '../Tooltip/Tooltip';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../store/store';
+import { useTranslation } from 'react-i18next';
 
 const PHOTO_AMOUNT = 5;
 
-const popularThems = [
-  'Монети України',
-  'Колекціонування',
-  'Нумізматика',
-  'Книги',
-  'Марки',
-  'Живопис',
-  'Філателія',
-  "Предмети інтер'єру",
-  'Монети Польщі',
-  'Сфрагістика',
-  'Паперові колекції',
-  'Монети Європи',
-  'Інші монети',
-];
+const popularThems = {
+  ua: [
+    'Монети України',
+    'Колекціонування',
+    'Нумізматика',
+    'Книги',
+    'Марки',
+    'Живопис',
+    'Філателія',
+    "Предмети інтер'єру",
+    'Монети Польщі',
+    'Сфрагістика',
+    'Паперові колекції',
+    'Монети Європи',
+    'Інші монети',
+  ],
+  en: [
+    'Coins of Ukraine',
+    'Collecting',
+    'Numismatics',
+    'Books',
+    'Stamps',
+    'Painting',
+    'Philately',
+    'Interior items',
+    'Coins of Poland',
+    'Sphragistics',
+    'Paper collections',
+    'Coins of Europe',
+    'Other coins',
+  ],
+};
 
 type Form = {
   name: string;
@@ -76,6 +96,8 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
     themes: [],
   });
   const [step, setStep] = useState(1);
+  const lang = useSelector((state: SavingState) => state.language.language);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (linkError) {
@@ -95,7 +117,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
         openOnClick: false,
       }),
       Placeholder.configure({
-        placeholder: 'Пишіть повідомлення',
+        placeholder: t('editor-placeholder'),
       }),
     ],
     content: '',
@@ -146,7 +168,9 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
       {step === 1 && (
         <div className="create-discussion">
           <div className="create-discussion__top-bar">
-            <h2 className="create-discussion__title">Створити обговорення</h2>
+            <h2 className="create-discussion__title">
+              {t('create-discussion__title')}
+            </h2>
             <Close
               onClick={() => setOpenModal(false)}
               className="create-discussion__close-svg"
@@ -161,7 +185,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                     isActive: activeThemes,
                   })}
                 >
-                  Додайте тему:
+                  {t('create-discussion__add-theme')}
                 </p>
                 <div className="create-discussion__chosen-themes">
                   {form.themes.map((theme, i) => (
@@ -200,7 +224,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                 ref={heightRef}
                 className="create-discussion__themes"
               >
-                {popularThems.map((theme) => (
+                {popularThems[lang].map((theme) => (
                   <p
                     onClick={() => handleAddTheme(theme)}
                     key={theme}
@@ -213,7 +237,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                   onClick={() => setCreateNewTheme(true)}
                   className="create-discussion__my-theme"
                 >
-                  <p>Моя тема</p>
+                  <p>{t('create-discussion__my-theme')}</p>
                   <CirclePlusSVG />
                 </button>
                 <ModalWindow
@@ -231,9 +255,11 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
             </div>
             <div className="create-discussion__form">
               <div className="create-discussion__input-block">
-                <p className="create-discussion__input-title">Запит</p>
+                <p className="create-discussion__input-title">
+                  {t('create-discussion__input-title')}
+                </p>
                 <textarea
-                  placeholder="Як перевірити аутентичність предмету?"
+                  placeholder={t('create-discussion__input-placeholder')}
                   className="create-discussion__input"
                   value={form.name}
                   onChange={(event) =>
@@ -243,7 +269,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
               </div>
               <div className="create-discussion__input-block">
                 <p className="create-discussion__input-title">
-                  Додатковий текст
+                  {t('create-discussion__input-title2')}
                 </p>
                 <EditorContent
                   editor={editor}
@@ -310,7 +336,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                     <div className="create-discussion__link-modal">
                       <div className="create-discussion__link-header">
                         <p className="create-discussion__link-text">
-                          Редагувати посилання
+                          {t('create-discussion__link-text')}
                         </p>
                         <Close
                           className="create-discussion__close-modal"
@@ -318,7 +344,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                         />
                       </div>
                       <input
-                        placeholder="Введіть посилання"
+                        placeholder={t('create-discussion__input-placeholder2')}
                         className="create-discussion__input"
                         type="text"
                         value={link}
@@ -342,7 +368,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                         }}
                         className="create-discussion__link-button"
                       >
-                        Зберегти
+                        {t('create-discussion__link-button')}
                       </button>
                     </div>
                   </ModalWindow>
@@ -367,16 +393,14 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                   isActive: linkError,
                 })}
               >
-                <p ref={errorRef}>
-                  Щоб вставити посилання, виділіть слово та натисніть на іконку
-                </p>
+                <p ref={errorRef}>{t('create-discussion__error-text')}</p>
               </div>
             </div>
           </div>
           <div className="create-discussion__bottom-bar">
             <div className="create-discussion__checkbox">
               <p className="create-discussion__anonim">
-                Викласти тему анонімно
+                {t('create-discussion__anonim')}
               </p>
               <CheckboxSquareSVG
                 className="create-discussion__anonim-svg"
@@ -390,7 +414,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                 className="create-discussion__button"
                 disabled={!canSubmit}
               >
-                Відправити
+                {t('create-discussion__button')}
               </button>
             )}
             {!canSubmit && (
@@ -403,14 +427,13 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                     className="create-discussion__button"
                     disabled={!canSubmit}
                   >
-                    Відправити
+                    {t('create-discussion__button')}
                   </button>
                 )}
                 renderContent={() => (
                   <>
                     <p className="shopping-cart__cta-info-text">
-                      Треба вказати запит і додатковий текст, щоб створити
-                      обговорення.
+                      {t('shopping-cart__cta-info-text')}
                     </p>
                   </>
                 )}

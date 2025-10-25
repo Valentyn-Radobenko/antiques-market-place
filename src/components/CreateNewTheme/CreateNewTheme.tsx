@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Close } from '../Imgs/Close';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
@@ -11,10 +12,12 @@ export const CreateNewTheme: React.FC<Props> = ({
   setCreateNewTheme,
 }) => {
   const [newTheme, setNewTheme] = useState<string>('');
+  const { t } = useTranslation();
+
   return (
     <div className="create-new-theme">
       <div className="create-new-theme__top-bar">
-        <p className="create-new-theme__h3">Додати свою тему</p>
+        <p className="create-new-theme__h3">{t('create-new-theme__h3')}</p>
         <Close
           className="create-new-theme__close"
           onClick={() => setCreateNewTheme(false)}
@@ -23,7 +26,7 @@ export const CreateNewTheme: React.FC<Props> = ({
       <input
         value={newTheme}
         onChange={(e) => setNewTheme(e.target.value)}
-        placeholder="Введіть назву теми"
+        placeholder={t('create-new-theme__input-placeholder')}
         className="create-new-theme__input"
         type="text"
       />
@@ -35,7 +38,7 @@ export const CreateNewTheme: React.FC<Props> = ({
         disabled={!newTheme}
         className="create-new-theme__button"
       >
-        Зберегти
+        {t('create-discussion__link-button')}
       </button>
     </div>
   );

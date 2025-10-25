@@ -15,6 +15,7 @@ export type Options = {
 
 export type OptionType = {
   nameUa: string;
+  nameEng: string;
   slug: 'filters' | 'category' | 'sort';
   type: 'multiple' | 'single';
   options: Options[];

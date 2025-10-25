@@ -8,6 +8,7 @@ import { ThreeDotsSVG } from '../Imgs/ThreeDotsSVG';
 import { DiscussionData } from '../../types/discussionTypes';
 import { formatUkrDate } from '../../utils/formatUkrDate';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   discussion: DiscussionData;
@@ -17,6 +18,7 @@ type Props = {
 export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
   const [openActions, setOpenActions] = useState<boolean>(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { t } = useTranslation();
 
   const startTimer = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
@@ -121,14 +123,18 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
           className="discussion__action"
         >
           <SecuritySVG className="discussion__action-svg" />
-          <p className="discussion__action-text">Завершити обговорення</p>
+          <p className="discussion__action-text">
+            {t('discussion__action-text')}
+          </p>
         </div>
         <div
           onClick={() => handleDeleteDiscussion(discussion.id)}
           className="discussion__action"
         >
           <Bin className="discussion__action-svg" />
-          <p className="discussion__action-text">Видалити</p>
+          <p className="discussion__action-text">
+            {t('discussion__action-text2')}
+          </p>
         </div>
       </div>
     </Link>

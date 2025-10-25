@@ -10,6 +10,7 @@ import { EditSVG } from '../Imgs/EditSVG';
 import { Comment, DiscussionData } from '../../types/discussionTypes';
 import { formatUkrDate } from '../../utils/formatUkrDate';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   currentDiscussion: DiscussionData;
@@ -125,6 +126,8 @@ export const CurrentDiscussion: React.FC<Props> = ({
     setCurrentDiscussion({ ...currentDiscussion, comments: newComments });
   };
 
+  const { t } = useTranslation();
+
   return (
     <div className="current-discussion">
       {currentDiscussion.images.length > 0 && (
@@ -179,7 +182,9 @@ export const CurrentDiscussion: React.FC<Props> = ({
         <div className="current-discussion__text-block">
           <div className="current-discussion__main-info">
             <div className="current-discussion__top-bar">
-              <h2 className="current-discussion__title">Обговорення</h2>
+              <h2 className="current-discussion__title">
+                {t('current-discussion__title')}
+              </h2>
               <Close
                 className="current-discussion__close"
                 onClick={() => {
@@ -347,7 +352,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
                         }}
                         className="current-discussion__answer-button"
                       >
-                        Відповісти
+                        {t('current-discussion__answer-button')}
                       </button>
                     </div>
                     <div
@@ -366,7 +371,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
                       >
                         <EditSVG className="current-discussion__action-svg" />
                         <p className="current-discussion__action-text">
-                          Змінити коментар
+                          {t('current-discussion__action-text')}
                         </p>
                       </div>
                       <div
@@ -375,7 +380,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
                       >
                         <Bin className="current-discussion__action-svg" />
                         <p className="current-discussion__action-text">
-                          Видалити коментар
+                          {t('current-discussion__action-text2')}
                         </p>
                       </div>
                     </div>
@@ -425,7 +430,9 @@ export const CurrentDiscussion: React.FC<Props> = ({
                 isActive: changeComment,
               })}
             >
-              <p className="current-discussion__hint-text">Редагувати текст</p>
+              <p className="current-discussion__hint-text">
+                {t('current-discussion__hint-text')}
+              </p>
               <Close
                 onClick={() => {
                   setChangeComment('');
@@ -438,7 +445,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
               ref={inputRef}
               value={addComment}
               onChange={(e) => setAddComment(e.target.value)}
-              placeholder="Додати коментар"
+              placeholder={t('current-discussion__input-placeholder')}
               className="current-discussion__input"
               type="text"
             />
@@ -451,7 +458,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
               }
               className="current-discussion__add-comment-button"
             >
-              Надіслати
+              {t('current-discussion__add-comment-button')}
             </button>
           </div>
         </div>

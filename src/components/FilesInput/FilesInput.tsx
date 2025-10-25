@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { AddIMGS } from '../Imgs/AddIMGS';
 import { PlusIMG } from '../Imgs/PlusIMG';
 import classNames from 'classnames';
@@ -27,6 +28,8 @@ export const FilesInput: React.FC<Props> = ({
 }) => {
   const [dragOn, setDragOn] = useState<boolean>(false);
   const ref = useRef<HTMLInputElement | null>(null);
+
+  const { t } = useTranslation();
 
   const addFiles = (event: ChangeEvent<HTMLInputElement>) => {
     const newFiles = event.target.files ? Array.from(event.target.files) : [];
@@ -86,16 +89,16 @@ export const FilesInput: React.FC<Props> = ({
                     disabled: files.length === 5,
                   })}
                 >
-                  Натисніть
+                  {t('file-input__1stword')}
                 </span>{' '}
-                , щоб завантажити або перетягніть файл
+                {t('file-input__text-1')}
               </p>
               <p
                 className={classNames('file-input__text-2', {
                   disabled: files.length === 5,
                 })}
               >
-                Ми підтримуємо PNG, JPEG та GIF розміром до 10MB
+                {t('file-input__text-2')}
               </p>
             </div>
             <PlusIMG

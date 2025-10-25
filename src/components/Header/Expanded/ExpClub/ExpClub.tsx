@@ -1,12 +1,14 @@
 // import { useSelector } from 'react-redux';
 // import { SavingState } from '../../../../store/store';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 export const ExpClub: React.FC = () => {
   // const isAuthenticated = useSelector(
   //   (state: SavingState) => state.auth.isAuthenticated,
   // );
+  const { t } = useTranslation();
 
   return (
     <>
@@ -19,19 +21,19 @@ export const ExpClub: React.FC = () => {
           to={'club/exhibitions'}
           className="exp-club__button"
         >
-          Виставки
+          {t('exhibitions')}
         </Link>
         <Link
           to={'club/articles'}
           className="exp-club__button"
         >
-          Статті
+          {t('articles')}
         </Link>
         <Link
           to={'club/discussions'}
           className="exp-club__button"
         >
-          Обговорення
+          {t('discussions')}
         </Link>
       </div>
     </>

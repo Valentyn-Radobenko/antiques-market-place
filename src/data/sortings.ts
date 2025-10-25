@@ -2,6 +2,7 @@ import { OptionType } from '../types/optionType';
 
 export const sortings: OptionType = {
   nameUa: 'Сортування',
+  nameEng: 'Sorting',
   slug: 'sort',
   type: 'single',
   options: [

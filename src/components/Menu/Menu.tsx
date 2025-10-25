@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../store/store';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import { Navigation } from '../Navigation/Navigation';
 import { Auth } from '../Auth/Auth';
@@ -15,7 +15,7 @@ import { setCurrency } from '../../store/slices/currencySlice';
 import { currencyType } from '../../types/currencyType';
 
 export const Menu = () => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
   const language = useSelector((state: SavingState) => state.language.language);
   const dispatch = useDispatch<AppDispatch>();
   const handleLanguageChange = (lang: 'ua' | 'en') => {
@@ -44,7 +44,9 @@ export const Menu = () => {
                 src="images/header/logo.svg"
                 alt="DIKO logo"
               />
-              <p className="header__logo-title-main">DIKO</p>
+              <p className="header__logo-title-main">
+                {t('header__logo-title-main')}
+              </p>
             </div>
           </Link>
           <button
@@ -91,25 +93,25 @@ export const Menu = () => {
                   <div className="menu__icon menu__icon--questions--default"></div>
                 )}
                 buttonTitle={() => (
-                  <p className="menu__dropdown-text">Питання</p>
+                  <p className="menu__dropdown-text">{t('questions')}</p>
                 )}
                 customClassName="menu__dropdown"
                 renderContent={() => (
                   <div className="menu__options menu__options--questions">
                     <button className="menu__option menu__option--question">
-                      Чи є сертифікат експертизи?
+                      {t('exp-questions__button')}
                     </button>
                     <button className="menu__option menu__option--question">
-                      Чи можна продати через платформу?
+                      {t('exp-questions__button2')}
                     </button>
                     <button className="menu__option menu__option--question">
-                      Як купити?
+                      {t('exp-questions__button3')}
                     </button>
                     <button className="menu__option menu__option--question">
-                      Правила сайту
+                      {t('exp-questions__button4')}
                     </button>
                     <button className="menu__option menu__option--question">
-                      Залишити питання
+                      {t('exp-questions__button5')}
                     </button>
                   </div>
                 )}
@@ -123,7 +125,7 @@ export const Menu = () => {
                   <div className="menu__icon menu__icon--currency--default"></div>
                 )}
                 buttonTitle={() => (
-                  <p className="menu__dropdown-text">{`Валюта (${currency})`}</p>
+                  <p className="menu__dropdown-text">{`${t('currency')} (${currency})`}</p>
                 )}
                 customClassName="menu__dropdown"
                 renderContent={() => (
@@ -153,7 +155,7 @@ export const Menu = () => {
               >
                 <div className="menu__dropdown-button">
                   <div className="menu__icon menu__icon--account--default"></div>
-                  <p className="menu__dropdown-text">Акаунт</p>
+                  <p className="menu__dropdown-text">{t('account')}</p>
                 </div>
               </Link>
               {/* <div className="menu__auth-buttons">

@@ -2,6 +2,8 @@ import classNames from 'classnames';
 import { FilterType } from '../../../types/filters';
 import { SearchLink } from '../../../utils/SearchLink';
 import { useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../../store/store';
 
 type Props = {
   filterItem: FilterType;
@@ -11,6 +13,8 @@ type Props = {
 export const FilterItem: React.FC<Props> = ({ filterItem, filterParam }) => {
   const [searchParams] = useSearchParams();
   const currentFilters = searchParams.getAll(filterParam) || [];
+
+  const lang = useSelector((state: SavingState) => state.language.language);
 
   function toggleFilters(param: string) {
     return currentFilters.includes(param) ?
@@ -27,7 +31,8 @@ export const FilterItem: React.FC<Props> = ({ filterItem, filterParam }) => {
         [filterParam]: toggleFilters(filterItem.slug),
       }}
     >
-      {filterItem.nameUa}
+      {lang === 'ua' && filterItem.nameUa}
+      {lang === 'en' && filterItem.nameEng}
     </SearchLink>
   );
 };

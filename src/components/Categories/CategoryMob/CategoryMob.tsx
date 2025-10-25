@@ -5,6 +5,8 @@ import '../../../styles/scrollbar.scss';
 import { Category } from '../../../types/categories';
 import { CatygoryItem } from '../CatygoryItem/CatygoryItem';
 import { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../../store/store';
 
 type Props = {
   category: Category;
@@ -22,6 +24,8 @@ export const CategoryMob: React.FC<Props> = ({
   const [height, setHeight] = useState<number>(0);
   const refSimplebarHeight = useRef<HTMLDivElement | null>(null);
 
+  const lang = useSelector((state: SavingState) => state.language.language);
+
   useEffect(() => {
     if (refSimplebarHeight.current) {
       setHeight(refSimplebarHeight.current?.clientHeight);
@@ -38,7 +42,10 @@ export const CategoryMob: React.FC<Props> = ({
           isActive: activeCategory?.id === category.id,
         })}
       >
-        <p className="setting-mob__link">{category.nameUa}</p>
+        <p className="setting-mob__link">
+          {lang === 'ua' && category.nameUa}
+          {lang === 'en' && category.nameEng}
+        </p>
         <svg
           className={classNames('setting-mob__arrow', {
             isActive: activeCategory?.id === category.id,

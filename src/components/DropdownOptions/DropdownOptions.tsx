@@ -7,6 +7,7 @@ import { Close } from '../Imgs/Close';
 import { MopSVG } from '../Imgs/MopSVG';
 import { useEffect, useRef, useState } from 'react';
 import { useWindowSize } from '../../utils/useWindowSize';
+import { useTranslation } from 'react-i18next';
 
 type Sortings = {
   id: number;
@@ -25,6 +26,8 @@ export const DropdownOptions: React.FC<Props> = ({ sortings }) => {
   const refs = useRef<(HTMLDivElement | null)[]>([]);
   const refsMob = useRef<(HTMLDivElement | null)[]>([]);
   const windowSize = useWindowSize();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (activeSortType === null) {
@@ -49,7 +52,9 @@ export const DropdownOptions: React.FC<Props> = ({ sortings }) => {
         })}
       >
         <SortSVG className="dropdown-options__sort-search" />
-        <h4 className="dropdown-options__sort-text descktop">Сортування</h4>
+        <h4 className="dropdown-options__sort-text descktop">
+          {t('dropdown-options__sort-text')}
+        </h4>
         <Arrow
           className={classNames('dropdown-options__sort-arrow', {
             isActive: activeSortings,
@@ -127,7 +132,9 @@ export const DropdownOptions: React.FC<Props> = ({ sortings }) => {
                 })}
               >
                 <SortSVG className="dropdown-options__sort-search" />
-                <h4 className="dropdown-options__sort-text">Сортування</h4>
+                <h4 className="dropdown-options__sort-text">
+                  {t('dropdown-options__sort-text')}
+                </h4>
                 <Arrow
                   className={classNames('dropdown-options__sort-arrow', {
                     isActive: activeSortings,
