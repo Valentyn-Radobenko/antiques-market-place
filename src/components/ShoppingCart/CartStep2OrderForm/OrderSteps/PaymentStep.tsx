@@ -18,6 +18,7 @@ import { FilesInput } from '../../../FilesInput/FilesInput';
 import { AddPhotoAlternateSVG } from '../../../Imgs/AddPhotoAlternateSVG';
 import { PhotosList } from '../../../PhotosList/PhotosList';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   setOrderStep: React.Dispatch<React.SetStateAction<number>>;
@@ -45,6 +46,8 @@ export const PaymentStep: React.FC<Props> = ({
     0,
   );
 
+  const { t } = useTranslation();
+
   return (
     <div className="shopping-cart__order-block">
       <div className="shopping-cart__order-block-top">
@@ -54,13 +57,19 @@ export const PaymentStep: React.FC<Props> = ({
               onClick={() => setOrderStep(3)}
               className="shopping-cart__order-block-back-button"
             />
-            <h3 className="shopping-cart__order-block-title">Оплата</h3>
+            <h3 className="shopping-cart__order-block-title">
+              {t('shopping-cart__order-block-title3')}
+            </h3>
           </div>
-        : <h3 className="shopping-cart__order-block-title">Оплата</h3>}
+        : <h3 className="shopping-cart__order-block-title">
+            {t('shopping-cart__order-block-title3')}
+          </h3>
+        }
         <p className="shopping-cart__order-block-step">
           4<span className="shopping-cart__order-block-steps">/5</span>
         </p>
       </div>
+
       <Dropdown
         onClick={() => {
           dispatch(updatePaymentMethod('onReceipt'));
@@ -73,16 +82,17 @@ export const PaymentStep: React.FC<Props> = ({
         customClassName="shopping-cart__order-block-radio-dropdown"
         buttonTitle={() => (
           <h4 className="shopping-cart__order-block-radio-dropdown-title">
-            Оплата під час отримання товару ( карта / готівка )
+            {t('shopping-cart__order-block-radio-dropdown-title3')}
           </h4>
         )}
-        subtitle="Послуга післяплати оплачується окремо,<br/>
-          за тарифами перевізника"
+        subtitle={`${t('shopping-cart__order-block-receiving-notification')} ${t(
+          'shopping-cart__order-block-receiving-notification2',
+        )}`}
         renderContent={() => (
           <>
             <div className="shopping-cart__order-block-radio-dropdown-inputs">
               <label className="shopping-cart__order-block-radio-dropdown-label">
-                Служба доставки
+                {t('shopping-cart__order-block-radio-dropdown-label')}
                 <input
                   type="text"
                   className={classNames(
@@ -92,7 +102,9 @@ export const PaymentStep: React.FC<Props> = ({
                         areErrorsOn && !cart.delivery.service,
                     },
                   )}
-                  placeholder="Нова пошта"
+                  placeholder={t(
+                    'shopping-cart__order-block-radio-dropdown-input-placeholder',
+                  )}
                   onChange={(e) =>
                     dispatch(updateDeliveryService(e.target.value))
                   }
@@ -100,13 +112,13 @@ export const PaymentStep: React.FC<Props> = ({
                 />
                 {areErrorsOn && !cart.delivery.service && (
                   <p className="shopping-cart__order-block-error">
-                    Вкажіть службу доставки
+                    {t('shopping-cart__order-block-error')}
                   </p>
                 )}
               </label>
 
               <label className="shopping-cart__order-block-radio-dropdown-label">
-                Номер відділення
+                {t('shopping-cart__order-block-radio-dropdown-label2')}
                 <input
                   type="text"
                   className={classNames(
@@ -116,7 +128,9 @@ export const PaymentStep: React.FC<Props> = ({
                         areErrorsOn && !cart.delivery.branch,
                     },
                   )}
-                  placeholder="№456"
+                  placeholder={t(
+                    'shopping-cart__order-block-radio-dropdown-input-placeholder2',
+                  )}
                   onChange={(e) =>
                     dispatch(updateDeliveryBranch(e.target.value))
                   }
@@ -124,15 +138,15 @@ export const PaymentStep: React.FC<Props> = ({
                 />
                 {areErrorsOn && !cart.delivery.branch && (
                   <p className="shopping-cart__order-block-error">
-                    Вкажіть номер відділення
+                    {t('shopping-cart__order-block-error2')}
                   </p>
                 )}
               </label>
             </div>
 
             <p className="shopping-cart__order-block-receiving-notification">
-              Послуга післяплати оплачується окремо,
-              <br /> за тарифами перевізника
+              {t('shopping-cart__order-block-receiving-notification')}
+              <br /> {t('shopping-cart__order-block-receiving-notification2')}
             </p>
           </>
         )}
@@ -155,27 +169,30 @@ export const PaymentStep: React.FC<Props> = ({
         customClassName="shopping-cart__order-block-radio-dropdown"
         buttonTitle={() => (
           <h4 className="shopping-cart__order-block-radio-dropdown-title">
-            Міжнародний переказ
+            {t('shopping-cart__order-block-radio-dropdown-title4')}
           </h4>
         )}
-        subtitle="Послуга доставки оплачується окремо,<br/>
-          за тарифами перевізника"
+        subtitle={`${t('shopping-cart__order-block-receiving-notification')} ${t(
+          'shopping-cart__order-block-receiving-notification2',
+        )}`}
         renderContent={() => (
           <>
             <div className="shopping-cart__order-block-payments-info">
               <div className="shopping-cart__order-block-payments-info-block">
                 <div className="shopping-cart__order-block-payments-info-unit">
                   <p className="shopping-cart__order-block-payments-info-label">
-                    IBAN:
+                    {t('shopping-cart__order-block-payments-info-label')}
                   </p>
                   <div className="shopping-cart__order-block-payments-info-copy">
                     <p className="shopping-cart__order-block-payments-info-value">
-                      UA2134565245678
+                      {t('shopping-cart__order-block-payments-info-value')}
                     </p>
                     <CopySVG
                       className="shopping-cart__order-block-payments-info-copy-icon"
                       onClick={() => {
-                        navigator.clipboard.writeText('UA2134565245678');
+                        navigator.clipboard.writeText(
+                          t('shopping-cart__order-block-payments-info-value'),
+                        );
                       }}
                     />
                   </div>
@@ -183,16 +200,18 @@ export const PaymentStep: React.FC<Props> = ({
 
                 <div className="shopping-cart__order-block-payments-info-unit">
                   <p className="shopping-cart__order-block-payments-info-label">
-                    SWIFT код:
+                    {t('shopping-cart__order-block-payments-info-label2')}
                   </p>
                   <div className="shopping-cart__order-block-payments-info-copy">
                     <p className="shopping-cart__order-block-payments-info-value">
-                      ABCDUAUAXS
+                      {t('shopping-cart__order-block-payments-info-value2')}
                     </p>
                     <CopySVG
                       className="shopping-cart__order-block-payments-info-copy-icon"
                       onClick={() => {
-                        navigator.clipboard.writeText('ABCDUAUAXS');
+                        navigator.clipboard.writeText(
+                          t('shopping-cart__order-block-payments-info-value2'),
+                        );
                       }}
                     />
                   </div>
@@ -203,7 +222,7 @@ export const PaymentStep: React.FC<Props> = ({
                   shopping-cart__order-block-payments-info-unit--last"
                 >
                   <p className="shopping-cart__order-block-payments-info-label">
-                    Сума:
+                    {t('shopping-cart__order-block-payments-info-label3')}
                   </p>
                   <p className="shopping-cart__order-block-payments-info-value">
                     {totalPrice} грн
@@ -214,28 +233,28 @@ export const PaymentStep: React.FC<Props> = ({
               <div className="shopping-cart__order-block-payments-info-block">
                 <div className="shopping-cart__order-block-payments-info-unit">
                   <p className="shopping-cart__order-block-payments-info-label">
-                    Назва банку:
+                    {t('shopping-cart__order-block-payments-info-label4')}
                   </p>
                   <p className="shopping-cart__order-block-payments-info-value">
-                    Приват банк
+                    {t('shopping-cart__order-block-payments-info-value4')}
                   </p>
                 </div>
 
                 <div className="shopping-cart__order-block-payments-info-unit">
                   <p className="shopping-cart__order-block-payments-info-label">
-                    Юридична адреса:
+                    {t('shopping-cart__order-block-payments-info-label5')}
                   </p>
                   <p className="shopping-cart__order-block-payments-info-value">
-                    вул.Велика Бердичівська 75
+                    {t('shopping-cart__order-block-payments-info-value5')}
                   </p>
                 </div>
 
                 <div className="shopping-cart__order-block-payments-info-unit">
                   <p className="shopping-cart__order-block-payments-info-label">
-                    Додаткова інформація:
+                    {t('shopping-cart__order-block-payments-info-label6')}
                   </p>
                   <p className="shopping-cart__order-block-payments-info-value">
-                    Переказ доступний у форматах SEPA/SWIFT з будь-якого банку.
+                    {t('shopping-cart__order-block-payments-info-value6')}
                   </p>
                 </div>
               </div>
@@ -254,18 +273,20 @@ export const PaymentStep: React.FC<Props> = ({
                     />
                   </div>
 
-                  <p className="shopping-cart__order-block-payments-upload-notification-content">
-                    &nbsp;Для підтвердження платежу, будь ласка, додайте
-                    скріншот квитанції. <br /> &nbsp;Це допоможе нам швидше
-                    розпочати обробку замовлення — без очікування підтвердження
-                    з боку банку.
-                  </p>
+                  <p
+                    className="shopping-cart__order-block-payments-upload-notification-content"
+                    dangerouslySetInnerHTML={{
+                      __html: t(
+                        'shopping-cart__order-block-payments-upload-notification-content',
+                      ),
+                    }}
+                  ></p>
                 </div>
               )}
 
               <div className="shopping-cart__order-block-payments-upload-title">
                 <p className="shopping-cart__order-block-payments-upload-title-text">
-                  Скрін оплати
+                  {t('shopping-cart__order-block-payments-upload-title-text')}
                 </p>
                 <InfoSVG
                   onClick={() => {
@@ -292,7 +313,9 @@ export const PaymentStep: React.FC<Props> = ({
                 customContent={() => (
                   <>
                     <p className="shopping-cart__order-block-payments-upload-input-text">
-                      Виберіть файл
+                      {t(
+                        'shopping-cart__order-block-payments-upload-input-text',
+                      )}
                     </p>
                     <AddPhotoAlternateSVG />
                   </>
@@ -300,7 +323,7 @@ export const PaymentStep: React.FC<Props> = ({
               />
               {areErrorsOn && files.length === 0 && (
                 <p className="shopping-cart__order-block-error">
-                  Додайте принаймні один файл
+                  {t('shopping-cart__order-block-error11')}
                 </p>
               )}
               {files.length > 0 && (
@@ -311,13 +334,13 @@ export const PaymentStep: React.FC<Props> = ({
               )}
 
               <p className="shopping-cart__order-block-payments-upload-formats">
-                Приймаються формати: JPG, PNG, PDF
+                {t('shopping-cart__order-block-payments-upload-formats')}
               </p>
             </div>
 
             <p className="shopping-cart__order-block-receiving-notification">
-              Послуга доставки оплачується окремо,
-              <br /> за тарифами перевізника
+              {t('shopping-cart__order-block-receiving-notification')}
+              <br /> {t('shopping-cart__order-block-receiving-notification2')}
             </p>
           </>
         )}
@@ -340,27 +363,30 @@ export const PaymentStep: React.FC<Props> = ({
         customClassName="shopping-cart__order-block-radio-dropdown"
         buttonTitle={() => (
           <h4 className="shopping-cart__order-block-radio-dropdown-title">
-            Переказ на картковий рахунок компанії
+            {t('shopping-cart__order-block-radio-dropdown-title5')}
           </h4>
         )}
-        subtitle="Послуга доставки оплачується окремо,<br/>
-          за тарифами перевізника"
+        subtitle={`${t('shopping-cart__order-block-receiving-notification')} ${t(
+          'shopping-cart__order-block-receiving-notification2',
+        )}`}
         renderContent={() => (
           <>
             <div className="shopping-cart__order-block-payments-info">
               <div className="shopping-cart__order-block-payments-info-block">
                 <div className="shopping-cart__order-block-payments-info-unit">
                   <p className="shopping-cart__order-block-payments-info-label">
-                    Номер карти:
+                    {t('shopping-cart__order-block-payments-info-label7')}
                   </p>
                   <div className="shopping-cart__order-block-payments-info-copy">
                     <p className="shopping-cart__order-block-payments-info-value">
-                      1234 3456 5245 6785
+                      {t('shopping-cart__order-block-payments-info-value7')}
                     </p>
                     <CopySVG
                       className="shopping-cart__order-block-payments-info-copy-icon"
                       onClick={() => {
-                        navigator.clipboard.writeText('1234345652456785');
+                        navigator.clipboard.writeText(
+                          t('shopping-cart__order-block-payments-info-value7'),
+                        );
                       }}
                     />
                   </div>
@@ -368,7 +394,7 @@ export const PaymentStep: React.FC<Props> = ({
 
                 <div className="shopping-cart__order-block-payments-info-unit">
                   <p className="shopping-cart__order-block-payments-info-label">
-                    Сума:
+                    {t('shopping-cart__order-block-payments-info-label8')}
                   </p>
                   <p className="shopping-cart__order-block-payments-info-value">
                     {totalPrice} грн
@@ -379,10 +405,10 @@ export const PaymentStep: React.FC<Props> = ({
               <div className="shopping-cart__order-block-payments-info-block">
                 <div className="shopping-cart__order-block-payments-info-unit">
                   <p className="shopping-cart__order-block-payments-info-label">
-                    Назва банку:
+                    {t('shopping-cart__order-block-payments-info-label9')}
                   </p>
                   <p className="shopping-cart__order-block-payments-info-value">
-                    Приват банк
+                    {t('shopping-cart__order-block-payments-info-value9')}
                   </p>
                 </div>
 
@@ -391,10 +417,10 @@ export const PaymentStep: React.FC<Props> = ({
                   shopping-cart__order-block-payments-info-unit--last"
                 >
                   <p className="shopping-cart__order-block-payments-info-label">
-                    Ім’я власника картки:
+                    {t('shopping-cart__order-block-payments-info-label10')}
                   </p>
                   <p className="shopping-cart__order-block-payments-info-value">
-                    Віктор Вікторович Бабкан
+                    {t('shopping-cart__order-block-payments-info-value10')}
                   </p>
                 </div>
               </div>
@@ -414,17 +440,16 @@ export const PaymentStep: React.FC<Props> = ({
                   </div>
 
                   <p className="shopping-cart__order-block-payments-upload-notification-content">
-                    &nbsp;Для підтвердження платежу, будь ласка, додайте
-                    скріншот квитанції. <br /> &nbsp;Це допоможе нам швидше
-                    розпочати обробку замовлення — без очікування підтвердження
-                    з боку банку.
+                    {t(
+                      'shopping-cart__order-block-payments-upload-notification-content',
+                    )}
                   </p>
                 </div>
               )}
 
               <div className="shopping-cart__order-block-payments-upload-title">
                 <p className="shopping-cart__order-block-payments-upload-title-text">
-                  Скрін оплати
+                  {t('shopping-cart__order-block-payments-upload-title-text')}
                 </p>
                 <InfoSVG
                   onClick={() => {
@@ -451,7 +476,9 @@ export const PaymentStep: React.FC<Props> = ({
                 customContent={() => (
                   <>
                     <p className="shopping-cart__order-block-payments-upload-input-text">
-                      Виберіть файл
+                      {t(
+                        'shopping-cart__order-block-payments-upload-input-text',
+                      )}
                     </p>
                     <AddPhotoAlternateSVG />
                   </>
@@ -459,7 +486,7 @@ export const PaymentStep: React.FC<Props> = ({
               />
               {areErrorsOn && files.length === 0 && (
                 <p className="shopping-cart__order-block-error">
-                  Додайте принаймні один файл
+                  {t('shopping-cart__order-block-error11')}
                 </p>
               )}
               {files.length > 0 && (
@@ -470,13 +497,13 @@ export const PaymentStep: React.FC<Props> = ({
               )}
 
               <p className="shopping-cart__order-block-payments-upload-formats">
-                Приймаються формати: JPG, PNG, PDF
+                {t('shopping-cart__order-block-payments-upload-formats')}
               </p>
             </div>
 
             <p className="shopping-cart__order-block-receiving-notification">
-              Послуга доставки оплачується окремо,
-              <br /> за тарифами перевізника
+              {t('shopping-cart__order-block-receiving-notification')}
+              <br /> {t('shopping-cart__order-block-receiving-notification2')}
             </p>
           </>
         )}
@@ -500,10 +527,10 @@ export const PaymentStep: React.FC<Props> = ({
           customClassName="shopping-cart__order-block-radio-dropdown"
           buttonTitle={() => (
             <h4 className="shopping-cart__order-block-radio-dropdown-title">
-              Готівка
+              {t('shopping-cart__order-block-radio-dropdown-title6')}
             </h4>
           )}
-          subtitle="Оплата готівкою здійснюється при самовивозі зі складу"
+          subtitle={t('shopping-cart__order-block-receiving-notification3')}
           renderContent={() => (
             <>
               <div className="shopping-cart__order-block-payments-info">
@@ -513,7 +540,7 @@ export const PaymentStep: React.FC<Props> = ({
                   shopping-cart__order-block-payments-info-unit--last"
                   >
                     <p className="shopping-cart__order-block-payments-info-label">
-                      Адреса складу:
+                      {t('shopping-cart__order-block-storage-location-label')}
                     </p>
                     <Link
                       to={'https://maps.app.goo.gl/wAdeT2GGibefrzub9'}
@@ -521,7 +548,9 @@ export const PaymentStep: React.FC<Props> = ({
                       rel="noopener noreferrer"
                       className="shopping-cart__order-block-payments-info-link"
                     >
-                      м. Житомир, пл. Перемоги, 9
+                      {t(
+                        'shopping-cart__order-block-storage-location-link-text',
+                      )}
                     </Link>
                   </div>
                 </div>
@@ -529,7 +558,7 @@ export const PaymentStep: React.FC<Props> = ({
                 <div className="shopping-cart__order-block-payments-info-block">
                   <div className="shopping-cart__order-block-payments-info-unit">
                     <p className="shopping-cart__order-block-payments-info-label">
-                      Сума:
+                      {t('shopping-cart__order-block-payments-info-label11')}
                     </p>
                     <p className="shopping-cart__order-block-payments-info-value">
                       {totalPrice} грн
@@ -539,7 +568,7 @@ export const PaymentStep: React.FC<Props> = ({
               </div>
 
               <p className="shopping-cart__order-block-receiving-notification">
-                Оплата готівкою здійснюється при самовивозі зі складу
+                {t('shopping-cart__order-block-receiving-notification3')}
               </p>
             </>
           )}

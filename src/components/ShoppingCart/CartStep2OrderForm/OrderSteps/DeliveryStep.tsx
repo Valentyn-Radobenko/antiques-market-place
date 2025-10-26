@@ -28,6 +28,7 @@ import { Link } from 'react-router-dom';
 import { LocationSVG } from '../../../Imgs/LocationSVG';
 import { MapSearchSVG } from '../../../Imgs/MapSearchSVG';
 import { NestClockSVG } from '../../../Imgs/NestClockSVG';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   setOrderStep: React.Dispatch<React.SetStateAction<number>>;
@@ -42,6 +43,8 @@ export const DeliveryStep: React.FC<Props> = ({
   const dispatch = useDispatch<AppDispatch>();
   const cart = useSelector((state: SavingState) => state.shoppingCart);
 
+  const { t } = useTranslation();
+
   return (
     <div className="shopping-cart__order-block">
       <div className="shopping-cart__order-block-top">
@@ -51,9 +54,14 @@ export const DeliveryStep: React.FC<Props> = ({
               onClick={() => setOrderStep(2)}
               className="shopping-cart__order-block-back-button"
             />
-            <h3 className="shopping-cart__order-block-title">Отримання</h3>
+            <h3 className="shopping-cart__order-block-title">
+              {t('shopping-cart__order-block-title')}
+            </h3>
           </div>
-        : <h3 className="shopping-cart__order-block-title">Отримання</h3>}
+        : <h3 className="shopping-cart__order-block-title">
+            {t('shopping-cart__order-block-title')}
+          </h3>
+        }
         <p className="shopping-cart__order-block-step">
           3<span className="shopping-cart__order-block-steps">/5</span>
         </p>
@@ -73,7 +81,7 @@ export const DeliveryStep: React.FC<Props> = ({
             dispatch(updateDeliveryType('delivery'));
           }}
         >
-          Доставка
+          {t('shopping-cart__order-block-receiving-nav-section')}
         </div>
         <div
           className={classNames(
@@ -89,7 +97,7 @@ export const DeliveryStep: React.FC<Props> = ({
             dispatch(updateDeliveryType('pickup'));
           }}
         >
-          Самовивіз з складу
+          {t('shopping-cart__order-block-receiving-nav-section2')}
         </div>
       </div>
 
@@ -107,14 +115,14 @@ export const DeliveryStep: React.FC<Props> = ({
             customClassName="shopping-cart__order-block-radio-dropdown"
             buttonTitle={() => (
               <h4 className="shopping-cart__order-block-radio-dropdown-title">
-                Самовивіз з пошти
+                {t('shopping-cart__order-block-radio-dropdown-title')}
               </h4>
             )}
             renderContent={() => (
               <>
                 <div className="shopping-cart__order-block-radio-dropdown-inputs">
                   <label className="shopping-cart__order-block-radio-dropdown-label">
-                    Служба доставки
+                    {t('shopping-cart__order-block-radio-dropdown-label')}
                     <input
                       type="text"
                       className={classNames(
@@ -124,7 +132,9 @@ export const DeliveryStep: React.FC<Props> = ({
                             areErrorsOn && !cart.delivery.service,
                         },
                       )}
-                      placeholder="Нова пошта"
+                      placeholder={t(
+                        'shopping-cart__order-block-radio-dropdown-input-placeholder',
+                      )}
                       onChange={(e) =>
                         dispatch(updateDeliveryService(e.target.value))
                       }
@@ -132,13 +142,13 @@ export const DeliveryStep: React.FC<Props> = ({
                     />
                     {areErrorsOn && !cart.delivery.service && (
                       <p className="shopping-cart__order-block-error">
-                        Вкажіть службу доставки
+                        {t('shopping-cart__order-block-error')}
                       </p>
                     )}
                   </label>
 
                   <label className="shopping-cart__order-block-radio-dropdown-label">
-                    Номер відділення
+                    {t('shopping-cart__order-block-radio-dropdown-label2')}
                     <input
                       type="text"
                       className={classNames(
@@ -148,7 +158,9 @@ export const DeliveryStep: React.FC<Props> = ({
                             areErrorsOn && !cart.delivery.branch,
                         },
                       )}
-                      placeholder="№456"
+                      placeholder={t(
+                        'shopping-cart__order-block-radio-dropdown-input-placeholder2',
+                      )}
                       onChange={(e) =>
                         dispatch(updateDeliveryBranch(e.target.value))
                       }
@@ -156,22 +168,29 @@ export const DeliveryStep: React.FC<Props> = ({
                     />
                     {areErrorsOn && !cart.delivery.branch && (
                       <p className="shopping-cart__order-block-error">
-                        Вкажіть номер відділення
+                        {t('shopping-cart__order-block-error2')}
                       </p>
                     )}
                   </label>
                 </div>
 
                 <p className="shopping-cart__order-block-receiving-notification">
-                  Послуга післяплати оплачується окремо,
-                  <br /> за тарифами перевізника
+                  {t('shopping-cart__order-block-receiving-notification')}
+                  <br />{' '}
+                  {t('shopping-cart__order-block-receiving-notification2')}
                 </p>
               </>
             )}
             customAfterTitle={() => {
-              return isPhone ? '' : 'за тарифами перевізника';
+              return isPhone ? '' : (
+                  `${t('shopping-cart__order-block-receiving-notification2')}`
+                );
             }}
-            subtitle={isPhone ? 'за тарифами перевізника' : ''}
+            subtitle={
+              isPhone ?
+                `${t('shopping-cart__order-block-receiving-notification2')}`
+              : ''
+            }
           />
 
           <Dropdown
@@ -186,14 +205,14 @@ export const DeliveryStep: React.FC<Props> = ({
             customClassName="shopping-cart__order-block-radio-dropdown"
             buttonTitle={() => (
               <h4 className="shopping-cart__order-block-radio-dropdown-title">
-                Кур'єр
+                {t('shopping-cart__order-block-radio-dropdown-title2')}
               </h4>
             )}
             renderContent={() => (
               <>
                 <div className="shopping-cart__order-block-radio-dropdown-inputs">
                   <label className="shopping-cart__order-block-radio-dropdown-label">
-                    Служба доставки
+                    {t('shopping-cart__order-block-radio-dropdown-label3')}
                     <input
                       type="text"
                       className={classNames(
@@ -203,7 +222,9 @@ export const DeliveryStep: React.FC<Props> = ({
                             areErrorsOn && !cart.delivery.service,
                         },
                       )}
-                      placeholder="Нова пошта"
+                      placeholder={t(
+                        'shopping-cart__order-block-radio-dropdown-input-placeholder',
+                      )}
                       onChange={(e) =>
                         dispatch(updateDeliveryService(e.target.value))
                       }
@@ -211,13 +232,13 @@ export const DeliveryStep: React.FC<Props> = ({
                     />
                     {areErrorsOn && !cart.delivery.service && (
                       <p className="shopping-cart__order-block-error">
-                        Вкажіть службу доставки
+                        {t('shopping-cart__order-block-error')}
                       </p>
                     )}
                   </label>
 
                   <label className="shopping-cart__order-block-radio-dropdown-label">
-                    Вулиця
+                    {t('shopping-cart__order-block-radio-dropdown-label4')}
                     <input
                       type="text"
                       className={classNames(
@@ -227,7 +248,9 @@ export const DeliveryStep: React.FC<Props> = ({
                             areErrorsOn && !cart.delivery.street,
                         },
                       )}
-                      placeholder="Червнева вулиця"
+                      placeholder={t(
+                        'shopping-cart__order-block-radio-dropdown-input-placeholder3',
+                      )}
                       onChange={(e) =>
                         dispatch(updateDeliveryStreet(e.target.value))
                       }
@@ -235,13 +258,13 @@ export const DeliveryStep: React.FC<Props> = ({
                     />
                     {areErrorsOn && !cart.delivery.street && (
                       <p className="shopping-cart__order-block-error">
-                        Вкажіть вулицю
+                        {t('shopping-cart__order-block-error3')}
                       </p>
                     )}
                   </label>
 
                   <label className="shopping-cart__order-block-radio-dropdown-label">
-                    Будинок
+                    {t('shopping-cart__order-block-radio-dropdown-label5')}
                     <input
                       type="text"
                       className={classNames(
@@ -251,7 +274,9 @@ export const DeliveryStep: React.FC<Props> = ({
                             areErrorsOn && !cart.delivery.house,
                         },
                       )}
-                      placeholder="1"
+                      placeholder={t(
+                        'shopping-cart__order-block-radio-dropdown-input-placeholder4',
+                      )}
                       onChange={(e) =>
                         dispatch(updateDeliveryHouse(e.target.value))
                       }
@@ -259,13 +284,13 @@ export const DeliveryStep: React.FC<Props> = ({
                     />
                     {areErrorsOn && !cart.delivery.house && (
                       <p className="shopping-cart__order-block-error">
-                        Вкажіть номер будинку
+                        {t('shopping-cart__order-block-error4')}
                       </p>
                     )}
                   </label>
 
                   <label className="shopping-cart__order-block-radio-dropdown-label">
-                    Квартира
+                    {t('shopping-cart__order-block-radio-dropdown-label6')}
                     <input
                       type="text"
                       className={classNames(
@@ -275,7 +300,9 @@ export const DeliveryStep: React.FC<Props> = ({
                             areErrorsOn && !cart.delivery.apartment,
                         },
                       )}
-                      placeholder="56"
+                      placeholder={t(
+                        'shopping-cart__order-block-radio-dropdown-input-placeholder5',
+                      )}
                       onChange={(e) =>
                         dispatch(updateDeliveryApartment(e.target.value))
                       }
@@ -283,27 +310,34 @@ export const DeliveryStep: React.FC<Props> = ({
                     />
                     {areErrorsOn && !cart.delivery.apartment && (
                       <p className="shopping-cart__order-block-error">
-                        Вкажіть номер квартири або поставте “-”
+                        {t('shopping-cart__order-block-error5')}
                       </p>
                     )}
                   </label>
                 </div>
 
                 <p className="shopping-cart__order-block-receiving-notification">
-                  Послуга післяплати оплачується окремо,
-                  <br /> за тарифами перевізника
+                  {t('shopping-cart__order-block-receiving-notification')}
+                  <br />{' '}
+                  {t('shopping-cart__order-block-receiving-notification2')}
                 </p>
               </>
             )}
             customAfterTitle={() => {
-              return isPhone ? '' : 'за тарифами перевізника';
+              return isPhone ? '' : (
+                  t('shopping-cart__order-block-receiving-notification2')
+                );
             }}
-            subtitle={isPhone ? 'за тарифами перевізника' : ''}
+            subtitle={
+              isPhone ?
+                t('shopping-cart__order-block-receiving-notification2')
+              : ''
+            }
           />
 
           <div className="shopping-cart__order-block-receiving-receiver">
             <h4 className="shopping-cart__order-block-receiving-receiver-title">
-              ПІБ отримувача:
+              {t('shopping-cart__order-block-receiving-receiver-title')}
             </h4>
 
             <Dropdown
@@ -313,20 +347,19 @@ export const DeliveryStep: React.FC<Props> = ({
                 <p className="shopping-cart__order-block-dropdown-option">
                   {cart.delivery.receiver.firstName ?
                     cart.delivery.receiver.firstName
-                  : "Ім'я"}{' '}
+                  : t('shopping-cart__order-block-placeholder-firstname')}{' '}
                   {cart.delivery.receiver.middleName ?
                     cart.delivery.receiver.middleName
-                  : 'По батькові'}{' '}
+                  : t('shopping-cart__order-block-placeholder-middlename')}{' '}
                   {cart.delivery.receiver.lastName ?
                     cart.delivery.receiver.lastName
-                  : 'Прізвище'}
+                  : t('shopping-cart__order-block-placeholder-lastname')}
                 </p>
               )}
               renderContent={() => (
                 <div className="shopping-cart__order-block-inputs">
                   <label className="shopping-cart__order-block-label">
-                    {' '}
-                    Ім'я
+                    {t('shopping-cart__order-block-label1')}
                     <input
                       className={classNames(
                         'shopping-cart__order-block-input',
@@ -336,7 +369,9 @@ export const DeliveryStep: React.FC<Props> = ({
                         },
                       )}
                       type="text"
-                      placeholder="Андрій"
+                      placeholder={t(
+                        'shopping-cart__order-block-input-placeholder1',
+                      )}
                       onChange={(e) =>
                         dispatch(updateReceiverFirstName(e.target.value))
                       }
@@ -344,14 +379,13 @@ export const DeliveryStep: React.FC<Props> = ({
                     />
                     {areErrorsOn && !cart.delivery.receiver.firstName && (
                       <p className="shopping-cart__order-block-error">
-                        Вкажіть ім'я
+                        {t('shopping-cart__order-block-error6')}
                       </p>
                     )}
                   </label>
 
                   <label className="shopping-cart__order-block-label">
-                    {' '}
-                    Прізвище
+                    {t('shopping-cart__order-block-label2')}
                     <input
                       className={classNames(
                         'shopping-cart__order-block-input',
@@ -361,7 +395,9 @@ export const DeliveryStep: React.FC<Props> = ({
                         },
                       )}
                       type="text"
-                      placeholder="Містеряков"
+                      placeholder={t(
+                        'shopping-cart__order-block-input-placeholder2',
+                      )}
                       onChange={(e) =>
                         dispatch(updateReceiverLastName(e.target.value))
                       }
@@ -369,14 +405,13 @@ export const DeliveryStep: React.FC<Props> = ({
                     />
                     {areErrorsOn && !cart.delivery.receiver.lastName && (
                       <p className="shopping-cart__order-block-error">
-                        Вкажіть прізвище
+                        {t('shopping-cart__order-block-error7')}
                       </p>
                     )}
                   </label>
 
                   <label className="shopping-cart__order-block-label">
-                    {' '}
-                    Номер телефону
+                    {t('shopping-cart__order-block-label3')}
                     <input
                       className={classNames(
                         'shopping-cart__order-block-input',
@@ -386,7 +421,9 @@ export const DeliveryStep: React.FC<Props> = ({
                         },
                       )}
                       type="tel"
-                      placeholder="+38 093 674 34 67"
+                      placeholder={t(
+                        'shopping-cart__order-block-input-placeholder3',
+                      )}
                       onChange={(e) =>
                         dispatch(updateReceiverPhone(e.target.value))
                       }
@@ -394,14 +431,13 @@ export const DeliveryStep: React.FC<Props> = ({
                     />
                     {areErrorsOn && !cart.delivery.receiver.phone && (
                       <p className="shopping-cart__order-block-error">
-                        Вкажіть номер телефону
+                        {t('shopping-cart__order-block-error8')}
                       </p>
                     )}
                   </label>
 
                   <label className="shopping-cart__order-block-label">
-                    {' '}
-                    По батькові
+                    {t('shopping-cart__order-block-label4')}
                     <input
                       className={classNames(
                         'shopping-cart__order-block-input',
@@ -411,7 +447,9 @@ export const DeliveryStep: React.FC<Props> = ({
                         },
                       )}
                       type="text"
-                      placeholder="Олександрович"
+                      placeholder={t(
+                        'shopping-cart__order-block-input-placeholder4',
+                      )}
                       onChange={(e) =>
                         dispatch(updateReceiverMiddleName(e.target.value))
                       }
@@ -420,7 +458,7 @@ export const DeliveryStep: React.FC<Props> = ({
                     />
                     {areErrorsOn && !cart.delivery.receiver.middleName && (
                       <p className="shopping-cart__order-block-error">
-                        Вкажіть по батькові або поставте “-”
+                        {t('shopping-cart__order-block-error9')}
                       </p>
                     )}
                   </label>
@@ -436,22 +474,25 @@ export const DeliveryStep: React.FC<Props> = ({
         <>
           <div className="shopping-cart__order-block-contact">
             <h5 className="shopping-cart__order-block-contact-label">
-              Контактні данні:
+              {t('shopping-cart__order-block-contact-label')}
             </h5>
             <Dropdown
               customClassName="shopping-cart__order-block-dropdown"
               buttonArea="all"
               buttonTitle={() => (
                 <p className="shopping-cart__order-block-dropdown-option">
-                  {cart.user.firstName ? cart.user.firstName : "Ім'я"}{' '}
-                  {cart.user.lastName ? cart.user.lastName : 'Прізвище'}
+                  {cart.user.firstName ?
+                    cart.user.firstName
+                  : t('shopping-cart__order-block-placeholder-firstname')}{' '}
+                  {cart.user.lastName ?
+                    cart.user.lastName
+                  : t('shopping-cart__order-block-placeholder-lastname')}
                 </p>
               )}
               renderContent={() => (
                 <div className="shopping-cart__order-block-inputs">
                   <label className="shopping-cart__order-block-label">
-                    {' '}
-                    Ім'я
+                    {t('shopping-cart__order-block-label1')}
                     <input
                       className={classNames(
                         'shopping-cart__order-block-input',
@@ -461,7 +502,9 @@ export const DeliveryStep: React.FC<Props> = ({
                         },
                       )}
                       type="text"
-                      placeholder="Андрій"
+                      placeholder={t(
+                        'shopping-cart__order-block-input-placeholder1',
+                      )}
                       onChange={(e) =>
                         dispatch(updateUserFirstName(e.target.value))
                       }
@@ -470,14 +513,13 @@ export const DeliveryStep: React.FC<Props> = ({
                     />
                     {areErrorsOn && !cart.user.firstName && (
                       <p className="shopping-cart__order-block-error">
-                        Вкажіть ім'я
+                        {t('shopping-cart__order-block-error6')}
                       </p>
                     )}
                   </label>
 
                   <label className="shopping-cart__order-block-label">
-                    {' '}
-                    Прізвище
+                    {t('shopping-cart__order-block-label2')}
                     <input
                       className={classNames(
                         'shopping-cart__order-block-input',
@@ -487,7 +529,9 @@ export const DeliveryStep: React.FC<Props> = ({
                         },
                       )}
                       type="text"
-                      placeholder="Містеряков"
+                      placeholder={t(
+                        'shopping-cart__order-block-input-placeholder2',
+                      )}
                       onChange={(e) =>
                         dispatch(updateUserLastName(e.target.value))
                       }
@@ -496,14 +540,13 @@ export const DeliveryStep: React.FC<Props> = ({
                     />
                     {areErrorsOn && !cart.user.lastName && (
                       <p className="shopping-cart__order-block-error">
-                        Вкажіть прізвище
+                        {t('shopping-cart__order-block-error7')}
                       </p>
                     )}
                   </label>
 
                   <label className="shopping-cart__order-block-label">
-                    {' '}
-                    Номер телефону
+                    {t('shopping-cart__order-block-label3')}
                     <input
                       className={classNames(
                         'shopping-cart__order-block-input',
@@ -513,7 +556,9 @@ export const DeliveryStep: React.FC<Props> = ({
                         },
                       )}
                       type="tel"
-                      placeholder="+38 093 674 34 67"
+                      placeholder={t(
+                        'shopping-cart__order-block-input-placeholder3',
+                      )}
                       onChange={(e) =>
                         dispatch(updateUserPhone(e.target.value))
                       }
@@ -522,14 +567,13 @@ export const DeliveryStep: React.FC<Props> = ({
                     />
                     {areErrorsOn && !cart.user.phone && (
                       <p className="shopping-cart__order-block-error">
-                        Вкажіть телефон
+                        {t('shopping-cart__order-block-error8')}
                       </p>
                     )}
                   </label>
 
                   <label className="shopping-cart__order-block-label">
-                    {' '}
-                    Електронна пошта
+                    {t('shopping-cart__order-block-label5')}
                     <input
                       className={classNames(
                         'shopping-cart__order-block-input',
@@ -539,7 +583,9 @@ export const DeliveryStep: React.FC<Props> = ({
                         },
                       )}
                       type="email"
-                      placeholder="artemmisti@gmail.com"
+                      placeholder={t(
+                        'shopping-cart__order-block-input-placeholder5',
+                      )}
                       onChange={(e) =>
                         dispatch(updateUserEmail(e.target.value))
                       }
@@ -548,7 +594,7 @@ export const DeliveryStep: React.FC<Props> = ({
                     />
                     {areErrorsOn && !cart.user.email && (
                       <p className="shopping-cart__order-block-error">
-                        Вкажіть email
+                        {t('shopping-cart__order-block-error10')}
                       </p>
                     )}
                   </label>
@@ -557,10 +603,11 @@ export const DeliveryStep: React.FC<Props> = ({
               customAfterTitle={() => <InkHighlighterSVG />}
             />
           </div>
+
           <div className="shopping-cart__order-block-storage">
             <div className="shopping-cart__order-block-storage-location">
               <p className="shopping-cart__order-block-storage-location-label">
-                Адреса складу:
+                {t('shopping-cart__order-block-storage-location-label')}
               </p>
               <Link
                 to={'https://maps.app.goo.gl/wAdeT2GGibefrzub9'}
@@ -570,28 +617,34 @@ export const DeliveryStep: React.FC<Props> = ({
               >
                 <LocationSVG />
                 <span className="shopping-cart__order-block-storage-location-link-text">
-                  10014, м. Житомир, пл. Перемоги, 9
+                  {t('shopping-cart__order-block-storage-location-link-text')}
                 </span>
                 <MapSearchSVG />
               </Link>
             </div>
+
             <div className="shopping-cart__order-block-storage-schedule">
               <p className="shopping-cart__order-block-storage-schedule-label">
-                Години роботи:
+                {t('shopping-cart__order-block-storage-schedule-label')}
               </p>
               <div className="shopping-cart__order-block-storage-schedule-info">
                 <div className="shopping-cart__order-block-storage-schedule-info-block">
                   <NestClockSVG />
                   <p className="shopping-cart__order-block-storage-schedule-info-text">
-                    Вт - Нд: 10:00 - 18:00
+                    {t(
+                      'shopping-cart__order-block-storage-schedule-info-text1',
+                    )}
                   </p>
                 </div>
                 <div className="shopping-cart__order-block-storage-schedule-info-block">
-                  <p className="shopping-cart__order-block-storage-schedule-info-text">
-                    Обідня перерва: 13:00 – 14:00
-                    <br />
-                    Графік може змінюватися у святкові дні.
-                  </p>
+                  <p
+                    className="shopping-cart__order-block-storage-schedule-info-text"
+                    dangerouslySetInnerHTML={{
+                      __html: t(
+                        'shopping-cart__order-block-storage-schedule-info-text2',
+                      ),
+                    }}
+                  ></p>
                 </div>
               </div>
             </div>

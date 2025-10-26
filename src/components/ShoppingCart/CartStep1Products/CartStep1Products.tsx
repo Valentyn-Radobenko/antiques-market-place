@@ -14,6 +14,7 @@ import { DeleteSVG } from '../../Imgs/DeleteSVG';
 import React, { useState } from 'react';
 import { useIsMobile } from '../../../hooks/useMediaQuery';
 import { LocalMallSVG } from '../../Imgs/LocalMallSVG';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -22,6 +23,9 @@ type Props = {
 export const CartStep1Products: React.FC<Props> = ({ setStep }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { slug } = useParams();
+
+  const { t } = useTranslation();
+
   const cart = useSelector((state: SavingState) => state.shoppingCart);
   const currentProduct = products.find((p) => p.slug === slug) || cart.items[0];
   const lang = useSelector((state: SavingState) => state.language.language);
@@ -69,13 +73,13 @@ export const CartStep1Products: React.FC<Props> = ({ setStep }) => {
             <Info />
           </div>
           <p className="shopping-cart__no-content-text">
-            Знайдіть цікаві товари у розділі{' '}
+            {t('shopping-cart__no-content-text')}{' '}
             <Link
               to={'/market'}
               onClick={() => dispatch(setIsCartOpen(false))}
               className="shopping-cart__no-content-link"
             >
-              “Маркет”
+              {t('shopping-cart__no-content-link')}
             </Link>
           </p>
         </div>
@@ -94,11 +98,11 @@ export const CartStep1Products: React.FC<Props> = ({ setStep }) => {
                 />
               </button>
               <p className="shopping-cart__selected-text">
-                Обрано {cart.selectedItems.length}
+                {t('shopping-cart__selected-text')} {cart.selectedItems.length}
                 <span className="shopping-cart__selected-text-minor">
                   /{cart.items.length}
                 </span>{' '}
-                товари
+                {t('shopping-cart__selected-text2')}
               </p>
             </div>
             <button
@@ -190,14 +194,16 @@ export const CartStep1Products: React.FC<Props> = ({ setStep }) => {
                 onClick={() => setShowAll(true)}
                 className="shopping-cart__show-all"
               >
-                Показати всі товари ({cart.items.length - 1})
+                {t('shopping-cart__show-all')} ({cart.items.length - 1})
               </button>
             )}
           </div>
           <div className="shopping-cart__content-bottom">
             {!isPhone && (
               <div className="shopping-cart__price">
-                <p className="shopping-cart__price-label">Загальна сума</p>
+                <p className="shopping-cart__price-label">
+                  {t('shopping-cart__price-label')}
+                </p>
                 <p className="shopping-cart__price-value">{totalPrice} грн</p>
               </div>
             )}
@@ -211,8 +217,8 @@ export const CartStep1Products: React.FC<Props> = ({ setStep }) => {
             >
               <span className="shopping-cart__cta-text">
                 {isPhone ?
-                  `Оформити замовлення - ${totalPrice} грн`
-                : 'Оформити замовлення'}
+                  `${t('shopping-cart__cta-text')} - ${totalPrice} грн`
+                : `${t('shopping-cart__cta-text')}`}
               </span>
               <div className="shopping-cart__cta-button">
                 <LocalMallSVG />

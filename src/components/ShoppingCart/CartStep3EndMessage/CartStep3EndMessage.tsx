@@ -3,9 +3,11 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../store/store';
 import { InfoSVG } from '../../Imgs/InfoSVG';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const CartStep3EndMessage = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   return (
     <div className="shopping-cart__end-message">
@@ -13,14 +15,15 @@ export const CartStep3EndMessage = () => {
         <InfoSVG className="shopping-cart__end-message-icon" />
       </div>
       <p className="shopping-cart__end-message-text">
-        Слідкуйте за вашим замовленням у вашому кабінеті у розділі{' '}
+        {t('shopping-cart__end-message-text')}{' '}
         <Link
           className="shopping-cart__end-message-link"
           to={'/me/orders'}
           onClick={() => dispatch(setIsCartOpen(false))}
-        >
-          “Мої&nbsp;замовлення”
-        </Link>
+          dangerouslySetInnerHTML={{
+            __html: t('shopping-cart__end-message-link'),
+          }}
+        ></Link>
       </p>
     </div>
   );

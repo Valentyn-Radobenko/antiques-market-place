@@ -680,6 +680,7 @@
             border-bottom: 1px solid;
 
             @include main-text;
+            white-space: nowrap;
 
             &--inactive {
               border-bottom-color: $gray-lite;

@@ -26,14 +26,11 @@ export default function ScrollToTop(): null {
     const currIsClubDiscussionSlug =
       currIsDiscussionSlug && currSegments[0] === 'club';
 
-    // Початкова умова "не скролити" (та ж, що й була)
     let skipScroll =
       currIsDiscussionSlug ||
       (prevIsDiscussion && currIsDiscussionSlug) ||
       (prevIsDiscussionSlug && currIsDiscussion);
 
-    // Але якщо попередній шлях — точно "/club" (без продовжень) і ми йдемо на /club/discussions/:slug,
-    // то *дозволяємо* скрол (перезаписуємо skipScroll = false).
     if (isExactClub(prevSegments) && currIsClubDiscussionSlug) {
       skipScroll = false;
     }

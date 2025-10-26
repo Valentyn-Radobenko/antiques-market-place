@@ -10,6 +10,7 @@ import { OrdersStep } from './OrderSteps/OrdersStep';
 import { DeliveryStep } from './OrderSteps/DeliveryStep';
 import { PaymentStep } from './OrderSteps/PaymentStep';
 import { SummaryStep } from './OrderSteps/SummaryStep';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -20,6 +21,8 @@ export const CartStep2OrderForm: React.FC<Props> = ({ setStep }) => {
   const cart = useSelector((state: SavingState) => state.shoppingCart);
   const [files, setFiles] = useState<File[]>([]);
   const [orderStep, setOrderStep] = useState(1);
+
+  const { t } = useTranslation();
 
   const [areErrorsOn, setAreErrorsOn] = useState(false);
 
@@ -122,7 +125,9 @@ export const CartStep2OrderForm: React.FC<Props> = ({ setStep }) => {
             type="button"
             className="shopping-cart__cta"
           >
-            <span className="shopping-cart__cta-text">Далі</span>
+            <span className="shopping-cart__cta-text">
+              {t('shopping-cart__cta-text2')}
+            </span>
             <VerifiedSVG />
           </button>
         </div>
@@ -137,7 +142,9 @@ export const CartStep2OrderForm: React.FC<Props> = ({ setStep }) => {
             type="button"
             className="shopping-cart__cta"
           >
-            <span className="shopping-cart__cta-text">Далі</span>
+            <span className="shopping-cart__cta-text">
+              {t('shopping-cart__cta-text2')}
+            </span>
             <VerifiedSVG />
           </button>
         </div>
@@ -153,7 +160,9 @@ export const CartStep2OrderForm: React.FC<Props> = ({ setStep }) => {
             type="button"
             className="shopping-cart__cta"
           >
-            <span className="shopping-cart__cta-text">Далі</span>
+            <span className="shopping-cart__cta-text">
+              {t('shopping-cart__cta-text2')}
+            </span>
             <VerifiedSVG />
           </button>
         </div>
@@ -169,7 +178,9 @@ export const CartStep2OrderForm: React.FC<Props> = ({ setStep }) => {
             type="button"
             className="shopping-cart__cta"
           >
-            <span className="shopping-cart__cta-text">Далі</span>
+            <span className="shopping-cart__cta-text">
+              {t('shopping-cart__cta-text2')}
+            </span>
             <VerifiedSVG />
           </button>
         </div>
@@ -183,7 +194,7 @@ export const CartStep2OrderForm: React.FC<Props> = ({ setStep }) => {
             className="shopping-cart__cta shopping-cart__cta--submit"
           >
             <span className="shopping-cart__cta-text">
-              Замовлення підтверджую
+              {t('shopping-cart__cta-text3')}
             </span>
           </button>
         </div>
@@ -205,14 +216,14 @@ export const CartStep2OrderForm: React.FC<Props> = ({ setStep }) => {
               className="shopping-cart__cta shopping-cart__cta--submit"
             >
               <span className="shopping-cart__cta-text">
-                Замовлення підтверджую
+                {t('shopping-cart__cta-text3')}
               </span>
             </button>
           )}
           renderContent={() => (
             <>
               <p className="shopping-cart__cta-info-text">
-                Треба заповнити усі розділи, щоб підтвердити замовлення.
+                {t('shopping-cart__cta-info-text3')}
               </p>
             </>
           )}

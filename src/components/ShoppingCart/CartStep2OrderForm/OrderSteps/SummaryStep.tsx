@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { useIsMobile } from '../../../../hooks/useMediaQuery';
 import { SavingState } from '../../../../store/store';
 import { ArrowBackSVG } from '../../../Imgs/ArrowBackSVG';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   setOrderStep: React.Dispatch<React.SetStateAction<number>>;
@@ -16,6 +17,8 @@ export const SummaryStep: React.FC<Props> = ({ setOrderStep }) => {
     0,
   );
 
+  const { t } = useTranslation();
+
   return (
     <div className="shopping-cart__order-block">
       <div className="shopping-cart__order-block-top">
@@ -26,26 +29,29 @@ export const SummaryStep: React.FC<Props> = ({ setOrderStep }) => {
               className="shopping-cart__order-block-back-button"
             />
             <h3 className="shopping-cart__order-block-title">
-              Підсумок замовлення
+              {t('shopping-cart__order-block-title4')}
             </h3>
           </div>
         : <h3 className="shopping-cart__order-block-title">
-            Підсумок замовлення
+            {t('shopping-cart__order-block-title4')}
           </h3>
         }
         <p className="shopping-cart__order-block-step">
           5<span className="shopping-cart__order-block-steps">/5</span>
         </p>
       </div>
+
       <div className="shopping-cart__order-conclusion">
         <div className="shopping-cart__order-conclusion-top">
           <h4 className="shopping-cart__order-conclusion-top-title">
-            До сплати
+            {t('shopping-cart__order-conclusion-top-title')}
           </h4>
 
           <div className="shopping-cart__order-conclusion-top-amount">
             <p className="shopping-cart__order-conclusion-top-amount-label">
-              {cart.items.length} товари на суму:{' '}
+              {t('shopping-cart__order-conclusion-top-amount-label', {
+                count: cart.items.length,
+              })}
             </p>
 
             <p className="shopping-cart__order-conclusion-top-amount-value">
@@ -56,40 +62,37 @@ export const SummaryStep: React.FC<Props> = ({ setOrderStep }) => {
 
         <div className="shopping-cart__order-conclusion-delivery">
           <h4 className="shopping-cart__order-conclusion-delivery-title">
-            Оплата за доставку
+            {t('shopping-cart__order-conclusion-delivery-title')}
           </h4>
 
           <p className="shopping-cart__order-conclusion-delivery-text">
-            сплачуються за тарифами перевізника
+            {t('shopping-cart__order-conclusion-delivery-text')}
           </p>
         </div>
 
-        <div className="shopping-cart__order-conclusion-line"></div>
+        <div className="shopping-cart__order-conclusion-line" />
 
         <div className="shopping-cart__order-conclusion-terms">
           <div className="shopping-cart__order-conclusion-terms-block">
             <h4 className="shopping-cart__order-conclusion-terms-block-title">
-              Умови:
+              {t('shopping-cart__order-conclusion-terms-block-title')}
             </h4>
 
             <p className="shopping-cart__order-conclusion-terms-block-text">
-              Отримання замовлення від 5 000 ₴ - 30 000 ₴ за наявності
-              документів. При оплаті готівкою від 30 000 ₴ необхідно надати
-              документи для верифікації згідно вимог Закону України від
-              06.12.2019 №361-IX
+              {t('shopping-cart__order-conclusion-terms-block-text')}
             </p>
           </div>
 
           <div className="shopping-cart__order-conclusion-terms-block">
-            <h4 className="shopping-cart__order-conclusion-terms-block-title">
-              Підтверджуючи замовлення, я приймаю умови:
+            <h4 className="shopping-cart__order-conclusion-terms-block-title--accept">
+              {t('shopping-cart__order-conclusion-terms-block-title--accept')}
             </h4>
             <ul className="shopping-cart__order-conclusion-terms-block-links">
               <li className="shopping-cart__order-conclusion-terms-block-link">
-                угоди користувача
+                {t('shopping-cart__order-conclusion-terms-block-link')}
               </li>
               <li className="shopping-cart__order-conclusion-terms-block-link">
-                положення про обробку і захист персональних даних
+                {t('shopping-cart__order-conclusion-terms-block-link2')}
               </li>
             </ul>
           </div>

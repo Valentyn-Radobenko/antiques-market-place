@@ -9,10 +9,13 @@ import {
   setIsCartOpen,
 } from '../../store/slices/shoppingCartSlice';
 import products from '../../data/products.json';
+import { useTranslation } from 'react-i18next';
 
 export const ProductStickyCTA = () => {
   const { pathname } = useLocation();
   const { slug } = useParams();
+
+  const { t } = useTranslation();
 
   const isProductPage = pathname.startsWith('/market/product');
   const isTablet = useIsTablet();
@@ -42,7 +45,7 @@ export const ProductStickyCTA = () => {
         }}
       >
         <span className="product__cta-text">
-          Купити за {product?.price} грн
+          {t('product__cta-text')} {product?.price} грн
         </span>
         <ShoppingCartSVG className="product__cta-icon" />
       </button>

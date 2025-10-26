@@ -8,6 +8,7 @@ import {
   removeItem,
   removeSelectedItem,
 } from '../../../../store/slices/shoppingCartSlice';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   setOrderStep: React.Dispatch<React.SetStateAction<number>>;
@@ -18,6 +19,7 @@ export const OrdersStep: React.FC<Props> = ({ setOrderStep }) => {
   const dispatch = useDispatch<AppDispatch>();
   const cart = useSelector((state: SavingState) => state.shoppingCart);
 
+  const { t } = useTranslation();
   const lang = useSelector((state: SavingState) => state.language.language);
 
   return (
@@ -29,9 +31,14 @@ export const OrdersStep: React.FC<Props> = ({ setOrderStep }) => {
               onClick={() => setOrderStep(1)}
               className="shopping-cart__order-block-back-button"
             />
-            <h3 className="shopping-cart__order-block-title">Замовлення</h3>
+            <h3 className="shopping-cart__order-block-title">
+              {t('shopping-cart__order-block-title2')}
+            </h3>
           </div>
-        : <h3 className="shopping-cart__order-block-title">Замовлення</h3>}
+        : <h3 className="shopping-cart__order-block-title">
+            {t('shopping-cart__order-block-title2')}
+          </h3>
+        }
         <p className="shopping-cart__order-block-step">
           2<span className="shopping-cart__order-block-steps">/5</span>
         </p>
@@ -45,7 +52,7 @@ export const OrdersStep: React.FC<Props> = ({ setOrderStep }) => {
             >
               <div className="shopping-cart__order-block-product-top">
                 <h4 className="shopping-cart__order-block-product-number">
-                  Замовлення №{ind + 1}
+                  {t('shopping-cart__order-block-product-number')} №{ind + 1}
                 </h4>
                 <DeleteSVG
                   className="shopping-cart__order-block-product-delete"
