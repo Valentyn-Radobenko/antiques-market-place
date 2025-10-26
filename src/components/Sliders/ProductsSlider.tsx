@@ -1,4 +1,4 @@
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import Slider from './Slider';
 import { useIsMobile, useIsTablet } from '../../hooks/useMediaQuery';
 import { Link, useParams } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { SavingState } from '../../store/store';
 
 export const ProductsSlider: React.FC = () => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   const isTablet = useIsTablet();
   const isMobile = useIsMobile();
@@ -22,7 +22,7 @@ export const ProductsSlider: React.FC = () => {
 
   return (
     <Slider<Product>
-      sliderTitle={'Також вас може зацікавити'}
+      sliderTitle={t('other-items-slider-title')}
       customClassName="other-items-slider"
       slides={filteredProducts}
       slidesPerView={
@@ -38,7 +38,7 @@ export const ProductsSlider: React.FC = () => {
           className="slider__slide other-items-slider__slide"
         >
           <p className="slider__slide-new other-items-slider__slide-new">
-            Новий
+            {t('market-item__new')}
           </p>
           <img
             className="slider__slide-img other-items-slider__slide-img"
@@ -51,7 +51,7 @@ export const ProductsSlider: React.FC = () => {
             </h3>
             <div className="slider__slide-info other-items-slider__slide-info">
               <p className="slider__slide-price other-items-slider__slide-price">
-                {slide.price}
+                {slide.price} грн
               </p>
               <div className="slider__slide-icon other-items-slider__slide-icon"></div>
             </div>

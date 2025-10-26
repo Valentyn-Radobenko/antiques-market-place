@@ -28,13 +28,15 @@ export const ExhibitionsSlider: React.FC = () => {
   const exhibitionsSlides = exhibitions.slice(0, 6);
   return (
     <Slider<Exhibition>
-      sliderTitle={t('exhibitionsSlider.title')}
+      sliderTitle={t('exhibitions')}
       renderSliderLink={() => (
         <Link
           to="exhibitions"
           className="slider__header-link"
         >
-          {isMobile ? 'більше' : 'переглянути більше'}
+          {isMobile ?
+            `${t('slider__header-link')}`
+          : `${t('slider__header-link2')}`}
         </Link>
       )}
       slides={exhibitionsSlides}
@@ -45,7 +47,7 @@ export const ExhibitionsSlider: React.FC = () => {
           key={slide.id}
           className="slider__slide"
         >
-          <p className="slider__slide-new">Новий</p>
+          <p className="slider__slide-new">{t('market-item__new')}</p>
           <img
             className="slider__slide-img"
             src={slide.image}

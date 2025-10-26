@@ -19,13 +19,15 @@ export const DiscussionsSlider: React.FC = () => {
   return (
     <>
       <Slider<DiscussionData>
-        sliderTitle={t('discussionsSlider.title')}
+        sliderTitle={t('discussions')}
         renderSliderLink={() => (
           <Link
             to={'/club/discussions'}
             className="slider__header-link"
           >
-            {isMobile ? 'більше' : 'переглянути більше'}
+            {isMobile ?
+              `${t('slider__header-link')}`
+            : `${t('slider__header-link2')}`}
           </Link>
         )}
         slides={discussions}

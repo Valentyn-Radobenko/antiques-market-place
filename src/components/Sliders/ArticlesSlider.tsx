@@ -25,13 +25,15 @@ export const ArticlesSlider: React.FC = () => {
 
   return (
     <Slider<Article>
-      sliderTitle={t('articlesSlider.title')}
+      sliderTitle={t('articles')}
       renderSliderLink={() => (
         <Link
           to="articles"
           className="slider__header-link"
         >
-          {isMobile ? 'більше' : 'переглянути більше'}
+          {isMobile ?
+            `${t('slider__header-link')}`
+          : `${t('slider__header-link2')}`}
         </Link>
       )}
       slides={articlesSlides}
@@ -47,7 +49,7 @@ export const ArticlesSlider: React.FC = () => {
           key={slide.id}
           className="slider__slide"
         >
-          <p className="slider__slide-new">Новий</p>
+          <p className="slider__slide-new">{t('market-item__new')}</p>
           <img
             className="slider__slide-img"
             src={slide.image}

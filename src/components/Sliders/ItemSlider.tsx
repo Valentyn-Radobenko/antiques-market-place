@@ -1,22 +1,20 @@
-// import { useSelector } from 'react-redux';
-// import { SavingState } from '../../store/store';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../store/store';
 import { useState } from 'react';
 import Slider from './Slider';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
 import { FrameInspectSVG } from '../Imgs/FrameInspectSVG';
 import { Close } from '../Imgs/Close';
-// import { useTranslation } from 'react-i18next';
 import { useIsMobile } from '../../hooks/useMediaQuery';
 import { ZoomableImage } from '../ZoomableImage/ZoomableImage';
 
 interface Props {
-  title: { ua: string; eng: string };
+  title: { ua: string; en: string };
   imgs: string[];
 }
 
 export const ItemSlider: React.FC<Props> = ({ title, imgs }) => {
-  // const { t } = useTranslation();
-  // const language = useSelector((state: SavingState) => state.language.language);
+  const lang = useSelector((state: SavingState) => state.language.language);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [scale, setScale] = useState(1);
@@ -26,7 +24,7 @@ export const ItemSlider: React.FC<Props> = ({ title, imgs }) => {
   return (
     <>
       <Slider<string>
-        sliderTitle={title.ua}
+        sliderTitle={title[lang]}
         slides={imgs}
         slidesPerView={1}
         customClassName="item-slider"
@@ -84,7 +82,7 @@ export const ItemSlider: React.FC<Props> = ({ title, imgs }) => {
           </button>
 
           <Slider<string>
-            sliderTitle={title.ua}
+            sliderTitle={title[lang]}
             slides={imgs}
             slidesPerView={1}
             customClassName="item-slider--modal"

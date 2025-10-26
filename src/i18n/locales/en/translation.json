@@ -233,19 +233,8 @@
   "shopping-cart__end-message-text": "Track your order in your account in the section",
   "shopping-cart__end-message-link": "“My&nbsp;orders”",
 
-  "exhibitionsSlider": {
-    "title": "Exhibitions",
-    "headerLink": "Learn More",
-    "slideLink": "View"
-  },
-  "articlesSlider": {
-    "title": "Articles",
-    "headerLink": "Learn More",
-    "slideLink": "View"
-  },
-  "discussionsSlider": {
-    "title": "Discussions",
-    "minorTitle": "Most popular",
-    "headerLink": "Add a topic"
-  }
+  "slider__header-link": "more",
+  "slider__header-link2": "view more",
+
+  "other-items-slider-title": "You may also be interested in"
 }

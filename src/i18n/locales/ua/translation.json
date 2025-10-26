@@ -233,19 +233,8 @@
   "shopping-cart__end-message-text": "Слідкуйте за вашим замовленням у вашому кабінеті у розділі",
   "shopping-cart__end-message-link": "“Мої&nbsp;замовлення”",
 
-  "exhibitionsSlider": {
-    "title": "Виставки",
-    "headerLink": "Дізнатися більше",
-    "slideLink": "Переглянути"
-  },
-  "articlesSlider": {
-    "title": "Статті",
-    "headerLink": "Дізнатися більше",
-    "slideLink": "Переглянути"
-  },
-  "discussionsSlider": {
-    "title": "Обговорення",
-    "minorTitle": "Найпопулярніші",
-    "headerLink": "Додати тему"
-  }
+  "slider__header-link": "більше",
+  "slider__header-link2": "переглянути більше",
+
+  "other-items-slider-title": "Також вас може зацікавити"
 }

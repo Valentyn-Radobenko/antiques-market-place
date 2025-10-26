@@ -97,7 +97,7 @@ export const ProductPage = () => {
         )}
         <div className="product__slider-wrapper">
           <ItemSlider
-            title={{ ua: product.name.ua, eng: product.name.en }}
+            title={{ ua: product.name.ua, en: product.name.en }}
             imgs={product.imgs}
           />
         </div>

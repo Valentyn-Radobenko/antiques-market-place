@@ -1,4 +1,4 @@
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import Slider from './Slider';
 import { useIsTablet } from '../../hooks/useMediaQuery';
 import { Link, useParams } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { SavingState } from '../../store/store';
 import { Article } from '../../types/article';
 
 export const OtherArticlesSlider: React.FC = () => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   const isTablet = useIsTablet();
   const { slug } = useParams();
@@ -29,7 +29,7 @@ export const OtherArticlesSlider: React.FC = () => {
 
   return (
     <Slider<Article>
-      sliderTitle={'Також вас може зацікавити'}
+      sliderTitle={t('other-items-slider-title')}
       customClassName="other-items-slider--articles"
       slides={filteredArticles}
       slidesPerView={isTablet ? 1 : 3}
@@ -39,7 +39,7 @@ export const OtherArticlesSlider: React.FC = () => {
           key={slide.id}
           className="slider__slide other-items-slider__slide--articles"
         >
-          <p className="slider__slide-new">Новий</p>
+          <p className="slider__slide-new">{t('market-item__new')}</p>
           <img
             className="slider__slide-img other-items-slider__slide-img--articles"
             src={slide.image}
