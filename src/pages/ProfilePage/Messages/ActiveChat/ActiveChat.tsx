@@ -25,7 +25,7 @@ import { Close } from '../../../../components/Imgs/Close';
 import Slider from '../../../../components/Sliders/Slider';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import { PhotosListMessages } from '../../../../components/PhotosListMessages/PhotosListMessages';
-
+import type SimpleBarCore from 'simplebar-core';
 type Props = {
   setActiveMessages: Dispatch<SetStateAction<boolean>>;
   activeMessges: boolean;
@@ -49,6 +49,18 @@ export const ActiveChat: React.FC<Props> = ({
 
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<File[]>();
+
+  const simpleBarRef = useRef<SimpleBarCore | null>(null);
+
+  useEffect(() => {
+    const scrollEl = simpleBarRef.current?.getScrollElement();
+    if (scrollEl) {
+      scrollEl.scrollTo({
+        top: scrollEl.scrollHeight,
+        behavior: 'smooth', // плавная прокрутка
+      });
+    }
+  }, [activeChat]);
 
   useEffect(() => {
     if (ref.current) {
@@ -103,7 +115,10 @@ export const ActiveChat: React.FC<Props> = ({
           <p className="current-chat__title">{activeChat?.sender}</p>
         </div>
         <div className="current-chat__underline" />
-        <SimpleBar className="current-chat__container profile-messages__simple-bar">
+        <SimpleBar
+          ref={simpleBarRef}
+          className="current-chat__container profile-messages__simple-bar"
+        >
           <div className="current-chat__messages">
             {activeChat?.name === 'Чат підтримки' && (
               <div className="current-chat__support-message">
@@ -133,26 +148,6 @@ export const ActiveChat: React.FC<Props> = ({
                   </p>
                 )}
                 {currentMessage.files && (
-                  // <div className="current-chat__message-photos">
-                  //   {currentMessage.files.map((photo) => (
-                  //     <div
-                  //       onClick={() => {
-                  //         setOpenModal(true);
-                  //         setModalContent(currentMessage.files);
-                  //       }}
-                  //       className="current-chat__message-photo-container"
-                  //     >
-                  //       <FrameInspectSVG className="current-chat__zoom-photo" />
-                  //       <img
-                  //         className="current-chat__message-photo"
-                  //         key={photo.name}
-                  //         src={URL.createObjectURL(photo)}
-                  //         alt="#"
-                  //       />
-                  //     </div>
-                  //   ))}
-                  // </div>
-
                   <PhotosListMessages
                     setOpenModal={setOpenModal}
                     setModalContent={setModalContent}

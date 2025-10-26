@@ -23,16 +23,6 @@ const sortings = [
     name: 'За популярністю',
     types: ['Більш популярні', 'Меньш Популярні'],
   },
-  {
-    id: 3,
-    name: 'За чимось',
-    types: ['Більш популярні', 'Меньш Популярні'],
-  },
-  {
-    id: 4,
-    name: 'За тимось',
-    types: ['Більш популярні', 'Меньш Популярні'],
-  },
 ];
 
 const pageNavigation = [
@@ -78,7 +68,10 @@ export const Discussions = () => {
             setOpenModal={setOpenAddModal}
             secondModal={false}
           >
-            <CreateDiscussion setOpenModal={setOpenAddModal} />
+            <CreateDiscussion
+              setDiscussions={setDiscussions}
+              setOpenModal={setOpenAddModal}
+            />
           </ModalWindow>
         </div>
         <div className="profile-discussions__create-new">

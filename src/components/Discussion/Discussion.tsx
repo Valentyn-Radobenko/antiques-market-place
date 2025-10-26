@@ -83,10 +83,7 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
         />
       </div>
 
-      <Link
-        to={discussion.slug}
-        className="discussion__info"
-      >
+      <div className="discussion__info">
         <p className="discussion__text">{discussion.name}</p>
         <div className="discussion__date">
           <p className="discussion__day-time">
@@ -96,7 +93,7 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
             <p className="discussion__status">{discussion.status}</p>
           )}
         </div>
-      </Link>
+      </div>
 
       <div className="discussion__bottom-bar">
         <div className="discussion__messages">
