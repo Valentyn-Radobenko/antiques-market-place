@@ -5,6 +5,8 @@ import '../../../styles/scrollbar.scss';
 import { SortType, SortingType } from '../../../types/sorting';
 import { SortingItem } from '../SortingItem/SortingItem';
 import { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../../store/store';
 
 type Props = {
   sorting: SortingType;
@@ -22,6 +24,8 @@ export const SortingMob: React.FC<Props> = ({
   const [height, setHeight] = useState<number>(0);
   const refSimplebarHeight = useRef<HTMLDivElement | null>(null);
 
+  const lang = useSelector((state: SavingState) => state.language.language);
+
   useEffect(() => {
     if (refSimplebarHeight.current) {
       setHeight(refSimplebarHeight.current?.clientHeight);
@@ -38,7 +42,10 @@ export const SortingMob: React.FC<Props> = ({
           isActive: activeSortType === sorting.id,
         })}
       >
-        <p className="setting-mob__link">{sorting.nameUa}</p>
+        <p className="setting-mob__link">
+          {lang === 'ua' && sorting.nameUa}
+          {lang === 'en' && sorting.nameEng}
+        </p>
         <svg
           className={classNames('setting-mob__arrow', {
             isActive: activeSortType === sorting.id,

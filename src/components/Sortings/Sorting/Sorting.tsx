@@ -5,6 +5,8 @@ import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import { SortingType } from '../../../types/sorting';
 import { SortingItem } from '../SortingItem/SortingItem';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../../store/store';
 
 type Props = {
   sorting: SortingType;
@@ -22,6 +24,9 @@ export const Sorting: React.FC<Props> = ({
   // const [activeSortTypeType, setActiveSortTypeType] = useState<number | null>(null);
   const [height, setHeight] = useState<number>(0);
   const [scrollHeight, seScrollHeight] = useState<number>(0);
+
+  const lang = useSelector((state: SavingState) => state.language.language);
+
   const toggleMenu = function () {
     if (activeSortType === sorting.id) {
       setActiveSortType(null);
@@ -50,7 +55,8 @@ export const Sorting: React.FC<Props> = ({
           className="sorting__link"
           params={{}}
         >
-          {sorting.nameUa}
+          {lang === 'ua' && sorting.nameUa}
+          {lang === 'en' && sorting.nameEng}
         </SearchLink>
         <button
           onClick={() => {
