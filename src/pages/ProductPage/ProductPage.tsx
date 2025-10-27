@@ -86,7 +86,7 @@ export const ProductPage = () => {
           '',
         ]}
         titles={[
-          'Маркет',
+          `${t('navigation.market')}`,
           product.category[lang],
           product.subcategory[lang],
           product.name[lang],

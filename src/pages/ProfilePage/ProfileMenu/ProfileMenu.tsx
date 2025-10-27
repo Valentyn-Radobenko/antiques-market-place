@@ -9,6 +9,9 @@ import { profileNav } from '../../../types/ProfileNav';
 import { SetStateAction, Dispatch, useEffect } from 'react';
 import { ArrowTale } from '../../../components/Imgs/ArrowTale';
 import classNames from 'classnames';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../../store/store';
+import { useTranslation } from 'react-i18next';
 
 const profileNavigation: profileNav[] = [
   {
@@ -61,6 +64,9 @@ export const ProfileMenu: React.FC<Props> = ({ openMenu, setOpenMenu }) => {
     .filter((a) => a !== '')
     .at(-1);
 
+  const lang = useSelector((state: SavingState) => state.language.language);
+  const { t } = useTranslation();
+
   useEffect(() => {
     if (!openMenu) {
       document.body.style.overflow = 'hidden';
@@ -72,7 +78,7 @@ export const ProfileMenu: React.FC<Props> = ({ openMenu, setOpenMenu }) => {
 
   return (
     <div className="profile-menu">
-      <h2 className="profile-menu__h2">Мій кабінет</h2>
+      <h2 className="profile-menu__h2">{t('profile-menu__h2')}</h2>
       <div className="profile-menu__wrapper">
         {profileNavigation.map((item) => (
           <NavLink
@@ -89,7 +95,9 @@ export const ProfileMenu: React.FC<Props> = ({ openMenu, setOpenMenu }) => {
               })}
             >
               {item.svg}
-              <p>{item.nameUa}</p>
+              <p>
+                {lang === 'ua' && item.nameUa} {lang === 'en' && item.nameEng}
+              </p>
             </div>
             <ArrowTale className="profile-menu__svg" />
           </NavLink>
