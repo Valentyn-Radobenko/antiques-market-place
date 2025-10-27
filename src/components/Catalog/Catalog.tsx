@@ -1,11 +1,14 @@
 import { MarketItem } from '../MarketItem/MatketItem';
 import { Product } from '../../types/Product';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   goods: Product[];
 };
 
 export const Catalog: React.FC<Props> = ({ goods }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       {goods.length !== 0 ?
@@ -22,14 +25,16 @@ export const Catalog: React.FC<Props> = ({ goods }) => {
           <div className="items__no-items">
             <div className="items__text-block">
               <div className="items__text-block-2">
-                <p className="items__yikes">йо-йо-йой</p>
+                <p className="items__yikes">
+                  {t('no-content__block-top-text')}
+                </p>
                 <p className="items__main-text-no-items">
-                  За обраними фільтрами результатів немає.
+                  {t('items__main-text-no-items')}
                 </p>
               </div>
 
               <p className="items__hint-noitems desk-tab">
-                Спробуйте змінити умови.
+                {t('items__hint-noitems')}
               </p>
             </div>
             <img
@@ -38,7 +43,9 @@ export const Catalog: React.FC<Props> = ({ goods }) => {
               alt=""
             />
           </div>
-          <p className="items__hint-noitems phone">Спробуйте змінити умови.</p>
+          <p className="items__hint-noitems phone">
+            {t('items__hint-noitems')}
+          </p>
         </div>
       }
     </>

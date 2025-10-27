@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { Info } from '../../../components/Imgs/Info';
 import { Close } from '../../../components/Imgs/Close';
 import { Dispatch, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 type Props = {
   helperOn: boolean;
   onMouseLeave: () => void;
@@ -15,6 +16,8 @@ export const PageHelper: React.FC<Props> = ({
   onMouseLeave,
   onMouseEnter,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div
       onMouseLeave={onMouseLeave}
@@ -36,22 +39,16 @@ export const PageHelper: React.FC<Props> = ({
           />
         </div>
         <div className="pagehelper__text-block">
-          <h3 className="pagehelper__h3">Рекомендації для вибору послуги:</h3>
+          <h3 className="pagehelper__h3">{t('pagehelper__h3')}</h3>
           <ul className="pagehelper__list">
             <li className="pagehelper__item">
-              Якщо ви лише цікавитеся вартістю —{' '}
-              <strong>достатньо базової оцінки.</strong>
+              {t('pagehelper__item')} <strong>{t('pagehelper__item2')}</strong>
             </li>
             <li className="pagehelper__item">
-              Для продажу, страхування чи підтвердеженні автентичності —
-              підходить{' '}
-              <strong>детальна оцінка та сертифікація аутентичності.</strong>
+              {t('pagehelper__item3')} <strong>{t('pagehelper__item4')}</strong>
             </li>
           </ul>
-          <p className="pagehelper__text">
-            Це не тільки забезпечить вас потрібною інформацією, але й дозволить
-            максимально ефективно використати ваш бюджет.
-          </p>
+          <p className="pagehelper__text">{t('pagehelper__text')}</p>
         </div>
       </div>
       <div

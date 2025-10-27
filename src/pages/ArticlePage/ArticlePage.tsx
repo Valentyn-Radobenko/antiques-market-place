@@ -12,10 +12,13 @@ import { CreateExhibition } from '../../components/CreateExhibition/CreateExhibi
 import { useIsTablet } from '../../hooks/useMediaQuery';
 import { Dropdown } from '../../components/Dropdown/Dropdown';
 import { OtherArticlesSlider } from '../../components/Sliders/OtherArticlesSlider';
+import { useTranslation } from 'react-i18next';
 
 export const ArticlePage = () => {
   const { slug } = useParams();
   const article = articles.find((p) => p.slug === slug);
+
+  const { t } = useTranslation();
   const lang = useSelector((state: SavingState) => state.language.language);
 
   const [content, setContent] = useState('');
@@ -41,7 +44,7 @@ export const ArticlePage = () => {
       <Crumbs
         customClassName="article__crumbs"
         links={['/club', '/club/articles', `/club/article/${article?.slug}`]}
-        titles={['Клуб колекціонерів', 'Статті', `${article?.title[lang]}`]}
+        titles={[`${t('club')}`, `${t('articles')}`, `${article?.title[lang]}`]}
       />
 
       <div className="article">
@@ -49,27 +52,35 @@ export const ArticlePage = () => {
           <Dropdown
             buttonArea="all"
             buttonTitle={() => (
-              <h4 className="article__details-title">Деталі статті</h4>
+              <h4 className="article__details-title">
+                {t('article__details-title')}
+              </h4>
             )}
             customClassName="article__details"
             renderContent={() => (
               <div className="article__details-content">
                 <div className="article__details-block">
-                  <p className="article__details-label">Автор:</p>
+                  <p className="article__details-label">
+                    {t('article__details-label')}
+                  </p>
                   <p className="article__details-value">
                     {article?.author[lang]}
                   </p>
                 </div>
 
                 <div className="article__details-block">
-                  <p className="article__details-label">Джерела:</p>
+                  <p className="article__details-label">
+                    {t('article__details-label2')}
+                  </p>
                   <p className="article__details-value">
                     {article.source[lang]}
                   </p>
                 </div>
 
                 <div className="article__details-block">
-                  <p className="article__details-label">Дата публікації:</p>
+                  <p className="article__details-label">
+                    {t('article__details-label3')}
+                  </p>
                   <p className="article__details-value">{article.date[lang]}</p>
                 </div>
               </div>
@@ -78,22 +89,30 @@ export const ArticlePage = () => {
         )}
         {!isTablet && (
           <div className="article__details">
-            <h4 className="article__details-title">Деталі статті</h4>
+            <h4 className="article__details-title">
+              {t('article__details-title')}
+            </h4>
             <div className="article__details-content">
               <div className="article__details-block">
-                <p className="article__details-label">Автор:</p>
+                <p className="article__details-label">
+                  {t('article__details-label')}
+                </p>
                 <p className="article__details-value">
                   {article?.author[lang]}
                 </p>
               </div>
 
               <div className="article__details-block">
-                <p className="article__details-label">Джерела:</p>
+                <p className="article__details-label">
+                  {t('article__details-label2')}
+                </p>
                 <p className="article__details-value">{article.source[lang]}</p>
               </div>
 
               <div className="article__details-block">
-                <p className="article__details-label">Дата публікації:</p>
+                <p className="article__details-label">
+                  {t('article__details-label3')}
+                </p>
                 <p className="article__details-value">{article.date[lang]}</p>
               </div>
             </div>

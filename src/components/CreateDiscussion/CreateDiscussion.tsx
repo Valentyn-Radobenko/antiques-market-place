@@ -27,44 +27,25 @@ import classNames from 'classnames';
 import { CreateNewTheme } from '../CreateNewTheme/CreateNewTheme';
 import { ModalEndingDiscussions } from '../ModalEnding/ModalEndingDiscussions';
 import { Tooltip } from '../Tooltip/Tooltip';
-import { useSelector } from 'react-redux';
-import { SavingState } from '../../store/store';
 import { useTranslation } from 'react-i18next';
 
 const PHOTO_AMOUNT = 5;
 
-const popularThems = {
-  ua: [
-    'Монети України',
-    'Колекціонування',
-    'Нумізматика',
-    'Книги',
-    'Марки',
-    'Живопис',
-    'Філателія',
-    "Предмети інтер'єру",
-    'Монети Польщі',
-    'Сфрагістика',
-    'Паперові колекції',
-    'Монети Європи',
-    'Інші монети',
-  ],
-  en: [
-    'Coins of Ukraine',
-    'Collecting',
-    'Numismatics',
-    'Books',
-    'Stamps',
-    'Painting',
-    'Philately',
-    'Interior items',
-    'Coins of Poland',
-    'Sphragistics',
-    'Paper collections',
-    'Coins of Europe',
-    'Other coins',
-  ],
-};
+const popularThems = [
+  'Монети України',
+  'Колекціонування',
+  'Нумізматика',
+  'Книги',
+  'Марки',
+  'Живопис',
+  'Філателія',
+  "Предмети інтер'єру",
+  'Монети Польщі',
+  'Сфрагістика',
+  'Паперові колекції',
+  'Монети Європи',
+  'Інші монети',
+];
 
 type Form = {
   name: string;
@@ -96,7 +77,6 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
     themes: [],
   });
   const [step, setStep] = useState(1);
-  const lang = useSelector((state: SavingState) => state.language.language);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -224,7 +204,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                 ref={heightRef}
                 className="create-discussion__themes"
               >
-                {popularThems[lang].map((theme) => (
+                {popularThems.map((theme) => (
                   <p
                     onClick={() => handleAddTheme(theme)}
                     key={theme}

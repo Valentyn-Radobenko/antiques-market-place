@@ -6,6 +6,7 @@ import SimpleBar from 'simplebar-react';
 import { PhotosHelper } from '../PhotosHelper/PhotosHelper';
 import { FilesInput } from '../../../components/FilesInput/FilesInput';
 import { PhotosList } from '../../../components/PhotosList/PhotosList';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   closeModal: Dispatch<SetStateAction<boolean>>;
@@ -24,6 +25,8 @@ export const ValuabilityForm: React.FC<Props> = ({
   const [query, setQuery] = useState<string>('');
   const [photosHelper, setPhotosHelper] = useState<boolean>(false);
   const [currentHeight, setCurrentHeight] = useState<number>(0);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (activeState) {
@@ -66,7 +69,9 @@ export const ValuabilityForm: React.FC<Props> = ({
             <p className="valuability-form__text">{assessment.text}</p>
             {assessment.important && (
               <div className="valuability-form__important">
-                <h4 className="valuability-form__h4">ВАЖЛИВО!</h4>
+                <h4 className="valuability-form__h4">
+                  {t('more-info__what-is-it-important-h4')}
+                </h4>
                 <p className="valuability-form__important-text">
                   {assessment.important}
                 </p>
@@ -79,7 +84,9 @@ export const ValuabilityForm: React.FC<Props> = ({
             style={{ gap: photosHelper ? '16px' : '8px' }}
           >
             <div className="valuability-form__photo-title-text">
-              <p className="valuability-form__photo-text">Фото матеріали</p>
+              <p className="valuability-form__photo-text">
+                {t('valuability-form__photo-text')}
+              </p>
               <Info
                 className={'valuability-form__photo-icon'}
                 onMouseLeave={() => leaveLeave()}
@@ -116,10 +123,12 @@ export const ValuabilityForm: React.FC<Props> = ({
           )}
           <div className="valuability-form__underline" />
           <div className="valuability-form__description">
-            <p className="valuability-form__description-text">Опис предмету</p>
+            <p className="valuability-form__description-text">
+              {t('valuability-form__description-text')}
+            </p>
             <input
               value={query}
-              placeholder="Монета 1560 рку, срібла"
+              placeholder={t('valuability-form__description-input-placeholder')}
               className="valuability-form__description-input"
               onChange={(e) => setQuery(e.target.value)}
               type="text"
@@ -130,7 +139,7 @@ export const ValuabilityForm: React.FC<Props> = ({
           className="valuability-form__button"
           // onClick={() => } // внести обробник на сервер
         >
-          Надіслати
+          {t('current-discussion__add-comment-button')}
         </button>
       </div>
     </SimpleBar>

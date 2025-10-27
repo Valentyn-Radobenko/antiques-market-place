@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useIsMobile } from '../../hooks/useMediaQuery';
+import { useTranslation } from 'react-i18next';
 
 export const NotFoundPage = () => {
   const isMobile = useIsMobile();
+  const { t } = useTranslation();
 
   return (
     <div className="not-found-page">
@@ -10,23 +12,23 @@ export const NotFoundPage = () => {
         <div className="no-content">
           <div className="no-content__block">
             <div className="no-content__block-top">
-              <p className="no-content__block-top-text">йо-йо-йой</p>
+              <p className="no-content__block-top-text">
+                {t('no-content__block-top-text')}
+              </p>
               <h4 className="no-content__block-top-title">
-                Схоже, ми загубили цю сторінку...
+                {t('no-content__block-top-title3')}
               </h4>
             </div>
             {!isMobile && (
               <>
                 <p className="no-content__block-bottom">
-                  Або вона втекла у невідомому напрямку, або її тут ніколи не
-                  було. Не хвилюйтесь, завжди можна повернутися на головну та
-                  знайти щось цікаве!
+                  {t('no-content__block-bottom3')}
                 </p>
                 <Link
                   to={'/market'}
                   className="not-found-page__link"
                 >
-                  Перейти в Маркет
+                  {t('not-found-page__link')}
                 </Link>
               </>
             )}
@@ -40,16 +42,14 @@ export const NotFoundPage = () => {
         {isMobile && (
           <>
             <p className="no-content__block-bottom">
-              Або вона втекла у невідомому напрямку, або її тут ніколи не було.
-              Не хвилюйтесь, завжди можна повернутися на головну та знайти щось
-              цікаве!
+              {t('no-content__block-bottom3')}
             </p>
 
             <Link
               to={'/market'}
               className="not-found-page__link"
             >
-              Перейти в Маркет
+              {t('not-found-page__link')}
             </Link>
           </>
         )}

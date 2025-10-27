@@ -2,6 +2,7 @@ import { Info } from '../../../components/Imgs/Info';
 import { Close } from '../../../components/Imgs/Close';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useResizeObserverHieight } from '../../../utils/useResizeObserver';
+import { useTranslation } from 'react-i18next';
 type Props = {
   onMouseLeave: () => void;
   onMouseEnter: () => void;
@@ -16,6 +17,8 @@ export const PhotosHelper: React.FC<Props> = ({
   onMouseEnter,
 }) => {
   const { refH, height } = useResizeObserverHieight();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (refH.current) {
@@ -39,32 +42,15 @@ export const PhotosHelper: React.FC<Props> = ({
       </div>
       <div className="photos-helper__text-block">
         <div className="photos-helper__title">
-          <h3 className="photos-helper__h3">
-            Фото мають бути чіткими та якісними.
-          </h3>
-          <h4 className="photos-helper__h4">
-            Уникайте розмиття та відблисків.{' '}
-          </h4>
+          <h3 className="photos-helper__h3">{t('photos-helper__h3')}</h3>
+          <h4 className="photos-helper__h4">{t('photos-helper__h4')} </h4>
         </div>
         <ul className="photos-helper__list">
-          <li className="photos-helper__item">
-            {' '}
-            Зробіть знімки з різних ракурсів. Покажіть предмет спереду, ззаду, з
-            боків, а також зверху та знизу.
-          </li>
-          <li className="photos-helper__item">
-            Детально сфотографуйте всі особливості. Якщо є дефекти (подряпини,
-            тріщини, потертості) – зробіть окремі знімки.
-          </li>
-          <li className="photos-helper__item">
-            {' '}
-            Добре освітлення допоможе передати всі деталі. Використовуйте
-            природне світло або м'яке штучне освітлення без різких тіней.
-          </li>
+          <li className="photos-helper__item"> {t('photos-helper__item')}</li>
+          <li className="photos-helper__item">{t('photos-helper__item2')}</li>
+          <li className="photos-helper__item"> {t('photos-helper__item3')}</li>
         </ul>
-        <p className="photos-helper__text">
-          Це допоможе експерту точніше оцінити предмет!{' '}
-        </p>
+        <p className="photos-helper__text">{t('photos-helper__text')} </p>
       </div>
     </div>
   );

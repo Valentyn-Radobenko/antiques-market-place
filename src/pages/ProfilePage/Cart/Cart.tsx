@@ -4,26 +4,32 @@ import { ArrowTale } from '../../../components/Imgs/ArrowTale';
 import { Bin } from '../../../components/Imgs/Bin';
 import { OrdersSVG } from '../../../components/Imgs/OrdersSVG';
 import { CheckboxSquareSVG } from '../../../components/Imgs/СheckboxSquareSVG';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../../store/store';
+import { useTranslation } from 'react-i18next';
 
 const testItems = [
   {
     id: 1,
     checked: false,
     img: 'images/expertise/exp1.webp',
-    name: 'Талер. 1643.',
+    name: { ua: 'Талер. 1643.', en: 'Thaler. 1643.' },
     price: '4000',
   },
   {
     id: 2,
     checked: false,
     img: 'images/expertise/exp1.webp',
-    name: 'Талер. 1643.',
+    name: { ua: 'Талер. 1643.', en: 'Thaler. 1643.' },
     price: '4000',
   },
 ];
 
 export const Cart = () => {
   const [setOpenMenu] = useOutletContext<OutletContextType>();
+
+  const lang = useSelector((state: SavingState) => state.language.language);
+  const { t } = useTranslation();
 
   return (
     <div className="profile-page__section">
@@ -34,7 +40,7 @@ export const Cart = () => {
           }}
           className="profile-page__section-arrow"
         />
-        <h2 className="profile-page__section-h2">Корзина</h2>
+        <h2 className="profile-page__section-h2">{t('cart')}</h2>
       </div>
 
       <div className="cart">
@@ -45,7 +51,9 @@ export const Cart = () => {
               className="cart__checked-global"
             />
             <p className="cart__top-bar-text">
-              Обрано 2<span className="gray">/2</span> товари
+              {t('shopping-cart__selected-text')} 2
+              <span className="gray">/2</span>{' '}
+              {t('shopping-cart__selected-text2')}
             </p>
           </div>
           <Bin className="cart__bin" />
@@ -64,7 +72,7 @@ export const Cart = () => {
                   alt="#"
                 />
                 <div className="cart__item-text">
-                  <p className="cart__item-name">{a.name}</p>
+                  <p className="cart__item-name">{a.name[lang]}</p>
                   <p className="cart__item-price">{a.price} грн</p>
                 </div>
               </div>
@@ -72,17 +80,19 @@ export const Cart = () => {
           ))}
         </div>
         <div className="cart__bottom-bar">
-          <p className="cart__bottom-bar-text">Загальна сума </p>
+          <p className="cart__bottom-bar-text">
+            {t('shopping-cart__price-label')}{' '}
+          </p>
           <p className="cart__bottom-bar-price">8 000 грн</p>
           <button className="cart__button">
-            <p>Оформити замовлення</p>
+            <p>{t('shopping-cart__cta-text')}</p>
             <OrdersSVG />
           </button>
         </div>
       </div>
 
       <button className="cart__button on-mob">
-        <p>Оформити замовлення - 8000 грн</p>
+        <p>{t('shopping-cart__cta-text')} - 8000 грн</p>
         <OrdersSVG />
       </button>
     </div>

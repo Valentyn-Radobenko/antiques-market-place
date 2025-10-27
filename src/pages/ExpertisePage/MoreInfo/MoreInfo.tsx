@@ -2,6 +2,7 @@ import { Close } from '../../../components/Imgs/Close';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import { AssessmentInfo } from '../../../types/assessment';
 import SimpleBar from 'simplebar-react';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   closeModal: Dispatch<SetStateAction<boolean>>;
@@ -16,6 +17,8 @@ export const MoreInfo: React.FC<Props> = ({
   assessment,
   activeState,
 }) => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     if (activeState) {
       document.body.style.overflow = 'hidden';
@@ -34,7 +37,7 @@ export const MoreInfo: React.FC<Props> = ({
       <div className="more-info__container">
         <div className="more-info__title">
           <h3 className="more-info__header">
-            Детальніше <br />
+            {t('more-info__header')} <br />
             {assessment.title}
           </h3>
           <Close
@@ -44,10 +47,14 @@ export const MoreInfo: React.FC<Props> = ({
         </div>
         <div className="more-info__info">
           <div className="more-info__what-is-it">
-            <p className="more-info__what-is-it-title">Що це:</p>
+            <p className="more-info__what-is-it-title">
+              {t('more-info__what-is-it-title')}
+            </p>
             <p className="more-info__what-is-it-text">{assessment.text1}</p>
             <div className="more-info__what-is-it-important">
-              <h4 className="more-info__what-is-it-important-h4">ВАЖЛИВО!</h4>
+              <h4 className="more-info__what-is-it-important-h4">
+                {t('more-info__what-is-it-important-h4')}
+              </h4>
               <p className="more-info__what-is-it-important-text">
                 {assessment.important}
               </p>
@@ -58,14 +65,12 @@ export const MoreInfo: React.FC<Props> = ({
           </div>
           <div className="more-info__underline"></div>
           <div className="more-info__price">
-            <p className="more-info__price-title">Середня вартість:</p>
+            <p className="more-info__price-title">{t('card__price-h4')}</p>
             <p className="more-info__price-text">{assessment.price}</p>
           </div>
           <div className="more-info__underline"></div>
           <ul className="more-info__what-you-get">
-            <p className="more-info__what-you-get-title">
-              Що отримає власник лоту:
-            </p>
+            <p className="more-info__what-you-get-title">{t('card__h4')}</p>
             {assessment.list.map((a, index) => (
               <li
                 key={index}
@@ -83,7 +88,7 @@ export const MoreInfo: React.FC<Props> = ({
           }}
           className="more-info__button"
         >
-          Подати заявку
+          {t('card__button2')}
         </button>
       </div>
     </SimpleBar>

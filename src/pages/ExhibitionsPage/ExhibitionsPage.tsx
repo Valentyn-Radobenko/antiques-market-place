@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import classNames from 'classnames';
 import { Crumbs } from '../../components/Crumbs/Crumbs';
+import { useTranslation } from 'react-i18next';
 
 export const ExhibitionsPage = () => {
   const getLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -8,40 +9,42 @@ export const ExhibitionsPage = () => {
       'exhibitions__sections-link--active': isActive,
     });
 
+  const { t } = useTranslation();
+
   return (
     <div className="exhibitions">
       <div className="exhibitions__nav-bar">
         <Crumbs
           links={['/club', '/club/exhibitions']}
-          titles={['Клуб колекціонерів', 'Виставки']}
+          titles={[`${t('club')}`, `${t('exhibitions')}`]}
         />
 
         <div className="exhibitions__heading">
-          <h1 className="exhibitions__title">Виставки</h1>
+          <h1 className="exhibitions__title">{t('exhibitions')}</h1>
           <nav className="exhibitions__sections">
             <NavLink
               to={'all'}
               className={getLinkClass}
             >
-              Всі виставки
+              {t('exhibitions__sections-link')}
             </NavLink>
             <NavLink
               to={'ongoing'}
               className={getLinkClass}
             >
-              Досі тривають
+              {t('exhibitions__sections-link2')}
             </NavLink>
             <NavLink
               to={'completed'}
               className={getLinkClass}
             >
-              Завершені
+              {t('exhibitions__sections-link3')}
             </NavLink>
             <NavLink
               to={'planned'}
               className={getLinkClass}
             >
-              Заплановані
+              {t('exhibitions__sections-link4')}
             </NavLink>
           </nav>
         </div>

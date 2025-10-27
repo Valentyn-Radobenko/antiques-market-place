@@ -24,13 +24,16 @@ import {
 import { Link, useParams } from 'react-router-dom';
 import products from '../../data/products.json';
 import { filters } from '../../data/filters';
+import { useTranslation } from 'react-i18next';
 
 export const ProductPage = () => {
   const isTablet = useIsTablet();
   const dispatch = useDispatch<AppDispatch>();
   const { slug } = useParams();
   const product = products.find((p) => p.slug === slug);
+
   const lang = useSelector((state: SavingState) => state.language.language);
+  const { t } = useTranslation();
 
   const cart = useSelector((state: SavingState) => state.shoppingCart);
   const countriesSlugs = filters.options[0].subcategories.map(
@@ -70,7 +73,7 @@ export const ProductPage = () => {
   };
 
   if (!product) {
-    return <h2>Product not found</h2>;
+    return <h2>{t('npt-found')}</h2>;
   }
 
   return (
@@ -106,7 +109,9 @@ export const ProductPage = () => {
             <div className="product__chars">
               <div className="product__char">
                 <MapSearchSVG className="product__char-icon" />
-                <span className="product__char-label">Країна:</span>
+                <span className="product__char-label">
+                  {t('product__char-label')}
+                </span>
                 <Link
                   to={countryLink(product.country.slug)}
                   className="product__char-value product__char-value--underline"
@@ -116,14 +121,18 @@ export const ProductPage = () => {
               </div>
               <div className="product__char">
                 <DocsSVG className="product__char-icon" />
-                <span className="product__char-label">Опис:</span>
+                <span className="product__char-label">
+                  {t('product__char-label2')}
+                </span>
                 <span className="product__char-value">
                   {product.description[lang]}
                 </span>
               </div>
               <div className="product__char">
                 <HourglassEmptySVG className="product__char-icon" />
-                <span className="product__char-label">Рік:</span>
+                <span className="product__char-label">
+                  {t('product__char-label3')}
+                </span>
                 <Link
                   to={yearLink(product.year)}
                   className="product__char-value product__char-value--underline"
@@ -133,7 +142,9 @@ export const ProductPage = () => {
               </div>
               <div className="product__char">
                 <LandslideSVG className="product__char-icon" />
-                <span className="product__char-label">Матеріал:</span>
+                <span className="product__char-label">
+                  {t('product__char-label4')}
+                </span>
                 <Link
                   to={`/market?material=${product.material.slug}`}
                   className="product__char-value product__char-value--underline"
@@ -143,7 +154,9 @@ export const ProductPage = () => {
               </div>
               <div className="product__char">
                 <ViewComfySVG className="product__char-icon" />
-                <span className="product__char-label">Категорія:</span>
+                <span className="product__char-label">
+                  {t('product__char-label5')}
+                </span>
                 <Link
                   to={`/market?subcategory=${product.subcategory.slug}`}
                   className="product__char-value product__char-value--underline"
@@ -155,7 +168,9 @@ export const ProductPage = () => {
             <Dropdown
               buttonArea="all"
               buttonTitle={() => (
-                <p className="product__dropdown-text">Детальна інформація</p>
+                <p className="product__dropdown-text">
+                  {t('product__dropdown-text')}
+                </p>
               )}
               renderContent={() => (
                 <p className="product__dropdown-option">{product.info[lang]}</p>
@@ -165,7 +180,9 @@ export const ProductPage = () => {
           </div>
           <div className="product__middle">
             <div className="product__price">
-              <span className="product__price-label">Ціна:</span>
+              <span className="product__price-label">
+                {t('product__price-label')}
+              </span>
               <span className="product__price-value">{product.price} грн</span>
             </div>
             <button
@@ -184,47 +201,53 @@ export const ProductPage = () => {
               }}
               className="product__cta"
             >
-              <span className="product__cta-text">Купити</span>
+              <span className="product__cta-text">
+                {t('product__cta-text2')}
+              </span>
               <ShoppingCartSVG className="product__cta-icon" />
             </button>
           </div>
           <div className="product__bottom">
             <div className="product__bottom-block">
-              <div className="product__bottom-block-title">Оплата</div>
+              <div className="product__bottom-block-title">
+                {t('product__bottom-block-title')}
+              </div>
               <div className="product__bottom-block-options">
                 <div className="product__bottom-block-option">
                   <AccountBalanceSVG className="product__bottom-block-option-icon" />
                   <div className="product__bottom-block-option-description">
-                    На особистий рахунок платформи
+                    {t('product__bottom-block-option-description')}
                   </div>
                 </div>
                 <div className="product__bottom-block-option">
                   <PaymentsSVG className="product__bottom-block-option-icon" />
                   <div className="product__bottom-block-option-description">
-                    Готівка при самовивозі
+                    {t('product__bottom-block-option-description2')}
                   </div>
                 </div>
                 <div className="product__bottom-block-option">
                   <CreditCardSVG className="product__bottom-block-option-icon" />
                   <div className="product__bottom-block-option-description">
-                    Переказ на карту
+                    {t('product__bottom-block-option-description3')}
                   </div>
                 </div>
               </div>
             </div>
             <div className="product__bottom-block">
-              <div className="product__bottom-block-title">Доставка</div>
+              <div className="product__bottom-block-title">
+                {t('product__bottom-block-title2')}
+              </div>
               <div className="product__bottom-block-options">
                 <div className="product__bottom-block-option">
                   <BoxSVG className="product__bottom-block-option-icon" />
                   <div className="product__bottom-block-option-description">
-                    Новою поштою
+                    {t('product__bottom-block-option-description4')}
                   </div>
                 </div>
                 <div className="product__bottom-block-option">
                   <WarehouseSVG className="product__bottom-block-option-icon" />
                   <div className="product__bottom-block-option-description">
-                    Самовивіз зі складу
+                    {t('product__bottom-block-option-description5')}
                   </div>
                 </div>
               </div>

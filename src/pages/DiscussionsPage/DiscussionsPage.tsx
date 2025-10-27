@@ -13,6 +13,9 @@ import { Discussion } from '../../components/Discussion/Discussion';
 import classNames from 'classnames';
 import { CloseSmallSVG } from '../../components/Imgs/CloseSmallSVG';
 import { SearchSVG } from '../../components/Imgs/SearchSVG';
+// import { useSelector } from 'react-redux';
+// import { SavingState } from '../../store/store';
+import { useTranslation } from 'react-i18next';
 
 const tagsList = [
   'Монети України',
@@ -31,6 +34,9 @@ export const DiscussionsPage = () => {
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [discussions, setDiscussions] = useState<DiscussionData[]>(data);
   const [searchParams, setSearchParams] = useSearchParams();
+
+  // const lang = useSelector((state: SavingState) => state.language.language);
+  const { t } = useTranslation();
 
   // --- Параметри URL ---
   const selectedTags = useMemo(() => {
@@ -119,21 +125,23 @@ export const DiscussionsPage = () => {
         <Crumbs
           customClassName="discussions__crumbs"
           links={['/club', '/club/discussions']}
-          titles={['Клуб колекціонерів', 'Обговорення']}
+          titles={[`${t('club')}`, `${t('discussions')}`]}
         />
-        <h1 className="discussions__title">Обговорення</h1>
+        <h1 className="discussions__title">{t('discussions')}</h1>
       </div>
 
       <div className="discussions">
         <div className="discussions__details">
-          <h4 className="discussions__details-title">Популярні теми:</h4>
+          <h4 className="discussions__details-title">
+            {t('discussions__details-title')}
+          </h4>
 
           <label className="discussions__details-search">
             <SearchSVG className="discussions__details-search-icon" />
             <input
               className="discussions__details-search-input"
               type="text"
-              placeholder="Я шукаю..."
+              placeholder={t('discussions__details-search-input-placeholder')}
               value={searchQuery}
               onChange={handleSearchChange}
             />
@@ -180,14 +188,16 @@ export const DiscussionsPage = () => {
               <div className="items__no-items">
                 <div className="items__text-block">
                   <div className="items__text-block-2">
-                    <p className="items__yikes">йо-йо-йой</p>
+                    <p className="items__yikes">
+                      {t('no-content__block-top-text')}
+                    </p>
                     <p className="items__main-text-no-items">
-                      За обраними фільтрами результатів немає.
+                      {t('items__main-text-no-items')}
                     </p>
                   </div>
 
                   <p className="items__hint-noitems desk-tab">
-                    Спробуйте змінити умови.
+                    {t('items__hint-noitems')}
                   </p>
                 </div>
                 <img
@@ -197,7 +207,7 @@ export const DiscussionsPage = () => {
                 />
               </div>
               <p className="items__hint-noitems phone">
-                Спробуйте змінити умови.
+                {t('items__hint-noitems')}
               </p>
             </div>
           )}
@@ -206,7 +216,9 @@ export const DiscussionsPage = () => {
         <div className="exhibition__additional">
           <div className="exhibitions__offer exhibitions__offer--exhibition">
             <div className="exhibitions__offer-heading">
-              <h3 className="exhibitions__offer-title">Створити обговорення</h3>
+              <h3 className="exhibitions__offer-title">
+                {t('create-discussion__title')}
+              </h3>
               <div
                 onClick={() => setIsInfoOpen(true)}
                 className="exhibitions__offer-icon"
@@ -216,7 +228,7 @@ export const DiscussionsPage = () => {
               onClick={() => setOpenAddModal(true)}
               className="exhibitions__offer-button exhibitions__offer-button--exhibition"
             >
-              Додати тему
+              {t('exhibitions__offer-button')}
             </button>
           </div>
 

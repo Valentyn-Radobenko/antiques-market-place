@@ -9,6 +9,7 @@ import { ModalWindow } from '../../../components/ModalWindow/ModalWindow';
 import { CreateExhibition } from '../../../components/CreateExhibition/CreateExhibition';
 import { CreateExhibitionInfo } from '../../../components/CreateExhibitionInfo/CreateExhibitionInfo';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   exhibitions: Exhibition[];
@@ -44,6 +45,7 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
   };
 
   const lang = useSelector((state: SavingState) => state.language.language);
+  const { t } = useTranslation();
 
   const [openAddModal, setOpenAddModal] = useState<boolean>(false);
   const [isInfoOpen, setIsInfoOpen] = useState<boolean>(false);
@@ -71,7 +73,7 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
         : <div className="exhibitions__offer">
             <div className="exhibitions__offer-heading">
               <h3 className="exhibitions__offer-title">
-                Запропонувати виставку
+                {t('create-exhibition__title')}
               </h3>
               <div
                 className="exhibitions__offer-icon"
@@ -82,7 +84,7 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
               onClick={() => setOpenAddModal(true)}
               className="exhibitions__offer-button"
             >
-              Додати виставку
+              {t('exhibitions__offer-button2')}
             </button>
           </div>
         }
@@ -99,7 +101,9 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
                 style={{ backgroundImage: `url(${exh.image})` }}
                 className="exhibitions__article-img"
               >
-                <p className="exhibitions__article-tag">Новий</p>
+                <p className="exhibitions__article-tag">
+                  {t('market-item__new')}
+                </p>
               </div>
               <div className="exhibitions__article-text">
                 <div className="exhibitions__article-title">

@@ -3,10 +3,13 @@ import { Crumbs } from '../../components/Crumbs/Crumbs';
 import articles from '../../data/articles.json';
 import { useSelector } from 'react-redux';
 import { SavingState } from '../../store/store';
+import { useTranslation } from 'react-i18next';
 
 export const ArticlesPage = () => {
   const { slug } = useParams();
   const article = articles.find((p) => p.slug === slug);
+
+  const { t } = useTranslation();
   const lang = useSelector((state: SavingState) => state.language.language);
 
   return (
@@ -15,11 +18,15 @@ export const ArticlesPage = () => {
         {article ?
           <Crumbs
             links={['/club', '/club/articles', `/club/no-content/${slug}`]}
-            titles={['Клуб колекціонерів', 'Статті', `${article.title[lang]}`]}
+            titles={[
+              `${t('club')}`,
+              `${t('articles')}`,
+              `${article.title[lang]}`,
+            ]}
           />
         : <Crumbs
             links={['/club', '/club/articles']}
-            titles={['Клуб колекціонерів', 'Статті']}
+            titles={[`${t('club')}`, `${t('articles')}`]}
           />
         }
 
@@ -34,7 +41,7 @@ export const ArticlesPage = () => {
             </h1>
           )}
 
-          {!article && <h1 className="articles__title">Статті</h1>}
+          {!article && <h1 className="articles__title">{t('articles')}</h1>}
         </div>
       </div>
       <Outlet />

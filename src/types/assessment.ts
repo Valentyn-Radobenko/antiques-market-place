@@ -8,9 +8,19 @@ export type AssessmentInfo = {
   list: string[];
 };
 
+export type localizedAssessmentInfos = {
+  ua: AssessmentInfo[];
+  en: AssessmentInfo[];
+};
+
 export type AssessmentForm = {
   id: number;
   title: string;
   text: string;
   important?: string;
+};
+
+export type localizedAssessmentForms = {
+  ua: AssessmentForm[];
+  en: AssessmentForm[];
 };

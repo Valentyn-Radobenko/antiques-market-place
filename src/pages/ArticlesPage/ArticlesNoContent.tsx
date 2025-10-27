@@ -1,7 +1,10 @@
+import { useTranslation } from 'react-i18next';
 import { useIsMobile } from '../../hooks/useMediaQuery';
 
 export const ArticlesNoContent = () => {
   const isMobile = useIsMobile();
+
+  const { t } = useTranslation();
 
   return (
     <div className="articles__no-content">
@@ -9,16 +12,16 @@ export const ArticlesNoContent = () => {
         <div className="no-content">
           <div className="no-content__block">
             <div className="no-content__block-top">
-              <p className="no-content__block-top-text">йо-йо-йой</p>
+              <p className="no-content__block-top-text">
+                {t('no-content__block-top-text')}
+              </p>
               <h4 className="no-content__block-top-title">
-                Команда DIKO вже працює над цією статтею
+                {t('no-content__block-top-title')}
               </h4>
             </div>
             {!isMobile && (
               <p className="no-content__block-bottom">
-                Незабаром тут з’являться захопливі статті про антикваріат, його
-                історію та унікальні знахідки. Ми готуємо для вас найцікавіше,
-                тож слідкуйте за оновленнями!
+                {t('no-content__block-bottom')}
               </p>
             )}
           </div>
@@ -30,9 +33,7 @@ export const ArticlesNoContent = () => {
         </div>
         {isMobile && (
           <p className="no-content__block-bottom">
-            Незабаром тут з’являться захопливі статті про антикваріат, його
-            історію та унікальні знахідки. Ми готуємо для вас найцікавіше, тож
-            слідкуйте за оновленнями!
+            {t('no-content__block-bottom')}
           </p>
         )}
       </div>

@@ -7,6 +7,7 @@ import { HowToExpertise } from './HowToExpertise/HowToExpertise';
 import { ItemEvaluation } from './ItemEvaluation/ItemEvaluation';
 import { Info } from '../../components/Imgs/Info';
 import { PageHelper } from './PageHelper/PageHelper';
+import { useTranslation } from 'react-i18next';
 
 export const ExpertisePage = () => {
   // const { t } = useTranslation();
@@ -36,6 +37,8 @@ export const ExpertisePage = () => {
 
   const [helperOn, setHelperOn] = useState(false);
 
+  const { t } = useTranslation();
+
   let timeout: NodeJS.Timeout;
 
   const leaveLeave = () => {
@@ -52,7 +55,7 @@ export const ExpertisePage = () => {
   return (
     <div className="expertise">
       <div className="expertise__title">
-        <h1 className="expertise__header"> Оцінювання та експертиза лотів</h1>
+        <h1 className="expertise__header">{t('expertise__header')}</h1>
         <Info
           onMouseLeave={() => leaveLeave()}
           onMouseEnter={() => mouseOn()}

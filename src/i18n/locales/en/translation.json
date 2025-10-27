@@ -76,9 +76,9 @@
   "footer__option6": "Our products and services",
   "footer__copyright": "© 2004 – 2025 | DIKO | All rights reserved.",
 
-  "exhibitions": "Exhibitions",
   "articles": "Articles",
   "discussions": "Discussions",
+  "exhibitions": "Exhibitions",
 
   "exp-questions__button": "Is there an examination certificate?",
   "exp-questions__button2": "Can I sell through the platform?",
@@ -132,7 +132,7 @@
   "shopping-cart__order-block-receiving-nav-section2": "Pickup from warehouse",
   "shopping-cart__order-block-radio-dropdown-title": "Pickup from post office",
   "shopping-cart__order-block-radio-dropdown-label": "Delivery service",
-  "shopping-cart__order-block-radio-dropdown-input-placeholder": "New mail",
+  "shopping-cart__order-block-radio-dropdown-input-placeholder": "Nova post",
   "shopping-cart__order-block-error": "Please specify delivery service",
   "shopping-cart__order-block-radio-dropdown-label2": "Branch number",
   "shopping-cart__order-block-radio-dropdown-input-placeholder2": "№456",
@@ -236,5 +236,117 @@
   "slider__header-link": "more",
   "slider__header-link2": "view more",
 
-  "other-items-slider-title": "You may also be interested in"
+  "other-items-slider-title": "You may also be interested in",
+
+  "article__details-title": "Article Details",
+  "article__details-label": "Author:",
+  "article__details-label2": "Sources:",
+  "article__details-label3": "Publication Date:",
+  "club": "Collectors' Club",
+
+  "no-content__block-top-text": "uh-oh-ohhh",
+  "no-content__block-top-title": "The DIKO team is already working on this article",
+  "no-content__block-bottom": "Soon, exciting articles about antiques, their history and unique finds will appear here. We are preparing the most interesting things for you, so stay tuned!",
+
+  "discussions__details-title": "Popular topics:",
+  "discussions__details-search-input-placeholder": "I'm looking for...",
+  "items__main-text-no-items": "No results for the selected filters.",
+  "items__hint-noitems": "Try changing the conditions.",
+  "exhibitions__offer-button": "Add a topic",
+
+  "exhibition__details-title": "Exhibition Details",
+  "exhibition__details-label": "Source:",
+  "exhibition__details-label2": "Event:",
+  "exhibition__details-label3": "Login:",
+  "exhibition__details-label4": "Address:",
+  "exhibition__details-label5": "Location:",
+  "exhibition__details-label6": "Duration:",
+
+  "exhibitions__offer-button2": "Add an exhibition",
+
+  "no-content__block-top-text2": "dum-dum-dum",
+  "no-content__block-top-title2": "The DIKO team is already working on this exhibition",
+  "no-content__block-bottom2": "If you have an interesting idea or a ready-made exhibition, we will be happy to present it here! We invite you to share your proposal - our team will be happy to consider it and support the implementation of your project.",
+
+  "exhibitions__sections-link": "All exhibitions",
+  "exhibitions__sections-link2": "Ongoing",
+  "exhibitions__sections-link3": "Completed",
+  "exhibitions__sections-link4": "Planned",
+
+  "howtoexperise__h2": "How to get a professional appraisal of your item?",
+  "howtoexperise__subtext": "Follow 5 simple steps:",
+  "howtoexperise__assesment-text": "Choose a service,",
+  "howtoexperise__assesment-text2": "assessment",
+  "howtoexperise__assesment-text3": "or",
+  "howtoexperise__assesment-text4": "expertise",
+  "howtoexperise__assesment-text5": "Filling in the required information",
+  "howtoexperise__assesment-text6": "Sending an application ✅",
+  "howtoexperise__assesment-text7": "Waiting for a response",
+  "howtoexperise__assesment-text8": "Now I can pay for the service and get the result.",
+
+  "item-evaluation__h2": "Select the required item evaluation option:",
+  "card__h2": "Basic item evaluation",
+  "card__h22": "Expertise",
+  "card__price-h4": "Average value:",
+  "card__price-text": "Estimate: 400 UAH. + 2% of the item value",
+  "card__price-text2": "Simple expertise: 2000 UAH + 2% of the estimated value.",
+  "card__h4": "What the owner of the lot will receive:",
+  "card__item": "Description of the item's characteristics.",
+  "card__item2": "Estimate (what condition the item is in) and approximate value.",
+  "card__item3": "Official certificate of authenticity.",
+  "card__item4": "Description of the item's characteristics.",
+  "card__item5": "A certificate recognized by the professional community.<br/> International certificate.",
+  "card__button": "Learn more",
+  "card__button2": "Apply",
+
+  "more-info__header": "More",
+  "more-info__what-is-it-title": "What is it:",
+  "more-info__what-is-it-important-h4": "IMPORTANT!",
+
+  "pagehelper__h3": "Recommendations for choosing a service:",
+  "pagehelper__item": "If you are only interested in the cost —",
+  "pagehelper__item2": "a basic estimate is enough.",
+  "pagehelper__item3": "For sale, insurance or authentication — suitable",
+  "pagehelper__item4": "a detailed estimate and certification of authenticity.",
+  "pagehelper__text": "This will not only provide you with the necessary information, but also allow you to use your budget as efficiently as possible.",
+
+  "photos-helper__h3": "Photos should be clear and of good quality.",
+  "photos-helper__h4": "Avoid blurring and glare.",
+  "photos-helper__item": "Take photos from different angles. Show the item from the front, back, sides, and top and bottom.",
+  "photos-helper__item2": "Take detailed photos of all the features. If there are defects (scratches, cracks, scuffs) - take separate photos.",
+  "photos-helper__item3": "Good lighting will help to convey all the details. Use natural light or soft artificial lighting without harsh shadows.",
+  "photos-helper__text": "This will help the expert assess the item more accurately!",
+
+  "valuability-form__photo-text": "Photo materials",
+  "valuability-form__description-text": "Item description",
+  "valuability-form__description-input-placeholder": "1560 silver coin",
+
+  "expertise__header": "Lot Evaluation and Expertise",
+
+  "market__searchlink-title": "Market",
+  "market__h2": "Search by category",
+  "market__h2-2": "All items",
+
+  "no-content__block-top-title3": "It looks like we lost this page...",
+  "no-content__block-bottom3": "Either it ran away in an unknown direction, or it was never here. Don't worry, you can always go back to the main page and find something interesting!",
+  "not-found-page__link": "Go to Market",
+
+  "not-found": "Not found",
+  "product__char-label": "Country:",
+  "product__char-label2": "Description:",
+  "product__char-label3": "Year:",
+  "product__char-label4": "Material:",
+  "product__char-label5": "Category:",
+  "product__dropdown-text": "Detailed information",
+  "product__price-label": "Price:",
+  "product__cta-text2": "Buy",
+  "product__bottom-block-title": "Payment",
+  "product__bottom-block-option-description": "To the platform's personal account",
+  "product__bottom-block-option-description2": "Cash on delivery",
+  "product__bottom-block-option-description3": "Transfer to card",
+  "product__bottom-block-title2": "Delivery",
+  "product__bottom-block-option-description4": "By Nova Post",
+  "product__bottom-block-option-description5": "Pickup from warehouse",
+
+  "dupa": "dupa"
 }

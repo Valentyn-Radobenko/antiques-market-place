@@ -4,6 +4,7 @@ import { ArrowRound } from '../../../components/Imgs/ArrowRound';
 import { useResizeObserver } from '../../../utils/useResizeObserver';
 import { BigArrow } from '../../../components/Imgs/BigArrow';
 import { ArrowTale } from '../../../components/Imgs/ArrowTale';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   scrollToSection: () => void;
@@ -18,6 +19,8 @@ export const HowToExpertise: React.FC<Props> = ({ scrollToSection }) => {
   const [clientView, setClientView] = useState(0);
   const imgRef = useRef<HTMLImageElement>(null);
   const [imgWidth, setImgWidth] = useState<number>(0);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (imgRef.current) {
@@ -88,10 +91,10 @@ export const HowToExpertise: React.FC<Props> = ({ scrollToSection }) => {
         className="howtoexperise__inner"
       >
         <div className="howtoexperise__title">
-          <h2 className="howtoexperise__h2">
-            Як отримати професійну оцінку вашого предмета?
-          </h2>
-          <p className="howtoexperise__subtext">Виконайте 5 простих кроків:</p>
+          <h2 className="howtoexperise__h2">{t('howtoexperise__h2')}</h2>
+          <p className="howtoexperise__subtext">
+            {t('howtoexperise__subtext')}
+          </p>
         </div>
         <div
           ref={assesmantRef}
@@ -119,8 +122,10 @@ export const HowToExpertise: React.FC<Props> = ({ scrollToSection }) => {
             <div className="howtoexperise__assesment-title title-pos-1">
               <h4 className="howtoexperise__assesment-h4">1.</h4>
               <p className="howtoexperise__assesment-text">
-                Обираю послугу, <strong>оцінка</strong> або{' '}
-                <strong>експертиза</strong>
+                {t('howtoexperise__assesment-text')}{' '}
+                <strong>{t('howtoexperise__assesment-text2')}</strong>{' '}
+                {t('howtoexperise__assesment-text3')}{' '}
+                <strong>{t('howtoexperise__assesment-text4')}</strong>
               </p>
             </div>
             <ArrowRound className={'howtoexperise__round-arrow arrow-1'} />
@@ -134,7 +139,7 @@ export const HowToExpertise: React.FC<Props> = ({ scrollToSection }) => {
             <div className="howtoexperise__assesment-title title-pos-2">
               <h4 className="howtoexperise__assesment-h4">2.</h4>
               <p className="howtoexperise__assesment-text">
-                Заповнюю потрібну інформацію{' '}
+                {t('howtoexperise__assesment-text5')}{' '}
               </p>
             </div>
             <ArrowRound className={'howtoexperise__round-arrow arrow-2'} />
@@ -148,7 +153,7 @@ export const HowToExpertise: React.FC<Props> = ({ scrollToSection }) => {
             <div className="howtoexperise__assesment-title title-pos-3">
               <h4 className="howtoexperise__assesment-h4">3.</h4>
               <p className="howtoexperise__assesment-text">
-                Відправляю заявку ✅
+                {t('howtoexperise__assesment-text6')}
               </p>
             </div>
             <ArrowRound className={'howtoexperise__round-arrow arrow-3'} />
@@ -162,7 +167,7 @@ export const HowToExpertise: React.FC<Props> = ({ scrollToSection }) => {
             <div className="howtoexperise__assesment-title title-pos-4">
               <h4 className="howtoexperise__assesment-h4">4.</h4>
               <p className="howtoexperise__assesment-text">
-                Очікую на відповідь
+                {t('howtoexperise__assesment-text7')}
               </p>
             </div>
             <ArrowRound className={'howtoexperise__round-arrow arrow-4'} />
@@ -176,7 +181,7 @@ export const HowToExpertise: React.FC<Props> = ({ scrollToSection }) => {
             <div className="howtoexperise__assesment-title title-pos-5">
               <h4 className="howtoexperise__assesment-h4">5.</h4>
               <p className="howtoexperise__assesment-text">
-                Тепер можу оплатити послугу та отримати результат.
+                {t('howtoexperise__assesment-text8')}
               </p>
             </div>
             <img

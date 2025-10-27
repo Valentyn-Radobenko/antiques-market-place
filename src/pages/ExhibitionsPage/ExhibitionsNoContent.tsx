@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import { useIsMobile } from '../../hooks/useMediaQuery';
 
 export const ExhibitionsNoContent = () => {
   const isMobile = useIsMobile();
+  const { t } = useTranslation();
   return (
     <>
       <div className="exhibitions__articles-block">
@@ -23,12 +25,12 @@ export const ExhibitionsNoContent = () => {
         : <div className="exhibitions__offer">
             <div className="exhibitions__offer-heading">
               <h3 className="exhibitions__offer-title">
-                Запропонувати виставку
+                {t('create-exhibition__title')}
               </h3>
               <div className="exhibitions__offer-icon"></div>
             </div>
             <button className="exhibitions__offer-button">
-              Додати виставку
+              {t('exhibitions__offer-button2')}
             </button>
           </div>
         }
@@ -36,17 +38,16 @@ export const ExhibitionsNoContent = () => {
           <div className="no-content">
             <div className="no-content__block">
               <div className="no-content__block-top">
-                <p className="no-content__block-top-text">пум-пум-пум</p>
+                <p className="no-content__block-top-text">
+                  {t('no-content__block-top-text2')}
+                </p>
                 <h4 className="no-content__block-top-title">
-                  Команда DIKO вже працює над цією виставкою
+                  {t('no-content__block-top-title')}
                 </h4>
               </div>
               {!isMobile && (
                 <p className="no-content__block-bottom">
-                  Якщо ви маєте цікаву ідею або готову виставку, ми будемо раді
-                  представити її тут! Запрошуємо вас поділитися своєю
-                  пропозицією – наша команда із задоволенням розгляне її та
-                  підтримає реалізацію вашого проєкту.
+                  {t('no-content__block-bottom2')}
                 </p>
               )}
             </div>
@@ -58,10 +59,7 @@ export const ExhibitionsNoContent = () => {
           </div>
           {isMobile && (
             <p className="no-content__block-bottom">
-              Якщо ви маєте цікаву ідею або готову виставку, ми будемо раді
-              представити її тут! Запрошуємо вас поділитися своєю пропозицією –
-              наша команда із задоволенням розгляне її та підтримає реалізацію
-              вашого проєкту.
+              {t('no-content__block-bottom2')}
             </p>
           )}
         </div>

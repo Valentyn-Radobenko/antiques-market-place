@@ -9,9 +9,10 @@ import { SearchLink } from '../../utils/SearchLink';
 import { useEffect, useState } from 'react';
 import goodsJson from '../../data/products.json';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import { RootState, SavingState } from '../../store/store';
 import { Arrow } from '../../components/Imgs/Arrow';
 import { Product } from '../../types/Product';
+import { useTranslation } from 'react-i18next';
 
 export const MarketPage = () => {
   const [searchParams] = useSearchParams();
@@ -24,6 +25,9 @@ export const MarketPage = () => {
   const material = searchParams.getAll('material');
   const query = searchParams.get('query');
   const [goods, setGoods] = useState<Product[]>([]);
+
+  const { t } = useTranslation();
+  const lang = useSelector((state: SavingState) => state.language.language);
 
   useEffect(() => {
     let goodsToShow = goodsJson;
@@ -104,13 +108,13 @@ export const MarketPage = () => {
           case 'oldest':
             return +b.year - +a.year;
           case 'a-z':
-            return a.name.ua
+            return a.name[lang]
               .toLowerCase()
-              .localeCompare(b.name.ua.toLowerCase());
+              .localeCompare(b.name[lang].toLowerCase());
           case 'z-a':
-            return b.name.ua
+            return b.name[lang]
               .toLowerCase()
-              .localeCompare(a.name.ua.toLowerCase());
+              .localeCompare(a.name[lang].toLowerCase());
           default:
             return 0;
         }
@@ -130,7 +134,9 @@ export const MarketPage = () => {
             className="market__searchlink"
             params={{ category: null }}
           >
-            <p className="market__searchlink-title">Маркет</p>
+            <p className="market__searchlink-title">
+              {t('market__searchlink-title')}
+            </p>
             <Arrow className="market__searchlink-arrow" />
           </SearchLink>
           <SearchLink
@@ -145,13 +151,18 @@ export const MarketPage = () => {
             }}
           >
             <p className="market__searchlink-title">
-              {
+              {lang === 'ua' &&
                 categories.options.find((singleCategory) =>
                   singleCategory.subcategories.find(
                     (subcategory) => subcategory.slug === category,
                   ),
-                )?.nameUa
-              }
+                )?.nameUa}
+              {lang === 'en' &&
+                categories.options.find((singleCategory) =>
+                  singleCategory.subcategories.find(
+                    (subcategory) => subcategory.slug === category,
+                  ),
+                )?.nameEng}
             </p>
             <Arrow className="market__searchlink-arrow" />
           </SearchLink>
@@ -159,11 +170,14 @@ export const MarketPage = () => {
             categories.options.find((cat) => cat.slug === category)?.slug && (
             <div className="market__searchlink">
               <p className="market__searchlink-title">
-                {
+                {lang === 'ua' &&
                   categories.options
                     .flatMap((cat) => cat.subcategories)
-                    .find((sub) => sub.slug === category)?.nameUa
-                }
+                    .find((sub) => sub.slug === category)?.nameUa}
+                {lang === 'en' &&
+                  categories.options
+                    .flatMap((cat) => cat.subcategories)
+                    .find((sub) => sub.slug === category)?.nameEng}
               </p>
               <Arrow className="market__searchlink-arrow" />
             </div>
@@ -175,16 +189,19 @@ export const MarketPage = () => {
         <div className="market__top-bar">
           {category ?
             <h2 className="market__h2">
-              Пошук за категорією{' '}
-              {
+              {t('market__h2')}{' '}
+              {lang === 'ua' &&
                 categories.options.find((a) =>
                   a.subcategories.find((b) => b.slug === category),
-                )?.nameUa
-              }{' '}
+                )?.nameUa}
+              {lang === 'en' &&
+                categories.options.find((a) =>
+                  a.subcategories.find((b) => b.slug === category),
+                )?.nameEng}{' '}
               <span className="market__gray-word">{goods.length}</span>
             </h2>
           : <h2 className="market__h2">
-              Всі предмети{' '}
+              {t('market__h2-2')}{' '}
               <span className="market__gray-word">{goods.length}</span>
             </h2>
           }
@@ -212,16 +229,19 @@ export const MarketPage = () => {
         <div className="market-mob__top-bar">
           {category ?
             <h2 className="market__h2">
-              Пошук за категорією{' '}
-              {
+              {t('market__h2')}{' '}
+              {lang === 'ua' &&
                 categories.options.find((a) =>
                   a.subcategories.find((b) => b.slug === category),
-                )?.nameUa
-              }{' '}
+                )?.nameUa}
+              {lang === 'en' &&
+                categories.options.find((a) =>
+                  a.subcategories.find((b) => b.slug === category),
+                )?.nameEng}{' '}
               <span className="market__gray-word">{goods.length}</span>
             </h2>
           : <h2 className="market__h2">
-              Всі предмети{' '}
+              {t('market__h2-2')}{' '}
               <span className="market__gray-word">{goods.length}</span>
             </h2>
           }

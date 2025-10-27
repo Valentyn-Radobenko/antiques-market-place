@@ -4,6 +4,10 @@ import { assessmentInfo, assessmentForm } from '../../../data/assessment';
 import { ValuabilityForm } from '../ValuabilityForm/ValuabilityForm';
 import classNames from 'classnames';
 import { ModalWindow } from '../../../components/ModalWindow/ModalWindow';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../../store/store';
+import { useTranslation } from 'react-i18next';
+
 type Props = {
   sectionRef: React.RefObject<HTMLDivElement>;
 };
@@ -14,33 +18,36 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
   const [valuabilityForm, setValuabilityForm] = useState(false);
   const [expertiseForm, setExpertiseForm] = useState(false);
 
+  const lang = useSelector((state: SavingState) => state.language.language);
+  const { t } = useTranslation();
+
   return (
     <div className="item-evaluation">
       <h2
         ref={sectionRef}
         className="item-evaluation__h2"
       >
-        Оберіть необхідний варіант оцінювання предмета :
+        {t('item-evaluation__h2')}
       </h2>
+
       <div className="item-evaluation__cards">
         <div className="item-evaluation__card card">
           <div className="card__text-block">
             <div className="card__text">
-              <h2 className="card__h2">Базова оцінка предмета</h2>
+              <h2 className="card__h2">{t('card__h2')}</h2>
+
               <div className="card__price">
-                <h4 className="card__price-h4">Середня вартість:</h4>
-                <p className="card__price-text">
-                  Оцінка: 400 грн. + 2% від вартості предмету
-                </p>
+                <h4 className="card__price-h4">{t('card__price-h4')}</h4>
+                <p className="card__price-text">{t('card__price-text')}</p>
               </div>
+
               <ul className="card__list">
-                <h4 className="card__h4">Що отримає власник лоту:</h4>
-                <li className="card__item">Опис характеристик предмета.</li>
-                <li className="card__item">
-                  Оцінка (в якому стані предмет) та орієнтовна вартість.
-                </li>
+                <h4 className="card__h4">{t('card__h4')}</h4>
+                <li className="card__item">{t('card__item')}</li>
+                <li className="card__item">{t('card__item2')}</li>
               </ul>
             </div>
+
             <div className="card__buttons">
               <button
                 onClick={() => setMoreInfoBase(true)}
@@ -48,8 +55,9 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
                   isActive: moreInfoBase,
                 })}
               >
-                Дізнатися більше
+                {t('card__button')}
               </button>
+
               <ModalWindow
                 openModal={moreInfoBase}
                 setOpenModal={setMoreInfoBase}
@@ -59,18 +67,20 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
                 <MoreInfo
                   request={setValuabilityForm}
                   closeModal={setMoreInfoBase}
-                  assessment={assessmentInfo[0]}
+                  assessment={assessmentInfo[lang][0]}
                   activeState={moreInfoBase}
                 />
               </ModalWindow>
+
               <button
                 onClick={() => setValuabilityForm(true)}
                 className={classNames('card__button dark', {
                   isActive: valuabilityForm,
                 })}
               >
-                Подати заявку
+                {t('card__button2')}
               </button>
+
               <ModalWindow
                 openModal={valuabilityForm}
                 setOpenModal={setValuabilityForm}
@@ -78,41 +88,42 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
                 visibility="card__modal-visibility"
               >
                 <ValuabilityForm
-                  assessment={assessmentForm[0]}
+                  assessment={assessmentForm[lang][0]}
                   closeModal={setValuabilityForm}
                   activeState={valuabilityForm}
                 />
               </ModalWindow>
             </div>
           </div>
+
           <img
             className="card__img"
-            src="images\expertise\exp3.webp"
+            src="images\\expertise\\exp3.webp"
             alt=""
           />
         </div>
+
         <div className="item-evaluation__card card">
           <div className="card__text-block">
             <div className="card__text">
-              <h2 className="card__h2">Експертиза</h2>
+              <h2 className="card__h2">{t('card__h22')}</h2>
+
               <div className="card__price">
-                <h4 className="card__price-h4">Середня вартість:</h4>
-                <p className="card__price-text">
-                  Проста експертиза: 2000 грн + 2% від оцінки вартості.
-                </p>
+                <h4 className="card__price-h4">{t('card__price-h4')}</h4>
+                <p className="card__price-text">{t('card__price-text2')}</p>
               </div>
+
               <ul className="card__list">
-                <h4 className="card__h4">Що отримає власник лоту:</h4>
-                <li className="card__item">
-                  Офіційний сертифікат автентичності.
-                </li>
-                <li className="card__item">Опис характеристик предмета.</li>
-                <li className="card__item">
-                  Підтвердження, яке визнається професійною спільнотою. <br />{' '}
-                  Міжнародний сертифікат.
-                </li>
+                <h4 className="card__h4">{t('card__h4')}</h4>
+                <li className="card__item">{t('card__item3')}</li>
+                <li className="card__item">{t('card__item4')}</li>
+                <li
+                  className="card__item"
+                  dangerouslySetInnerHTML={{ __html: t('card__item5') }}
+                />
               </ul>
             </div>
+
             <div className="card__buttons">
               <button
                 onClick={() => setMoreInfoExpert(true)}
@@ -120,8 +131,9 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
                   isActive: moreInfoExpert,
                 })}
               >
-                Дізнатися більше
+                {t('card__button')}
               </button>
+
               <ModalWindow
                 openModal={moreInfoExpert}
                 setOpenModal={setMoreInfoExpert}
@@ -130,19 +142,21 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
               >
                 <MoreInfo
                   request={setExpertiseForm}
-                  assessment={assessmentInfo[1]}
+                  assessment={assessmentInfo[lang][1]}
                   closeModal={setMoreInfoExpert}
                   activeState={moreInfoExpert}
                 />
               </ModalWindow>
+
               <button
                 onClick={() => setExpertiseForm(true)}
                 className={classNames('card__button dark', {
                   isActive: expertiseForm,
                 })}
               >
-                Подати заявку
+                {t('card__button2')}
               </button>
+
               <ModalWindow
                 openModal={expertiseForm}
                 setOpenModal={setExpertiseForm}
@@ -150,16 +164,17 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
                 visibility="card__modal-visibility"
               >
                 <ValuabilityForm
-                  assessment={assessmentForm[1]}
+                  assessment={assessmentForm[lang][1]}
                   closeModal={setExpertiseForm}
                   activeState={expertiseForm}
                 />
               </ModalWindow>
             </div>
           </div>
+
           <img
             className="card__img"
-            src="images\expertise\exp1.webp"
+            src="images\\expertise\\exp1.webp"
             alt=""
           />
         </div>

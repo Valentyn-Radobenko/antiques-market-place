@@ -76,9 +76,9 @@
   "footer__option6": "Наші продукти та послуги",
   "footer__copyright": "© 2004 – 2025 | DIKO | Усі права захищено.",
 
-  "exhibitions": "Виставки",
   "articles": "Статті",
   "discussions": "Обговорення",
+  "exhibitions": "Виставки",
 
   "exp-questions__button": "Чи є сертифікат експертизи?",
   "exp-questions__button2": "Чи можна продати через платформу?",
@@ -236,5 +236,119 @@
   "slider__header-link": "більше",
   "slider__header-link2": "переглянути більше",
 
-  "other-items-slider-title": "Також вас може зацікавити"
+  "other-items-slider-title": "Також вас може зацікавити",
+
+  "article__details-title": "Деталі статті",
+  "article__details-label": "Автор:",
+  "article__details-label2": "Джерела:",
+  "article__details-label3": "Дата публікації:",
+  "club": "Клуб колекціонерів",
+
+  "no-content__block-top-text": "йо-йо-йой",
+  "no-content__block-top-title": "Команда DIKO вже працює над цією статтею",
+  "no-content__block-bottom": "Незабаром тут з’являться захопливі статті про антикваріат, його історію та унікальні знахідки. Ми готуємо для вас найцікавіше, тож слідкуйте за оновленнями!",
+
+  "discussions__details-title": "Популярні теми:",
+  "discussions__details-search-input-placeholder": "Я шукаю...",
+  "items__main-text-no-items": "За обраними фільтрами результатів немає.",
+  "items__hint-noitems": "Спробуйте змінити умови.",
+  "exhibitions__offer-button": "Додати тему",
+
+  "exhibition__details-title": "Деталі виставки",
+  "exhibition__details-label": "Джерело:",
+  "exhibition__details-label2": "Подія:",
+  "exhibition__details-label3": "Вхід:",
+  "exhibition__details-label4": "Адреса:",
+  "exhibition__details-label5": "Місце:",
+  "exhibition__details-label6": "Тривалість:",
+
+  "exhibitions__offer-button2": "Додати виставку",
+
+  "no-content__block-top-text2": "пум-пум-пум",
+  "no-content__block-top-title2": "Команда DIKO вже працює над цією виставкою",
+  "no-content__block-bottom2": "Якщо ви маєте цікаву ідею або готову виставку, ми будемо раді представити її тут! Запрошуємо вас поділитися своєю пропозицією – наша команда із задоволенням розгляне її та підтримає реалізацію вашого проєкту.",
+
+  "exhibitions__sections-link": "Всі виставки",
+  "exhibitions__sections-link2": "Досі тривають",
+  "exhibitions__sections-link3": "Завершені",
+  "exhibitions__sections-link4": "Заплановані",
+
+  "howtoexperise__h2": "Як отримати професійну оцінку вашого предмета?",
+  "howtoexperise__subtext": "Виконайте 5 простих кроків:",
+  "howtoexperise__assesment-text": "Обираю послугу,",
+  "howtoexperise__assesment-text2": "оцінка",
+  "howtoexperise__assesment-text3": "або",
+  "howtoexperise__assesment-text4": "експертиза",
+  "howtoexperise__assesment-text5": "Заповнюю потрібну інформацію",
+  "howtoexperise__assesment-text6": "Відправляю заявку ✅",
+  "howtoexperise__assesment-text7": "Очікую на відповідь",
+  "howtoexperise__assesment-text8": "Тепер можу оплатити послугу та отримати результат.",
+
+  "item-evaluation__h2": "Оберіть необхідний варіант оцінювання предмета :",
+  "card__h2": "Базова оцінка предмета",
+  "card__h22": "Експертиза",
+  "card__price-h4": "Середня вартість:",
+  "card__price-text": "Оцінка: 400 грн. + 2% від вартості предмету",
+  "card__price-text2": "Проста експертиза: 2000 грн + 2% від оцінки вартості.",
+  "card__h4": "Що отримає власник лоту:",
+  "card__item": "Опис характеристик предмета.",
+  "card__item2": "Оцінка (в якому стані предмет) та орієнтовна вартість.",
+  "card__item3": "Офіційний сертифікат автентичності.",
+  "card__item4": "Опис характеристик предмета.",
+  "card__item5": "Підтвердження, яке визнається професійною спільнотою.<br/> Міжнародний сертифікат.",
+  "card__button": "Дізнатися більше",
+  "card__button2": "Подати заявку",
+
+  "more-info__header": "Детальніше",
+  "more-info__what-is-it-title": "Що це:",
+  "more-info__what-is-it-important-h4": "ВАЖЛИВО!",
+
+  "pagehelper__h3": "Рекомендації для вибору послуги:",
+  "pagehelper__item": "Якщо ви лише цікавитеся вартістю —",
+  "pagehelper__item2": "достатньо базової оцінки.",
+  "pagehelper__item3": "Для продажу, страхування чи підтвердеженні автентичності — підходить",
+  "pagehelper__item4": "детальна оцінка та сертифікація аутентичності.",
+  "pagehelper__text": "Це не тільки забезпечить вас потрібною інформацією, але й дозволить максимально ефективно використати ваш бюджет.",
+
+  "photos-helper__h3": "Фото мають бути чіткими та якісними.",
+  "photos-helper__h4": "Уникайте розмиття та відблисків.",
+  "photos-helper__item": "Зробіть знімки з різних ракурсів. Покажіть предмет спереду, ззаду, з боків, а також зверху та знизу.",
+  "photos-helper__item2": "Детально сфотографуйте всі особливості. Якщо є дефекти (подряпини, тріщини, потертості) – зробіть окремі знімки.",
+  "photos-helper__item3": "Добре освітлення допоможе передати всі деталі. Використовуйте природне світло або м'яке штучне освітлення без різких тіней.",
+  "photos-helper__text": "Це допоможе експерту точніше оцінити предмет!",
+
+  "valuability-form__photo-text": "Фото матеріали",
+  "valuability-form__description-text": "Опис предмету",
+  "valuability-form__description-input-placeholder": "Монета 1560 року, срібла",
+
+  "expertise__header": "Оцінювання та експертиза лотів",
+
+  "market__searchlink-title": "Маркет",
+  "market__h2": "Пошук за категорією",
+  "market__h2-2": "Всі предмети",
+
+  "no-content__block-top-title3": "Схоже, ми загубили цю сторінку...",
+  "no-content__block-bottom3": "Або вона втекла у невідомому напрямку, або її тут ніколи не було. Не хвилюйтесь, завжди можна повернутися на головну та знайти щось цікаве!",
+  "not-found-page__link": "Перейти в Маркет",
+
+  "not-found": "Не знайдено",
+  "product__char-label": "Країна:",
+  "product__char-label2": "Опис:",
+  "product__char-label3": "Рік:",
+  "product__char-label4": "Матеріал:",
+  "product__char-label5": "Категорія:",
+  "product__dropdown-text": "Детальна інформація",
+  "product__price-label": "Ціна:",
+  "product__cta-text2": "Купити",
+  "product__bottom-block-title": "Оплата",
+  "product__bottom-block-option-description": "На особистий рахунок платформи",
+  "product__bottom-block-option-description2": "Готівка при самовивозі",
+  "product__bottom-block-option-description3": "Переказ на карту",
+  "product__bottom-block-title2": "Доставка",
+  "product__bottom-block-option-description4": "Новою поштою",
+  "product__bottom-block-option-description5": "Самовивіз зі складу",
+
+  "cart": "Корзина",
+
+  "dupa": "dupa"
 }
