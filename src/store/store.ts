@@ -12,6 +12,10 @@ import { availableCurrencies } from '../data/availableCurrencies';
 import { User } from '../types/user';
 import { ShoppingCartState } from '../types/shoppingCart';
 import shoppingCartReducer from './slices/shoppingCartSlice';
+import exchangeRatesReducer, {
+  ExchangeRatesState,
+} from './slices/exchangeRatesSlice';
+import { localRates } from '../data/localRates';
 
 // Завантажуємо стан з localStorage
 const persistedState = loadState();
@@ -39,6 +43,7 @@ export interface SavingState {
   expSearch: ExpSearchState;
   menu: MenuState;
   shoppingCart: ShoppingCartState;
+  exchangeRates: ExchangeRatesState;
 }
 
 // Приведення стану до правильного типу
@@ -189,6 +194,11 @@ const validatedState: SavingState =
             persistedState.shoppingCart.orderStatus
           : 'draft',
       },
+
+      exchangeRates: {
+        rates: localRates,
+        lastUpdated: new Date().toISOString(),
+      },
     }
   : {
       language: { language: 'ua' },
@@ -234,6 +244,11 @@ const validatedState: SavingState =
 
         orderStatus: 'draft',
       },
+
+      exchangeRates: {
+        rates: localRates,
+        lastUpdated: new Date().toISOString(),
+      },
     };
 
 // Створюємо store
@@ -248,6 +263,7 @@ const store = configureStore({
     expSearch: expSearchReducer,
     menu: menuReducer,
     shoppingCart: shoppingCartReducer,
+    exchangeRates: exchangeRatesReducer,
     // Додаємо редюсери тут
   },
   preloadedState: validatedState, // Використовуємо validatedState замість persistedState
