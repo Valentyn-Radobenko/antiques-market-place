@@ -3,6 +3,8 @@ import { Close } from '../../../../components/Imgs/Close';
 import { ArrowTale } from '../../../../components/Imgs/ArrowTale';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
+import { InkHighlighterMoveSVG } from '../../../../components/Imgs/InkHighlighterMoveSVG';
 
 type Props = {
   setChangePass: Dispatch<SetStateAction<boolean>>;
@@ -22,14 +24,16 @@ export const ChangePasswordModal: React.FC<Props> = ({ setChangePass }) => {
   });
   const [successPas, setSuccessesPas] = useState<boolean>(false);
 
+  const { t } = useTranslation();
+
   const submitPassword = () => {
     if (!password.pas) {
-      setError('Введіть пароль.');
+      setError(`${t('set-password')}`);
       return;
     }
 
     if (password.pas !== password.confirmedPas) {
-      setError('Паролі не співпадають');
+      setError(`${t('passwords-do-not-match')}`);
       return;
     }
 
@@ -58,19 +62,20 @@ export const ChangePasswordModal: React.FC<Props> = ({ setChangePass }) => {
       </div>
       <div className="change-password__main">
         <div className="change-password__info">
-          <h2 className="change-password__h2">Зміна пароля</h2>
+          <h2 className="change-password__h2">{t('change-password__h2')}</h2>
           <div
             className={classNames('change-password__info-texts', {
               isActive: !acceptedChange,
             })}
           >
             <p className="change-password__text">
-              Для зміни паролю введіть код підтвердження з повідомлення,
-              відправлений на вашу пошту
+              {t('change-password__text')}
             </p>
             <div className="change-password__email">
-              <p className="change-password__email-text">ducat.ua@gmail.com</p>
-              icon
+              <p className="change-password__email-text">
+                {t('change-password__email-text')}
+              </p>
+              <InkHighlighterMoveSVG />
             </div>
           </div>
         </div>
@@ -82,28 +87,30 @@ export const ChangePasswordModal: React.FC<Props> = ({ setChangePass }) => {
           >
             <div className="change-password__general-form-part">
               <div className="change-password__input-block">
-                <p className="change-password__title">Код підтвердження</p>
+                <p className="change-password__title">
+                  {t('change-password__title')}
+                </p>
                 <input
                   placeholder="44 55 66"
                   type="text"
                   className="change-password__input"
                 />
                 <p className="change-password__time-to-put">
-                  Час для введеня коду 30 секунд.
+                  {t('change-password__time-to-put')}
                 </p>
               </div>
               <Link
                 to={''}
                 className="change-password__send-again"
               >
-                Надіслати код повторно
+                {t('change-password__send-again')}
               </Link>
             </div>
             <button
               onClick={() => setAcceptedChange(true)}
               className="change-password__button"
             >
-              Продовжити
+              {t('change-password__button')}
             </button>
           </div>
           <div
@@ -113,20 +120,24 @@ export const ChangePasswordModal: React.FC<Props> = ({ setChangePass }) => {
           >
             <div className="change-password__change-password">
               <div className="change-password__input-block">
-                <p className="change-password__title">Створіть пароль</p>
+                <p className="change-password__title">
+                  {t('change-password__title2')}
+                </p>
                 <input
                   value={password.pas}
                   onChange={(e) =>
                     setPassword({ ...password, pas: e.target.value })
                   }
-                  placeholder="новий пароль"
+                  placeholder={t('change-password__input')}
                   type="password"
                   className="change-password__input"
                 />
                 <p className="change-password__error">{error || ' '} </p>
               </div>
               <div className="change-password__input-block">
-                <p className="change-password__title">Підтвердіть пароль</p>
+                <p className="change-password__title">
+                  {t('change-password__title3')}
+                </p>
                 <input
                   value={password?.confirmedPas}
                   onChange={(e) =>
@@ -142,11 +153,11 @@ export const ChangePasswordModal: React.FC<Props> = ({ setChangePass }) => {
               onClick={submitPassword}
               className="change-password__button"
             >
-              Відновити пароль
+              {t('change-password__button2')}
             </button>
             {successPas && (
               <p className="change-password__successes">
-                Пароль змінено успшно
+                {t('change-password__successes')}
               </p>
             )}
           </div>

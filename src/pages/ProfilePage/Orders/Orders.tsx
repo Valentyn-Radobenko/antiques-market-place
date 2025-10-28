@@ -4,6 +4,9 @@ import { OutletContextType } from '../../../types/openMenuOtlet';
 import { OrderType } from '../../../types/order';
 import { Order } from './Order/Order';
 import { NavSortSearch } from '../../../components/NavSortSearch/NavSortSearch';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../../store/store';
 
 const pageNavigation = [
   'Усі замовлення',
@@ -181,29 +184,42 @@ const orders: OrderType[] = [
 export const Orders = () => {
   const [setOpenMenu] = useOutletContext<OutletContextType>();
 
+  const { t } = useTranslation();
+  const lang = useSelector((state: SavingState) => state.language.language);
+
   return (
-    <div className="profile-page__section">
-      <div className="profile-page__section-title">
-        <ArrowTale
-          onClick={() => {
-            setOpenMenu(false);
-          }}
-          className="profile-page__section-arrow"
-        />
-        <h2 className="profile-page__section-h2">Замовлення</h2>
-      </div>
-      <NavSortSearch
-        pageNavigation={pageNavigation}
-        sortings={sortings}
-      />
-      <div className="orders__list">
-        {orders.map((order) => (
-          <Order
-            key={order.id}
-            order={order}
+    <>
+      {lang === 'en' && (
+        <div className="profile-page__section">
+          <h2 className="profile-page__section-h2">{t('no-translation')}</h2>
+        </div>
+      )}
+
+      {lang === 'ua' && (
+        <div className="profile-page__section">
+          <div className="profile-page__section-title">
+            <ArrowTale
+              onClick={() => {
+                setOpenMenu(false);
+              }}
+              className="profile-page__section-arrow"
+            />
+            <h2 className="profile-page__section-h2">Замовлення</h2>
+          </div>
+          <NavSortSearch
+            pageNavigation={pageNavigation}
+            sortings={sortings}
           />
-        ))}
-      </div>
-    </div>
+          <div className="orders__list">
+            {orders.map((order) => (
+              <Order
+                key={order.id}
+                order={order}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   );
 };

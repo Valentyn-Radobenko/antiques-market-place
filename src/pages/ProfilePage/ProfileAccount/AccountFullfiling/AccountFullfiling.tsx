@@ -4,6 +4,7 @@ import { VerLineSVG } from '../../../../components/Imgs/VerLineSVG';
 import { VerifiedSVG } from '../../../../components/Imgs/VerifiedSVG';
 import classNames from 'classnames';
 import { User } from '../../../../types/user';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   user: User;
@@ -13,11 +14,13 @@ export const AccountFullfiling: React.FC<Props> = ({ user }) => {
   const [steps, setSteps] = useState<boolean>(false);
   const refHeight = useRef<HTMLDivElement>(null);
 
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="account-fullfiling">
         <p className="account-fullfiling__text desctop">
-          Прогрес заповнення акаунту
+          {t('account-fullfiling__text')}
         </p>
         <div className="account-fullfiling__circle">
           <div className="account-fullfiling__circle-out">
@@ -31,30 +34,30 @@ export const AccountFullfiling: React.FC<Props> = ({ user }) => {
               user.phoneNumber
             ) ?
               <div className="account-fullfiling__fullfield">
-                <p>Всі дані заповнено.</p>
+                <p>{t('account-fullfiling__fullfield')}</p>
                 <VerifiedSVG className="account-fullfiling__svg-fullfield" />
               </div>
             : <p className="account-fullfiling__circle-text">
-                Додайте{' '}
+                {t('account-fullfiling__circle-text')}{' '}
                 {(!user.firstName ||
                   !user.lastName ||
                   !user.city ||
                   !user.country) && (
                   <span className="account-fullfiling__attention">
-                    особситі дані,
+                    {t('account-fullfiling__attention')}
                   </span>
                 )}
                 {(!user.email || !user.phoneNumber) && (
                   <span className="account-fullfiling__attention">
-                    контакти,
+                    {t('account-fullfiling__attention2')}
                   </span>
                 )}
                 {!user.verified && (
                   <span className="account-fullfiling__attention">
-                    верифікацію,
+                    {t('account-fullfiling__attention3')}
                   </span>
                 )}{' '}
-                щоб завершити профіль.
+                {t('account-fullfiling__attention4')}
               </p>
             }
           </div>
@@ -80,7 +83,7 @@ export const AccountFullfiling: React.FC<Props> = ({ user }) => {
         </div>
         <div className="account-fullfiling__tablet-container">
           <p className="account-fullfiling__text tablet">
-            Прогрес заповнення акаунту
+            {t('account-fullfiling__text')}
           </p>
 
           <div className="account-fullfiling__steps">
@@ -90,7 +93,9 @@ export const AccountFullfiling: React.FC<Props> = ({ user }) => {
                   user.city && user.country && user.firstName && user.lastName,
               })}
             >
-              <p className="account-fullfiling__step-text">Особисті дані</p>
+              <p className="account-fullfiling__step-text">
+                {t('account-fullfiling__step-text')}
+              </p>
               <VerifiedSVG
                 className={classNames('account-fullfiling__step-svg', {
                   isActive:
@@ -106,7 +111,9 @@ export const AccountFullfiling: React.FC<Props> = ({ user }) => {
                 isActive: user.email && user.phoneNumber,
               })}
             >
-              <p className="account-fullfiling__step-text">Контактні дані</p>
+              <p className="account-fullfiling__step-text">
+                {t('account-fullfiling__step-text2')}
+              </p>
               <VerifiedSVG
                 className={classNames('account-fullfiling__step-svg', {
                   isActive: user.email && user.phoneNumber,
@@ -118,7 +125,9 @@ export const AccountFullfiling: React.FC<Props> = ({ user }) => {
                 isActive: user.verified,
               })}
             >
-              <p className="account-fullfiling__step-text">Верифікація</p>
+              <p className="account-fullfiling__step-text">
+                {t('account-fullfiling__step-text3')}
+              </p>
               <VerifiedSVG
                 className={classNames('account-fullfiling__step-svg', {
                   isActive: user.verified,
@@ -135,7 +144,7 @@ export const AccountFullfiling: React.FC<Props> = ({ user }) => {
               isActive: steps,
             })}
           >
-            Прогрес заповнення акаунту
+            {t('account-fullfiling__text')}
           </p>
           <div className="account-fullfiling-mobile__arrow-wrapper">
             <Arrow
@@ -175,32 +184,32 @@ export const AccountFullfiling: React.FC<Props> = ({ user }) => {
             user.phoneNumber
           ) ?
             <div className="account-fullfiling__fullfield">
-              <p>Всі дані заповнено.</p>
+              <p>{t('account-fullfiling__fullfield')}</p>
               <VerifiedSVG className="account-fullfiling__svg-fullfield" />
             </div>
           : <p className="account-fullfiling__circle-text">
-              Додайте{' '}
+              {t('account-fullfiling__circle-text')}{' '}
               {(!user.firstName ||
                 !user.lastName ||
                 !user.city ||
                 !user.country) && (
                 <span className="account-fullfiling__attention">
-                  особситі дані,
+                  {t('account-fullfiling__attention')}
                 </span>
               )}
               {(!user.email || !user.phoneNumber) && (
                 <span className="account-fullfiling__attention">
                   {' '}
-                  контакти,
+                  {t('account-fullfiling__attention2')}
                 </span>
               )}
               {!user.verified && (
                 <span className="account-fullfiling__attention">
                   {' '}
-                  верифікацію,
+                  {t('account-fullfiling__attention3')}
                 </span>
               )}{' '}
-              щоб завершити профіль.
+              {t('account-fullfiling__attention4')}
             </p>
           }
         </div>
@@ -218,7 +227,9 @@ export const AccountFullfiling: React.FC<Props> = ({ user }) => {
                   user.city && user.country && user.firstName && user.lastName,
               })}
             >
-              <p className="account-fullfiling__step-text">Особисті дані</p>
+              <p className="account-fullfiling__step-text">
+                {t('account-fullfiling__step-text')}
+              </p>
               <VerifiedSVG
                 className={classNames('account-fullfiling__step-svg', {
                   isActive:
@@ -234,7 +245,9 @@ export const AccountFullfiling: React.FC<Props> = ({ user }) => {
                 isActive: user.email && user.phoneNumber,
               })}
             >
-              <p className="account-fullfiling__step-text">Контактні дані</p>
+              <p className="account-fullfiling__step-text">
+                {t('account-fullfiling__step-text2')}
+              </p>
               <VerifiedSVG
                 className={classNames('account-fullfiling__step-svg', {
                   isActive: user.email && user.phoneNumber,
@@ -246,7 +259,9 @@ export const AccountFullfiling: React.FC<Props> = ({ user }) => {
                 isActive: user.verified,
               })}
             >
-              <p className="account-fullfiling__step-text">Верифікація</p>
+              <p className="account-fullfiling__step-text">
+                {t('account-fullfiling__step-text3')}
+              </p>
               <VerifiedSVG
                 className={classNames('account-fullfiling__step-svg', {
                   isActive: user.verified,

@@ -6,6 +6,7 @@ import { updateUserField } from '../../../../store/slices/userSlice';
 import { User } from '../../../../types/user';
 import { CheckCircleOutlineSVG } from '../../../../components/Imgs/CheckCircleOutlineSVG';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   user: User;
@@ -16,6 +17,8 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
   const [changeLocation, setChangeLocation] = useState<boolean>(false);
   const [changePhone, setChangePhone] = useState<boolean>(false);
   const [changeEmail, setChangeEmail] = useState<boolean>(false);
+
+  const { t } = useTranslation();
 
   const [userData, setUserData] = useState({
     firstName: user.firstName,
@@ -29,7 +32,9 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
   return (
     <div className="account-general">
       <div className="account-general__block">
-        <h3 className="account-general__title">Особисті дані</h3>
+        <h3 className="account-general__title">
+          {t('account-fullfiling__step-text')}
+        </h3>
         <div className="account-general__data">
           <div className="account-general__single-option-wrapper">
             <div
@@ -38,7 +43,10 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
               })}
             >
               <p className="account-general__data-text">
-                {user.firstName || "ім'я"} {user.lastName || 'прізвище'}
+                {user.firstName ||
+                  `${t('shopping-cart__order-block-placeholder-firstname')}`}{' '}
+                {user.lastName ||
+                  `${t('shopping-cart__order-block-placeholder-lastname')}`}
               </p>
               <EditSVG
                 onClick={() => setChangeName(!changeName)}
@@ -51,7 +59,9 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
             {changeName && (
               <div className="account-general__change-data-wrapper">
                 <div className="account-general__change-data">
-                  <p className="account-general__change-data-title">ім'я</p>
+                  <p className="account-general__change-data-title">
+                    {t('shopping-cart__order-block-placeholder-firstname')}
+                  </p>
                   <input
                     value={userData.firstName || ''}
                     className="account-general__change-data-input"
@@ -62,7 +72,9 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                   />
                 </div>
                 <div className="account-general__change-data">
-                  <p className="account-general__change-data-title">Прізвище</p>
+                  <p className="account-general__change-data-title">
+                    {t('shopping-cart__order-block-placeholder-lastname')}
+                  </p>
                   <input
                     value={userData.lastName || ''}
                     className="account-general__change-data-input"
@@ -88,7 +100,7 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                   }}
                   className="account-general__change-data-button"
                 >
-                  <p>Підтвердити</p>
+                  <p>{t('account-general__change-data-button')}</p>
                   <CheckCircleOutlineSVG />
                 </button>
               </div>
@@ -102,7 +114,11 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
               })}
             >
               <p className="account-general__data-text">
-                {user.country || 'Країна'}, {user.city || 'місто'}
+                {user.country ||
+                  `${t('shopping-cart__order-block-placeholder-country')}`}
+                ,{' '}
+                {user.city ||
+                  `${t('shopping-cart__order-block-placeholder-city')}`}
               </p>
               <EditSVG
                 onClick={() => setChangeLocation(!changeLocation)}
@@ -114,7 +130,9 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
             {changeLocation && (
               <div className="account-general__change-data-wrapper">
                 <div className="account-general__change-data">
-                  <p className="account-general__change-data-title">Місто</p>
+                  <p className="account-general__change-data-title">
+                    {t('shopping-cart__order-block-placeholder-city')}
+                  </p>
                   <input
                     value={userData.city || ''}
                     className="account-general__change-data-input"
@@ -125,7 +143,9 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                   />
                 </div>
                 <div className="account-general__change-data">
-                  <p className="account-general__change-data-title">Країна</p>
+                  <p className="account-general__change-data-title">
+                    {t('shopping-cart__order-block-placeholder-country')}
+                  </p>
                   <input
                     value={userData.country || ''}
                     className="account-general__change-data-input"
@@ -151,7 +171,7 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                   }}
                   className="account-general__change-data-button"
                 >
-                  <p>Підтвердити</p>
+                  <p>{t('account-general__change-data-button')}</p>
                   <CheckCircleOutlineSVG />
                 </button>
               </div>
@@ -161,7 +181,9 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
       </div>
 
       <div className="account-general__block">
-        <h3 className="account-general__title">Контактні дані</h3>
+        <h3 className="account-general__title">
+          {t('account-fullfiling__step-text2')}
+        </h3>
         <div className="account-general__data">
           <div className="account-general__single-option-wrapper">
             <div
@@ -170,7 +192,8 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
               })}
             >
               <p className="account-general__data-text">
-                {user.phoneNumber || 'Номер телефону'}
+                {user.phoneNumber ||
+                  `${t('shopping-cart__order-block-label3')}`}
               </p>
               <EditSVG
                 onClick={() => setChangePhone(!changePhone)}
@@ -183,7 +206,7 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
               <div className="account-general__change-data-wrapper">
                 <div className="account-general__change-data">
                   <p className="account-general__change-data-title">
-                    Номер телефону
+                    {t('shopping-cart__order-block-label3')}
                   </p>
                   <input
                     value={userData.phoneNumber || ''}
@@ -204,7 +227,7 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                   }}
                   className="account-general__change-data-button"
                 >
-                  <p>Підтвердити</p>
+                  <p>{t('account-general__change-data-button')}</p>
                   <CheckCircleOutlineSVG />
                 </button>
               </div>
@@ -217,7 +240,7 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
               })}
             >
               <p className="account-general__data-text">
-                {user.email || 'Пошта'}
+                {user.email || `${t('shopping-cart__order-block-label5')}`}
               </p>
               <EditSVG
                 onClick={() => setChangeEmail(!changeEmail)}
@@ -229,7 +252,9 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
             {changeEmail && (
               <div className="account-general__change-data-wrapper">
                 <div className="account-general__change-data">
-                  <p className="account-general__change-data-title">Пошта</p>
+                  <p className="account-general__change-data-title">
+                    {t('shopping-cart__order-block-label5')}
+                  </p>
                   <input
                     value={userData.email || ''}
                     className="account-general__change-data-input"
@@ -247,7 +272,7 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                   }}
                   className="account-general__change-data-button"
                 >
-                  <p>Підтвердити</p>
+                  <p>{t('account-general__change-data-button')}</p>
                   <CheckCircleOutlineSVG />
                 </button>
               </div>

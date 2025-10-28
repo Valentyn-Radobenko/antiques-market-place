@@ -158,7 +158,7 @@
   "shopping-cart__order-block-label2": "Last name",
   "shopping-cart__order-block-label3": "Phone number",
   "shopping-cart__order-block-label4": "Patronymic",
-  "shopping-cart__order-block-label5": "Email",
+  "shopping-cart__order-block-label5": "E-mail",
   "shopping-cart__order-block-input-placeholder1": "Andriy",
   "shopping-cart__order-block-input-placeholder2": "Misteryakov",
   "shopping-cart__order-block-input-placeholder3": "+38 093 674 34 67",
@@ -352,5 +352,49 @@
 
   "profile-menu__h2": "My office",
 
-  "end-of-the-file": "the end of the file"
+  "account-fullfiling__text": "Account filling progress",
+  "account-fullfiling__fullfield": "All data is filled in.",
+  "account-fullfiling__circle-text": "Add",
+  "account-fullfiling__attention": "personal data,",
+  "account-fullfiling__attention2": "contacts,",
+  "account-fullfiling__attention3": "verification,",
+  "account-fullfiling__attention4": "to complete the profile.",
+  "account-fullfiling__step-text": "Personal data",
+  "account-fullfiling__step-text2": "Contact data",
+  "account-fullfiling__step-text3": "Verification",
+
+  "account-general__change-data-button": "Confirm",
+
+  "account-verified": "Account is verified",
+  "account-not-verified": "Account is not verified",
+
+  "set-password": "Enter password.",
+  "passwords-do-not-match": "Passwords do not match",
+  "change-password__h2": "Change password",
+  "change-password__text": "To change your password, enter the confirmation code from the message sent to your email",
+  "change-password__email-text": "ducat.ua@gmail.com",
+  "change-password__title": "Confirmation code",
+  "change-password__time-to-put": "Time to enter the code is 30 seconds.",
+  "change-password__send-again": "Send code again",
+  "change-password__button": "Continue",
+  "change-password__title2": "Create password",
+  "change-password__input": "new password",
+  "change-password__title3": "Confirm password",
+  "change-password__button2": "Restore password",
+  "change-password__successes": "Password changed successfully",
+
+  "password-email__h3": "Account login details",
+  "password-email__section-title": "Password",
+  "password-email__change-pass-info-text": "If you want to change your password, you need",
+  "password-email__change-pass-info-text-bold": "verify your identity via email.",
+  "password-email__button-text": "Change Password",
+
+  "add-email": "Add email",
+  "profile-account__exit-deleting-text": "Log out",
+  "profile-account__exit-deleting-text2": "Delete account",
+
+  "settings": "Settings",
+  "settings__title": "Notifications and Messages",
+
+  "no-translation": "Translation into English is not ready for this page"
 }

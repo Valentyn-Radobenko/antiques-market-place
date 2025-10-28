@@ -352,5 +352,49 @@
 
   "profile-menu__h2": "Мій кабінет",
 
-  "end-of-the-file": "кінець файлу"
+  "account-fullfiling__text": "Прогрес заповнення акаунту",
+  "account-fullfiling__fullfield": "Всі дані заповнено.",
+  "account-fullfiling__circle-text": "Додайте",
+  "account-fullfiling__attention": "особисті дані,",
+  "account-fullfiling__attention2": "контакти,",
+  "account-fullfiling__attention3": "верифікацію,",
+  "account-fullfiling__attention4": "щоб завершити профіль.",
+  "account-fullfiling__step-text": "Особисті дані",
+  "account-fullfiling__step-text2": "Контактні дані",
+  "account-fullfiling__step-text3": "Верифікація",
+
+  "account-general__change-data-button": "Підтвердити",
+
+  "account-verified": "Акаунт верифікований",
+  "account-not-verified": "Акаунт не верифікований",
+
+  "set-password": "Введіть пароль.",
+  "passwords-do-not-match": "Паролі не співпадають",
+  "change-password__h2": "Зміна пароля",
+  "change-password__text": "Для зміни паролю введіть код підтвердження з повідомлення, відправлений на вашу пошту",
+  "change-password__email-text": "ducat.ua@gmail.com",
+  "change-password__title": "Код підтвердження",
+  "change-password__time-to-put": "Час для введеня коду 30 секунд.",
+  "change-password__send-again": "Надіслати код повторно",
+  "change-password__button": "Продовжити",
+  "change-password__title2": "Створіть пароль",
+  "change-password__input": "новий пароль",
+  "change-password__title3": "Підтвердіть пароль",
+  "change-password__button2": "Відновити пароль",
+  "change-password__successes": "Пароль змінено успішно",
+
+  "password-email__h3": "Дані входу в акаунт",
+  "password-email__section-title": "Пароль",
+  "password-email__change-pass-info-text": "Якщо ви хочете змінити пароль, вам потрібно",
+  "password-email__change-pass-info-text-bold": "підтвердити особистість через пошту.",
+  "password-email__button-text": "Змінити пароль",
+
+  "add-email": "Додайте пошту",
+  "profile-account__exit-deleting-text": "Вийти з акаунта",
+  "profile-account__exit-deleting-text2": "Видалити акаунт",
+
+  "settings": "Налаштування",
+  "settings__title": "Сповіщення та повідомлення",
+
+  "no-translation": ""
 }

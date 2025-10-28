@@ -6,64 +6,125 @@ import { useState } from 'react';
 import { CirclePlusSVG } from '../../../components/Imgs/CirclePlusSVG';
 import { MarkUnreadChatSVG } from '../../../components/Imgs/MarkUnreadChatSVG';
 import { MarkAsUnreadSVG } from '../../../components/Imgs/MarkAsUnreadSVG';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../../store/store';
+import { useTranslation } from 'react-i18next';
 
-const baseSettings = [
-  {
-    title: 'E-mail сповіщення',
-    icon: <MarkAsUnreadSVG />,
-    options: [
-      {
-        label: 'Системні сповіщення (важливі оновлення платформи)',
-        enabled: true,
-      },
-      {
-        label: 'Сповіщення про підтвердження замовлень та транзакцій',
-        enabled: true,
-      },
-      {
-        label: 'Зміни в акаунті (оновлення пароля, верифікація)',
-        enabled: true,
-      },
-      {
-        label: "Сповіщення щодо статусу запропонованих 'Виставки'",
-        enabled: true,
-      },
-      {
-        label:
-          "Сповіщення про нові коментарі та відповіді в розділі 'Обговорення'",
-        enabled: true,
-      },
-    ],
-  },
-  {
-    title: 'Пуш-сповіщення',
-    icon: <MarkUnreadChatSVG />,
-    options: [
-      {
-        label: 'Отримання нових повідомлень та пропозицій в реальному часі',
-        enabled: true,
-      },
-      {
-        label:
-          'Нагадування про необхідність оновлення профілю/заповнення деталей',
-        enabled: true,
-      },
-      { label: 'Термінові повідомлення про безпеку акаунту', enabled: true },
-    ],
-  },
-  {
-    title: 'Додаткові налаштування',
-    icon: <CirclePlusSVG />,
-    options: [
-      { label: 'Звуковий сигнал для нових повідомлень', enabled: true },
-      { label: '“Не турбувати”', enabled: false },
-    ],
-  },
-];
+const baseSettings = {
+  ua: [
+    {
+      title: 'E-mail сповіщення',
+      icon: <MarkAsUnreadSVG />,
+      options: [
+        {
+          label: 'Системні сповіщення (важливі оновлення платформи)',
+          enabled: true,
+        },
+        {
+          label: 'Сповіщення про підтвердження замовлень та транзакцій',
+          enabled: true,
+        },
+        {
+          label: 'Зміни в акаунті (оновлення пароля, верифікація)',
+          enabled: true,
+        },
+        {
+          label: "Сповіщення щодо статусу запропонованих 'Виставки'",
+          enabled: true,
+        },
+        {
+          label:
+            "Сповіщення про нові коментарі та відповіді в розділі 'Обговорення'",
+          enabled: true,
+        },
+      ],
+    },
+    {
+      title: 'Пуш-сповіщення',
+      icon: <MarkUnreadChatSVG />,
+      options: [
+        {
+          label: 'Отримання нових повідомлень та пропозицій в реальному часі',
+          enabled: true,
+        },
+        {
+          label:
+            'Нагадування про необхідність оновлення профілю/заповнення деталей',
+          enabled: true,
+        },
+        { label: 'Термінові повідомлення про безпеку акаунту', enabled: true },
+      ],
+    },
+    {
+      title: 'Додаткові налаштування',
+      icon: <CirclePlusSVG />,
+      options: [
+        { label: 'Звуковий сигнал для нових повідомлень', enabled: true },
+        { label: '“Не турбувати”', enabled: false },
+      ],
+    },
+  ],
+  en: [
+    {
+      title: 'Email notifications',
+      icon: <MarkAsUnreadSVG />,
+      options: [
+        {
+          label: 'System notifications (important platform updates)',
+          enabled: true,
+        },
+        {
+          label: 'Notifications about order and transaction confirmations',
+          enabled: true,
+        },
+        {
+          label: 'Account changes (password update, verification)',
+          enabled: true,
+        },
+        {
+          label: "Notifications about the status of proposed 'Exhibitions'",
+          enabled: true,
+        },
+        {
+          label:
+            "Notifications about new comments and replies in the 'Discussion' section",
+          enabled: true,
+        },
+      ],
+    },
+    {
+      title: 'Push notifications',
+      icon: <MarkUnreadChatSVG />,
+      options: [
+        {
+          label: 'Receive new messages and offers in real time',
+          enabled: true,
+        },
+        {
+          label: 'Reminders to update profile/fill in details',
+          enabled: true,
+        },
+        { label: 'Urgent account security notifications', enabled: true },
+      ],
+    },
+    {
+      title: 'Advanced settings',
+      icon: <CirclePlusSVG />,
+      options: [
+        { label: 'Sound for new messages', enabled: true },
+        { label: '“Do not disturb”', enabled: false },
+      ],
+    },
+  ],
+};
 
 export const Settings = () => {
   const [setOpenMenu] = useOutletContext<OutletContextType>();
-  const [settings, setSettings] = useState(baseSettings);
+
+  const lang = useSelector((state: SavingState) => state.language.language);
+  const { t } = useTranslation();
+
+  const [settings, setSettings] = useState(baseSettings[lang]);
 
   const handleToggleEnabled = (sectionName: string, optionLabel: string) => {
     setSettings((prev) =>
@@ -91,10 +152,10 @@ export const Settings = () => {
           }}
           className="profile-page__section-arrow"
         />
-        <h2 className="profile-page__section-h2">Налаштування</h2>
+        <h2 className="profile-page__section-h2">{t('settings')}</h2>
       </div>
       <div className="settings">
-        <h3 className="settings__title">Сповіщення та повідомлення</h3>
+        <h3 className="settings__title">{t('settings__title')}</h3>
         {settings.map((section) => (
           <div
             key={section.title}

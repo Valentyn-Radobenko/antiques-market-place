@@ -3,6 +3,7 @@ import { AccountSVG } from '../../../../components/Imgs/AccountSVG';
 import { AddImgsPlus } from '../../../../components/Imgs/AddImgsPlus';
 import { ShiledSVG } from '../../../../components/Imgs/ShieldSVG';
 import { VerifiedSVG } from '../../../../components/Imgs/VerifiedSVG';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   firstName: string | null;
@@ -19,6 +20,8 @@ export const AccountMainInfo: React.FC<Props> = ({
   country,
   verified,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="account-main-info">
       <div className="account-main-info__container">
@@ -43,7 +46,9 @@ export const AccountMainInfo: React.FC<Props> = ({
               <VerifiedSVG className="account-main-info__veryfic-svg-true" />
             : <ShiledSVG className="account-main-info__veryfic-svg-false" />}
             <p className="account-main-info__veryfic-text">
-              {verified ? 'Акаунт верифікований' : 'Акаунт не верифікований'}
+              {verified ?
+                `${t('account-verified')}`
+              : `${t('account-not-verified')}`}
             </p>
           </div>
         </div>
@@ -57,7 +62,9 @@ export const AccountMainInfo: React.FC<Props> = ({
           <VerifiedSVG className="account-main-info__veryfic-svg-true" />
         : <ShiledSVG className="account-main-info__veryfic-svg-false" />}
         <p className="account-main-info__veryfic-text">
-          {verified ? 'Акаунт верифікований' : 'Акаунт не верифікований'}
+          {verified ?
+            `${t('account-verified')}`
+          : `${t('account-not-verified')}`}
         </p>
       </div>
     </div>

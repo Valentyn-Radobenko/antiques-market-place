@@ -7,6 +7,9 @@ import classNames from 'classnames';
 import { Chat } from './Chat/Chat';
 import { ActiveChat } from './ActiveChat/ActiveChat';
 import { ChatT } from '../../../types/chatTypes';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../../store/store';
 
 const testMessages: ChatT[] = [
   {
@@ -154,6 +157,9 @@ export const Messages = () => {
   const [activeChat, setActiveChat] = useState<ChatT>(testMessages[0]);
   const chatName = searchParams.get('chat');
 
+  const { t } = useTranslation();
+  const lang = useSelector((state: SavingState) => state.language.language);
+
   function formatDate(date: Date) {
     const months = [
       'січня',
@@ -185,25 +191,15 @@ export const Messages = () => {
   }, [chatName]);
 
   return (
-    <div className="profile-page__section">
-      <div className="profile-page__section-title onDescktop">
-        <ArrowTale
-          onClick={() => {
-            setOpenMenu(false);
-            setActiveMessages(false);
-          }}
-          className="profile-page__section-arrow"
-        />
-        <h2 className="profile-page__section-h2">Листування</h2>
-      </div>
-
-      <div className="profile-messages__main">
-        <div
-          className={classNames('profile-messages__wrapper', {
-            isNotActive: activeMessges,
-          })}
-        >
-          <div className="profile-page__section-title ontablet-mob">
+    <>
+      {lang === 'en' && (
+        <div className="profile-page__section">
+          <h2 className="profile-page__section-h2">{t('no-translation')}</h2>
+        </div>
+      )}
+      {lang === 'ua' && (
+        <div className="profile-page__section">
+          <div className="profile-page__section-title onDescktop">
             <ArrowTale
               onClick={() => {
                 setOpenMenu(false);
@@ -211,32 +207,52 @@ export const Messages = () => {
               }}
               className="profile-page__section-arrow"
             />
+
             <h2 className="profile-page__section-h2">Листування</h2>
           </div>
-          <SimpleBar className="profile-messages__sources-container profile-messages__simple-bar">
-            <div className="profile-messages__sources">
-              {testMessages.map((chat) => (
-                <Chat
-                  key={chat.id}
-                  chatName={chatName}
-                  formatDate={formatDate}
-                  chat={chat}
-                  setActiveMessages={setActiveMessages}
-                />
-              ))}
-            </div>
-          </SimpleBar>
-        </div>
 
-        <ActiveChat
-          setActiveChat={setActiveChat}
-          setActiveMessages={setActiveMessages}
-          activeMessges={activeMessges}
-          formatDate={formatDate}
-          activeChat={activeChat}
-          PHOTO_AMOUNT={5}
-        />
-      </div>
-    </div>
+          <div className="profile-messages__main">
+            <div
+              className={classNames('profile-messages__wrapper', {
+                isNotActive: activeMessges,
+              })}
+            >
+              <div className="profile-page__section-title ontablet-mob">
+                <ArrowTale
+                  onClick={() => {
+                    setOpenMenu(false);
+                    setActiveMessages(false);
+                  }}
+                  className="profile-page__section-arrow"
+                />
+                <h2 className="profile-page__section-h2">Листування</h2>
+              </div>
+              <SimpleBar className="profile-messages__sources-container profile-messages__simple-bar">
+                <div className="profile-messages__sources">
+                  {testMessages.map((chat) => (
+                    <Chat
+                      key={chat.id}
+                      chatName={chatName}
+                      formatDate={formatDate}
+                      chat={chat}
+                      setActiveMessages={setActiveMessages}
+                    />
+                  ))}
+                </div>
+              </SimpleBar>
+            </div>
+
+            <ActiveChat
+              setActiveChat={setActiveChat}
+              setActiveMessages={setActiveMessages}
+              activeMessges={activeMessges}
+              formatDate={formatDate}
+              activeChat={activeChat}
+              PHOTO_AMOUNT={5}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 };

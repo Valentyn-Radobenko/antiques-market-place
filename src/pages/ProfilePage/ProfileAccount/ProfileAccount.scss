@@ -737,6 +737,9 @@
   }
 
   &__email {
+    display: flex;
+    gap: 8px;
+
     color: $additional-greenas;
   }
 
