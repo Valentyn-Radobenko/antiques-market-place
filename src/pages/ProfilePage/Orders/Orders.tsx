@@ -191,7 +191,16 @@ export const Orders = () => {
     <>
       {lang === 'en' && (
         <div className="profile-page__section">
-          <h2 className="profile-page__section-h2">{t('no-translation')}</h2>
+          <div className="profile-page__section-title">
+            <ArrowTale
+              onClick={() => {
+                setOpenMenu(false);
+              }}
+              className="profile-page__section-arrow"
+            />
+
+            <h2 className="profile-page__section-h2">{t('no-translation')}</h2>
+          </div>
         </div>
       )}
 

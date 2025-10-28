@@ -11,6 +11,9 @@ import { useState } from 'react';
 import { ModalWindow } from '../../../components/ModalWindow/ModalWindow';
 import { DiscussionData } from '../../../types/discussionTypes';
 import { DiscussionRules } from '../../../components/DiscussionRules/DiscussionRules';
+import { useSelector } from 'react-redux';
+import { SavingState } from '../../../store/store';
+import { useTranslation } from 'react-i18next';
 
 const sortings = [
   {
@@ -48,9 +51,12 @@ export const Discussions = () => {
   const [discussions, setDiscussions] = useState<DiscussionData[]>(data);
   const [openRules, setOpenRules] = useState<boolean>(false);
 
+  const lang = useSelector((state: SavingState) => state.language.language);
+  const { t } = useTranslation();
+
   return (
     <>
-      <div className="profile-discussions">
+      {lang === 'en' && (
         <div className="profile-page__section">
           <div className="profile-page__section-title">
             <ArrowTale
@@ -59,60 +65,78 @@ export const Discussions = () => {
               }}
               className="profile-page__section-arrow"
             />
-            <h2 className="profile-page__section-h2">Обговорення</h2>
-          </div>
-          <NavSortSearch
-            pageNavigation={pageNavigation}
-            sortings={sortings}
-          />
-          {discussions.map((discussion) => (
-            <Discussion
-              setDiscussions={setDiscussions}
-              key={discussion.id}
-              discussion={discussion}
-            />
-          ))}
-          <ModalWindow
-            visibility={'profile-discussions__add-new-visibility'}
-            openModal={openAddModal}
-            setOpenModal={setOpenAddModal}
-            secondModal={false}
-          >
-            <CreateDiscussion setOpenModal={setOpenAddModal} />
-          </ModalWindow>
-        </div>
-        <div className="profile-discussions__create-new">
-          <p className="profile-discussions__create-new-text">
-            Створити обговорення
-          </p>
-          <Info
-            onClick={() => setOpenRules(true)}
-            className="profile-discussions__create-new-icon"
-          />
-          <button
-            onClick={() => setOpenAddModal(true)}
-            className="profile-discussions__create-new-button"
-          >
-            Додати тему
-          </button>
-        </div>
-        <button
-          onClick={() => setOpenAddModal(true)}
-          className="profile-discussions__create-new-fixed-button"
-        >
-          <PlusSVG />
-        </button>
-      </div>
-      <ModalWindow
-        visibility="create-discussion__rules-visibility"
-        openModal={openRules}
-        setOpenModal={setOpenRules}
-        secondModal={true}
-      >
-        <DiscussionRules setOpenModal={setOpenRules} />
-      </ModalWindow>
 
-      <Outlet />
+            <h2 className="profile-page__section-h2">{t('no-translation')}</h2>
+          </div>
+        </div>
+      )}
+      {lang === 'ua' && (
+        <>
+          <div className="profile-discussions">
+            <div className="profile-page__section">
+              <div className="profile-page__section-title">
+                <ArrowTale
+                  onClick={() => {
+                    setOpenMenu(false);
+                  }}
+                  className="profile-page__section-arrow"
+                />
+                <h2 className="profile-page__section-h2">Обговорення</h2>
+              </div>
+              <NavSortSearch
+                pageNavigation={pageNavigation}
+                sortings={sortings}
+              />
+              {discussions.map((discussion) => (
+                <Discussion
+                  setDiscussions={setDiscussions}
+                  key={discussion.id}
+                  discussion={discussion}
+                />
+              ))}
+              <ModalWindow
+                visibility={'profile-discussions__add-new-visibility'}
+                openModal={openAddModal}
+                setOpenModal={setOpenAddModal}
+                secondModal={false}
+              >
+                <CreateDiscussion setOpenModal={setOpenAddModal} />
+              </ModalWindow>
+            </div>
+            <div className="profile-discussions__create-new">
+              <p className="profile-discussions__create-new-text">
+                Створити обговорення
+              </p>
+              <Info
+                onClick={() => setOpenRules(true)}
+                className="profile-discussions__create-new-icon"
+              />
+              <button
+                onClick={() => setOpenAddModal(true)}
+                className="profile-discussions__create-new-button"
+              >
+                Додати тему
+              </button>
+            </div>
+            <button
+              onClick={() => setOpenAddModal(true)}
+              className="profile-discussions__create-new-fixed-button"
+            >
+              <PlusSVG />
+            </button>
+          </div>
+          <ModalWindow
+            visibility="create-discussion__rules-visibility"
+            openModal={openRules}
+            setOpenModal={setOpenRules}
+            secondModal={true}
+          >
+            <DiscussionRules setOpenModal={setOpenRules} />
+          </ModalWindow>
+
+          <Outlet />
+        </>
+      )}
     </>
   );
 };
