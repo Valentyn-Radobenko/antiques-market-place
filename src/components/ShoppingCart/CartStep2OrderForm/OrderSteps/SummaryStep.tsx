@@ -3,6 +3,7 @@ import { useIsMobile } from '../../../../hooks/useMediaQuery';
 import { SavingState } from '../../../../store/store';
 import { ArrowBackSVG } from '../../../Imgs/ArrowBackSVG';
 import { useTranslation } from 'react-i18next';
+import { useCurrency } from '../../../../hooks/useCurrency';
 
 type Props = {
   setOrderStep: React.Dispatch<React.SetStateAction<number>>;
@@ -12,12 +13,9 @@ export const SummaryStep: React.FC<Props> = ({ setOrderStep }) => {
   const isPhone = useIsMobile();
   const cart = useSelector((state: SavingState) => state.shoppingCart);
 
-  const totalPrice = cart.selectedItems.reduce(
-    (acc, item) => acc + item.price,
-    0,
-  );
-
   const { t } = useTranslation();
+
+  const { totalPrice } = useCurrency();
 
   return (
     <div className="shopping-cart__order-block">
@@ -55,7 +53,7 @@ export const SummaryStep: React.FC<Props> = ({ setOrderStep }) => {
             </p>
 
             <p className="shopping-cart__order-conclusion-top-amount-value">
-              {totalPrice} грн
+              {totalPrice}
             </p>
           </div>
         </div>

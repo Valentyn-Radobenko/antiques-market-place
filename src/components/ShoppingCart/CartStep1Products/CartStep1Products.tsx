@@ -15,6 +15,7 @@ import React, { useState } from 'react';
 import { useIsMobile } from '../../../hooks/useMediaQuery';
 import { LocalMallSVG } from '../../Imgs/LocalMallSVG';
 import { useTranslation } from 'react-i18next';
+import { useCurrency } from '../../../hooks/useCurrency';
 
 type Props = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -31,6 +32,8 @@ export const CartStep1Products: React.FC<Props> = ({ setStep }) => {
   const lang = useSelector((state: SavingState) => state.language.language);
   const [showAll, setShowAll] = useState(false);
   const isPhone = useIsMobile();
+
+  const { formatPrice, totalPrice } = useCurrency();
 
   const toggleAll = () => {
     if (cart.selectedItems.length === cart.items.length) {
@@ -59,11 +62,6 @@ export const CartStep1Products: React.FC<Props> = ({ setStep }) => {
   if (cart.selectedItems.length > cart.items.length) {
     cart.selectedItems.forEach((si) => dispatch(removeSelectedItem(si.id)));
   }
-
-  const totalPrice = cart.selectedItems.reduce(
-    (acc, item) => acc + item.price,
-    0,
-  );
 
   return (
     <div className="shopping-cart__content">
@@ -146,7 +144,7 @@ export const CartStep1Products: React.FC<Props> = ({ setStep }) => {
                           {item.name[lang]}
                         </p>
                         <p className="shopping-cart__product-price">
-                          {item.price} грн
+                          {formatPrice(item.price)}
                         </p>
                       </div>
                     </div>
@@ -184,7 +182,7 @@ export const CartStep1Products: React.FC<Props> = ({ setStep }) => {
                     {currentProduct.name[lang]}
                   </p>
                   <p className="shopping-cart__product-price">
-                    {currentProduct.price} грн
+                    {formatPrice(currentProduct.price)}
                   </p>
                 </div>
               </div>
@@ -204,7 +202,7 @@ export const CartStep1Products: React.FC<Props> = ({ setStep }) => {
                 <p className="shopping-cart__price-label">
                   {t('shopping-cart__price-label')}
                 </p>
-                <p className="shopping-cart__price-value">{totalPrice} грн</p>
+                <p className="shopping-cart__price-value">{totalPrice}</p>
               </div>
             )}
 
@@ -217,7 +215,7 @@ export const CartStep1Products: React.FC<Props> = ({ setStep }) => {
             >
               <span className="shopping-cart__cta-text">
                 {isPhone ?
-                  `${t('shopping-cart__cta-text')} - ${totalPrice} грн`
+                  `${t('shopping-cart__cta-text')} - ${totalPrice}`
                 : `${t('shopping-cart__cta-text')}`}
               </span>
               <div className="shopping-cart__cta-button">

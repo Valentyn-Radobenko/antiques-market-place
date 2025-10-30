@@ -9,6 +9,7 @@ import {
   removeSelectedItem,
 } from '../../../../store/slices/shoppingCartSlice';
 import { useTranslation } from 'react-i18next';
+import { useCurrency } from '../../../../hooks/useCurrency';
 
 type Props = {
   setOrderStep: React.Dispatch<React.SetStateAction<number>>;
@@ -21,6 +22,8 @@ export const OrdersStep: React.FC<Props> = ({ setOrderStep }) => {
 
   const { t } = useTranslation();
   const lang = useSelector((state: SavingState) => state.language.language);
+
+  const { formatPrice } = useCurrency();
 
   return (
     <div className="shopping-cart__order-block">
@@ -77,7 +80,7 @@ export const OrdersStep: React.FC<Props> = ({ setOrderStep }) => {
                     {p.name[lang]}
                   </p>
                   <p className="shopping-cart__order-block-product-price">
-                    {p.price} грн
+                    {formatPrice(p.price)}
                   </p>
                 </div>
               </div>

@@ -10,6 +10,7 @@ import {
 } from '../../store/slices/shoppingCartSlice';
 import products from '../../data/products.json';
 import { useTranslation } from 'react-i18next';
+import { useCurrency } from '../../hooks/useCurrency';
 
 export const ProductStickyCTA = () => {
   const { pathname } = useLocation();
@@ -26,6 +27,8 @@ export const ProductStickyCTA = () => {
   const selectedItems = useSelector(
     (state: SavingState) => state.shoppingCart.selectedItems,
   );
+
+  const { formatPrice } = useCurrency();
 
   if (!isProductPage || !isTablet) return null;
 
@@ -45,7 +48,7 @@ export const ProductStickyCTA = () => {
         }}
       >
         <span className="product__cta-text">
-          {t('product__cta-text')} {product?.price} грн
+          {t('product__cta-text')} {product && formatPrice(product.price)}
         </span>
         <ShoppingCartSVG className="product__cta-icon" />
       </button>

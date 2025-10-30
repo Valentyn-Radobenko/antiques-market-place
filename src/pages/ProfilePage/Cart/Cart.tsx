@@ -7,6 +7,7 @@ import { CheckboxSquareSVG } from '../../../components/Imgs/СheckboxSquareSVG';
 import { useSelector } from 'react-redux';
 import { SavingState } from '../../../store/store';
 import { useTranslation } from 'react-i18next';
+import { useCurrency } from '../../../hooks/useCurrency';
 
 const testItems = [
   {
@@ -30,6 +31,8 @@ export const Cart = () => {
 
   const lang = useSelector((state: SavingState) => state.language.language);
   const { t } = useTranslation();
+
+  const { formatPrice } = useCurrency();
 
   return (
     <div className="profile-page__section">
@@ -73,7 +76,7 @@ export const Cart = () => {
                 />
                 <div className="cart__item-text">
                   <p className="cart__item-name">{a.name[lang]}</p>
-                  <p className="cart__item-price">{a.price} грн</p>
+                  <p className="cart__item-price">{formatPrice(+a.price)}</p>
                 </div>
               </div>
             </div>

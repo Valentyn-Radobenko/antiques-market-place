@@ -1,4 +1,4 @@
-import { MarketItem } from '../MarketItem/MatketItem';
+import { MarketItem } from '../MarketItem/MarketItem';
 import { Product } from '../../types/Product';
 import { useTranslation } from 'react-i18next';
 

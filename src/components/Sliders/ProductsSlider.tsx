@@ -6,6 +6,7 @@ import products from '../../data/products.json';
 import { Product } from '../../types/Product';
 import { useSelector } from 'react-redux';
 import { SavingState } from '../../store/store';
+import { useCurrency } from '../../hooks/useCurrency';
 
 export const ProductsSlider: React.FC = () => {
   const { t } = useTranslation();
@@ -19,6 +20,8 @@ export const ProductsSlider: React.FC = () => {
       products.filter((p) => p.id !== currentProduct.id)
     : products;
   const lang = useSelector((state: SavingState) => state.language.language);
+
+  const { formatPrice } = useCurrency();
 
   return (
     <Slider<Product>
@@ -51,7 +54,7 @@ export const ProductsSlider: React.FC = () => {
             </h3>
             <div className="slider__slide-info other-items-slider__slide-info">
               <p className="slider__slide-price other-items-slider__slide-price">
-                {slide.price} грн
+                {formatPrice(slide.price)}
               </p>
               <div className="slider__slide-icon other-items-slider__slide-icon"></div>
             </div>

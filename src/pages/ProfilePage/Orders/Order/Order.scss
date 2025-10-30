@@ -316,6 +316,11 @@
   }
 
   &__price-amount {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+
     color: $additional-freshherb-elect;
     @include h4-bold;
   }

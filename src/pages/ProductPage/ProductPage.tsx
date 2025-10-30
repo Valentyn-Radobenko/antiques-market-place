@@ -25,6 +25,7 @@ import { Link, useParams } from 'react-router-dom';
 import products from '../../data/products.json';
 import { filters } from '../../data/filters';
 import { useTranslation } from 'react-i18next';
+import { useCurrency } from '../../hooks/useCurrency';
 
 export const ProductPage = () => {
   const isTablet = useIsTablet();
@@ -39,6 +40,8 @@ export const ProductPage = () => {
   const countriesSlugs = filters.options[0].subcategories.map(
     (country) => country.slug,
   );
+
+  const { formatPrice } = useCurrency();
 
   const yearLink = (year: string) => {
     if (!product) {
@@ -183,7 +186,9 @@ export const ProductPage = () => {
               <span className="product__price-label">
                 {t('product__price-label')}
               </span>
-              <span className="product__price-value">{product.price} грн</span>
+              <span className="product__price-value">
+                {formatPrice(product.price)}
+              </span>
             </div>
             <button
               onClick={() => {

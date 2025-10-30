@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { AccountSVG } from '../../../../components/Imgs/AccountSVG';
 import { LocationSVG } from '../../../../components/Imgs/LocationSVG';
 import { CreditCardSVG } from '../../../../components/Imgs/CreditCardSVG';
+import { useCurrency } from '../../../../hooks/useCurrency';
 
 type Props = {
   order: OrderType;
@@ -30,6 +31,8 @@ export const Order: React.FC<Props> = ({ order }) => {
     delivered: order.status === 'Отримано',
     canseled: order.status === 'Скасовано',
   };
+
+  const { formatPrice } = useCurrency();
 
   return (
     <div className="order">
@@ -70,7 +73,9 @@ export const Order: React.FC<Props> = ({ order }) => {
                 {openDetailed && (
                   <div className="order__item-info">
                     <p className="order__item-name">{item.name}</p>
-                    <p className="order__item-price">{item.price} грн</p>
+                    <p className="order__item-price">
+                      {formatPrice(item.price)}
+                    </p>
                   </div>
                 )}
               </div>
@@ -169,8 +174,12 @@ export const Order: React.FC<Props> = ({ order }) => {
                     <p className="order__delivery-status-info">
                       {order.payment.type},{' '}
                       <span className="order__price-amount">
-                        {order.items.reduce((acc, curr) => acc + curr.price, 0)}{' '}
-                        грн
+                        {formatPrice(
+                          order.items.reduce(
+                            (acc, curr) => acc + curr.price,
+                            0,
+                          ),
+                        )}
                       </span>{' '}
                     </p>
                   </div>

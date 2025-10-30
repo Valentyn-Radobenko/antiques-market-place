@@ -19,6 +19,7 @@ import { AddPhotoAlternateSVG } from '../../../Imgs/AddPhotoAlternateSVG';
 import { PhotosList } from '../../../PhotosList/PhotosList';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useCurrency } from '../../../../hooks/useCurrency';
 
 type Props = {
   setOrderStep: React.Dispatch<React.SetStateAction<number>>;
@@ -41,12 +42,9 @@ export const PaymentStep: React.FC<Props> = ({
 
   const [isPaymentNotificationOn, setIsPaymentNotificationOn] = useState(false);
 
-  const totalPrice = cart.selectedItems.reduce(
-    (acc, item) => acc + item.price,
-    0,
-  );
-
   const { t } = useTranslation();
+
+  const { totalPrice } = useCurrency();
 
   return (
     <div className="shopping-cart__order-block">
@@ -225,7 +223,7 @@ export const PaymentStep: React.FC<Props> = ({
                     {t('shopping-cart__order-block-payments-info-label3')}
                   </p>
                   <p className="shopping-cart__order-block-payments-info-value">
-                    {totalPrice} грн
+                    {totalPrice}
                   </p>
                 </div>
               </div>
@@ -397,7 +395,7 @@ export const PaymentStep: React.FC<Props> = ({
                     {t('shopping-cart__order-block-payments-info-label8')}
                   </p>
                   <p className="shopping-cart__order-block-payments-info-value">
-                    {totalPrice} грн
+                    {totalPrice}
                   </p>
                 </div>
               </div>
@@ -561,7 +559,7 @@ export const PaymentStep: React.FC<Props> = ({
                       {t('shopping-cart__order-block-payments-info-label11')}
                     </p>
                     <p className="shopping-cart__order-block-payments-info-value">
-                      {totalPrice} грн
+                      {totalPrice}
                     </p>
                   </div>
                 </div>
