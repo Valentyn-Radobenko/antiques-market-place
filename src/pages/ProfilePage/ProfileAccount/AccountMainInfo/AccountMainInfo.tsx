@@ -23,7 +23,7 @@ export const AccountMainInfo: React.FC<Props> = ({
   const { t } = useTranslation();
 
   return (
-    <div className="account-main-info">
+    <div className="account-main-info reveal hidden">
       <div className="account-main-info__container">
         <div className="account-main-info__img-block">
           <AccountSVG className="account-main-info__placehilder" />

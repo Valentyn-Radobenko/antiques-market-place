@@ -18,7 +18,7 @@ export const AccountFullfiling: React.FC<Props> = ({ user }) => {
 
   return (
     <>
-      <div className="account-fullfiling">
+      <div className="account-fullfiling reveal hidden">
         <p className="account-fullfiling__text desctop">
           {t('account-fullfiling__text')}
         </p>
@@ -137,7 +137,7 @@ export const AccountFullfiling: React.FC<Props> = ({ user }) => {
           </div>
         </div>
       </div>
-      <div className="account-fullfiling-mobile">
+      <div className="account-fullfiling-mobile reveal hidden">
         <div className="account-fullfiling-mobile__title">
           <p
             className={classNames('account-fullfiling__text', {

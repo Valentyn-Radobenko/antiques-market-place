@@ -24,7 +24,7 @@ export const ProfileAccount = () => {
   return (
     <div className="profile-account">
       <div className="profile-page__section">
-        <div className="profile-page__section-title">
+        <div className="profile-page__section-title reveal hidden">
           <ArrowTale
             onClick={() => setOpenMenu(false)}
             className="profile-page__section-arrow"
@@ -48,7 +48,7 @@ export const ProfileAccount = () => {
 
         <Verification />
 
-        <div className="profile-account__exit-deleting">
+        <div className="profile-account__exit-deleting reveal hidden">
           <div className="profile-account__exit">
             <ExitSVG />
             <p className="profile-account__exit-deleting-text">

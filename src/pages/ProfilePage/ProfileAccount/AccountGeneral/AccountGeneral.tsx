@@ -30,7 +30,7 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
   });
 
   return (
-    <div className="account-general">
+    <div className="account-general reveal hidden">
       <div className="account-general__block">
         <h3 className="account-general__title">
           {t('account-fullfiling__step-text')}

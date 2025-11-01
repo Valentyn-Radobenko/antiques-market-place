@@ -25,7 +25,7 @@ export const PasswordEmail: React.FC<Props> = ({ email }) => {
   }, [passwordHelper]);
 
   return (
-    <div className="password-email">
+    <div className="password-email reveal hidden">
       <h3 className="password-email__h3">{t('password-email__h3')}</h3>
       <div className="password-email__main-info">
         <div className="password-email__texts">

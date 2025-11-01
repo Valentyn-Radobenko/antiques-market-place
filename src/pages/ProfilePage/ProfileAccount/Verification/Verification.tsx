@@ -9,7 +9,7 @@ export const Verification = () => {
   const lang = useSelector((state: SavingState) => state.language.language);
 
   return (
-    <div className="account-verification">
+    <div className="account-verification reveal hidden">
       <h3 className="account-verification__title">
         {lang === 'ua' && verifivationData.title.nameUa}
         {lang === 'en' && verifivationData.title.nameEng}
