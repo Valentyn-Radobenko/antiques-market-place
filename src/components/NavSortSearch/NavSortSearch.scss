@@ -51,6 +51,37 @@
     }
   }
 
+  &__decline {
+    padding: 8px;
+    align-self: center;
+    color: $additional-greenas;
+    transition: all ease $effect-duration;
+    @include label-bold;
+    @include on-phone {
+      display: none;
+    }
+    &:hover {
+      color: $additional-freshherb-elect;
+    }
+  }
+
+  &__arrow-wrapper {
+    transition: all ease $effect-duration;
+    padding: 8px;
+    display: none;
+    color: $gray-black;
+    cursor: pointer;
+    transform: rotate(180deg);
+    align-self: center;
+    @include on-phone {
+      display: block;
+    }
+
+    &:hover {
+      color: $additional-freshherb-elect;
+    }
+  }
+
   &__search-svg {
     color: $additional-gray-gray;
   }
@@ -73,8 +104,8 @@
 
   &__sorting {
     display: none;
-    position: relative;
     max-width: 208px;
+    height: 100%;
 
     &.isActive {
       display: block;

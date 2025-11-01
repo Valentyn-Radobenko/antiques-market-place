@@ -27,11 +27,13 @@ import classNames from 'classnames';
 import { CreateNewTheme } from '../CreateNewTheme/CreateNewTheme';
 import { ModalEndingDiscussions } from '../ModalEnding/ModalEndingDiscussions';
 import { Tooltip } from '../Tooltip/Tooltip';
-import { DiscussionData } from '../../types/discussionTypes';
-// import { v4 as uuidv4 } from 'uuid';
-// import { useSelector } from 'react-redux';
-// import { RootState } from '../../store/store';
-// import { User } from '../../types/user';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store/store';
+import { updateDiscussions } from '../../store/slices/discussionsSlice';
+import { v4 as uuidv4 } from 'uuid';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { User } from '../../types/user';
 
 const PHOTO_AMOUNT = 5;
 
@@ -60,14 +62,10 @@ type Form = {
 };
 
 type Props = {
-  setDiscussions: Dispatch<SetStateAction<DiscussionData[]>>;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
 };
 
-export const CreateDiscussion: React.FC<Props> = ({
-  setOpenModal,
-  setDiscussions,
-}) => {
+export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
   const heightRef = useRef<HTMLDivElement>(null);
   const errorRef = useRef<HTMLParagraphElement>(null);
   const [activeThemes, setActiveThemes] = useState<boolean>(false);
@@ -85,7 +83,9 @@ export const CreateDiscussion: React.FC<Props> = ({
     theme: [],
   });
   const [step, setStep] = useState(1);
-  // const user: User = useSelector((state: RootState) => state.user);
+  const user: User = useSelector((state: RootState) => state.user);
+
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     if (linkError) {
@@ -141,107 +141,26 @@ export const CreateDiscussion: React.FC<Props> = ({
 
   const handleSubmit = () => {
     console.log(form.images.map((image) => URL.createObjectURL(image)));
-
-    setDiscussions((prev) => [
-      ...prev,
-      {
-        id: '2133123',
-        name: 'Допоможіть, будь ласка, встановити ціну та період',
-        slug: 'fff',
-        theme: ['Нумізматика', 'Інші монети'],
-        description: '',
-        date: new Date('2025-01-11T07:50:00'),
+    const id = uuidv4();
+    dispatch(
+      updateDiscussions({
+        id: id,
+        name: form.name,
+        slug: id,
+        theme: form.theme,
+        description: form.description,
+        date: new Date(),
         author: {
-          name: 'Олег Капчук',
-          image: './images/discussions/user1.png',
+          name: `${user.firstName} ${user.lastName}`,
+          image: user.picture,
+          id: user.id,
         },
-        images: ['./images/discussions/discussion1.png'],
+        images: form.images.map((image) => URL.createObjectURL(image)),
         status: 'ongoing',
-        comments: [
-          {
-            id: 'c1',
-            userId: 'u101',
-            userName: 'Автор Артур',
-            userImage: './images/discussions/user7.png',
-            text: 'Треба більше фото, щоб зрозуміти',
-            date: new Date('2025-01-11T08:01:00'),
-            isAnswer: null,
-          },
-          {
-            id: 'c2',
-            userId: 'u102',
-            userName: 'Андрій Куций',
-            userImage: './images/discussions/user8.png',
-            text: '1965 рік, приблизно 1000-1500 ціна',
-            date: new Date('2025-01-11T08:06:00'),
-            isAnswer: null,
-          },
-          {
-            id: 'c3',
-            userId: 'u103',
-            userName: 'Олег Марганец',
-            userImage: './images/discussions/user9.png',
-            text: 'Підробка. Скоріш за все',
-            date: new Date('2025-01-11T08:09:00'),
-            isAnswer: null,
-          },
-          {
-            id: 'c4',
-            userId: 'u104',
-            userName: 'Ірин Вугор',
-            userImage: './images/discussions/user10.png',
-            text: 'З чого ви взяли?',
-            date: new Date('2025-01-11T08:15:00'),
-            isAnswer: 'c3',
-          },
-          {
-            id: 'c5',
-            userId: 'u105',
-            userName: 'Олег Марганец',
-            userImage: './images/discussions/user9.png',
-            text: 'З свого досвіду. Та варто перевірити',
-            date: new Date('2025-01-11T08:20:00'),
-            isAnswer: 'c4',
-          },
-          {
-            id: 'c6',
-            userId: 'u106',
-            userName: 'Кирил Сірко',
-            userImage: './images/discussions/user11.png',
-            text: 'Варто звернутись за оцінкою до експерта',
-            date: new Date('2025-01-11T08:21:00'),
-            isAnswer: null,
-          },
-          {
-            id: 'c7',
-            userId: 'u107',
-            userName: 'Ніна Степпа',
-            userImage: './images/discussions/user12.png',
-            text: 'Я можу викупити за 500 грн',
-            date: new Date('2025-01-12T18:34:00'),
-            isAnswer: null,
-          },
-          {
-            id: 'c8',
-            userId: 'u108',
-            userName: 'Андрій Куций',
-            userImage: './images/discussions/user8.png',
-            text: 'Це цінний предмет, не продавайте задарма',
-            date: new Date('2025-01-12T20:05:00'),
-            isAnswer: null,
-          },
-          {
-            id: 'c9',
-            userId: 'u109',
-            userName: 'Микита Налеба',
-            userImage: './images/discussions/user13.png',
-            text: 'Не витрачайте час',
-            date: new Date('2025-01-12T20:32:00'),
-            isAnswer: null,
-          },
-        ],
-      },
-    ]);
+        anonimus: form.anonimus,
+        comments: [],
+      }),
+    );
     if (canSubmit) {
       setStep(2);
     }

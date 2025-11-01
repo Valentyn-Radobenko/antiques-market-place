@@ -192,6 +192,10 @@
     height: 24px;
     object-fit: contain;
     border-radius: 50px;
+
+    &.isUsers {
+      outline: 2px solid $system-confirmation;
+    }
   }
   &__author-name {
     color: $gray-black;
@@ -208,6 +212,8 @@
   &__themes {
     display: flex;
     gap: 8px;
+    justify-content: end;
+    flex-wrap: wrap;
   }
 
   &__theme {
@@ -216,10 +222,46 @@
     border-radius: 12px;
     background: $additional-white-green;
     padding-inline: 8px;
+    text-align: center;
+    display: flex;
+    align-items: center;
   }
-  &__description {
+  &__name {
     @include h4-bold;
     color: $gray-black;
+  }
+  &__description {
+    @include main-text;
+    color: $gray-black;
+
+    & p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    & a {
+      color: $additional-freshherb-elect;
+      @include button-bold;
+      text-decoration: underline;
+    }
+
+    & p.is-empty::before {
+      content: attr(data-placeholder);
+      color: $gray-lite;
+      float: left;
+      @include main-text;
+      pointer-events: none;
+    }
+
+    & ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    & ol {
+      list-style-type: decimal;
+      padding-left: 20px;
+    }
   }
   &__date {
     color: $gray-dis;

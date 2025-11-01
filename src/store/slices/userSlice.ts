@@ -12,12 +12,13 @@ const initialState: User = {
   phoneNumber: '+380503332222',
   firstName: 'Андрій',
   lastName: 'Містеряков',
-  picture: './images/default-photo.webp',
+  picture: './images/mainUser.png',
   country: 'Україна',
   city: 'Київ',
   auctionNumber: '+380503332222',
   verified: true,
   status: 'succeeded',
+  id: '0001',
 };
 
 // Запит до API для отримання даних користувача

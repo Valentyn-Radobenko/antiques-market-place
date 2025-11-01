@@ -7,29 +7,33 @@ import { Arrow } from '../Imgs/Arrow';
 import { ThreeDotsSVG } from '../Imgs/ThreeDotsSVG';
 import { Bin } from '../Imgs/Bin';
 import { EditSVG } from '../Imgs/EditSVG';
-import { Comment, DiscussionData } from '../../types/discussionTypes';
+import { DiscussionData } from '../../types/discussionTypes';
 import { formatUkrDate } from '../../utils/formatUkrDate';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
+import {
+  addNewComment,
+  editComment,
+  deleteOneComment,
+} from '../../store/slices/discussionsSlice';
+import { v4 as uuidv4 } from 'uuid';
+import { User } from '../../types/user';
+import { useSelector } from 'react-redux';
 
 type Props = {
   currentDiscussion: DiscussionData;
   setOpenDiscussion: Dispatch<SetStateAction<boolean>>;
-  setCurrentDiscussion: Dispatch<SetStateAction<DiscussionData>>;
   mode?: 'account' | 'club';
 };
 
 export const CurrentDiscussion: React.FC<Props> = ({
   setOpenDiscussion,
   currentDiscussion,
-  setCurrentDiscussion,
   mode = 'account',
 }) => {
-  const currentUser = {
-    id: '100',
-    name: 'теперішній юзер',
-    image: './images/default-photo.webp',
-  };
-
+  const currentUser: User = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch<AppDispatch>();
   const [addComment, setAddComment] = useState<string>('');
   const [answerToComment, setAnswerToComment] = useState<string | null>(null);
   const [activeAnswer, setActiveAnswer] = useState<boolean>(false);
@@ -77,12 +81,13 @@ export const CurrentDiscussion: React.FC<Props> = ({
   }, [commentOptions]);
 
   const handleChangeComment = (commentId: string) => {
-    const comments = currentDiscussion.comments;
-    const newComments = comments.map((a) =>
-      a.id === commentId ? { ...a, text: addComment } : a,
+    dispatch(
+      editComment({
+        id: currentDiscussion.id,
+        newComment: addComment,
+        commentId,
+      }),
     );
-
-    setCurrentDiscussion({ ...currentDiscussion, comments: newComments });
     setChangeComment('');
     setAddComment('');
   };
@@ -91,24 +96,22 @@ export const CurrentDiscussion: React.FC<Props> = ({
     if (!addComment) {
       return;
     }
-    const comments = currentDiscussion.comments;
-    const newCommentId = Math.round(Math.random() * 100000).toString();
-    const newComments: Comment[] = [
-      ...comments,
-      {
-        id: newCommentId,
-        userId: currentUser.id,
-        userName: currentUser.name,
-        userImage: currentUser.image,
-        text: addComment,
-        date: new Date(),
-        isAnswer: answerToComment,
-      },
-    ];
-    setCurrentDiscussion({
-      ...currentDiscussion,
-      comments: newComments,
-    });
+    const newCommentId = uuidv4();
+
+    dispatch(
+      addNewComment({
+        id: currentDiscussion.id,
+        comment: {
+          id: newCommentId,
+          userId: currentUser.id,
+          userName: `${currentUser.firstName} ${currentUser.lastName}`,
+          userImage: currentUser.picture,
+          text: addComment,
+          date: new Date(),
+          isAnswer: answerToComment,
+        },
+      }),
+    );
 
     setAddComment('');
     setActiveAnswer(false);
@@ -119,10 +122,12 @@ export const CurrentDiscussion: React.FC<Props> = ({
   };
 
   const deleteComment = (commentId: string) => {
-    const comments = currentDiscussion.comments;
-    const newComments = comments.filter((a) => a.id !== commentId);
-
-    setCurrentDiscussion({ ...currentDiscussion, comments: newComments });
+    dispatch(
+      deleteOneComment({
+        id: currentDiscussion.id,
+        commentId: commentId,
+      }),
+    );
   };
 
   return (
@@ -248,12 +253,20 @@ export const CurrentDiscussion: React.FC<Props> = ({
               <div className="current-discussion__author-theme">
                 <div className="current-discussion__author">
                   <img
-                    className="current-discussion__author-img"
-                    src={currentDiscussion.author.image}
+                    className={classNames('current-discussion__author-img', {
+                      isUsers: currentUser.id === currentDiscussion.author.id,
+                    })}
+                    src={
+                      currentDiscussion.anonimus ?
+                        './images/default-photo.webp'
+                      : currentDiscussion.author.image
+                    }
                     alt={currentDiscussion.author.name}
                   />
                   <p className="current-discussion__author-name">
-                    {currentDiscussion.author.name}
+                    {currentDiscussion.anonimus ?
+                      'анонімний юзер'
+                    : currentDiscussion.author.name}
                   </p>
                 </div>
                 <div className="current-discussion__themes">
@@ -267,9 +280,15 @@ export const CurrentDiscussion: React.FC<Props> = ({
                   ))}
                 </div>
               </div>
-              <p className="current-discussion__description">
+              <p className="current-discussion__name">
                 {currentDiscussion.name}
               </p>
+              <p
+                className="current-discussion__description"
+                dangerouslySetInnerHTML={{
+                  __html: currentDiscussion.description,
+                }}
+              />
               <p className="current-discussion__date">
                 {formatUkrDate(currentDiscussion.date)}
               </p>
@@ -290,12 +309,17 @@ export const CurrentDiscussion: React.FC<Props> = ({
                     key={comment.id}
                     id={`comment-${comment.id}`}
                     className={classNames('current-discussion__comment', {
-                      myComment: comment.userName === currentUser.name,
+                      myComment: comment.userId === currentUser.id,
                     })}
                   >
                     <div className="current-discussion__author">
                       <img
-                        className="current-discussion__author-img"
+                        className={classNames(
+                          'current-discussion__author-img',
+                          {
+                            isUsers: currentUser.id === comment.userId,
+                          },
+                        )}
                         src={comment.userImage}
                         alt={comment.userName}
                       />
@@ -310,7 +334,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
                             className="current-discussion__more-options"
                           />)}
                     </div>
-                    {repliedComment && (
+                    {comment.isAnswer && (
                       <div
                         onClick={() => {
                           handleScrollToComment(comment.isAnswer || '');
@@ -318,17 +342,21 @@ export const CurrentDiscussion: React.FC<Props> = ({
                         className="current-discussion__replied-comment"
                       >
                         <div className="current-discussion__author">
-                          <img
-                            className="current-discussion__author-img"
-                            src={repliedComment.userImage}
-                            alt={repliedComment.userName}
-                          />
-                          <p className="current-discussion__author-name">
-                            {repliedComment.userName}
-                          </p>
+                          {repliedComment && (
+                            <img
+                              className="current-discussion__author-img"
+                              src={repliedComment.userImage}
+                              alt={repliedComment.userName}
+                            />
+                          )}
+                          {repliedComment && (
+                            <p className="current-discussion__author-name">
+                              {repliedComment.userName}
+                            </p>
+                          )}
                         </div>
                         <p className="current-discussion__comment-text">
-                          {repliedComment.text}
+                          {repliedComment?.text || 'коментар видалено'}
                         </p>
                       </div>
                     )}

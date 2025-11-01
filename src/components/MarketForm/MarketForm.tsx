@@ -12,7 +12,7 @@ type Props = {
 export const MarketForm: React.FC<Props> = ({ searchQuery }) => {
   const [focus, setFocus] = useState(true);
   const [query, setQuery] = useState('');
-  const [searchParams, setSearchPrams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <div className="market-search">
@@ -31,7 +31,7 @@ export const MarketForm: React.FC<Props> = ({ searchQuery }) => {
           })}
           onSubmit={(e) => {
             e.preventDefault();
-            setSearchPrams(
+            setSearchParams(
               getSearchWith(searchParams, { query: query ? query : null }),
             );
             setFocus(false);
@@ -40,7 +40,7 @@ export const MarketForm: React.FC<Props> = ({ searchQuery }) => {
           <div
             onClick={() => {
               setQuery('');
-              setSearchPrams(getSearchWith(searchParams, { query: null }));
+              setSearchParams(getSearchWith(searchParams, { query: null }));
             }}
             className="market-search__arrow-wrapper"
           >
@@ -77,7 +77,7 @@ export const MarketForm: React.FC<Props> = ({ searchQuery }) => {
           <button
             onClick={() => {
               setQuery('');
-              setSearchPrams(getSearchWith(searchParams, { query: null }));
+              setSearchParams(getSearchWith(searchParams, { query: null }));
             }}
             className="market-search__decline"
           >

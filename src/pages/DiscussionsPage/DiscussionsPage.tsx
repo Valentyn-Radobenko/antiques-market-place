@@ -7,12 +7,13 @@ import { useState, useMemo } from 'react';
 import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
 import { CreateDiscussion } from '../../components/CreateDiscussion/CreateDiscussion';
 import { DiscussionRules } from '../../components/DiscussionRules/DiscussionRules';
-import { discussions as data } from '../../data/discussions';
 import { DiscussionData } from '../../types/discussionTypes';
 import { Discussion } from '../../components/Discussion/Discussion';
 import classNames from 'classnames';
 import { CloseSmallSVG } from '../../components/Imgs/CloseSmallSVG';
 import { SearchSVG } from '../../components/Imgs/SearchSVG';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 const tagsList = [
   'Монети України',
@@ -29,8 +30,10 @@ const tagsList = [
 export const DiscussionsPage = () => {
   const [openAddModal, setOpenAddModal] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
-  const [discussions, setDiscussions] = useState<DiscussionData[]>(data);
   const [searchParams, setSearchParams] = useSearchParams();
+  const discussions: DiscussionData[] = useSelector(
+    (state: RootState) => state.discussions,
+  );
 
   // --- Параметри URL ---
   const selectedTags = useMemo(() => {
@@ -169,7 +172,6 @@ export const DiscussionsPage = () => {
         <div className="discussions__content">
           {filteredDiscussions.map((discussion) => (
             <Discussion
-              setDiscussions={setDiscussions}
               key={discussion.id}
               discussion={discussion}
             />

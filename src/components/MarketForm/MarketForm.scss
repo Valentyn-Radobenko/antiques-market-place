@@ -156,6 +156,7 @@
   }
 
   &__arrow-wrapper {
+    transition: all ease $effect-duration;
     padding: 8px;
     display: none;
     color: $gray-black;

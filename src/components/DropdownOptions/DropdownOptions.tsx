@@ -2,29 +2,28 @@ import classNames from 'classnames';
 import { SortSVG } from '../Imgs/SortSVG';
 import { Arrow } from '../Imgs/Arrow';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
-import { CheckboxRound } from '../Imgs/CheckboxRound';
 import { Close } from '../Imgs/Close';
 import { MopSVG } from '../Imgs/MopSVG';
 import { useEffect, useRef, useState } from 'react';
 import { useWindowSize } from '../../utils/useWindowSize';
-
-type Sortings = {
-  id: number;
-  name: string;
-  types: string[];
-};
+import { useSearchParams } from 'react-router-dom';
+import { SearchLink } from '../../utils/SearchLink';
+import { BaseNavSort } from '../../types/baseNavigation';
+import { CheckboxRound } from '../Imgs/CheckBoxRound/CheckBoxRound';
 
 type Props = {
-  sortings: Sortings[];
+  sortings: BaseNavSort[];
 };
 
 export const DropdownOptions: React.FC<Props> = ({ sortings }) => {
   const [currentHeight, setCurrentHeight] = useState<number>(0);
   const [activeSortings, setActiveSortings] = useState(false);
-  const [activeSortType, setActiveSortType] = useState<null | number>(null);
+  const [activeSortType, setActiveSortType] = useState<null | string>(null);
   const refs = useRef<(HTMLDivElement | null)[]>([]);
   const refsMob = useRef<(HTMLDivElement | null)[]>([]);
   const windowSize = useWindowSize();
+  const [searchParams] = useSearchParams();
+  const sortBy = searchParams.get('sortBy');
 
   useEffect(() => {
     if (activeSortType === null) {
@@ -33,7 +32,8 @@ export const DropdownOptions: React.FC<Props> = ({ sortings }) => {
     }
 
     const index = sortings.findIndex((s) => s.id === activeSortType);
-    const el = refs.current[index];
+    const el =
+      windowSize.width < 640 ? refsMob.current[index] : refs.current[index];
 
     if (el?.clientHeight) {
       setCurrentHeight(el.clientHeight);
@@ -75,7 +75,7 @@ export const DropdownOptions: React.FC<Props> = ({ sortings }) => {
                 setActiveSortType(a.id === activeSortType ? null : a.id);
               }}
             >
-              <p className="dropdown-options__item-name">{a.name}</p>
+              <p className="dropdown-options__item-name">{a.nameUa}</p>
               <Arrow
                 className={classNames('dropdown-options__item-sort-arrow', {
                   isActive: a.id === activeSortType,
@@ -95,13 +95,16 @@ export const DropdownOptions: React.FC<Props> = ({ sortings }) => {
                 className="dropdown-options__list-item-items"
               >
                 {a.types.map((b) => (
-                  <div
-                    key={b}
-                    className="dropdown-options__list-item-item"
+                  <SearchLink
+                    params={{ sortBy: b.slug }}
+                    key={b.slug}
+                    className={classNames('dropdown-options__list-item-item', {
+                      isActive: b.slug === sortBy,
+                    })}
                   >
-                    <p>{b}</p>
-                    <CheckboxRound value="default" />
-                  </div>
+                    <p>{b.ua}</p>
+                    <CheckboxRound isActive={b.slug === sortBy} />
+                  </SearchLink>
                 ))}
               </div>
             </div>
@@ -148,7 +151,7 @@ export const DropdownOptions: React.FC<Props> = ({ sortings }) => {
                       setActiveSortType(a.id === activeSortType ? null : a.id)
                     }
                   >
-                    <p className="dropdown-options__item-name">{a.name}</p>
+                    <p className="dropdown-options__item-name">{a.nameUa}</p>
                     <Arrow
                       className={classNames(
                         'dropdown-options__item-sort-arrow',
@@ -174,13 +177,19 @@ export const DropdownOptions: React.FC<Props> = ({ sortings }) => {
                       className="dropdown-options__list-item-items"
                     >
                       {a.types.map((b) => (
-                        <div
-                          key={b}
-                          className="dropdown-options__list-item-item"
+                        <SearchLink
+                          params={{ sortBy: b.slug }}
+                          key={b.slug}
+                          className={classNames(
+                            'dropdown-options__list-item-item',
+                            {
+                              isActive: b.slug === sortBy,
+                            },
+                          )}
                         >
-                          <p>{b}</p>
-                          <CheckboxRound value="default" />
-                        </div>
+                          <p>{b.ua}</p>
+                          <CheckboxRound isActive={b.slug === sortBy} />
+                        </SearchLink>
                       ))}
                     </div>
                   </div>
