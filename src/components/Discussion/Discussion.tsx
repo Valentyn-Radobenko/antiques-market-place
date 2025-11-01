@@ -52,10 +52,7 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
   };
 
   return (
-    <Link
-      to={discussion.slug}
-      className="discussion hidden reveal"
-    >
+    <div className="discussion hidden reveal">
       <div className="discussion__top-bar">
         <div className="discussion__name-theme">
           <div className="discussion__creator">
@@ -100,7 +97,10 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
         </div>
       </Link>
 
-      <div className="discussion__bottom-bar">
+      <Link
+        to={discussion.slug}
+        className="discussion__bottom-bar"
+      >
         <div className="discussion__messages">
           <DiscussionStatusSVG
             value="default"
@@ -111,7 +111,7 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
           </p>
         </div>
         <ArrowTale className="discussion__arrow" />
-      </div>
+      </Link>
 
       <div
         className={classNames('discussion__action-list', {
@@ -137,6 +137,6 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
           </p>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
