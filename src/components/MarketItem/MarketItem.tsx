@@ -19,7 +19,7 @@ export const MarketItem: React.FC<Props> = ({ item }) => {
   return (
     <Link
       to={`/market/product/${item.slug}`}
-      className="market-item"
+      className="market-item hidden reveal"
     >
       <img
         className="market-item__img"

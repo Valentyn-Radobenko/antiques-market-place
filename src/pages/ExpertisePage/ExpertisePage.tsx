@@ -55,12 +55,14 @@ export const ExpertisePage = () => {
   return (
     <div className="expertise">
       <div className="expertise__title">
-        <h1 className="expertise__header">{t('expertise__header')}</h1>
+        <h1 className="expertise__header reveal hidden">
+          {t('expertise__header')}
+        </h1>
         <Info
           onMouseLeave={() => leaveLeave()}
           onMouseEnter={() => mouseOn()}
           onClick={() => setHelperOn(true)}
-          className="expertise__icon"
+          className="expertise__icon reveal hidden"
         />
         <PageHelper
           setHelperOn={setHelperOn}

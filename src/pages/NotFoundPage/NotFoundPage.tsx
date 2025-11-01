@@ -10,7 +10,7 @@ export const NotFoundPage = () => {
     <div className="not-found-page">
       <div className="no-content__wrapper">
         <div className="no-content">
-          <div className="no-content__block">
+          <div className="no-content__block reveal hidden">
             <div className="no-content__block-top">
               <p className="no-content__block-top-text">
                 {t('no-content__block-top-text')}
@@ -34,7 +34,7 @@ export const NotFoundPage = () => {
             )}
           </div>
           <img
-            className="no-content__img"
+            className="no-content__img reveal hidden"
             src="images/404.png"
             alt="no-content"
           />

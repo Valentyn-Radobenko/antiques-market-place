@@ -30,7 +30,7 @@ export const ArticlesPage = () => {
           />
         }
 
-        <div className="articles__heading">
+        <div className="articles__heading hidden reveal">
           {article && article.content[lang] && (
             <h1 className="articles__title">{article.title[lang]}</h1>
           )}

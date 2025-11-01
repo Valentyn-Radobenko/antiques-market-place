@@ -9,8 +9,6 @@
 @import '../components/Footer/Footer';
 @import '../components/ClubHero/ClubHero';
 @import '../pages/ExpertisePage/ExpertisePage';
-@import 'slick-carousel/slick/slick.css';
-@import 'slick-carousel/slick/slick-theme.css';
 @import '../components/Auth/Auth';
 @import '../components/Menu/Menu';
 @import '../components/ModalWindow/ModalWindow.scss';
@@ -154,4 +152,17 @@ html * {
 
 button {
   cursor: pointer;
+}
+
+.hidden.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity $effect-duration ease,
+    transform $effect-duration ease;
+  will-change: opacity, transform;
+}
+.hidden.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }

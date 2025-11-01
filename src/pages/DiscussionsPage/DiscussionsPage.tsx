@@ -131,7 +131,7 @@ export const DiscussionsPage = () => {
       </div>
 
       <div className="discussions">
-        <div className="discussions__details">
+        <div className="discussions__details hidden reveal">
           <h4 className="discussions__details-title">
             {t('discussions__details-title')}
           </h4>
@@ -213,7 +213,7 @@ export const DiscussionsPage = () => {
           )}
         </div>
 
-        <div className="exhibition__additional">
+        <div className="exhibition__additional hidden reveal">
           <div className="exhibitions__offer exhibitions__offer--exhibition">
             <div className="exhibitions__offer-heading">
               <h3 className="exhibitions__offer-title">

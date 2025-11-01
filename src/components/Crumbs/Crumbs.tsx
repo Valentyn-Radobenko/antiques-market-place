@@ -14,7 +14,7 @@ export const Crumbs: React.FC<Props> = ({
   customClassName = '',
 }) => {
   return (
-    <div className={`crumbs ${customClassName}`}>
+    <div className={`crumbs ${customClassName} hidden reveal`}>
       {links.map((link, ind) => {
         return ind === 0 ?
             <Link

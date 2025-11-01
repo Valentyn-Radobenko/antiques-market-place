@@ -52,7 +52,7 @@ export const ArticlePage = () => {
           <Dropdown
             buttonArea="all"
             buttonTitle={() => (
-              <h4 className="article__details-title">
+              <h4 className="article__details-title hidden reveal">
                 {t('article__details-title')}
               </h4>
             )}
@@ -88,7 +88,7 @@ export const ArticlePage = () => {
           />
         )}
         {!isTablet && (
-          <div className="article__details">
+          <div className="article__details hidden reveal">
             <h4 className="article__details-title">
               {t('article__details-title')}
             </h4>
@@ -118,7 +118,7 @@ export const ArticlePage = () => {
             </div>
           </div>
         )}
-        <div className="article__content">
+        <div className="article__content hidden reveal">
           <h2 className="article__content-title">{article.title[lang]}</h2>
 
           <img
@@ -132,7 +132,7 @@ export const ArticlePage = () => {
             dangerouslySetInnerHTML={{ __html: content }}
           ></div>
         </div>
-        <div className="article__additional">
+        <div className="article__additional hidden reveal">
           <div className="article__sm">
             <Link
               to={'https://web.telegram.org/'}

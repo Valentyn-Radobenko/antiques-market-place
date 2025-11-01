@@ -34,11 +34,13 @@ import { ArticlesNoContent } from './pages/ArticlesPage/ArticlesNoContent';
 import { Articles } from './pages/ArticlesPage/Articles/Articles';
 import { DiscussionsPage } from './pages/DiscussionsPage/DiscussionsPage';
 import { DiscussionPage } from './pages/DiscussionPage/DiscussionPage';
+import { RevealInitializer } from './components/Reveal/RevealInitializer';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <StrictMode>
     <Provider store={store}>
       <Router>
+        <RevealInitializer />
         <ScrollToTop />
         <Routes>
           <Route

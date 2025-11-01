@@ -68,7 +68,7 @@ export const ExhibitionPage = () => {
           <Dropdown
             buttonArea="all"
             buttonTitle={() => (
-              <h4 className="exhibition__details-title">
+              <h4 className="exhibition__details-title hidden reveal">
                 {t('exhibition__details-title')}
               </h4>
             )}
@@ -133,7 +133,7 @@ export const ExhibitionPage = () => {
           />
         )}
         {!isTablet && (
-          <div className="exhibition__details">
+          <div className="exhibition__details hidden reveal">
             <h4 className="exhibition__details-title">
               {t('exhibition__details-title')}
             </h4>
@@ -194,7 +194,7 @@ export const ExhibitionPage = () => {
             </div>
           </div>
         )}
-        <div className="exhibition__content">
+        <div className="exhibition__content hidden reveal">
           <h2 className="exhibition__content-title">
             {exhibition.title[lang]}
           </h2>
@@ -218,7 +218,7 @@ export const ExhibitionPage = () => {
             dangerouslySetInnerHTML={{ __html: content }}
           ></div>
         </div>
-        <div className="exhibition__additional">
+        <div className="exhibition__additional hidden reveal">
           <div className="exhibitions__offer exhibitions__offer--exhibition">
             <div className="exhibitions__offer-heading">
               <h3 className="exhibitions__offer-title">

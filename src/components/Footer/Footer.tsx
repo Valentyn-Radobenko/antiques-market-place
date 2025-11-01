@@ -12,7 +12,7 @@ export const Footer = () => {
 
   return (
     <footer className="footer">
-      <div className="footer__row">
+      <div className="footer__row hidden reveal">
         <Link to={'market'}>
           <div className="header__logo">
             <img
@@ -55,7 +55,7 @@ export const Footer = () => {
       </div>
       {isTablet ?
         <ul className="footer__actions">
-          <li>
+          <li className="reveal hidden">
             <Dropdown
               buttonArea="all"
               buttonTitle={() => (
@@ -76,7 +76,7 @@ export const Footer = () => {
               )}
             />
           </li>
-          <li>
+          <li className="reveal hidden">
             <Dropdown
               buttonArea="all"
               buttonTitle={() => (
@@ -97,7 +97,7 @@ export const Footer = () => {
               )}
             />
           </li>
-          <li>
+          <li className="reveal hidden">
             <Dropdown
               buttonArea="all"
               buttonTitle={() => (
@@ -120,7 +120,7 @@ export const Footer = () => {
           </li>
         </ul>
       : <div className="footer__columns-wrap">
-          <div className="footer__columns">
+          <div className="footer__columns hidden reveal">
             <div className="footer__column">
               <h4 className="footer__title">{t('footer__dropdown-text')}</h4>
               <ul className="footer__list">
@@ -187,7 +187,9 @@ export const Footer = () => {
           </div>
         </div>
       }
-      <div className="footer__copyright">{t('footer__copyright')}</div>
+      <div className="footer__copyright hidden reveal">
+        {t('footer__copyright')}
+      </div>
     </footer>
   );
 };

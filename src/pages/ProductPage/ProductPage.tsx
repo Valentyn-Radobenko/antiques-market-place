@@ -108,7 +108,7 @@ export const ProductPage = () => {
           />
         </div>
         <div className="product__info">
-          <div className="product__top">
+          <div className="product__top reveal hidden">
             <div className="product__chars">
               <div className="product__char">
                 <MapSearchSVG className="product__char-icon" />
@@ -181,7 +181,7 @@ export const ProductPage = () => {
               customClassName="product__dropdown"
             />
           </div>
-          <div className="product__middle">
+          <div className="product__middle reveal hidden">
             <div className="product__price">
               <span className="product__price-label">
                 {t('product__price-label')}
@@ -212,7 +212,7 @@ export const ProductPage = () => {
               <ShoppingCartSVG className="product__cta-icon" />
             </button>
           </div>
-          <div className="product__bottom">
+          <div className="product__bottom reveal hidden">
             <div className="product__bottom-block">
               <div className="product__bottom-block-title">
                 {t('product__bottom-block-title')}

@@ -36,7 +36,7 @@ export const Articles = () => {
             <Link
               to={ArticleLink(article)}
               key={article.id}
-              className="articles__article"
+              className="articles__article hidden reveal"
             >
               <div
                 style={{ backgroundImage: `url(${article.image})` }}

@@ -85,7 +85,7 @@ export default function Slider<T>({
   };
 
   return (
-    <section className={`slider ${customClassName}`}>
+    <section className={`slider ${customClassName} hidden reveal`}>
       <header className={`slider__header ${customClassName}__header`}>
         <h2 className={`slider__header-title ${customClassName}__header-title`}>
           {sliderTitle}

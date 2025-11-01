@@ -4,7 +4,7 @@ export const ClubHero = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="club-hero">
+    <section className="club-hero hidden reveal">
       <h1 className="club-hero__title">{t('clubHero.title')}</h1>
       <p
         className="club-hero__text"

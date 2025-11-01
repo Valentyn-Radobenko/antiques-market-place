@@ -42,7 +42,7 @@ export const Pagination: React.FC<Props> = ({ currentPage, totalPages }) => {
   if (totalPages <= 1) return null;
 
   return (
-    <div className="pagination">
+    <div className="pagination hidden reveal">
       {/* Back arrow */}
       {currentPage === 1 ?
         <div

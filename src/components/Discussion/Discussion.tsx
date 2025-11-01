@@ -54,7 +54,7 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
   return (
     <Link
       to={discussion.slug}
-      className="discussion"
+      className="discussion hidden reveal"
     >
       <div className="discussion__top-bar">
         <div className="discussion__name-theme">

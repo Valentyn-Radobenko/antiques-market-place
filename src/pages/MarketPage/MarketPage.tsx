@@ -129,7 +129,7 @@ export const MarketPage = () => {
       {showSearch.expSearch && <MarketForm searchQuery={query} />}
 
       {category && (
-        <div className="market__navigation">
+        <div className="market__navigation hidden reveal">
           <SearchLink
             className="market__searchlink"
             params={{ category: null }}
@@ -185,7 +185,7 @@ export const MarketPage = () => {
         </div>
       )}
 
-      <div className="market__main">
+      <div className="market__main hidden reveal">
         <div className="market__top-bar">
           {category ?
             <h2 className="market__h2">
@@ -211,7 +211,7 @@ export const MarketPage = () => {
           />
         </div>
         <div className="market__settings-catalog">
-          <div className="market__settings">
+          <div className="market__settings hidden reveal">
             <DropdownNavigation
               searchParams={searchParams}
               optionType={filters}
@@ -225,10 +225,10 @@ export const MarketPage = () => {
         </div>
       </div>
 
-      <div className="market-mob__main">
+      <div className="market-mob__main hidden reveal">
         <div className="market-mob__top-bar">
           {category ?
-            <h2 className="market__h2">
+            <h2 className="market__h2 hidden reveal">
               {t('market__h2')}{' '}
               {lang === 'ua' &&
                 categories.options.find((a) =>
@@ -240,7 +240,7 @@ export const MarketPage = () => {
                 )?.nameEng}{' '}
               <span className="market__gray-word">{goods.length}</span>
             </h2>
-          : <h2 className="market__h2">
+          : <h2 className="market__h2 hidden reveal">
               {t('market__h2-2')}{' '}
               <span className="market__gray-word">{goods.length}</span>
             </h2>

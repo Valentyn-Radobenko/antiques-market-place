@@ -33,7 +33,7 @@ export const ProductStickyCTA = () => {
   if (!isProductPage || !isTablet) return null;
 
   return (
-    <div className="product__cta-wrapper">
+    <div className="product__cta-wrapper hidden reveal">
       <button
         className="product__cta product__cta--in-wrapper"
         onClick={() => {

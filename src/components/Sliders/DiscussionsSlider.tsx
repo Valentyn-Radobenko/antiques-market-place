@@ -17,65 +17,63 @@ export const DiscussionsSlider: React.FC = () => {
   const isMobile = useIsMobile();
 
   return (
-    <>
-      <Slider<DiscussionData>
-        sliderTitle={t('discussions')}
-        renderSliderLink={() => (
-          <Link
-            to={'/club/discussions'}
-            className="slider__header-link"
-          >
-            {isMobile ?
-              `${t('slider__header-link')}`
-            : `${t('slider__header-link2')}`}
-          </Link>
-        )}
-        slides={discussions}
-        slidesPerView={isTablet ? 1 : 3}
-        renderSlide={(slide) => (
-          <Link
-            to={`/club/discussions/${slide.slug}`}
-            key={slide.id}
-            className="slider__discussion"
-          >
-            <div className="slider__discussion-top">
-              <div className="slider__discussion-user">
-                <img
-                  src={slide.author.image}
-                  className={slide.author.name}
-                />
-                <div className="slider__discussion-user-name">
-                  {slide.author.name}
-                </div>
-              </div>
-              <div className="slider__discussion-topics">
-                {slide.theme.map((topic) => (
-                  <div className="slider__discussion-topic">{topic}</div>
-                ))}
+    <Slider<DiscussionData>
+      sliderTitle={t('discussions')}
+      renderSliderLink={() => (
+        <Link
+          to={'/club/discussions'}
+          className="slider__header-link"
+        >
+          {isMobile ?
+            `${t('slider__header-link')}`
+          : `${t('slider__header-link2')}`}
+        </Link>
+      )}
+      slides={discussions}
+      slidesPerView={isTablet ? 1 : 3}
+      renderSlide={(slide) => (
+        <Link
+          to={`/club/discussions/${slide.slug}`}
+          key={slide.id}
+          className="slider__discussion"
+        >
+          <div className="slider__discussion-top">
+            <div className="slider__discussion-user">
+              <img
+                src={slide.author.image}
+                className={slide.author.name}
+              />
+              <div className="slider__discussion-user-name">
+                {slide.author.name}
               </div>
             </div>
-            <div className="slider__discussion-middle">
-              <h4 className="slider__discussion-question">{slide.name}</h4>
-              <p className="slider__discussion-date">
-                {formatUkrDate(slide.date)}
-              </p>
+            <div className="slider__discussion-topics">
+              {slide.theme.map((topic) => (
+                <div className="slider__discussion-topic">{topic}</div>
+              ))}
             </div>
-            <div className="slider__discussion-bottom">
-              <div className="slider__discussion-comments">
-                <img
-                  className="slider__discussion-comments-img"
-                  src={commentImg}
-                  alt="comments"
-                />
-                <div className="slider__discussion-comments-amount">
-                  {slide.comments.length}
-                </div>
+          </div>
+          <div className="slider__discussion-middle">
+            <h4 className="slider__discussion-question">{slide.name}</h4>
+            <p className="slider__discussion-date">
+              {formatUkrDate(slide.date)}
+            </p>
+          </div>
+          <div className="slider__discussion-bottom">
+            <div className="slider__discussion-comments">
+              <img
+                className="slider__discussion-comments-img"
+                src={commentImg}
+                alt="comments"
+              />
+              <div className="slider__discussion-comments-amount">
+                {slide.comments.length}
               </div>
-              <div className="slider__discussion-icon-forward"></div>
             </div>
-          </Link>
-        )}
-      />
-    </>
+            <div className="slider__discussion-icon-forward"></div>
+          </div>
+        </Link>
+      )}
+    />
   );
 };

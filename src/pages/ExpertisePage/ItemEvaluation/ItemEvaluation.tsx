@@ -25,14 +25,14 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
     <div className="item-evaluation">
       <h2
         ref={sectionRef}
-        className="item-evaluation__h2"
+        className="item-evaluation__h2 reveal hidden"
       >
         {t('item-evaluation__h2')}
       </h2>
 
       <div className="item-evaluation__cards">
-        <div className="item-evaluation__card card">
-          <div className="card__text-block">
+        <div className="item-evaluation__card card reveal hidden">
+          <div className="card__text-block reveal hidden">
             <div className="card__text">
               <h2 className="card__h2">{t('card__h2')}</h2>
 
@@ -97,14 +97,14 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
           </div>
 
           <img
-            className="card__img"
+            className="card__img reveal hidden"
             src="images\\expertise\\exp3.webp"
             alt=""
           />
         </div>
 
-        <div className="item-evaluation__card card">
-          <div className="card__text-block">
+        <div className="item-evaluation__card card reveal hidden">
+          <div className="card__text-block reveal hidden">
             <div className="card__text">
               <h2 className="card__h2">{t('card__h22')}</h2>
 
@@ -173,7 +173,7 @@ export const ItemEvaluation: React.FC<Props> = ({ sectionRef }) => {
           </div>
 
           <img
-            className="card__img"
+            className="card__img reveal hidden"
             src="images\\expertise\\exp1.webp"
             alt=""
           />

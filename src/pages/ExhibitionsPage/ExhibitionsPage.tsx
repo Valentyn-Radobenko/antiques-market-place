@@ -20,8 +20,10 @@ export const ExhibitionsPage = () => {
         />
 
         <div className="exhibitions__heading">
-          <h1 className="exhibitions__title">{t('exhibitions')}</h1>
-          <nav className="exhibitions__sections">
+          <h1 className="exhibitions__title reveal hidden">
+            {t('exhibitions')}
+          </h1>
+          <nav className="exhibitions__sections reveal hidden">
             <NavLink
               to={'all'}
               className={getLinkClass}

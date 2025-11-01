@@ -91,8 +91,10 @@ export const HowToExpertise: React.FC<Props> = ({ scrollToSection }) => {
         className="howtoexperise__inner"
       >
         <div className="howtoexperise__title">
-          <h2 className="howtoexperise__h2">{t('howtoexperise__h2')}</h2>
-          <p className="howtoexperise__subtext">
+          <h2 className="howtoexperise__h2 reveal hidden">
+            {t('howtoexperise__h2')}
+          </h2>
+          <p className="howtoexperise__subtext reveal hidden">
             {t('howtoexperise__subtext')}
           </p>
         </div>
@@ -108,7 +110,7 @@ export const HowToExpertise: React.FC<Props> = ({ scrollToSection }) => {
                 paddingInline: `${(width - imgWidth) / 2}px`,
               }
           }
-          className="howtoexperise__assesments"
+          className="howtoexperise__assesments reveal hidden"
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
         >

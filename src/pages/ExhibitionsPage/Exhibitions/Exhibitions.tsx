@@ -54,7 +54,7 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
     <>
       <div className="exhibitions__articles-block">
         {isMobile ?
-          <div className="exhibitions__offer-button-wrapper">
+          <div className="exhibitions__offer-button-wrapper hidden reveal">
             <button
               onClick={() => setOpenAddModal(true)}
               className="exhibitions__offer-button"
@@ -70,7 +70,7 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
               </svg>
             </button>
           </div>
-        : <div className="exhibitions__offer">
+        : <div className="exhibitions__offer hidden reveal">
             <div className="exhibitions__offer-heading">
               <h3 className="exhibitions__offer-title">
                 {t('create-exhibition__title')}
@@ -93,7 +93,7 @@ export const Exhibitions: React.FC<Props> = ({ exhibitions }) => {
             <Link
               to={exhibitionLink(exh)}
               key={exh.id}
-              className={classNames('exhibitions__article', {
+              className={classNames('exhibitions__article hidden reveal', {
                 'exhibitions__article--one': currentItems.length === 1,
               })}
             >
