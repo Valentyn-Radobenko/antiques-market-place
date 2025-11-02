@@ -3,6 +3,8 @@
   border-radius: 12px;
 
   &.desktop {
+    width: 209px;
+
     @include on-tablet {
       display: none;
     }
