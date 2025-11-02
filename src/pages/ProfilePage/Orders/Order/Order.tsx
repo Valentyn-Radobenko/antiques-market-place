@@ -25,10 +25,10 @@ export const Order: React.FC<Props> = ({ order }) => {
   }
 
   const statuses = {
-    bought: order.status === 'Куплено',
-    pending: order.status === 'Відправлено',
-    delivered: order.status === 'Отримано',
-    canseled: order.status === 'Скасовано',
+    bought: order.status === 'purchased',
+    pending: order.status === 'shipped',
+    delivered: order.status === 'received',
+    canceled: order.status === 'purchased',
   };
 
   return (
@@ -81,7 +81,7 @@ export const Order: React.FC<Props> = ({ order }) => {
               <p className={classNames('order__general-status', statuses)}>
                 {order.status}
               </p>
-              {order.status !== 'Скасовано' && (
+              {order.status !== 'cancelled' && (
                 <div
                   className={classNames('order__progres', {
                     isActive: openDetailed,
@@ -91,13 +91,13 @@ export const Order: React.FC<Props> = ({ order }) => {
                     <OrdersSVG className={classNames('order__svg', statuses)} />
                     <BoxSVG
                       className={classNames('order__svg', {
-                        pending: order.status === 'Відправлено',
-                        delivered: order.status === 'Отримано',
+                        pending: order.status === 'shipped',
+                        delivered: order.status === 'received',
                       })}
                     />
                     <HandsSVG
                       className={classNames('order__svg', {
-                        delivered: order.status === 'Отримано',
+                        delivered: order.status === 'received',
                       })}
                     />
                   </div>
@@ -105,24 +105,24 @@ export const Order: React.FC<Props> = ({ order }) => {
                     <p className={classNames('order__dot', statuses)} />
                     <p
                       className={classNames('order__line', {
-                        pending: order.status === 'Відправлено',
-                        delivered: order.status === 'Отримано',
+                        pending: order.status === 'shipped',
+                        delivered: order.status === 'received',
                       })}
                     />
                     <p
                       className={classNames('order__dot', {
-                        pending: order.status === 'Відправлено',
-                        delivered: order.status === 'Отримано',
+                        pending: order.status === 'shipped',
+                        delivered: order.status === 'received',
                       })}
                     />
                     <p
                       className={classNames('order__line', {
-                        delivered: order.status === 'Отримано',
+                        delivered: order.status === 'received',
                       })}
                     />
                     <p
                       className={classNames('order__dot', {
-                        delivered: order.status === 'Отримано',
+                        delivered: order.status === 'received',
                       })}
                     />
                   </div>
@@ -167,7 +167,7 @@ export const Order: React.FC<Props> = ({ order }) => {
                       <p className="order__delivery-status-name">Оплата:</p>
                     </div>
                     <p className="order__delivery-status-info">
-                      {order.payment.type},{' '}
+                      {order.payment},{' '}
                       <span className="order__price-amount">
                         {order.items.reduce((acc, curr) => acc + curr.price, 0)}{' '}
                         грн
@@ -175,7 +175,7 @@ export const Order: React.FC<Props> = ({ order }) => {
                     </p>
                   </div>
                 </div>
-                {order.status !== 'Скасовано' && (
+                {order.status !== 'cancelled' && (
                   <button className="order__cancel">Скасувати</button>
                 )}
               </div>

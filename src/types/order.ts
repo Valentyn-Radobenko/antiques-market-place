@@ -5,18 +5,30 @@ export type OrderItemType = {
   price: number;
 };
 
-export type PaymentType = {
-  type: string;
-  price: number;
-};
+// export type PaymentStatusPurchased = {
+//   name: 'Куплено';
+//   slug: 'purchased';
+// };
+// export type PaymentStatusShipped = {
+//   name: 'Відправлено';
+//   slug: 'shipped';
+// };
+// export type PaymentStatusRecived = {
+//   name: 'Отримано';
+//   slug: 'received';
+// };
+// export type PaymentStatusCancelled = {
+//   name: 'Скасовано';
+//   slug: 'cancelled';
+// };
 
 export type OrderType = {
   id: number;
-  status: 'Куплено' | 'Відправлено' | 'Отримано' | 'Скасовано';
+  status: 'purchased' | 'shipped' | 'received' | 'cancelled';
   deliveryStatus?: string;
   orderDate: Date;
   deliveryDate?: Date;
-  payment: PaymentType;
+  payment: string;
   delivery: string;
   recipient: string;
   items: OrderItemType[];

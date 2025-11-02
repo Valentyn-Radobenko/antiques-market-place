@@ -19,7 +19,7 @@ export const PageBaseNavigation: React.FC<Props> = ({ pageNavigation }) => {
             params={{ filterBy: a.mainOption ? null : a.slug }}
             key={a.slug}
             className={classNames('page-base-navigation__filter', {
-              isActive: filterBy === a.slug,
+              isActive: filterBy === a.slug || (!filterBy && a.mainOption),
             })}
           >
             {a.ua}
