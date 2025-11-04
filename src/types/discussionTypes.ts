@@ -11,6 +11,7 @@ export type Comment = {
 type Author = {
   name: string;
   image: string;
+  id: string;
 };
 
 export type DiscussionData = {
@@ -24,4 +25,5 @@ export type DiscussionData = {
   images: string[];
   comments: Comment[];
   status: 'ongoing' | 'ended';
+  anonimus: boolean;
 };

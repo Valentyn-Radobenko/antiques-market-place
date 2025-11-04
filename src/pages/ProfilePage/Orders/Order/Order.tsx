@@ -17,28 +17,52 @@ type Props = {
 export const Order: React.FC<Props> = ({ order }) => {
   const [openDetailed, setOpenDetailed] = useState<boolean>(false);
 
-  function formattedDate(date: Date) {
-    return date.toLocaleDateString('uk', {
+  function formattedDate(date: Date): string {
+    const formatter = new Intl.DateTimeFormat('uk-UA', {
       day: 'numeric',
       month: 'long',
+      hour: '2-digit',
+      minute: '2-digit',
       year: 'numeric',
     });
+
+    const parts = formatter.formatToParts(date);
+    const day = parts.find((p) => p.type === 'day')?.value ?? '';
+    const month = parts.find((p) => p.type === 'month')?.value ?? '';
+    const year = parts.find((p) => p.type === 'year')?.value ?? '';
+
+    return `${day} ${month} ${year}`;
   }
 
-  const statuses = {
-    bought: order.status === 'Куплено',
-    pending: order.status === 'Відправлено',
-    delivered: order.status === 'Отримано',
-    canseled: order.status === 'Скасовано',
+  const orderStatus = {
+    purchased: {
+      ua: 'куплено',
+      en: 'purchased',
+    },
+    shipped: {
+      ua: 'відпарвлено',
+      en: 'shipped',
+    },
+    received: {
+      ua: 'отримано',
+      en: 'received',
+    },
+    cancelled: {
+      ua: 'скаслвано',
+      en: 'cancelled',
+    },
   };
 
   const { formatPrice } = useCurrency();
+  const status = orderStatus[order.status];
 
   return (
     <div className="order">
       <div className="order__info">
         <div className="order__title">
-          <p className="order__name">Замовлення №{order.id}</p>
+          <p className={classNames('order__name', status.en)}>
+            Замовлення №{order.id}
+          </p>
           <Arrow
             onClick={() => setOpenDetailed(!openDetailed)}
             className={classNames('order__arrow', {
@@ -82,52 +106,54 @@ export const Order: React.FC<Props> = ({ order }) => {
             ))}
           </div>
           <div className="order__delivery">
-            <div className="order__statuses">
-              <p className={classNames('order__general-status', statuses)}>
-                {order.status}
+            <div className="order__status">
+              <p className={classNames('order__general-status', status.en)}>
+                {status.ua}
               </p>
-              {order.status !== 'Скасовано' && (
+              {status.en !== 'cancelled' && (
                 <div
                   className={classNames('order__progres', {
                     isActive: openDetailed,
                   })}
                 >
                   <div className="order__svgs">
-                    <OrdersSVG className={classNames('order__svg', statuses)} />
+                    <OrdersSVG
+                      className={classNames('order__svg', status.en)}
+                    />
                     <BoxSVG
                       className={classNames('order__svg', {
-                        pending: order.status === 'Відправлено',
-                        delivered: order.status === 'Отримано',
+                        pending: status.en === 'shipped',
+                        delivered: status.en === 'received',
                       })}
                     />
                     <HandsSVG
                       className={classNames('order__svg', {
-                        delivered: order.status === 'Отримано',
+                        delivered: status.en === 'received',
                       })}
                     />
                   </div>
                   <div className="order__underline">
-                    <p className={classNames('order__dot', statuses)} />
+                    <p className={classNames('order__dot', status.en)} />
                     <p
                       className={classNames('order__line', {
-                        pending: order.status === 'Відправлено',
-                        delivered: order.status === 'Отримано',
+                        pending: status.en === 'shipped',
+                        delivered: status.en === 'received',
                       })}
                     />
                     <p
                       className={classNames('order__dot', {
-                        pending: order.status === 'Відправлено',
-                        delivered: order.status === 'Отримано',
+                        pending: status.en === 'shipped',
+                        delivered: status.en === 'received',
                       })}
                     />
                     <p
                       className={classNames('order__line', {
-                        delivered: order.status === 'Отримано',
+                        delivered: status.en === 'received',
                       })}
                     />
                     <p
                       className={classNames('order__dot', {
-                        delivered: order.status === 'Отримано',
+                        delivered: status.en === 'received',
                       })}
                     />
                   </div>
@@ -136,7 +162,7 @@ export const Order: React.FC<Props> = ({ order }) => {
               <p
                 className={classNames(
                   'order__general-detailed-status',
-                  statuses,
+                  status.en,
                 )}
               >
                 {order.deliveryStatus}
@@ -172,7 +198,7 @@ export const Order: React.FC<Props> = ({ order }) => {
                       <p className="order__delivery-status-name">Оплата:</p>
                     </div>
                     <p className="order__delivery-status-info">
-                      {order.payment.type},{' '}
+                      {order.payment},{' '}
                       <span className="order__price-amount">
                         {formatPrice(
                           order.items.reduce(
@@ -184,7 +210,7 @@ export const Order: React.FC<Props> = ({ order }) => {
                     </p>
                   </div>
                 </div>
-                {order.status !== 'Скасовано' && (
+                {status.en !== 'cancelled' && (
                   <button className="order__cancel">Скасувати</button>
                 )}
               </div>

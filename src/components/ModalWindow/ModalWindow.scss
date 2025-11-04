@@ -16,6 +16,10 @@
     visibility: inherit;
   }
 
+  &.secondModal {
+    z-index: 3;
+  }
+
   &__background {
     visibility: inherit;
     position: fixed;

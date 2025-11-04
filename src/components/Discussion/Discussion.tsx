@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowTale } from '../Imgs/ArrowTale';
 import { Bin } from '../Imgs/Bin';
 import { DiscussionStatusSVG } from '../Imgs/DiscussionStatusSVG';
@@ -9,16 +9,26 @@ import { DiscussionData } from '../../types/discussionTypes';
 import { formatUkrDate } from '../../utils/formatUkrDate';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
+import {
+  deleteDiscussion,
+  endDiscussion,
+} from '../../store/slices/discussionsSlice';
+import { User } from '../../types/user';
+import { useSelector } from 'react-redux';
 
 type Props = {
   discussion: DiscussionData;
-  setDiscussions: Dispatch<SetStateAction<DiscussionData[]>>;
 };
 
-export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
+export const Discussion: React.FC<Props> = ({ discussion }) => {
+  const MAXSYMBOLSDISCNAME = 100;
   const [openActions, setOpenActions] = useState<boolean>(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { t } = useTranslation();
+  const dispatch = useDispatch<AppDispatch>();
+  const currentUser: User = useSelector((state: RootState) => state.user);
 
   const startTimer = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
@@ -40,28 +50,25 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
     else resetTimer();
   }, [openActions]);
 
-  const handleDeleteDiscussion = (discussionId: string) => {
-    setDiscussions((prev) => prev.filter((a) => a.id !== discussionId));
-  };
-
-  const handleEndDiscussion = (discussionId: string) => {
-    setDiscussions((prev) =>
-      prev.map((a) => (a.id === discussionId ? { ...a, status: 'ended' } : a)),
-    );
-    setOpenActions(false);
-  };
-
   return (
     <div className="discussion hidden reveal">
       <div className="discussion__top-bar">
         <div className="discussion__name-theme">
           <div className="discussion__creator">
             <img
-              className="discussion__img"
-              src={discussion.author.image}
+              className={classNames('discussion__img', {
+                isUsers: currentUser.id === discussion.author.id,
+              })}
+              src={
+                discussion.anonimus ?
+                  './images/default-photo.webp'
+                : discussion.author.image
+              }
               alt={discussion.author.name}
             />
-            <p className="discussion__creator-name">{discussion.author.name}</p>
+            <p className="discussion__creator-name">
+              {discussion.anonimus ? 'анонімний юзер' : discussion.author.name}
+            </p>
           </div>
 
           <div className="discussion__themes">
@@ -76,26 +83,29 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
           </div>
         </div>
 
-        <ThreeDotsSVG
-          onClick={() => setOpenActions((prev) => !prev)}
-          className="discussion__actions"
-        />
+        {currentUser.id === discussion.author.id && (
+          <ThreeDotsSVG
+            onClick={() => setOpenActions((prev) => !prev)}
+            className="discussion__actions"
+          />
+        )}
       </div>
 
-      <Link
-        to={discussion.slug}
-        className="discussion__info"
-      >
-        <p className="discussion__text">{discussion.name}</p>
+      <div className="discussion__info">
+        <p className="discussion__text">
+          {discussion.name.length < MAXSYMBOLSDISCNAME ?
+            discussion.name
+          : discussion.name.slice(0, 97) + '...'}
+        </p>
         <div className="discussion__date">
           <p className="discussion__day-time">
             {formatUkrDate(discussion.date)}
           </p>
           {discussion.status === 'ended' && (
-            <p className="discussion__status">{discussion.status}</p>
+            <p className="discussion__status">обговорення завершено</p>
           )}
         </div>
-      </Link>
+      </div>
 
       <Link
         to={discussion.slug}
@@ -118,17 +128,17 @@ export const Discussion: React.FC<Props> = ({ discussion, setDiscussions }) => {
           isActive: openActions,
         })}
       >
+        {discussion.status !== 'ended' && (
+          <div
+            onClick={() => dispatch(endDiscussion(discussion.id))}
+            className="discussion__action"
+          >
+            <SecuritySVG className="discussion__action-svg" />
+            <p className="discussion__action-text">Завершити обговорення</p>
+          </div>
+        )}
         <div
-          onClick={() => handleEndDiscussion(discussion.id)}
-          className="discussion__action"
-        >
-          <SecuritySVG className="discussion__action-svg" />
-          <p className="discussion__action-text">
-            {t('discussion__action-text')}
-          </p>
-        </div>
-        <div
-          onClick={() => handleDeleteDiscussion(discussion.id)}
+          onClick={() => dispatch(deleteDiscussion(discussion.id))}
           className="discussion__action"
         >
           <Bin className="discussion__action-svg" />

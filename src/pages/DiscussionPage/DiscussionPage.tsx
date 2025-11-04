@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
-
-import { discussions } from '../../data/discussions';
 import { CurrentDiscussion } from '../../components/CurrentDiscussion/CurrentDiscussion';
 import React, { useState } from 'react';
 import { DiscussionData } from '../../types/discussionTypes';
 import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 type Props = {
   mode?: 'account' | 'club';
@@ -12,12 +12,11 @@ type Props = {
 
 export const DiscussionPage: React.FC<Props> = ({ mode = 'account' }) => {
   const { slug } = useParams();
-  const discussion = discussions.find((d) => d.slug === slug);
-
-  const [openDiscussion, setOpenDiscussion] = useState<boolean>(true);
-  const [currentDiscussion, setCurrentDiscussion] = useState<DiscussionData>(
-    discussion as DiscussionData,
+  const discussions: DiscussionData[] = useSelector(
+    (state: RootState) => state.discussions,
   );
+  const discussion = discussions.find((d) => d.slug === slug);
+  const [openDiscussion, setOpenDiscussion] = useState<boolean>(true);
 
   if (!discussion) {
     return <></>;
@@ -33,9 +32,8 @@ export const DiscussionPage: React.FC<Props> = ({ mode = 'account' }) => {
     >
       <CurrentDiscussion
         mode={mode}
-        setCurrentDiscussion={setCurrentDiscussion}
         setOpenDiscussion={setOpenDiscussion}
-        currentDiscussion={currentDiscussion}
+        currentDiscussion={discussion}
       />
     </ModalWindow>
   );

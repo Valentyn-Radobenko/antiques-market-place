@@ -4,16 +4,14 @@ import { useState } from 'react';
 import { PageBaseNavigation } from '../PageBaseNavigation/PageBaseNavigation';
 import { DropdownOptions } from '../DropdownOptions/DropdownOptions';
 import { useTranslation } from 'react-i18next';
-
-type Sortings = {
-  id: number;
-  name: string;
-  types: string[];
-};
+import { BaseNavSort, BaseNavigation } from '../../types/baseNavigation';
+import { ArrowTale } from '../Imgs/ArrowTale';
+import { useSearchParams } from 'react-router-dom';
+import { getSearchWith } from '../../utils/SearchHelper';
 
 type Props = {
-  sortings: Sortings[];
-  pageNavigation: string[];
+  sortings: BaseNavSort[];
+  pageNavigation: BaseNavigation[];
 };
 
 export const NavSortSearch: React.FC<Props> = ({
@@ -22,6 +20,9 @@ export const NavSortSearch: React.FC<Props> = ({
 }) => {
   const [activeInput, setActiveInput] = useState<boolean>(false);
   const { t } = useTranslation();
+  const [query, setQuery] = useState<string>('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  searchParams.get('query');
 
   return (
     <div className="nav-sort-serach">
@@ -30,7 +31,23 @@ export const NavSortSearch: React.FC<Props> = ({
         className={classNames('nav-sort-serach__search-sorting', {
           isActive: activeInput,
         })}
+        onBlur={(e) => {
+          if (e.currentTarget.contains(e.relatedTarget as Node)) {
+            return;
+          }
+          setActiveInput(false);
+        }}
       >
+        <div
+          onClick={() => {
+            setQuery('');
+            setSearchParams(getSearchWith(searchParams, { query: null }));
+          }}
+          className="nav-sort-serach__arrow-wrapper"
+        >
+          <ArrowTale />
+        </div>
+
         <div
           className={classNames('nav-sort-serach__search', {
             isActive: activeInput,
@@ -38,7 +55,8 @@ export const NavSortSearch: React.FC<Props> = ({
         >
           <SearchSVG className="nav-sort-serach__search-svg" />
           <input
-            onBlur={() => setActiveInput(false)}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setActiveInput(true)}
             placeholder={t('market-search__input-placeholder')}
             type="text"
@@ -49,8 +67,21 @@ export const NavSortSearch: React.FC<Props> = ({
           className={classNames('nav-sort-serach__search-button', {
             isActive: activeInput,
           })}
+          onClick={() => {
+            setSearchParams({ query: query });
+            setActiveInput(false);
+          }}
         >
           Знайти
+        </button>
+        <button
+          onClick={() => {
+            setQuery('');
+            setSearchParams(getSearchWith(searchParams, { query: null }));
+          }}
+          className="nav-sort-serach__decline"
+        >
+          скасувати
         </button>
         <div
           className={classNames('nav-sort-serach__sorting', {

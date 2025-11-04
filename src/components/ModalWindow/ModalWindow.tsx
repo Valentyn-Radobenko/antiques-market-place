@@ -57,6 +57,7 @@ export const ModalWindow: React.FC<Props> = ({
     <div
       className={classNames('modal', visibility, {
         isActive: openModal,
+        secondModal: secondModal,
       })}
     >
       {openModal && children}

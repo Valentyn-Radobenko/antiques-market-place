@@ -8,9 +8,14 @@ export const discussions: DiscussionData[] = [
     theme: ['Нумізматика', 'Інші монети'],
     description: '',
     date: new Date('2025-01-11T07:50:00'),
-    author: { name: 'Олег Капчук', image: './images/discussions/user1.png' },
+    author: {
+      name: 'Андрій Містеряков',
+      image: './images/mainUser.png',
+      id: '0001',
+    },
     images: ['./images/discussions/discussion1.png'],
     status: 'ongoing',
+    anonimus: false,
     comments: [
       {
         id: 'c1',
@@ -102,15 +107,20 @@ export const discussions: DiscussionData[] = [
     theme: ['Інтер’єрна спадщина', 'Інші монети'],
     description: '',
     date: new Date('2025-01-13T17:18:00'),
-    author: { name: 'Настя Шибак', image: './images/discussions/user2.png' },
+    author: {
+      name: 'Настя Шибак',
+      image: './images/discussions/user2.png',
+      id: 'fasdfsafasdfasfasdasd',
+    },
     status: 'ongoing',
     images: [],
+    anonimus: false,
     comments: [
       {
         id: 'c10',
-        userId: 'u103',
-        userName: 'Олег Марганец',
-        userImage: './images/discussions/user9.png',
+        userId: '0001',
+        userName: 'Андрій Містеряков',
+        userImage: './images/mainUser.png',
         text: 'Раджу звернути увагу на японські фарфорові вази 60-х. Дуже схожа стилістика.',
         date: new Date('2025-01-13T17:45:00'),
         isAnswer: null,
@@ -136,8 +146,10 @@ export const discussions: DiscussionData[] = [
     author: {
       name: 'Віктор Палавнюк',
       image: './images/discussions/user3.png',
+      id: 'fasdfsafasasdadfasfasdasd',
     },
     status: 'ongoing',
+    anonimus: false,
     images: [],
     comments: [
       {
@@ -188,9 +200,11 @@ export const discussions: DiscussionData[] = [
     author: {
       name: 'Остап Скоропацький',
       image: './images/discussions/user4.png',
+      id: 'fasdfaaaasdfasfasdasd',
     },
     images: [],
     status: 'ongoing',
+    anonimus: false,
     comments: [
       {
         id: 'c16',
@@ -246,9 +260,14 @@ export const discussions: DiscussionData[] = [
     theme: ['Нумізматика', 'Інші монети'],
     description: '',
     date: new Date('2025-01-23T17:04:00'),
-    author: { name: 'Андрій Глиба', image: './images/discussions/user5.png' },
+    author: {
+      name: 'Андрій Глиба',
+      image: './images/discussions/user5.png',
+      id: 'fasdfsadafasdasd',
+    },
     images: [],
     status: 'ongoing',
+    anonimus: false,
     comments: [
       {
         id: 'c21',
@@ -286,9 +305,11 @@ export const discussions: DiscussionData[] = [
     theme: ['Нумізматика', 'Інші монети'],
     description: '',
     date: new Date('2025-02-06T09:45:00'),
+    anonimus: false,
     author: {
       name: 'Олександр Тичина',
       image: './images/discussions/user6.png',
+      id: 'fasdfsafasdfadadadadasdfdfaasfasdasd',
     },
     images: [],
     status: 'ongoing',

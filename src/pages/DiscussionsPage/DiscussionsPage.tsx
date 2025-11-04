@@ -7,7 +7,6 @@ import { useState, useMemo } from 'react';
 import { ModalWindow } from '../../components/ModalWindow/ModalWindow';
 import { CreateDiscussion } from '../../components/CreateDiscussion/CreateDiscussion';
 import { DiscussionRules } from '../../components/DiscussionRules/DiscussionRules';
-import { discussions as data } from '../../data/discussions';
 import { DiscussionData } from '../../types/discussionTypes';
 import { Discussion } from '../../components/Discussion/Discussion';
 import classNames from 'classnames';
@@ -16,6 +15,8 @@ import { SearchSVG } from '../../components/Imgs/SearchSVG';
 // import { useSelector } from 'react-redux';
 // import { SavingState } from '../../store/store';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 const tagsList = [
   'Монети України',
@@ -32,8 +33,10 @@ const tagsList = [
 export const DiscussionsPage = () => {
   const [openAddModal, setOpenAddModal] = useState(false);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
-  const [discussions, setDiscussions] = useState<DiscussionData[]>(data);
   const [searchParams, setSearchParams] = useSearchParams();
+  const discussions: DiscussionData[] = useSelector(
+    (state: RootState) => state.discussions,
+  );
 
   // const lang = useSelector((state: SavingState) => state.language.language);
   const { t } = useTranslation();
@@ -177,7 +180,6 @@ export const DiscussionsPage = () => {
         <div className="discussions__content">
           {filteredDiscussions.map((discussion) => (
             <Discussion
-              setDiscussions={setDiscussions}
               key={discussion.id}
               discussion={discussion}
             />

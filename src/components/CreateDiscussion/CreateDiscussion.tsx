@@ -28,6 +28,13 @@ import { CreateNewTheme } from '../CreateNewTheme/CreateNewTheme';
 import { ModalEndingDiscussions } from '../ModalEnding/ModalEndingDiscussions';
 import { Tooltip } from '../Tooltip/Tooltip';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store/store';
+import { updateDiscussions } from '../../store/slices/discussionsSlice';
+import { v4 as uuidv4 } from 'uuid';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { User } from '../../types/user';
 
 const PHOTO_AMOUNT = 5;
 
@@ -50,9 +57,9 @@ const popularThems = [
 type Form = {
   name: string;
   description: string;
-  files: File[];
+  images: File[];
   anonimus: boolean;
-  themes: string[];
+  theme: string[];
 };
 
 type Props = {
@@ -72,12 +79,15 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
   const [form, setForm] = useState<Form>({
     name: '',
     description: '',
-    files: [],
+    images: [],
     anonimus: false,
-    themes: [],
+    theme: [],
   });
   const [step, setStep] = useState(1);
   const { t } = useTranslation();
+  const user: User = useSelector((state: RootState) => state.user);
+
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     if (linkError) {
@@ -107,7 +117,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
     const newFiles = event.target.files ? Array.from(event.target.files) : [];
     setForm((prev) => ({
       ...prev,
-      files: [...prev.files, ...newFiles].slice(0, PHOTO_AMOUNT),
+      images: [...prev.images, ...newFiles].slice(0, PHOTO_AMOUNT),
     }));
   };
 
@@ -132,14 +142,35 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
   );
 
   const handleSubmit = () => {
+    console.log(form.images.map((image) => URL.createObjectURL(image)));
+    const id = uuidv4();
+    dispatch(
+      updateDiscussions({
+        id: id,
+        name: form.name,
+        slug: id,
+        theme: form.theme,
+        description: form.description,
+        date: new Date(),
+        author: {
+          name: `${user.firstName} ${user.lastName}`,
+          image: user.picture,
+          id: user.id,
+        },
+        images: form.images.map((image) => URL.createObjectURL(image)),
+        status: 'ongoing',
+        anonimus: form.anonimus,
+        comments: [],
+      }),
+    );
     if (canSubmit) {
       setStep(2);
     }
   };
 
   const handleAddTheme = (theme: string) => {
-    if (!form.themes.includes(theme)) {
-      setForm({ ...form, themes: [...form.themes, theme] });
+    if (!form.theme.includes(theme)) {
+      setForm({ ...form, theme: [...form.theme, theme] });
     }
   };
 
@@ -168,7 +199,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                   {t('create-discussion__add-theme')}
                 </p>
                 <div className="create-discussion__chosen-themes">
-                  {form.themes.map((theme, i) => (
+                  {form.theme.map((theme, i) => (
                     <div
                       key={i}
                       className="create-discussion__chosen-theme"
@@ -178,7 +209,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                         onClick={() =>
                           setForm({
                             ...form,
-                            themes: [...form.themes.filter((a) => a !== theme)],
+                            theme: [...form.theme.filter((a) => a !== theme)],
                           })
                         }
                         className="create-discussion__delete-theme"
@@ -241,6 +272,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                 <textarea
                   placeholder={t('create-discussion__input-placeholder')}
                   className="create-discussion__input"
+                  rows={1}
                   value={form.name}
                   onChange={(event) =>
                     setForm({ ...form, name: event.target.value })
@@ -257,7 +289,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                 />
               </div>
               <PhotosList
-                files={form.files}
+                files={form.images}
                 setFiles={(newFiles: File[]) =>
                   setForm((prev) => ({ ...prev, files: newFiles }))
                 }
@@ -363,7 +395,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                     ref={ref}
                     hidden
                     type="file"
-                    disabled={form.files.length === 5}
+                    disabled={form.images.length === 5}
                   />
                 </div>
               </div>
@@ -388,37 +420,29 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                 value={form.anonimus ? 'checked' : 'default'}
               />
             </div>
-            {canSubmit && (
-              <button
-                onClick={handleSubmit}
-                className="create-discussion__button"
-                disabled={!canSubmit}
-              >
-                {t('create-discussion__button')}
-              </button>
-            )}
-            {!canSubmit && (
-              <Tooltip
-                customTooltipClassName="create-discussion__button-tooltip"
-                customContentClassName="create-discussion__button-tooltip-content"
-                renderButton={() => (
-                  <button
-                    onClick={handleSubmit}
-                    className="create-discussion__button"
-                    disabled={!canSubmit}
-                  >
-                    {t('create-discussion__button')}
-                  </button>
-                )}
-                renderContent={() => (
-                  <>
+            <Tooltip
+              customTooltipClassName="create-discussion__button-tooltip"
+              customContentClassName="create-discussion__button-tooltip-content"
+              renderButton={() => (
+                <button
+                  onClick={handleSubmit}
+                  className="create-discussion__button"
+                  disabled={!canSubmit}
+                >
+                  {t('create-discussion__button')}
+                </button>
+              )}
+              renderContent={() => (
+                <>
+                  {' '}
+                  {!canSubmit && (
                     <p className="shopping-cart__cta-info-text">
                       {t('shopping-cart__cta-info-text')}
                     </p>
-                  </>
-                )}
-              />
-            )}
+                  )}
+                </>
+              )}
+            />
           </div>
         </div>
       )}

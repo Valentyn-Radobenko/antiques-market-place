@@ -17,6 +17,10 @@ import exchangeRatesReducer, {
 } from './slices/exchangeRatesSlice';
 import { localRates } from '../data/localRates';
 
+//
+import discussionsReducer from './slices/discussionsSlice';
+import { DiscussionData } from '../types/discussionTypes';
+
 // Завантажуємо стан з localStorage
 const persistedState = loadState();
 
@@ -31,6 +35,7 @@ export interface RootState {
   user: User;
   menu: MenuState;
   shoppingCart: ShoppingCartState;
+  discussions: DiscussionData[];
 }
 
 // Тип для стану який зберігається в локальній пам'яті
@@ -44,6 +49,8 @@ export interface SavingState {
   menu: MenuState;
   shoppingCart: ShoppingCartState;
   exchangeRates: ExchangeRatesState;
+  //
+  // discussions: DiscussionData;
 }
 
 // Приведення стану до правильного типу
@@ -264,6 +271,8 @@ const store = configureStore({
     menu: menuReducer,
     shoppingCart: shoppingCartReducer,
     exchangeRates: exchangeRatesReducer,
+    //
+    discussions: discussionsReducer,
     // Додаємо редюсери тут
   },
   preloadedState: validatedState, // Використовуємо validatedState замість persistedState

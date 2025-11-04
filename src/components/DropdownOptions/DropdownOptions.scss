@@ -1,14 +1,13 @@
 .dropdown-options {
+  position: relative;
   &__sort-list {
     z-index: 10;
     width: 100%;
     position: absolute;
-    bottom: 0;
     opacity: 0;
     visibility: hidden;
     transition: all ease $effect-duration;
     background: $background-plate;
-    transform: translateY(100%);
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
     backdrop-filter: blur(25px);
@@ -54,7 +53,6 @@
     }
 
     &.isActive {
-      @include button-semibold;
       color: $additional-freshherb-elect;
     }
   }
@@ -79,6 +77,9 @@
     }
   }
 
+  &__list-item-items {
+  }
+
   &__list-item-item {
     background: $gray-white;
     cursor: pointer;
@@ -88,9 +89,14 @@
     justify-content: space-between;
     color: $additional-greenas;
     @include main-text;
+    align-items: center;
 
     @include on-phone {
       background: none;
+    }
+
+    &.isActive {
+      color: $additional-freshherb-elect;
     }
   }
 
@@ -153,6 +159,7 @@
     }
   }
   &__sorting-button {
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: space-between;
