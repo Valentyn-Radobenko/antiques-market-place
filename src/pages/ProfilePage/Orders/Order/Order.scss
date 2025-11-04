@@ -22,6 +22,11 @@
   &__name {
     font-style: italic;
     @include label-bold;
+
+    &.cancelled {
+      color: $gray-darks;
+      text-decoration: line-through;
+    }
   }
   &__arrow {
     transition: all ease $effect-duration;
@@ -110,7 +115,7 @@
     gap: 24px;
     width: 100%;
   }
-  &__statuses {
+  &__status {
     display: flex;
     gap: 40px;
     align-items: center;
@@ -136,19 +141,19 @@
       align-self: flex-start;
     }
 
-    &.bought {
+    &.purchased {
       color: $additional-greenas;
     }
 
-    &.pending {
+    &.shipped {
       color: $system-info;
     }
 
-    &.delivered {
+    &.received {
       color: $additional-freshherb-elect;
     }
 
-    &.canseled {
+    &.cancelled {
       color: $gray-dis;
       background: $background-dis;
       border: none;
@@ -178,15 +183,15 @@
 
   &__svg {
     color: $additional-gray-gray;
-    &.bought {
+    &.purchased {
       color: $additional-greenas;
     }
 
-    &.pending {
+    &.shipped {
       color: $system-info;
     }
 
-    &.delivered {
+    &.received {
       color: $additional-freshherb-elect;
     }
   }
@@ -205,15 +210,15 @@
     border-radius: 100px;
     background: $gray-stroke;
     flex-shrink: 0;
-    &.bought {
+    &.purchased {
       background: $additional-greenas;
     }
 
-    &.pending {
+    &.shipped {
       background: $system-info;
     }
 
-    &.delivered {
+    &.received {
       background: $additional-freshherb-elect;
     }
   }
@@ -223,15 +228,15 @@
     height: 1px;
     background: $gray-stroke;
 
-    &.bought {
+    &.purchased {
       background: $additional-greenas;
     }
 
-    &.pending {
+    &.shipped {
       background: $system-info;
     }
 
-    &.delivered {
+    &.received {
       background: $additional-freshherb-elect;
     }
   }
@@ -242,19 +247,19 @@
     @include on-phone {
       text-align: start;
     }
-    &.bought {
+    &.purchased {
       color: $additional-greenas;
     }
 
-    &.pending {
+    &.shipped {
       color: $system-info;
     }
 
-    &.delivered {
+    &.received {
       color: $additional-freshherb-elect;
     }
 
-    &.canseled {
+    &.canselled {
       color: $gray-dis;
     }
   }
