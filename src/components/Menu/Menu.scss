@@ -108,16 +108,16 @@
       border-radius: 12px;
       text-align: center;
 
-      &--active {
-        color: $additional-white-green;
+      @include main-text;
 
-        @include button-bold;
+      &--active {
+        color: $additional-mint;
       }
 
       &--inactive {
         color: $gray-lite;
 
-        @include main-text;
+        @include hover(color, $additional-freshherb-elect);
       }
     }
   }

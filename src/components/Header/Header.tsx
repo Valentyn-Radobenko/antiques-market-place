@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../store/store';
 import { useTranslation } from 'react-i18next';
@@ -16,6 +16,7 @@ import { setIsMenuOn } from '../../store/slices/menuSlice';
 import { setExpHeader } from '../../store/slices/expHeaderSlice';
 import { setExpSearch } from '../../store/slices/expSearchSlice';
 import { setIsCartOpen } from '../../store/slices/shoppingCartSlice';
+import { MouseEvent, useEffect } from 'react';
 
 export const Header = () => {
   const { t } = useTranslation();
@@ -38,14 +39,33 @@ export const Header = () => {
   );
   const isMenuOn = useSelector((state: SavingState) => state.menu.isMenuOn);
 
+  const { pathname } = useLocation();
+  const isExactMarket = pathname === '/market';
+
   const getAccountLinkClass = ({ isActive }: { isActive: boolean }) =>
     classNames('header__actions-item header__actions-item-account', {
       'header__actions-item-account--default':
-        !expHeader || expHeader === 'club' || expHeader === 'account',
+        !expHeader || expHeader === 'club',
+      'header__actions-item-account--mint': expHeader === 'account',
       'header__actions-item-account--inactive':
         expHeader !== 'account' && expHeader && expHeader !== 'club',
       'header__actions-item-account--active': isActive,
     });
+
+  const LinkForSearch = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (isExactMarket) {
+      e.preventDefault();
+      dispatch(setExpSearch(!expSearch));
+    } else {
+      dispatch(setExpSearch(true));
+    }
+  };
+
+  useEffect(() => {
+    if (!isExactMarket) {
+      dispatch(setExpSearch(false));
+    }
+  }, [pathname]);
 
   return (
     <>
@@ -113,14 +133,15 @@ export const Header = () => {
               </div>
             </li>
             <li>
-              <button
+              <Link
+                to={'/'}
                 onMouseEnter={() => {
                   dispatch(setExpHeader('search'));
                 }}
                 onMouseLeave={() => {
                   dispatch(setExpHeader(null));
                 }}
-                onClick={() => dispatch(setExpSearch(!expSearch))}
+                onClick={LinkForSearch}
                 className={classNames(
                   'header__actions-item header__actions-item-search',
                   {
@@ -131,13 +152,11 @@ export const Header = () => {
                       expHeader !== 'club' &&
                       expHeader !== 'search',
                     'header__actions-item-search--default':
-                      !expSearch &&
-                      (!expHeader ||
-                        expHeader === 'club' ||
-                        expHeader === 'search'),
+                      !expSearch && (!expHeader || expHeader === 'club'),
+                    'header__actions-item-search--mint': expHeader === 'search',
                   },
                 )}
-              ></button>
+              ></Link>
             </li>
             <li>
               <button

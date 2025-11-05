@@ -12,12 +12,12 @@ export const Catalog: React.FC<Props> = ({ goods }) => {
   return (
     <>
       {goods.length !== 0 ?
-        <div className="items hidden reveal">
+        <div className="items">
           {/* {loader && <p>loader</p>} */}
-          {goods.map((item, i) => (
+          {goods.map((item) => (
             <MarketItem
               item={item}
-              key={i}
+              key={item.id}
             />
           ))}
         </div>
