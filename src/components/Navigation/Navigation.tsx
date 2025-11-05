@@ -81,6 +81,8 @@ export const Navigation: React.FC<Props> = ({ customClassName, mode }) => {
                       className={classNames('nav__club-button', {
                         [`${customClassName}__club-button`]: customClassName,
                         'nav__club-button--active': isClubActive,
+                        'nav__club-button--freshherb-elect':
+                          expHeader === 'club',
                       })}
                     />
                   </div>

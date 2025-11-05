@@ -51,6 +51,10 @@
       &--active {
         color: $additional-mint;
       }
+
+      &--freshherb-elect {
+        color: $additional-freshherb-elect;
+      }
     }
   }
 
@@ -68,10 +72,10 @@
     color: $gray-white;
     text-align: center;
 
-    @include hover(color, $additional-mint);
+    @include hover(color, $additional-freshherb-elect);
 
     &--is-active {
-      color: $additional-fresh-herb-icon;
+      color: $additional-mint;
 
       @include button-bold;
     }
