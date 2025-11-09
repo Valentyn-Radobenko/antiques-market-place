@@ -57,7 +57,9 @@ export const Header = () => {
       e.preventDefault();
       dispatch(setExpSearch(!expSearch));
     } else {
-      dispatch(setExpSearch(true));
+      setTimeout(() => {
+        dispatch(setExpSearch(true));
+      }, 300);
     }
   };
 
