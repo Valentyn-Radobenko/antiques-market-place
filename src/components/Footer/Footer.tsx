@@ -120,14 +120,16 @@ export const Footer = () => {
           </li>
         </ul>
       : <div className="footer__columns-wrap">
-          <div className="footer__columns hidden reveal">
+          <div className="footer__columns">
             <div className="footer__column">
-              <h4 className="footer__title">{t('footer__dropdown-text')}</h4>
+              <h4 className="footer__title hidden reveal">
+                {t('footer__dropdown-text')}
+              </h4>
               <ul className="footer__list">
                 <li>
                   <a
                     href="#"
-                    className="footer__link"
+                    className="footer__link hidden reveal"
                   >
                     {t('footer__option')}
                   </a>
@@ -135,7 +137,7 @@ export const Footer = () => {
                 <li>
                   <a
                     href="#"
-                    className="footer__link"
+                    className="footer__link hidden reveal"
                   >
                     {t('footer__option2')}
                   </a>
@@ -143,12 +145,14 @@ export const Footer = () => {
               </ul>
             </div>
             <div className="footer__column">
-              <h4 className="footer__title">{t('footer__dropdown-text2')}</h4>
+              <h4 className="footer__title hidden reveal">
+                {t('footer__dropdown-text2')}
+              </h4>
               <ul className="footer__list">
                 <li>
                   <a
                     href="#"
-                    className="footer__link"
+                    className="footer__link hidden reveal"
                   >
                     {t('footer__option3')}
                   </a>
@@ -156,7 +160,7 @@ export const Footer = () => {
                 <li>
                   <a
                     href="#"
-                    className="footer__link"
+                    className="footer__link hidden reveal"
                   >
                     {t('footer__option4')}
                   </a>
@@ -164,12 +168,14 @@ export const Footer = () => {
               </ul>
             </div>
             <div className="footer__column">
-              <h4 className="footer__title">{t('footer__dropdown-text3')}</h4>
+              <h4 className="footer__title hidden reveal">
+                {t('footer__dropdown-text3')}
+              </h4>
               <ul className="footer__list">
                 <li>
                   <a
                     href="#"
-                    className="footer__link"
+                    className="footer__link hidden reveal"
                   >
                     {t('footer__option5')}
                   </a>
@@ -177,7 +183,7 @@ export const Footer = () => {
                 <li>
                   <a
                     href="#"
-                    className="footer__link"
+                    className="footer__link hidden reveal"
                   >
                     {t('footer__option6')}
                   </a>
