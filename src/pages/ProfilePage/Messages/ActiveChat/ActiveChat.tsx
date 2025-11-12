@@ -57,9 +57,13 @@ export const ActiveChat: React.FC<Props> = ({
     if (scrollEl) {
       scrollEl.scrollTo({
         top: scrollEl.scrollHeight,
-        behavior: 'smooth', // плавная прокрутка
+        behavior: 'smooth',
       });
     }
+  }, [activeChat]);
+
+  useEffect(() => {
+    setQuery('');
   }, [activeChat]);
 
   useEffect(() => {
@@ -67,7 +71,7 @@ export const ActiveChat: React.FC<Props> = ({
       ref.current.style.height = 'auto';
       ref.current.style.height = `${ref.current.scrollHeight}px`;
     }
-  }, [query]);
+  }, [query, activeChat]);
 
   const addFiles = (event: ChangeEvent<HTMLInputElement>) => {
     const newFiles = event.target.files ? Array.from(event.target.files) : [];
@@ -203,9 +207,9 @@ export const ActiveChat: React.FC<Props> = ({
                 value={query}
                 className="current-chat__input"
                 placeholder={
-                  (!activeChat.canAnswer &&
-                    'Цей чат лише для перегляду. Відповіді не передбачено.') ||
-                  'Написати повідомлення'
+                  !activeChat.canAnswer ?
+                    'Цей чат лише для перегляду. Відповіді не передбачено.'
+                  : 'Написати повідомлення'
                 }
                 onChange={(e) => {
                   setQuery(e.target.value);

@@ -6,7 +6,7 @@ import { Messaging } from '../../../components/Imgs/Messaging';
 import { OrdersSVG } from '../../../components/Imgs/OrdersSVG';
 import { SettingsSVG } from '../../../components/Imgs/SettingsSVG';
 import { profileNav } from '../../../types/ProfileNav';
-import { SetStateAction, Dispatch, useEffect } from 'react';
+import { SetStateAction, Dispatch, useEffect, forwardRef } from 'react';
 import { ArrowTale } from '../../../components/Imgs/ArrowTale';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
@@ -58,86 +58,91 @@ type Props = {
   openMenu: boolean;
 };
 
-export const ProfileMenu: React.FC<Props> = ({ openMenu, setOpenMenu }) => {
-  const location = useLocation();
-  const currentPath = location.pathname
-    .split('/')
-    .filter((a) => a !== '')
-    .at(-1);
+export const ProfileMenu = forwardRef<HTMLDivElement, Props>(
+  ({ openMenu, setOpenMenu }, ref) => {
+    const location = useLocation();
+    const currentPath = location.pathname
+      .split('/')
+      .filter((a) => a !== '')
+      .at(-1);
 
-  const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useDispatch<AppDispatch>();
 
-  const lang = useSelector((state: SavingState) => state.language.language);
-  const { t } = useTranslation();
+    const lang = useSelector((state: SavingState) => state.language.language);
+    const { t } = useTranslation();
 
-  useEffect(() => {
-    if (!openMenu) {
-      document.body.style.overflow = 'hidden';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [openMenu]);
+    useEffect(() => {
+      if (!openMenu) {
+        document.body.style.overflow = 'hidden';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        document.body.style.overflow = 'auto';
+      }
+    }, [openMenu]);
 
-  return (
-    <div className="profile-menu">
-      <h2 className="profile-menu__h2">{t('profile-menu__h2')}</h2>
-      <div className="profile-menu__wrapper">
-        {profileNavigation.map((item) => {
-          return (
-            <>
-              {item.nameUa !== 'Корзина' && (
-                <NavLink
-                  onClick={() => setOpenMenu(true)}
-                  to={`${item.slug}`}
-                  key={item.slug}
-                  className="profile-menu__item"
-                >
-                  <div
-                    className={classNames('profile-menu__name', {
-                      isActive:
-                        currentPath === item.slug ||
-                        (item.slug === 'account' && currentPath === 'me'),
-                    })}
+    return (
+      <div
+        ref={ref}
+        className="profile-menu"
+      >
+        <h2 className="profile-menu__h2">{t('profile-menu__h2')}</h2>
+        <div className="profile-menu__wrapper">
+          {profileNavigation.map((item) => {
+            return (
+              <>
+                {item.nameUa !== 'Корзина' && (
+                  <NavLink
+                    onClick={() => setOpenMenu(true)}
+                    to={`${item.slug}`}
+                    key={item.slug}
+                    className="profile-menu__item"
                   >
-                    {item.svg}
-                    <p>
-                      {lang === 'ua' && item.nameUa}{' '}
-                      {lang === 'en' && item.nameEng}
-                    </p>
-                  </div>
-                  <ArrowTale className="profile-menu__svg" />
-                </NavLink>
-              )}
-              {item.nameUa === 'Корзина' && (
-                <div
-                  onClick={() => {
-                    setOpenMenu(true);
-                    dispatch(setIsCartOpen(true));
-                  }}
-                  key={item.slug}
-                  className="profile-menu__item"
-                >
+                    <div
+                      className={classNames('profile-menu__name', {
+                        isActive:
+                          currentPath === item.slug ||
+                          (item.slug === 'account' && currentPath === 'me'),
+                      })}
+                    >
+                      {item.svg}
+                      <p>
+                        {lang === 'ua' && item.nameUa}{' '}
+                        {lang === 'en' && item.nameEng}
+                      </p>
+                    </div>
+                    <ArrowTale className="profile-menu__svg" />
+                  </NavLink>
+                )}
+                {item.nameUa === 'Корзина' && (
                   <div
-                    className={classNames('profile-menu__name', {
-                      isActive:
-                        currentPath === item.slug ||
-                        (item.slug === 'account' && currentPath === 'me'),
-                    })}
+                    onClick={() => {
+                      setOpenMenu(true);
+                      dispatch(setIsCartOpen(true));
+                    }}
+                    key={item.slug}
+                    className="profile-menu__item"
                   >
-                    {item.svg}
-                    <p>
-                      {lang === 'ua' && item.nameUa}{' '}
-                      {lang === 'en' && item.nameEng}
-                    </p>
+                    <div
+                      className={classNames('profile-menu__name', {
+                        isActive:
+                          currentPath === item.slug ||
+                          (item.slug === 'account' && currentPath === 'me'),
+                      })}
+                    >
+                      {item.svg}
+                      <p>
+                        {lang === 'ua' && item.nameUa}{' '}
+                        {lang === 'en' && item.nameEng}
+                      </p>
+                    </div>
+                    <ArrowTale className="profile-menu__svg" />
                   </div>
-                  <ArrowTale className="profile-menu__svg" />
-                </div>
-              )}
-            </>
-          );
-        })}
+                )}
+              </>
+            );
+          })}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  },
+);
