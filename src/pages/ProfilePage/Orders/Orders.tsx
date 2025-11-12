@@ -80,15 +80,14 @@ const orders: OrderType[] = [
     id: 1,
     status: 'purchased',
     deliveryStatus: 'Очікує відправки',
-    orderDate: new Date('2025.01.05'),
-    deliveryDate: new Date('2025.01.10'),
+    orderDate: new Date('2025-01-05T00:00:00'),
+    deliveryDate: new Date('2025-01-10T00:00:00'),
     payment: 'При отриманні',
     delivery: 'Нова пошта №74',
     recipient: 'Адндрій Мукалевич, Україна, Київ',
     items: [
       {
         id: 1253424234,
-
         img: [
           'images/expertise/Photo1.png',
           'images/expertise/Photo1.png',
@@ -99,7 +98,6 @@ const orders: OrderType[] = [
       },
       {
         id: 1233425234,
-
         img: [
           'images/expertise/Photo1.png',
           'images/expertise/Photo1.png',
@@ -124,8 +122,8 @@ const orders: OrderType[] = [
     id: 2,
     status: 'shipped',
     deliveryStatus: 'Передано до перевізника',
-    orderDate: new Date('2025.01.05'),
-    deliveryDate: new Date('2025.01.10'),
+    orderDate: new Date('2025-01-05T00:00:00'),
+    deliveryDate: new Date('2025-01-10T00:00:00'),
     payment: 'При отриманні',
     delivery: 'Нова пошта №74',
     recipient: 'Адндрій Мукалевич, Україна, Київ',
@@ -156,8 +154,8 @@ const orders: OrderType[] = [
     id: 3,
     status: 'received',
     deliveryStatus: 'Доставлено',
-    orderDate: new Date('2025.01.05'),
-    deliveryDate: new Date('2025.01.10'),
+    orderDate: new Date('2025-01-05T00:00:00'),
+    deliveryDate: new Date('2025-01-10T00:00:00'),
     payment: 'При отриманні',
     delivery: 'Нова пошта №74',
     recipient: 'Адндрій Мукалевич, Україна, Київ',
@@ -177,7 +175,7 @@ const orders: OrderType[] = [
   {
     id: 4,
     status: 'cancelled',
-    orderDate: new Date('2025.01.05'),
+    orderDate: new Date('2025-01-05T00:00:00'),
     payment: 'При отриманні',
     delivery: 'Нова пошта №74',
     recipient: 'Адндрій Мукалевич, Україна, Київ',

@@ -1,7 +1,7 @@
 // import { useDispatch, useSelector } from 'react-redux';
 // import { AppDispatch, RootState } from '../../store/store';
 // import { logout } from '../../store/slices/authSlice';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 // import { useEffect, useState } from 'react';
 import { ProfileMenu } from './ProfileMenu/ProfileMenu';
 import { Outlet } from 'react-router-dom';
@@ -12,6 +12,13 @@ export const ProfilePage = () => {
   // const dispatch = useDispatch<AppDispatch>();
   const [openMenu, setOpenMenu] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    if (ref.current) {
+      setHeight(ref.current?.clientHeight);
+    }
+  }, [ref.current]);
   // const client = useSelector((state: RootState) => state.user);
 
   // useEffect(() => {
@@ -20,11 +27,9 @@ export const ProfilePage = () => {
   //   }
   // }, [verified]);
 
-  console.log(ref.current?.clientHeight);
-
   return (
     <div
-      style={{ height: !openMenu ? ref.current?.clientHeight : 'auto' }}
+      style={{ height: !openMenu ? height || 0 : 'auto' }}
       className="profile-page"
     >
       <h1 className="profile-page__h2">Мій кабінет</h1>
