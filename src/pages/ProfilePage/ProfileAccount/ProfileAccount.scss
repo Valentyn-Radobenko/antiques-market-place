@@ -550,11 +550,15 @@
 
 .password-email {
   background: $background-plate;
-  padding: 16px;
+  padding: 24px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  @include on-tablet {
+    padding: 16px;
+  }
 
   &__h3 {
     @include h3-bold;

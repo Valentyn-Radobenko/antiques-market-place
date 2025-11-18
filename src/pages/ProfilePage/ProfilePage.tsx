@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from 'react';
 import { ProfileMenu } from './ProfileMenu/ProfileMenu';
 import { Outlet } from 'react-router-dom';
 import classNames from 'classnames';
+import { useWindowSize } from '../../utils/useWindowSize';
 
 export const ProfilePage = () => {
   // const { verified } = useSelector((state: RootState) => state.user);
@@ -13,6 +14,7 @@ export const ProfilePage = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
+  const size = useWindowSize();
 
   useEffect(() => {
     if (ref.current) {
@@ -29,7 +31,7 @@ export const ProfilePage = () => {
 
   return (
     <div
-      style={{ height: !openMenu ? height || 0 : 'auto' }}
+      style={{ height: !openMenu && size.width < 1440 ? height : 'auto' }}
       className="profile-page"
     >
       <h1 className="profile-page__h2">Мій кабінет</h1>
