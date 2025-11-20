@@ -152,10 +152,12 @@
     margin-left: 16px;
   }
 
-  > :not(.current-chat__underline) {
-    padding-inline: 24px;
-    @include on-phone {
-      padding-inline: 16px;
+  &__wrapper {
+    > :not(.current-chat__underline) {
+      padding-inline: 24px;
+      @include on-phone {
+        padding-inline: 16px;
+      }
     }
   }
 

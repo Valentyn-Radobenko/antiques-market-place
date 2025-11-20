@@ -45,10 +45,12 @@
     height: 56px;
     position: fixed;
     right: 0;
-    bottom: 112px;
+    top: 60vh;
+    justify-content: center;
+    align-items: center;
 
     @include on-tablet {
-      display: block;
+      display: flex;
     }
   }
 

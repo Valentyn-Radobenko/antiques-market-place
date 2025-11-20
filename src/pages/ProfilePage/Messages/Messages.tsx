@@ -30,29 +30,37 @@ const testMessages: ChatT[] = [
       {
         id: '2',
         sender: 'webSite',
-        messageTitle: 'Нові надходження у розділі "Монети України"! ',
+        messageTitle: 'Нові надходження у розділі "Монети України"',
         messageText:
-          'Нові надходження у розділі "Монети України"! Щойно додано рідкісні монети та унікальні лоти. Перегляньте, перш ніж їх розкуплять!',
-        date: new Date('2025-03-22T08:09:53'),
+          'Щойно додано рідкісні монети та унікальні лоти. Перегляньте, перш ніж їх розкуплять!',
+        date: new Date('2025-03-23T10:20:00'),
         status: 'read',
       },
       {
         id: '3',
         sender: 'webSite',
-        messageTitle: 'Нові надходження у розділі "Монети України"! ',
-        messageText:
-          'Нові надходження у розділі "Монети України"! Щойно додано рідкісні монети та унікальні лоти. Перегляньте, перш ніж їх розкуплять!',
-        date: new Date('2025-03-22T08:09:53'),
-        status: 'read',
+        messageTitle: 'Знижки до Дня колекціонера!',
+        messageText: 'Отримайте до 20% знижки на всі монети до кінця тижня.',
+        date: new Date('2025-03-25T12:45:00'),
+        status: 'unread',
       },
       {
         id: '4',
         sender: 'webSite',
-        messageTitle: 'Нові надходження у розділі "Монети України"! ',
+        messageTitle: 'Оновлення політики безпеки',
         messageText:
-          'Нові надходження у розділі "Монети України"! Щойно додано рідкісні монети та унікальні лоти. Перегляньте, перш ніж їх розкуплять!',
-        date: new Date('2025-03-22T08:09:53'),
+          'Ми вдосконалили політику конфіденційності, щоб краще захищати ваші дані.',
+        date: new Date('2025-03-26T09:10:00'),
         status: 'read',
+      },
+      {
+        id: '5',
+        sender: 'webSite',
+        messageTitle: 'Покращення функціоналу чату',
+        messageText:
+          'Тепер ви можете надсилати зображення та документи безпосередньо у повідомленнях.',
+        date: new Date('2025-03-28T15:33:00'),
+        status: 'unread',
       },
     ],
   },
@@ -65,16 +73,45 @@ const testMessages: ChatT[] = [
       {
         id: '1',
         sender: 'webSite',
-        messageTitle: 'Вітаємо',
-        messageText: 'yaka u vas problema',
+        messageTitle: 'Вітаємо! Як можемо допомогти?',
+        messageText: 'Опишіть, будь ласка, вашу проблему або запитання.',
         date: new Date('2025-03-22T08:09:23'),
         status: 'read',
       },
       {
         id: '2',
         sender: 'client',
-        messageText: 'Vitayu yak kupiti monetu',
+        messageText: 'Добрий день! Не можу оплатити замовлення.',
         date: new Date('2025-03-22T08:21:00'),
+        status: 'read',
+      },
+      {
+        id: '3',
+        sender: 'webSite',
+        messageText: 'Будь ласка, уточніть, який метод оплати ви обираєте?',
+        date: new Date('2025-03-22T08:23:10'),
+        status: 'read',
+      },
+      {
+        id: '4',
+        sender: 'client',
+        messageText: 'Карткою через LiqPay, але з’являється помилка.',
+        date: new Date('2025-03-22T08:25:40'),
+        status: 'read',
+      },
+      {
+        id: '5',
+        sender: 'webSite',
+        messageText:
+          'Ми передали інформацію технічному відділу. Спробуйте повторити оплату через 5–10 хвилин.',
+        date: new Date('2025-03-22T08:30:00'),
+        status: 'read',
+      },
+      {
+        id: '6',
+        sender: 'client',
+        messageText: 'Дякую, все спрацювало!',
+        date: new Date('2025-03-22T08:35:00'),
         status: 'read',
       },
     ],
@@ -88,16 +125,37 @@ const testMessages: ChatT[] = [
       {
         id: '1',
         sender: 'webSite',
-        messageTitle: 'Вітаємо',
-        messageText: 'yaka u vas problema',
+        messageTitle: 'Ваше замовлення прийнято!',
+        messageText: 'Номер замовлення: #10245. Очікує підтвердження.',
         date: new Date('2025-03-22T08:09:23'),
         status: 'read',
       },
       {
         id: '2',
+        sender: 'webSite',
+        messageText: 'Ваше замовлення передано до перевізника “Нова Пошта”.',
+        date: new Date('2025-03-23T09:12:00'),
+        status: 'read',
+      },
+      {
+        id: '3',
         sender: 'client',
-        messageText: 'Vitayu yak kupiti monetu',
-        date: new Date('2025-03-22T08:21:00'),
+        messageText: 'Коли очікувати доставку?',
+        date: new Date('2025-03-23T09:30:00'),
+        status: 'read',
+      },
+      {
+        id: '4',
+        sender: 'webSite',
+        messageText: 'Доставка очікується 25 березня.',
+        date: new Date('2025-03-23T09:32:00'),
+        status: 'read',
+      },
+      {
+        id: '5',
+        sender: 'client',
+        messageText: 'Дякую за інформацію!',
+        date: new Date('2025-03-23T09:35:00'),
         status: 'read',
       },
     ],
@@ -111,17 +169,41 @@ const testMessages: ChatT[] = [
       {
         id: '1',
         sender: 'webSite',
-        messageTitle: 'Вітаємо',
-        messageText: 'yaka u vas problema',
+        messageTitle: 'Заявку отримано',
+        messageText:
+          'Вашу монету прийнято на оцінювання. Очікуйте відповідь експерта протягом 24 годин.',
         date: new Date('2025-03-22T08:09:23'),
         status: 'read',
       },
       {
         id: '2',
         sender: 'client',
-        messageText: 'Vitayu yak kupiti monetu',
-        date: new Date('2025-03-22T08:21:00'),
+        messageText: 'Доброго дня! Чи можна пришвидшити процес оцінки?',
+        date: new Date('2025-03-22T08:25:00'),
         status: 'read',
+      },
+      {
+        id: '3',
+        sender: 'webSite',
+        messageText:
+          'Так, ви можете обрати експрес-оцінку (до 2 годин) за додаткову плату.',
+        date: new Date('2025-03-22T08:30:00'),
+        status: 'read',
+      },
+      {
+        id: '4',
+        sender: 'client',
+        messageText: 'Добре, тоді обираю експрес.',
+        date: new Date('2025-03-22T08:33:00'),
+        status: 'read',
+      },
+      {
+        id: '5',
+        sender: 'webSite',
+        messageText:
+          'Чудово, ваш запит оновлено. Експерт зв’яжеться з вами найближчим часом.',
+        date: new Date('2025-03-22T08:36:00'),
+        status: 'unread',
       },
     ],
   },
@@ -134,16 +216,46 @@ const testMessages: ChatT[] = [
       {
         id: '1',
         sender: 'webSite',
-        messageTitle: 'Вітаємо',
-        messageText: 'yaka u vas problema',
+        messageTitle: 'Запрошення до участі у виставці',
+        messageText:
+          'Вас запрошено взяти участь у виставці “Нумізматика 2025”.',
         date: new Date('2025-03-22T08:09:23'),
         status: 'read',
       },
       {
         id: '2',
         sender: 'client',
-        messageText: 'Vitayu yak kupiti monetu',
+        messageText: 'Цікаво! Як подати заявку?',
         date: new Date('2025-03-22T08:21:00'),
+        status: 'read',
+      },
+      {
+        id: '3',
+        sender: 'webSite',
+        messageText: 'Заповніть коротку анкету учасника у вашому профілі.',
+        date: new Date('2025-03-22T08:25:00'),
+        status: 'read',
+      },
+      {
+        id: '4',
+        sender: 'client',
+        messageText: 'Які вимоги до експонатів?',
+        date: new Date('2025-03-22T08:28:00'),
+        status: 'read',
+      },
+      {
+        id: '5',
+        sender: 'webSite',
+        messageText:
+          'Експонати мають бути сертифіковані або мати підтвердження автентичності.',
+        date: new Date('2025-03-22T08:33:00'),
+        status: 'read',
+      },
+      {
+        id: '6',
+        sender: 'client',
+        messageText: 'Дякую! Обов’язково долучуся.',
+        date: new Date('2025-03-22T08:36:00'),
         status: 'read',
       },
     ],
@@ -155,6 +267,7 @@ export const Messages = () => {
   const [activeMessges, setActiveMessages] = useState<boolean>(false);
   const [searchParams] = useSearchParams();
   const [activeChat, setActiveChat] = useState<ChatT>(testMessages[0]);
+  const [chatHeight, setChatHeight] = useState<number>(0);
   const chatName = searchParams.get('chat');
 
   const { t } = useTranslation();
@@ -221,7 +334,10 @@ export const Messages = () => {
             <h2 className="profile-page__section-h2">Листування</h2>
           </div>
 
-          <div className="profile-messages__main">
+          <div
+            style={{ height: activeMessges ? chatHeight : 'auto' }}
+            className="profile-messages__main"
+          >
             <div
               className={classNames('profile-messages__wrapper', {
                 isNotActive: activeMessges,
@@ -253,6 +369,7 @@ export const Messages = () => {
             </div>
 
             <ActiveChat
+              setChatHeight={setChatHeight}
               setActiveChat={setActiveChat}
               setActiveMessages={setActiveMessages}
               activeMessges={activeMessges}

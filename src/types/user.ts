@@ -3,7 +3,7 @@ export interface User {
   phoneNumber: string | null;
   firstName: string | null;
   lastName: string | null;
-  picture: string | './images/mainUser.png';
+  picture: string;
   country: string | null;
   city: string | null;
   auctionNumber: string | null;

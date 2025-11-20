@@ -317,23 +317,22 @@
   padding-inline: 16px;
   padding-block: 15px;
   border-radius: 12px;
-  border: $gray-stroke 1px solid;
+  outline: $gray-stroke 1px solid;
   @include main-text;
-  outline: none;
+  border: none;
   color: $additional-black-green;
   background: $gray-white;
+  transition: all ease $effect-duration;
 
   &::placeholder {
     color: $gray-lite;
   }
 
   &:hover {
-    background: $additional-white-green;
-    border-color: $additional-mint;
+    outline: $additional-mint 2px solid;
   }
   &:focus {
-    border-color: $additional-fresh-herb-icon;
-    // background: inherit;
+    outline: $additional-freshherb-elect 2px solid;
   }
 }
 // #endregion

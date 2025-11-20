@@ -38,6 +38,7 @@ export const ProfileAccount = () => {
           city={user.city}
           country={user.country}
           verified={user.verified}
+          img={user.picture}
         />
 
         {windowSize.width < 1440 && <AccountFullfiling user={user} />}
