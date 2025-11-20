@@ -13,7 +13,10 @@ export const discussions: DiscussionData[] = [
       image: './images/mainUser.png',
       id: '0001',
     },
-    images: ['./images/discussions/discussion1.png'],
+    images: [
+      './images/discussions/discussion1.png',
+      './images/discussions/discussion2.png',
+    ],
     status: 'ongoing',
     anonimus: false,
     comments: [

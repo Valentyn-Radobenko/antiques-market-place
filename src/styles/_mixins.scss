@@ -329,12 +329,10 @@
   }
 
   &:hover {
-    outline-color: $additional-mint;
-    outline-width: 2px;
+    outline: $additional-mint 2px solid;
   }
   &:focus {
-    outline-color: $additional-freshherb-elect;
-    outline-width: 2px;
+    outline: $additional-freshherb-elect 2px solid;
   }
 }
 // #endregion

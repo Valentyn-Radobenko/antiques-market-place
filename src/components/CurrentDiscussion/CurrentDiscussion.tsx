@@ -11,7 +11,11 @@ import { DiscussionData } from '../../types/discussionTypes';
 import { formatUkrDate } from '../../utils/formatUkrDate';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { AppDispatch, RootState, SavingState } from '../../store/store';
+import {
+  AppDispatch,
+  RootState,
+  // SavingState
+} from '../../store/store';
 import {
   addNewComment,
   editComment,
@@ -20,9 +24,10 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import { User } from '../../types/user';
 import { useSelector } from 'react-redux';
-import Slider from '../Sliders/Slider';
-import { ModalWindow } from '../ModalWindow/ModalWindow';
-import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+// import Slider from '../Sliders/Slider';
+// import { ModalWindow } from '../ModalWindow/ModalWindow';
+// import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+import { SendButtonSVG } from '../Imgs/SendButtonSVG';
 
 type Props = {
   currentDiscussion: DiscussionData;
@@ -43,7 +48,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
   const [currentImage, setCurrentImage] = useState<number>(0);
   const [commentOptions, setCommentOptions] = useState<string>('');
   const [changeComment, setChangeComment] = useState<string>('');
-  const [openZoomed, setOpenZoomed] = useState<boolean>(false);
+  // const [openZoomed, setOpenZoomed] = useState<boolean>(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
@@ -134,7 +139,8 @@ export const CurrentDiscussion: React.FC<Props> = ({
     );
   };
 
-  const lang = useSelector((state: SavingState) => state.language.language);
+  // const lang = useSelector((state: SavingState) => state.language.language);
+  console.log(currentDiscussion.images.length);
 
   return (
     <>
@@ -143,55 +149,66 @@ export const CurrentDiscussion: React.FC<Props> = ({
           <div className="current-discussion__images descktop">
             <div className="current-discussion__images-list">
               {currentDiscussion.images.map((image) => (
-                <img
-                  style={{ transform: `translate(-${currentImage * 100}%)` }}
-                  key={image}
-                  className="current-discussion__imagie"
-                  src={image}
-                  alt="#"
-                />
+                <div
+                  style={{
+                    transform: `translate(-${currentImage * 100}%)`,
+                  }}
+                  className="current-discussion__img-container"
+                >
+                  <img
+                    className="current-discussion__image"
+                    key={image}
+                    src={image}
+                    alt="#"
+                  />
+                  <FrameInspectSVG
+                    onClick={() => window.open(image, '_blank')}
+                    className="current-discussion__zoom"
+                  />
+                </div>
               ))}
             </div>
-            <FrameInspectSVG
+            {/* <FrameInspectSVG
               onClick={() => {
-                console.log('click');
 
                 setOpenZoomed(true);
               }}
               className="current-discussion__zoom"
-            />
-            <div className="current-discussion__images-pagination">
-              <Arrow
-                onClick={() => {
-                  if (currentImage > 0) {
-                    setCurrentImage(currentImage - 1);
-                  }
-                }}
-                className={classNames('current-discussion__arrow left', {
-                  isActive: currentImage > 0,
-                })}
-              />
-              <div className="current-discussion__length">
-                {currentDiscussion.images.map((_, i) => (
-                  <div
-                    key={i}
-                    className={classNames('current-discussion__dot', {
-                      isActive: i === currentImage,
-                    })}
-                  />
-                ))}
+            /> */}
+            {currentDiscussion.images.length > 1 && (
+              <div className="current-discussion__images-pagination">
+                <Arrow
+                  onClick={() => {
+                    if (currentImage > 0) {
+                      setCurrentImage(currentImage - 1);
+                    }
+                  }}
+                  className={classNames('current-discussion__arrow left', {
+                    isActive: currentImage > 0,
+                  })}
+                />
+                <div className="current-discussion__length">
+                  {currentDiscussion.images.map((_, i) => (
+                    <div
+                      key={i}
+                      className={classNames('current-discussion__dot', {
+                        isActive: i === currentImage,
+                      })}
+                    />
+                  ))}
+                </div>
+                <Arrow
+                  onClick={() => {
+                    if (currentImage < imagesLength - 1) {
+                      setCurrentImage(currentImage + 1);
+                    }
+                  }}
+                  className={classNames('current-discussion__arrow reight', {
+                    isActive: currentImage < imagesLength - 1,
+                  })}
+                />
               </div>
-              <Arrow
-                onClick={() => {
-                  if (currentImage < imagesLength - 1) {
-                    setCurrentImage(currentImage + 1);
-                  }
-                }}
-                className={classNames('current-discussion__arrow reight', {
-                  isActive: currentImage < imagesLength - 1,
-                })}
-              />
-            </div>
+            )}
           </div>
         )}
         <SimpleBar className="current-discussion__simplebar-block">
@@ -217,56 +234,69 @@ export const CurrentDiscussion: React.FC<Props> = ({
                 <div className="current-discussion__images tablet-phone">
                   <div className="current-discussion__images-list">
                     {currentDiscussion.images.map((image) => (
-                      <img
+                      <div
                         style={{
                           transform: `translate(-${currentImage * 100}%)`,
                         }}
-                        key={image}
-                        className="current-discussion__imagie"
-                        src={image}
-                        alt="#"
-                      />
+                        className="current-discussion__img-container"
+                      >
+                        <img
+                          className="current-discussion__image"
+                          key={image}
+                          src={image}
+                          alt="#"
+                        />
+                        <FrameInspectSVG
+                          onClick={() => window.open(image, '_blank')}
+                          className="current-discussion__zoom"
+                        />
+                      </div>
                     ))}
                   </div>
-                  <FrameInspectSVG
+                  {/* <FrameInspectSVG
                     onClick={() => setOpenZoomed(true)}
                     className="current-discussion__zoom"
-                  />
-                  <div className="current-discussion__images-pagination">
-                    <Arrow
-                      onClick={() => {
-                        if (currentImage > 0) {
-                          setCurrentImage(currentImage - 1);
-                        }
-                      }}
-                      className={classNames('current-discussion__arrow left', {
-                        isActive: currentImage > 0,
-                      })}
-                    />
-                    <div className="current-discussion__length">
-                      {currentDiscussion.images.map((_, i) => (
-                        <div
-                          key={i}
-                          className={classNames('current-discussion__dot', {
-                            isActive: i === currentImage,
-                          })}
-                        />
-                      ))}
+                  /> */}
+                  {currentDiscussion.images.length > 1 && (
+                    <div className="current-discussion__images-pagination">
+                      <Arrow
+                        onClick={() => {
+                          if (currentImage > 0) {
+                            setCurrentImage(currentImage - 1);
+                          }
+                        }}
+                        className={classNames(
+                          'current-discussion__arrow left',
+                          {
+                            isActive: currentImage > 0,
+                          },
+                        )}
+                      />
+                      <div className="current-discussion__length">
+                        {currentDiscussion.images.map((_, i) => (
+                          <div
+                            key={i}
+                            className={classNames('current-discussion__dot', {
+                              isActive: i === currentImage,
+                            })}
+                          />
+                        ))}
+                      </div>
+                      <Arrow
+                        onClick={() => {
+                          if (currentImage < imagesLength - 1) {
+                            setCurrentImage(currentImage + 1);
+                          }
+                        }}
+                        className={classNames(
+                          'current-discussion__arrow reight',
+                          {
+                            isActive: currentImage < imagesLength - 1,
+                          },
+                        )}
+                      />
                     </div>
-                    <Arrow
-                      onClick={() => {
-                        if (currentImage < imagesLength - 1) {
-                          setCurrentImage(currentImage + 1);
-                        }
-                      }}
-                      className={classNames(
-                        'current-discussion__arrow reight',
-                        {
-                          isActive: currentImage < imagesLength - 1,
-                        },
-                      )}
-                    />
-                  </div>
+                  )}
                 </div>
               )}
               <div className="current-discussion__discussion-info">
@@ -501,13 +531,13 @@ export const CurrentDiscussion: React.FC<Props> = ({
                 }
                 className="current-discussion__add-comment-button"
               >
-                Надіслати
+                <SendButtonSVG />
               </button>
             </div>
           </div>
         </SimpleBar>
       </div>
-      <ModalWindow
+      {/* <ModalWindow
         openModal={openZoomed}
         setOpenModal={setOpenZoomed}
         visibility="item-slider__modal"
@@ -571,7 +601,7 @@ export const CurrentDiscussion: React.FC<Props> = ({
             />
           )}
         </div>
-      </ModalWindow>
+      </ModalWindow> */}
     </>
   );
 };

@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { ThreeDotsSVG } from '../Imgs/ThreeDotsSVG';
 import { DiscussionData } from '../../types/discussionTypes';
 import { formatUkrDate } from '../../utils/formatUkrDate';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
@@ -29,6 +29,7 @@ export const Discussion: React.FC<Props> = ({ discussion }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const currentUser: User = useSelector((state: RootState) => state.user);
+  const location = useLocation();
 
   const startTimer = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
@@ -73,12 +74,20 @@ export const Discussion: React.FC<Props> = ({ discussion }) => {
 
           <div className="discussion__themes">
             {discussion.theme.map((theme) => (
-              <p
+              <Link
+                to={
+                  !location.pathname.includes('club') ?
+                    {
+                      pathname: '/club/discussions',
+                      search: `tags=${theme}`,
+                    }
+                  : { search: `tags=${theme}` }
+                }
                 key={theme}
                 className="discussion__theme"
               >
                 {theme}
-              </p>
+              </Link>
             ))}
           </div>
         </div>
