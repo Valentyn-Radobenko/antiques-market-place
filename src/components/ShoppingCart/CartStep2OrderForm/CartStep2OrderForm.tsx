@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, SavingState } from '../../../store/store';
 import { removeSelectedItems } from '../../../store/slices/shoppingCartSlice';
@@ -81,8 +81,15 @@ export const CartStep2OrderForm: React.FC<Props> = ({ setStep }) => {
     }
   };
 
+  const ref = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    ref.current?.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [orderStep]);
+
   return (
     <form
+      ref={ref}
       onSubmit={handleOrdersSubmit}
       className="shopping-cart__order"
       method="post"

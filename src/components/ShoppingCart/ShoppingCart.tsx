@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { CartStep1Products } from './CartStep1Products/CartStep1Products';
 import { CartStep2OrderForm } from './CartStep2OrderForm/CartStep2OrderForm';
@@ -7,9 +7,15 @@ import { CartStep3EndMessage } from './CartStep3EndMessage/CartStep3EndMessage';
 
 export const ShoppingCart: React.FC = () => {
   const [step, setStep] = useState(1);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    ref.current?.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [step]);
 
   return (
     <div
+      ref={ref}
       className={classNames('shopping-cart', {
         'shopping-cart--end': step === 3,
       })}
