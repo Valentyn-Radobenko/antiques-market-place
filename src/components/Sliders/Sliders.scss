@@ -710,10 +710,14 @@
     }
 
     &-img {
-      // width: 100%;
+      width: 100%;
       height: 100%;
-      aspect-ratio: 1 / 1;
       object-fit: contain;
+
+      @include on-tablet {
+        width: auto;
+        aspect-ratio: 1 / 1;
+      }
 
       &-wrapper {
         display: flex;
@@ -724,6 +728,11 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
+
+        @include on-phone {
+          width: auto;
+          aspect-ratio: 1 / 1;
+        }
       }
 
       &-square {
