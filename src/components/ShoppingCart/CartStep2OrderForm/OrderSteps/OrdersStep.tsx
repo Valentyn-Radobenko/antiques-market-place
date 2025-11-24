@@ -2,11 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useIsMobile } from '../../../../hooks/useMediaQuery';
 import { AppDispatch, SavingState } from '../../../../store/store';
 import { ArrowBackSVG } from '../../../Imgs/ArrowBackSVG';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { DeleteSVG } from '../../../Imgs/DeleteSVG';
 import {
   removeItem,
   removeSelectedItem,
+  setIsCartOpen,
 } from '../../../../store/slices/shoppingCartSlice';
 import { useTranslation } from 'react-i18next';
 import { useCurrency } from '../../../../hooks/useCurrency';
@@ -24,6 +25,12 @@ export const OrdersStep: React.FC<Props> = ({ setOrderStep }) => {
   const lang = useSelector((state: SavingState) => state.language.language);
 
   const { formatPrice } = useCurrency();
+
+  useEffect(() => {
+    if (cart.selectedItems.length === 0) {
+      dispatch(setIsCartOpen(false));
+    }
+  }, [cart.selectedItems.length]);
 
   return (
     <div className="shopping-cart__order-block">
