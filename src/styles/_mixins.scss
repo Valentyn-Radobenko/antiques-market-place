@@ -314,11 +314,11 @@
 }
 
 @mixin input-style {
+  @include main-text;
   padding-inline: 16px;
   padding-block: 15px;
   border-radius: 12px;
   outline: $gray-stroke 1px solid;
-  @include main-text;
   border: none;
   color: $additional-black-green;
   background: $gray-white;

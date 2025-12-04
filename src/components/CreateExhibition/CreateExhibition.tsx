@@ -97,7 +97,6 @@ export const CreateExhibition: React.FC<Props> = ({ setOpenModal }) => {
         ...prevForm,
         description: html,
       }));
-      console.log(form.description);
     });
     return () => {
       editor?.destroy();

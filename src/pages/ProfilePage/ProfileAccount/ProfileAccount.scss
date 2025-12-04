@@ -63,6 +63,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 12px;
   }
 
   &__label {
@@ -558,6 +559,65 @@
   &__item {
     @include tab-regular;
     color: $gray-dark;
+  }
+
+  &__verified {
+    display: flex;
+    gap: 24px;
+    border-radius: 12px;
+    border: 1px solid $system-info;
+    padding: 14.5px 16px;
+    justify-content: center;
+    align-items: center;
+    background: $gray-white;
+
+    @include on-tablet {
+      padding: 16px;
+    }
+
+    @include on-phone {
+      flex-direction: column;
+    }
+  }
+
+  &__verified-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 458px;
+  }
+
+  &__verified-h3 {
+    color: $additional-black-green;
+    @include h3-bold;
+  }
+
+  &__verified-text {
+    color: $gray-black;
+    @include main-text;
+  }
+
+  &__id-card {
+    color: $additional-greenas;
+    flex-shrink: 0;
+
+    @include on-phone {
+      align-self: flex-start;
+    }
+  }
+
+  &__cloak-loader {
+    color: $system-info;
+    flex-shrink: 0;
+
+    @include on-phone {
+      align-self: flex-end;
+    }
+  }
+
+  &__verified-text-underline {
+    text-decoration: underline;
+    color: $additional-greenas;
   }
 }
 

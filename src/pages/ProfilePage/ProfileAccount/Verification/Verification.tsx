@@ -3,6 +3,8 @@ import { FilesInput } from '../../../../components/FilesInput/FilesInput';
 import { verifivationData } from '../../../../data/verificationBlockData';
 import { useState } from 'react';
 import { SavingState } from '../../../../store/store';
+import { IdCardSVG } from '../../../../components/Imgs/IdCardSVG';
+import { ClockLoaderSVG } from '../../../../components/Imgs/ClockLoaderSVG';
 
 export const Verification = () => {
   const [files, setFiles] = useState<File[]>([]);
@@ -41,11 +43,29 @@ export const Verification = () => {
           </div>
         ))}
       </div>
-
-      <FilesInput
-        files={files}
-        setFiles={setFiles}
-      />
+      {files.length === 0 ?
+        <FilesInput
+          files={files}
+          setFiles={setFiles}
+        />
+      : <div className="account-verification__verified">
+          <IdCardSVG className="account-verification__id-card" />
+          <div className="account-verification__verified-text-block">
+            <h3 className="account-verification__verified-h3">
+              Верифікація на перевірці!
+            </h3>
+            <p className="account-verification__verified-text">
+              Очікуйте на сповіщення, про підтвердження верифікації – у
+              "Листуванні", чат{' '}
+              <span className="account-verification__verified-text-underline">
+                "Платформа DIKO"
+              </span>
+              .
+            </p>
+          </div>
+          <ClockLoaderSVG className="account-verification__cloak-loader" />
+        </div>
+      }
     </div>
   );
 };

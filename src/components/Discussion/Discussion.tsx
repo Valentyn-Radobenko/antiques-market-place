@@ -52,7 +52,7 @@ export const Discussion: React.FC<Props> = ({ discussion }) => {
   }, [openActions]);
 
   return (
-    <div className="discussion hidden reveal">
+    <div className="discussion">
       <div className="discussion__top-bar">
         <div className="discussion__name-theme">
           <div className="discussion__creator">

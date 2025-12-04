@@ -8,24 +8,35 @@
     display: flex;
     gap: 16px;
 
-    &.isActive {
-      gap: 0;
+    @include on-phone {
+      gap: 8px;
     }
+
+    &.isActive {
+      // gap: 0;
+    }
+  }
+
+  &__input-button {
+    display: flex;
+    width: 100%;
   }
 
   &__search {
     background: $gray-white;
-    border: 1px solid $gray-stroke;
+    border: 2px solid transparent;
+    outline: 1px solid $gray-stroke;
     border-radius: 12px;
-    padding: 16px;
+    padding: 15px;
     display: flex;
     gap: 8px;
     flex-grow: 4;
     overflow: hidden;
     align-items: center;
+    transition: border ease $dropdown-effect-duration;
 
     &.isActive {
-      padding-block: 15px;
+      outline: none;
       color: $gray-black;
       border: 2px $additional-freshherb-elect solid;
       border-top-right-radius: 0px;
@@ -42,7 +53,6 @@
     border-bottom-right-radius: 12px;
     padding-block: 16px;
     background: $primary;
-    width: 25%;
     color: $gray-white;
     @include button-bold;
 

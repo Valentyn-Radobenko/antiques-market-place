@@ -35,6 +35,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { User } from '../../types/user';
+import { CloseSmallSVG } from '../Imgs/CloseSmallSVG';
 
 const PHOTO_AMOUNT = 5;
 
@@ -135,11 +136,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
     };
   }, [editor]);
 
-  const canSubmit: boolean = !!(
-    form.name.length > 0 &&
-    form.description.length > 0 &&
-    form.description !== '<p></p>'
-  );
+  const canSubmit: boolean = !!(form.name.length > 0);
 
   const handleSubmit = () => {
     console.log(form.images.map((image) => URL.createObjectURL(image)));
@@ -205,7 +202,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
                       className="create-discussion__chosen-theme"
                     >
                       <p>{theme}</p>
-                      <Close
+                      <CloseSmallSVG
                         onClick={() =>
                           setForm({
                             ...form,
@@ -291,7 +288,7 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
               <PhotosList
                 files={form.images}
                 setFiles={(newFiles: File[]) =>
-                  setForm((prev) => ({ ...prev, files: newFiles }))
+                  setForm((prev) => ({ ...prev, images: newFiles }))
                 }
               />
               <div className="create-discussion__buttons">

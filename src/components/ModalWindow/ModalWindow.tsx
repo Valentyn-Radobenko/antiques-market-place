@@ -28,6 +28,10 @@ export const ModalWindow: React.FC<Props> = ({
     } else {
       document.body.style.overflow = 'auto';
     }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
   }, [openModal]);
 
   const dispatch = useDispatch<AppDispatch>();

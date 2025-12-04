@@ -9,6 +9,7 @@ import {
   Dispatch,
   SetStateAction,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from 'react';
@@ -20,10 +21,10 @@ import { EclipseGreenWhite } from '../../../../components/Imgs/EclipseGreenWhite
 import { ChatT } from '../../../../types/chatTypes';
 import { v4 as uuidv4 } from 'uuid';
 import { PhotosList } from '../../../../components/PhotosList/PhotosList';
-import { ModalWindow } from '../../../../components/ModalWindow/ModalWindow';
-import { Close } from '../../../../components/Imgs/Close';
-import Slider from '../../../../components/Sliders/Slider';
-import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+// import { ModalWindow } from '../../../../components/ModalWindow/ModalWindow';
+// import { Close } from '../../../../components/Imgs/Close';
+// import Slider from '../../../../components/Sliders/Slider';
+// import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import { PhotosListMessages } from '../../../../components/PhotosListMessages/PhotosListMessages';
 import type SimpleBarCore from 'simplebar-core';
 type Props = {
@@ -47,20 +48,40 @@ export const ActiveChat: React.FC<Props> = ({
 }) => {
   const [query, setQuery] = useState<string>('');
   const [files, setFiles] = useState<File[]>([]);
-  const [openModal, setOpenModal] = useState<boolean>(false);
-  const [modalContent, setModalContent] = useState<File[]>();
+  // const [openModal, setOpenModal] = useState<boolean>(false);
+  // const [modalContent, setModalContent] = useState<File[]>();
   const ref = useRef<HTMLTextAreaElement>(null);
   const simpleBarRef = useRef<SimpleBarCore | null>(null);
   const componentRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0 });
-    if (componentRef.current) {
-      setChatHeight(componentRef.current?.clientHeight);
-    }
-  }, [activeMessges]);
+  // useEffect(() => {
+  //   window.scrollTo({ top: 0 });
+  //   if (componentRef.current) {
+  //     setChatHeight(componentRef.current?.clientHeight);
+  //   }
+  // }, [activeMessges, query, files]);
 
   useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [activeChat, query, files]);
+
+  useEffect(() => {
+    if (!componentRef.current) return;
+
+    const el = componentRef.current;
+
+    const observer = new ResizeObserver(() => {
+      setChatHeight(el.clientHeight);
+    });
+
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    setQuery('');
+    setFiles([]);
     const scrollEl = simpleBarRef.current?.getScrollElement();
     if (scrollEl) {
       scrollEl.scrollTo({
@@ -70,16 +91,12 @@ export const ActiveChat: React.FC<Props> = ({
     }
   }, [activeChat]);
 
-  useEffect(() => {
-    setQuery('');
-  }, [activeChat]);
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (ref.current) {
       ref.current.style.height = 'auto';
       ref.current.style.height = `${ref.current.scrollHeight}px`;
     }
-  }, [query, activeChat]);
+  }, [activeChat, query]);
 
   const addFiles = (event: ChangeEvent<HTMLInputElement>) => {
     const newFiles = event.target.files ? Array.from(event.target.files) : [];
@@ -165,8 +182,8 @@ export const ActiveChat: React.FC<Props> = ({
                   )}
                   {currentMessage.files && (
                     <PhotosListMessages
-                      setOpenModal={setOpenModal}
-                      setModalContent={setModalContent}
+                      // setOpenModal={setOpenModal}
+                      // setModalContent={setModalContent}
                       files={currentMessage.files}
                     />
                   )}
@@ -197,7 +214,11 @@ export const ActiveChat: React.FC<Props> = ({
             </div>
 
             <div className="current-chat__input-button">
-              <div className="current-chat__input-wrapper">
+              <div
+                className={classNames('current-chat__input-wrapper', {
+                  disabled: !activeChat.canAnswer,
+                })}
+              >
                 <label
                   className="current-chat__label"
                   htmlFor="chatInput"
@@ -214,6 +235,22 @@ export const ActiveChat: React.FC<Props> = ({
                   disabled={!activeChat.canAnswer}
                 />
                 <textarea
+                  onPaste={async (e) => {
+                    e.preventDefault();
+                    const textarea = e.target as HTMLTextAreaElement;
+                    const pastedText = e.clipboardData.getData('text');
+                    const start = textarea.selectionStart;
+                    const end = textarea.selectionEnd;
+                    const pos = start + pastedText.length;
+
+                    textarea.setRangeText(pastedText, start, end, 'end');
+
+                    textarea.selectionStart = textarea.selectionEnd = pos;
+
+                    textarea.dispatchEvent(
+                      new Event('input', { bubbles: true }),
+                    );
+                  }}
                   disabled={!activeChat.canAnswer}
                   ref={ref}
                   value={query}
@@ -232,12 +269,13 @@ export const ActiveChat: React.FC<Props> = ({
               <button
                 onClick={addMessage}
                 className="current-chat__send-button"
+                disabled={query.length === 0 && files.length === 0}
               >
                 <SendButtonSVG />
               </button>
             </div>
           </div>
-          <ModalWindow
+          {/* <ModalWindow
             openModal={openModal}
             setOpenModal={setOpenModal}
             visibility="item-slider__modal"
@@ -301,7 +339,7 @@ export const ActiveChat: React.FC<Props> = ({
                 />
               )}
             </div>
-          </ModalWindow>
+          </ModalWindow> */}
         </div>
       </div>
     );

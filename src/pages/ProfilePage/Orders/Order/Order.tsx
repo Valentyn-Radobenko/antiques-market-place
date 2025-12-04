@@ -91,7 +91,7 @@ export const Order: React.FC<Props> = ({ order }) => {
                   className={classNames('order__item-img', {
                     isActive: openDetailed,
                   })}
-                  src={item.img[0]}
+                  src={item.img}
                   alt="#"
                 />
                 {openDetailed && (

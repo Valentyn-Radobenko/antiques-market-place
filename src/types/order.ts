@@ -1,6 +1,6 @@
 export type OrderItemType = {
   id: number;
-  img: string[];
+  img: string;
   name: string;
   price: number;
 };
