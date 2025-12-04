@@ -9,7 +9,7 @@ import { Bin } from '../Imgs/Bin';
 import { EditSVG } from '../Imgs/EditSVG';
 import { DiscussionData } from '../../types/discussionTypes';
 import { formatUkrDate } from '../../utils/formatUkrDate';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {
   AppDispatch,
@@ -321,24 +321,34 @@ export const CurrentDiscussion: React.FC<Props> = ({
                   </div>
                   <div className="current-discussion__themes">
                     {currentDiscussion.theme.map((theme) => (
-                      <p
-                        className="current-discussion__theme"
+                      <Link
+                        to={
+                          !location.pathname.includes('club') ?
+                            {
+                              pathname: '/club/discussions',
+                              search: `tags=${theme}`,
+                            }
+                          : { search: `tags=${theme}` }
+                        }
                         key={theme}
+                        className="current-discussion__theme"
                       >
                         {theme}
-                      </p>
+                      </Link>
                     ))}
                   </div>
                 </div>
                 <p className="current-discussion__name">
                   {currentDiscussion.name}
                 </p>
-                <p
-                  className="current-discussion__description"
-                  dangerouslySetInnerHTML={{
-                    __html: currentDiscussion.description,
-                  }}
-                />
+                {currentDiscussion.description && (
+                  <p
+                    className="current-discussion__description"
+                    dangerouslySetInnerHTML={{
+                      __html: currentDiscussion.description,
+                    }}
+                  />
+                )}
                 <p className="current-discussion__date">
                   {formatUkrDate(currentDiscussion.date)}
                 </p>
@@ -394,7 +404,12 @@ export const CurrentDiscussion: React.FC<Props> = ({
                           <div className="current-discussion__author">
                             {repliedComment && (
                               <img
-                                className="current-discussion__author-img"
+                                className={classNames(
+                                  'current-discussion__author-img',
+                                  {
+                                    isUsers: currentUser.id === comment.userId,
+                                  },
+                                )}
                                 src={repliedComment.userImage}
                                 alt={repliedComment.userName}
                               />

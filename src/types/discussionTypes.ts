@@ -19,7 +19,7 @@ export type DiscussionData = {
   slug: string;
   name: string;
   theme: string[];
-  description: string;
+  description?: string;
   date: Date;
   author: Author;
   images: string[];

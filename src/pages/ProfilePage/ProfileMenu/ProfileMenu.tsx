@@ -1,6 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { AccountSVG } from '../../../components/Imgs/AccountSVG';
-import { CartSVG } from '../../../components/Imgs/CartSVG';
+// import { CartSVG } from '../../../components/Imgs/CartSVG';
 import { DiscussonsSVG } from '../../../components/Imgs/DiscussionsSVG';
 import { Messaging } from '../../../components/Imgs/Messaging';
 import { OrdersSVG } from '../../../components/Imgs/OrdersSVG';
@@ -9,10 +9,16 @@ import { profileNav } from '../../../types/ProfileNav';
 import { SetStateAction, Dispatch, useEffect, forwardRef } from 'react';
 import { ArrowTale } from '../../../components/Imgs/ArrowTale';
 import classNames from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, SavingState } from '../../../store/store';
+import {
+  // useDispatch,
+  useSelector,
+} from 'react-redux';
+import {
+  // AppDispatch,
+  SavingState,
+} from '../../../store/store';
 import { useTranslation } from 'react-i18next';
-import { setIsCartOpen } from '../../../store/slices/shoppingCartSlice';
+// import { setIsCartOpen } from '../../../store/slices/shoppingCartSlice';
 
 const profileNavigation: profileNav[] = [
   {
@@ -27,12 +33,12 @@ const profileNavigation: profileNav[] = [
     slug: 'messages',
     svg: <Messaging />,
   },
-  {
-    nameUa: 'Корзина',
-    nameEng: 'Cart',
-    slug: 'cart',
-    svg: <CartSVG />,
-  },
+  // {
+  //   nameUa: 'Корзина',
+  //   nameEng: 'Cart',
+  //   slug: 'cart',
+  //   svg: <CartSVG />,
+  // },
   {
     nameUa: 'Замовлення',
     nameEng: 'Orders',
@@ -66,7 +72,7 @@ export const ProfileMenu = forwardRef<HTMLDivElement, Props>(
       .filter((a) => a !== '')
       .at(-1);
 
-    const dispatch = useDispatch<AppDispatch>();
+    // const dispatch = useDispatch<AppDispatch>();
 
     const lang = useSelector((state: SavingState) => state.language.language);
     const { t } = useTranslation();
@@ -113,7 +119,7 @@ export const ProfileMenu = forwardRef<HTMLDivElement, Props>(
                     <ArrowTale className="profile-menu__svg" />
                   </NavLink>
                 )}
-                {item.nameUa === 'Корзина' && (
+                {/* {item.nameUa === 'Корзина' && (
                   <div
                     onClick={() => {
                       setOpenMenu(true);
@@ -137,7 +143,7 @@ export const ProfileMenu = forwardRef<HTMLDivElement, Props>(
                     </div>
                     <ArrowTale className="profile-menu__svg" />
                   </div>
-                )}
+                )} */}
               </>
             );
           })}

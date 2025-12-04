@@ -30,7 +30,9 @@ export const Chat: React.FC<Props> = ({
       }}
       onClick={() => setActiveMessages(true)}
       className={classNames('message-source', {
-        isActive: chat.name === chatName,
+        isActive:
+          chat.name === chatName ||
+          (chatName === null && chat.name === 'Системні сповіщення'),
       })}
       key={chat.id}
     >

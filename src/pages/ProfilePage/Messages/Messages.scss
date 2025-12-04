@@ -88,11 +88,16 @@
   padding: 24px;
   background: $gray-white;
   box-shadow: $drop-shadow;
+  box-sizing: border-box;
 
   &.isActive {
     background: $selected-bright;
     border: 1px solid $additional-freshherb-elect;
-    box-sizing: border-box;
+
+    @include on-tablet {
+      background: $gray-white;
+      border: none;
+    }
   }
 
   &__top-bar {
@@ -212,9 +217,10 @@
   }
 
   &__container {
-    min-height: 346px;
-    max-height: 346px;
+    // min-height: 346px;
+    // max-height: 346px;
 
+    height: 346px;
     //  ???
     width: 100%;
   }
@@ -238,6 +244,7 @@
     gap: 8px;
     border-radius: 12px;
     width: 90%;
+    overflow-wrap: break-word;
 
     &.myMessage {
       align-self: flex-end;
@@ -341,14 +348,27 @@
   }
 
   &__input-wrapper {
-    width: 100%;
     padding: 16px;
     display: flex;
     gap: 16px;
+    width: 100%;
     border-radius: 12px;
-    border: 1px solid $gray-stroke;
-    max-height: 250px;
-    overflow: hidden;
+    outline: $gray-stroke 1px solid;
+    color: $additional-black-green;
+    background: $gray-white;
+    transition: all ease $effect-duration;
+
+    &:hover {
+      outline: $additional-mint 2px solid;
+    }
+
+    &:focus-within {
+      outline: $additional-freshherb-elect 2px solid;
+    }
+
+    &.disabled {
+      outline: none;
+    }
   }
 
   &__input {
@@ -356,6 +376,14 @@
     width: 90%;
     @include main-text;
     color: $gray-black;
+    overflow-y: scroll;
+    // max-height: 250px;
+    // height:100px;
+    max-height: 200px;
+
+    &::placeholder {
+      color: $gray-lite;
+    }
 
     &:focus {
       outline: none;
@@ -381,5 +409,10 @@
     border-radius: 12px;
     background: $primary;
     color: $gray-white;
+
+    &:disabled {
+      background: $gray-lite;
+      color: $gray-white;
+    }
   }
 }

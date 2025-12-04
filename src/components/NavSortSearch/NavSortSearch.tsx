@@ -47,37 +47,40 @@ export const NavSortSearch: React.FC<Props> = ({
         >
           <ArrowTale />
         </div>
-
-        <div
-          className={classNames('nav-sort-serach__search', {
-            isActive: activeInput,
-          })}
-        >
-          <SearchSVG className="nav-sort-serach__search-svg" />
-          <input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onFocus={() => setActiveInput(true)}
-            placeholder={t('market-search__input-placeholder')}
-            type="text"
-            className="nav-sort-serach__input"
-          />
+        <div className="nav-sort-serach__input-button">
+          <div
+            className={classNames('nav-sort-serach__search', {
+              isActive: activeInput,
+            })}
+          >
+            <SearchSVG className="nav-sort-serach__search-svg" />
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onFocus={() => setActiveInput(true)}
+              placeholder={t('market-search__input-placeholder')}
+              type="text"
+              className="nav-sort-serach__input"
+            />
+          </div>
+          <button
+            className={classNames('nav-sort-serach__search-button', {
+              isActive: activeInput,
+            })}
+            onClick={() => {
+              setSearchParams({ query: query });
+              setActiveInput(false);
+            }}
+          >
+            Знайти
+          </button>
         </div>
-        <button
-          className={classNames('nav-sort-serach__search-button', {
-            isActive: activeInput,
-          })}
-          onClick={() => {
-            setSearchParams({ query: query });
-            setActiveInput(false);
-          }}
-        >
-          Знайти
-        </button>
+
         <button
           onClick={() => {
             setQuery('');
             setSearchParams(getSearchWith(searchParams, { query: null }));
+            setActiveInput(false);
           }}
           className="nav-sort-serach__decline"
         >

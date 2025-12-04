@@ -3,7 +3,7 @@ import { ArrowTale } from '../../../components/Imgs/ArrowTale';
 import { NavSortSearch } from '../../../components/NavSortSearch/NavSortSearch';
 import { OutletContextType } from '../../../types/openMenuOtlet';
 import { Info } from '../../../components/Imgs/Info';
-import { PlusSVG } from '../../../components/Imgs/PlusSVG';
+// import { PlusSVG } from '../../../components/Imgs/PlusSVG';
 import { Discussion } from '../../../components/Discussion/Discussion';
 import { CreateDiscussion } from '../../../components/CreateDiscussion/CreateDiscussion';
 import { useState, useEffect } from 'react';
@@ -124,7 +124,9 @@ export const Discussions = () => {
 
       if (query) {
         newDiscussions = newDiscussions.filter(
-          (a) => a.name.includes(query) || a.description.includes(query),
+          (a) =>
+            a.name.includes(query) ||
+            (a.description && a.description.includes(query)),
         );
       }
 
@@ -187,13 +189,34 @@ export const Discussions = () => {
                 pageNavigation={pageNavigation}
                 sortings={sortings}
               />
-              {discussionsToShow &&
-                discussionsToShow.map((discussion) => (
-                  <Discussion
-                    key={discussion.id}
-                    discussion={discussion}
+              <div className="profile-discussions__list">
+                {discussionsToShow &&
+                  discussionsToShow.map((discussion) => (
+                    <Discussion
+                      key={discussion.id}
+                      discussion={discussion}
+                    />
+                  ))}
+              </div>
+              <div className="profile-discussions__create-new tablet">
+                <div className="profile-discussions__text-block">
+                  <p className="profile-discussions__create-new-text">
+                    Створити обговорення
+                  </p>
+                  <Info
+                    onClick={() => setOpenRules(true)}
+                    className="profile-discussions__create-new-icon"
                   />
-                ))}
+                </div>
+
+                <button
+                  onClick={() => setOpenAddModal(true)}
+                  className="profile-discussions__create-new-button"
+                >
+                  Додати тему
+                </button>
+              </div>
+
               <ModalWindow
                 visibility={'profile-discussions__add-new-visibility'}
                 openModal={openAddModal}
@@ -203,7 +226,7 @@ export const Discussions = () => {
                 <CreateDiscussion setOpenModal={setOpenAddModal} />
               </ModalWindow>
             </div>
-            <div className="profile-discussions__create-new">
+            <div className="profile-discussions__create-new descktop">
               <p className="profile-discussions__create-new-text">
                 Створити обговорення
               </p>
@@ -218,22 +241,21 @@ export const Discussions = () => {
                 Додати тему
               </button>
             </div>
-            <button
+            {/* <button
               onClick={() => setOpenAddModal(true)}
               className="profile-discussions__create-new-fixed-button"
             >
               <PlusSVG />
-            </button>
+            </button> */}
           </div>
           <ModalWindow
             visibility="create-discussion__rules-visibility"
             openModal={openRules}
             setOpenModal={setOpenRules}
-            secondModal={true}
+            secondModal={false}
           >
             <DiscussionRules setOpenModal={setOpenRules} />
           </ModalWindow>
-
           <Outlet />
         </>
       )}
