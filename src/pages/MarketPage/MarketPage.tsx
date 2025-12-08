@@ -8,11 +8,13 @@ import { categories } from '../../data/categories';
 import { SearchLink } from '../../utils/SearchLink';
 import { useEffect, useState } from 'react';
 import goodsJson from '../../data/products.json';
-import { useSelector } from 'react-redux';
-import { RootState, SavingState } from '../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState, SavingState } from '../../store/store';
 import { Arrow } from '../../components/Imgs/Arrow';
 import { Product } from '../../types/Product';
 import { useTranslation } from 'react-i18next';
+import { CartSVG } from '../../components/Imgs/CartSVG';
+import { setIsCartOpen } from '../../store/slices/shoppingCartSlice';
 
 export const MarketPage = () => {
   const [searchParams] = useSearchParams();
@@ -28,6 +30,7 @@ export const MarketPage = () => {
 
   const { t } = useTranslation();
   const lang = useSelector((state: SavingState) => state.language.language);
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     let goodsToShow = goodsJson;
@@ -187,24 +190,37 @@ export const MarketPage = () => {
 
       <div className="market__main hidden reveal">
         <div className="market__top-bar">
-          {category ?
-            <h2 className="market__h2">
-              {t('market__h2')}{' '}
-              {lang === 'ua' &&
-                categories.options.find((a) =>
-                  a.subcategories.find((b) => b.slug === category),
-                )?.nameUa}
-              {lang === 'en' &&
-                categories.options.find((a) =>
-                  a.subcategories.find((b) => b.slug === category),
-                )?.nameEng}{' '}
-              <span className="market__gray-word">{goods.length}</span>
-            </h2>
-          : <h2 className="market__h2">
-              {t('market__h2-2')}{' '}
-              <span className="market__gray-word">{goods.length}</span>
-            </h2>
-          }
+          <div className="market__top-bar-top">
+            {category ?
+              <h2 className="market__h2">
+                {t('market__h2')}{' '}
+                {lang === 'ua' &&
+                  categories.options.find((a) =>
+                    a.subcategories.find((b) => b.slug === category),
+                  )?.nameUa}
+                {lang === 'en' &&
+                  categories.options.find((a) =>
+                    a.subcategories.find((b) => b.slug === category),
+                  )?.nameEng}{' '}
+                <span className="market__gray-word">{goods.length}</span>
+              </h2>
+            : <h2 className="market__h2">
+                {t('market__h2-2')}{' '}
+                <span className="market__gray-word">{goods.length}</span>
+              </h2>
+            }
+
+            <div
+              onClick={() => {
+                dispatch(setIsCartOpen(true));
+              }}
+              className="cart-button"
+            >
+              <p className="cart-button__text">{t('cart')}</p>
+              <CartSVG />
+            </div>
+          </div>
+
           <DropdownNavigation
             searchParams={searchParams}
             optionType={categories}
