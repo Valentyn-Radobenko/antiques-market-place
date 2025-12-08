@@ -22,11 +22,15 @@ export const ShoppingCartHeader: React.FC<Props> = ({ step }) => {
   return (
     <div className="shopping-cart__header">
       {step === 1 && (
-        <h2 className="shopping-cart__title">
-          {cart.items.length === 0 ?
-            `${t('shopping-cart__title')}`
-          : `${t('shopping-cart__title2')}`}
-        </h2>
+        <h2
+          className="shopping-cart__title"
+          dangerouslySetInnerHTML={{
+            __html:
+              cart.items.length === 0 ?
+                `${t('shopping-cart__title')}`
+              : `${t('shopping-cart__title2')}`,
+          }}
+        ></h2>
       )}
       {step === 2 && (
         <h2 className="shopping-cart__title">{t('shopping-cart__cta-text')}</h2>
