@@ -1,12 +1,19 @@
+// !!!NOTE!!!
+// The logic of the second slider in the modal window is commented out.
+// May be reused in the future.
+// A lot of effort went into this.
+// However the designer decided to change it to something else again.😐
+// A designer is not always a developer's friend... Be careful.
+
+// import { useState } from 'react';
+// import { ModalWindow } from '../ModalWindow/ModalWindow';
+// import { Close } from '../Imgs/Close';
+// import { ZoomableImage } from '../ZoomableImage/ZoomableImage';
 import { useSelector } from 'react-redux';
 import { SavingState } from '../../store/store';
-import { useState } from 'react';
 import Slider from './Slider';
-import { ModalWindow } from '../ModalWindow/ModalWindow';
 import { FrameInspectSVG } from '../Imgs/FrameInspectSVG';
-import { Close } from '../Imgs/Close';
 import { useIsMobile } from '../../hooks/useMediaQuery';
-import { ZoomableImage } from '../ZoomableImage/ZoomableImage';
 
 interface Props {
   title: { ua: string; en: string };
@@ -16,8 +23,8 @@ interface Props {
 export const ItemSlider: React.FC<Props> = ({ title, imgs }) => {
   const lang = useSelector((state: SavingState) => state.language.language);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [scale, setScale] = useState(1);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [scale, setScale] = useState(1);
 
   const isPhone = useIsMobile();
 
@@ -35,13 +42,16 @@ export const ItemSlider: React.FC<Props> = ({ title, imgs }) => {
               <div
                 key={slide}
                 className="item-slider__slide"
-                onClick={() => {
-                  setIsModalOpen(true);
-                }}
+                // onClick={() => {
+                //   setIsModalOpen(true);
+                // }}
               >
                 {!isPhone && (
                   <>
-                    <FrameInspectSVG className="item-slider__slide-icon" />
+                    <FrameInspectSVG
+                      onClick={() => window.open(slide, '__blank')}
+                      className="item-slider__slide-icon"
+                    />
                     <img
                       className="item-slider__slide-img"
                       src={slide}
@@ -67,7 +77,7 @@ export const ItemSlider: React.FC<Props> = ({ title, imgs }) => {
           );
         }}
       />
-      <ModalWindow
+      {/* <ModalWindow
         openModal={isModalOpen}
         setOpenModal={setIsModalOpen}
         visibility="item-slider__modal"
@@ -110,7 +120,7 @@ export const ItemSlider: React.FC<Props> = ({ title, imgs }) => {
             }}
           />
         </div>
-      </ModalWindow>
+      </ModalWindow> */}
     </>
   );
 };
