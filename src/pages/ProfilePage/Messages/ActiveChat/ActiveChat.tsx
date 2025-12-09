@@ -61,9 +61,7 @@ export const ActiveChat: React.FC<Props> = ({
   //   }
   // }, [activeMessges, query, files]);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, [activeChat, query, files]);
+  useEffect(() => {}, [activeChat]);
 
   useEffect(() => {
     if (!componentRef.current) return;
@@ -80,6 +78,7 @@ export const ActiveChat: React.FC<Props> = ({
   }, []);
 
   useEffect(() => {
+    window.scrollTo({ top: 0 });
     setQuery('');
     setFiles([]);
     const scrollEl = simpleBarRef.current?.getScrollElement();

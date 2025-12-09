@@ -27,7 +27,7 @@
     border: 2px solid transparent;
     outline: 1px solid $gray-stroke;
     border-radius: 12px;
-    padding: 15px;
+    padding-inline: 15px;
     display: flex;
     gap: 8px;
     flex-grow: 4;
@@ -51,7 +51,7 @@
     padding: 16px;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
-    padding-block: 16px;
+    // padding-block: 16px;
     background: $primary;
     color: $gray-white;
     @include button-bold;

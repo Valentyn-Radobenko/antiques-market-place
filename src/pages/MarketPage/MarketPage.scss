@@ -73,6 +73,11 @@
 
   &__gray-word {
     color: $gray-darks;
+    @include h3-bold;
+
+    @include on-tablet {
+      @include h4-bold;
+    }
   }
 
   &__settings-catalog {
