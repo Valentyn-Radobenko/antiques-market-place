@@ -67,7 +67,10 @@ export const ItemSlider: React.FC<Props> = ({ title, imgs }) => {
                       style={{ backgroundImage: `url(${slide})` }}
                     >
                       <div className="item-slider__slide-img-square">
-                        <FrameInspectSVG className="item-slider__slide-icon" />
+                        <FrameInspectSVG
+                          onClick={() => window.open(slide, '__blank')}
+                          className="item-slider__slide-icon"
+                        />
                       </div>
                     </div>
                   </>
