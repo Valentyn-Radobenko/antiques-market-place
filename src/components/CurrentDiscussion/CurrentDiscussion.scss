@@ -193,7 +193,9 @@
   }
   &__author-theme {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
+    flex-direction: column;
+    gap: 8px;
   }
   &__author {
     display: flex;
@@ -227,7 +229,7 @@
   &__themes {
     display: flex;
     gap: 8px;
-    justify-content: end;
+    // justify-content: end;
     flex-wrap: wrap;
     width: 100%;
     align-self: center;

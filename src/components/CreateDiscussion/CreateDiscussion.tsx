@@ -36,6 +36,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { User } from '../../types/user';
 import { CloseSmallSVG } from '../Imgs/CloseSmallSVG';
+import SimpleBar from 'simplebar-react';
 
 const PHOTO_AMOUNT = 5;
 
@@ -174,274 +175,278 @@ export const CreateDiscussion: React.FC<Props> = ({ setOpenModal }) => {
   return (
     <>
       {step === 1 && (
-        <div className="create-discussion">
-          <div className="create-discussion__top-bar">
-            <h2 className="create-discussion__title">
-              {t('create-discussion__title')}
-            </h2>
-            <Close
-              onClick={() => setOpenModal(false)}
-              className="create-discussion__close-svg"
-            />
-          </div>
+        <SimpleBar className="create-discussion">
+          <div className="create-discussion__wrapper">
+            <div className="create-discussion__top-bar">
+              <h2 className="create-discussion__title">
+                {t('create-discussion__title')}
+              </h2>
+              <Close
+                onClick={() => setOpenModal(false)}
+                className="create-discussion__close-svg"
+              />
+            </div>
 
-          <div className="create-discussion__main">
-            <div className="create-discussion__create-theme">
-              <div className="create-discussion__create-theme-title-list">
-                <p
-                  className={classNames('create-discussion__add-theme', {
-                    isActive: activeThemes,
-                  })}
-                >
-                  {t('create-discussion__add-theme')}
-                </p>
-                <div className="create-discussion__chosen-themes">
-                  {form.theme.map((theme, i) => (
-                    <div
-                      key={i}
-                      className="create-discussion__chosen-theme"
-                    >
-                      <p>{theme}</p>
-                      <CloseSmallSVG
-                        onClick={() =>
-                          setForm({
-                            ...form,
-                            theme: [...form.theme.filter((a) => a !== theme)],
-                          })
-                        }
-                        className="create-discussion__delete-theme"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <CirclePlusSVG
-                onClick={() => setActiveThemes(!activeThemes)}
-                className={classNames('create-discussion__add-theme-svg', {
-                  isActive: activeThemes,
-                })}
-              />
-            </div>
-            <div
-              style={{
-                height: activeThemes ? heightRef.current?.clientHeight : 0,
-              }}
-              className="create-discussion__themes-wrapper"
-            >
-              <div
-                ref={heightRef}
-                className="create-discussion__themes"
-              >
-                {popularThems.map((theme) => (
+            <div className="create-discussion__main">
+              <div className="create-discussion__create-theme">
+                <div className="create-discussion__create-theme-title-list">
                   <p
-                    onClick={() => handleAddTheme(theme)}
-                    key={theme}
-                    className="create-discussion__theme"
+                    className={classNames('create-discussion__add-theme', {
+                      isActive: activeThemes,
+                    })}
                   >
-                    {theme}
+                    {t('create-discussion__add-theme')}
                   </p>
-                ))}
-                <button
-                  onClick={() => setCreateNewTheme(true)}
-                  className="create-discussion__my-theme"
-                >
-                  <p>{t('create-discussion__my-theme')}</p>
-                  <CirclePlusSVG />
-                </button>
-                <ModalWindow
-                  openModal={createNewTheme}
-                  setOpenModal={setCreateNewTheme}
-                  visibility="create-discussion__create-new-theme"
-                  secondModal={true}
-                >
-                  <CreateNewTheme
-                    handleAddTheme={handleAddTheme}
-                    setCreateNewTheme={setCreateNewTheme}
-                  />
-                </ModalWindow>
-              </div>
-            </div>
-            <div className="create-discussion__form">
-              <div className="create-discussion__input-block">
-                <p className="create-discussion__input-title">
-                  {t('create-discussion__input-title')}
-                </p>
-                <textarea
-                  placeholder={t('create-discussion__input-placeholder')}
-                  className="create-discussion__input"
-                  rows={1}
-                  value={form.name}
-                  onChange={(event) =>
-                    setForm({ ...form, name: event.target.value })
-                  }
-                />
-              </div>
-              <div className="create-discussion__input-block">
-                <p className="create-discussion__input-title">
-                  {t('create-discussion__input-title2')}
-                </p>
-                <EditorContent
-                  editor={editor}
-                  className="create-discussion__editor"
-                />
-              </div>
-              <PhotosList
-                files={form.images}
-                setFiles={(newFiles: File[]) =>
-                  setForm((prev) => ({ ...prev, images: newFiles }))
-                }
-              />
-              <div className="create-discussion__buttons">
-                <div className="create-discussion__buttons-list">
-                  <ListNumerickSVG
-                    onClick={() =>
-                      editor?.chain().focus().toggleOrderedList().run()
-                    }
-                    className="create-discussion__textarea-svg-button"
-                  />
-                  <ListDotedSVG
-                    onClick={() =>
-                      editor?.chain().focus().toggleBulletList().run()
-                    }
-                    className="create-discussion__textarea-svg-button"
-                  />
-                  <TextBoldSVG
-                    onClick={() => editor?.chain().focus().toggleBold().run()}
-                    className="create-discussion__textarea-svg-button"
-                  />
-                  <TextUnderLineSVG
-                    onClick={() =>
-                      editor?.chain().focus().toggleUnderline().run()
-                    }
-                    className="create-discussion__textarea-svg-button"
-                  />
-                </div>
-                <div className="create-discussion__buttons-list">
-                  <TextLinkSVG
-                    className="create-discussion__textarea-svg-button"
-                    onClick={() => {
-                      const hasSelection =
-                        editor?.state.selection.empty === false;
-                      if (editor?.isActive('link')) {
-                        editor
-                          .chain()
-                          .focus()
-                          .extendMarkRange('link')
-                          .unsetLink()
-                          .run();
-                      } else if (hasSelection) {
-                        setOpenLinkModal(true);
-                      } else {
-                        setLinkError(true);
-                      }
-                    }}
-                  />
-                  <ModalWindow
-                    visibility="create-discussion__link-modal-vis"
-                    setOpenModal={setOpenLinkModal}
-                    openModal={openLinkModal}
-                    secondModal={false}
-                  >
-                    <div className="create-discussion__link-modal">
-                      <div className="create-discussion__link-header">
-                        <p className="create-discussion__link-text">
-                          {t('create-discussion__link-text')}
-                        </p>
-                        <Close
-                          className="create-discussion__close-modal"
-                          onClick={() => setOpenLinkModal(false)}
+                  <div className="create-discussion__chosen-themes">
+                    {form.theme.map((theme, i) => (
+                      <div
+                        key={i}
+                        className="create-discussion__chosen-theme"
+                      >
+                        <p>{theme}</p>
+                        <CloseSmallSVG
+                          onClick={() =>
+                            setForm({
+                              ...form,
+                              theme: [...form.theme.filter((a) => a !== theme)],
+                            })
+                          }
+                          className="create-discussion__delete-theme"
                         />
                       </div>
-                      <input
-                        placeholder={t('create-discussion__input-placeholder2')}
-                        className="create-discussion__input"
-                        type="text"
-                        value={link}
-                        onChange={(e) => setLink(e.target.value)}
-                      />
-                      <button
-                        onClick={() => {
-                          if (editor) {
-                            const { to } = editor.state.selection;
-                            editor
-                              ?.chain()
-                              .focus()
-                              .extendMarkRange('link')
-                              .setLink({ href: link })
-                              .setTextSelection(to)
-                              .unsetMark('link')
-                              .run();
-                            setOpenLinkModal(false);
-                            setLink('');
-                          }
-                        }}
-                        className="create-discussion__link-button"
-                      >
-                        {t('create-discussion__link-button')}
-                      </button>
-                    </div>
-                  </ModalWindow>
-                  <AddImgsPlus
-                    onClick={() => ref.current?.click()}
-                    className="create-discussion__textarea-svg-button"
-                  />
-                  <input
-                    accept=".jpg, .jpeg, .png, .pdf, image/jpeg, image/png, application/pdf"
-                    multiple
-                    onChange={addFiles}
-                    ref={ref}
-                    hidden
-                    type="file"
-                    disabled={form.images.length === 5}
-                  />
+                    ))}
+                  </div>
                 </div>
+                <CirclePlusSVG
+                  onClick={() => setActiveThemes(!activeThemes)}
+                  className={classNames('create-discussion__add-theme-svg', {
+                    isActive: activeThemes,
+                  })}
+                />
               </div>
               <div
-                style={{ height: errorHeight }}
-                className={classNames('create-discussion__error-text', {
-                  isActive: linkError,
-                })}
+                style={{
+                  height: activeThemes ? heightRef.current?.clientHeight : 0,
+                }}
+                className="create-discussion__themes-wrapper"
               >
-                <p ref={errorRef}>{t('create-discussion__error-text')}</p>
+                <div
+                  ref={heightRef}
+                  className="create-discussion__themes"
+                >
+                  {popularThems.map((theme) => (
+                    <p
+                      onClick={() => handleAddTheme(theme)}
+                      key={theme}
+                      className="create-discussion__theme"
+                    >
+                      {theme}
+                    </p>
+                  ))}
+                  <button
+                    onClick={() => setCreateNewTheme(true)}
+                    className="create-discussion__my-theme"
+                  >
+                    <p>{t('create-discussion__my-theme')}</p>
+                    <CirclePlusSVG />
+                  </button>
+                  <ModalWindow
+                    openModal={createNewTheme}
+                    setOpenModal={setCreateNewTheme}
+                    visibility="create-discussion__create-new-theme"
+                    secondModal={true}
+                  >
+                    <CreateNewTheme
+                      handleAddTheme={handleAddTheme}
+                      setCreateNewTheme={setCreateNewTheme}
+                    />
+                  </ModalWindow>
+                </div>
+              </div>
+              <div className="create-discussion__form">
+                <div className="create-discussion__input-block">
+                  <p className="create-discussion__input-title">
+                    {t('create-discussion__input-title')}
+                  </p>
+                  <textarea
+                    placeholder={t('create-discussion__input-placeholder')}
+                    className="create-discussion__input"
+                    rows={1}
+                    value={form.name}
+                    onChange={(event) =>
+                      setForm({ ...form, name: event.target.value })
+                    }
+                  />
+                </div>
+                <div className="create-discussion__input-block">
+                  <p className="create-discussion__input-title">
+                    {t('create-discussion__input-title2')}
+                  </p>
+                  <EditorContent
+                    editor={editor}
+                    className="create-discussion__editor"
+                  />
+                </div>
+                <PhotosList
+                  files={form.images}
+                  setFiles={(newFiles: File[]) =>
+                    setForm((prev) => ({ ...prev, images: newFiles }))
+                  }
+                />
+                <div className="create-discussion__buttons">
+                  <div className="create-discussion__buttons-list">
+                    <ListNumerickSVG
+                      onClick={() =>
+                        editor?.chain().focus().toggleOrderedList().run()
+                      }
+                      className="create-discussion__textarea-svg-button"
+                    />
+                    <ListDotedSVG
+                      onClick={() =>
+                        editor?.chain().focus().toggleBulletList().run()
+                      }
+                      className="create-discussion__textarea-svg-button"
+                    />
+                    <TextBoldSVG
+                      onClick={() => editor?.chain().focus().toggleBold().run()}
+                      className="create-discussion__textarea-svg-button"
+                    />
+                    <TextUnderLineSVG
+                      onClick={() =>
+                        editor?.chain().focus().toggleUnderline().run()
+                      }
+                      className="create-discussion__textarea-svg-button"
+                    />
+                  </div>
+                  <div className="create-discussion__buttons-list">
+                    <TextLinkSVG
+                      className="create-discussion__textarea-svg-button"
+                      onClick={() => {
+                        const hasSelection =
+                          editor?.state.selection.empty === false;
+                        if (editor?.isActive('link')) {
+                          editor
+                            .chain()
+                            .focus()
+                            .extendMarkRange('link')
+                            .unsetLink()
+                            .run();
+                        } else if (hasSelection) {
+                          setOpenLinkModal(true);
+                        } else {
+                          setLinkError(true);
+                        }
+                      }}
+                    />
+                    <ModalWindow
+                      visibility="create-discussion__link-modal-vis"
+                      setOpenModal={setOpenLinkModal}
+                      openModal={openLinkModal}
+                      secondModal={false}
+                    >
+                      <div className="create-discussion__link-modal">
+                        <div className="create-discussion__link-header">
+                          <p className="create-discussion__link-text">
+                            {t('create-discussion__link-text')}
+                          </p>
+                          <Close
+                            className="create-discussion__close-modal"
+                            onClick={() => setOpenLinkModal(false)}
+                          />
+                        </div>
+                        <input
+                          placeholder={t(
+                            'create-discussion__input-placeholder2',
+                          )}
+                          className="create-discussion__input"
+                          type="text"
+                          value={link}
+                          onChange={(e) => setLink(e.target.value)}
+                        />
+                        <button
+                          onClick={() => {
+                            if (editor) {
+                              const { to } = editor.state.selection;
+                              editor
+                                ?.chain()
+                                .focus()
+                                .extendMarkRange('link')
+                                .setLink({ href: link })
+                                .setTextSelection(to)
+                                .unsetMark('link')
+                                .run();
+                              setOpenLinkModal(false);
+                              setLink('');
+                            }
+                          }}
+                          className="create-discussion__link-button"
+                        >
+                          {t('create-discussion__link-button')}
+                        </button>
+                      </div>
+                    </ModalWindow>
+                    <AddImgsPlus
+                      onClick={() => ref.current?.click()}
+                      className="create-discussion__textarea-svg-button"
+                    />
+                    <input
+                      accept=".jpg, .jpeg, .png, .pdf, image/jpeg, image/png, application/pdf"
+                      multiple
+                      onChange={addFiles}
+                      ref={ref}
+                      hidden
+                      type="file"
+                      disabled={form.images.length === 5}
+                    />
+                  </div>
+                </div>
+                <div
+                  style={{ height: errorHeight }}
+                  className={classNames('create-discussion__error-text', {
+                    isActive: linkError,
+                  })}
+                >
+                  <p ref={errorRef}>{t('create-discussion__error-text')}</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="create-discussion__bottom-bar">
-            <div className="create-discussion__checkbox">
-              <p className="create-discussion__anonim">
-                {t('create-discussion__anonim')}
-              </p>
-              <CheckboxSquareSVG
-                className="create-discussion__anonim-svg"
-                onClick={() => setForm({ ...form, anonimus: !form.anonimus })}
-                value={form.anonimus ? 'checked' : 'default'}
+            <div className="create-discussion__bottom-bar">
+              <div className="create-discussion__checkbox">
+                <p className="create-discussion__anonim">
+                  {t('create-discussion__anonim')}
+                </p>
+                <CheckboxSquareSVG
+                  className="create-discussion__anonim-svg"
+                  onClick={() => setForm({ ...form, anonimus: !form.anonimus })}
+                  value={form.anonimus ? 'checked' : 'default'}
+                />
+              </div>
+              <Tooltip
+                customTooltipClassName="create-discussion__button-tooltip"
+                customContentClassName="create-discussion__button-tooltip-content"
+                renderButton={() => (
+                  <button
+                    onClick={handleSubmit}
+                    className="create-discussion__button"
+                    disabled={!canSubmit}
+                  >
+                    {t('create-discussion__button')}
+                  </button>
+                )}
+                renderContent={() => (
+                  <>
+                    {' '}
+                    {!canSubmit && (
+                      <p className="shopping-cart__cta-info-text">
+                        {t('shopping-cart__cta-info-text')}
+                      </p>
+                    )}
+                  </>
+                )}
               />
             </div>
-            <Tooltip
-              customTooltipClassName="create-discussion__button-tooltip"
-              customContentClassName="create-discussion__button-tooltip-content"
-              renderButton={() => (
-                <button
-                  onClick={handleSubmit}
-                  className="create-discussion__button"
-                  disabled={!canSubmit}
-                >
-                  {t('create-discussion__button')}
-                </button>
-              )}
-              renderContent={() => (
-                <>
-                  {' '}
-                  {!canSubmit && (
-                    <p className="shopping-cart__cta-info-text">
-                      {t('shopping-cart__cta-info-text')}
-                    </p>
-                  )}
-                </>
-              )}
-            />
           </div>
-        </div>
+        </SimpleBar>
       )}
       {step === 2 && <ModalEndingDiscussions setOpenModal={setOpenModal} />}
     </>
