@@ -7,6 +7,7 @@ import { User } from '../../../../types/user';
 import { CheckCircleOutlineSVG } from '../../../../components/Imgs/CheckCircleOutlineSVG';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
+import { Close } from '../../../../components/Imgs/Close';
 
 type Props = {
   user: User;
@@ -48,12 +49,20 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                 {user.lastName ||
                   `${t('shopping-cart__order-block-placeholder-lastname')}`}
               </p>
-              <EditSVG
-                onClick={() => setChangeName(!changeName)}
-                className={classNames('account-general__data-ico', {
-                  isActive: changeName,
-                })}
-              />
+              {changeName ?
+                <Close
+                  onClick={() => setChangeName(!changeName)}
+                  className={classNames('account-general__data-ico', {
+                    // isActive: changeName,
+                  })}
+                />
+              : <EditSVG
+                  onClick={() => setChangeName(!changeName)}
+                  className={classNames('account-general__data-ico', {
+                    // isActive: changeName,
+                  })}
+                />
+              }
             </div>
 
             {changeName && (
@@ -120,12 +129,20 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                 {user.city ||
                   `${t('shopping-cart__order-block-placeholder-city')}`}
               </p>
-              <EditSVG
-                onClick={() => setChangeLocation(!changeLocation)}
-                className={classNames('account-general__data-ico', {
-                  isActive: changeLocation,
-                })}
-              />
+              {changeLocation ?
+                <Close
+                  onClick={() => setChangeLocation(!changeLocation)}
+                  className={classNames('account-general__data-ico', {
+                    // isActive: changeLocation,
+                  })}
+                />
+              : <EditSVG
+                  onClick={() => setChangeLocation(!changeLocation)}
+                  className={classNames('account-general__data-ico', {
+                    // isActive: changeLocation,
+                  })}
+                />
+              }
             </div>
             {changeLocation && (
               <div className="account-general__change-data-wrapper">
@@ -195,12 +212,20 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
                 {user.phoneNumber ||
                   `${t('shopping-cart__order-block-label3')}`}
               </p>
-              <EditSVG
-                onClick={() => setChangePhone(!changePhone)}
-                className={classNames('account-general__data-ico', {
-                  isActive: changePhone,
-                })}
-              />
+              {changePhone ?
+                <Close
+                  onClick={() => setChangePhone(!changePhone)}
+                  className={classNames('account-general__data-ico', {
+                    // isActive: changePhone,
+                  })}
+                />
+              : <EditSVG
+                  onClick={() => setChangePhone(!changePhone)}
+                  className={classNames('account-general__data-ico', {
+                    // isActive: changePhone,
+                  })}
+                />
+              }
             </div>
             {changePhone && (
               <div className="account-general__change-data-wrapper">
@@ -242,12 +267,20 @@ export const AccountGeneral: React.FC<Props> = ({ user }) => {
               <p className="account-general__data-text">
                 {user.email || `${t('shopping-cart__order-block-label5')}`}
               </p>
-              <EditSVG
-                onClick={() => setChangeEmail(!changeEmail)}
-                className={classNames('account-general__data-ico', {
-                  isActive: changeEmail,
-                })}
-              />
+              {changeEmail ?
+                <Close
+                  onClick={() => setChangeEmail(!changeEmail)}
+                  className={classNames('account-general__data-ico', {
+                    // isActive: changeEmail,
+                  })}
+                />
+              : <EditSVG
+                  onClick={() => setChangeEmail(!changeEmail)}
+                  className={classNames('account-general__data-ico', {
+                    // isActive: changeEmail,
+                  })}
+                />
+              }
             </div>
             {changeEmail && (
               <div className="account-general__change-data-wrapper">

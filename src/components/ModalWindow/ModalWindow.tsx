@@ -22,6 +22,8 @@ export const ModalWindow: React.FC<Props> = ({
   setOpenModal,
   mode = 'standard',
 }) => {
+  console.log(secondModal); //для тимчасової заглушки
+
   useEffect(() => {
     if (openModal) {
       document.body.style.overflow = 'hidden';
@@ -61,13 +63,13 @@ export const ModalWindow: React.FC<Props> = ({
     <div
       className={classNames('modal', visibility, {
         isActive: openModal,
-        secondModal: secondModal,
+        // secondModal: secondModal,
       })}
     >
       {openModal && children}
       <div
         className={classNames('modal__background', {
-          secondModal: secondModal,
+          // secondModal: secondModal,
         })}
         onClick={handleOnClick}
       />

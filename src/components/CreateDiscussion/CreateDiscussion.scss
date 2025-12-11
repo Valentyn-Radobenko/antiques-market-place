@@ -1,8 +1,6 @@
 .create-discussion {
   max-width: 670px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  // max-height: calc(100vh - 24px);
   padding: 24px;
   background: $gray-white;
   border-radius: 12px;
@@ -13,7 +11,17 @@
   }
 
   @include on-phone {
+    align-self: flex-end;
+
+    max-height: calc(100vh - 16px);
     padding: 16px;
+    padding-bottom: 112px;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
   }
 
   &__top-bar {

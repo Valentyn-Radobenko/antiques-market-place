@@ -1,4 +1,5 @@
 .page-base-navigation {
+  box-shadow: $drop-shadow;
   @include on-tablet {
     min-width: 100vw;
     margin-left: -24px;
