@@ -80,7 +80,7 @@
     gap: 16px;
 
     &.isActive {
-      gap: 0;
+      // gap: 0;
     }
   }
 
@@ -103,6 +103,11 @@
       border-bottom-right-radius: 0px;
       border-right: 0;
     }
+  }
+
+  &__search-wrapper {
+    display: flex;
+    width: 100%;
   }
 
   &__search-button {
@@ -174,11 +179,11 @@
 
   &__h3 {
     color: $gray-black;
-
-    @include h3-bold;
-    @include on-phone {
-      @include h4-bold;
-    }
+    @include main-text;
+    // @include h3-bold;
+    // @include on-phone {
+    //   @include h4-bold;
+    // }
   }
 
   &__green-word {

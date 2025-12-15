@@ -49,43 +49,44 @@ export const MarketForm: React.FC<Props> = ({ searchQuery }) => {
           >
             <ArrowTale />
           </div>
-
-          <div
-            className={classNames('market-search__search', {
-              isActive: focus,
-            })}
-          >
-            <SearchSVG
-              className={classNames('market-search__search-svg', {
+          <div className="market-search__search-wrapper">
+            <div
+              className={classNames('market-search__search', {
                 isActive: focus,
               })}
-            />
-            <input
-              autoFocus={focus}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder={t('market-search__input-placeholder')}
-              type="text"
-              className="market-search__input"
-              value={query}
-            />
+            >
+              <SearchSVG
+                className={classNames('market-search__search-svg', {
+                  isActive: focus,
+                })}
+              />
+              <input
+                autoFocus={focus}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder={t('market-search__input-placeholder')}
+                type="text"
+                className="market-search__input"
+                value={query}
+              />
+            </div>
+            <button
+              type="submit"
+              className={classNames('market-search__search-button', {
+                isActive: focus,
+              })}
+            >
+              {t('market-search__search-button')}
+            </button>
+            <button
+              onClick={() => {
+                setQuery('');
+                setSearchParams(getSearchWith(searchParams, { query: null }));
+              }}
+              className="market-search__decline"
+            >
+              {t('market-search__decline')}
+            </button>
           </div>
-          <button
-            type="submit"
-            className={classNames('market-search__search-button', {
-              isActive: focus,
-            })}
-          >
-            {t('market-search__search-button')}
-          </button>
-          <button
-            onClick={() => {
-              setQuery('');
-              setSearchParams(getSearchWith(searchParams, { query: null }));
-            }}
-            className="market-search__decline"
-          >
-            {t('market-search__decline')}
-          </button>
         </form>
         {searchQuery && (
           <h2 className="market-search__h3">

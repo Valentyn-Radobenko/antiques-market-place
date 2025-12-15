@@ -16,7 +16,7 @@ import { useSelector } from 'react-redux';
 import { SavingState } from '../../store/store';
 
 const MAXHEIGHT = 266;
-const MAXHEIGHTTABLET = 350;
+const MAXHEIGHTTABLET = 300;
 
 type Props = {
   optionType: OptionType;

@@ -46,11 +46,14 @@
   }
 
   &__search-button {
+    @include primary-button;
+
+    width: auto;
     box-sizing: border-box;
     display: none;
     padding: 16px;
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
     // padding-block: 16px;
     background: $primary;
     color: $gray-white;

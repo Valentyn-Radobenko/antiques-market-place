@@ -330,7 +330,7 @@
     gap: 8px;
     padding: 8px;
     border-radius: 12px;
-    width: calc(100% - 40px);
+    width: calc(100% - 20px);
     overflow: hidden;
 
     &.myComment {
@@ -406,6 +406,7 @@
     background: $background-texts;
     border-radius: 12px;
     border-left: $additional-mint solid 1px;
+    padding-left: 8px;
   }
 
   &__hint {
