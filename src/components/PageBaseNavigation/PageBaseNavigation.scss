@@ -33,15 +33,17 @@
     padding-block: 16px;
     border-bottom: 1px solid $gray-white-darks;
     transition: all ease $effect-duration;
+    @include main-text;
 
     &:hover {
       @include button-bold;
       color: $additional-greenas;
     }
 
-    @include main-text;
-
     @include on-tablet {
+      &:hover {
+        @include main-text;
+      }
       padding-block: 9px;
       min-width: 165.6px;
       background: none;

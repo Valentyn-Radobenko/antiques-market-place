@@ -150,6 +150,10 @@
     justify-content: center;
     align-items: center;
     z-index: 3;
+    padding: 24px;
+    @include on-phone {
+      padding: 16px;
+    }
   }
 
   &__form {
@@ -301,6 +305,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 24px;
+    @include on-phone {
+      padding: 16px;
+    }
   }
 
   &__link-modal {

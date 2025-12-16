@@ -64,6 +64,11 @@
     color: $gray-lite;
     cursor: pointer;
     transition: inherit;
+
+    @include on-tablet {
+      color: $additional-greenas;
+    }
+
     &:hover {
       color: $additional-greenas;
     }

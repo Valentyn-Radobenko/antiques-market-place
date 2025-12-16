@@ -54,12 +54,12 @@ export const ActiveChat: React.FC<Props> = ({
   const simpleBarRef = useRef<SimpleBarCore | null>(null);
   const componentRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   window.scrollTo({ top: 0 });
-  //   if (componentRef.current) {
-  //     setChatHeight(componentRef.current?.clientHeight);
-  //   }
-  // }, [activeMessges, query, files]);
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+    if (componentRef.current) {
+      setChatHeight(componentRef.current?.clientHeight);
+    }
+  }, [activeMessges]);
 
   useEffect(() => {}, [activeChat]);
 

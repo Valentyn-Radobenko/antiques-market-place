@@ -3,8 +3,9 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { SearchSVG } from '../Imgs/SearchSVG';
 import { getSearchWith } from '../../utils/SearchHelper';
-import { ArrowTale } from '../Imgs/ArrowTale';
+// import { ArrowTale } from '../Imgs/ArrowTale';
 import { useTranslation } from 'react-i18next';
+import { Close } from '../Imgs/Close';
 
 type Props = {
   searchQuery: string | null;
@@ -40,52 +41,57 @@ export const MarketForm: React.FC<Props> = ({ searchQuery }) => {
             setFocus(false);
           }}
         >
-          <div
-            onClick={() => {
-              setQuery('');
-              setSearchParams(getSearchWith(searchParams, { query: null }));
-            }}
-            className="market-search__arrow-wrapper"
-          >
-            <ArrowTale />
-          </div>
-
-          <div
-            className={classNames('market-search__search', {
-              isActive: focus,
-            })}
-          >
-            <SearchSVG
-              className={classNames('market-search__search-svg', {
+          {searchParams.get('query') && (
+            <div
+              onClick={() => {
+                setQuery('');
+                setSearchParams(getSearchWith(searchParams, { query: null }));
+              }}
+              className="market-search__arrow-wrapper"
+            >
+              <Close />
+            </div>
+          )}
+          <div className="market-search__search-wrapper">
+            <div
+              className={classNames('market-search__search', {
                 isActive: focus,
               })}
-            />
-            <input
-              autoFocus={focus}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder={t('market-search__input-placeholder')}
-              type="text"
-              className="market-search__input"
-              value={query}
-            />
+            >
+              <SearchSVG
+                className={classNames('market-search__search-svg', {
+                  isActive: focus,
+                })}
+              />
+              <input
+                autoFocus={focus}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder={t('market-search__input-placeholder')}
+                type="text"
+                className="market-search__input"
+                value={query}
+              />
+            </div>
+            <button
+              type="submit"
+              className={classNames('market-search__search-button', {
+                isActive: focus,
+              })}
+            >
+              {t('market-search__search-button')}
+            </button>
+            {searchParams.get('query') && (
+              <button
+                onClick={() => {
+                  setQuery('');
+                  setSearchParams(getSearchWith(searchParams, { query: null }));
+                }}
+                className="market-search__decline"
+              >
+                {t('market-search__decline')}
+              </button>
+            )}
           </div>
-          <button
-            type="submit"
-            className={classNames('market-search__search-button', {
-              isActive: focus,
-            })}
-          >
-            {t('market-search__search-button')}
-          </button>
-          <button
-            onClick={() => {
-              setQuery('');
-              setSearchParams(getSearchWith(searchParams, { query: null }));
-            }}
-            className="market-search__decline"
-          >
-            {t('market-search__decline')}
-          </button>
         </form>
         {searchQuery && (
           <h2 className="market-search__h3">

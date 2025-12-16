@@ -5,9 +5,10 @@ import { PageBaseNavigation } from '../PageBaseNavigation/PageBaseNavigation';
 import { DropdownOptions } from '../DropdownOptions/DropdownOptions';
 import { useTranslation } from 'react-i18next';
 import { BaseNavSort, BaseNavigation } from '../../types/baseNavigation';
-import { ArrowTale } from '../Imgs/ArrowTale';
+// import { ArrowTale } from '../Imgs/ArrowTale';
 import { useSearchParams } from 'react-router-dom';
 import { getSearchWith } from '../../utils/SearchHelper';
+import { Close } from '../Imgs/Close';
 
 type Props = {
   sortings: BaseNavSort[];
@@ -22,7 +23,6 @@ export const NavSortSearch: React.FC<Props> = ({
   const { t } = useTranslation();
   const [query, setQuery] = useState<string>('');
   const [searchParams, setSearchParams] = useSearchParams();
-  searchParams.get('query');
 
   return (
     <div className="nav-sort-serach">
@@ -38,15 +38,17 @@ export const NavSortSearch: React.FC<Props> = ({
           setActiveInput(false);
         }}
       >
-        <div
-          onClick={() => {
-            setQuery('');
-            setSearchParams(getSearchWith(searchParams, { query: null }));
-          }}
-          className="nav-sort-serach__arrow-wrapper"
-        >
-          <ArrowTale />
-        </div>
+        {searchParams.get('query') && (
+          <div
+            onClick={() => {
+              setQuery('');
+              setSearchParams(getSearchWith(searchParams, { query: null }));
+            }}
+            className="nav-sort-serach__arrow-wrapper"
+          >
+            <Close />
+          </div>
+        )}
         <div className="nav-sort-serach__input-button">
           <div
             className={classNames('nav-sort-serach__search', {
@@ -76,16 +78,18 @@ export const NavSortSearch: React.FC<Props> = ({
           </button>
         </div>
 
-        <button
-          onClick={() => {
-            setQuery('');
-            setSearchParams(getSearchWith(searchParams, { query: null }));
-            setActiveInput(false);
-          }}
-          className="nav-sort-serach__decline"
-        >
-          скасувати
-        </button>
+        {searchParams.get('query') && (
+          <button
+            onClick={() => {
+              setQuery('');
+              setSearchParams(getSearchWith(searchParams, { query: null }));
+              setActiveInput(false);
+            }}
+            className="nav-sort-serach__decline"
+          >
+            скасувати
+          </button>
+        )}
         <div
           className={classNames('nav-sort-serach__sorting', {
             isActive: !activeInput,
