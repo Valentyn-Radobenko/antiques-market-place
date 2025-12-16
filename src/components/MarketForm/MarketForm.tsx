@@ -3,8 +3,9 @@ import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { SearchSVG } from '../Imgs/SearchSVG';
 import { getSearchWith } from '../../utils/SearchHelper';
-import { ArrowTale } from '../Imgs/ArrowTale';
+// import { ArrowTale } from '../Imgs/ArrowTale';
 import { useTranslation } from 'react-i18next';
+import { Close } from '../Imgs/Close';
 
 type Props = {
   searchQuery: string | null;
@@ -40,15 +41,17 @@ export const MarketForm: React.FC<Props> = ({ searchQuery }) => {
             setFocus(false);
           }}
         >
-          <div
-            onClick={() => {
-              setQuery('');
-              setSearchParams(getSearchWith(searchParams, { query: null }));
-            }}
-            className="market-search__arrow-wrapper"
-          >
-            <ArrowTale />
-          </div>
+          {searchParams.get('query') && (
+            <div
+              onClick={() => {
+                setQuery('');
+                setSearchParams(getSearchWith(searchParams, { query: null }));
+              }}
+              className="market-search__arrow-wrapper"
+            >
+              <Close />
+            </div>
+          )}
           <div className="market-search__search-wrapper">
             <div
               className={classNames('market-search__search', {
@@ -77,15 +80,17 @@ export const MarketForm: React.FC<Props> = ({ searchQuery }) => {
             >
               {t('market-search__search-button')}
             </button>
-            <button
-              onClick={() => {
-                setQuery('');
-                setSearchParams(getSearchWith(searchParams, { query: null }));
-              }}
-              className="market-search__decline"
-            >
-              {t('market-search__decline')}
-            </button>
+            {searchParams.get('query') && (
+              <button
+                onClick={() => {
+                  setQuery('');
+                  setSearchParams(getSearchWith(searchParams, { query: null }));
+                }}
+                className="market-search__decline"
+              >
+                {t('market-search__decline')}
+              </button>
+            )}
           </div>
         </form>
         {searchQuery && (
