@@ -125,8 +125,9 @@ export const Discussions = () => {
       if (query) {
         newDiscussions = newDiscussions.filter(
           (a) =>
-            a.name.includes(query) ||
-            (a.description && a.description.includes(query)),
+            a.name.toLowerCase().includes(query.toLowerCase()) ||
+            (a.description &&
+              a.description.toLowerCase().includes(query.toLowerCase())),
         );
       }
 
@@ -190,13 +191,40 @@ export const Discussions = () => {
                 sortings={sortings}
               />
               <div className="profile-discussions__list">
-                {discussionsToShow &&
+                {discussionsToShow && discussionsToShow.length > 0 ?
                   discussionsToShow.map((discussion) => (
                     <Discussion
                       key={discussion.id}
                       discussion={discussion}
                     />
-                  ))}
+                  ))
+                : <div className="items__no-items-wrapper">
+                    <div className="items__no-items hidden reveal">
+                      <div className="items__text-block">
+                        <div className="items__text-block-2">
+                          <p className="items__yikes">
+                            {t('no-content__block-top-text')}
+                          </p>
+                          <p className="items__main-text-no-items">
+                            {t('items__main-text-no-items')}
+                          </p>
+                        </div>
+
+                        <p className="items__hint-noitems desk-tab">
+                          {t('items__hint-noitems')}
+                        </p>
+                      </div>
+                      <img
+                        className="items__img"
+                        src="images/no-items.png"
+                        alt=""
+                      />
+                    </div>
+                    <p className="items__hint-noitems phone">
+                      {t('items__hint-noitems')}
+                    </p>
+                  </div>
+                }
               </div>
               <div className="profile-discussions__create-new tablet">
                 <div className="profile-discussions__text-block">

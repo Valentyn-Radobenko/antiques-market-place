@@ -190,8 +190,12 @@ export const Orders = () => {
 
       if (query) {
         filtredOrders = filtredOrders.filter((a) =>
-          a.items.map((b) => b.name).includes(query),
+          a.items.find((b) =>
+            b.name.toLowerCase().includes(query.toLowerCase()),
+          ),
         );
+
+        console.log(filtredOrders);
       }
 
       if (sortBy) {
@@ -257,13 +261,40 @@ export const Orders = () => {
             sortings={sortings}
           />
           <div className="orders__list">
-            {ordersToShow &&
+            {ordersToShow && ordersToShow.length > 0 ?
               ordersToShow.map((order) => (
                 <Order
                   key={order.id}
                   order={order}
                 />
-              ))}
+              ))
+            : <div className="items__no-items-wrapper">
+                <div className="items__no-items hidden reveal">
+                  <div className="items__text-block">
+                    <div className="items__text-block-2">
+                      <p className="items__yikes">
+                        {t('no-content__block-top-text')}
+                      </p>
+                      <p className="items__main-text-no-items">
+                        {t('items__main-text-no-items')}
+                      </p>
+                    </div>
+
+                    <p className="items__hint-noitems desk-tab">
+                      {t('items__hint-noitems')}
+                    </p>
+                  </div>
+                  <img
+                    className="items__img"
+                    src="images/no-items.png"
+                    alt=""
+                  />
+                </div>
+                <p className="items__hint-noitems phone">
+                  {t('items__hint-noitems')}
+                </p>
+              </div>
+            }
           </div>
         </div>
       )}
