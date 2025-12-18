@@ -127,6 +127,7 @@
 
   &__simplebar-block {
     width: 749px;
+    overflow-x: hidden;
 
     @include on-tablet {
       width: auto;

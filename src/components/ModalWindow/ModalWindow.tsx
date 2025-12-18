@@ -22,7 +22,12 @@ export const ModalWindow: React.FC<Props> = ({
   setOpenModal,
   mode = 'standard',
 }) => {
-  console.log(secondModal); //для тимчасової заглушки
+  console.log(secondModal);
+  // if (secondModal) {
+  //   let i = 0
+  //   i = 2
+  // }
+  //для тимчасової заглушки
 
   useEffect(() => {
     if (openModal) {

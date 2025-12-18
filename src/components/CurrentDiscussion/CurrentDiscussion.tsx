@@ -55,6 +55,14 @@ export const CurrentDiscussion: React.FC<Props> = ({
 
   const imagesLength = currentDiscussion.images.length;
 
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
   const handleScrollToComment = (commentId: string) => {
     const target = document.getElementById(`comment-${commentId}`);
     if (target) {
