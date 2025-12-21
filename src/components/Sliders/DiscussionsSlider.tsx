@@ -41,7 +41,7 @@ export const DiscussionsSlider: React.FC = () => {
             <div className="slider__discussion-user">
               <img
                 src={slide.author.image}
-                className={slide.author.name}
+                className="slider__discussion-user-img"
               />
               <div className="slider__discussion-user-name">
                 {slide.author.name}
