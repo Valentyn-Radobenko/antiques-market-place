@@ -103,9 +103,12 @@ export const DropdownOptions: React.FC<Props> = ({ sortings }) => {
                   <SearchLink
                     params={{ sortBy: b.slug }}
                     key={b.slug}
-                    className={classNames('dropdown-options__list-item-item', {
-                      isActive: b.slug === sortBy,
-                    })}
+                    className={classNames(
+                      'dropdown-options__list-item-item hoverable',
+                      {
+                        isActive: b.slug === sortBy,
+                      },
+                    )}
                   >
                     <p>{b.ua}</p>
                     <CheckboxRound isActive={b.slug === sortBy} />

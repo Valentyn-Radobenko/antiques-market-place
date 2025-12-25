@@ -2,7 +2,10 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-bottom: 32px;
+  align-self: center;
+  max-width: 1360px;
+  width: 100%;
+  margin-block: 32px;
 
   @include on-tablet {
     margin-bottom: 24px;
