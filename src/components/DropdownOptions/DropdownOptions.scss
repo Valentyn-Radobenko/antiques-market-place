@@ -47,6 +47,7 @@
     color: $additional-greenas;
     cursor: pointer;
     @include main-text;
+    transition: all ease $effect-duration;
 
     @include on-phone {
       background: $background-plate;
@@ -54,6 +55,7 @@
 
     &.isActive {
       color: $additional-freshherb-elect;
+      @include button-bold;
     }
   }
 
@@ -85,18 +87,26 @@
     cursor: pointer;
     padding: 16px 20px;
     display: flex;
+    gap: 8px;
     align-items: center;
     justify-content: space-between;
     color: $additional-greenas;
     @include main-text;
     align-items: center;
+    transition: all ease $effect-duration;
 
     @include on-phone {
       background: none;
     }
 
-    &.isActive {
+    &:hover {
+      // background: $additional-white-green;
       color: $additional-freshherb-elect;
+    }
+
+    &.isActive {
+      // color: $additional-freshherb-elect;
+      @include button-bold;
     }
   }
 
