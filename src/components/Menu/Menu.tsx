@@ -98,21 +98,41 @@ export const Menu = () => {
                 customClassName="menu__dropdown"
                 renderContent={() => (
                   <div className="menu__options menu__options--questions">
-                    <button className="menu__option menu__option--question">
+                    <Link
+                      to={'/no-content'}
+                      onClick={() => dispatch(setIsMenuOn(!isMenuOn))}
+                      className="menu__option menu__option--question"
+                    >
                       {t('exp-questions__button')}
-                    </button>
-                    <button className="menu__option menu__option--question">
+                    </Link>
+                    <Link
+                      to={'/no-content'}
+                      onClick={() => dispatch(setIsMenuOn(!isMenuOn))}
+                      className="menu__option menu__option--question"
+                    >
                       {t('exp-questions__button2')}
-                    </button>
-                    <button className="menu__option menu__option--question">
+                    </Link>
+                    <Link
+                      to={'/no-content'}
+                      onClick={() => dispatch(setIsMenuOn(!isMenuOn))}
+                      className="menu__option menu__option--question"
+                    >
                       {t('exp-questions__button3')}
-                    </button>
-                    <button className="menu__option menu__option--question">
+                    </Link>
+                    <Link
+                      to={'/no-content'}
+                      onClick={() => dispatch(setIsMenuOn(!isMenuOn))}
+                      className="menu__option menu__option--question"
+                    >
                       {t('exp-questions__button4')}
-                    </button>
-                    <button className="menu__option menu__option--question">
+                    </Link>
+                    <Link
+                      to={'/no-content'}
+                      onClick={() => dispatch(setIsMenuOn(!isMenuOn))}
+                      className="menu__option menu__option--question"
+                    >
                       {t('exp-questions__button5')}
-                    </button>
+                    </Link>
                   </div>
                 )}
               />
