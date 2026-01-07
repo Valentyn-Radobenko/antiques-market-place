@@ -22,7 +22,7 @@ export const Catalog: React.FC<Props> = ({ goods }) => {
           ))}
         </div>
       : <div className="items__no-items-wrapper">
-          <div className="items__no-items hidden reveal">
+          <div className="items__no-items">
             <div className="items__text-block">
               <div className="items__text-block-2">
                 <p className="items__yikes">

@@ -66,12 +66,18 @@ export const Footer = () => {
               customClassName="footer__dropdown"
               renderContent={() => (
                 <div className="footer__options">
-                  <button className="footer__option">
+                  <Link
+                    to={'/no-content'}
+                    className="footer__option"
+                  >
                     {t('footer__option')}
-                  </button>
-                  <button className="footer__option">
+                  </Link>
+                  <Link
+                    to={'/no-content'}
+                    className="footer__option"
+                  >
                     {t('footer__option2')}
-                  </button>
+                  </Link>
                 </div>
               )}
             />
@@ -87,12 +93,18 @@ export const Footer = () => {
               customClassName="footer__dropdown"
               renderContent={() => (
                 <div className="footer__options">
-                  <button className="footer__option">
+                  <Link
+                    to={'/no-content'}
+                    className="footer__option"
+                  >
                     {t('footer__option3')}
-                  </button>
-                  <button className="footer__option">
+                  </Link>
+                  <Link
+                    to={'/no-content'}
+                    className="footer__option"
+                  >
                     {t('footer__option4')}
-                  </button>
+                  </Link>
                 </div>
               )}
             />
@@ -108,12 +120,18 @@ export const Footer = () => {
               customClassName="footer__dropdown"
               renderContent={() => (
                 <div className="footer__options">
-                  <button className="footer__option">
+                  <Link
+                    to={'/no-content'}
+                    className="footer__option"
+                  >
                     {t('footer__option5')}
-                  </button>
-                  <button className="footer__option">
+                  </Link>
+                  <Link
+                    to={'/no-content'}
+                    className="footer__option"
+                  >
                     {t('footer__option6')}
-                  </button>
+                  </Link>
                 </div>
               )}
             />
@@ -127,20 +145,20 @@ export const Footer = () => {
               </h4>
               <ul className="footer__list">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to={'/no-content'}
                     className="footer__link hidden reveal"
                   >
                     {t('footer__option')}
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to={'/no-content'}
                     className="footer__link hidden reveal"
                   >
                     {t('footer__option2')}
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -150,20 +168,20 @@ export const Footer = () => {
               </h4>
               <ul className="footer__list">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to={'/no-content'}
                     className="footer__link hidden reveal"
                   >
                     {t('footer__option3')}
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to={'/no-content'}
                     className="footer__link hidden reveal"
                   >
                     {t('footer__option4')}
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -173,20 +191,20 @@ export const Footer = () => {
               </h4>
               <ul className="footer__list">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to={'/no-content'}
                     className="footer__link hidden reveal"
                   >
                     {t('footer__option5')}
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    to={'/no-content'}
                     className="footer__link hidden reveal"
                   >
                     {t('footer__option6')}
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

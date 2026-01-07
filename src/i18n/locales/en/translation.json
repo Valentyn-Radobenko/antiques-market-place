@@ -331,6 +331,9 @@
   "no-content__block-bottom3": "Either it ran away in an unknown direction, or it was never here. Don't worry, you can always go back to the main page and find something interesting!",
   "not-found-page__link": "Go to Market",
 
+  "no-content__block-top-title4": "The DIKO team is already working on this page",
+  "no-content__block-bottom4": "It's empty here for now, but that's no coincidence. Something useful will be coming soon 👀",
+
   "not-found": "Not found",
   "product__char-label": "Country:",
   "product__char-label2": "Description:",

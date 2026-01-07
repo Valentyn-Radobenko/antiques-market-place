@@ -4,8 +4,8 @@ import { AppDispatch, SavingState } from '../../../../store/store';
 import { ArrowBackSVG } from '../../../Imgs/ArrowBackSVG';
 import { Dropdown } from '../../../Dropdown/Dropdown';
 import {
-  updateDeliveryBranch,
-  updateDeliveryService,
+  // updateDeliveryBranch,
+  // updateDeliveryService,
   updatePaymentMethod,
 } from '../../../../store/slices/shoppingCartSlice';
 import { CheckboxRound } from '../../../Imgs/CheckBoxRound/CheckBoxRound';
@@ -88,7 +88,7 @@ export const PaymentStep: React.FC<Props> = ({
         )}`}
         renderContent={() => (
           <>
-            <div className="shopping-cart__order-block-radio-dropdown-inputs">
+            {/* <div className="shopping-cart__order-block-radio-dropdown-inputs">
               <label className="shopping-cart__order-block-radio-dropdown-label">
                 {t('shopping-cart__order-block-radio-dropdown-label')}
                 <input
@@ -140,7 +140,7 @@ export const PaymentStep: React.FC<Props> = ({
                   </p>
                 )}
               </label>
-            </div>
+            </div> */}
 
             <p className="shopping-cart__order-block-receiving-notification">
               {t('shopping-cart__order-block-receiving-notification')}

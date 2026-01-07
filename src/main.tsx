@@ -35,6 +35,7 @@ import { Articles } from './pages/ArticlesPage/Articles/Articles';
 import { DiscussionsPage } from './pages/DiscussionsPage/DiscussionsPage';
 import { DiscussionPage } from './pages/DiscussionPage/DiscussionPage';
 import { RevealInitializer } from './components/Reveal/RevealInitializer';
+import { NoContentPage } from './pages/NoContentPage/NoContentPage';
 
 createRoot(document.getElementById('root') as HTMLDivElement).render(
   <StrictMode>
@@ -117,6 +118,7 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
                 element={<ExhibitionsNoContent />}
               />
             </Route>
+
             <Route
               path="club/articles"
               element={<ArticlesPage />}
@@ -145,6 +147,7 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
               path="expertise"
               element={<ExpertisePage />}
             />
+
             <Route element={<PrivateRoute />}>
               <Route
                 path="me"
@@ -189,6 +192,12 @@ createRoot(document.getElementById('root') as HTMLDivElement).render(
                 />
               </Route>
             </Route>
+
+            <Route
+              path="no-content"
+              element={<NoContentPage />}
+            />
+
             <Route
               path="*"
               element={<NotFoundPage />}

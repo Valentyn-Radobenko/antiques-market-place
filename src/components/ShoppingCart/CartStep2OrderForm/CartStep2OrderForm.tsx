@@ -55,10 +55,7 @@ export const CartStep2OrderForm: React.FC<Props> = ({ setStep }) => {
   );
 
   const isPaymentsChecked = !!(
-    (cart.payment.method === 'onReceipt' &&
-      cart.delivery.method === 'post' &&
-      cart.delivery.service &&
-      cart.delivery.branch) ||
+    (cart.payment.method === 'onReceipt' && isDeliveryChecked) ||
     (cart.payment.method === 'international' && files.length > 0) ||
     (cart.payment.method === 'internal' && files.length > 0) ||
     (cart.payment.method === 'cash' && cart.delivery.type === 'pickup')
