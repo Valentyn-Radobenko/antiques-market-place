@@ -4,7 +4,7 @@ import { OrderType } from '../../../../types/order';
 import { OrdersSVG } from '../../../../components/Imgs/OrdersSVG';
 import { BoxSVG } from '../../../../components/Imgs/BoxSVG';
 import { HandsSVG } from '../../../../components/Imgs/HandsSVG';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { AccountSVG } from '../../../../components/Imgs/AccountSVG';
 import { LocationSVG } from '../../../../components/Imgs/LocationSVG';
 import { CreditCardSVG } from '../../../../components/Imgs/CreditCardSVG';
@@ -12,9 +12,10 @@ import { useCurrency } from '../../../../hooks/useCurrency';
 
 type Props = {
   order: OrderType;
+  setOrdersToShow: Dispatch<SetStateAction<OrderType[]>>;
 };
 
-export const Order: React.FC<Props> = ({ order }) => {
+export const Order: React.FC<Props> = ({ order, setOrdersToShow }) => {
   const [openDetailed, setOpenDetailed] = useState<boolean>(false);
 
   function formattedDate(date: Date): string {
@@ -165,7 +166,7 @@ export const Order: React.FC<Props> = ({ order }) => {
                   status.en,
                 )}
               >
-                {order.deliveryStatus}
+                {order.status !== 'cancelled' ? order.deliveryStatus : ''}
               </p>
             </div>
             {openDetailed && (
@@ -210,8 +211,19 @@ export const Order: React.FC<Props> = ({ order }) => {
                     </p>
                   </div>
                 </div>
-                {status.en !== 'cancelled' && (
-                  <button className="order__cancel">Скасувати</button>
+                {status.en !== 'cancelled' && status.en !== 'received' && (
+                  <button
+                    onClick={() =>
+                      setOrdersToShow((prev) =>
+                        prev.map((a) =>
+                          a.id === order.id ? { ...a, status: 'cancelled' } : a,
+                        ),
+                      )
+                    }
+                    className="order__cancel"
+                  >
+                    Скасувати
+                  </button>
                 )}
               </div>
             )}
@@ -222,7 +234,7 @@ export const Order: React.FC<Props> = ({ order }) => {
         <p className="order__start-date">
           від {formattedDate(order.orderDate)}
         </p>
-        {order.deliveryDate && (
+        {order.deliveryDate && order.status !== 'cancelled' && (
           <p className="order__end-date">
             до {formattedDate(order.deliveryDate)}
           </p>

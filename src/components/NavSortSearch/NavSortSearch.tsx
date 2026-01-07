@@ -9,6 +9,7 @@ import { BaseNavSort, BaseNavigation } from '../../types/baseNavigation';
 import { useSearchParams } from 'react-router-dom';
 import { getSearchWith } from '../../utils/SearchHelper';
 import { Close } from '../Imgs/Close';
+import { useWindowSize } from '../../utils/useWindowSize';
 
 type Props = {
   sortings: BaseNavSort[];
@@ -23,6 +24,7 @@ export const NavSortSearch: React.FC<Props> = ({
   const { t } = useTranslation();
   const [query, setQuery] = useState<string>('');
   const [searchParams, setSearchParams] = useSearchParams();
+  const windowSize = useWindowSize();
 
   return (
     <div className="nav-sort-serach">
@@ -92,7 +94,7 @@ export const NavSortSearch: React.FC<Props> = ({
         )}
         <div
           className={classNames('nav-sort-serach__sorting', {
-            isActive: !activeInput,
+            isActive: !activeInput || windowSize.width >= 1440,
           })}
         >
           <DropdownOptions sortings={sortings} />

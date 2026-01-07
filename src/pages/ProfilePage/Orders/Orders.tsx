@@ -175,31 +175,36 @@ const orders: OrderType[] = [
 export const Orders = () => {
   const [setOpenMenu] = useOutletContext<OutletContextType>();
   const [searchParams] = useSearchParams();
-  const [ordersToShow, setOrdersToShow] = useState<OrderType[]>();
+  const [ordersToShow, setOrdersToShow] = useState<OrderType[]>([]);
+  const [filtredOrders, setFiltredOrders] = useState<OrderType[]>([]);
   const filterBy = searchParams.get('filterBy');
   const query = searchParams.get('query');
   const sortBy = searchParams.get('sortBy');
 
   useEffect(() => {
-    if (orders) {
-      let filtredOrders = [...orders];
+    setOrdersToShow(orders);
+  }, []);
+
+  useEffect(() => {
+    if (ordersToShow) {
+      let newFiltredOrders = [...ordersToShow];
 
       if (filterBy) {
-        filtredOrders = filtredOrders.filter((a) => a.status === filterBy);
+        newFiltredOrders = newFiltredOrders.filter(
+          (a) => a.status === filterBy,
+        );
       }
 
       if (query) {
-        filtredOrders = filtredOrders.filter((a) =>
+        newFiltredOrders = newFiltredOrders.filter((a) =>
           a.items.find((b) =>
             b.name.toLowerCase().includes(query.toLowerCase()),
           ),
         );
-
-        console.log(filtredOrders);
       }
 
       if (sortBy) {
-        filtredOrders = [...filtredOrders].sort((a, b) => {
+        newFiltredOrders = [...newFiltredOrders].sort((a, b) => {
           switch (sortBy) {
             case 'newest-first':
               return +b.orderDate - +a.orderDate;
@@ -221,9 +226,9 @@ export const Orders = () => {
         });
       }
 
-      setOrdersToShow(filtredOrders);
+      setFiltredOrders(newFiltredOrders);
     }
-  }, [searchParams]);
+  }, [searchParams, ordersToShow]);
 
   const { t } = useTranslation();
   const lang = useSelector((state: SavingState) => state.language.language);
@@ -261,11 +266,12 @@ export const Orders = () => {
             sortings={sortings}
           />
           <div className="orders__list">
-            {ordersToShow && ordersToShow.length > 0 ?
-              ordersToShow.map((order) => (
+            {filtredOrders && filtredOrders.length > 0 ?
+              filtredOrders.map((order) => (
                 <Order
                   key={order.id}
                   order={order}
+                  setOrdersToShow={setOrdersToShow}
                 />
               ))
             : <div className="items__no-items-wrapper">
