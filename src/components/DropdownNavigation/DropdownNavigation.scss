@@ -1,5 +1,5 @@
 .dropdown-navigation {
-  background: $background-plate;
+  overflow: hidden;
   border-radius: 12px;
 
   &.desktop {
@@ -16,6 +16,7 @@
     gap: 8px;
     align-items: center;
     box-shadow: $drop-shadow;
+    background: $background-plate;
 
     &.categories {
       background: $gray-white !important;
@@ -95,6 +96,15 @@
 
   &__option {
     border-top: 1px solid $gray-stroke;
+    background: $background-plate;
+
+    &:hover {
+      background: $selected-bright;
+
+      @include on-tablet {
+        background: $background-plate;
+      }
+    }
   }
 
   &__option-top-bar {
@@ -175,11 +185,13 @@
   }
 
   &__suboption {
+    align-items: center;
     padding: 16px;
     @include main-text;
     color: $gray-black;
     cursor: pointer;
     display: flex;
+    gap: 8px;
     justify-content: space-between;
     transition: all ease $effect-duration;
 

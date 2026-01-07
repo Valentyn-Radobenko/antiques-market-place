@@ -1,8 +1,14 @@
 .page-base-navigation {
   box-shadow: $drop-shadow;
+  border-radius: 12px;
+  overflow: hidden;
+
   @include on-tablet {
+    overflow: auto;
+
     min-width: 100vw;
     margin-left: -24px;
+    border-radius: 0;
   }
 
   @include on-phone {
@@ -18,9 +24,11 @@
     box-shadow: $drop-shadow;
     background: $background-page;
     justify-content: space-between;
+    border-radius: 12px;
 
     @include on-tablet {
       box-shadow: none;
+      border-radius: 0;
     }
   }
 
